@@ -27,11 +27,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
 
     override fun onBinding() {
         handler.postDelayed({
-
             IntentNavigator.navigateToLoginActivity(this)
             mPref.setLogin(true)
             mPref.setPreferences(Constants.mloginUserKey,"ABCD")
-        }, 2000)
+        }, 20000)
 
 
     }

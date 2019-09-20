@@ -28,8 +28,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_face" />
-                            <entry key="sourceFile" value="C:\Users\user" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_plantaion_logo" />
+                            <entry key="sourceFile" value="C:\Users\User\Desktop\MPCB\design\LOGIN_SCREEN\group_631.svg" />
                           </map>
                         </option>
                       </PersistentState>

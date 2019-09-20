@@ -12,6 +12,7 @@ local.properties
 
 # Signing files
 .signing/
+build/
 
 # User-specific configurations
 .idea/libraries/
