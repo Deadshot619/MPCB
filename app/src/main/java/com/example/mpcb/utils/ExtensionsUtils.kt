@@ -8,12 +8,17 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
+import androidx.fragment.app.Fragment
 import com.example.mpcb.base.MPCBApp
 import com.google.android.material.textfield.TextInputLayout
 
 
 fun AppCompatActivity.showMessage(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
+fun Fragment.showMessage(message: String) {
+    Toast.makeText(this.activity, message, Toast.LENGTH_SHORT).show()
 }
 
 fun AppCompatActivity.hideKeyboard() {

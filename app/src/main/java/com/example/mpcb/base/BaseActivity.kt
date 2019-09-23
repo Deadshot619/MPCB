@@ -9,8 +9,11 @@ import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.mpcb.R
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(), UICallbacks<V> {
@@ -18,18 +21,18 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     protected lateinit var mBinding: T
     protected lateinit var mViewModel: V
     private lateinit var mContext: Context
-    internal lateinit var mPref:PreferencesHelper;
+    internal lateinit var mPref: PreferencesHelper
+    private lateinit var fragmentManager: FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mContext = this@BaseActivity
-        mPref = PreferencesHelper
-
         mBinding = DataBindingUtil.setContentView(this@BaseActivity, getLayoutId())
-//        mViewModel = ViewModelProviders.of(this@BaseActivity).get(getViewModel())
         mViewModel = ViewModelProvider(this@BaseActivity).get(getViewModel())
         mViewModel.setNavigator(getNavigator())
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        mContext = this@BaseActivity
+        mPref = PreferencesHelper
+        fragmentManager = supportFragmentManager
         createDialog()
         onBinding()
     }
@@ -48,5 +51,18 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
             android.R.id.home -> onBackPressed()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    protected fun addFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
+        bundle?.let {
+            fragment.arguments = bundle
+        }
+        fragmentManager.beginTransaction().apply {
+            replace(R.id.container, fragment)
+            if (addToBackstack) {
+                addToBackStack(fragment::class.java.simpleName)
+            }
+            commit()
+        }
     }
 }
