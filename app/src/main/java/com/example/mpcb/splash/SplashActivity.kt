@@ -30,7 +30,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
             IntentNavigator.navigateToLoginActivity(this)
             mPref.setLogin(true)
             mPref.setPreferences(Constants.mloginUserKey,"ABCD")
-        }, 20000)
+        }, 2000)
 
 
     }

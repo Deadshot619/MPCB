@@ -6,6 +6,7 @@
 
 
     <color name="white">#FFFEFE</color>
+    <color name="green">#51b578</color>
     <color name="colorBtn">#51b578</color>
 
 </resources>
