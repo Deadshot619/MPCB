@@ -6,13 +6,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/ic_background"
             tools:context=".splash.SplashActivity">
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgvw_logo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:background="@drawable/mpcb_logo"
+                app:layout_constraintBottom_toTopOf="@+id/splash_guideline_logo_ref"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="72dp"
@@ -22,16 +24,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
                 android:layout_marginBottom="0dp"/>
-        <!--app:layout_constraintBottom_toTopOf="@+id/splash_guideline_logo_ref"-->
 
-        <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgvw_background"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_background"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
 
 
         <!--<androidx.constraintlayout.widget.Guideline
@@ -41,12 +34,12 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.75"/>-->
 
-        <!--<androidx.constraintlayout.widget.Guideline
+        <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/splash_guideline_logo_ref"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.25"/>-->
+                app:layout_constraintGuide_percent="0.25"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
