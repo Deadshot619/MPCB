@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -38,12 +36,16 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     }
 
     private fun createDialog() {
-        val progressBar = ProgressBar(mContext)
-        progressBar.apply {
-            mViewModel.getVisibility().observe(this@BaseActivity, Observer {
-                progressBar.visibility = if (it) View.VISIBLE else View.GONE
-            })
-        }
+        val dialog = LoadingDialog(this@BaseActivity)
+        mViewModel.getVisibility().observe(this@BaseActivity, Observer { show ->
+            dialog.run {
+                if (show) show() else hide()
+            }
+        })
+        mViewModel.getMessage().observe(this@BaseActivity, Observer {
+            dialog.setMessage(it)
+        })
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

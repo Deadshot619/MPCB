@@ -19,6 +19,7 @@ open class BaseViewModel<N : BaseNavigator> : ViewModel() {
     fun getVisibility() = dialogVisibility
 
     protected fun checkError(throwable: Throwable) {
+        dialogVisibility.value = false
         throwable.message?.apply {
             if (this.contains("500") || this.contains("Socket"))
                 mNavigator!!.onError("No Internet Connection $this")

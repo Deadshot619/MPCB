@@ -5,6 +5,7 @@ import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.profile.ProfileFragment
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.visit_report.VisitReportFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNavigator {
 
@@ -23,12 +24,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.fragmentOne -> {
-                    supportFragmentManager.beginTransaction().add(R.id.container, ProfileFragment()).addToBackStack(null).commit()
+                    addFragment(ProfileFragment(), false)
                     showMessage("One")
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.fragmentTwo -> {
                     showMessage("Two")
+                    addFragment(VisitReportFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.fragmentThree -> {
