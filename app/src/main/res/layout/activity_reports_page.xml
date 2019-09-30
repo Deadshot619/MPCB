@@ -5,7 +5,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg_grey"
-            tools:context="com.example.mpcb.visit_report.ReportsPageActivity">
+            tools:context="com.example.mpcb.reports.ReportsPageActivity">
 
         <androidx.appcompat.widget.Toolbar
                 app:layout_constraintTop_toTopOf="parent"

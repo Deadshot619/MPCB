@@ -13,8 +13,6 @@ class LoginViewModel : BaseViewModel<LoginNavigator>() {
     fun onLoginClick(loginRequest: LoginRequest) {
         when {
             TextUtils.isEmpty(loginRequest.userName) -> {
-                dialogMessage.value = "Loading..."
-                dialogVisibility.value = true
                 mNavigator!!.onUsernameError()
             }
             TextUtils.isEmpty(loginRequest.password) -> {

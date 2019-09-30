@@ -2,8 +2,10 @@ package com.example.mpcb.home
 
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
+import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.profile.ProfileFragment
+import com.example.mpcb.reports.industry.IndustryReportFragment
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 
@@ -34,11 +36,13 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.fragmentThree -> {
+                    supportFragmentManager.beginTransaction().add(R.id.container, DashboardFragment()).addToBackStack(null).commit()
                     showMessage("Three")
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.fragmentFour -> {
                     showMessage("four")
+                    supportFragmentManager.beginTransaction().add(R.id.container, IndustryReportFragment()).addToBackStack(null).commit()
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.fragmentFive -> {
