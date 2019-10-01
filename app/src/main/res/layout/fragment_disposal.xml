@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="4dp"
+                    app:cardCornerRadius="10dp">
+
+                <androidx.core.widget.NestedScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/disposalParentLay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvIndustrialTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Industrial"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_xlarge"
+                            android:layout_margin="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbIndusCETP"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="CEPT"
+                            android:textSize="@dimen/text_large"
+                            android:textColor="@color/grey"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/tvIndustrialTitle"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toStartOf="@+id/edIndusCETP" android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edIndusCETP"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            android:text="200"
+                            android:maxLines="1"
+                            android:textColor="@color/grey"
+                            app:layout_constraintTop_toTopOf="@+id/cbIndusCETP"
+                            app:layout_constraintBottom_toBottomOf="@+id/cbIndusCETP"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbIndusLandGardening"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="On land for gardening"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/cbIndusCETP"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toStartOf="@+id/edIndusLandGardening" android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edIndusLandGardening"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:maxLines="1"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/cbIndusLandGardening"
+                            app:layout_constraintBottom_toBottomOf="@+id/cbIndusLandGardening"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbIndusRecycle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Recycle"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cbIndusLandGardening" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toStartOf="@+id/edIndusRecycle" android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edIndusRecycle"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:maxLines="1"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/cbIndusRecycle"
+                            app:layout_constraintBottom_toBottomOf="@+id/cbIndusRecycle"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbIndusSewageTreatment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Local Sewage Treatment"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/cbIndusRecycle" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toStartOf="@+id/edIndusSewageTreatment"
+                            android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edIndusSewageTreatment"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:maxLines="1"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/cbIndusSewageTreatment"
+                            app:layout_constraintBottom_toBottomOf="@+id/cbIndusSewageTreatment"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbIndusAnyOther"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Any Other"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/cbIndusSewageTreatment"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edIndusExtraName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Extra Name"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="8dp"
+                            app:layout_goneMarginLeft="40dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/cbIndusAnyOther"
+                            app:layout_constraintEnd_toStartOf="@+id/edIndusExtraNameValue"
+                            app:layout_constraintStart_toStartOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edIndusExtraNameValue"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:text="200"
+                            android:maxLines="1"
+                            android:textColor="@color/grey"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/edIndusExtraName"
+                            app:layout_constraintBottom_toBottomOf="@+id/edIndusExtraName"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <View
+                            android:id="@+id/viewIndustrialSeparator"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/view_line"
+                            android:background="@color/grey"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/cbIndusAnyOther"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintTop_toBottomOf="@+id/edIndusExtraName"/>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvIndustrialTotal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Total"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_xlarge"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/viewIndustrialSeparator"
+                            app:layout_constraintStart_toStartOf="@+id/edIndusExtraName" android:layout_marginStart="4dp"
+                            android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/edIndustrialTotal"
+                            android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edIndustrialTotal"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:text="400"
+                            android:maxLines="1"
+                            android:textColor="@color/grey"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/tvIndustrialTotal"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvIndustrialTotal"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <View
+                            android:id="@+id/view_separator_industrial"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/view_line_two"
+                            android:background="@color/light_white_100"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/edIndustrialTotal"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDomesticTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Domestic"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_xlarge"
+                            android:layout_margin="16dp"
+                            android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginStart="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:layout_marginLeft="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/view_separator_industrial"
+                            android:layout_marginTop="32dp"
+                            app:layout_constraintHorizontal_bias="0.0"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbDomesticCETP"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="CEPT"
+                            android:textSize="@dimen/text_large"
+                            android:textColor="@color/grey"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvDomesticTitle" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toStartOf="@+id/edDomesticCETP" android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edDomesticCETP"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            android:text="200"
+                            android:maxLines="1"
+                            android:textColor="@color/grey"
+                            app:layout_constraintTop_toTopOf="@+id/cbDomesticCETP"
+                            app:layout_constraintBottom_toBottomOf="@+id/cbDomesticCETP"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbDomesticLandGardening"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="On land for gardening"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cbDomesticCETP" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toStartOf="@+id/edDomesticLandGardening"
+                            android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edDomesticLandGardening"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:maxLines="1"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/cbDomesticLandGardening"
+                            app:layout_constraintBottom_toBottomOf="@+id/cbDomesticLandGardening"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbDomesticRecycle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Recycle"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cbDomesticLandGardening"
+                            android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/edDomesticRecycle"
+                            android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edDomesticRecycle"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:maxLines="1"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/cbDomesticRecycle"
+                            app:layout_constraintBottom_toBottomOf="@+id/cbDomesticRecycle"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbDomesticSewageTreatment"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Local Sewage Treatment"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/cbDomesticRecycle"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toStartOf="@+id/edDomesticSewageTreatment"
+                            android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edDomesticSewageTreatment"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            android:maxLines="1"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/cbDomesticSewageTreatment"
+                            app:layout_constraintBottom_toBottomOf="@+id/cbDomesticSewageTreatment"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbDomesticAnyOther"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Any Other"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            app:layout_constraintTop_toBottomOf="@+id/cbDomesticSewageTreatment"
+                            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+                            app:layout_constraintEnd_toEndOf="parent" android:layout_marginRight="8dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edDomesticExtraName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Extra Name sdd sd"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="8dp"
+                            app:layout_goneMarginLeft="40dp"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/cbDomesticAnyOther"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/edDomesticExtraNameValue"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edDomesticExtraNameValue"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:text="200"
+                            android:maxLines="1"
+                            android:textColor="@color/grey"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/edDomesticExtraName"
+                            app:layout_constraintBottom_toBottomOf="@+id/edDomesticExtraName"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <View
+                            android:id="@+id/viewDomesticSeparator"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/view_line"
+                            android:background="@color/grey"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/cbDomesticAnyOther"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintTop_toBottomOf="@+id/edDomesticExtraName"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDomesticTotal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:text="Total"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/text_xlarge"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDomesticSeparator"
+                            app:layout_constraintStart_toStartOf="@+id/edDomesticExtraName"
+                            app:layout_constraintEnd_toStartOf="@+id/edDomesticTotal"
+                            android:layout_marginLeft="4dp"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edDomesticTotal"
+                            android:layout_width="@dimen/ed_frag_disposal_width"
+                            android:layout_height="wrap_content"
+                            android:text="400"
+                            android:maxLines="1"
+                            android:textColor="@color/grey"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginRight="16dp"
+                            app:layout_constraintTop_toTopOf="@+id/tvDomesticTotal"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvDomesticTotal"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <View
+                            android:id="@+id/view_separator_domestic"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/view_line_two"
+                            android:background="@color/light_white_100"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/edDomesticTotal"/>
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvRemark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Remark"
+                            android:textSize="@dimen/text_large"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view_separator_domestic"/>
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edRemark"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Visit Completed"
+                            android:textColor="@color/grey"
+                            android:layout_marginStart="12dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintTop_toBottomOf="@id/tvRemark"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/check_in_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/save_continue"
+                            style="@style/save_btn_style"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginBottom="24dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            app:layout_constraintTop_toBottomOf="@+id/edRemark"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            </androidx.cardview.widget.CardView>
+
+</layout>

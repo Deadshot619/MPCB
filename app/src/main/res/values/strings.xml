@@ -1,6 +1,29 @@
 <resources>
     <string name="app_name">MPCB</string>
 
+    <!-- Reports -->
+    <string name="report_1">Industry category, Visit Details &amp; \nConsent status</string>
+    <string name="report_2">Production\nDetails</string>
+    <string name="report_3">Treatment\nSystem</string>
+    <string name="report_4">Water &amp; Waste Water Aspect</string>
+    <string name="report_5">Disposal</string>
+    <string name="report_6">Online Monitoring System(Water)</string>
+    <string name="report_7">Electric\nMeter Details</string>
+    <string name="report_8">Last JVS\nDetails</string>
+    <string name="report_9">Air Pollution\nAspect</string>
+    <string name="report_10">Online Monitoring System(Stack)</string>
+    <string name="report_11">Online Monitoring System(Ambient Air)</string>
+    <string name="report_12">Hazardous Waste Management</string>
+    <string name="report_13">Non Hazardous\nWaste Management</string>
+    <string name="report_14">Tree\nPlantation</string>
+    <string name="report_15">Statutory\nSubmissions</string>
+    <string name="report_16">Previous\nLegal Actions</string>
+    <string name="report_17">Bank Guarantee Details</string>
+    <string name="add_info">Additional\nInformation</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save_continue"><![CDATA[SAVE & CONTINUE]]></string>
+
+
 </resources>

@@ -3,6 +3,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable name="model"
+                  type="com.example.mpcb.network.request.LoginRequest"/>
+
+        <variable name="viewModel"
+                  type="com.example.mpcb.login.LoginViewModel"/>
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -85,9 +92,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="16dp"
+                    android:text="@={model.userName}"
                     android:paddingBottom="16dp"
                     android:drawableLeft="@drawable/ic_user_icon"
-                    android:drawableStart="@drawable/ic_user_icon" />
+                    android:drawableStart="@drawable/ic_user_icon"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -102,6 +110,7 @@
                 android:layout_marginStart="8dp">
             <androidx.appcompat.widget.AppCompatEditText
                     android:hint="Password"
+                    android:text="@={model.password}"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,16 +137,11 @@
 
         <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnLogin"
+                android:onClick="@{() -> viewModel.onLoginClick(model)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="get started"
-                android:textSize="@dimen/text_large"
-                android:paddingLeft="@dimen/button_padding_left"
-                android:paddingRight="@dimen/button_padding_right"
-                android:paddingStart="@dimen/button_padding_left"
-                android:paddingEnd="@dimen/button_padding_right"
-                android:textColor="@color/white"
-                android:textStyle="bold"
+                style="@style/save_btn_style"
                 android:background="@drawable/btn_drawable"
                 app:layout_constraintTop_toBottomOf="@+id/btnForgetPass"
                 android:layout_marginTop="32dp"

@@ -18,5 +18,8 @@
     <dimen name="view_line_two">5sp</dimen>
 
 
+    <dimen name="ed_frag_disposal_width">100dp</dimen>
+
+
 
 </resources>

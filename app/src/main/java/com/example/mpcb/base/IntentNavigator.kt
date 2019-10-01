@@ -1,6 +1,7 @@
 package com.example.mpcb.base
 
 import android.content.Context
+import com.example.mpcb.home.HomeActivity
 import com.example.mpcb.login.LoginActivity
 
 
@@ -10,6 +11,10 @@ object IntentNavigator {
         context.startActivity(intent)
     }
 
+    fun navigateToDashboardActivity(context: Context){
+        val intent = HomeActivity.getCallingIntent(context)
+        context.startActivity(intent)
+    }
 
 }
 

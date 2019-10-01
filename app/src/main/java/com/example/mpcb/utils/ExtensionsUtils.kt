@@ -11,6 +11,11 @@ import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import com.example.mpcb.base.MPCBApp
 import com.google.android.material.textfield.TextInputLayout
+import java.lang.StringBuilder
+import java.math.BigInteger
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+import kotlin.experimental.and
 
 
 fun AppCompatActivity.showMessage(message: String) {
@@ -46,4 +51,9 @@ fun isNetworkAvailable(): Boolean {
     val cm = MPCBApp.instance.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val activeNetwork = cm.activeNetworkInfo
     return activeNetwork.isConnected
+}
+
+fun String.md5(): String {
+    val md = MessageDigest.getInstance("MD5")
+    return BigInteger(1, md.digest(toByteArray())).toString(16).padStart(32, '0')
 }
