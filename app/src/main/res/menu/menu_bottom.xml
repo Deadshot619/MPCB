@@ -2,27 +2,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/fragmentOne"
+            android:id="@+id/task_mngmt"
             android:icon="@drawable/ic_face"
-            android:title="title 1"/>
+            android:title=""
+            android:enabled="true"/>
 
     <item
-            android:id="@+id/fragmentTwo"
+            android:id="@+id/my_visits"
             android:icon="@drawable/ic_face"
-            android:title="title 2"/>
+            android:title=""
+            android:enabled="true"/>
 
     <item
-            android:id="@+id/fragmentThree"
+            android:id="@+id/dashboard"
             android:icon="@drawable/ic_face"
-            android:title="title 3"/>
+            android:title=""
+            android:enabled="true"/>
 
     <item
-            android:id="@+id/fragmentFour"
+            android:id="@+id/attendance"
             android:icon="@drawable/ic_face"
-            android:title="title 4"/>
+            android:title=""
+            android:enabled="true"/>
 
     <item
-            android:id="@+id/fragmentFive"
+            android:id="@+id/my_profile"
             android:icon="@drawable/ic_face"
-            android:title="title 5"/>
+            android:title=""/>
 </menu>

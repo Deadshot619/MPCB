@@ -15,6 +15,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     override fun onInternetError() {}
 
     override fun onBinding() {
+        setToolbar(mBinding.toolbarLayout, getString(R.string.profile_title))
     }
 
 

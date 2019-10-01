@@ -1,11 +1,12 @@
 package com.example.mpcb.home
 
+import android.content.Context
+import android.content.Intent
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.profile.ProfileFragment
-import com.example.mpcb.reports.industry.IndustryReportFragment
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 
@@ -17,36 +18,37 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
     override fun onInternetError() {}
     override fun onError(message: String) = showMessage(message)
 
+    companion object {
+        fun getCallingIntent(context: Context) = Intent(context, HomeActivity::class.java)
+    }
+
     override fun onBinding() {
         setListeners()
-
+        mBinding.bottomNavigation.menu.performIdentifierAction(R.id.dashboard, 2)
+        mBinding.bottomNavigation.menu.getItem(2).setChecked(true)
     }
 
     private fun setListeners() {
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.fragmentOne -> {
-                    addFragment(ProfileFragment(), false)
-                    showMessage("One")
+                R.id.task_mngmt -> {
+                    showMessage("Task Management")
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.fragmentTwo -> {
-                    showMessage("Two")
+                R.id.my_visits -> {
                     addFragment(VisitReportFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.fragmentThree -> {
-                    supportFragmentManager.beginTransaction().add(R.id.container, DashboardFragment()).addToBackStack(null).commit()
-                    showMessage("Three")
+                R.id.dashboard -> {
+                    addFragment(DashboardFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.fragmentFour -> {
-                    showMessage("four")
-                    supportFragmentManager.beginTransaction().add(R.id.container, IndustryReportFragment()).addToBackStack(null).commit()
+                R.id.attendance -> {
+                    showMessage("Attendance")
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.fragmentFive -> {
-                    showMessage("five")
+                R.id.my_profile -> {
+                    addFragment(ProfileFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
             }

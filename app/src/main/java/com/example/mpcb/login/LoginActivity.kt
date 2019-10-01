@@ -5,6 +5,7 @@ import android.content.Intent
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.databinding.ActivityLoginBinding
+import com.example.mpcb.home.HomeActivity
 import com.example.mpcb.network.request.LoginRequest
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.reports.ReportsPageActivity
@@ -25,7 +26,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     override fun onPasswordError() = showMessage("Enter Password")
 
     override fun onloginSuccess() {
-        startActivity(Intent(this@LoginActivity, ReportsPageActivity::class.java))
+        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
         finish()
     }
 
