@@ -2,25 +2,12 @@ package com.example.mpcb.login
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.ImageView
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
-import com.example.mpcb.base.IntentNavigator
 import com.example.mpcb.databinding.ActivityLoginBinding
-import com.example.mpcb.home.HomeActivity
-import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.LoginRequest
-import com.example.mpcb.utils.constants.Constants
-import com.example.mpcb.utils.dialoug.DialogueHelper
-import com.example.mpcb.utils.log.LogHelper
 import com.example.mpcb.utils.showMessage
-import com.example.mpcb.visit_report.ReportsPageActivity
-import io.reactivex.functions.Consumer
+import com.example.mpcb.reports.ReportsPageActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), LoginNavigator {
 
@@ -43,10 +30,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
     override fun onBinding() {
-        //mBinding.model = LoginRequest()
-        //mBinding.viewModel = mViewModel
-
-
+        mBinding.model = LoginRequest()
+        mBinding.viewModel = mViewModel
 
     }
 

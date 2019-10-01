@@ -1,4 +1,4 @@
-package com.example.mpcb.visit_report
+package com.example.mpcb.reports
 
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
@@ -6,7 +6,8 @@ import com.example.mpcb.databinding.ActivityReportsPageBinding
 import com.example.mpcb.profile.ProfileFragment
 import com.example.mpcb.utils.showMessage
 
-class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPageViewModel>(), ReportsPageNavigator {
+class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPageViewModel>(),
+    ReportsPageNavigator {
 
     override fun getLayoutId() = R.layout.activity_reports_page
     override fun getViewModel() = ReportsPageViewModel::class.java

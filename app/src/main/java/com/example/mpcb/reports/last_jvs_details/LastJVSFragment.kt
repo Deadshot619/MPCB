@@ -1,4 +1,4 @@
-package com.example.mpcb.visit_report
+package com.example.mpcb.reports.last_jvs_details
 
 
 import android.os.Bundle
@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mpcb.R
 
-class ProductionFragment : Fragment() {
+class LastJVSFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_production, container, false)
+        return inflater.inflate(R.layout.fragment_last_jvs, container, false)
     }
 
 
