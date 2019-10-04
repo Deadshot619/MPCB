@@ -7,10 +7,6 @@ import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.profile.ProfileFragment
-import com.example.mpcb.reports.air.AirFragment
-import com.example.mpcb.reports.disposal.DisposalFragment
-import com.example.mpcb.reports.hazardious_waste_management.HazardiousFragment
-import com.example.mpcb.reports.water.WaterFragment
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 
@@ -28,35 +24,31 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
 
     override fun onBinding() {
         setListeners()
-
+        mBinding.bottomNavigation.menu.performIdentifierAction(R.id.dashboard, 2)
+        mBinding.bottomNavigation.menu.getItem(2).setChecked(true)
     }
 
     private fun setListeners() {
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.fragmentOne -> {
-                    addFragment(ProfileFragment(), false)
-                    showMessage("One")
+                R.id.task_mngmt -> {
+                    showMessage("Task Management")
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.fragmentTwo -> {
-                    showMessage("Two")
+                R.id.my_visits -> {
                     addFragment(VisitReportFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.fragmentThree -> {
-                    supportFragmentManager.beginTransaction().add(R.id.container, DashboardFragment()).addToBackStack(null).commit()
-                    showMessage("Three")
+                R.id.dashboard -> {
+                    addFragment(DashboardFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.fragmentFour -> {
-                    showMessage("four")
-                    addFragment(AirFragment(),false)
+                R.id.attendance -> {
+                    showMessage("Attendance")
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.fragmentFive -> {
-                    showMessage("five")
-                    addFragment(HazardiousFragment(),false)
+                R.id.my_profile -> {
+                    addFragment(ProfileFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
