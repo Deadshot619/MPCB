@@ -7,7 +7,9 @@ import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.profile.ProfileFragment
+import com.example.mpcb.reports.air.AirFragment
 import com.example.mpcb.reports.disposal.DisposalFragment
+import com.example.mpcb.reports.hazardious_waste_management.HazardiousFragment
 import com.example.mpcb.reports.water.WaterFragment
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
@@ -49,11 +51,12 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                 }
                 R.id.fragmentFour -> {
                     showMessage("four")
-                    addFragment(DisposalFragment(),false)
+                    addFragment(AirFragment(),false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.fragmentFive -> {
                     showMessage("five")
+                    addFragment(HazardiousFragment(),false)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
