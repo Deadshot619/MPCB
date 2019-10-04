@@ -26,4 +26,7 @@
     <string name="save_continue"><![CDATA[SAVE & CONTINUE]]></string>
 
 
+
+    <string name="profile_title">Profile</string>
+
 </resources>

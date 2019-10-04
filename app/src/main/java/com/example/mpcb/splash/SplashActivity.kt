@@ -6,6 +6,7 @@ import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.base.BaseNavigator
 import com.example.mpcb.base.IntentNavigator
 import com.example.mpcb.databinding.ActivitySplashBinding
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
 import com.futuregroup.kotlintest.splash.SplashNavigator
 
@@ -21,7 +22,11 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
 
     override fun onBinding() {
         handler.postDelayed({
-            IntentNavigator.navigateToLoginActivity(this)
+            if (PreferencesHelper.isLogin()) {
+                IntentNavigator.navigateToHomeActivity(this)
+            } else {
+                IntentNavigator.navigateToLoginActivity(this)
+            }
             finish()
         }, 2000)
 
