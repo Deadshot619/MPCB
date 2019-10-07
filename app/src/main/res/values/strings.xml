@@ -27,7 +27,16 @@
     <string name="txt_process">Process/ Fuel Burning</string>
     <string name="t_process">Process</string>
     <string name="t_fuel">Fuel Burning</string>
-    <string name="txt_categoery">Category No &amp; type</string>
+    <string name="hztxt_categoery">Category No &amp; type</string>
+    <string name="hztxt_quantity">Quantity as per consent</string>
+    <string name="hztxt_method_disposal">Method of disposal as per consent</string>
+    <string name="hztxt_actual_disposal">Actual disposal</string>
+    <string name="hztxt_quantity_disposal">Quantity disposal (as per form 4)</string>
+    <string name="hztxt_quan_disp_cwtsd">Quantity disposal at CSWTSDS</string>
+    <string name="hztxt_quan_disp_processing">Quantity disposal for processing </string>
+    <string name="hztxt_quan_disp_actual_user">Quantity disposal for actual user</string>
+    <string name="hztxt_last_disposal"> Last disposal quantity</string>
+    <string name="hztxt_last_dis_date">Last disposal date</string>
 
 
 
