@@ -8,7 +8,6 @@ import com.example.mpcb.databinding.ActivityLoginBinding
 import com.example.mpcb.home.HomeActivity
 import com.example.mpcb.network.request.LoginRequest
 import com.example.mpcb.utils.showMessage
-import com.example.mpcb.reports.ReportsPageActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), LoginNavigator {
 

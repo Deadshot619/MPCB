@@ -4,9 +4,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:padding="8dp"
-            android:background="@color/bg_grey"
             android:layout_height="match_parent"
+            android:padding="8dp"
+            android:background="@drawable/ic_background"
             tools:context="com.example.mpcb.profile.ProfileFragment">
 
         <include
@@ -156,48 +156,48 @@
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingTop="16dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="8dp"
-                app:layout_constraintTop_toBottomOf="@id/date_picker_lay"
-                android:paddingStart="24dp"
-                android:paddingEnd="24dp"
-                android:id="@+id/constraintLayout">
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingStart="24dp"
+            android:paddingLeft="24dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="24dp"
+            android:paddingRight="8dp"
+            app:layout_constraintTop_toBottomOf="@id/date_picker_lay" tools:layout_editor_absoluteX="8dp">
 
 
             <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:layout_marginTop="8dp"
-                    app:cardCornerRadius="4dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                app:cardCornerRadius="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
-                        android:layout_width="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/assign_vist_count_vw"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="12dp">
+                        android:text="410"
+                        android:textColor="@color/green"
+                        android:textSize="@dimen/text_xxxlarge"/>
 
                     <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/assign_vist_count_vw"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="410"
-                            android:textColor="@color/green"
-                            android:textSize="@dimen/text_xxxlarge"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/assign_visit_lbl"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TOTAL ASSIGNED VISITS"
-                            android:textColor="@color/grey"
-                            android:textStyle="bold"/>
+                        android:id="@+id/assign_visit_lbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TOTAL ASSIGNED VISITS"
+                        android:textColor="@color/grey"
+                        android:textStyle="bold"/>
 
                 </LinearLayout>
 
@@ -205,13 +205,21 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:background="@drawable/ic_totalassigned_visit"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:elevation="2dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/mask_group_22"
+                android:elevation="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/total_asign_visit_guideline"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/total_asign_visit_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.75"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -10,8 +10,6 @@ class Constants {
             val mloginKey:String = "login_key"
             val mloginUserKey:String = "user_login_name_key"
 
-
-
         }
 
 
