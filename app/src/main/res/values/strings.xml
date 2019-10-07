@@ -21,6 +21,10 @@
     <string name="report_17">Bank Guarantee Details</string>
     <string name="add_info">Additional\nInformation</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save_continue"><![CDATA[SAVE & CONTINUE]]></string>
+
 
     <string name="profile_title">Profile</string>
 

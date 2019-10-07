@@ -1,18 +1,18 @@
-package com.example.mpcb.reports.oms_water
-
+package com.example.mpcb.reports.disposal
 
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
-import com.example.mpcb.databinding.FragmentOmswaterBinding
+import com.example.mpcb.databinding.FragmentDisposalBinding
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
+
 import com.example.mpcb.utils.showMessage
 
-class OMSWaterFragment : BaseFragment<FragmentOmswaterBinding, ReportsPageViewModel>(), ReportsPageNavigator {
+class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewModel>(), ReportsPageNavigator {
 
-    override fun getLayoutId() = R.layout.fragment_oms_water
+    override fun getLayoutId() = R.layout.fragment_disposal
     override fun getViewModel() = ReportsPageViewModel::class.java
-    override fun getNavigator() = this@OMSWaterFragment
+    override fun getNavigator() = this@DisposalFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 

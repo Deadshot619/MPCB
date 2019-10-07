@@ -55,6 +55,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         return super.onOptionsItemSelected(item)
     }
 
+    // TODO: Add one more parameter for frag add or replace
     protected fun addFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
         bundle?.let {
             fragment.arguments = bundle

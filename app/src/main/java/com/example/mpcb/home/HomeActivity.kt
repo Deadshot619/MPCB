@@ -25,7 +25,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
     override fun onBinding() {
         setListeners()
         mBinding.bottomNavigation.menu.performIdentifierAction(R.id.dashboard, 2)
-        mBinding.bottomNavigation.menu.getItem(2).setChecked(true)
+        mBinding.bottomNavigation.menu.getItem(2).isChecked = true
     }
 
     private fun setListeners() {
