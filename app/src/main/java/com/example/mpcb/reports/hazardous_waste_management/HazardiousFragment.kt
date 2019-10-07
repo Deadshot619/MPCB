@@ -1,14 +1,8 @@
-package com.example.mpcb.reports.hazardious_waste_management
+package com.example.mpcb.reports.hazardous_waste_management
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
-import com.example.mpcb.databinding.FragmentAirPollutionBinding
 import com.example.mpcb.databinding.FragmentHazardiousBinding
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel

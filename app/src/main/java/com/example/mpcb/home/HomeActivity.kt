@@ -7,7 +7,8 @@ import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.profile.ProfileFragment
-import com.example.mpcb.reports.hazardious_waste_management.HazardiousFragment
+import com.example.mpcb.reports.bank_guarantee_details.BGDFragment
+import com.example.mpcb.reports.hazardous_waste_management.HazardiousFragment
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 
@@ -50,7 +51,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.my_profile -> {
-                    addFragment(ProfileFragment(), false)
+                    addFragment(BGDFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
             }

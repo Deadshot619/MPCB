@@ -1,4 +1,4 @@
-package com.example.mpcb.reports.hazardious_waste_management
+package com.example.mpcb.reports.hazardous_waste_management
 
 import android.content.Context
 import android.view.LayoutInflater
