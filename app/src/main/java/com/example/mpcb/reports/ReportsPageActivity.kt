@@ -7,7 +7,7 @@ import com.example.mpcb.databinding.ActivityReportsPageBinding
 import com.example.mpcb.reports.air.AirFragment
 import com.example.mpcb.reports.disposal.DisposalFragment
 import com.example.mpcb.reports.electric_meter_details.ElectricFragment
-import com.example.mpcb.reports.hazardious_waste_management.HazardiousFragment
+import com.example.mpcb.reports.hazardous_waste_management.HazardousFragment
 import com.example.mpcb.reports.industry.IndustryReportFragment
 import com.example.mpcb.reports.last_jvs_details.LastJVSFragment
 import com.example.mpcb.reports.oms_ambient_air.OMSAmbientAirFragment
@@ -33,11 +33,11 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     private var reportPage = -1
 
     override fun onBinding() {
-        setToolbar()
         if (intent != null && intent.extras != null) {
             reportPage = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
             addFragment(reportPage)
         }
+        setToolbar(reportPage)
     }
 
     private fun addFragment(reportPage: Int) {
@@ -53,20 +53,21 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             Constants.REPORT_9 -> AirFragment()
             Constants.REPORT_10 -> OMSStackFragment()
             Constants.REPORT_11 -> OMSAmbientAirFragment()
-            Constants.REPORT_12 -> HazardiousFragment()
-            Constants.REPORT_13 -> HazardiousFragment()
+            Constants.REPORT_12 -> HazardousFragment()
+            Constants.REPORT_13 -> HazardousFragment()
             Constants.REPORT_14 -> TreePlantationFragment()
             Constants.REPORT_15 -> StatutoryFragment()
             Constants.REPORT_16 -> PreviousLegalFragment()
             Constants.REPORT_17 -> PreviousLegalFragment()
             else -> Fragment()
         }
+        addFragment(fragment, false)
     }
 
-    private fun setToolbar() {
+    private fun setToolbar(reportPage: Int) {
         mBinding.visitId.text = "#32432423"
-        mBinding.visitName.text = "Treatment System"
-        mBinding.reportCount.text = "10 / 17"
-        mBinding.reportProgress.progress = 10
+        mBinding.visitName.text = Constants.getReportsTitle(this, reportPage)
+        mBinding.reportCount.text = (reportPage / 17).toString()
+        mBinding.reportProgress.progress = reportPage
     }
 }

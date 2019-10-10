@@ -1,11 +1,6 @@
 package com.example.mpcb.dashboard
 
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
@@ -21,7 +16,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     override fun onInternetError() {}
 
     override fun onBinding() {
-        setToolbar(mBinding.toolbarLayout,"Dashboard")
+        mBinding.dashboardModel = mViewModel.getDashboardModel()
+        setToolbar(mBinding.toolbarLayout, "Dashboard")
+        mViewModel.getDashboardData()
     }
 
 }

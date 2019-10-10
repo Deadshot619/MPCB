@@ -31,8 +31,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:textColor="@color/grey"
                     android:lineSpacingExtra="1.3sp"
-                    android:text="BG imposed"
-                />
+                    android:text="BG imposed"/>
 
                 <RadioGroup
                     android:id="@+id/rgBGImposed"
@@ -122,7 +121,6 @@
                         android:text="NA"
                         android:hint="Number (Only for Directions)"
                         android:textColor="@color/grey"
-                        style="@style/bank_guarantee_space_style"
                         app:layout_constraintStart_toStartOf="parent"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -152,7 +150,6 @@
                         android:text="NA"
                         android:hint="Bank Guarantee Imposed for"
                         android:textColor="@color/grey"
-                        style="@style/bank_guarantee_space_style"
                         app:layout_constraintStart_toStartOf="parent"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -230,95 +227,102 @@
                         tools:ignore="RtlSymmetry"/>
                 </RadioGroup>
 
-                <TextView
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtBGNo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:padding="5dp"
-                    android:fontFamily="@font/barlow_regular"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/rgBGSubmitted"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/grey"
-                    android:lineSpacingExtra="1.3sp"
-                    android:text="Bank Guarantee No"/>
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/edtBGNo"
-                    android:hint=""
-                    android:textColor="@color/grey"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:maxLines="1"
-                    android:textSize="@dimen/text_medium"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:fontFamily="@font/barlow_semi_bold"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBGNo"
-                    android:paddingBottom="16dp"
-                    android:paddingStart="10dp"
-                    tools:ignore="RtlSymmetry"/>
+                    app:layout_constraintTop_toBottomOf="@+id/rgBGSubmitted">
 
-                <TextView
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtBGNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_regular"
+                        android:text="NA"
+                        android:hint="Bank Guarantee No"
+                        android:textColor="@color/grey"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtBGDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:padding="5dp"
-                    android:fontFamily="@font/barlow_regular"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/edtBGNo"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/grey"
-                    android:lineSpacingExtra="1.3sp"
-                    android:text="Date"/>
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/edtBGDate"
-                    android:hint=""
-                    android:textColor="@color/grey"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:textSize="@dimen/text_medium"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:fontFamily="@font/barlow_semi_bold"
-                    android:drawableRight="@drawable/ic_calendar"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBGDate"
-                    android:paddingBottom="16dp"
-                    android:paddingStart="10dp"
-                    tools:ignore="RtlSymmetry"/>
+                    app:layout_constraintTop_toBottomOf="@+id/txtBGNo">
 
-                <TextView
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtBGDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_regular"
+                        android:text="12/09/2019"
+                        android:hint="Date"
+                        android:textColor="@color/grey"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txtBGValidity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:padding="5dp"
-                    android:fontFamily="@font/barlow_regular"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintTop_toBottomOf="@+id/edtBGDate"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:textColor="@color/grey"
-                    android:lineSpacingExtra="1.3sp"
-                    android:text="Validity"/>
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/edtBGValidity"
-                    android:hint=""
-                    android:textColor="@color/grey"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:textSize="@dimen/text_medium"
-                    android:maxLines="1"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintStart_toStartOf="parent"
-                   android:fontFamily="@font/barlow_semi_bold"
+                    app:layout_constraintTop_toBottomOf="@+id/txtBGDate">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtBGValidity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/barlow_regular"
+                        android:text="20"
+                        android:hint="Validity"
+                        android:textColor="@color/grey"
+                        app:layout_constraintStart_toStartOf="parent"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAddMore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_add_more"
+                    android:drawableLeft="@drawable/ic_add_more"
+                    android:drawablePadding="10dp"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="Add More"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp"
                     app:layout_constraintTop_toBottomOf="@+id/txtBGValidity"
-                    android:paddingBottom="16dp"
-                    android:paddingStart="10dp"
-                    tools:ignore="RtlSymmetry"/>
+                    tools:layout_editor_absoluteX="10dp"/>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnBGDSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_continue"
+                    style="@style/save_btn_style"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAddMore"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

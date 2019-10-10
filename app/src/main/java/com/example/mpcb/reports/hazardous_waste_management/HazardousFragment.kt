@@ -1,27 +1,21 @@
-package com.example.mpcb.reports.hazardious_waste_management
+package com.example.mpcb.reports.hazardous_waste_management
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
-import com.example.mpcb.databinding.FragmentAirPollutionBinding
 import com.example.mpcb.databinding.FragmentHazardiousBinding
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.showMessage
 import kotlinx.android.synthetic.main.fragment_hazardious.*
 
-class HazardiousFragment: BaseFragment<FragmentHazardiousBinding, ReportsPageViewModel>(),
+class HazardousFragment: BaseFragment<FragmentHazardiousBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
     val reportsItems: ArrayList<String> = ArrayList()
     override fun getLayoutId() = R.layout.fragment_hazardious
     override fun getViewModel() = ReportsPageViewModel::class.java
-    override fun getNavigator() = this@HazardiousFragment
+    override fun getNavigator() = this@HazardousFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
     override fun onBinding() {

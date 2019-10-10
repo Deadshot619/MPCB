@@ -14,9 +14,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
+    override fun onNameError() = showMessage("Enter Name")
+    override fun onEmailError() = showMessage("Enter Email")
+    override fun onMobileError() = showMessage("Enter Mobile")
+
     override fun onBinding() {
+        mBinding.viewModel = mViewModel
+        mBinding.model = mViewModel.getUserModel()
         setToolbar(mBinding.toolbarLayout, getString(R.string.profile_title))
     }
+
+    override fun onUpdateProfileSuccess(message: String) = showMessage(message)
 
 
 }

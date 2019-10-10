@@ -1,15 +1,15 @@
-package com.example.mpcb.utils.dialoug
+package com.example.mpcb.utils.dialog
 
 import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 
-class DialogueHelper {
+class DialogHelper {
 
     companion object{
 
 
-        fun displayDialoug(context: Context, view: View, title:String="",cancellable: Boolean=false):AlertDialog{
+        fun displayDialog(context: Context, view: View, title:String="",cancellable: Boolean=false):AlertDialog{
 
             var builder :AlertDialog.Builder = AlertDialog.Builder(context)
             builder.setView(view)
