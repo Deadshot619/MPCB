@@ -2,6 +2,7 @@ package com.example.mpcb.utils
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -9,6 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.example.mpcb.R
 import com.example.mpcb.base.MPCBApp
 import com.google.android.material.textfield.TextInputLayout
 import java.lang.StringBuilder
@@ -25,6 +29,14 @@ fun AppCompatActivity.showMessage(message: String) {
 fun Fragment.showMessage(message: String) {
     Toast.makeText(this.activity, message, Toast.LENGTH_SHORT).show()
 }
+
+
+inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
+    val fragmentTransaction = beginTransaction()
+    fragmentTransaction.func()
+    fragmentTransaction.commit()
+}
+
 
 fun AppCompatActivity.hideKeyboard() {
     val view = this.currentFocus
