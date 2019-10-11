@@ -1,4 +1,4 @@
-package com.example.mpcb.reports.water
+package com.example.mpcb.reports.water_and_waste_water
 
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment

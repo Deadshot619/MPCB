@@ -11,10 +11,6 @@ object IntentNavigator {
         context.startActivity(intent)
     }
 
-    fun navigateToDashboardActivity(context: Context){
-        val intent = HomeActivity.getCallingIntent(context)
-        context.startActivity(intent)
-    }
     fun navigateToHomeActivity(context: Context) {
         val intent = HomeActivity.getCallingIntent(context)
         context.startActivity(intent)

@@ -7,8 +7,6 @@ import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.profile.ProfileFragment
-import com.example.mpcb.reports.bank_guarantee_details.BGDFragment
-import com.example.mpcb.reports.hazardous_waste_management.HazardiousFragment
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 
@@ -27,7 +25,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
     override fun onBinding() {
         setListeners()
         mBinding.bottomNavigation.menu.performIdentifierAction(R.id.dashboard, 2)
-        mBinding.bottomNavigation.menu.getItem(2).setChecked(true)
+        mBinding.bottomNavigation.menu.getItem(2).isChecked = true
     }
 
     private fun setListeners() {
@@ -46,12 +44,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.attendance -> {
-                   // showMessage("Attendance")
-                    addFragment(HazardiousFragment(),false)
+                    showMessage("Attendance")
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.my_profile -> {
-                    addFragment(BGDFragment(), false)
+                    addFragment(ProfileFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
             }

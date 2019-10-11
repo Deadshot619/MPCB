@@ -1,23 +1,22 @@
-package com.example.mpcb.reports.oms_water
+package com.example.mpcb.reports.oms_ambient_air
 
 
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
-import com.example.mpcb.databinding.FragmentOmsWaterBinding
+import com.example.mpcb.databinding.FragmentOmsAmbientAirBinding
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.showMessage
 
-class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewModel>(), ReportsPageNavigator {
 
-    override fun getLayoutId() = R.layout.fragment_oms_water
+class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, ReportsPageViewModel>(), ReportsPageNavigator {
+    override fun getLayoutId() = R.layout.fragment_oms_ambient_air
     override fun getViewModel() = ReportsPageViewModel::class.java
-    override fun getNavigator() = this@OMSWaterFragment
+    override fun getNavigator() = this@OMSAmbientAirFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
     override fun onBinding() {
 
     }
-
 }

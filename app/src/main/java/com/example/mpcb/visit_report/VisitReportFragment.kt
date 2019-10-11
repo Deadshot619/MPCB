@@ -1,6 +1,8 @@
 package com.example.mpcb.visit_report
 
 
+import android.view.View
+import android.widget.Toast
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentVisitReportBinding
@@ -18,6 +20,8 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
     override fun onBinding() {
         mBinding.toolbarLayout.visitId.text = "#32133232"
         mBinding.toolbarLayout.visitName.text = "Johnson Controls-Hitachi Air Conditioning India Ltd"
+
+
     }
 
 }

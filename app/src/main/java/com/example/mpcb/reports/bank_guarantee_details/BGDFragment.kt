@@ -3,7 +3,6 @@ package com.example.mpcb.reports.bank_guarantee_details
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentBankGuaranteeBinding
-import com.example.mpcb.databinding.FragmentElectricBinding
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.showMessage
