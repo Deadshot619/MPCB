@@ -6,10 +6,9 @@ import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
-import com.example.mpcb.network.DataProvider
+import com.example.mpcb.my_visits.MyVisitsFragment
 import com.example.mpcb.profile.ProfileFragment
 import com.example.mpcb.utils.showMessage
-import com.example.mpcb.visit_report.VisitReportFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNavigator {
 
@@ -38,7 +37,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.my_visits -> {
-                    addFragment(VisitReportFragment(), false)
+                    addFragment(MyVisitsFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.dashboard -> {

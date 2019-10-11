@@ -24,7 +24,10 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
         request.fromDate = "2019-10-01"
         request.toDate = "2019-10-31"
         request.jurisdictionStat = 0
+        dialogMessage.value = "Fetching..."
+        dialogVisibility.value = true
         mDisposable.add(DataProvider.getDashboardData(request, Consumer {
+            dialogVisibility.value = false
             dashboardModel.run {
                 totalVisit = it.totalVisit
                 completedVisit = it.completedVisit

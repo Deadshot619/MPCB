@@ -67,7 +67,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     private fun setToolbar(reportPage: Int) {
         mBinding.visitId.text = "#32432423"
         mBinding.visitName.text = Constants.getReportsTitle(this, reportPage)
-        mBinding.reportCount.text = (reportPage / 17).toString()
+        mBinding.reportCount.text = "$reportPage/17"
         mBinding.reportProgress.progress = reportPage
     }
 }

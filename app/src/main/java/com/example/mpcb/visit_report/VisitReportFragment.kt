@@ -23,8 +23,11 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
     override fun onBinding() {
         mBinding.toolbarLayout.visitId.text = "#32133232"
         mBinding.toolbarLayout.visitName.text = "Johnson Controls-Hitachi Air Conditioning India Ltd"
+        mBinding.toolbarLayout.imgBack.setOnClickListener {
+            getBaseActivity().finish()
+        }
 
-        mBinding.itemListener = ReportItemListener(activity as Context)
+        mBinding.itemListener = ReportItemListener(getBaseActivity())
     }
 
 

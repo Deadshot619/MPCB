@@ -11,5 +11,11 @@ interface ProfileNavigator : BaseNavigator {
 
     fun onMobileError()
 
+    fun onCurrentPwdError()
+
+    fun onNewPwdError()
+
     fun onUpdateProfileSuccess(message: String)
+
+    fun onChangePwdSuccess(msg:String)
 }

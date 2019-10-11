@@ -92,7 +92,8 @@
                         <RelativeLayout
                             android:id="@+id/productTag"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -128,7 +129,8 @@
                         <RelativeLayout
                             android:id="@+id/treatmentTag"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -166,7 +168,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp">
+                        android:layout_marginBottom="4dp"
+                        android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -208,7 +211,8 @@
                         <RelativeLayout
                             android:id="@+id/disposalTag"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -245,7 +249,8 @@
                         <RelativeLayout
                             android:id="@+id/omsWaterTag"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -288,7 +293,8 @@
                         <RelativeLayout
                             android:id="@+id/electricTag"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -325,7 +331,8 @@
                         <RelativeLayout
                             android:id="@+id/lastJVSTag"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -368,7 +375,8 @@
                         <RelativeLayout
                             android:id="@+id/airPollutionTag"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -405,7 +413,8 @@
                         <RelativeLayout
                             android:id="@+id/omsStackTag"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -443,7 +452,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8dp"
+                        android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -480,7 +490,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8dp"
+                        android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -522,7 +533,8 @@
                         <RelativeLayout
                             android:id="@+id/nonHazardousTag"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -559,7 +571,8 @@
                         <RelativeLayout
                             android:id="@+id/treeTag"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -602,7 +615,8 @@
                         <RelativeLayout
                             android:id="@+id/statutoryTag"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -639,7 +653,8 @@
                         <RelativeLayout
                             android:id="@+id/previousTag"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
@@ -677,7 +692,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp">
+                        android:layout_marginBottom="8dp"
+                        android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
@@ -717,6 +733,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:gravity="center_vertical"
+                        android:onClick="@{(v) -> itemListener.onClick(v)}"
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView

@@ -1,11 +1,9 @@
 package com.example.mpcb.network
 
-import com.example.mpcb.network.request.ChangePwdRequest
-import com.example.mpcb.network.request.DashboardDataRequest
-import com.example.mpcb.network.request.LoginRequest
-import com.example.mpcb.network.request.UpdateProfileRequest
+import com.example.mpcb.network.request.*
 import com.example.mpcb.network.response.DashboardDataResponse
 import com.example.mpcb.network.response.LoginResponse
+import com.example.mpcb.network.response.MyVisitResponse
 import com.example.mpcb.network.response.UpdateProfileResponse
 import io.reactivex.Single
 import retrofit2.http.Body
@@ -24,4 +22,7 @@ interface APIInterface {
 
     @POST("dashboard_data")
     fun getDashboardData(@Body request: DashboardDataRequest): Single<DashboardDataResponse>
+
+    @POST("visit_list")
+    fun getVisitList(@Body request: MyVisitRequest): Single<MyVisitResponse>
 }
