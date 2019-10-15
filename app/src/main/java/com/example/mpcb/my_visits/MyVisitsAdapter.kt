@@ -2,11 +2,13 @@ package com.example.mpcb.my_visits
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemVisitBinding
 import com.example.mpcb.network.response.MyVisitModel
-import java.text.SimpleDateFormat
 
 class MyVisitsAdapter(
     val context: Context,
@@ -24,8 +26,28 @@ class MyVisitsAdapter(
     override fun onBindViewHolder(holder: MyVisitViewHolder, position: Int) {
         val item = visitList[position]
         holder.itemBinding.model = item
-        val date = SimpleDateFormat("MMM dd yyyy HH:mm:ss").parse(item.scheduledOn);
-        SimpleDateFormat("dd/MM/yyyy").format(date)
+        holder.itemBinding.viewModel = viewModel
+
+        holder.itemBinding.imgExpandCollapse.setOnClickListener {
+            if (holder.itemBinding.layLinBottom.visibility == View.VISIBLE) {
+                holder.itemBinding.imgExpandCollapse.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_down_arrow
+                    )
+                )
+                holder.itemBinding.layLinBottom.visibility = View.GONE
+            } else {
+                holder.itemBinding.imgExpandCollapse.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        context,
+                        R.drawable.ic_up_arrow
+                    )
+                )
+                holder.itemBinding.layLinBottom.visibility = View.VISIBLE
+            }
+        }
+
     }
 
     override fun getItemId(position: Int) = position.toLong()

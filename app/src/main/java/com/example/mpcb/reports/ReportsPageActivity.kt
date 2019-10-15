@@ -40,6 +40,13 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         setToolbar(reportPage)
     }
 
+    private fun setToolbar(reportPage: Int) {
+        mBinding.visitId.text = "#32432423"
+        mBinding.visitName.text = Constants.getReportsTitle(this, reportPage)
+        mBinding.reportCount.text = "$reportPage/17"
+        mBinding.reportProgress.progress = reportPage
+    }
+
     private fun addFragment(reportPage: Int) {
         val fragment = when (reportPage) {
             Constants.REPORT_1 -> IndustryReportFragment()
@@ -61,13 +68,6 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             Constants.REPORT_17 -> PreviousLegalFragment()
             else -> Fragment()
         }
-        addFragment(fragment, false)
-    }
-
-    private fun setToolbar(reportPage: Int) {
-        mBinding.visitId.text = "#32432423"
-        mBinding.visitName.text = Constants.getReportsTitle(this, reportPage)
-        mBinding.reportCount.text = "$reportPage/17"
-        mBinding.reportProgress.progress = reportPage
+        addReportFragment(fragment, false)
     }
 }

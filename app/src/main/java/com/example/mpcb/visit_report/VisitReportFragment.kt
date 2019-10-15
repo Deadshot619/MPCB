@@ -7,12 +7,15 @@ import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentVisitReportBinding
+import com.example.mpcb.network.response.MyVisitModel
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 
 class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReportViewModel>(), VisitReportNavigator {
+
+    private lateinit var visitItem: MyVisitModel
 
     override fun getLayoutId() = R.layout.fragment_visit_report
     override fun getViewModel() = VisitReportViewModel::class.java
@@ -21,8 +24,15 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
     override fun onInternetError() {}
 
     override fun onBinding() {
-        mBinding.toolbarLayout.visitId.text = "#32133232"
-        mBinding.toolbarLayout.visitName.text = "Johnson Controls-Hitachi Air Conditioning India Ltd"
+
+        if (arguments != null && arguments!!.getParcelable<MyVisitModel>(Constants.VISIT_ITEM_KEY) != null) {
+            visitItem = arguments!!.getParcelable(Constants.VISIT_ITEM_KEY)
+        }
+
+
+        mBinding.toolbarLayout.visitId.text = "#${visitItem.industryIMISId}"
+        mBinding.toolbarLayout.visitName.text = visitItem.industryName
+
         mBinding.toolbarLayout.imgBack.setOnClickListener {
             getBaseActivity().finish()
         }

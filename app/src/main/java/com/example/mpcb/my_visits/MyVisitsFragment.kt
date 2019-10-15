@@ -1,15 +1,25 @@
 package com.example.mpcb.my_visits
 
 
+import android.app.DatePickerDialog
+import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentMyVisitsBinding
+import com.example.mpcb.network.response.MyVisitModel
+import com.example.mpcb.utils.addFragment
+import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.dialog.CheckInDialog
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.visit_report.VisitReportFragment
+import java.util.*
 
 
 class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(), MyVisitsNavigator {
+
 
     override fun getLayoutId() = R.layout.fragment_my_visits
     override fun getViewModel() = MyVisitsViewModel::class.java
@@ -19,6 +29,21 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     override fun onBinding() {
         setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title))
+        setUpRecyclerView()
+        mBinding.toolbarLayout.imgCalendar.setOnClickListener { showCalendarDialog() }
+
+    }
+
+    private fun showCalendarDialog() {
+        val calendar = Calendar.getInstance()
+        val datePickerDialog =
+            DatePickerDialog(getBaseActivity(), DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+        datePickerDialog.show()
+    }
+
+    private fun setUpRecyclerView() {
         mBinding.rvMyVisits.layoutManager = LinearLayoutManager(getBaseActivity())
         val adapter = MyVisitsAdapter(getBaseActivity(), mViewModel)
         mBinding.rvMyVisits.adapter = adapter
@@ -28,4 +53,14 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         mViewModel.getVisitListData()
     }
 
+    override fun onVisitItemClicked(model: MyVisitModel) {
+        val bundle = Bundle()
+        bundle.putParcelable(Constants.VISIT_ITEM_KEY, model)
+        addFragment(VisitReportFragment(), true, bundle)
+    }
+
+    override fun onCheckInClicked(model: MyVisitModel) {
+        val checkInDialog = CheckInDialog(getBaseActivity(), model, mViewModel)
+        checkInDialog.show()
+    }
 }

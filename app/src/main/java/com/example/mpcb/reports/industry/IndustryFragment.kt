@@ -5,6 +5,7 @@ import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentIndustryCategoryBinding
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 class IndustryReportFragment : BaseFragment<FragmentIndustryCategoryBinding, ReportsPageViewModel>(),
@@ -17,7 +18,7 @@ class IndustryReportFragment : BaseFragment<FragmentIndustryCategoryBinding, Rep
     override fun onInternetError() {}
 
     override fun onBinding() {
-
+        mBinding.industryCatSaveBtn.setOnClickListener { addReportFragment(Constants.REPORT_2) }
     }
 
 }

@@ -6,6 +6,7 @@ import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentProductionBinding
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 class ProductionFragment : BaseFragment<FragmentProductionBinding, ReportsPageViewModel>(),
@@ -18,6 +19,6 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ReportsPageVi
     override fun onInternetError() {}
 
     override fun onBinding() {
-
+        mBinding.btnSubmit.setOnClickListener { addReportFragment(Constants.REPORT_3) }
     }
 }

@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mpcb.R
@@ -20,7 +19,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     protected lateinit var mViewModel: V
     private lateinit var mContext: Context
     internal lateinit var mPref: PreferencesHelper
-    private lateinit var fragmentManager: FragmentManager
+    private val fragTransaction by lazy { supportFragmentManager.beginTransaction() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +29,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mContext = this@BaseActivity
         mPref = PreferencesHelper
-        fragmentManager = supportFragmentManager
         createDialog()
         onBinding()
     }
@@ -55,12 +53,11 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         return super.onOptionsItemSelected(item)
     }
 
-    // TODO: Add one more parameter for frag add or replace
-    protected fun addFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
+    fun addFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
         bundle?.let {
             fragment.arguments = bundle
         }
-        fragmentManager.beginTransaction().apply {
+        supportFragmentManager.beginTransaction().apply {
             add(R.id.container, fragment)
             if (addToBackstack) {
                 addToBackStack(fragment::class.java.simpleName)
@@ -68,4 +65,19 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
             commit()
         }
     }
+
+    fun addReportFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
+        bundle?.let {
+            fragment.arguments = bundle
+        }
+        fragTransaction.apply {
+            add(R.id.report_container, fragment)
+            if (addToBackstack) {
+                addToBackStack(fragment::class.java.simpleName)
+            }
+            commit()
+        }
+    }
+
+
 }

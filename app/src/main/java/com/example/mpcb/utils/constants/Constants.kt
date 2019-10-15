@@ -13,9 +13,8 @@ class Constants {
         const val mloginUserKey: String = "user_login_name_key"
         const val USER: String = "user"
 
-
-
         const val REPORTS_PAGE_KEY: String = "reports_page_key"
+        const val VISIT_ITEM_KEY: String = "visit_item_key"
 
         // reports page value
         const val REPORT_1 = 1
