@@ -3,76 +3,77 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="?android:attr/actionBarSize"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:contentInsetLeft="16dp"
-            app:contentInsetStart="0dp"
-            android:elevation="4dp"
-            android:background="@color/white"
-            app:contentInsetStartWithNavigation="0dp"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:minHeight="?android:attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:contentInsetLeft="16dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:elevation="30dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="30dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageView
-                    android:src="@drawable/ic_left_arrow_black"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"/>
+                android:id="@+id/imgBack"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_left_arrow_black"/>
 
             <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Visit Report"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/title"
-                        android:layout_marginTop="16dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="Visit Report"
-                        android:textSize="24sp"
-                        android:textColor="@android:color/black"
-                        android:layout_marginStart="10dp"/>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/visitId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="#234312"
-                        android:textStyle="bold"
-                        android:textColor="@color/green"
-                        android:layout_marginStart="10dp"/>
+                    android:id="@+id/visitId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="#234312"
+                    android:textColor="@color/green"
+                    android:textStyle="bold"/>
 
                 <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="wrap_content">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/visitName"
-                            android:layout_width="0dp"
-                            android:layout_weight="8"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text="Johnson Controls-Hitachi Air Conditioning India Ltd"
-                            android:textSize="18sp"
-                            android:textColor="@android:color/black"
-                            android:layout_marginStart="10dp"/>
+                        android:id="@+id/visitName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="8"
+                        android:text="Johnson Controls-Hitachi Air Conditioning India Ltd"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="0dp"
-                            android:layout_weight="2"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/ic_launcher"/>
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:src="@drawable/mask_group_22"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

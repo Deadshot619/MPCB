@@ -12,6 +12,10 @@ class LoginResponse {
     @Expose
     var email: String? = null
         get() = field ?: ""
+    @SerializedName("tel_no")
+    @Expose
+    var mobile: String? = null
+        get() = field ?: ""
     @SerializedName("designation")
     @Expose
     var designation: String? = null

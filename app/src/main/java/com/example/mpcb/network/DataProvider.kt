@@ -1,7 +1,10 @@
 package com.example.mpcb.network
 
-import com.example.mpcb.network.request.LoginRequest
+import com.example.mpcb.network.request.*
+import com.example.mpcb.network.response.DashboardDataResponse
 import com.example.mpcb.network.response.LoginResponse
+import com.example.mpcb.network.response.MyVisitModel
+import com.example.mpcb.network.response.UpdateProfileResponse
 import com.example.mpcb.utils.isNetworkAvailable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -36,5 +39,76 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    override fun updateProfile(
+        request: UpdateProfileRequest,
+        success: Consumer<UpdateProfileResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.updateProfile(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(Consumer { response ->
+                if (response.status.equals("0")) {
+                    error.accept(Throwable(response.message))
+                } else {
+                    success.accept(response)
+                }
+            }, error)
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+    override fun changePassword(
+        request: ChangePwdRequest,
+        success: Consumer<UpdateProfileResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.changePassword(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(Consumer { response ->
+                if (response.status.equals("0")) {
+                    error.accept(Throwable(response.message))
+                } else {
+                    success.accept(response)
+                }
+            }, error)
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+    override fun getDashboardData(
+        request: DashboardDataRequest,
+        success: Consumer<DashboardDataResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.getDashboardData(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(Consumer { response ->
+                if (response.status.equals("0")) {
+                    error.accept(Throwable(response.message))
+                } else {
+                    success.accept(response)
+                }
+            }, error)
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+    override fun getVisitList(
+        request: MyVisitRequest,
+        success: Consumer<ArrayList<MyVisitModel>>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.getVisitList(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(Consumer { response ->
+                if (response.status.equals("0")) {
+                    error.accept(Throwable(response.message))
+                } else {
+                    success.accept(response.data)
+                }
+            }, error)
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 
 }

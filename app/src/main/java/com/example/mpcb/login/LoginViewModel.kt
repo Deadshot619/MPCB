@@ -4,8 +4,10 @@ import android.text.TextUtils
 import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.LoginRequest
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.md5
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
+import com.google.gson.Gson
 import io.reactivex.functions.Consumer
 
 
@@ -32,6 +34,7 @@ class LoginViewModel : BaseViewModel<LoginNavigator>() {
         mDisposable.add(DataProvider.login(reqModel, Consumer {
             dialogVisibility.value = false
             PreferencesHelper.setLogin(true)
+            PreferencesHelper.setPreferences(Constants.USER, Gson().toJson(it))
             mNavigator!!.onloginSuccess()
         }, Consumer { checkError(it) }))
     }

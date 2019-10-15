@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mpcb.databinding.ToolbarBinding
 
@@ -24,7 +25,21 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        createDialog()
         onBinding()
+    }
+
+    private fun createDialog() {
+        val dialog = LoadingDialog(getBaseActivity())
+        mViewModel.getVisibility().observe(viewLifecycleOwner, Observer { show ->
+            dialog.run {
+                if (show) show() else hide()
+            }
+        })
+        mViewModel.getMessage().observe(viewLifecycleOwner, Observer {
+            dialog.setMessage(it)
+        })
+
     }
 
     protected fun getBaseActivity() = activity as BaseActivity<*, *>

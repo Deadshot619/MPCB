@@ -9,13 +9,13 @@ import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.showMessage
 import kotlinx.android.synthetic.main.fragment_hazardious.*
 
-class HazardiousFragment: BaseFragment<FragmentHazardiousBinding, ReportsPageViewModel>(),
+class HazardousFragment: BaseFragment<FragmentHazardiousBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
     val reportsItems: ArrayList<String> = ArrayList()
     override fun getLayoutId() = R.layout.fragment_hazardious
     override fun getViewModel() = ReportsPageViewModel::class.java
-    override fun getNavigator() = this@HazardiousFragment
+    override fun getNavigator() = this@HazardousFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
     override fun onBinding() {
