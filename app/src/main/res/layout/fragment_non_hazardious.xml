@@ -28,7 +28,7 @@
                     android:layout_marginLeft="16dp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:text="Hazardous waste management"
+                    android:text="Non Hazardous waste management"
                     android:textSize="@dimen/text_large"
                     android:textColor="@color/grey"
                     android:layout_width="wrap_content"

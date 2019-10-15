@@ -8,24 +8,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mpcb.R
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 
-abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(), UICallbacks<V> {
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(),
+    UICallbacks<V> {
 
     protected lateinit var mBinding: T
     protected lateinit var mViewModel: V
     private lateinit var mContext: Context
     internal lateinit var mPref: PreferencesHelper
-    private val fragTransaction by lazy { supportFragmentManager.beginTransaction() }
+    private lateinit var mManager: FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this@BaseActivity, getLayoutId())
         mViewModel = ViewModelProvider(this@BaseActivity).get(getViewModel())
         mViewModel.setNavigator(getNavigator())
+        mManager = supportFragmentManager
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mContext = this@BaseActivity
         mPref = PreferencesHelper
@@ -70,8 +73,8 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         bundle?.let {
             fragment.arguments = bundle
         }
-        fragTransaction.apply {
-            add(R.id.report_container, fragment)
+        mManager.beginTransaction().apply {
+            replace(R.id.report_container, fragment)
             if (addToBackstack) {
                 addToBackStack(fragment::class.java.simpleName)
             }

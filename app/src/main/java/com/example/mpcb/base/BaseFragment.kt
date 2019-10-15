@@ -10,12 +10,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mpcb.databinding.ToolbarBinding
+import com.example.mpcb.reports.additional_info.AdditionalInfoFragment
 import com.example.mpcb.reports.air.AirFragment
+import com.example.mpcb.reports.bank_guarantee_details.BGDFragment
 import com.example.mpcb.reports.disposal.DisposalFragment
 import com.example.mpcb.reports.electric_meter_details.ElectricFragment
 import com.example.mpcb.reports.hazardous_waste_management.HazardousFragment
 import com.example.mpcb.reports.industry.IndustryReportFragment
 import com.example.mpcb.reports.last_jvs_details.LastJVSFragment
+import com.example.mpcb.reports.non_hazardous_waste_management.NonHazardousFragment
 import com.example.mpcb.reports.oms_ambient_air.OMSAmbientAirFragment
 import com.example.mpcb.reports.oms_stack.OMSStackFragment
 import com.example.mpcb.reports.oms_water.OMSWaterFragment
@@ -27,12 +30,17 @@ import com.example.mpcb.reports.tree_plantation.TreePlantationFragment
 import com.example.mpcb.reports.water_and_waste_water.WaterFragment
 import com.example.mpcb.utils.constants.Constants
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment(), UICallbacks<V> {
+abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment(),
+    UICallbacks<V> {
 
     protected lateinit var mBinding: T
     protected lateinit var mViewModel: V
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         mBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         mViewModel = ViewModelProvider(getBaseActivity()).get(getViewModel())
         mViewModel.setNavigator(getNavigator())
@@ -68,8 +76,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         val fragment = when (reportKey) {
             Constants.REPORT_1 -> IndustryReportFragment()
             Constants.REPORT_2 -> ProductionFragment()
-            Constants.REPORT_3 -> TreatmentFragment()
-            Constants.REPORT_4 -> WaterFragment()
+            Constants.REPORT_3 -> WaterFragment()
+            Constants.REPORT_4 -> TreatmentFragment()
             Constants.REPORT_5 -> DisposalFragment()
             Constants.REPORT_6 -> OMSWaterFragment()
             Constants.REPORT_7 -> ElectricFragment()
@@ -78,11 +86,12 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
             Constants.REPORT_10 -> OMSStackFragment()
             Constants.REPORT_11 -> OMSAmbientAirFragment()
             Constants.REPORT_12 -> HazardousFragment()
-            Constants.REPORT_13 -> HazardousFragment()
+            Constants.REPORT_13 -> NonHazardousFragment()
             Constants.REPORT_14 -> TreePlantationFragment()
             Constants.REPORT_15 -> StatutoryFragment()
             Constants.REPORT_16 -> PreviousLegalFragment()
-            Constants.REPORT_17 -> PreviousLegalFragment()
+            Constants.REPORT_17 -> BGDFragment()
+            Constants.REPORT_18 -> AdditionalInfoFragment()
             else -> Fragment()
         }
 

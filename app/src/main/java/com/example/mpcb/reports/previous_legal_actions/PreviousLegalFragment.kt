@@ -4,8 +4,10 @@ package com.example.mpcb.reports.previous_legal_actions
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentPreviousLegalBinding
+import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, ReportsPageViewModel>(), ReportsPageNavigator {
@@ -17,6 +19,12 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
     override fun onInternetError() {}
 
     override fun onBinding() {
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_16)
+
+
+        mBinding.btnSubmit.setOnClickListener {
+            addReportFragment(Constants.REPORT_17)
+        }
     }
 
 

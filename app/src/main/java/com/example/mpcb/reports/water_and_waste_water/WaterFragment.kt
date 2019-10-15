@@ -3,8 +3,10 @@ package com.example.mpcb.reports.water_and_waste_water
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentWasteWaterAspectBinding
+import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageViewModel>(), ReportsPageNavigator {
@@ -16,6 +18,12 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
     override fun onInternetError() {}
 
     override fun onBinding() {
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_3)
+
+
+        mBinding.btnSubmit.setOnClickListener {
+            addReportFragment(Constants.REPORT_4)
+        }
 
     }
 

@@ -13,7 +13,8 @@ import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 
-class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReportViewModel>(), VisitReportNavigator {
+class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReportViewModel>(),
+    VisitReportNavigator {
 
     private lateinit var visitItem: MyVisitModel
 
@@ -37,16 +38,20 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
             getBaseActivity().finish()
         }
 
-        mBinding.itemListener = ReportItemListener(getBaseActivity())
+        mBinding.itemListener = ReportItemListener(getBaseActivity(), visitItem)
     }
 
 
 }
 
-class ReportItemListener(val context: Context) {
+class ReportItemListener(
+    val context: Context,
+    val visitItem: MyVisitModel
+) {
 
     fun onClick(v: View) {
         val reportIntent = Intent(context, ReportsPageActivity::class.java)
+        reportIntent.putExtra(Constants.VISIT_REPORT_ID, visitItem.industryIMISId)
         when (v.id) {
             R.id.industryTag -> {
                 reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_1)
