@@ -13,9 +13,9 @@ class Constants {
         const val mloginUserKey: String = "user_login_name_key"
         const val USER: String = "user"
 
-
-
         const val REPORTS_PAGE_KEY: String = "reports_page_key"
+        const val VISIT_ITEM_KEY: String = "visit_item_key"
+        const val VISIT_REPORT_ID: String = "visit_report_id"
 
         // reports page value
         const val REPORT_1 = 1
@@ -38,7 +38,7 @@ class Constants {
         const val REPORT_18 = 18
 
 
-        fun getReportsTitle(context: Context, reportKey: Int): String {
+        fun getReportByNo(context: Context, reportKey: Int): String {
             val reportHashMap = mutableMapOf<Int, String>()
             reportHashMap.put(REPORT_1, context.getString(R.string.report_1))
             reportHashMap.put(REPORT_2, context.getString(R.string.report_2))

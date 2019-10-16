@@ -35,4 +35,12 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         }, Consumer { checkError(it) }))
 
     }
+
+    fun onVisitItemClick(visitItem: MyVisitModel) {
+        mNavigator!!.onVisitItemClicked(visitItem)
+    }
+
+    fun onCheckInClick(model: MyVisitModel) {
+        mNavigator!!.onCheckInClicked(model)
+    }
 }

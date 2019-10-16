@@ -22,7 +22,8 @@ import com.example.mpcb.reports.water_and_waste_water.WaterFragment
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
-class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPageViewModel>(), ReportsPageNavigator {
+class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPageViewModel>(),
+    ReportsPageNavigator {
 
     override fun getLayoutId() = R.layout.activity_reports_page
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -30,14 +31,22 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
-    private var reportPage = -1
+    private var reportPageNo = -1
 
     override fun onBinding() {
         if (intent != null && intent.extras != null) {
-            reportPage = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
-            addFragment(reportPage)
+            val visitReportId = intent?.extras?.get(Constants.VISIT_REPORT_ID) as String
+            mBinding.visitId.text = "#$visitReportId"
+            reportPageNo = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
+            addFragment(reportPageNo)
         }
-        setToolbar(reportPage)
+        setToolbar(reportPageNo)
+    }
+
+    internal fun setToolbar(reportPage: Int) {
+        mBinding.visitName.text = Constants.getReportByNo(this, reportPage)
+        mBinding.reportCount.text = "$reportPage/17"
+        mBinding.reportProgress.progress = reportPage
     }
 
     private fun addFragment(reportPage: Int) {
@@ -61,13 +70,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             Constants.REPORT_17 -> PreviousLegalFragment()
             else -> Fragment()
         }
-        addFragment(fragment, false)
+        addReportFragment(fragment, false)
     }
 
-    private fun setToolbar(reportPage: Int) {
-        mBinding.visitId.text = "#32432423"
-        mBinding.visitName.text = Constants.getReportsTitle(this, reportPage)
-        mBinding.reportCount.text = "$reportPage/17"
-        mBinding.reportProgress.progress = reportPage
-    }
 }

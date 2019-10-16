@@ -4,8 +4,10 @@ package com.example.mpcb.reports.statutory_submissions
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentStatutoryBinding
+import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 
@@ -18,6 +20,12 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
     override fun onInternetError() {}
 
     override fun onBinding() {
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_15)
+
+
+        mBinding.btnSubmit.setOnClickListener {
+            addReportFragment(Constants.REPORT_16)
+        }
     }
 
 

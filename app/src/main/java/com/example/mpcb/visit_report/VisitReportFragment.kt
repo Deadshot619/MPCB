@@ -7,12 +7,16 @@ import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentVisitReportBinding
+import com.example.mpcb.network.response.MyVisitModel
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 
-class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReportViewModel>(), VisitReportNavigator {
+class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReportViewModel>(),
+    VisitReportNavigator {
+
+    private lateinit var visitItem: MyVisitModel
 
     override fun getLayoutId() = R.layout.fragment_visit_report
     override fun getViewModel() = VisitReportViewModel::class.java
@@ -21,22 +25,33 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
     override fun onInternetError() {}
 
     override fun onBinding() {
-        mBinding.toolbarLayout.visitId.text = "#32133232"
-        mBinding.toolbarLayout.visitName.text = "Johnson Controls-Hitachi Air Conditioning India Ltd"
+
+        if (arguments != null && arguments!!.getParcelable<MyVisitModel>(Constants.VISIT_ITEM_KEY) != null) {
+            visitItem = arguments!!.getParcelable(Constants.VISIT_ITEM_KEY)
+        }
+
+
+        mBinding.toolbarLayout.visitId.text = "#${visitItem.industryIMISId}"
+        mBinding.toolbarLayout.visitName.text = visitItem.industryName
+
         mBinding.toolbarLayout.imgBack.setOnClickListener {
             getBaseActivity().finish()
         }
 
-        mBinding.itemListener = ReportItemListener(getBaseActivity())
+        mBinding.itemListener = ReportItemListener(getBaseActivity(), visitItem)
     }
 
 
 }
 
-class ReportItemListener(val context: Context) {
+class ReportItemListener(
+    val context: Context,
+    val visitItem: MyVisitModel
+) {
 
     fun onClick(v: View) {
         val reportIntent = Intent(context, ReportsPageActivity::class.java)
+        reportIntent.putExtra(Constants.VISIT_REPORT_ID, visitItem.industryIMISId)
         when (v.id) {
             R.id.industryTag -> {
                 reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_1)

@@ -3,9 +3,10 @@ package com.example.mpcb.reports.air
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentAirPollutionBinding
-import com.example.mpcb.databinding.FragmentElectricBinding
+import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 class AirFragment : BaseFragment<FragmentAirPollutionBinding, ReportsPageViewModel>(),
@@ -18,5 +19,11 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, ReportsPageViewMod
 
     override fun onBinding() {
 
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_9)
+
+
+        mBinding.btnSubmit.setOnClickListener {
+            addReportFragment(Constants.REPORT_10)
+        }
     }
 }

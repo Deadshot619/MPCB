@@ -8,18 +8,17 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.mpcb.R
+import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.base.MPCBApp
 import com.google.android.material.textfield.TextInputLayout
-import java.lang.StringBuilder
 import java.math.BigInteger
 import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
-import kotlin.experimental.and
+import java.text.SimpleDateFormat
 
 
 fun AppCompatActivity.showMessage(message: String) {
@@ -37,6 +36,10 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
     fragmentTransaction.commit()
 }
 
+fun Fragment.addFragment(fragment: Fragment, addToBackStack: Boolean, bundle: Bundle) {
+    val activity = this.activity as BaseActivity<*, *>
+    activity.addFragment(fragment, addToBackStack, bundle)
+}
 
 fun AppCompatActivity.hideKeyboard() {
     val view = this.currentFocus
@@ -57,6 +60,17 @@ fun TextInputLayout.hideError(fieldName: String) {
 @BindingAdapter("visibleGone")
 fun View.showHide(show: Boolean) {
     this.visibility = if (show) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("parseDate")
+fun parseDate(textView: AppCompatTextView, date: String) {
+    try {
+        val date = SimpleDateFormat("MMM dd yyyy HH:mm:ss").parse(date)
+        val newDate = SimpleDateFormat("dd/MM/yyyy").format(date)
+        textView.text = newDate
+    } catch (e: Exception) {
+        textView.text = ""
+    }
 }
 
 fun isNetworkAvailable(): Boolean {

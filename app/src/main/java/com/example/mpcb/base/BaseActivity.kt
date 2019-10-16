@@ -14,23 +14,24 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mpcb.R
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 
-abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(), UICallbacks<V> {
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(),
+    UICallbacks<V> {
 
     protected lateinit var mBinding: T
     protected lateinit var mViewModel: V
     private lateinit var mContext: Context
     internal lateinit var mPref: PreferencesHelper
-    private lateinit var fragmentManager: FragmentManager
+    private lateinit var mManager: FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this@BaseActivity, getLayoutId())
         mViewModel = ViewModelProvider(this@BaseActivity).get(getViewModel())
         mViewModel.setNavigator(getNavigator())
+        mManager = supportFragmentManager
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         mContext = this@BaseActivity
         mPref = PreferencesHelper
-        fragmentManager = supportFragmentManager
         createDialog()
         onBinding()
     }
@@ -55,12 +56,11 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         return super.onOptionsItemSelected(item)
     }
 
-    // TODO: Add one more parameter for frag add or replace
-    protected fun addFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
+    fun addFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
         bundle?.let {
             fragment.arguments = bundle
         }
-        fragmentManager.beginTransaction().apply {
+        supportFragmentManager.beginTransaction().apply {
             add(R.id.container, fragment)
             if (addToBackstack) {
                 addToBackStack(fragment::class.java.simpleName)
@@ -68,4 +68,19 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
             commit()
         }
     }
+
+    fun addReportFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
+        bundle?.let {
+            fragment.arguments = bundle
+        }
+        mManager.beginTransaction().apply {
+            replace(R.id.report_container, fragment)
+            if (addToBackstack) {
+                addToBackStack(fragment::class.java.simpleName)
+            }
+            commit()
+        }
+    }
+
+
 }

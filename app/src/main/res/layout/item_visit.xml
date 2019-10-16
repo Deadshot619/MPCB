@@ -5,6 +5,9 @@
     <data>
         <variable name="model"
                   type="com.example.mpcb.network.response.MyVisitModel"/>
+
+        <variable name="viewModel"
+                  type="com.example.mpcb.my_visits.MyVisitsViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,8 +30,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingLeft="16dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -38,12 +41,13 @@
                     android:text="@{model.industryName}"
                     android:textColor="@android:color/black"/>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:orientation="horizontal">
+                    android:layout_marginRight="10dp">
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtxVisitScheduledOn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="visit Scheduled On: "
@@ -52,14 +56,18 @@
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{model.scheduledOn}"
-                        android:textColor="@android:color/black"/>
+                        android:layout_toRightOf="@id/txtxVisitScheduledOn"
+                        android:textColor="@android:color/black"
+                        app:parseDate="@{model.scheduledOn}"/>
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgExpandCollapse"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                </LinearLayout>
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_down_arrow"/>
+                </RelativeLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -72,130 +80,142 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:layout_marginBottom="10dp"
                     android:text="@{model.industryAddress}"
                     android:textColor="@android:color/black"/>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/bg_grey"/>
-
                 <LinearLayout
+                    android:id="@+id/layLinBottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                    android:orientation="vertical">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="visit Scheduled On: "
-                            android:textSize="15sp"/>
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@{model.scheduledOn}"
-                            android:textColor="@android:color/black"/>
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Report Submmitted On: "
-                            android:textSize="15sp"/>
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@{model.reportSubmittedOn}"
-                            android:textColor="@android:color/black"/>
-                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/bg_grey"/>
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="visited On"
-                            android:textSize="15sp"/>
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@{model.visitedOn}"
-                            android:textColor="@android:color/black"/>
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Non - Compliant visit"
-                            android:textSize="15sp"/>
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@{model.complianceStatus}"
-                            android:textColor="@android:color/black"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:src="@drawable/ic_face"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
-                        android:src="@drawable/ic_face"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="24dp"
-                        android:background="@drawable/background_green"
-                        android:gravity="center_horizontal"
-                        android:padding="8dp"
-                        android:text="@{model.visitStatus}"
-                        android:textColor="@android:color/white"
-                        android:textStyle="bold"/>
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="visit Scheduled On: "
+                                android:textSize="15sp"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@android:color/black"
+                                app:parseDate="@{model.scheduledOn}"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Report Submited On: "
+                                android:textSize="15sp"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@android:color/black"
+                                app:parseDate="@{model.reportSubmittedOn}"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="visited On"
+                                android:textSize="15sp"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@android:color/black"
+                                app:parseDate="@{model.visitedOn}"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="Non - Compliant visit"
+                                android:textSize="15sp"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:text="@{model.complianceStatus}"
+                                android:textColor="@android:color/black"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:onClick="@{() -> viewModel.onCheckInClick(model)}"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_face"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgReports"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_face"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:background="@drawable/background_green"
+                            android:gravity="center_horizontal"
+                            android:onClick="@{() -> viewModel.onVisitItemClick(model)}"
+                            android:padding="8dp"
+                            android:text="@{model.visitStatus}"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="36dp"
             android:layout_marginTop="24dp"
             android:background="@color/green"
             android:elevation="2dp"
