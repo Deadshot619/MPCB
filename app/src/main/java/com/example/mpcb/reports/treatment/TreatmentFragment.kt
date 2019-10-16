@@ -19,11 +19,11 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
     override fun onInternetError() {}
 
     override fun onBinding() {
-        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_4)
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_3)
 
 
         mBinding.btnSubmit.setOnClickListener {
-            addReportFragment(Constants.REPORT_5)
+            addReportFragment(Constants.REPORT_4)
         }
 
     }

@@ -18,11 +18,11 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
     override fun onInternetError() {}
 
     override fun onBinding() {
-        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_3)
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_4)
 
 
         mBinding.btnSubmit.setOnClickListener {
-            addReportFragment(Constants.REPORT_4)
+            addReportFragment(Constants.REPORT_5)
         }
 
     }

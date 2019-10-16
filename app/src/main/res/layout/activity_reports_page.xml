@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_left_arrow_black" />
+                        android:src="@drawable/ic_left_arrow_black"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                             android:layout_marginTop="16dp"
                             android:text="#234312"
                             android:textColor="@color/green"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -71,13 +71,13 @@
                                 android:layout_weight="8"
                                 android:text="Johnson Controls-Hitachi Air Conditioning India Ltd"
                                 android:textColor="@android:color/black"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"/>
 
                             <androidx.appcompat.widget.AppCompatImageView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
-                                android:src="@mipmap/ic_launcher" />
+                                android:src="@mipmap/ic_launcher"/>
                         </LinearLayout>
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -89,7 +89,7 @@
                             android:text="1 / 17"
                             android:textColor="@color/green"
                             android:textSize="20sp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -102,7 +102,7 @@
                     android:max="17"
                     android:progress="12"
                     android:progressTint="@color/green"
-                    android:scaleY="2" />
+                    android:scaleY="2"/>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -118,10 +118,10 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <FrameLayout
-                android:layout_margin="20dp"
-                android:layout_height="match_parent"
+                android:id="@+id/report_container"
                 android:layout_width="match_parent"
-                android:id="@+id/report_container" />
+                android:layout_height="match_parent"
+                android:layout_margin="20dp"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -22,7 +22,6 @@ class IndustryReportFragment :
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_1)
 
-
         mBinding.btnSubmit.setOnClickListener {
             addReportFragment(Constants.REPORT_2)
         }
