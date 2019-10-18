@@ -34,12 +34,13 @@
     <string name="hztxt_quantity_disposal">Quantity disposal (as per form 4)</string>
     <string name="hztxt_quan_disp_cwtsd">Quantity disposal at CSWTSDS</string>
     <string name="hztxt_quan_disp_processing">Quantity disposal for processing</string>
-    <string name="hztxt_quan_disp_actual_user">Quantity disposal for actual user</string>
+    <string name="hztxt_quan_disp_actual_user">Quantity disposed by actual user</string>
     <string name="hztxt_last_disposal">Last disposal quantity</string>
     <string name="hztxt_last_dis_date">Last disposal date</string>
 
 
     <string name="profile_title">Profile</string>
     <string name="my_visits_title">My Visits</string>
+    <string name="attendance_title">Attendance</string>
 
 </resources>

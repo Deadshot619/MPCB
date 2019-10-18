@@ -1,44 +1,324 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
->
-
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_rectangle"
-        android:padding="10dp"
-    >
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/reports"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="16dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/report1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Report 1"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgExpandCollapse"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_down_arrow"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/black"/>
 
         <LinearLayout
+            android:id="@+id/layLinChild"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/text_xxlarge"
-            android:layout_marginRight="@dimen/text_xxlarge"
-            android:orientation="horizontal"
-            android:weightSum="1"
-        >
+            android:orientation="vertical"
+            android:visibility="gone">
 
-            <TextView
-                android:id="@+id/report_text"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/haz_category"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight=".65"
-                android:text="Report"
-                android:textColor="@color/text_light_black"
-                android:textSize="16sp"/>
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_weight=".5"
-                android:src="@drawable/ic_down_arrow"
-                android:visibility="visible"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_categoery"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
 
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_quantity"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_method_disposal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_method_disposal"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_actual_dis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_actual_disposal"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_quantity_disposal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_quantity_disposal"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_quantity_disposal_cwt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_quan_disp_cwtsd"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_quant_disp_process"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_quan_disp_processing"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_quant_dis_act_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_quan_disp_actual_user"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_lastdisp_quant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_last_disposal"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/haz_lastdisp_quant_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="@string/hztxt_last_dis_date"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="200"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:text="UOM"
+                    android:textColor="@color/light_grey"
+                    android:textSize="@dimen/text_large"/>
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spnUOM"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/text_light_black"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</layout>

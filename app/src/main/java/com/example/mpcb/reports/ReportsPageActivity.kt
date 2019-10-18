@@ -41,6 +41,10 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             addFragment(reportPageNo)
         }
         setToolbar(reportPageNo)
+
+        mBinding.imgBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     internal fun setToolbar(reportPage: Int) {

@@ -19,11 +19,10 @@ class ChangePwdDialog(context: Context, val mViewModel: ProfileViewModel) : AppC
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(dialogBinding.root)
         setCancelable(false)
-        window!!.setBackgroundDrawableResource(android.R.color.transparent)
         window!!.setLayout(WRAP_CONTENT, WRAP_CONTENT)
         dialogBinding.model = ChangePwdRequest()
         dialogBinding.viewModel = mViewModel
-        dialogBinding.btnCancelPass.setOnClickListener { dismiss() }
+        dialogBinding.btnCancel.setOnClickListener { dismiss() }
     }
 
 

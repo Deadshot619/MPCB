@@ -2,269 +2,520 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-            android:id="@+id/cardviewLayout"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="4dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/cardviewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtLabel"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:text="Industrial"
-                        android:layout_marginLeft="16dp"
-                        android:textSize="18sp"
-                        android:textColor="@color/grey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:id="@+id/txtLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Industrial"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <LinearLayout
-                        android:id="@+id/linLayFirst"
-                        app:layout_constraintTop_toBottomOf="@id/txtLabel"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                    android:id="@+id/layLinTopSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/bg_rectangle"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtLabel">
 
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                            android:id="@+id/cbPrimary"
-                            android:text="Primary"
-                            android:textSize="18sp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"/>
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                            android:id="@+id/cbSecondary"
-                            android:text="Secondary"
-                            android:textSize="18sp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
-
-                <LinearLayout
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:id="@+id/linLaySecond"
-                        app:layout_constraintTop_toBottomOf="@id/linLayFirst"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="16dp"
-                        android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                            android:id="@+id/cbTertiary"
-                            android:text="Tertiary"
-                            android:layout_width="0dp"
-                            android:textSize="18sp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"/>
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                            android:id="@+id/cbAdvance"
-                            android:text="Advance"
-                            android:textSize="18sp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/industrialRemarkLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
+                    <RelativeLayout
+                        android:id="@+id/layRelPrimary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/linLaySecond"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Primary"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgPrimaryExpandCollapse"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow"/>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layLinPrimaryChild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layRelPrimary">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="O &amp; G Trap"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Screening"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Neutralization / Equalization"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Primary Setting/Sedimentation"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Any Other"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewPrimarySeparator"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/bg_grey"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layLinPrimaryChild"/>
+
+                    <RelativeLayout
+                        android:id="@+id/layRelSecondary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/viewPrimarySeparator">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Secondary"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgSecondaryExpandCollapse"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow"/>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layLinSecondaryChild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layRelSecondary">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Activated Sludge Process"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MBBR"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SBR"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trickling Filter"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Any Other"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewSecondarySeparator"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/bg_grey"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layLinSecondaryChild"/>
+
+                    <RelativeLayout
+                        android:id="@+id/layRelTertiary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/viewSecondarySeparator">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tertiary"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgTertiaryExpandCollapse"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow"/>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layLinTertiaryChild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layRelTertiary">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Presser Sand Filter"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Activated Carbon Filter"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dual Media Filter"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Any Other"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/viewTertiarySeparator"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/bg_grey"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layLinTertiaryChild"/>
+
+                    <RelativeLayout
+                        android:id="@+id/layRelAdvance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/viewTertiarySeparator">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Advance"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgAdvanceExpandCollapse"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow"/>
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layLinAdvanceChild"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/layRelAdvance">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Presser Sand Filter"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Activated Carbon Filter"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dual Media Filter"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Any Other"
+                            android:textSize="18sp"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/industrialRemarkLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layLinTopSection">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                            android:hint="Remark"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Remark"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtETP"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toBottomOf="@id/industrialRemarkLayout"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:text="ETP Operational"
-                        android:textSize="18sp"
-                        android:textColor="@color/grey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:id="@+id/txtETP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="ETP Operational"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/industrialRemarkLayout"/>
 
                 <RadioGroup
-                        android:id="@+id/rgETP"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/txtETP"
-                        android:orientation="horizontal"
+                    android:id="@+id/rgETP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtETP">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Yes"
+                        android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Yes"
-                            android:textSize="18sp"
-                            android:layout_height="wrap_content"/>
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                            android:layout_marginTop="4dp"
-                            android:layout_width="wrap_content"
-                            android:text="No"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginStart="32dp"
-                            android:textSize="18sp"
-                            android:layout_height="wrap_content"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="No"
+                        android:textSize="18sp"/>
                 </RadioGroup>
 
                 <View
-                        android:id="@+id/viewDividerOne"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/view_line_two"
-                        android:background="@color/light_white_100"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/rgETP"/>
+                    android:id="@+id/viewDividerOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_line_two"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/light_white_100"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rgETP"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtDomestic"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toBottomOf="@id/viewDividerOne"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:text="Domestic"
-                        android:layout_marginLeft="16dp"
-                        android:textSize="18sp"
-                        android:textColor="@color/grey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:id="@+id/txtDomestic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Domestic"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerOne"/>
 
                 <LinearLayout
-                        android:id="@+id/linLayThird"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        app:layout_constraintTop_toBottomOf="@id/txtDomestic"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
+                    android:id="@+id/linLayThird"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtDomestic">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Septic tank &amp; Soak pit"
+                        android:textSize="18sp"/>
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:layout_height="wrap_content">
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                            android:text="Septic tank &amp; Soak pit"
-                            android:layout_width="wrap_content"
-                            android:textSize="18sp"
-                            android:layout_height="wrap_content"/>
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                            android:text="Sewage treatment plant"
-                            android:textSize="18sp"
-                            android:layout_marginTop="8dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
+                        android:text="Sewage treatment plant"
+                        android:textSize="18sp"/>
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/domesticRemarkLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/linLayThird"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                    android:id="@+id/domesticRemarkLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linLayThird">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                            android:hint="Remark"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Remark"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtSTP"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toBottomOf="@id/domesticRemarkLayout"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:text="STP Operational"
-                        android:textSize="18sp"
-                        android:textColor="@color/grey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:id="@+id/txtSTP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="STP Operational"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/domesticRemarkLayout"/>
 
                 <RadioGroup
-                        android:id="@+id/rgSTP"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/txtSTP"
-                        android:orientation="horizontal"
+                    android:id="@+id/rgSTP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtSTP">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Yes"
+                        android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Yes"
-                            android:textSize="18sp"
-                            android:layout_height="wrap_content"/>
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                            android:layout_marginTop="4dp"
-                            android:layout_width="wrap_content"
-                            android:text="No"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginStart="32dp"
-                            android:textSize="18sp"
-                            android:layout_height="wrap_content"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="No"
+                        android:textSize="18sp"/>
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnSubmit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Save &amp; Continue"
-                        android:layout_marginBottom="24dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        style="@style/save_btn_style"
-                        android:background="@drawable/btn_drawable"
-                        app:layout_constraintTop_toBottomOf="@+id/rgSTP"
-                        android:layout_marginTop="32dp"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                    android:id="@+id/btnSubmit"
+                    style="@style/save_btn_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/btn_drawable"
+                    android:text="Save &amp; Continue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rgSTP"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.core.widget.NestedScrollView>
     </androidx.cardview.widget.CardView>
 </layout>

@@ -3,6 +3,7 @@ package com.example.mpcb.home
 import android.content.Context
 import android.content.Intent
 import com.example.mpcb.R
+import com.example.mpcb.attendance.AttendanceFragment
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
@@ -45,7 +46,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.attendance -> {
-                    showMessage("Attendance")
+                    addFragment(AttendanceFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.my_profile -> {

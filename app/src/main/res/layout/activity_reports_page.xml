@@ -30,20 +30,23 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:gravity="center_vertical">
 
                     <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgBack"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:layout_centerVertical="true"
                         android:src="@drawable/ic_left_arrow_black"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="16dp"
+                        android:layout_toRightOf="@id/imgBack"
                         android:orientation="vertical">
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -57,28 +60,16 @@
                             android:textColor="@color/green"
                             android:textStyle="bold"/>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/visitName"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/visitName"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginLeft="10dp"
-                                android:layout_weight="8"
-                                android:text="Johnson Controls-Hitachi Air Conditioning India Ltd"
-                                android:textColor="@android:color/black"
-                                android:textSize="18sp"/>
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:src="@mipmap/ic_launcher"/>
-                        </LinearLayout>
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="20dp"
+                            android:text="Johnson Controls-Hitachi Air Conditioning India Ltd"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/reportCount"
@@ -92,7 +83,14 @@
                             android:textStyle="bold"/>
 
                     </LinearLayout>
-                </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="60dp"
+                        android:src="@drawable/mask_group_22"/>
+                </RelativeLayout>
 
                 <androidx.core.widget.ContentLoadingProgressBar
                     android:id="@+id/reportProgress"
@@ -121,7 +119,7 @@
                 android:id="@+id/report_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="20dp"/>
+                android:layout_margin="16dp"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

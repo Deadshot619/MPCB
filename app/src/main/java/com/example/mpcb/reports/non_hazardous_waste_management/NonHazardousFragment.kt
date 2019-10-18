@@ -3,15 +3,12 @@ package com.example.mpcb.reports.non_hazardous_waste_management
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
-import com.example.mpcb.databinding.FragmentHazardiousBinding
 import com.example.mpcb.databinding.FragmentNonHazardiousBinding
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
-import com.example.mpcb.reports.hazardous_waste_management.CustomAdapter
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
-import kotlinx.android.synthetic.main.fragment_hazardious.*
 
 class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
@@ -30,17 +27,10 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, ReportsP
             addReportFragment(Constants.REPORT_14)
         }
 
-        addReports()
-        reports.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
-        reports.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
-        reports.adapter = CustomAdapter(reportsItems, getBaseActivity().applicationContext)
+        mBinding.rvNonHazardous.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
+        val adapter = NonHazardousAdapter(getBaseActivity(), mViewModel)
+        mBinding.rvNonHazardous.adapter = adapter
     }
 
 
-    fun addReports() {
-        reportsItems.add("Reports 1")
-        reportsItems.add("Reports 2")
-        reportsItems.add("Reports 3")
-        reportsItems.add("Reports 4")
-    }
 }

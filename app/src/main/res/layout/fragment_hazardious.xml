@@ -1,468 +1,91 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardviewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txt_hwm"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="16dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:text="Hazardous waste management"
-                    android:textSize="@dimen/text_large"
-                    android:textColor="@color/grey"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Hazardous waste management"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/reports"
+                    android:id="@+id/rvHazardousReports"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/text_large"
-                    android:layout_marginRight="@dimen/text_large"
                     android:layout_marginTop="@dimen/text_large"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_hwm"
+                    android:layout_marginRight="@dimen/text_large"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_hwm">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgAddMore"
                     android:layout_width="wrap_content"
-                    android:src="@drawable/ic_face"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
+                    android:src="@drawable/ic_plus"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/reports"
-                    android:layout_height="wrap_content" />
+                    app:layout_constraintTop_toBottomOf="@id/rvHazardousReports"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtAddMore"
-                    app:layout_constraintTop_toBottomOf="@id/reports"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
-                    android:textColor="@color/green"
                     android:text="Add More Reports"
+                    android:textColor="@color/green"
                     app:layout_constraintStart_toEndOf="@id/imgAddMore"
-                    android:layout_height="wrap_content" />
+                    app:layout_constraintTop_toBottomOf="@id/rvHazardousReports"/>
 
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSubmit"
+                    style="@style/save_btn_style"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/save_continue"
-                    style="@style/save_btn_style"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="24dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore"
+                    android:layout_marginBottom="24dp"
+                    android:text="@string/save_continue"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <!-- <androidx.constraintlayout.widget.ConstraintLayout
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:id="@+id/reports"
-                     android:layout_marginLeft="16dp"
-                     android:layout_marginRight="16dp">
-
-                     <androidx.appcompat.widget.AppCompatTextView
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:layout_marginTop="15dp"
-                         android:id="@+id/report1"
-                         app:layout_constraintStart_toStartOf="parent"
-                         app:layout_constraintEnd_toEndOf="parent"
-                         app:layout_constraintTop_toTopOf="parent"
-                         android:text="Report 1"
-                         android:padding="10dp"
-                         android:textSize="21dp"
-                         android:background="@drawable/bg_rectangle"
-                         android:textColor="@color/black"/>
+                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore"/>
 
 
-
-                     <androidx.appcompat.widget.AppCompatTextView
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:layout_marginTop="15dp"
-                         android:id="@+id/report2"
-                         app:layout_constraintStart_toStartOf="parent"
-                         app:layout_constraintEnd_toEndOf="parent"
-                         app:layout_constraintTop_toBottomOf="@+id/report1"
-                         android:text="Report 2"
-                         android:padding="10dp"
-                         android:textSize="21dp"
-                         android:background="@drawable/bg_rectangle"
-                         android:textColor="@color/black"/>
-
-                     <androidx.appcompat.widget.AppCompatTextView
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:layout_marginTop="15dp"
-                         android:id="@+id/report3"
-                         app:layout_constraintStart_toStartOf="parent"
-                         app:layout_constraintEnd_toEndOf="parent"
-                         app:layout_constraintTop_toBottomOf="@+id/report2"
-                         android:text="Report 3"
-                         android:padding="10dp"
-                         android:textSize="21dp"
-                         android:background="@drawable/bg_rectangle"
-                         android:textColor="@color/black"/>
-
-                     <androidx.appcompat.widget.AppCompatTextView
-                         android:layout_width="match_parent"
-                         android:layout_height="wrap_content"
-                         android:layout_marginTop="15dp"
-                         android:id="@+id/report4"
-                         app:layout_constraintStart_toStartOf="parent"
-                         app:layout_constraintEnd_toEndOf="parent"
-                         app:layout_constraintTop_toBottomOf="@+id/report3"
-                         android:text="Report 4"
-                         android:padding="10dp"
-                         android:textSize="21dp"
-                         android:background="@drawable/bg_rectangle"
-                         android:textColor="@color/black"/>
-
-                 </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-                <!--  <androidx.constraintlayout.widget.ConstraintLayout
-                      android:layout_width="match_parent"
-                      android:id="@+id/rep1"
-                      android:visibility="visible"
-                      app:layout_constraintTop_toBottomOf="@+id/reports"
-                      android:layout_height="match_parent"
-                      android:layout_marginLeft="16dp"
-                      android:layout_marginRight="16dp">
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:id="@+id/haz_category"
-                          android:layout_width="match_parent"
-
-                          app:layout_constraintTop_toTopOf="@id/haz_category"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_categoery"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-
-
-                      </LinearLayout>
-
-
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_quantity"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_category"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_quantity"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_method_disposal"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_quantity"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_method_disposal"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_actual_dis"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_method_disposal"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_actual_disposal"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_quantity_disposal"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_actual_dis"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_quantity_disposal"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_quantity_disposal_cwt"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_quantity_disposal"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_quan_disp_cwtsd"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_quant_disp_process"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_quantity_disposal_cwt"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_quan_disp_processing"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_quant_dis_act_user"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_quant_disp_process"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_quan_disp_actual_user"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_lastdisp_quant"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_quant_dis_act_user"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_last_disposal"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-
-                      <LinearLayout
-                          android:layout_marginLeft="16dp"
-                          android:layout_marginRight="16dp"
-                          android:layout_marginTop="16dp"
-                          android:id="@+id/haz_lastdisp_quant_date"
-                          android:layout_width="match_parent"
-                          app:layout_constraintStart_toStartOf="parent"
-                          app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@id/haz_lastdisp_quant"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-
-                          <androidx.appcompat.widget.AppCompatTextView
-                              android:layout_width="0dp"
-                              android:layout_height="wrap_content"
-                              android:layout_weight="6"
-                              android:text="@string/hztxt_last_dis_date"
-                              android:textSize="@dimen/text_large"
-                              android:textColor="@color/light_grey"/>
-
-                          <androidx.appcompat.widget.AppCompatEditText
-                              android:layout_weight="2"
-                              android:layout_marginRight="20dp"
-                              android:layout_width="0dp"
-                              android:text="200"
-                              android:textColor="@color/text_light_black"
-                              android:layout_height="wrap_content"/>
-                      </LinearLayout>
-
-
-                  </androidx.constraintlayout.widget.ConstraintLayout>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.cardview.widget.CardView>

@@ -9,7 +9,6 @@ import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
-import kotlinx.android.synthetic.main.fragment_hazardious.*
 
 class HazardousFragment : BaseFragment<FragmentHazardiousBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
@@ -28,17 +27,9 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, ReportsPageVie
             addReportFragment(Constants.REPORT_13)
         }
 
-        addReports()
-        reports.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
-        reports.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
-        reports.adapter = CustomAdapter(reportsItems, getBaseActivity().applicationContext)
+        mBinding.rvHazardousReports.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
+        val adapter = HazardousAdapter(getBaseActivity(), mViewModel)
+        mBinding.rvHazardousReports.adapter = adapter
     }
 
-
-    fun addReports() {
-        reportsItems.add("Reports 1")
-        reportsItems.add("Reports 2")
-        reportsItems.add("Reports 3")
-        reportsItems.add("Reports 4")
-    }
 }

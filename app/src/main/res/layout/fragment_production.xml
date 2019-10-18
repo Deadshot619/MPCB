@@ -79,7 +79,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/qtyLayout"/>
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnUnitConcent"
+                    android:id="@+id/spnUnitConsent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -93,7 +93,7 @@
                     android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/spnUnitConcent">
+                    app:layout_constraintTop_toBottomOf="@id/spnUnitConsent">
                     <androidx.appcompat.widget.AppCompatEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_face"
+                    android:src="@drawable/ic_plus"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/spnUnitActual"/>
