@@ -20,7 +20,7 @@ class AdditionalInfoFragment : BaseFragment<FragmentAdditionalInfoBinding, Repor
     override fun onInternetError() {}
 
     override fun onBinding() {
-        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_17)
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_18)
 
         mBinding.btnSubmit.setOnClickListener {
 

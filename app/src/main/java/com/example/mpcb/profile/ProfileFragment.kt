@@ -2,6 +2,7 @@ package com.example.mpcb.profile
 
 
 import android.content.Context
+import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentProfileBinding
@@ -34,6 +35,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         mBinding.viewModel = mViewModel
         mBinding.model = mViewModel.getUserModel()
         setToolbar(mBinding.toolbarLayout, getString(R.string.profile_title))
+        mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
 
         mBinding.txtChangePwd.setOnClickListener {
             changePwdDialog = ChangePwdDialog(activity as Context, mViewModel)

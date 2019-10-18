@@ -9,6 +9,7 @@ import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.my_visits.MyVisitsFragment
 import com.example.mpcb.profile.ProfileFragment
+import com.example.mpcb.task_management.TaskManagementFragment
 import com.example.mpcb.utils.showMessage
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNavigator {
@@ -34,7 +35,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.task_mngmt -> {
-                    showMessage("Task Management")
+                    addFragment(TaskManagementFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.my_visits -> {

@@ -42,5 +42,6 @@
     <string name="profile_title">Profile</string>
     <string name="my_visits_title">My Visits</string>
     <string name="attendance_title">Attendance</string>
+    <string name="task_mngt_title">Task Management</string>
 
 </resources>

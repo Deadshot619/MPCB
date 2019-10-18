@@ -4,7 +4,9 @@ import androidx.fragment.app.Fragment
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.databinding.ActivityReportsPageBinding
+import com.example.mpcb.reports.additional_info.AdditionalInfoFragment
 import com.example.mpcb.reports.air.AirFragment
+import com.example.mpcb.reports.bank_guarantee_details.BGDFragment
 import com.example.mpcb.reports.disposal.DisposalFragment
 import com.example.mpcb.reports.electric_meter_details.ElectricFragment
 import com.example.mpcb.reports.hazardous_waste_management.HazardousFragment
@@ -71,7 +73,8 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             Constants.REPORT_14 -> TreePlantationFragment()
             Constants.REPORT_15 -> StatutoryFragment()
             Constants.REPORT_16 -> PreviousLegalFragment()
-            Constants.REPORT_17 -> PreviousLegalFragment()
+            Constants.REPORT_17 -> BGDFragment()
+            Constants.REPORT_18 -> AdditionalInfoFragment()
             else -> Fragment()
         }
         addReportFragment(fragment, false)

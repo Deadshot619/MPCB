@@ -17,6 +17,34 @@ class Constants {
         const val VISIT_ITEM_KEY: String = "visit_item_key"
         const val VISIT_REPORT_ID: String = "visit_report_id"
 
+        val CATEGORY_LIST = arrayListOf(
+            "Select one",
+            "17 Category",
+            "Common Facilities",
+            "Red(LSI)",
+            "Red(MSI)",
+            "Red(SSI)",
+            "Orange(LSI)",
+            "Orange(MSI)",
+            "Orange(SSI)",
+            "Green(LSI)",
+            "Green(MSI)",
+            "Green(SSI)",
+            "Duplicate",
+            "Closed",
+            "HCE > 200",
+            "HCE(100-200)",
+            "HCE(50-100)",
+            "HCE < 50",
+            "Not in my region",
+            "Sugar with distillery",
+            "Only distillery",
+            "Common Facilities(CBMWTSDF)-Biomedical wastes",
+            "CETP(Common Effluent Treatment Plant)",
+            "Local Bodies(STP/MSW)",
+            "HW-Recyclers/Re-processors"
+        )
+
         // reports page value
         const val REPORT_1 = 1
         const val REPORT_2 = 2
