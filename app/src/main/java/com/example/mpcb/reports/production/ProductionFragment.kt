@@ -29,13 +29,19 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ReportsPageVi
     }
 
     private fun setAdapterData() {
-        val unitList = arrayListOf("Unit 1", "Unit 2", "Unit 3", "Unit 4")
-        val unitConsentAdapter = ArrayAdapter(getBaseActivity(), android.R.layout.simple_spinner_item, unitList)
+        val unitConsentAdapter = ArrayAdapter(
+            getBaseActivity(),
+            android.R.layout.simple_spinner_item,
+            Constants.UNIT_LIST
+        )
         unitConsentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mBinding.spnUnitConsent.adapter = unitConsentAdapter
 
-        val unitActualList = arrayListOf("Unit Actual 1", "Unit Actual 2", "Unit Actual 3", "Unit Actual 4")
-        val adapter = ArrayAdapter(getBaseActivity(), android.R.layout.simple_spinner_item, unitActualList)
+        val adapter = ArrayAdapter(
+            getBaseActivity(),
+            android.R.layout.simple_spinner_item,
+            Constants.UNIT_LIST
+        )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mBinding.spnUnitActual.adapter = adapter
     }

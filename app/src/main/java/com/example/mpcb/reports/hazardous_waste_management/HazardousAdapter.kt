@@ -20,7 +20,6 @@ class HazardousAdapter(
 
     private val visitList = ArrayList<MyVisitModel>()
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
-    private val uomList = arrayListOf("UOM 1", "UOM 2", "UOM 3")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HazardousViewHolder {
         val itemBinding = ItemHazardiousReportsBinding.inflate(mInflater, parent, false)
@@ -51,19 +50,17 @@ class HazardousAdapter(
                 holder.itemBinding.layLinChild.visibility = View.VISIBLE
             }
 
-            val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, uomList)
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            holder.itemBinding.spnUOM.adapter = adapter
-            holder.itemBinding.spnUOM.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    holder.itemBinding.spnUOM.setSelection(position)
-                    notifyDataSetChanged()
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-
-                }
-            }
+            holder.setSpinner()
+//            val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, uomList)
+//            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//            holder.itemBinding.spnUOM.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+//                    holder.itemBinding.spnUOM.setSelection(position)
+//                    notifyDataSetChanged()
+//                }
+//
+//                override fun onNothingSelected(parent: AdapterView<*>) {}
+//            }
         }
 
     }
@@ -80,5 +77,27 @@ class HazardousAdapter(
     override fun getItemCount() = 3
 
     class HazardousViewHolder(val itemBinding: ItemHazardiousReportsBinding) :
-        RecyclerView.ViewHolder(itemBinding.root)
+        RecyclerView.ViewHolder(itemBinding.root) {
+
+        private val uomList = arrayListOf("UOM 1", "UOM 2", "UOM 3")
+
+        fun setSpinner() {
+            val adapter = ArrayAdapter(
+                itemBinding.root.context,
+                android.R.layout.simple_spinner_item,
+                uomList
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            itemBinding.spnUOM.adapter = adapter
+            itemBinding.spnUOM.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
+                    itemBinding.spnUOM.setSelection(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            }
+        }
+
+    }
 }
