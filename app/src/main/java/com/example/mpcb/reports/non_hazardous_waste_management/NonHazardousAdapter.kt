@@ -8,22 +8,21 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mpcb.databinding.ItemHazardiousReportsBinding
-import com.example.mpcb.network.response.MyVisitModel
-import com.example.mpcb.reports.ReportsPageViewModel
+import com.example.mpcb.databinding.ItemNonHazardousReportsBinding
+import com.example.mpcb.utils.constants.Constants
+import kotlinx.android.synthetic.main.change_password.view.*
 
 
 class NonHazardousAdapter(
     val context: Context,
-    private val viewModel: ReportsPageViewModel
+    private val viewModel: NonHazardousViewModel
 ) : RecyclerView.Adapter<NonHazardousAdapter.NonHazardousViewHolder>() {
 
-    private val visitList = ArrayList<MyVisitModel>()
+    private val visitList = ArrayList<String>()
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
-    private val uomList = arrayListOf("UOM 1", "UOM 2", "UOM 3")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NonHazardousViewHolder {
-        val itemBinding = ItemHazardiousReportsBinding.inflate(mInflater, parent, false)
+        val itemBinding = ItemNonHazardousReportsBinding.inflate(mInflater, parent, false)
         return NonHazardousViewHolder(itemBinding)
     }
 
@@ -32,6 +31,7 @@ class NonHazardousAdapter(
 //        holder.itemBinding.model = item
 //        holder.itemBinding.viewModel = viewModel
 
+        holder.itemBinding.txtReportTitle.text = "Report ${position + 1}"
         holder.itemBinding.imgExpandCollapse.setOnClickListener {
             if (holder.itemBinding.layLinChild.visibility == View.VISIBLE) {
                 holder.itemBinding.imgExpandCollapse.setImageDrawable(
@@ -51,7 +51,7 @@ class NonHazardousAdapter(
                 holder.itemBinding.layLinChild.visibility = View.VISIBLE
             }
 
-            val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, uomList)
+            val adapter = ArrayAdapter(context, android.R.layout.simple_spinner_item, Constants.UNIT_LIST)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             holder.itemBinding.spnUOM.adapter = adapter
             holder.itemBinding.spnUOM.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -70,15 +70,15 @@ class NonHazardousAdapter(
 
     override fun getItemId(position: Int) = position.toLong()
     override fun getItemViewType(position: Int) = position
+    override fun getItemCount() = visitList.size
 
-    fun updateList(list: ArrayList<MyVisitModel>) {
+    fun updateList(list: ArrayList<String>) {
         this.visitList.clear()
         this.visitList.addAll(list)
         notifyDataSetChanged()
     }
 
-    override fun getItemCount() = 3
 
-    class NonHazardousViewHolder(val itemBinding: ItemHazardiousReportsBinding) :
+    class NonHazardousViewHolder(val itemBinding: ItemNonHazardousReportsBinding) :
         RecyclerView.ViewHolder(itemBinding.root)
 }

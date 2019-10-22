@@ -15,7 +15,7 @@
             android:layout_marginRight="16dp">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/report1"
+                android:id="@+id/txtReportTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -42,7 +42,8 @@
             android:id="@+id/layLinChild"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/haz_category"
@@ -56,6 +57,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="6"
                     android:text="Name of Waste"
                     android:textColor="@color/light_grey"
@@ -81,6 +83,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="6"
                     android:text="@string/hztxt_quantity"
                     android:textColor="@color/light_grey"
@@ -106,6 +109,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="6"
                     android:text="@string/hztxt_method_disposal"
                     android:textColor="@color/light_grey"
@@ -131,6 +135,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="6"
                     android:text="@string/hztxt_last_dis_date"
                     android:textColor="@color/light_grey"
@@ -156,6 +161,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="6"
                     android:text="@string/hztxt_last_disposal"
                     android:textColor="@color/light_grey"
@@ -181,6 +187,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="6"
                     android:text="@string/hztxt_actual_disposal"
                     android:textColor="@color/light_grey"
@@ -207,6 +214,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="6"
                     android:text="UOM"
                     android:textColor="@color/light_grey"

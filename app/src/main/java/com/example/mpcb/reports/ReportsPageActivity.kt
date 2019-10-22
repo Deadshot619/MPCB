@@ -5,7 +5,7 @@ import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.databinding.ActivityReportsPageBinding
 import com.example.mpcb.reports.additional_info.AdditionalInfoFragment
-import com.example.mpcb.reports.air.AirFragment
+import com.example.mpcb.reports.air_pollution.AirFragment
 import com.example.mpcb.reports.bank_guarantee_details.BGDFragment
 import com.example.mpcb.reports.disposal.DisposalFragment
 import com.example.mpcb.reports.electric_meter_details.ElectricFragment

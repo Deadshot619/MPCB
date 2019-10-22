@@ -21,9 +21,7 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, ReportsPageViewMo
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_17)
 
 
-        mBinding.btnSubmit.setOnClickListener {
-            addReportFragment(Constants.REPORT_18)
-        }
+        mBinding.btnSubmit.setOnClickListener { addReportFragment(Constants.REPORT_18) }
 
     }
 }

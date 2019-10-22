@@ -110,6 +110,8 @@ class Constants {
             "Mwh"
         )
 
+        val AIR_POLLUTION_LIST =
+            arrayListOf("Boiler", "Thermopack", "Thermicfluid Heater", "Furnace process vent", "Any other")
 
 
         // reports page value

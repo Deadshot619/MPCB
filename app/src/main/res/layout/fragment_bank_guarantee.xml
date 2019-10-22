@@ -16,18 +16,15 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
                 android:background="@color/white">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtBgImposed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/barlow_regular"
-                    android:lineSpacingExtra="1.3sp"
-                    android:padding="5dp"
                     android:text="BG imposed"
                     android:textColor="@color/grey"
                     android:textSize="12sp"
@@ -36,9 +33,11 @@
 
                 <RadioGroup
                     android:id="@+id/rgBGImposed"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtBgImposed">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
@@ -64,10 +63,10 @@
                     android:id="@+id/txtBgImposedAgainst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/barlow_regular"
                     android:lineSpacingExtra="1.3sp"
-                    android:padding="5dp"
                     android:text="BG imposed Against"
                     android:textColor="@color/grey"
                     android:textSize="12sp"
@@ -76,15 +75,16 @@
 
                 <RadioGroup
                     android:id="@+id/rgBGImposedAgainst"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtBgImposedAgainst">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:paddingStart="5dp"
                         android:paddingLeft="5dp"
@@ -96,7 +96,7 @@
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="32dp"
                         android:fontFamily="@font/barlow_semi_bold"
                         android:paddingStart="5dp"
                         android:paddingLeft="5dp"
@@ -110,7 +110,10 @@
                     android:id="@+id/txtNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Number (Only for Directions)"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rgBGImposedAgainst">
 
@@ -119,8 +122,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_regular"
-                        android:hint="Number (Only for Directions)"
-                        android:text="NA"
                         android:textColor="@color/grey"
                         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -139,7 +140,10 @@
                     android:id="@+id/txtBGImposedFor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Bank Guarantee Imposed for"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/viewDivider">
 
@@ -148,8 +152,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_regular"
-                        android:hint="Bank Guarantee Imposed for"
-                        android:text="NA"
                         android:textColor="@color/grey"
                         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -190,9 +192,9 @@
                     android:id="@+id/txtBGSubmitted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/barlow_regular"
-                    android:padding="5dp"
                     android:text="BG Submitted"
                     android:textColor="@color/grey"
                     android:textSize="12sp"
@@ -201,10 +203,12 @@
 
                 <RadioGroup
                     android:id="@+id/rgBGSubmitted"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="5dp"
                     android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtBGSubmitted">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
@@ -232,7 +236,10 @@
                     android:id="@+id/txtBGNo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Bank Guarantee No"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rgBGSubmitted">
 
@@ -241,8 +248,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_regular"
-                        android:hint="Bank Guarantee No"
-                        android:text="NA"
                         android:textColor="@color/grey"
                         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -253,7 +258,10 @@
                     android:id="@+id/txtBGDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Date"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtBGNo">
 
@@ -262,8 +270,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_regular"
-                        android:hint="Date"
-                        android:text="12/09/2019"
                         android:textColor="@color/grey"
                         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -274,7 +280,10 @@
                     android:id="@+id/txtBGValidity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Validity"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtBGDate">
 
@@ -283,8 +292,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_regular"
-                        android:hint="Validity"
-                        android:text="20"
                         android:textColor="@color/grey"
                         app:layout_constraintStart_toStartOf="parent"/>
 
@@ -292,8 +299,9 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvAddMore"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:drawableStart="@drawable/ic_add_more"
                     android:drawableLeft="@drawable/ic_add_more"
@@ -304,6 +312,7 @@
                     android:text="Add More"
                     android:textColor="@color/colorAccent"
                     android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtBGValidity"
                     tools:layout_editor_absoluteX="10dp"/>
 
