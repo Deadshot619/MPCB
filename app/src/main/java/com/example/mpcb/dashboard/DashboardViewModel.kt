@@ -16,13 +16,13 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
 
     fun getDashboardModel() = dashboardModel
 
-    fun getDashboardData() {
+    fun getDashboardData(fromDate: String) {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
         val userModel = Gson().fromJson(user, LoginResponse::class.java)
         val request = DashboardDataRequest()
         request.userId = userModel.userId.toString()
-        request.fromDate = "2019-10-01"
-        request.toDate = "2019-10-31"
+        request.fromDate = fromDate
+        request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
         request.jurisdictionStat = 0
         dialogMessage.value = "Fetching..."
         dialogVisibility.value = true

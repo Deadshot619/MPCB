@@ -1,11 +1,10 @@
-package com.example.mpcb.reports.hazardous_waste_management
+package com.example.mpcb.reports.bank_guarantee_details
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
-import com.example.mpcb.profile.ProfileNavigator
 
 
-class HazardousViewModel : BaseViewModel<HazardousNavigator>() {
+class BGDViewModel : BaseViewModel<BGDNavigator>() {
 
     private val sourceList = MutableLiveData<ArrayList<String>>()
 

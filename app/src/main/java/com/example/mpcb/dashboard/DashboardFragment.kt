@@ -1,6 +1,8 @@
 package com.example.mpcb.dashboard
 
 
+import android.app.DatePickerDialog
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -8,6 +10,7 @@ import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
 import com.example.mpcb.utils.showMessage
+import java.util.*
 
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(), DashboardNavigator {
@@ -22,45 +25,55 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         mBinding.dashboardModel = mViewModel.getDashboardModel()
         setToolbar(mBinding.toolbarLayout, "MPCB")
         mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
-        mViewModel.getDashboardData()
+        mViewModel.getDashboardData("2019-10-01")
 
+        setListeners()
+    }
 
+    private fun setListeners() {
         mBinding.monthLayOne.setOnClickListener {
             setAllView(R.drawable.cal_back_select, R.drawable.cal_back_unselect, mBinding.monthLayOne)
             setAllText(R.color.white, R.color.black, mBinding.tvMonthOne, mBinding.tvYearOne)
+            mViewModel.getDashboardData("2019-10-01")
         }
-
         mBinding.monthLayTwo.setOnClickListener {
             setAllView(R.drawable.cal_back_select, R.drawable.cal_back_unselect, mBinding.monthLayTwo)
             setAllText(R.color.white, R.color.black, mBinding.tvMonthTwo, mBinding.tvYearTwo)
+            mViewModel.getDashboardData("2019-09-01")
         }
-
-
         mBinding.monthLayThree.setOnClickListener {
             setAllView(R.drawable.cal_back_select, R.drawable.cal_back_unselect, mBinding.monthLayThree)
             setAllText(R.color.white, R.color.black, mBinding.tvMonthThree, mBinding.tvYearThree)
+            mViewModel.getDashboardData("2019-08-01")
         }
-
-
         mBinding.monthLayFour.setOnClickListener {
             setAllView(R.drawable.cal_back_select, R.drawable.cal_back_unselect, mBinding.monthLayFour)
             setAllText(R.color.white, R.color.black, mBinding.tvMonthFour, mBinding.tvYearFour)
+            mViewModel.getDashboardData("2019-07-01")
         }
-
-
+        mBinding.calPickerLay.setOnClickListener { showCalendarDialog() }
     }
 
+    private fun showCalendarDialog() {
+        val calendar = Calendar.getInstance()
+        val datePickerDialog =
+            DatePickerDialog(getBaseActivity(), DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
+                mViewModel.getDashboardData("$year-${month + 1}-$dayOfMonth")
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+        datePickerDialog.show()
+    }
 
-    private fun setAllView(selecteColor: Int, unselectCol: Int, vararg views: View) {
-
+    private fun setAllView(selectedColor: Int, unSelectedColor: Int, vararg views: View) {
         setCalendarView(
-            unselectCol,
+            unSelectedColor,
             mBinding.monthLayOne,
             mBinding.monthLayTwo,
             mBinding.monthLayThree,
             mBinding.monthLayFour
         )
-        setCalendarView(selecteColor, *views)
+        setCalendarView(selectedColor, *views)
     }
 
     private fun setAllText(selecteColor: Int, unselectCol: Int, vararg txtvws: TextView) {
@@ -84,7 +97,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         for (tv in txtvws) {
             tv.setTextColor(ContextCompat.getColor(getBaseActivity(), colorCode))
         }
-
     }
 
 }

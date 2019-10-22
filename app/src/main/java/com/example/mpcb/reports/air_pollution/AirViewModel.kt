@@ -2,10 +2,9 @@ package com.example.mpcb.reports.air_pollution
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
-import com.example.mpcb.profile.ProfileNavigator
 
 
-class AirViewModel : BaseViewModel<ProfileNavigator>() {
+class AirViewModel : BaseViewModel<AirNavigator>() {
 
     private val sourceList = MutableLiveData<ArrayList<String>>()
 

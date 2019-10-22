@@ -2,6 +2,8 @@ package com.example.mpcb.utils.constants
 
 import android.content.Context
 import com.example.mpcb.R
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Constants {
     companion object {
@@ -113,6 +115,9 @@ class Constants {
         val AIR_POLLUTION_LIST =
             arrayListOf("Boiler", "Thermopack", "Thermicfluid Heater", "Furnace process vent", "Any other")
 
+        val PARAMETER_LIST =
+            arrayListOf("TPM (mg/Nm3)", "SO2 (mg/m3)", "Acid Mist (mg/Nm3)")
+
 
         // reports page value
         const val REPORT_1 = 1
@@ -157,6 +162,16 @@ class Constants {
             reportHashMap.put(REPORT_18, context.getString(R.string.add_info))
 
             return reportHashMap.get(reportKey)!!
+        }
+
+        fun getCurrentDate(dateFormat: String): String {
+            return try {
+                val date = Date()
+                SimpleDateFormat(dateFormat, Locale.US).format(date)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                ""
+            }
         }
     }
 

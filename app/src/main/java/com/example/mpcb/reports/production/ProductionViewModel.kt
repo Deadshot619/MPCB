@@ -1,11 +1,10 @@
-package com.example.mpcb.reports.hazardous_waste_management
+package com.example.mpcb.reports.production
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
-import com.example.mpcb.profile.ProfileNavigator
 
 
-class HazardousViewModel : BaseViewModel<HazardousNavigator>() {
+class ProductionViewModel : BaseViewModel<ProductionNavigator>() {
 
     private val sourceList = MutableLiveData<ArrayList<String>>()
 

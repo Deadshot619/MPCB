@@ -1,10 +1,9 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardviewLayout"
@@ -28,119 +27,35 @@
                     android:id="@+id/productionDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
                     android:text="Production Details"
                     android:textColor="@color/grey"
-                    android:textSize="18sp" app:layout_constraintStart_toStartOf="parent"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/productNameLayout"
-                    android:layout_width="match_parent"
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProduction"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/productionDetails">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Product Name"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/qtyLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/productNameLayout">
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Quantity(As Concent)"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtUnitAsConcent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Unit(As Concent)"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/qtyLayout"/>
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnUnitConsent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtUnitAsConcent"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/qtyActualLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/spnUnitConsent">
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Quantity(Actual)"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtUnitActual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Unit(Actual)"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/qtyActualLayout"/>
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnUnitActual"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtUnitActual"/>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgAddMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_plus"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/spnUnitActual"/>
+                    app:layout_constraintTop_toBottomOf="@id/productionDetails"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtAddMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
+                    android:drawableLeft="@drawable/ic_plus"
+                    android:drawablePadding="10dp"
                     android:text="Add More"
                     android:textColor="@color/green"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:visibility="gone"
-                    app:layout_constraintLeft_toRightOf="@id/imgAddMore"
-                    app:layout_constraintTop_toBottomOf="@id/spnUnitActual"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvProduction"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSubmit"

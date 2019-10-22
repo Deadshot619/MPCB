@@ -5,7 +5,7 @@ import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.profile.ProfileNavigator
 
 
-class NonHazardousViewModel : BaseViewModel<ProfileNavigator>() {
+class NonHazardousViewModel : BaseViewModel<NonHazardousNavigator>() {
 
     private val sourceList = MutableLiveData<ArrayList<String>>()
 

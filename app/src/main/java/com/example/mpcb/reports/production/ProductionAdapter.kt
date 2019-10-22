@@ -1,0 +1,79 @@
+package com.example.mpcb.reports.production
+
+import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mpcb.databinding.ItemProductionBinding
+import com.example.mpcb.utils.constants.Constants
+
+
+class ProductionAdapter(
+    val context: Context,
+    private val viewModel: ProductionViewModel
+) : RecyclerView.Adapter<ProductionAdapter.ProductionViewHolder>() {
+
+    private val sourceList = ArrayList<String>()
+    private val mInflater: LayoutInflater = LayoutInflater.from(context)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductionViewHolder {
+        val itemBinding = ItemProductionBinding.inflate(mInflater, parent, false)
+        return ProductionViewHolder(itemBinding)
+    }
+
+    override fun onBindViewHolder(holder: ProductionViewHolder, position: Int) {
+//        val item = visitList[position]
+//        holder.itemBinding.model = item
+//        holder.itemBinding.viewModel = viewModel
+
+        holder.setSpinner()
+
+    }
+
+    override fun getItemId(position: Int) = position.toLong()
+    override fun getItemViewType(position: Int) = position
+    override fun getItemCount() = sourceList.size
+
+    fun updateList(list: ArrayList<String>) {
+        this.sourceList.clear()
+        this.sourceList.addAll(list)
+        notifyDataSetChanged()
+    }
+
+
+    class ProductionViewHolder(val itemBinding: ItemProductionBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
+
+        fun setSpinner() {
+            val adapter = ArrayAdapter(
+                itemBinding.root.context,
+                android.R.layout.simple_spinner_item,
+                Constants.UNIT_LIST
+            )
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            itemBinding.spnUnitActual.adapter = adapter
+            itemBinding.spnUnitActual.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    itemBinding.spnUnitActual.setSelection(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            }
+
+            itemBinding.spnUnitConsent.adapter = adapter
+            itemBinding.spnUnitConsent.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    itemBinding.spnUnitConsent.setSelection(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            }
+        }
+
+    }
+}
