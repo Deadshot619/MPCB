@@ -27,6 +27,4 @@ class AdditionalInfoFragment : BaseFragment<FragmentAdditionalInfoBinding, Repor
         }
 
     }
-
-
 }

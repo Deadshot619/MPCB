@@ -79,5 +79,4 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         }
         addReportFragment(fragment, false)
     }
-
 }
