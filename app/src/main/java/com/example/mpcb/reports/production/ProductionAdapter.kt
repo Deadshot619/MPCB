@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemProductionBinding
+import com.example.mpcb.network.request.RoutineReportProduct
 import com.example.mpcb.utils.constants.Constants
 
 
@@ -16,7 +17,7 @@ class ProductionAdapter(
     private val viewModel: ProductionViewModel
 ) : RecyclerView.Adapter<ProductionAdapter.ProductionViewHolder>() {
 
-    private val sourceList = ArrayList<String>()
+    private val sourceList = ArrayList<RoutineReportProduct>()
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductionViewHolder {
@@ -25,11 +26,12 @@ class ProductionAdapter(
     }
 
     override fun onBindViewHolder(holder: ProductionViewHolder, position: Int) {
-//        val item = visitList[position]
+        val item = sourceList[position]
 //        holder.itemBinding.model = item
 //        holder.itemBinding.viewModel = viewModel
 
-        holder.setSpinner()
+        holder.setSpinner(item)
+        holder.itemBinding.model = sourceList[position]
 
     }
 
@@ -37,17 +39,16 @@ class ProductionAdapter(
     override fun getItemViewType(position: Int) = position
     override fun getItemCount() = sourceList.size
 
-    fun updateList(list: ArrayList<String>) {
+    fun updateList(list: ArrayList<RoutineReportProduct>) {
         this.sourceList.clear()
         this.sourceList.addAll(list)
         notifyDataSetChanged()
     }
 
-
     class ProductionViewHolder(val itemBinding: ItemProductionBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun setSpinner() {
+        fun setSpinner(item: RoutineReportProduct) {
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 android.R.layout.simple_spinner_item,
@@ -55,24 +56,39 @@ class ProductionAdapter(
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnUnitActual.adapter = adapter
-            itemBinding.spnUnitActual.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    itemBinding.spnUnitActual.setSelection(position)
+            itemBinding.spnUnitActual.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        itemBinding.spnUnitActual.setSelection(position)
+                        item.productQuantityActual = "${position+1}"
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+
                 }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-            }
 
             itemBinding.spnUnitConsent.adapter = adapter
-            itemBinding.spnUnitConsent.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    itemBinding.spnUnitConsent.setSelection(position)
+            itemBinding.spnUnitConsent.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        itemBinding.spnUnitConsent.setSelection(position)
+                        item.productUomActual = "${position+1}"
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+
                 }
 
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-            }
         }
 
     }

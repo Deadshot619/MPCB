@@ -1,5 +1,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <data>
+        
+        <variable
+            name="model"
+            type="com.example.mpcb.network.request.RoutineReportProduct" />
+        
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,8 +24,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/txt_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={model.productName}"
                 android:hint="Product Name"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -30,8 +40,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/productNameLayout">
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/txt_quantity_concent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={model.productQuantity}"
                 android:hint="Quantity(As Concent)"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,8 +75,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/spnUnitConsent">
             <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/txt_quantity_actual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={model.productQuantityActual}"
                 android:hint="Quantity(Actual)"/>
         </com.google.android.material.textfield.TextInputLayout>
 

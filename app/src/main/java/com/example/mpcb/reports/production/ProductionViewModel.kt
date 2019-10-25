@@ -2,16 +2,17 @@ package com.example.mpcb.reports.production
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
+import com.example.mpcb.network.request.RoutineReportProduct
 
 
 class ProductionViewModel : BaseViewModel<ProductionNavigator>() {
 
-    private val sourceList = MutableLiveData<ArrayList<String>>()
+    private val sourceList = MutableLiveData<ArrayList<RoutineReportProduct>>()
 
     fun getSourceList() = sourceList
 
     fun populateData() {
-        val list = arrayListOf("Item 1", "Item 2")
+        val list = arrayListOf(RoutineReportProduct())
         sourceList.value = list
     }
 
@@ -25,7 +26,7 @@ class ProductionViewModel : BaseViewModel<ProductionNavigator>() {
 
     fun addItem() {
         val list = sourceList.value
-        list!!.add("Item")
+        list!!.add(RoutineReportProduct())
         sourceList.value = list
     }
 }

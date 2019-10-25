@@ -10,7 +10,6 @@ import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
-
 class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbientAirViewModel>(),
     OMSAmbientAirNavigator {
     override fun getLayoutId() = R.layout.fragment_oms_ambient_air
