@@ -8,4 +8,6 @@ interface MyVisitsNavigator : BaseNavigator {
     fun onVisitItemClicked(viewModel: MyVisitModel)
 
     fun onCheckInClicked(model: MyVisitModel)
+
+    fun onCheckInSuccess(msg: String)
 }

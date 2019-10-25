@@ -22,6 +22,10 @@ class PermissionUtils {
             READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE
         )
 
+        val LOCATION_PERMISSTIONS = arrayOf(
+            Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION
+        )
+
         fun checkPermissions(ctx: Context, vararg permissions: String): Boolean {
             for (per in permissions) {
                 if (!checkPermision(ctx, per))

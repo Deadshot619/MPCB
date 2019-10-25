@@ -3,8 +3,12 @@ package com.example.mpcb.network
 import com.example.mpcb.network.request.*
 import com.example.mpcb.network.response.*
 import io.reactivex.Single
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
+import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Part
 
 interface APIInterface {
 
@@ -22,6 +26,16 @@ interface APIInterface {
 
     @POST("visit_list")
     fun getVisitList(@Body request: MyVisitRequest): Single<MyVisitResponse>
+
+    @Multipart
+    @POST("check_in")
+    fun checkIn(
+        @Part("UserId") userId: RequestBody,
+        @Part("visitId") visitId: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
+        @Part selfieImagePart: MultipartBody.Part
+    ): Single<CheckInResponse>
 
     @POST("submit_visit_report")
     fun submitReport(@Body request: ReportRequest): Single<ReportSubmitResponse>

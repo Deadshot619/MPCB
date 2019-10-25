@@ -7,6 +7,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 object DataProvider : RemoteDataProvider {
 
@@ -107,6 +109,31 @@ object DataProvider : RemoteDataProvider {
         noInternetAvailable(error)
         getDefaultDisposable()
     }
+
+    override fun checkIn(
+        userId: RequestBody, visitId: RequestBody, latitude: RequestBody, longitude: RequestBody,
+        selfieImagePart: MultipartBody.Part, success: Consumer<CheckInResponse>, error: Consumer<Throwable>
+    ): Disposable =
+        if (isNetworkAvailable()) {
+            mServices.checkIn(
+                userId,
+                visitId,
+                latitude,
+                longitude,
+                selfieImagePart
+            ).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(Consumer(fun(response: CheckInResponse) {
+                    if (!response.status) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                }), error)
+        } else {
+            noInternetAvailable(error)
+            getDefaultDisposable()
+        }
 
     override fun submitReport(
         request: ReportRequest,

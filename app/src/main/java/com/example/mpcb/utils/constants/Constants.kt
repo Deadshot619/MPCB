@@ -8,6 +8,9 @@ import java.util.*
 class Constants {
     companion object {
 
+        const val IMAGE_PATH: String = "IMAGE_PATH"
+        const val LAT_VALUE: String = "LAT_VALUE"
+        const val LONG_VALUE: String = "LONG_VALUE"
         //Shared Preference Constants
         const val myPrefK: String = "PreferenceMPCB"
 

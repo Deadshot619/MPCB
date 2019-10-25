@@ -1,9 +1,13 @@
 package com.example.mpcb.my_visits
 
 
+import android.Manifest
 import android.app.DatePickerDialog
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -13,13 +17,19 @@ import com.example.mpcb.network.response.MyVisitModel
 import com.example.mpcb.utils.addFragment
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.dialog.CheckInDialog
+import com.example.mpcb.utils.dialog.DialogHelper
+import com.example.mpcb.utils.locationservice.LocationHelper
+import com.example.mpcb.utils.permission.PermissionUtils
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 import java.util.*
 
 
-class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(), MyVisitsNavigator {
+class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
+    MyVisitsNavigator {
 
+    private lateinit var model: MyVisitModel
+    private lateinit var dialogFragment: CheckInDialog
 
     override fun getLayoutId() = R.layout.fragment_my_visits
     override fun getViewModel() = MyVisitsViewModel::class.java
@@ -37,9 +47,15 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     private fun showCalendarDialog() {
         val calendar = Calendar.getInstance()
         val datePickerDialog =
-            DatePickerDialog(getBaseActivity(), DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+            DatePickerDialog(
+                getBaseActivity(),
+                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                    Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
         datePickerDialog.show()
     }
 
@@ -53,14 +69,51 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         mViewModel.getVisitListData()
     }
 
-    override fun onVisitItemClicked(model: MyVisitModel) {
+    override fun onVisitItemClicked(viewModel: MyVisitModel) {
         val bundle = Bundle()
-        bundle.putParcelable(Constants.VISIT_ITEM_KEY, model)
+        bundle.putParcelable(Constants.VISIT_ITEM_KEY, viewModel)
         addFragment(VisitReportFragment(), true, bundle)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCheckInClicked(model: MyVisitModel) {
-        val checkInDialog = CheckInDialog(getBaseActivity(), model, mViewModel)
-        checkInDialog.show()
+
+        this.model = model
+
+        if (!LocationHelper.isLocationProviderEnabled(context!!)) {
+            DialogHelper.showLocationAlertDialog(context!!)
+        } else {
+            if (activity!!.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                requestPermissions(
+                    PermissionUtils.LOCATION_PERMISSTIONS,
+                    100
+                )
+            } else {
+                openCheckinDialog()
+            }
+        }
+    }
+
+    private fun openCheckinDialog() {
+        mViewModel.getCurrentLocation()
+        dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
+        dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)
+    }
+
+    override fun onCheckInSuccess(msg: String) {
+        dialogFragment.dismiss()
+        showMessage(msg)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == 100) {
+            openCheckinDialog()
+        }
     }
 }

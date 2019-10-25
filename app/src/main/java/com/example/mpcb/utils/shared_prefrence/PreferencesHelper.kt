@@ -88,5 +88,10 @@ object PreferencesHelper {
     fun isLogin(defValue: Boolean = false) = getBooleanPreference(Constants.mloginKey, defValue)
     fun setLogin(value: Boolean) = setBooleanPreference(Constants.mloginKey, value)
 
+    fun setCurrentLatitude(value: String) = setStringPreference(Constants.LAT_VALUE, value)
+    fun setCurrentLongitude(value: String) = setStringPreference(Constants.LONG_VALUE, value)
+
+    fun getCurrentLatitude(): String = getStringPreference(Constants.LAT_VALUE, "")!!
+    fun getCurrentLongitude(): String = getStringPreference(Constants.LONG_VALUE, "")!!
 
 }

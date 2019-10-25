@@ -4,6 +4,8 @@ import com.example.mpcb.network.request.*
 import com.example.mpcb.network.response.*
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 interface RemoteDataProvider {
 
@@ -36,6 +38,16 @@ interface RemoteDataProvider {
         success: Consumer<ArrayList<MyVisitModel>>,
         error: Consumer<Throwable>
     ): Disposable
+
+    fun checkIn(
+        userId: RequestBody,
+        visitId: RequestBody,
+        latitude: RequestBody,
+        longitude: RequestBody,
+        selfieImagePart: MultipartBody.Part,
+        success: Consumer<CheckInResponse>,
+        error: Consumer<Throwable>
+    ):Disposable
 
     fun submitReport(
         request: ReportRequest,
