@@ -1,6 +1,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardviewLayout"
         android:layout_width="match_parent"
@@ -80,30 +81,35 @@
                         app:layout_constraintTop_toBottomOf="@id/layRelPrimary">
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbPrimaryOG"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="O &amp; G Trap"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbPrimaryScreening"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Screening"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbPrimaryNeutralization"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Neutralization / Equalization"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbPrimarySetting"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Primary Setting/Sedimentation"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbPrimaryAnyOther"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Any Other"
@@ -159,30 +165,35 @@
                         app:layout_constraintTop_toBottomOf="@id/layRelSecondary">
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSecondaryActivated"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Activated Sludge Process"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSecondaryMBBR"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="MBBR"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSecondarySBR"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="SBR"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSecondaryTrickling"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Trickling Filter"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSecondaryAnyOther"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Any Other"
@@ -238,24 +249,28 @@
                         app:layout_constraintTop_toBottomOf="@id/layRelTertiary">
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbTertiaryPress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Presser Sand Filter"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbTertiaryActivated"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Activated Carbon Filter"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbTertiaryDual"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Dual Media Filter"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbTertiaryAnyOther"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Any Other"
@@ -308,29 +323,46 @@
                         android:layout_marginBottom="10dp"
                         android:orientation="vertical"
                         android:visibility="gone"
-
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/layRelAdvance">
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbAdvanceReverse"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Presser Sand Filter"
+                            android:text="Reverse Osmosis"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbAdvanceMEE"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Activated Carbon Filter"
+                            android:text="MEE"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbAdvanceUltra"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dual Media Filter"
+                            android:text="Ultra filtration"
                             android:textSize="18sp"/>
 
                         <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbAdvanceNano"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nano filtration"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbAdvanceATFD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ATFD"
+                            android:textSize="18sp"/>
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbAdvanceAnyOther"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Any Other"
@@ -352,6 +384,7 @@
                     app:layout_constraintTop_toBottomOf="@id/layLinTopSection">
 
                     <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtIndustrialRemark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Remark"/>
@@ -381,6 +414,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txtETP">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbETPYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -388,6 +422,7 @@
                         android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbETPNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -431,12 +466,14 @@
                     app:layout_constraintTop_toBottomOf="@id/txtDomestic">
 
                     <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cbDomesticSepticTank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Septic tank &amp; Soak pit"
                         android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cbDomesticSewage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -456,6 +493,7 @@
                     app:layout_constraintTop_toBottomOf="@id/linLayThird">
 
                     <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtDomesticRemark"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Remark"/>
@@ -485,6 +523,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txtSTP">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbSTPYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -492,6 +531,7 @@
                         android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbSTPNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"

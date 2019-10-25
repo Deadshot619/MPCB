@@ -1,8 +1,5 @@
 package com.example.mpcb.network.request
 
-import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
-import androidx.databinding.library.baseAdapters.BR
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -10,13 +7,13 @@ class ReportRequest {
 
     @SerializedName("RequestId")
     @Expose
-    var requestId: String? = null
+    var requestId: String = ""
     @SerializedName("visitId")
     @Expose
     var visitId: Int? = null
     @SerializedName("indus_imis_id")
     @Expose
-    var indusImisId: String? = null
+    var indusImisId: String = ""
     @SerializedName("UserId")
     @Expose
     var userId: Int? = null
@@ -34,25 +31,25 @@ class Data {
     var routineReport: RoutineReport = RoutineReport()
     @SerializedName("routine_report_products")
     @Expose
-    var routineReportProducts: ArrayList<RoutineReportProduct>? = null
+    var routineReportProducts: ArrayList<RoutineReportProduct> = arrayListOf()
     @SerializedName("jvs_sample_collected_water_source")
     @Expose
-    var jvsSampleCollectedWaterSource: ArrayList<JvsSampleCollectedWaterSource>? = null
+    var jvsSampleCollectedWaterSource: ArrayList<JvsSampleCollectedWaterSource> = arrayListOf()
     @SerializedName("routine_report_air_pollution")
     @Expose
-    var routineReportAirPollution: ArrayList<RoutineReportAirPollution>? = null
+    var routineReportAirPollution: ArrayList<RoutineReportAirPollution> = arrayListOf()
     @SerializedName("jvs_sample_collected_air_source")
     @Expose
-    var jvsSampleCollectedAirSource: ArrayList<JvsSampleCollectedAirSource>? = null
+    var jvsSampleCollectedAirSource: ArrayList<JvsSampleCollectedAirSource> = arrayListOf()
     @SerializedName("routine_report_hazardous_waste")
     @Expose
-    var routineReportHazardousWaste: ArrayList<RoutineReportHazardousWaste>? = null
+    var routineReportHazardousWaste: ArrayList<RoutineReportHazardousWaste> = arrayListOf()
     @SerializedName("routine_report_non_hazardous_waste")
     @Expose
-    var routineReportNonHazardousWaste: ArrayList<RoutineReportNonHazardousWaste>? = null
+    var routineReportNonHazardousWaste: ArrayList<RoutineReportNonHazardousWaste> = arrayListOf()
     @SerializedName("routine_report_bank_details")
     @Expose
-    var routineReportBankDetails: ArrayList<RoutineReportBankDetail>? = null
+    var routineReportBankDetails: ArrayList<RoutineReportBankDetail> = arrayListOf()
 }
 
 class JvsSampleCollectedAirSource {
@@ -61,10 +58,10 @@ class JvsSampleCollectedAirSource {
     var nameOfSource: String? = null
     @SerializedName("jvs_air_source_parameter")
     @Expose
-    var jvsAirSourceParameter: ArrayList<String>? = null
+    var jvsAirSourceParameter: ArrayList<String> = arrayListOf()
     @SerializedName("jvs_air_source_std_prescribed")
     @Expose
-    var jvsAirSourceStdPrescribed: ArrayList<String>? = null
+    var jvsAirSourceStdPrescribed: ArrayList<String> = arrayListOf()
 }
 
 class JvsSampleCollectedWaterSource {
@@ -73,10 +70,10 @@ class JvsSampleCollectedWaterSource {
     var nameOfSource: String? = null
     @SerializedName("jvs_water_source_parameter")
     @Expose
-    var jvsWaterSourceParameter: ArrayList<String>? = null
+    var jvsWaterSourceParameter: ArrayList<String> = arrayListOf()
     @SerializedName("jvs_water_source_std_prescribed")
     @Expose
-    var jvsWaterSourceStdPrescribed: ArrayList<String>? = null
+    var jvsWaterSourceStdPrescribed: ArrayList<String> = arrayListOf()
 }
 
 class RoutineReport {
@@ -101,6 +98,8 @@ class RoutineReport {
     @SerializedName("hw_of_valid_upto_de")
     @Expose
     var hwOfValidUptoDe: String? = null
+
+
     @SerializedName("generation_industrial_as_consent")
     @Expose
     var generationIndustrialAsConsent: String? = null
@@ -119,51 +118,53 @@ class RoutineReport {
     @SerializedName("generation_domestic_actual")
     @Expose
     var generationDomesticActual: String? = null
+
+
     @SerializedName("treatment_industrial_primary")
     @Expose
-    var treatmentIndustrialPrimary: Int? = null
+    var treatmentIndustrialPrimary: Int = 0
     @SerializedName("industrial_primary_OG_trap")
     @Expose
-    var industrialPrimaryOGTrap: Int? = null
+    var industrialPrimaryOGTrap: Int = 0
     @SerializedName("industrial_primary_screening")
     @Expose
-    var industrialPrimaryScreening: Int? = null
+    var industrialPrimaryScreening: Int = 0
     @SerializedName("industrial_primary_neutralization")
     @Expose
-    var industrialPrimaryNeutralization: Int? = null
+    var industrialPrimaryNeutralization: Int = 0
     @SerializedName("industrial_primary_primary_settling")
     @Expose
-    var industrialPrimaryPrimarySettling: Int? = null
+    var industrialPrimaryPrimarySettling: Int = 0
     @SerializedName("industrial_primary_any_other")
     @Expose
-    var industrialPrimaryAnyOther: Int? = null
+    var industrialPrimaryAnyOther: Int = 0
     @SerializedName("industrial_primary_any_other_text")
     @Expose
-    var industrialPrimaryAnyOtherText: String? = null
+    var industrialPrimaryAnyOtherText: String = ""
     @SerializedName("treatment_domestic_septic_tank")
     @Expose
-    var treatmentDomesticSepticTank: Int? = null
+    var treatmentDomesticSepticTank: Int = 0
     @SerializedName("treatment_industrial_secondary")
     @Expose
-    var treatmentIndustrialSecondary: Int? = null
+    var treatmentIndustrialSecondary: Int = 0
     @SerializedName("industrial_secondary_activated_sludge_process")
     @Expose
-    var industrialSecondaryActivatedSludgeProcess: Int? = null
+    var industrialSecondaryActivatedSludgeProcess: Int = 0
     @SerializedName("industrial_secondary_mbbr")
     @Expose
-    var industrialSecondaryMbbr: Int? = null
+    var industrialSecondaryMbbr: Int = 0
     @SerializedName("industrial_secondary_sbr")
     @Expose
-    var industrialSecondarySbr: Int? = null
+    var industrialSecondarySbr: Int = 0
     @SerializedName("industrial_secondary_trickling_filter")
     @Expose
-    var industrialSecondaryTricklingFilter: Int? = null
+    var industrialSecondaryTricklingFilter: Int = 0
     @SerializedName("industrial_secondary_any_other")
     @Expose
-    var industrialSecondaryAnyOther: Int? = null
+    var industrialSecondaryAnyOther: Int = 0
     @SerializedName("industrial_secondary_any_other_text")
     @Expose
-    var industrialSecondaryAnyOtherText: String? = null
+    var industrialSecondaryAnyOtherText: String = ""
     @SerializedName("treatment_domestic_severage_treatment_plant")
     @Expose
     var treatmentDomesticSeverageTreatmentPlant: Int? = null
@@ -190,16 +191,16 @@ class RoutineReport {
     var treatmentIndustrialTertiary: Int? = null
     @SerializedName("industrial_tertiary_presser_sand_filter")
     @Expose
-    var industrialTertiaryPresserSandFilter: Int? = null
+    var industrialTertiaryPresserSandFilter: Int = 0
     @SerializedName("industrial_tertiary_activated_carbon_filter")
     @Expose
-    var industrialTertiaryActivatedCarbonFilter: Int? = null
+    var industrialTertiaryActivatedCarbonFilter: Int = 0
     @SerializedName("industrial_tertiary_dual_media_filter")
     @Expose
-    var industrialTertiaryDualMediaFilter: Int? = null
+    var industrialTertiaryDualMediaFilter: Int = 0
     @SerializedName("industrial_tertiary_any_other")
     @Expose
-    var industrialTertiaryAnyOther: Int? = null
+    var industrialTertiaryAnyOther: Int = 0
     @SerializedName("industrial_tertiary_any_other_text")
     @Expose
     var industrialTertiaryAnyOtherText: String? = null
@@ -208,85 +209,87 @@ class RoutineReport {
     var treatmentIndustrialAdvanced: Int? = null
     @SerializedName("industrial_advanced_reverse_osmosis")
     @Expose
-    var industrialAdvancedReverseOsmosis: Int? = null
+    var industrialAdvancedReverseOsmosis: Int = 0
     @SerializedName("industrial_advanced_mee")
     @Expose
-    var industrialAdvancedMee: Int? = null
+    var industrialAdvancedMee: Int = 0
     @SerializedName("ultra_filtration")
     @Expose
-    var ultraFiltration: Int? = null
+    var ultraFiltration: Int = 0
     @SerializedName("nano_filtration")
     @Expose
-    var nanoFiltration: Int? = null
+    var nanoFiltration: Int = 0
     @SerializedName("atfd")
     @Expose
-    var atfd: Int? = null
+    var atfd: Int = 0
     @SerializedName("industrial_advanced_any_other")
     @Expose
-    var industrialAdvancedAnyOther: Int? = null
+    var industrialAdvancedAnyOther: Int = 0
     @SerializedName("industrial_advanced_any_other_text")
     @Expose
     var industrialAdvancedAnyOtherText: String? = null
     @SerializedName("treatment_observation")
     @Expose
-    var treatmentObservation: String? = null
+    var treatmentObservation: String = ""
     @SerializedName("etp_operational")
     @Expose
     var etpOperational: Int? = null
     @SerializedName("stp_operational")
     @Expose
     var stpOperational: Int? = null
+
+
     @SerializedName("disposal_industrial_CETP")
     @Expose
-    var disposalIndustrialCETP: Int? = null
+    var disposalIndustrialCETP: Int = 0
     @SerializedName("disposal_industrial_CETP_text")
     @Expose
     var disposalIndustrialCETPText: String? = null
     @SerializedName("disposal_domestic_CETP")
     @Expose
-    var disposalDomesticCETP: Int? = null
+    var disposalDomesticCETP: Int = 0
     @SerializedName("disposal_domestic_CETP_text")
     @Expose
     var disposalDomesticCETPText: String? = null
     @SerializedName("disposal_industrial_land_gardening")
     @Expose
-    var disposalIndustrialLandGardening: Int? = null
+    var disposalIndustrialLandGardening: Int = 0
     @SerializedName("disposal_industrial_land_gardening_text")
     @Expose
     var disposalIndustrialLandGardeningText: String? = null
     @SerializedName("disposal_domestic_land_gardening")
     @Expose
-    var disposalDomesticLandGardening: Int? = null
+    var disposalDomesticLandGardening: Int = 0
     @SerializedName("disposal_domestic_land_gardening_text")
     @Expose
     var disposalDomesticLandGardeningText: String? = null
     @SerializedName("disposal_industrial_recycle")
     @Expose
-    var disposalIndustrialRecycle: Int? = null
+    var disposalIndustrialRecycle: Int = 0
     @SerializedName("disposal_industrial_recycle_text")
     @Expose
     var disposalIndustrialRecycleText: String? = null
     @SerializedName("disposal_domestic_recycle")
     @Expose
-    var disposalDomesticRecycle: Int? = null
+    var disposalDomesticRecycle: Int = 0
     @SerializedName("disposal_domestic_recycle_text")
     @Expose
     var disposalDomesticRecycleText: String? = null
     @SerializedName("disposal_industrial_local_body_sewage")
     @Expose
-    var disposalIndustrialLocalBodySewage: Int? = null
+    var disposalIndustrialLocalBodySewage: Int = 0
     @SerializedName("disposal_industrial_local_body_sewage_text")
     @Expose
     var disposalIndustrialLocalBodySewageText: String? = null
     @SerializedName("disposal_domestic_local_body_sewage")
     @Expose
-    var disposalDomesticLocalBodySewage: Int? = null
+    var disposalDomesticLocalBodySewage: Int = 0
     @SerializedName("disposal_domestic_local_body_sewage_text")
     @Expose
     var disposalDomesticLocalBodySewageText: String? = null
     @SerializedName("disposal_industrial_any_other")
     @Expose
-    var disposalIndustrialAnyOther: Int? = null
+    var disposalIndustrialAnyOther: Int = 0
     @SerializedName("disposal_industrial_any_other_text_remarks")
     @Expose
     var disposalIndustrialAnyOtherTextRemarks: String? = null
@@ -295,7 +298,7 @@ class RoutineReport {
     var disposalIndustrialAnyOtherText: String? = null
     @SerializedName("disposal_domestic_any_other")
     @Expose
-    var disposalDomesticAnyOther: Int? = null
+    var disposalDomesticAnyOther: Int = 0
     @SerializedName("disposal_domestic_any_other_text_remarks")
     @Expose
     var disposalDomesticAnyOtherTextRemarks: String? = null
@@ -304,10 +307,10 @@ class RoutineReport {
     var disposalDomesticAnyOtherText: String? = null
     @SerializedName("disposal_industrial_total")
     @Expose
-    var disposalIndustrialTotal: Int? = null
+    var disposalIndustrialTotal: Int = 0
     @SerializedName("disposal_domestic_total")
     @Expose
-    var disposalDomesticTotal: Int? = null
+    var disposalDomesticTotal: Int = 0
     @SerializedName("disposal_observation")
     @Expose
     var disposalObservation: String? = null
@@ -323,30 +326,36 @@ class RoutineReport {
     @SerializedName("operation_and_maintainance_domestic")
     @Expose
     var operationAndMaintainanceDomestic: String? = null
+
+
     @SerializedName("omsw_applicable")
     @Expose
-    var omswApplicable: Int? = null
+    var omswApplicable: Int = 0
     @SerializedName("omsw_installed")
     @Expose
-    var omswInstalled: Int? = null
+    var omswInstalled: Int = 0
     @SerializedName("omsw_cpcb")
     @Expose
-    var omswCpcb: Int? = null
+    var omswCpcb: Int = 0
     @SerializedName("omsw_mpcb")
     @Expose
-    var omswMpcb: Int? = null
+    var omswMpcb: Int = 0
     @SerializedName("remote_cal_applicable_water")
     @Expose
-    var remoteCalApplicableWater: Int? = null
+    var remoteCalApplicableWater: Int = 0
     @SerializedName("sensor_placed_water")
     @Expose
-    var sensorPlacedWater: Int? = null
+    var sensorPlacedWater: Int = 0
+
+
     @SerializedName("electrict_meter_provided")
     @Expose
-    var electrictMeterProvided: Int? = null
+    var electrictMeterProvided: Int = 0
     @SerializedName("electrict_meter_reading")
     @Expose
-    var electrictMeterReading: Int? = null
+    var electrictMeterReading: Int = 0
+
+
     @SerializedName("date_of_collection_indus")
     @Expose
     var dateOfCollectionIndus: String? = null
@@ -377,9 +386,11 @@ class RoutineReport {
     @SerializedName("air_pollution_observation")
     @Expose
     var airPollutionObservation: String? = null
+
+
     @SerializedName("omsa_applicable")
     @Expose
-    var omsaApplicable: Int? = null
+    var omsaApplicable: Int = 0
     @SerializedName("omsa_installed")
     @Expose
     var omsaInstalled: Int? = null
@@ -401,6 +412,8 @@ class RoutineReport {
     @SerializedName("cal_fac_exist")
     @Expose
     var calFacExist: Int? = null
+
+
     @SerializedName("omsam_applicable")
     @Expose
     var omsamApplicable: Int? = null
@@ -595,37 +608,19 @@ class RoutineReportNonHazardousWaste {
     var nhwDisposalQuantityUnit: String? = null
 }
 
-class RoutineReportProduct : BaseObservable() {
+class RoutineReportProduct {
     @SerializedName("product_name")
     @Expose
-    var productName = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.productName)
-        }
-
+    var productName: String? = null
     @SerializedName("product_quantity")
     @Expose
-    var productQuantity: String? = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.productQuantity)
-        }
-
+    var productQuantity: String? = null
     @SerializedName("product_uom")
     @Expose
     var productUom: String? = null
     @SerializedName("product_quantity_actual")
     @Expose
-    var productQuantityActual: String? = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.productQuantityActual)
-        }
-
+    var productQuantityActual: String? = null
     @SerializedName("product_uom_actual")
     @Expose
     var productUomActual: String? = null

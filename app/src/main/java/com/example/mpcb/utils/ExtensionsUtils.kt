@@ -19,7 +19,6 @@ import com.google.android.material.textfield.TextInputLayout
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.text.SimpleDateFormat
-import java.util.*
 
 
 fun AppCompatActivity.showMessage(message: String) {
@@ -83,4 +82,13 @@ fun isNetworkAvailable(): Boolean {
 fun String.md5(): String {
     val md = MessageDigest.getInstance("MD5")
     return BigInteger(1, md.digest(toByteArray())).toString(16).padStart(32, '0')
+}
+
+fun String.parseToInt(): Int {
+    try {
+        return this.toInt()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        return 0
+    }
 }

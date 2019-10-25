@@ -67,10 +67,9 @@
                             android:textSize="@dimen/text_large"/>
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/process_content_actual_ed"
+                            android:id="@+id/edtIndustryConcent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="200"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/text_large"/>
                     </LinearLayout>
@@ -88,7 +87,7 @@
                             android:id="@+id/process_content_lbl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Acutual"
+                            android:text="Actual"
                             android:textColor="@color/light_grey"
                             android:textSize="@dimen/text_large"/>
 
@@ -101,10 +100,9 @@
                             android:textSize="@dimen/text_large"/>
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/process_content_ed"
+                            android:id="@+id/edtIndustryActual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="200"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/text_large"/>
 
@@ -172,10 +170,9 @@
                             android:textSize="@dimen/text_large"/>
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/cooling_content_actual_ed"
+                            android:id="@+id/edtIndustrialConcent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="200"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/text_large"/>
                     </LinearLayout>
@@ -193,7 +190,7 @@
                             android:id="@+id/cooling_content_lbl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Acutual"
+                            android:text="Actual"
                             android:textColor="@color/light_grey"
                             android:textSize="@dimen/text_large"/>
 
@@ -206,10 +203,9 @@
                             android:textSize="@dimen/text_large"/>
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/cooling_content_ed"
+                            android:id="@+id/edtIndustrialActual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="200"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/text_large"/>
 
@@ -273,10 +269,9 @@
                             android:textSize="@dimen/text_large"/>
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/domestic_content_actual_ed"
+                            android:id="@+id/edtDomesticConcent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="200"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/text_large"/>
                     </LinearLayout>
@@ -293,7 +288,7 @@
                             android:id="@+id/domestic_content_lbl"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Acutual"
+                            android:text="Actual"
                             android:textColor="@color/light_grey"
                             android:textSize="@dimen/text_large"/>
 
@@ -306,10 +301,9 @@
                             android:textSize="@dimen/text_large"/>
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/domestic_content_ed"
+                            android:id="@+id/edtDomesticActual"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="200"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/text_large"/>
 
