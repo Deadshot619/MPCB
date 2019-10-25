@@ -1,10 +1,7 @@
 package com.example.mpcb.network
 
 import com.example.mpcb.network.request.*
-import com.example.mpcb.network.response.DashboardDataResponse
-import com.example.mpcb.network.response.LoginResponse
-import com.example.mpcb.network.response.MyVisitModel
-import com.example.mpcb.network.response.UpdateProfileResponse
+import com.example.mpcb.network.response.*
 import com.example.mpcb.utils.isNetworkAvailable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -104,6 +101,24 @@ object DataProvider : RemoteDataProvider {
                     error.accept(Throwable(response.message))
                 } else {
                     success.accept(response.data)
+                }
+            }, error)
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+    override fun submitReport(
+        request: ReportRequest,
+        success: Consumer<ReportSubmitResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.submitReport(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            .subscribe(Consumer { response ->
+                if (response.status != 1) {
+                    error.accept(Throwable(response.message))
+                } else {
+                    success.accept(response)
                 }
             }, error)
     } else {

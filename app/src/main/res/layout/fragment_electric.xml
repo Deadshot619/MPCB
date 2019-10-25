@@ -2,94 +2,98 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-            android:id="@+id/cardviewLayout"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="4dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/cardviewLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtSeparateMeter"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:text="Separate Electrical Meter Provided"
-                        android:textColor="@color/grey"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:id="@+id/txtSeparateMeter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Separate Electrical Meter Provided"
+                    android:textColor="@color/grey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <RadioGroup
-                        android:id="@+id/rgSeparateMeter"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/txtSeparateMeter"
-                        android:orientation="horizontal"
+                    android:id="@+id/rgSeparateMeter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtSeparateMeter">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbSeparateYes"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Yes"
+                        android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                            android:layout_width="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Yes"
-                            android:textSize="18sp"
-                            android:layout_height="wrap_content"/>
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                            android:layout_marginTop="4dp"
-                            android:layout_width="wrap_content"
-                            android:text="No"
-                            android:layout_marginLeft="32dp"
-                            android:layout_marginStart="32dp"
-                            android:textSize="18sp"
-                            android:layout_height="wrap_content"/>
+                        android:id="@+id/rbSeparateNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="No"
+                        android:textSize="18sp"/>
                 </RadioGroup>
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/meterReadingLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rgSeparateMeter"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                    android:id="@+id/meterReadingLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rgSeparateMeter">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                            android:hint="Meter Reading"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                        android:id="@+id/edtMeterReading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Meter Reading"
+                        android:inputType="number"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnSubmit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Save &amp; Continue"
-                        android:layout_marginBottom="24dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        style="@style/save_btn_style"
-                        android:background="@drawable/btn_drawable"
-                        app:layout_constraintTop_toBottomOf="@+id/meterReadingLayout"
-                        android:layout_marginTop="32dp"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                    android:id="@+id/btnSubmit"
+                    style="@style/save_btn_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="24dp"
+                    android:background="@drawable/btn_drawable"
+                    android:text="Save &amp; Continue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/meterReadingLayout"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

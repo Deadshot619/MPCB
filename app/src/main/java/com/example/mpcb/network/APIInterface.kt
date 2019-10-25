@@ -1,10 +1,7 @@
 package com.example.mpcb.network
 
 import com.example.mpcb.network.request.*
-import com.example.mpcb.network.response.DashboardDataResponse
-import com.example.mpcb.network.response.LoginResponse
-import com.example.mpcb.network.response.MyVisitResponse
-import com.example.mpcb.network.response.UpdateProfileResponse
+import com.example.mpcb.network.response.*
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -25,4 +22,7 @@ interface APIInterface {
 
     @POST("visit_list")
     fun getVisitList(@Body request: MyVisitRequest): Single<MyVisitResponse>
+
+    @POST("submit_visit_report")
+    fun submitReport(@Body request: ReportRequest): Single<ReportSubmitResponse>
 }

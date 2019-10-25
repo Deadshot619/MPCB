@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="true"
-        app:cardElevation="4dp">
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -52,7 +52,6 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:maxLines="1"
-                    android:text="200"
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbIndusCETP"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -165,7 +164,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="Extra Name"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/text_large"
                     app:layout_constraintEnd_toStartOf="@+id/edIndusExtraNameValue"
@@ -180,7 +178,6 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:maxLines="1"
-                    android:text="200"
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/edIndusExtraName"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -220,8 +217,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
+                    android:inputType="number"
                     android:maxLines="1"
-                    android:text="400"
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/tvIndustrialTotal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -276,7 +273,6 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:maxLines="1"
-                    android:text="200"
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbDomesticCETP"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -390,7 +386,6 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="Extra Name sdd sd"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/text_large"
                     app:layout_constraintEnd_toStartOf="@+id/edDomesticExtraNameValue"
@@ -405,7 +400,6 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:maxLines="1"
-                    android:text="200"
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/edDomesticExtraName"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -445,7 +439,6 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:maxLines="1"
-                    android:text="400"
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/tvDomesticTotal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -484,6 +477,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txtDisposalConsent">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbDisposalYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
@@ -491,6 +485,7 @@
                         android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbDisposalNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -524,13 +519,15 @@
                     app:layout_constraintTop_toBottomOf="@id/txtOperationMaintenance">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbPoor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="poor"
+                        android:text="Poor"
                         android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbAverage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -540,6 +537,7 @@
                         android:textSize="18sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbGood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -569,7 +567,6 @@
                     android:layout_marginLeft="12dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
-                    android:text="Visit Completed"
                     android:textColor="@color/grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

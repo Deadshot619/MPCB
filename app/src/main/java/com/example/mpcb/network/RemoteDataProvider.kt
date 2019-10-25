@@ -1,10 +1,7 @@
 package com.example.mpcb.network
 
 import com.example.mpcb.network.request.*
-import com.example.mpcb.network.response.DashboardDataResponse
-import com.example.mpcb.network.response.LoginResponse
-import com.example.mpcb.network.response.MyVisitModel
-import com.example.mpcb.network.response.UpdateProfileResponse
+import com.example.mpcb.network.response.*
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 
@@ -37,6 +34,12 @@ interface RemoteDataProvider {
     fun getVisitList(
         request: MyVisitRequest,
         success: Consumer<ArrayList<MyVisitModel>>,
+        error: Consumer<Throwable>
+    ): Disposable
+
+    fun submitReport(
+        request: ReportRequest,
+        success: Consumer<ReportSubmitResponse>,
         error: Consumer<Throwable>
     ): Disposable
 
