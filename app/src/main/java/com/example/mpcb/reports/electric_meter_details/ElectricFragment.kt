@@ -4,7 +4,6 @@ package com.example.mpcb.reports.electric_meter_details
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentElectricBinding
-import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
@@ -13,9 +12,8 @@ import com.example.mpcb.utils.parseToInt
 import com.example.mpcb.utils.showMessage
 
 
-class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewModel>(), ReportsPageNavigator {
-
-    private lateinit var report: ReportRequest
+class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewModel>(),
+    ReportsPageNavigator {
 
     override fun getLayoutId() = R.layout.fragment_electric
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -25,18 +23,21 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_7)
-        report = ReportRequest()
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun onSubmit() {
         mBinding.rgSeparateMeter.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.electrictMeterProvided = if (checkedId == R.id.rbSeparateYes) 1 else 0
+            report.data.routineReport.electrictMeterProvided =
+                if (checkedId == R.id.rbSeparateYes) 1 else 0
         }
 
-        report.data.routineReport.electrictMeterReading = mBinding.edtMeterReading.text.toString().parseToInt()
+        report.data.routineReport.electrictMeterReading =
+            mBinding.edtMeterReading.text.toString().parseToInt()
 
+
+        saveReportData()
         addReportFragment(Constants.REPORT_8)
     }
 }

@@ -9,7 +9,8 @@ import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
-class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewModel>(), HazardousNavigator {
+class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewModel>(),
+    HazardousNavigator {
 
     override fun getLayoutId() = R.layout.fragment_hazardious
     override fun getViewModel() = HazardousViewModel::class.java
@@ -21,17 +22,24 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_12)
         setUpRecyclerView()
 
-        mBinding.btnSubmit.setOnClickListener { addReportFragment(Constants.REPORT_13) }
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.imgAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
 
     }
 
     private fun setUpRecyclerView() {
-        mBinding.rvHazardousReports.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
+        mBinding.rvHazardousReports.layoutManager =
+            LinearLayoutManager(getBaseActivity().applicationContext)
         val adapter = HazardousAdapter(getBaseActivity(), mViewModel)
         mBinding.rvHazardousReports.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
         mViewModel.populateData()
+    }
+
+    private fun onSubmit() {
+        report.data.routineReportHazardousWaste = mViewModel.getSourceList().value!!
+        saveReportData()
+        addReportFragment(Constants.REPORT_13)
     }
 }

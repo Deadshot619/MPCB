@@ -2,17 +2,17 @@ package com.example.mpcb.reports.non_hazardous_waste_management
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
-import com.example.mpcb.profile.ProfileNavigator
+import com.example.mpcb.network.request.RoutineReportNonHazardousWaste
 
 
 class NonHazardousViewModel : BaseViewModel<NonHazardousNavigator>() {
 
-    private val sourceList = MutableLiveData<ArrayList<String>>()
+    private val sourceList = MutableLiveData<ArrayList<RoutineReportNonHazardousWaste>>()
 
     fun getSourceList() = sourceList
 
     fun populateData() {
-        val list = arrayListOf("Item 1", "Item 2")
+        val list = arrayListOf(RoutineReportNonHazardousWaste())
         sourceList.value = list
     }
 
@@ -26,7 +26,7 @@ class NonHazardousViewModel : BaseViewModel<NonHazardousNavigator>() {
 
     fun addItem() {
         val list = sourceList.value
-        list!!.add("Item")
+        list!!.add(RoutineReportNonHazardousWaste())
         sourceList.value = list
     }
 }

@@ -24,9 +24,21 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_14)
 
 
-        mBinding.btnSubmit.setOnClickListener {
-            addReportFragment(Constants.REPORT_15)
-        }
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+    }
+
+    private fun onSubmit() {
+        report.data.routineReport.treePlantationPlotArea = mBinding.edtTotalPlot.text.toString()
+        report.data.routineReport.treePlantationBuiltArea = mBinding.edtBuiltArea.text.toString()
+        report.data.routineReport.treePlantationGreenBeltArea =
+            mBinding.edtGreenBelt.text.toString()
+        report.data.routineReport.treePlantationPlantationNo =
+            mBinding.edtPlantationDone.text.toString()
+        report.data.routineReport.treePlantationProposedPlantation =
+            mBinding.edtProposedPlantation.text.toString()
+
+        saveReportData()
+        addReportFragment(Constants.REPORT_15)
     }
 
 

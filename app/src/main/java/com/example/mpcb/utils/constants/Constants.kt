@@ -118,10 +118,28 @@ class Constants {
         )
 
         val AIR_POLLUTION_LIST =
-            arrayListOf("Boiler", "Thermopack", "Thermicfluid Heater", "Furnace process vent", "Any other")
+            arrayListOf(
+                "Boiler",
+                "Thermopack",
+                "Thermicfluid Heater",
+                "Furnace process vent",
+                "Any other"
+            )
 
-        val PARAMETER_LIST =
+        val AMBIENT_AIR_PARAM_LIST =
             arrayListOf("TPM (mg/Nm3)", "SO2 (mg/m3)", "Acid Mist (mg/Nm3)")
+
+        val JVS_PARAM_LIST =
+            arrayListOf(
+                "pH",
+                "BOD (mg/l)",
+                "COD (mg/l)",
+                "SS (mg/l)",
+                "O&G (mg/l)",
+                "TDS (mg/l)",
+                "Chloride (mg/l)",
+                "Sulphate (mg/l)"
+            )
 
 
         // reports page value

@@ -22,9 +22,18 @@ class AdditionalInfoFragment : BaseFragment<FragmentAdditionalInfoBinding, Repor
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_18)
 
-        mBinding.btnSubmit.setOnClickListener {
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
 
+    }
+
+    private fun onSubmit() {
+        report.data.routineReport.additionalInfo = mBinding.edtAddInfo.text.toString()
+
+        mBinding.rgUnitComplied.setOnCheckedChangeListener { group, checkedId ->
+            report.data.routineReport.legalActionUnitComplied =
+                if (checkedId == R.id.rbUnitYes) 1 else 0
         }
 
+        saveReportData()
     }
 }

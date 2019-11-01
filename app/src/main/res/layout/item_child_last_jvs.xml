@@ -5,7 +5,7 @@
 
         <variable
             name="model"
-            type="com.example.mpcb.network.request.AmbientAirChild" />
+            type="com.example.mpcb.network.request.LastJVSChild" />
     </data>
 
     <LinearLayout

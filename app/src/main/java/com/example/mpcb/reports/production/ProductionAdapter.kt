@@ -65,7 +65,7 @@ class ProductionAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUnitActual.setSelection(position)
-                        item.productQuantityActual = "${position+1}"
+                        item.productUomActual = "${position + 1}"
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -82,7 +82,7 @@ class ProductionAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUnitConsent.setSelection(position)
-                        item.productUomActual = "${position+1}"
+                        item.productUom = "${position + 1}"
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}

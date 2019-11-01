@@ -1,21 +1,22 @@
 package com.example.mpcb.reports.industry
 
+import android.app.DatePickerDialog
 import android.widget.ArrayAdapter
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentIndustryCategoryBinding
-import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
-import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
-import com.google.gson.Gson
+import java.util.*
 
 class IndustryReportFragment :
-    BaseFragment<FragmentIndustryCategoryBinding, ReportsPageViewModel>(),
-    ReportsPageNavigator {
+    BaseFragment<FragmentIndustryCategoryBinding, ReportsPageViewModel>(), ReportsPageNavigator {
+
+    private val VISITED_ON = 1
+    private val VALID_UPTO = 2
 
     override fun getLayoutId() = R.layout.fragment_industry_category
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -26,8 +27,6 @@ class IndustryReportFragment :
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_1)
 
-        val prefRequest = ReportRequest()
-
 
         val adapter = ArrayAdapter(
             getBaseActivity(),
@@ -37,32 +36,43 @@ class IndustryReportFragment :
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mBinding.catSpinner.adapter = adapter
 
+        mBinding.edtVisitedIndustryOn.setOnClickListener { showDateDialog(VISITED_ON) }
+        mBinding.edtValidUpto.setOnClickListener { showDateDialog(VALID_UPTO) }
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+    }
 
+    private fun showDateDialog(id: Int) {
+        val calendar = Calendar.getInstance()
+        val datePickerDialog =
+            DatePickerDialog(
+                getBaseActivity(),
+                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                    when (id) {
+                        VISITED_ON -> mBinding.edtVisitedIndustryOn.setText("$dayOfMonth-${month + 1}-$year")
+                        VALID_UPTO -> mBinding.edtValidUpto.setText("$dayOfMonth-${month + 1}-$year")
+                    }
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+        datePickerDialog.show()
+    }
+
+    private fun onSubmit() {
+        report.data.industryCategoryReselect = "${mBinding.catSpinner.selectedItemPosition + 1}"
         mBinding.rgConsent.setOnCheckedChangeListener { group, checkedId ->
-
-            when (checkedId) {
-                1 -> prefRequest.data.routineReport.consentObtain = 1
-                2 -> prefRequest.data.routineReport.consentObtain = 0
-            }
+            report.data.routineReport.consentObtain = if (checkedId == R.id.rbConsentYes) 1 else 0
         }
 
-        mBinding.btnSubmit.setOnClickListener {
+        report.data.routineReport.visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
+        report.data.routineReport.emailAddress = mBinding.visitCatEmailEd.text.toString()
+        report.data.routineReport.telephoneNumber = mBinding.visitCatTelephoneEd.text.toString()
+        report.data.routineReport.validityOfConsentUpto = mBinding.edtValidUpto.text.toString()
+        report.data.routineReport.validityOfConsentIe = mBinding.consentIeEd.text.toString()
+        report.data.routineReport.hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
 
-
-            prefRequest.data.industryCategoryReselect =
-                "${mBinding.catSpinner.selectedItemPosition + 1}"
-            prefRequest.data.routineReport.visitedOn = mBinding.visitCatDateEd.text.toString()
-            prefRequest.data.routineReport.emailAddress = mBinding.visitCatEmailEd.text.toString()
-            prefRequest.data.routineReport.telephoneNumber =
-                mBinding.visitCatTelephoneEd.text.toString()
-            prefRequest.data.routineReport.validityOfConsentUpto =
-                mBinding.consentVaildDateEd.text.toString()
-            prefRequest.data.routineReport.validityOfConsentIe =
-                mBinding.consentIeEd.text.toString()
-            prefRequest.data.routineReport.hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
-            PreferencesHelper.setPreferences(Constants.REPORT_KEY, Gson().toJson(prefRequest))
-
-            addReportFragment(Constants.REPORT_2)
-        }
+        saveReportData()
+        addReportFragment(Constants.REPORT_2)
     }
 }

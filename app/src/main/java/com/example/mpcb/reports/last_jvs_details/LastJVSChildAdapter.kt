@@ -1,4 +1,4 @@
-package com.example.mpcb.reports.oms_ambient_air
+package com.example.mpcb.reports.last_jvs_details
 
 import android.R
 import android.content.Context
@@ -8,30 +8,30 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mpcb.databinding.ItemChildAmbientAirBinding
-import com.example.mpcb.network.request.AmbientAirChild
+import com.example.mpcb.databinding.ItemChildLastJvsBinding
+import com.example.mpcb.network.request.LastJVSChild
 import com.example.mpcb.utils.constants.Constants
 
-class AmbientAirChildAdapter(
+class LastJVSChildAdapter(
     val context: Context,
-    private val viewModel: OMSAmbientAirViewModel,
-    private val childList: ArrayList<AmbientAirChild>,
+    private val viewModel: LastJVSViewModel,
+    private val childList: ArrayList<LastJVSChild>,
     private val parentPosition: Int
-) : RecyclerView.Adapter<AmbientAirChildAdapter.AmbientAirChildViewHolder>() {
+) : RecyclerView.Adapter<LastJVSChildAdapter.LastJvsChildViewHolder>() {
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AmbientAirChildViewHolder {
-        val itemBinding = ItemChildAmbientAirBinding.inflate(mInflater, parent, false)
-        return AmbientAirChildViewHolder(itemBinding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastJvsChildViewHolder {
+        val itemBinding = ItemChildLastJvsBinding.inflate(mInflater, parent, false)
+        return LastJvsChildViewHolder(itemBinding)
     }
 
-    override fun onBindViewHolder(holder: AmbientAirChildViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LastJvsChildViewHolder, position: Int) {
         val item = childList[position]
         holder.itemBinding.model = item
 
         holder.itemBinding.imgAddMore.setOnClickListener {
-            childList.add(AmbientAirChild())
+            childList.add(LastJVSChild())
             notifyItemChanged(position)
         }
         holder.itemBinding.imgDelete.setOnClickListener {
@@ -54,15 +54,15 @@ class AmbientAirChildAdapter(
 //        notifyDataSetChanged()
     }
 
-    class AmbientAirChildViewHolder(val itemBinding: ItemChildAmbientAirBinding) :
+    class LastJvsChildViewHolder(val itemBinding: ItemChildLastJvsBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun setSpinner(item: AmbientAirChild) {
+        fun setSpinner(item: LastJVSChild) {
 
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 R.layout.simple_spinner_item,
-                Constants.AMBIENT_AIR_PARAM_LIST
+                Constants.JVS_PARAM_LIST
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnParameter.adapter = adapter

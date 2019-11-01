@@ -12,7 +12,6 @@ import com.example.mpcb.utils.showMessage
 class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
     NonHazardousNavigator {
 
-    val reportsItems: ArrayList<String> = ArrayList()
     override fun getLayoutId() = R.layout.fragment_non_hazardious
     override fun getViewModel() = NonHazardousViewModel::class.java
     override fun getNavigator() = this@NonHazardousFragment
@@ -23,18 +22,24 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_13)
         setUpRecyclerView()
 
-        mBinding.btnSubmit.setOnClickListener { addReportFragment(Constants.REPORT_14) }
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.imgAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
 
     }
 
     private fun setUpRecyclerView() {
-        mBinding.rvNonHazardous.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
+        mBinding.rvNonHazardous.layoutManager =
+            LinearLayoutManager(getBaseActivity().applicationContext)
         val adapter = NonHazardousAdapter(getBaseActivity(), mViewModel)
         mBinding.rvNonHazardous.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
         mViewModel.populateData()
     }
 
+    private fun onSubmit() {
+        report.data.routineReportNonHazardousWaste = mViewModel.getSourceList().value!!
+        saveReportData()
+        addReportFragment(Constants.REPORT_14)
+    }
 }

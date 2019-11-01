@@ -1,5 +1,5 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardviewLayout"
@@ -31,151 +31,240 @@
                     android:textColor="@color/grey"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:id="@+id/linLayDataCollectionOne"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dateOfCollectionIndusLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/txtLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:hint="Date Of Collection"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtIndusDateOfCollection"
+                        android:focusable="false"
+                        android:drawableRight="@drawable/ic_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtPymntDetailsIndus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:text="Payment details"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateOfCollectionIndusLayout" />
+
+
+                <RadioGroup
+                    android:id="@+id/rgPymntDetailsIndus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtPymntDetailsIndus">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbPymntDetailsIndusYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Yes"
+                        android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbPymntDetailsIndusNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="No"
+                        android:textSize="18sp" />
+                </RadioGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/amtIndusLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsIndus"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:hint="Amount"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtAmtIndus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dateIndusLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/amtIndusLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:hint="Date"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtDateIndus"
+                        android:focusable="false"
+                        android:drawableRight="@drawable/ic_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:id="@+id/viewDividerTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/view_line_two"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/light_white_100"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateIndusLayout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dateOfCollectionDomesticLayout"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerTwo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:hint="Date Of Collection"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtDomesticDateOfCollection"
+                        android:drawableRight="@drawable/ic_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtPymntDetailsDomestic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:text="Payment details"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateOfCollectionDomesticLayout" />
+
+
+                <RadioGroup
+                    android:id="@+id/rgPymntDetailsDomestic"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtLabel">
+                    app:layout_constraintTop_toBottomOf="@id/txtPymntDetailsDomestic">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbPymntDetailsDomesticYes"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:text="Data Collection"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
+                        android:layout_marginTop="4dp"
+                        android:text="Yes"
+                        android:textSize="18sp" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbPymntDetailsDomesticNo"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="2"/>
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="No"
+                        android:textSize="18sp" />
+                </RadioGroup>
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linLayPymntDetailsOne"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/amtDomesticLayout"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayDataCollectionOne">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:text="Payment details"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="2"/>
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linLayDataCollectionTwo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsDomestic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:hint="Amount"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtAmtDomestic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dateDomesticLayout"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayPymntDetailsOne">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:text="Data Collection"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="2"/>
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linLayPymntDetailsTwo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/amtDomesticLayout"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayDataCollectionTwo">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="6"
-                        android:text="Payment details"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
+                    android:hint="Date"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_weight="2"/>
+                        android:id="@+id/edtDateDomestic"
+                        android:focusable="false"
+                        android:drawableRight="@drawable/ic_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"/>
-                </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtJVSSample"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginRight="16dp"
                     android:text="JVS Sample Collected for Water"
                     android:textColor="@color/grey"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayPymntDetailsTwo"/>
+                    app:layout_constraintTop_toBottomOf="@id/dateDomesticLayout" />
 
                 <RadioGroup
                     android:id="@+id/rgJVSSample"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:orientation="horizontal"
@@ -183,20 +272,22 @@
                     app:layout_constraintTop_toBottomOf="@id/txtJVSSample">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbJVSSampleYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Yes"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbJVSSampleNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="No"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RadioGroup>
 
                 <View
@@ -207,271 +298,16 @@
                     android:background="@color/light_white_100"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgJVSSample"/>
+                    app:layout_constraintTop_toBottomOf="@id/rgJVSSample" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/sourceLayout"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvJVS"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewDividerOne">
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerOne" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Source"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:id="@+id/linLayHeader"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/sourceLayout">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:gravity="center"
-                        android:text="Parameter"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:gravity="center"
-                        android:text="Prescribed Value"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linLayParameterOne"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayHeader">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:background="@drawable/bg_rectangle"
-                        android:gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:background="@drawable/bg_rectangle"
-                        android:gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1.5"
-                        android:src="@drawable/ic_delete"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:src="@drawable/ic_plus"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linLayParameterTwo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayParameterOne">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:background="@drawable/bg_rectangle"
-                        android:gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:background="@drawable/bg_rectangle"
-                        android:gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:src="@drawable/ic_delete"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:src="@drawable/ic_plus"/>
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/viewDividerTwo"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/view_line_two"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/light_white_100"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayParameterTwo"/>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/sourceTwoLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewDividerTwo">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Source"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/sourceLayout">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:gravity="center"
-                        android:text="Parameter"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:gravity="center"
-                        android:text="Prescribed Value"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"/>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:gravity="center"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linLayParameterThree"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/sourceTwoLayout">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:background="@drawable/bg_rectangle"
-                        android:gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="0dp"
-                        android:layout_height="45dp"
-                        android:layout_weight="3.5"
-                        android:background="@drawable/bg_rectangle"
-                        android:gravity="center"
-                        app:layout_constraintStart_toStartOf="parent"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:src="@drawable/ic_delete"/>
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.5"
-                        android:src="@drawable/ic_plus"/>
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgAddMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:src="@drawable/ic_plus"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayParameterThree"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtAddMore"
@@ -480,8 +316,11 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Add More Source"
-                    app:layout_constraintStart_toEndOf="@id/imgAddMore"
-                    app:layout_constraintTop_toBottomOf="@id/linLayParameterThree"/>
+                    android:gravity="center_vertical"
+                    android:drawablePadding="10dp"
+                    android:drawableLeft="@drawable/ic_plus"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvJVS" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSubmit"
@@ -495,7 +334,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore"/>
+                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

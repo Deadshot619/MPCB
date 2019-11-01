@@ -4,7 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemBankGuaranteeBinding
+import com.example.mpcb.network.request.RoutineReportBankDetail
 
 
 class BGDAdapter(
@@ -12,7 +14,7 @@ class BGDAdapter(
     private val viewModel: BGDViewModel
 ) : RecyclerView.Adapter<BGDAdapter.BGDViewHolder>() {
 
-    private val sourceList = ArrayList<String>()
+    private val bankList = ArrayList<RoutineReportBankDetail>()
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BGDViewHolder {
@@ -21,21 +23,30 @@ class BGDAdapter(
     }
 
     override fun onBindViewHolder(holder: BGDViewHolder, position: Int) {
-//        val item = visitList[position]
-//        holder.itemBinding.model = item
-//        holder.itemBinding.viewModel = viewModel
+        val item = bankList[position]
+        holder.itemBinding.model = item
+        holder.setListener(item)
 
     }
 
     override fun getItemId(position: Int) = position.toLong()
     override fun getItemViewType(position: Int) = position
-    override fun getItemCount() = sourceList.size
+    override fun getItemCount() = bankList.size
 
-    fun updateList(list: ArrayList<String>) {
-        this.sourceList.clear()
-        this.sourceList.addAll(list)
+    fun updateList(list: ArrayList<RoutineReportBankDetail>) {
+        this.bankList.clear()
+        this.bankList.addAll(list)
         notifyDataSetChanged()
     }
 
-    class BGDViewHolder(val itemBinding: ItemBankGuaranteeBinding) : RecyclerView.ViewHolder(itemBinding.root)
+    class BGDViewHolder(val itemBinding: ItemBankGuaranteeBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
+
+        fun setListener(item: RoutineReportBankDetail) {
+            itemBinding.rgBGSubmitted.setOnCheckedChangeListener { group, checkedId ->
+                item.bankSubmitted = if (checkedId == R.id.rbSubmittedYes) "1" else "0"
+            }
+        }
+
+    }
 }

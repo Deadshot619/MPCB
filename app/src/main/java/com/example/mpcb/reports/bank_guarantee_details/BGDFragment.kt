@@ -20,8 +20,8 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_17)
         setUpRecyclerView()
 
-        mBinding.btnSubmit.setOnClickListener { addReportFragment(Constants.REPORT_18) }
         mBinding.tvAddMore.setOnClickListener { mViewModel.addItem() }
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun setUpRecyclerView() {
@@ -30,5 +30,18 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
         mBinding.rvBank.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
         mViewModel.populateData()
+    }
+
+    private fun onSubmit() {
+        mBinding.rgBGImposed.setOnCheckedChangeListener { group, checkedId ->
+            report.data.routineReport.bgImposed = if (checkedId == R.id.rbBGYes) "1" else "0"
+            report.data.routineReport.bgImposedAgainst =
+                if (checkedId == R.id.rbBGAgainstYes) "1" else "0"
+        }
+        report.data.routineReport.bgImposedNumber = mBinding.edtNumber.text.toString()
+
+        report.data.routineReportBankDetails = mViewModel.getSourceList().value!!
+        saveReportData()
+        addReportFragment(Constants.REPORT_18)
     }
 }

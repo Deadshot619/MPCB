@@ -74,7 +74,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
             fragment.arguments = bundle
         }
         mManager.beginTransaction().apply {
-            add(R.id.report_container, fragment)
+            replace(R.id.report_container, fragment)
             if (addToBackstack) {
                 addToBackStack(fragment::class.java.simpleName)
             }

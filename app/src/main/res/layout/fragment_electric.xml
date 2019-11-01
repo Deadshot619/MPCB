@@ -1,10 +1,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardviewLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
@@ -15,7 +15,7 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                     android:text="Separate Electrical Meter Provided"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
                     android:id="@+id/rgSeparateMeter"
@@ -47,7 +47,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Yes"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
                         android:id="@+id/rbSeparateNo"
@@ -57,7 +57,7 @@
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="No"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RadioGroup>
 
 
@@ -77,7 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Meter Reading"
-                        android:inputType="number"/>
+                        android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -93,7 +93,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/meterReadingLayout"/>
+                    app:layout_constraintTop_toBottomOf="@+id/meterReadingLayout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

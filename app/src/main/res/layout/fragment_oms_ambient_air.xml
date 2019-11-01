@@ -1,5 +1,5 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardviewLayout"
@@ -31,7 +31,7 @@
                     android:textColor="@color/grey"
                     android:textSize="@dimen/text_xlarge"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtOMS"
@@ -42,7 +42,7 @@
                     android:text="Online Monitoring System"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtTitle"/>
+                    app:layout_constraintTop_toBottomOf="@id/txtTitle" />
 
                 <RadioGroup
                     android:id="@+id/rgOMS"
@@ -54,20 +54,22 @@
                     app:layout_constraintTop_toBottomOf="@id/txtOMS">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbOMSApplicable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Applicable"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbOMSNotApplicable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="Not Applicable"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -79,7 +81,7 @@
                     android:text="Whether Online Monitoring System Installed"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgOMS"/>
+                    app:layout_constraintTop_toBottomOf="@id/rgOMS" />
 
                 <RadioGroup
                     android:id="@+id/rgOMSInstalled"
@@ -91,20 +93,22 @@
                     app:layout_constraintTop_toBottomOf="@id/txtOMSInstalled">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbOMSInstalledApplicable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Applicable"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbOMSInstalledNotApplicable"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="Not Applicable"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -116,10 +120,10 @@
                     android:text="JVS Sample Collected for Water"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgOMSInstalled"/>
+                    app:layout_constraintTop_toBottomOf="@id/rgOMSInstalled" />
 
                 <RadioGroup
-                    android:id="@+id/rgETP"
+                    android:id="@+id/rgSampleCollected"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -128,20 +132,22 @@
                     app:layout_constraintTop_toBottomOf="@id/txtSampleCollected">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbSampleYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Yes"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbSampleNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="No"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -153,7 +159,7 @@
                     android:text="Sensor Properly Placed"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgETP"/>
+                    app:layout_constraintTop_toBottomOf="@id/rgSampleCollected" />
 
                 <RadioGroup
                     android:id="@+id/rgSensorPlaced"
@@ -165,20 +171,22 @@
                     app:layout_constraintTop_toBottomOf="@id/txtSensorPlaced">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbSensorYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Yes"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbSensorNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="No"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -190,7 +198,7 @@
                     android:text="Connectivity"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgSensorPlaced"/>
+                    app:layout_constraintTop_toBottomOf="@id/rgSensorPlaced" />
 
                 <LinearLayout
                     android:id="@+id/linLayConnectivity"
@@ -202,15 +210,17 @@
                     app:layout_constraintTop_toBottomOf="@id/txtConnectivity">
 
                     <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cbCPCB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CPCB"/>
+                        android:text="CPCB" />
 
                     <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cbMPCB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="MPCB"/>
+                        android:text="MPCB" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -219,7 +229,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayConnectivity"/>
+                    app:layout_constraintTop_toBottomOf="@id/linLayConnectivity" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtAddMore"
@@ -232,7 +242,7 @@
                     android:gravity="center_vertical"
                     android:text="Add More Source"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvAmbientAir"/>
+                    app:layout_constraintTop_toBottomOf="@id/rvAmbientAir" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSubmit"
@@ -246,7 +256,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore"/>
+                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

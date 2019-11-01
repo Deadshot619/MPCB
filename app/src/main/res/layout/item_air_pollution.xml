@@ -1,6 +1,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="model"
+            type="com.example.mpcb.network.request.RoutineReportAirPollution" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,7 +22,7 @@
             android:text="Source"
             android:textColor="@color/grey"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spnSource"
@@ -25,7 +31,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="16dp"
-            app:layout_constraintTop_toBottomOf="@id/txtSource"/>
+            app:layout_constraintTop_toBottomOf="@id/txtSource" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/fuelBurning"
@@ -38,7 +44,7 @@
             android:text="@string/txt_process"
             android:textColor="@color/grey"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spnSource"/>
+            app:layout_constraintTop_toBottomOf="@id/spnSource" />
 
 
         <RadioGroup
@@ -52,18 +58,20 @@
             app:layout_constraintTop_toBottomOf="@id/fuelBurning">
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbProcess"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/t_process"
-                android:textSize="@dimen/text_large"/>
+                android:textSize="@dimen/text_large" />
 
             <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbFuelBurning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginLeft="32dp"
                 android:text="Fuel Burning"
-                android:textSize="@dimen/text_large"/>
+                android:textSize="@dimen/text_large" />
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -79,8 +87,9 @@
             app:layout_constraintTop_toBottomOf="@id/rgProcessFuelBurning">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:text="@={model.airPollutionFuelName}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -97,7 +106,8 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:text="@={model.airPollutionFuelQuantity}"
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -114,7 +124,8 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:text="@={model.airPollutionFuelUnit}"
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -131,7 +142,8 @@
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:text="@={model.airPollutionPollutants}"
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -145,7 +157,7 @@
             android:text="@string/txt_process"
             android:textColor="@color/grey"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pollutantLayout"/>
+            app:layout_constraintTop_toBottomOf="@id/pollutantLayout" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbMechanicalDuster"
@@ -156,7 +168,7 @@
             android:layout_marginRight="16dp"
             android:text="Mechanical Dust Collector"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtControlEquipment"/>
+            app:layout_constraintTop_toBottomOf="@id/txtControlEquipment" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbCycloneDust"
@@ -167,7 +179,7 @@
             android:layout_marginRight="16dp"
             android:text="Cyclone Dust Collector System"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbMechanicalDuster"/>
+            app:layout_constraintTop_toBottomOf="@id/cbMechanicalDuster" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbMultiCycloneDust"
@@ -178,7 +190,7 @@
             android:layout_marginRight="16dp"
             android:text="Multi-Cyclone Dust Collector System"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbCycloneDust"/>
+            app:layout_constraintTop_toBottomOf="@id/cbCycloneDust" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbFabricBagFilter"
@@ -189,7 +201,7 @@
             android:layout_marginRight="16dp"
             android:text="Fabric Bag Filter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbMultiCycloneDust"/>
+            app:layout_constraintTop_toBottomOf="@id/cbMultiCycloneDust" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbPackageTower"
@@ -200,7 +212,7 @@
             android:layout_marginRight="16dp"
             android:text="Package tower wet scrubber"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbFabricBagFilter"/>
+            app:layout_constraintTop_toBottomOf="@id/cbFabricBagFilter" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbVenturiScrubber"
@@ -211,7 +223,7 @@
             android:layout_marginRight="16dp"
             android:text="Venturi Scrubber"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbPackageTower"/>
+            app:layout_constraintTop_toBottomOf="@id/cbPackageTower" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbElectroStatic"
@@ -222,7 +234,7 @@
             android:layout_marginRight="16dp"
             android:text="Electro Static Precipitator"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbVenturiScrubber"/>
+            app:layout_constraintTop_toBottomOf="@id/cbVenturiScrubber" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbNoProvision"
@@ -233,7 +245,7 @@
             android:layout_marginRight="16dp"
             android:text="No Provision"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbElectroStatic"/>
+            app:layout_constraintTop_toBottomOf="@id/cbElectroStatic" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cbAnyOther"
@@ -244,7 +256,7 @@
             android:layout_marginRight="16dp"
             android:text="Any Other"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cbNoProvision"/>
+            app:layout_constraintTop_toBottomOf="@id/cbNoProvision" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/stackHeightLayout"
@@ -259,8 +271,9 @@
             app:layout_constraintTop_toBottomOf="@id/cbAnyOther">
 
             <androidx.appcompat.widget.AppCompatEditText
+                android:text="@={model.airPollutionStackHeight}"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

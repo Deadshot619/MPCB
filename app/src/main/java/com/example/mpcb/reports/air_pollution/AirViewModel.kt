@@ -2,16 +2,17 @@ package com.example.mpcb.reports.air_pollution
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
+import com.example.mpcb.network.request.RoutineReportAirPollution
 
 
 class AirViewModel : BaseViewModel<AirNavigator>() {
 
-    private val sourceList = MutableLiveData<ArrayList<String>>()
+    private val sourceList = MutableLiveData<ArrayList<RoutineReportAirPollution>>()
 
     fun getSourceList() = sourceList
 
     fun populateData() {
-        val list = arrayListOf("Item 1", "Item 2")
+        val list = arrayListOf(RoutineReportAirPollution())
         sourceList.value = list
     }
 
@@ -25,7 +26,7 @@ class AirViewModel : BaseViewModel<AirNavigator>() {
 
     fun addItem() {
         val list = sourceList.value
-        list!!.add("Item")
+        list!!.add(RoutineReportAirPollution())
         sourceList.value = list
     }
 }

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.example.mpcb.network.request.RoutineReportHazardousWaste" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +29,7 @@
                 android:layout_centerVertical="true"
                 android:text="Report 1"
                 android:textColor="@color/black"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgExpandCollapse"
@@ -29,27 +37,27 @@
                 android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_down_arrow"/>
+                android:src="@drawable/ic_down_arrow" />
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="16dp"
-            android:background="@color/black"/>
+            android:background="@color/black" />
 
         <LinearLayout
             android:id="@+id/layLinChild"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:id="@+id/haz_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:orientation="horizontal">
@@ -58,16 +66,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_categoery"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hazardousWasteCategoryName}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
@@ -76,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
                 android:layout_marginRight="16dp"
                 android:orientation="horizontal">
 
@@ -83,22 +93,24 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_quantity"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hazardousWasteQuantity}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/haz_method_disposal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -108,16 +120,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
-                    android:text="@string/hztxt_method_disposal"
+                    android:layout_marginRight="16dp"
+                    android:text="Method of disposal as per consent"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hwDisposalMethod}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
@@ -127,28 +140,31 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_actual_disposal"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hwActualDisposal}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/haz_quantity_disposal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -158,22 +174,24 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_quantity_disposal"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hwFormDisposal}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/haz_quantity_disposal_cwt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -183,22 +201,24 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_quan_disp_cwtsd"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hwFormCswtsdf}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/haz_quant_disp_process"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
@@ -208,16 +228,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_quan_disp_processing"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hwFormCoProcessing}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
@@ -225,6 +246,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:orientation="horizontal">
@@ -233,16 +255,17 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_quan_disp_actual_user"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hwDisposedActualuser}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
@@ -252,27 +275,30 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_last_disposal"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hwDisposalQuantity}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/haz_lastdisp_quant_date"
                 android:layout_width="match_parent"
+                android:gravity="center_vertical"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
@@ -283,40 +309,46 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
+                    android:layout_marginRight="16dp"
                     android:text="@string/hztxt_last_dis_date"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtDisposalDate"
                     android:layout_width="0dp"
+                    android:focusable="false"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="200"
-                    android:textColor="@color/text_light_black"/>
+                    android:layout_weight="3.5"
+                    android:text="@={model.hwDisposalDate}"
+                    android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:gravity="center_vertical"
                 android:layout_marginTop="8dp"
+                android:padding="4dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="0dp"
+                    android:layout_marginRight="16dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="6"
+                    android:layout_weight="1"
                     android:text="UOM"
                     android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"/>
+                    android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnUOM"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"/>
+                    android:layout_weight="1" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

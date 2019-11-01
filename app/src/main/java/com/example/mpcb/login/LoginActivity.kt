@@ -30,7 +30,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
     override fun onBinding() {
-        mBinding.model = LoginRequest()
+        val login = LoginRequest()
+        login.userName = "fo_s1nm"
+        login.password = "Admin@123"
+        mBinding.model = login
         mBinding.viewModel = mViewModel
 
     }

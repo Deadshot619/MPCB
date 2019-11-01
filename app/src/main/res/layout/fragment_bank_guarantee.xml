@@ -41,6 +41,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtBgImposed">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbBGYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_semi_bold"
@@ -49,6 +50,7 @@
                         android:textSize="14sp"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbBGNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -83,6 +85,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtBgImposedAgainst">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbBGAgainstYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/barlow_semi_bold"
@@ -94,6 +97,7 @@
                         tools:ignore="RtlSymmetry"/>
 
                     <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbBGAgainstNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp"

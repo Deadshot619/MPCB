@@ -97,8 +97,8 @@
                     style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:max="17"
-                    android:progress="12"
+                    android:max="18"
+                    android:progress="9"
                     android:progressTint="@color/green"
                     android:scaleY="2"/>
             </LinearLayout>

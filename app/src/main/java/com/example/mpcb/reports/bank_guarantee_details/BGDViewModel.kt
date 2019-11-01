@@ -2,16 +2,17 @@ package com.example.mpcb.reports.bank_guarantee_details
 
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
+import com.example.mpcb.network.request.RoutineReportBankDetail
 
 
 class BGDViewModel : BaseViewModel<BGDNavigator>() {
 
-    private val sourceList = MutableLiveData<ArrayList<String>>()
+    private val sourceList = MutableLiveData<ArrayList<RoutineReportBankDetail>>()
 
     fun getSourceList() = sourceList
 
     fun populateData() {
-        val list = arrayListOf("Item 1", "Item 2")
+        val list = arrayListOf(RoutineReportBankDetail())
         sourceList.value = list
     }
 
@@ -25,7 +26,7 @@ class BGDViewModel : BaseViewModel<BGDNavigator>() {
 
     fun addItem() {
         val list = sourceList.value
-        list!!.add("Item")
+        list!!.add(RoutineReportBankDetail())
         sourceList.value = list
     }
 }

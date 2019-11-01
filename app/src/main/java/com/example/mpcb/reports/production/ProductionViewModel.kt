@@ -9,7 +9,7 @@ class ProductionViewModel : BaseViewModel<ProductionNavigator>() {
 
     private val sourceList = MutableLiveData<ArrayList<RoutineReportProduct>>()
 
-    fun getSourceList() = sourceList
+    fun getProductList() = sourceList
 
     fun populateData() {
         val list = arrayListOf(RoutineReportProduct())

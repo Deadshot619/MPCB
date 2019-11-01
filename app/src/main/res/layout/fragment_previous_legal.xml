@@ -1,86 +1,89 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-            android:id="@+id/cardviewLayout"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="4dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/cardviewLayout"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Previous Legal Actions"
-                        android:textColor="@color/grey"
-                        android:textSize="@dimen/text_xlarge"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginLeft="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"/>
+                    android:id="@+id/txtTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Previous Legal Actions"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/text_xlarge"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/ActionLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/txtTitle"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                    android:id="@+id/ActionLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/txtTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                            android:hint="Action Initiated Date"
-                            android:drawableRight="@drawable/ic_calendar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                        android:id="@+id/edtActionInitiated"
+                        android:focusable="false"
+                        android:hint="Action Initiated Date"
+                        android:drawableRight="@drawable/ic_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/specificLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/ActionLayout"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
+                    android:id="@+id/specificLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/ActionLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                            android:hint="Specific Compliance"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                        android:id="@+id/edtSpecificCompliance"
+                        android:hint="Specific Compliance"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnSubmit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Save &amp; Continue"
-                        android:layout_marginBottom="24dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        style="@style/save_btn_style"
-                        android:background="@drawable/btn_drawable"
-                        app:layout_constraintTop_toBottomOf="@+id/specificLayout"
-                        android:layout_marginTop="32dp"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save &amp; Continue"
+                    android:layout_marginBottom="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    style="@style/save_btn_style"
+                    android:background="@drawable/btn_drawable"
+                    app:layout_constraintTop_toBottomOf="@+id/specificLayout"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

@@ -1,6 +1,8 @@
 package com.example.mpcb.reports.previous_legal_actions
 
 
+import android.app.DatePickerDialog
+import android.util.Log
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentPreviousLegalBinding
@@ -9,8 +11,10 @@ import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import java.util.*
 
-class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, ReportsPageViewModel>(), ReportsPageNavigator {
+class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, ReportsPageViewModel>(),
+    ReportsPageNavigator {
 
     override fun getLayoutId() = R.layout.fragment_previous_legal
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -21,10 +25,33 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_16)
 
+        mBinding.edtActionInitiated.setOnClickListener { showDateDialog() }
 
-        mBinding.btnSubmit.setOnClickListener {
-            addReportFragment(Constants.REPORT_17)
-        }
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+    }
+
+    private fun showDateDialog() {
+        val calendar = Calendar.getInstance()
+        val datePickerDialog =
+            DatePickerDialog(
+                getBaseActivity(),
+                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                    Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
+                    mBinding.edtActionInitiated.setText("$dayOfMonth-${month + 1}-$year")
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+        datePickerDialog.show()
+    }
+
+    private fun onSubmit() {
+        report.data.routineReport.actionInitiatedDate = mBinding.edtActionInitiated.text.toString()
+        report.data.routineReport.specialCompliance = mBinding.edtSpecificCompliance.text.toString()
+
+        saveReportData()
+        addReportFragment(Constants.REPORT_17)
     }
 
 

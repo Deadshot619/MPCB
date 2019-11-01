@@ -12,6 +12,7 @@ import com.example.mpcb.reports.electric_meter_details.ElectricFragment
 import com.example.mpcb.reports.hazardous_waste_management.HazardousFragment
 import com.example.mpcb.reports.industry.IndustryReportFragment
 import com.example.mpcb.reports.last_jvs_details.LastJVSFragment
+import com.example.mpcb.reports.non_hazardous_waste_management.NonHazardousFragment
 import com.example.mpcb.reports.oms_ambient_air.OMSAmbientAirFragment
 import com.example.mpcb.reports.oms_stack.OMSStackFragment
 import com.example.mpcb.reports.oms_water.OMSWaterFragment
@@ -51,7 +52,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
 
     internal fun setToolbar(reportPage: Int) {
         mBinding.visitName.text = Constants.getReportByNo(this, reportPage)
-        mBinding.reportCount.text = "$reportPage/17"
+        mBinding.reportCount.text = "$reportPage/18"
         mBinding.reportProgress.progress = reportPage
     }
 
@@ -69,7 +70,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             Constants.REPORT_10 -> OMSStackFragment()
             Constants.REPORT_11 -> OMSAmbientAirFragment()
             Constants.REPORT_12 -> HazardousFragment()
-            Constants.REPORT_13 -> HazardousFragment()
+            Constants.REPORT_13 -> NonHazardousFragment()
             Constants.REPORT_14 -> TreePlantationFragment()
             Constants.REPORT_15 -> StatutoryFragment()
             Constants.REPORT_16 -> PreviousLegalFragment()

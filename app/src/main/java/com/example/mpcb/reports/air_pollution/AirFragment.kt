@@ -20,7 +20,7 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_9)
         setUpRecyclerView()
 
-        mBinding.btnSubmit.setOnClickListener { addReportFragment(Constants.REPORT_10) }
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
         mBinding.imgAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
@@ -32,5 +32,11 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
         mBinding.rvSource.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
         mViewModel.populateData()
+    }
+
+    private fun onSubmit() {
+        report.data.routineReportAirPollution = mViewModel.getSourceList().value!!
+        saveReportData()
+        addReportFragment(Constants.REPORT_10)
     }
 }
