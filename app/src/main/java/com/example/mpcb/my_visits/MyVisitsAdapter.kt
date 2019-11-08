@@ -49,15 +49,35 @@ class MyVisitsAdapter(
         }
 
         if (item.checkInStatus == 1) {
-            holder.itemBinding.imgLocation.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_location))
+            holder.itemBinding.imgLocation.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_location
+                )
+            )
         } else {
-            holder.itemBinding.imgLocation.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_location_grey))
+            holder.itemBinding.imgLocation.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_location_grey
+                )
+            )
         }
 
         if ("Visited" == item.visitStatus) {
-            holder.itemBinding.imgReports.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_reports))
+            holder.itemBinding.imgReports.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_reports
+                )
+            )
         } else {
-            holder.itemBinding.imgReports.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_reports_grey))
+            holder.itemBinding.imgReports.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_reports_grey
+                )
+            )
         }
     }
 

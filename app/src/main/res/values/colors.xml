@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#51b578</color>
 
-
     <color name="black">#000000</color>
     <color name="text_light_black">#676767</color>
 
@@ -17,6 +16,7 @@
     <color name="grey">#696969</color>
     <color name="light_grey">#acacac</color>
     <color name="bg_grey">#F1F1F1</color>
+    <color name="warm_grey">#a2a2a2</color>
 
     <color name="toolbar_text">#787878</color>
 

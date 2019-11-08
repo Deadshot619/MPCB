@@ -72,7 +72,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         mViewModel.getMessage().observe(viewLifecycleOwner, Observer {
             dialog.setMessage(it)
         })
-
     }
 
     protected fun getBaseActivity() = activity as BaseActivity<*, *>

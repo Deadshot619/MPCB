@@ -1,9 +1,9 @@
 package com.example.mpcb.base
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.facebook.stetho.Stetho
 
-class MPCBApp : Application() {
+class MPCBApp : MultiDexApplication() {
 
     companion object {
         lateinit var instance: MPCBApp
@@ -12,8 +12,10 @@ class MPCBApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         instance = this
         Stetho.initializeWithDefaults(this)
     }
+
 }
 

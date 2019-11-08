@@ -47,7 +47,6 @@ fun AppCompatActivity.hideKeyboard() {
     view?.let {
         imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
 }
 
 @BindingAdapter("fieldName")

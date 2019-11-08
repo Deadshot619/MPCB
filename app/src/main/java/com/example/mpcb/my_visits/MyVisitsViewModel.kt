@@ -59,11 +59,21 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     }
 
     fun onVisitItemClick(visitItem: MyVisitModel) {
-        mNavigator!!.onVisitItemClicked(visitItem)
+        if (visitItem.checkInStatus == 1)
+            if (visitItem.visitStatus == "Visited")
+                mNavigator!!.onError("Already Visited!")
+            else
+                mNavigator!!.onVisitItemClicked(visitItem)
+        else
+            mNavigator!!.onError("Please Check in first!")
     }
 
     fun onCheckInClick(model: MyVisitModel) {
-        mNavigator!!.onCheckInClicked(model)
+
+        if (model.checkInStatus != 1)
+            mNavigator!!.onCheckInClicked(model)
+        else
+            mNavigator!!.onError("Already Checked In!")
     }
 
     fun onSubmitClicked(path: String, visitSchedulerId: Long) {
