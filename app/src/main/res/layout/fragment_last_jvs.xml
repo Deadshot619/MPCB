@@ -161,6 +161,7 @@
                         android:id="@+id/edtDomesticDateOfCollection"
                         android:drawableRight="@drawable/ic_calendar"
                         android:layout_width="match_parent"
+                        android:focusable="false"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 

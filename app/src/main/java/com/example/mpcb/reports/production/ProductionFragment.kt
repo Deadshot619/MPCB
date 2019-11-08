@@ -26,7 +26,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
         setUpRecyclerView()
 
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
-
+        mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
 

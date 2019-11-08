@@ -1,5 +1,5 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                     android:textColor="@color/grey"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -41,13 +41,13 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/productionDetails"/>
+                    app:layout_constraintTop_toBottomOf="@id/productionDetails" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtAddMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:drawableLeft="@drawable/ic_plus"
                     android:drawablePadding="10dp"
                     android:text="Add More"
@@ -55,7 +55,23 @@
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvProduction"/>
+                    app:layout_constraintTop_toBottomOf="@id/rvProduction" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/imgDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableStart="@drawable/ic_delete"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawablePadding="10dp"
+                    android:text="Delete"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvProduction" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSubmit"
@@ -69,7 +85,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore"/>
+                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

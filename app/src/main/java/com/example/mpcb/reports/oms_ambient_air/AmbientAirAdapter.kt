@@ -25,6 +25,7 @@ class AmbientAirAdapter(
 
     override fun onBindViewHolder(holder: AmbientAirViewHolder, position: Int) {
         val item = parentList[position]
+        holder.itemBinding.model = item
         holder.setData(viewModel, item.ambientAirChild, position)
     }
 

@@ -280,20 +280,6 @@
                     app:layout_constraintStart_toEndOf="@+id/cbCPCB"
                     app:layout_constraintTop_toTopOf="@+id/cbCPCB" />
 
-                <!--<androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnLogin"
-                    style="@style/save_btn_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:background="@drawable/btn_drawable"
-                    android:text="Save &amp; Continue"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.35"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/meterReadingLayout"/>-->
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSubmit"
                     style="@style/save_btn_style"

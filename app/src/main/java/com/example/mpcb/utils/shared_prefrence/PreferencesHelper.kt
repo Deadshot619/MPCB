@@ -8,12 +8,9 @@ import com.example.mpcb.utils.constants.Constants
 
 object PreferencesHelper {
 
-    private var mSharedPreferences: SharedPreferences? = null
+    private var mSharedPreferences: SharedPreferences =
+        MPCBApp.instance.getSharedPreferences(Constants.myPrefK, Context.MODE_PRIVATE)
 //    private var mEditor: SharedPreferences.Editor? = null
-
-    init {
-        mSharedPreferences = MPCBApp.instance.getSharedPreferences(Constants.myPrefK, Context.MODE_PRIVATE)
-    }
 
     private val mEditor by lazy {
         return@lazy mSharedPreferences?.edit()
@@ -30,6 +27,14 @@ object PreferencesHelper {
     fun setStringPreference(key: String, value: String) {
         mEditor?.apply {
             putString(key, value)
+            apply()
+        }
+
+    }
+
+    fun setLongPreference(key: String, value: Long) {
+        mEditor?.apply {
+            putLong(key, value)
             apply()
         }
 
@@ -52,6 +57,10 @@ object PreferencesHelper {
 
     fun getStringPreference(key: String, value: String = ""): String? {
         return mSharedPreferences!!.getString(key, value)
+    }
+
+    fun getLongPreference(key: String): Long {
+        return mSharedPreferences!!.getLong(key, 0)
     }
 
     fun getIntPreference(key: String, value: Int = 0): Int {

@@ -7,7 +7,7 @@ class DashboardDataResponse {
 
     @Expose
     @SerializedName("status")
-    var status = ""
+    var status = 0
     @Expose
     @SerializedName("total_visits")
     var totalVisit = 0

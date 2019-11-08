@@ -32,6 +32,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/remarksLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:hint="Remarks"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvSource">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtRemarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/imgDelete"
                     android:layout_width="wrap_content"
@@ -46,7 +65,7 @@
                     android:textColor="@color/grey"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvSource" />
+                    app:layout_constraintTop_toBottomOf="@id/remarksLayout" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgAddMore"
@@ -57,7 +76,7 @@
                     android:layout_marginRight="8dp"
                     android:src="@drawable/ic_plus"
                     app:layout_constraintEnd_toStartOf="@+id/txtAddMore"
-                    app:layout_constraintTop_toBottomOf="@id/rvSource" />
+                    app:layout_constraintTop_toBottomOf="@id/remarksLayout" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtAddMore"
@@ -69,7 +88,7 @@
                     android:text="Add More Source"
                     android:textColor="@color/green"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvSource" />
+                    app:layout_constraintTop_toBottomOf="@id/remarksLayout" />
 
 
                 <androidx.appcompat.widget.AppCompatButton

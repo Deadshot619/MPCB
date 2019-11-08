@@ -28,7 +28,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: MyVisitsViewModel) : DialogFragment() {
+class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: MyVisitsViewModel) :
+    DialogFragment() {
 
     private val REQUEST_CAMERA_CODE: Int = 100
     private var printImageFilePath: String = ""
@@ -82,6 +83,8 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
         dialogBinding.model!!.apply {
             latitude = PreferencesHelper.getCurrentLatitude()
             longitude = PreferencesHelper.getCurrentLongitude()
+            dialogBinding.latitudeEd.setText(PreferencesHelper.getCurrentLatitude())
+            dialogBinding.longitudeEd.setText(PreferencesHelper.getCurrentLongitude())
 
         }
 

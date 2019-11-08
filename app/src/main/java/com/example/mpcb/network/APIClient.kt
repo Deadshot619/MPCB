@@ -22,12 +22,12 @@ class APIClient {
                 .baseUrl(BuildConfig.BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()))
-                .client(getOkHttpClient())
+                .client(getUnsafeOkHttpClient().build())
                 .build()
         }
 
         private fun getOkHttpClient(): OkHttpClient {
-            return getUnsafeOkHttpClient()
+            return OkHttpClient.Builder()
                 .addInterceptor(HeaderInterceptor())
                 .addNetworkInterceptor(StethoInterceptor())
                 .build()
@@ -55,11 +55,17 @@ class APIClient {
 
 
                     @Throws(CertificateException::class)
-                    override fun checkClientTrusted(chain: Array<X509Certificate>, authType: String) {
+                    override fun checkClientTrusted(
+                        chain: Array<X509Certificate>,
+                        authType: String
+                    ) {
                     }
 
                     @Throws(CertificateException::class)
-                    override fun checkServerTrusted(chain: Array<X509Certificate>, authType: String) {
+                    override fun checkServerTrusted(
+                        chain: Array<X509Certificate>,
+                        authType: String
+                    ) {
                     }
                 })
 
@@ -73,6 +79,7 @@ class APIClient {
                 val builder = OkHttpClient.Builder()
                 builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
                 builder.hostnameVerifier { hostname, session -> true }
+                builder.addNetworkInterceptor(StethoInterceptor())
                 return builder
             } catch (e: Exception) {
                 throw RuntimeException(e)

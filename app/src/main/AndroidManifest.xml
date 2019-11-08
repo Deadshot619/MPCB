@@ -31,7 +31,8 @@
                 android:resource="@xml/file_provider_paths" />
         </provider>
 
-        <activity android:name=".reports.ReportsPageActivity"/>
+        <activity android:name=".reports.ReportsPageActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize"/>
         <activity android:name=".home.HomeActivity"/>
         <activity android:name=".login.LoginActivity"/>
         <activity android:name=".splash.SplashActivity">

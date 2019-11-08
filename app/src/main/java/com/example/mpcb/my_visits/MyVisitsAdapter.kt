@@ -48,6 +48,17 @@ class MyVisitsAdapter(
             }
         }
 
+        if (item.checkInStatus == 1) {
+            holder.itemBinding.imgLocation.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_location))
+        } else {
+            holder.itemBinding.imgLocation.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_location_grey))
+        }
+
+        if ("Visited" == item.visitStatus) {
+            holder.itemBinding.imgReports.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_reports))
+        } else {
+            holder.itemBinding.imgReports.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_reports_grey))
+        }
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -61,5 +72,6 @@ class MyVisitsAdapter(
 
     override fun getItemCount() = visitList.size
 
-    class MyVisitViewHolder(val itemBinding: ItemVisitBinding) : RecyclerView.ViewHolder(itemBinding.root)
+    class MyVisitViewHolder(val itemBinding: ItemVisitBinding) :
+        RecyclerView.ViewHolder(itemBinding.root)
 }

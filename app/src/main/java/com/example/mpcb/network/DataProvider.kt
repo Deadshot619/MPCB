@@ -12,7 +12,9 @@ import okhttp3.RequestBody
 
 object DataProvider : RemoteDataProvider {
 
-    private val mServices: APIInterface by lazy { APIClient.getClient().create(APIInterface::class.java) }
+    private val mServices: APIInterface by lazy {
+        APIClient.getClient().create(APIInterface::class.java)
+    }
 
     private fun noInternetAvailable(error: Consumer<Throwable>) =
         error.accept(Throwable("No Internet Connection"))
@@ -25,7 +27,8 @@ object DataProvider : RemoteDataProvider {
     override fun login(
         request: LoginRequest, success: Consumer<LoginResponse>, error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.login(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        mServices.login(request).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
                 if (response.status != 1) {
                     error.accept(Throwable(response.message))
@@ -43,7 +46,8 @@ object DataProvider : RemoteDataProvider {
         success: Consumer<UpdateProfileResponse>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.updateProfile(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        mServices.updateProfile(request).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
                 if (response.status.equals("0")) {
                     error.accept(Throwable(response.message))
@@ -61,7 +65,8 @@ object DataProvider : RemoteDataProvider {
         success: Consumer<UpdateProfileResponse>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.changePassword(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        mServices.changePassword(request).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
                 if (response.status.equals("0")) {
                     error.accept(Throwable(response.message))
@@ -79,9 +84,10 @@ object DataProvider : RemoteDataProvider {
         success: Consumer<DashboardDataResponse>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.getDashboardData(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        mServices.getDashboardData(request).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
-                if (response.status.equals("0")) {
+                if (response.status == 0) {
                     error.accept(Throwable(response.message))
                 } else {
                     success.accept(response)
@@ -97,7 +103,8 @@ object DataProvider : RemoteDataProvider {
         success: Consumer<ArrayList<MyVisitModel>>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.getVisitList(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        mServices.getVisitList(request).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
                 if (response.status.equals("0")) {
                     error.accept(Throwable(response.message))
@@ -111,8 +118,13 @@ object DataProvider : RemoteDataProvider {
     }
 
     override fun checkIn(
-        userId: RequestBody, visitId: RequestBody, latitude: RequestBody, longitude: RequestBody,
-        selfieImagePart: MultipartBody.Part, success: Consumer<CheckInResponse>, error: Consumer<Throwable>
+        userId: RequestBody,
+        visitId: RequestBody,
+        latitude: RequestBody,
+        longitude: RequestBody,
+        selfieImagePart: MultipartBody.Part,
+        success: Consumer<CheckInResponse>,
+        error: Consumer<Throwable>
     ): Disposable =
         if (isNetworkAvailable()) {
             mServices.checkIn(
@@ -140,9 +152,10 @@ object DataProvider : RemoteDataProvider {
         success: Consumer<ReportSubmitResponse>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.submitReport(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        mServices.submitReport(request).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
-                if (response.status != 1) {
+                if (!response.status) {
                     error.accept(Throwable(response.message))
                 } else {
                     success.accept(response)

@@ -15,14 +15,15 @@ class Constants {
         const val myPrefK: String = "PreferenceMPCB"
 
         const val mloginKey: String = "login_key"
-        const val mloginUserKey: String = "user_login_name_key"
         const val USER: String = "user"
         const val REPORT_KEY: String = "report_key"
-        const val PRODUCTION_KEY: String = "production_key"
 
         const val REPORTS_PAGE_KEY: String = "reports_page_key"
         const val VISIT_ITEM_KEY: String = "visit_item_key"
         const val VISIT_REPORT_ID: String = "visit_report_id"
+
+        const val VISIT_ID: String = "visit_id"
+        const val INDUS_IMIS_ID: String = "indus_imis_id"
 
         val CATEGORY_LIST = arrayListOf(
             "Select one",

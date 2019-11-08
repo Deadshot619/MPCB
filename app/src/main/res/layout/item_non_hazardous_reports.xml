@@ -48,6 +48,7 @@
 
         <LinearLayout
             android:id="@+id/layLinChild"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -104,7 +105,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
-                    android:text="@={model.nhwQuantity}"
+                    android:inputType="number"
+                    android:text="@={model.nhwQuantityString}"
                     android:textColor="@color/text_light_black" />
             </LinearLayout>
 
@@ -190,7 +192,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
-                    android:text="@={model.nhwDisposalQuantity}"
+                    android:inputType="number"
+                    android:text="@={model.nhwDisposalQuantityString}"
                     android:textColor="@color/text_light_black" />
             </LinearLayout>
 
@@ -218,7 +221,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3.5"
-                    android:text="@={model.nhwActualdisposal}"
+                    android:inputType="number"
+                    android:text="@={model.nhwActualdisposalString}"
                     android:textColor="@color/text_light_black" />
             </LinearLayout>
 

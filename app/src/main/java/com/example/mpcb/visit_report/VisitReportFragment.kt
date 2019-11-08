@@ -10,6 +10,7 @@ import com.example.mpcb.databinding.FragmentVisitReportBinding
 import com.example.mpcb.network.response.MyVisitModel
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
 
 
@@ -27,7 +28,7 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
     override fun onBinding() {
 
         if (arguments != null && arguments!!.getParcelable<MyVisitModel>(Constants.VISIT_ITEM_KEY) != null) {
-            visitItem = arguments!!.getParcelable(Constants.VISIT_ITEM_KEY)
+            visitItem = arguments!!.getParcelable(Constants.VISIT_ITEM_KEY)!!
         }
 
 
@@ -35,7 +36,7 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
         mBinding.toolbarLayout.visitName.text = visitItem.industryName
 
         mBinding.toolbarLayout.imgBack.setOnClickListener {
-            getBaseActivity().finish()
+            activity!!.supportFragmentManager.popBackStack()
         }
 
         mBinding.itemListener = ReportItemListener(getBaseActivity(), visitItem)
@@ -52,6 +53,8 @@ class ReportItemListener(
     fun onClick(v: View) {
         val reportIntent = Intent(context, ReportsPageActivity::class.java)
         reportIntent.putExtra(Constants.VISIT_REPORT_ID, visitItem.industryIMISId)
+        PreferencesHelper.setLongPreference(Constants.VISIT_ID, visitItem.visitSchedulerId)
+        PreferencesHelper.setStringPreference(Constants.INDUS_IMIS_ID, visitItem.industryIMISId)
         when (v.id) {
             R.id.industryTag -> {
                 reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_1)

@@ -151,45 +151,6 @@
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtSensorPlaced"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Sensor Properly Placed"
-                    android:textColor="@color/grey"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgSampleCollected" />
-
-                <RadioGroup
-                    android:id="@+id/rgSensorPlaced"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtSensorPlaced">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbSensorYes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Yes"
-                        android:textSize="18sp" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbSensorNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginTop="4dp"
-                        android:text="No"
-                        android:textSize="18sp" />
-                </RadioGroup>
-
-                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtConnectivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -198,7 +159,7 @@
                     android:text="Connectivity"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgSensorPlaced" />
+                    app:layout_constraintTop_toBottomOf="@id/rgSampleCollected" />
 
                 <LinearLayout
                     android:id="@+id/linLayConnectivity"
@@ -223,13 +184,31 @@
                         android:text="MPCB" />
                 </LinearLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/RemarkLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linLayConnectivity">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/edtRemark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Remark" />
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvAmbientAir"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayConnectivity" />
+                    app:layout_constraintTop_toBottomOf="@id/RemarkLayout" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtAddMore"
@@ -242,6 +221,23 @@
                     android:gravity="center_vertical"
                     android:text="Add More Source"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rvAmbientAir" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/imgDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:drawableStart="@drawable/ic_delete"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawablePadding="10dp"
+                    android:text="Delete"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginRight="16dp"
                     app:layout_constraintTop_toBottomOf="@id/rvAmbientAir" />
 
                 <androidx.appcompat.widget.AppCompatButton

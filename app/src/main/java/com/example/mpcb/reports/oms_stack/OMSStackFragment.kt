@@ -1,5 +1,6 @@
 package com.example.mpcb.reports.oms_stack
 
+import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentOmsStackBinding
@@ -20,15 +21,21 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_10)
+        setListener()
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
 
     }
 
-    private fun onSubmit() {
-
+    private fun setListener() {
         mBinding.rgOnlineSys.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.omsaApplicable = if (checkedId == R.id.rbOSA) 1 else 0
+            report.data.routineReport.omsaApplicable = if (checkedId == R.id.rbOSA) {
+                showHideView(true)
+                1
+            } else {
+                showHideView(false)
+                0
+            }
         }
         mBinding.rgWhetherOnlineSys.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.omsaInstalled = if (checkedId == R.id.rbWOSA) 1 else 0
@@ -51,11 +58,53 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
             report.data.routineReport.omsaCpcb = if (isChecked) 1 else 0
         }
         mBinding.cbMPCB.setOnCheckedChangeListener { buttonView, isChecked ->
-            report.data.routineReport.omsamMpcb = if (isChecked) 1 else 0
+            report.data.routineReport.omsaMpcb = if (isChecked) 1 else 0
         }
+    }
 
+    private fun showHideView(showView: Boolean) {
+        if (showView) {
+            mBinding.txtWhetherOnlineSys.visibility = View.VISIBLE
+            mBinding.rgWhetherOnlineSys.visibility = View.VISIBLE
+            mBinding.txtRmtCal.visibility = View.VISIBLE
+            mBinding.rgRmtCal.visibility = View.VISIBLE
+            mBinding.txtSensorPlaced.visibility = View.VISIBLE
+            mBinding.rgSensorPlaced.visibility = View.VISIBLE
+            mBinding.txtWSMS.visibility = View.VISIBLE
+            mBinding.rgWSMS.visibility = View.VISIBLE
+            mBinding.txtWCalSys.visibility = View.VISIBLE
+            mBinding.rgWCalSys.visibility = View.VISIBLE
+            mBinding.txtConnectivity.visibility = View.VISIBLE
+            mBinding.cbCPCB.visibility = View.VISIBLE
+            mBinding.cbMPCB.visibility = View.VISIBLE
+        } else {
+            mBinding.txtWhetherOnlineSys.visibility = View.GONE
+            mBinding.rgWhetherOnlineSys.visibility = View.GONE
+            mBinding.txtRmtCal.visibility = View.GONE
+            mBinding.rgRmtCal.visibility = View.GONE
+            mBinding.txtSensorPlaced.visibility = View.GONE
+            mBinding.rgSensorPlaced.visibility = View.GONE
+            mBinding.txtWSMS.visibility = View.GONE
+            mBinding.rgWSMS.visibility = View.GONE
+            mBinding.txtWCalSys.visibility = View.GONE
+            mBinding.rgWCalSys.visibility = View.GONE
+            mBinding.txtConnectivity.visibility = View.GONE
+            mBinding.cbCPCB.visibility = View.GONE
+            mBinding.cbMPCB.visibility = View.GONE
+        }
+    }
+
+    private fun onSubmit() {
+        if (report.data.routineReport.omsaApplicable == 0) {
+            report.data.routineReport.omsaInstalled = 0
+            report.data.routineReport.remoteCalApplicable = 0
+            report.data.routineReport.sensorPlaced = 0
+            report.data.routineReport.stackFacilityExist = 0
+            report.data.routineReport.calFacExist = 0
+            report.data.routineReport.omsaCpcb = 0
+            report.data.routineReport.omsaMpcb = 0
+        }
         saveReportData()
-
         addReportFragment(Constants.REPORT_11)
     }
 

@@ -44,6 +44,11 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        mViewModel.getVisitListData()
+    }
+
     private fun showCalendarDialog() {
         val calendar = Calendar.getInstance()
         val datePickerDialog =
@@ -66,12 +71,11 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         mViewModel.getVisitList().observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
         })
-        mViewModel.getVisitListData()
     }
 
-    override fun onVisitItemClicked(viewModel: MyVisitModel) {
+    override fun onVisitItemClicked(item: MyVisitModel) {
         val bundle = Bundle()
-        bundle.putParcelable(Constants.VISIT_ITEM_KEY, viewModel)
+        bundle.putParcelable(Constants.VISIT_ITEM_KEY, item)
         addFragment(VisitReportFragment(), true, bundle)
     }
 
@@ -83,9 +87,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         if (!LocationHelper.isLocationProviderEnabled(context!!)) {
             DialogHelper.showLocationAlertDialog(context!!)
         } else {
-            if (activity!!.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED
-            ) {
+            if (activity!!.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(
                     PermissionUtils.LOCATION_PERMISSTIONS,
                     100
@@ -112,6 +114,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         permissions: Array<String>,
         grantResults: IntArray
     ) {
+
         if (requestCode == 100) {
             openCheckinDialog()
         }

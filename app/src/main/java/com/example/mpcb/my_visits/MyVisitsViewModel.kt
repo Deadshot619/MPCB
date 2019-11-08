@@ -94,7 +94,10 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             DataProvider.checkIn(userId, visitId, latitude, longitude, selfieImagePart, Consumer {
                 dialogVisibility.value = false
                 mNavigator!!.onCheckInSuccess(it.message)
-            }, Consumer { checkError(it) })
+            }, Consumer {
+                dialogVisibility.value = false
+                Log.e("Error", it.message)
+            })
         )
     }
 }

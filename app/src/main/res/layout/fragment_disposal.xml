@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
->
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -28,7 +27,7 @@
                     android:textColor="@color/grey"
                     android:textSize="@dimen/text_xlarge"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbIndusCETP"
@@ -41,9 +40,10 @@
                     android:layout_marginRight="8dp"
                     android:text="CEPT"
                     android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large" app:layout_constraintEnd_toStartOf="@+id/edIndusCETP"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constraintEnd_toStartOf="@+id/edIndusCETP"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvIndustrialTitle"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tvIndustrialTitle" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edIndusCETP"
@@ -55,7 +55,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbIndusCETP"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cbIndusCETP"/>
+                    app:layout_constraintTop_toTopOf="@+id/cbIndusCETP" />
 
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -69,9 +69,10 @@
                     android:layout_marginRight="8dp"
                     android:text="On land for gardening"
                     android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large" app:layout_constraintEnd_toStartOf="@+id/edIndusLandGardening"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constraintEnd_toStartOf="@+id/edIndusLandGardening"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbIndusCETP"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cbIndusCETP" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edIndusLandGardening"
@@ -83,7 +84,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbIndusLandGardening"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cbIndusLandGardening"/>
+                    app:layout_constraintTop_toTopOf="@+id/cbIndusLandGardening" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbIndusRecycle"
@@ -96,9 +97,10 @@
                     android:layout_marginRight="8dp"
                     android:text="Recycle"
                     android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large" app:layout_constraintEnd_toStartOf="@+id/edIndusRecycle"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constraintEnd_toStartOf="@+id/edIndusRecycle"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbIndusLandGardening"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cbIndusLandGardening" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edIndusRecycle"
@@ -110,7 +112,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbIndusRecycle"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cbIndusRecycle"/>
+                    app:layout_constraintTop_toTopOf="@+id/cbIndusRecycle" />
 
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -122,11 +124,12 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
-                    android:text="Local Sewage Treatment" android:textColor="@color/grey"
+                    android:text="Local Sewage Treatment"
+                    android:textColor="@color/grey"
                     android:textSize="@dimen/text_large"
                     app:layout_constraintEnd_toStartOf="@+id/edIndusSewageTreatment"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbIndusRecycle"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cbIndusRecycle" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edIndusSewageTreatment"
@@ -138,7 +141,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbIndusSewageTreatment"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cbIndusSewageTreatment"/>
+                    app:layout_constraintTop_toTopOf="@+id/cbIndusSewageTreatment" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbIndusAnyOther"
@@ -151,9 +154,10 @@
                     android:layout_marginRight="8dp"
                     android:text="Any Other"
                     android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large" app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbIndusSewageTreatment"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cbIndusSewageTreatment" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edIndusExtraName"
@@ -169,7 +173,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/edIndusExtraNameValue"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cbIndusAnyOther"
-                    app:layout_goneMarginLeft="40dp"/>
+                    app:layout_goneMarginLeft="40dp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edIndusExtraNameValue"
@@ -181,7 +185,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/edIndusExtraName"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/edIndusExtraName"/>
+                    app:layout_constraintTop_toTopOf="@+id/edIndusExtraName" />
 
                 <View
                     android:id="@+id/viewIndustrialSeparator"
@@ -192,7 +196,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/cbIndusAnyOther"
-                    app:layout_constraintTop_toBottomOf="@+id/edIndusExtraName"/>
+                    app:layout_constraintTop_toBottomOf="@+id/edIndusExtraName" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -209,7 +213,7 @@
                     android:textSize="@dimen/text_xlarge"
                     app:layout_constraintEnd_toStartOf="@+id/edIndustrialTotal"
                     app:layout_constraintStart_toStartOf="@+id/edIndusExtraName"
-                    app:layout_constraintTop_toBottomOf="@+id/viewIndustrialSeparator"/>
+                    app:layout_constraintTop_toBottomOf="@+id/viewIndustrialSeparator" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edIndustrialTotal"
@@ -222,7 +226,101 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/tvIndustrialTotal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tvIndustrialTotal"/>
+                    app:layout_constraintTop_toTopOf="@+id/tvIndustrialTotal" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtIndusDisposalConsent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="Disposal As Per Consent"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edIndustrialTotal" />
+
+                <RadioGroup
+                    android:id="@+id/rgIndusDisposalConsent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtIndusDisposalConsent">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbIndusDisposalYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Yes"
+                        android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbIndusDisposalNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="No"
+                        android:textSize="18sp" />
+                </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtIndusOperationMaintenance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="Operation And Maintenance"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rgIndusDisposalConsent" />
+
+                <RadioGroup
+                    android:id="@+id/rgIndusOperationMaintenance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtIndusOperationMaintenance">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbIndusPoor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Poor"
+                        android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbIndusAverage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Average"
+                        android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbIndusGood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Good"
+                        android:textSize="18sp" />
+                </RadioGroup>
 
                 <View
                     android:id="@+id/view_separator_industrial"
@@ -231,7 +329,7 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/light_white_100"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edIndustrialTotal"/>
+                    app:layout_constraintTop_toBottomOf="@+id/rgIndusOperationMaintenance" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDomesticTitle"
@@ -249,7 +347,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view_separator_industrial"/>
+                    app:layout_constraintTop_toBottomOf="@+id/view_separator_industrial" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbDomesticCETP"
@@ -262,9 +360,10 @@
                     android:layout_marginRight="8dp"
                     android:text="CEPT"
                     android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large" app:layout_constraintEnd_toStartOf="@+id/edDomesticCETP"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constraintEnd_toStartOf="@+id/edDomesticCETP"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvDomesticTitle"/>
+                    app:layout_constraintTop_toBottomOf="@+id/tvDomesticTitle" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edDomesticCETP"
@@ -276,7 +375,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbDomesticCETP"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cbDomesticCETP"/>
+                    app:layout_constraintTop_toTopOf="@+id/cbDomesticCETP" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbDomesticLandGardening"
@@ -292,7 +391,7 @@
                     android:textSize="@dimen/text_large"
                     app:layout_constraintEnd_toStartOf="@+id/edDomesticLandGardening"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbDomesticCETP"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cbDomesticCETP" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edDomesticLandGardening"
@@ -304,7 +403,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbDomesticLandGardening"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cbDomesticLandGardening"/>
+                    app:layout_constraintTop_toTopOf="@+id/cbDomesticLandGardening" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbDomesticRecycle"
@@ -320,7 +419,7 @@
                     android:textSize="@dimen/text_large"
                     app:layout_constraintEnd_toStartOf="@+id/edDomesticRecycle"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbDomesticLandGardening"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cbDomesticLandGardening" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edDomesticRecycle"
@@ -332,7 +431,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbDomesticRecycle"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cbDomesticRecycle"/>
+                    app:layout_constraintTop_toTopOf="@+id/cbDomesticRecycle" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbDomesticSewageTreatment"
@@ -348,7 +447,7 @@
                     android:textSize="@dimen/text_large"
                     app:layout_constraintEnd_toStartOf="@+id/edDomesticSewageTreatment"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbDomesticRecycle"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cbDomesticRecycle" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edDomesticSewageTreatment"
@@ -360,7 +459,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/cbDomesticSewageTreatment"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cbDomesticSewageTreatment"/>
+                    app:layout_constraintTop_toTopOf="@+id/cbDomesticSewageTreatment" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbDomesticAnyOther"
@@ -373,9 +472,10 @@
                     android:layout_marginRight="8dp"
                     android:text="Any Other"
                     android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large" app:layout_constraintEnd_toEndOf="parent"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbDomesticSewageTreatment"/>
+                    app:layout_constraintTop_toBottomOf="@+id/cbDomesticSewageTreatment" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edDomesticExtraName"
@@ -391,7 +491,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/edDomesticExtraNameValue"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cbDomesticAnyOther"
-                    app:layout_goneMarginLeft="40dp"/>
+                    app:layout_goneMarginLeft="40dp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edDomesticExtraNameValue"
@@ -403,7 +503,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/edDomesticExtraName"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/edDomesticExtraName"/>
+                    app:layout_constraintTop_toTopOf="@+id/edDomesticExtraName" />
 
                 <View
                     android:id="@+id/viewDomesticSeparator"
@@ -414,7 +514,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/cbDomesticAnyOther"
-                    app:layout_constraintTop_toBottomOf="@+id/edDomesticExtraName"/>
+                    app:layout_constraintTop_toBottomOf="@+id/edDomesticExtraName" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDomesticTotal"
@@ -430,7 +530,7 @@
                     android:textSize="@dimen/text_xlarge"
                     app:layout_constraintEnd_toStartOf="@+id/edDomesticTotal"
                     app:layout_constraintStart_toStartOf="@+id/edDomesticExtraName"
-                    app:layout_constraintTop_toBottomOf="@+id/viewDomesticSeparator"/>
+                    app:layout_constraintTop_toBottomOf="@+id/viewDomesticSeparator" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edDomesticTotal"
@@ -442,7 +542,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintBottom_toBottomOf="@+id/tvDomesticTotal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tvDomesticTotal"/>
+                    app:layout_constraintTop_toTopOf="@+id/tvDomesticTotal" />
 
                 <View
                     android:id="@+id/view_separator_domestic"
@@ -451,10 +551,10 @@
                     android:layout_marginTop="8dp"
                     android:background="@color/light_white_100"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edDomesticTotal"/>
+                    app:layout_constraintTop_toBottomOf="@+id/edDomesticTotal" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtDisposalConsent"
+                    android:id="@+id/txtDomesticDisposalConsent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -464,39 +564,39 @@
                     android:textColor="@color/grey"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view_separator_domestic"/>
+                    app:layout_constraintTop_toBottomOf="@id/view_separator_domestic" />
 
                 <RadioGroup
-                    android:id="@+id/rgDisposalConsent"
+                    android:id="@+id/rgDomesticDisposalConsent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtDisposalConsent">
+                    app:layout_constraintTop_toBottomOf="@id/txtDomesticDisposalConsent">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbDisposalYes"
+                        android:id="@+id/rbDomesticDisposalYes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Yes"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbDisposalNo"
+                        android:id="@+id/rbDomesticDisposalNo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="No"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtOperationMaintenance"
+                    android:id="@+id/txtDomesticOperationMaintenance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -506,45 +606,45 @@
                     android:textColor="@color/grey"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgDisposalConsent"/>
+                    app:layout_constraintTop_toBottomOf="@id/rgDomesticDisposalConsent" />
 
                 <RadioGroup
-                    android:id="@+id/rgOperationMaintenance"
+                    android:id="@+id/rgDomesticOperationMaintenance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtOperationMaintenance">
+                    app:layout_constraintTop_toBottomOf="@id/txtDomesticOperationMaintenance">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbPoor"
+                        android:id="@+id/rbDomesticPoor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Poor"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbAverage"
+                        android:id="@+id/rbDomesticAverage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="Average"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbGood"
+                        android:id="@+id/rbDomesticGood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
                         android:text="Good"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -557,7 +657,7 @@
                     android:text="Remark"
                     android:textSize="@dimen/text_large"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rgOperationMaintenance"/>
+                    app:layout_constraintTop_toBottomOf="@+id/rgDomesticOperationMaintenance" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edRemark"
@@ -570,7 +670,7 @@
                     android:textColor="@color/grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvRemark"/>
+                    app:layout_constraintTop_toBottomOf="@id/tvRemark" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSubmit"
@@ -587,7 +687,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/edRemark"/>
+                    app:layout_constraintTop_toBottomOf="@+id/edRemark" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

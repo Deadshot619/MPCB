@@ -2,6 +2,7 @@ package com.example.mpcb.reports.last_jvs_details
 
 
 import android.app.DatePickerDialog
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -28,6 +29,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_8)
         setUpRecyclerView()
+        setListener()
 
         mBinding.edtIndusDateOfCollection.setOnClickListener {
             showDateDialog(INDUS_DATE_OF_COLLECTION)
@@ -74,21 +76,34 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
         datePickerDialog.show()
     }
 
-    private fun onSubmit() {
+    private fun setListener() {
         mBinding.rgPymntDetailsIndus.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.paymentDetailsIndus =
                 if (checkedId == R.id.rbPymntDetailsIndusYes) "1" else "0"
         }
 
-        report.data.routineReport.dateOfCollectionIndus =
-            mBinding.edtIndusDateOfCollection.text.toString()
-        report.data.routineReport.paymentDetailsIndusAmount = mBinding.edtAmtIndus.text.toString()
-        report.data.routineReport.paymentDetailsIndusDate = mBinding.edtDateIndus.text.toString()
-
         mBinding.rgPymntDetailsDomestic.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.paymentDetailsDomestic =
                 if (checkedId == R.id.rbPymntDetailsDomesticYes) "1" else "0"
         }
+
+        mBinding.rgJVSSample.setOnCheckedChangeListener { group, checkedId ->
+            report.data.routineReport.jvsSampleCollectedForWater =
+                if (checkedId == R.id.rbJVSSampleYes) {
+                    mBinding.rvJVS.visibility = View.VISIBLE
+                    1
+                } else {
+                    mBinding.rvJVS.visibility = View.GONE
+                    0
+                }
+        }
+    }
+
+    private fun onSubmit() {
+        report.data.routineReport.dateOfCollectionIndus =
+            mBinding.edtIndusDateOfCollection.text.toString()
+        report.data.routineReport.paymentDetailsIndusAmount = mBinding.edtAmtIndus.text.toString()
+        report.data.routineReport.paymentDetailsIndusDate = mBinding.edtDateIndus.text.toString()
 
         report.data.routineReport.dateOfCollectionDomestic =
             mBinding.edtDomesticDateOfCollection.text.toString()
@@ -97,12 +112,9 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
         report.data.routineReport.paymentDetailsDomesticDate =
             mBinding.edtDateDomestic.text.toString()
 
-        mBinding.rgJVSSample.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.jvsSampleCollectedForWater =
-                if (checkedId == R.id.rbJVSSampleYes) 1 else 0
+        if (report.data.routineReport.jvsSampleCollectedForWater == 1) {
+            report.data.jvsSampleCollectedWaterSource = mViewModel.getReportData()
         }
-
-        report.data.jvsSampleCollectedWaterSource = mViewModel.getReportData()
         saveReportData()
         addReportFragment(Constants.REPORT_9)
     }

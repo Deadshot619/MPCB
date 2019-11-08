@@ -66,6 +66,12 @@ class AirPollutionAdapter(
                     ) {
                         itemBinding.spnSource.setSelection(position)
                         item.airPollutionSource = "${position + 1}"
+                        if (position == 4) {
+                            itemBinding.anyOtherLayout.visibility = View.VISIBLE
+                        } else {
+                            itemBinding.anyOtherLayout.visibility = View.GONE
+                            itemBinding.edtAnyOther.setText("")
+                        }
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}

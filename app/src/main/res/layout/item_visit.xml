@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="model"
-                  type="com.example.mpcb.network.response.MyVisitModel"/>
 
-        <variable name="viewModel"
-                  type="com.example.mpcb.my_visits.MyVisitsViewModel"/>
+        <variable
+            name="model"
+            type="com.example.mpcb.network.response.MyVisitModel" />
+
+        <variable
+            name="viewModel"
+            type="com.example.mpcb.my_visits.MyVisitsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,26 +42,27 @@
                     android:layout_marginLeft="56dp"
                     android:layout_marginTop="16dp"
                     android:text="@{model.industryName}"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:layout_marginRight="10dp">
+
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtxVisitScheduledOn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="visit Scheduled On: "
-                        android:textSize="15sp"/>
+                        android:textSize="15sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/txtxVisitScheduledOn"
                         android:textColor="@android:color/black"
-                        app:parseDate="@{model.scheduledOn}"/>
+                        app:parseDate="@{model.scheduledOn}" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imgExpandCollapse"
@@ -66,7 +70,7 @@
                         android:layout_height="30dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
-                        android:src="@drawable/ic_up_arrow"/>
+                        android:src="@drawable/ic_up_arrow" />
                 </RelativeLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -74,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Address:"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
@@ -82,7 +86,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="10dp"
                     android:text="@{model.industryAddress}"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:id="@+id/layLinBottom"
@@ -93,13 +97,14 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/bg_grey"/>
+                        android:background="@color/bg_grey" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:orientation="horizontal">
+
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -110,28 +115,28 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="visit Scheduled On: "
-                                android:textSize="15sp"/>
+                                android:textSize="15sp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:textColor="@android:color/black"
-                                app:parseDate="@{model.scheduledOn}"/>
+                                app:parseDate="@{model.scheduledOn}" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="Report Submited On: "
-                                android:textSize="15sp"/>
+                                android:textSize="15sp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:textColor="@android:color/black"
-                                app:parseDate="@{model.reportSubmittedOn}"/>
+                                app:parseDate="@{model.reportSubmittedOn}" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -144,28 +149,28 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="visited On"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:textColor="@android:color/black"
-                                app:parseDate="@{model.visitedOn}"/>
+                                app:parseDate="@{model.visitedOn}" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="Non - Compliant visit"
-                                android:textSize="15sp"/>
+                                android:textSize="15sp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:text="@{model.complianceStatus}"
-                                android:textColor="@android:color/black"/>
+                                android:textColor="@android:color/black" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -181,30 +186,30 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginLeft="16dp"
+                            android:layout_marginLeft="24dp"
                             android:onClick="@{() -> viewModel.onCheckInClick(model)}"
                             android:padding="4dp"
-                            android:src="@drawable/ic_location"/>
+                            android:src="@drawable/ic_location_grey" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgReports"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
+                            android:layout_marginLeft="28dp"
                             android:onClick="@{() -> viewModel.onVisitItemClick(model)}"
                             android:padding="5dp"
-                            android:src="@drawable/ic_reports"/>
+                            android:src="@drawable/ic_reports_grey" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="24dp"
+                            android:layout_marginLeft="32dp"
                             android:background="@drawable/background_green"
                             android:gravity="center_horizontal"
                             android:padding="8dp"
                             android:text="@{model.visitStatus}"
                             android:textColor="@android:color/white"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -224,6 +229,6 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,7 @@
 package com.example.mpcb.reports.oms_ambient_air
 
 
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -23,8 +24,9 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         setUpRecyclerView()
         setListeners()
 
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
+        mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
+        mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun setUpRecyclerView() {
@@ -39,7 +41,14 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
     private fun setListeners() {
         mBinding.rgOMS.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.omsamApplicable =
-                if (checkedId == R.id.rbOMSApplicable) 1 else 0
+                if (checkedId == R.id.rbOMSApplicable) {
+                    showHideView(true)
+                    1
+                } else {
+                    showHideView(false)
+                    0
+                }
+
         }
         mBinding.rgOMSInstalled.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.omsamInstalled =
@@ -48,9 +57,6 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         mBinding.rgSampleCollected.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.jvsSampleCollectedForAir =
                 if (checkedId == R.id.rbSampleYes) 1 else 0
-        }
-        mBinding.rgSensorPlaced.setOnCheckedChangeListener { group, checkedId ->
-            //            report.data.routineReport.omsamInstalled = if(checkedId == R.id.rbOMSInstalledApplicable) 1 else 0
         }
         mBinding.cbCPCB.setOnCheckedChangeListener { buttonView, isChecked ->
             report.data.routineReport.omsamCpcb = if (isChecked) 1 else 0
@@ -61,8 +67,41 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
 
     }
 
+    private fun showHideView(showView: Boolean) {
+        if (showView) {
+            mBinding.txtOMSInstalled.visibility = View.VISIBLE
+            mBinding.rgOMSInstalled.visibility = View.VISIBLE
+            mBinding.txtSampleCollected.visibility = View.VISIBLE
+            mBinding.rgSampleCollected.visibility = View.VISIBLE
+            mBinding.txtConnectivity.visibility = View.VISIBLE
+            mBinding.linLayConnectivity.visibility = View.VISIBLE
+            mBinding.cbCPCB.visibility = View.VISIBLE
+            mBinding.cbMPCB.visibility = View.VISIBLE
+        } else {
+            mBinding.txtOMSInstalled.visibility = View.GONE
+            mBinding.rgOMSInstalled.visibility = View.GONE
+            mBinding.txtSampleCollected.visibility = View.GONE
+            mBinding.rgSampleCollected.visibility = View.GONE
+            mBinding.txtConnectivity.visibility = View.GONE
+            mBinding.linLayConnectivity.visibility = View.GONE
+            mBinding.cbCPCB.visibility = View.GONE
+            mBinding.cbMPCB.visibility = View.GONE
+        }
+    }
+
     private fun onSubmit() {
-        report.data.jvsSampleCollectedAirSource = mViewModel.getReportData()
+        if (report.data.routineReport.omsamApplicable == 0) {
+            report.data.routineReport.omsamInstalled = 0
+            report.data.routineReport.jvsSampleCollectedForAir = 0
+            report.data.routineReport.omsamCpcb = 0
+            report.data.routineReport.omsamMpcb = 0
+        }
+
+        report.data.routineReport.jvsObservation = mBinding.edtRemark.text.toString()
+
+        if (report.data.routineReport.jvsSampleCollectedForAir == 1) {
+            report.data.jvsSampleCollectedAirSource = mViewModel.getReportData()
+        }
 
         saveReportData()
         addReportFragment(Constants.REPORT_12)

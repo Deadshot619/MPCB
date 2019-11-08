@@ -63,7 +63,7 @@ fun View.showHide(show: Boolean) {
 }
 
 @BindingAdapter("parseDate")
-fun parseDate(textView: AppCompatTextView, date: String) {
+fun parseDate(textView: AppCompatTextView, date: String?) {
     try {
         val date = SimpleDateFormat("MMM dd yyyy HH:mm:ss").parse(date)
         val newDate = SimpleDateFormat("dd/MM/yyyy").format(date)
@@ -76,7 +76,7 @@ fun parseDate(textView: AppCompatTextView, date: String) {
 fun isNetworkAvailable(): Boolean {
     val cm = MPCBApp.instance.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val activeNetwork = cm.activeNetworkInfo
-    return activeNetwork.isConnected
+    return activeNetwork?.isConnected ?: false
 }
 
 fun String.md5(): String {

@@ -35,6 +35,7 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
     }
 
     private fun onSubmit() {
+        report.data.routineReport.airPollutionObservation = mBinding.edtRemarks.text.toString()
         report.data.routineReportAirPollution = mViewModel.getSourceList().value!!
         saveReportData()
         addReportFragment(Constants.REPORT_10)

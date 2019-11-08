@@ -25,6 +25,7 @@ class LastJVSAdapter(
 
     override fun onBindViewHolder(holder: LastJvsViewHolder, position: Int) {
         val item = parentList[position]
+        holder.itemBinding.model = item
         holder.setData(viewModel, item.lastJvsChild, position)
     }
 

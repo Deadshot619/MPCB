@@ -26,7 +26,7 @@ class IndustryReportFragment :
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_1)
-
+        setListener()
 
         val adapter = ArrayAdapter(
             getBaseActivity(),
@@ -59,11 +59,14 @@ class IndustryReportFragment :
         datePickerDialog.show()
     }
 
-    private fun onSubmit() {
-        report.data.industryCategoryReselect = "${mBinding.catSpinner.selectedItemPosition + 1}"
+    private fun setListener() {
         mBinding.rgConsent.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.consentObtain = if (checkedId == R.id.rbConsentYes) 1 else 0
         }
+    }
+
+    private fun onSubmit() {
+        report.data.industryCategoryReselect = "${mBinding.catSpinner.selectedItemPosition + 1}"
 
         report.data.routineReport.visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
         report.data.routineReport.emailAddress = mBinding.visitCatEmailEd.text.toString()

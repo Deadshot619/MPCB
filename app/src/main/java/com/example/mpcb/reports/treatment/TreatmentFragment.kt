@@ -3,7 +3,6 @@ package com.example.mpcb.reports.treatment
 
 import android.view.View
 import android.widget.CompoundButton
-import androidx.core.content.ContextCompat
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentTreatmentBinding
@@ -32,93 +31,26 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
     }
 
     private fun setListeners() {
-        mBinding.imgPrimaryExpandCollapse.setOnClickListener {
-            if (mBinding.layLinPrimaryChild.visibility == View.VISIBLE) {
-                mBinding.layLinPrimaryChild.visibility = View.GONE
-                mBinding.imgPrimaryExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        getBaseActivity(),
-                        R.drawable.ic_down_arrow
-                    )
-                )
-                report.data.routineReport.treatmentIndustrialPrimary = 0
-            } else {
-                mBinding.layLinPrimaryChild.visibility = View.VISIBLE
-                mBinding.imgPrimaryExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        getBaseActivity(),
-                        R.drawable.ic_up_arrow
-                    )
-                )
-                report.data.routineReport.treatmentIndustrialPrimary = 1
-            }
+        mBinding.cbPrimary.setOnCheckedChangeListener { buttonView, isChecked ->
+            mBinding.layLinPrimaryChild.visibility = if (isChecked) View.VISIBLE else View.GONE
+            report.data.routineReport.treatmentIndustrialPrimary = if (isChecked) 1 else 0
         }
 
-        mBinding.imgSecondaryExpandCollapse.setOnClickListener {
-            if (mBinding.layLinSecondaryChild.visibility == View.VISIBLE) {
-                mBinding.layLinSecondaryChild.visibility = View.GONE
-                mBinding.imgSecondaryExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        getBaseActivity(),
-                        R.drawable.ic_down_arrow
-                    )
-                )
-                report.data.routineReport.treatmentIndustrialSecondary = 0
-            } else {
-                mBinding.layLinSecondaryChild.visibility = View.VISIBLE
-                mBinding.imgSecondaryExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        getBaseActivity(),
-                        R.drawable.ic_up_arrow
-                    )
-                )
-                report.data.routineReport.treatmentIndustrialSecondary = 1
-            }
+        mBinding.cbSecondary.setOnCheckedChangeListener { buttonView, isChecked ->
+            mBinding.layLinSecondaryChild.visibility = if (isChecked) View.VISIBLE else View.GONE
+            report.data.routineReport.treatmentIndustrialSecondary = if (isChecked) 1 else 0
         }
 
-        mBinding.imgTertiaryExpandCollapse.setOnClickListener {
-            if (mBinding.layLinTertiaryChild.visibility == View.VISIBLE) {
-                mBinding.layLinTertiaryChild.visibility = View.GONE
-                mBinding.imgTertiaryExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        getBaseActivity(),
-                        R.drawable.ic_down_arrow
-                    )
-                )
-                report.data.routineReport.treatmentIndustrialTertiary = 0
-            } else {
-                mBinding.layLinTertiaryChild.visibility = View.VISIBLE
-                mBinding.imgTertiaryExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        getBaseActivity(),
-                        R.drawable.ic_up_arrow
-                    )
-                )
-                report.data.routineReport.treatmentIndustrialTertiary = 1
-            }
+        mBinding.cbTertiary.setOnCheckedChangeListener { buttonView, isChecked ->
+            mBinding.layLinTertiaryChild.visibility = if (isChecked) View.VISIBLE else View.GONE
+            report.data.routineReport.treatmentIndustrialTertiary = if (isChecked) 1 else 0
         }
 
-        mBinding.imgAdvanceExpandCollapse.setOnClickListener {
-            if (mBinding.layLinAdvanceChild.visibility == View.VISIBLE) {
-                mBinding.layLinAdvanceChild.visibility = View.GONE
-                mBinding.imgAdvanceExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        getBaseActivity(),
-                        R.drawable.ic_down_arrow
-                    )
-                )
-                report.data.routineReport.treatmentIndustrialAdvanced = 0
-            } else {
-                mBinding.layLinAdvanceChild.visibility = View.VISIBLE
-                mBinding.imgAdvanceExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        getBaseActivity(),
-                        R.drawable.ic_up_arrow
-                    )
-                )
-                report.data.routineReport.treatmentIndustrialTertiary = 1
-            }
+        mBinding.cbAdvance.setOnCheckedChangeListener { buttonView, isChecked ->
+            mBinding.layLinAdvanceChild.visibility = if (isChecked) View.VISIBLE else View.GONE
+            report.data.routineReport.treatmentIndustrialAdvanced = if (isChecked) 1 else 0
         }
+
 
         mBinding.rgETP.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.etpOperational = if (checkedId == R.id.rbETPYes) 1 else 0
@@ -169,7 +101,13 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
             R.id.cbPrimarySetting -> report.data.routineReport.industrialPrimaryPrimarySettling =
                 if (isChecked) 1 else 0
             R.id.cbPrimaryAnyOther -> report.data.routineReport.industrialPrimaryAnyOther =
-                if (isChecked) 1 else 0
+                if (isChecked) {
+                    mBinding.primaryOtherRemarkLayout.visibility = View.VISIBLE
+                    1
+                } else {
+                    mBinding.primaryOtherRemarkLayout.visibility = View.GONE
+                    0
+                }
 
             R.id.cbSecondaryActivated -> report.data.routineReport.industrialSecondaryActivatedSludgeProcess =
                 if (isChecked) 1 else 0
@@ -180,7 +118,13 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
             R.id.cbSecondaryTrickling -> report.data.routineReport.industrialSecondaryTricklingFilter =
                 if (isChecked) 1 else 0
             R.id.cbSecondaryAnyOther -> report.data.routineReport.industrialSecondaryAnyOther =
-                if (isChecked) 1 else 0
+                if (isChecked) {
+                    mBinding.secondaryOtherRemarkLayout.visibility = View.VISIBLE
+                    1
+                } else {
+                    mBinding.secondaryOtherRemarkLayout.visibility = View.GONE
+                    0
+                }
 
             R.id.cbTertiaryPress -> report.data.routineReport.industrialTertiaryPresserSandFilter =
                 if (isChecked) 1 else 0
@@ -189,7 +133,13 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
             R.id.cbTertiaryDual -> report.data.routineReport.industrialTertiaryDualMediaFilter =
                 if (isChecked) 1 else 0
             R.id.cbTertiaryAnyOther -> report.data.routineReport.industrialTertiaryAnyOther =
-                if (isChecked) 1 else 0
+                if (isChecked) {
+                    mBinding.tertiaryOtherRemarkLayout.visibility = View.VISIBLE
+                    1
+                } else {
+                    mBinding.tertiaryOtherRemarkLayout.visibility = View.GONE
+                    0
+                }
 
             R.id.cbAdvanceReverse -> report.data.routineReport.industrialAdvancedReverseOsmosis =
                 if (isChecked) 1 else 0
@@ -200,7 +150,13 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
             R.id.cbAdvanceNano -> report.data.routineReport.nanoFiltration = if (isChecked) 1 else 0
             R.id.cbAdvanceATFD -> report.data.routineReport.atfd = if (isChecked) 1 else 0
             R.id.cbAdvanceAnyOther -> report.data.routineReport.industrialAdvancedAnyOther =
-                if (isChecked) 1 else 0
+                if (isChecked) {
+                    mBinding.advanceOtherRemarkLayout.visibility = View.VISIBLE
+                    1
+                } else {
+                    mBinding.advanceOtherRemarkLayout.visibility = View.GONE
+                    0
+                }
 
             R.id.cbDomesticSepticTank -> report.data.routineReport.treatmentDomesticSepticTank =
                 if (isChecked) 1 else 0
@@ -210,6 +166,57 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
     }
 
     private fun onSubmit() {
+        report.data.routineReport.industrialPrimaryAnyOtherText =
+            mBinding.edtPrimaryOtherRemark.text.toString()
+        report.data.routineReport.industrialSecondaryAnyOtherText =
+            mBinding.edtSecondaryOtherRemark.text.toString()
+        report.data.routineReport.industrialTertiaryAnyOtherText =
+            mBinding.edtTertiaryOtherRemark.text.toString()
+        report.data.routineReport.industrialAdvancedAnyOtherText =
+            mBinding.edtAdvanceOtherRemark.text.toString()
+
+        if (report.data.routineReport.treatmentIndustrialPrimary == 0) {
+            report.data.routineReport.industrialPrimaryOGTrap = 0
+            report.data.routineReport.industrialPrimaryScreening = 0
+            report.data.routineReport.industrialPrimaryNeutralization = 0
+            report.data.routineReport.industrialPrimaryPrimarySettling = 0
+            report.data.routineReport.industrialPrimaryAnyOther = 0
+            if (report.data.routineReport.industrialPrimaryAnyOther == 0) {
+                report.data.routineReport.industrialPrimaryAnyOtherText = ""
+            }
+
+        }
+        if (report.data.routineReport.treatmentIndustrialSecondary == 0) {
+            report.data.routineReport.industrialSecondaryActivatedSludgeProcess = 0
+            report.data.routineReport.industrialSecondaryMbbr = 0
+            report.data.routineReport.industrialSecondarySbr = 0
+            report.data.routineReport.industrialSecondaryTricklingFilter = 0
+            report.data.routineReport.industrialSecondaryAnyOther = 0
+            if (report.data.routineReport.industrialSecondaryAnyOther == 0) {
+                report.data.routineReport.industrialSecondaryAnyOtherText = ""
+            }
+        }
+        if (report.data.routineReport.treatmentIndustrialTertiary == 0) {
+            report.data.routineReport.industrialTertiaryPresserSandFilter = 0
+            report.data.routineReport.industrialTertiaryActivatedCarbonFilter = 0
+            report.data.routineReport.industrialTertiaryDualMediaFilter = 0
+            report.data.routineReport.industrialTertiaryAnyOther = 0
+            if (report.data.routineReport.industrialTertiaryAnyOther == 0) {
+                report.data.routineReport.industrialTertiaryAnyOtherText = ""
+            }
+        }
+        if (report.data.routineReport.treatmentIndustrialAdvanced == 0) {
+            report.data.routineReport.industrialAdvancedReverseOsmosis = 0
+            report.data.routineReport.industrialAdvancedMee = 0
+            report.data.routineReport.ultraFiltration = 0
+            report.data.routineReport.nanoFiltration = 0
+            report.data.routineReport.atfd = 0
+            report.data.routineReport.industrialAdvancedAnyOther = 0
+            if (report.data.routineReport.industrialAdvancedAnyOther == 0) {
+                report.data.routineReport.industrialAdvancedAnyOtherText = ""
+            }
+        }
+
         report.data.routineReport.treatmentObservation =
             mBinding.edtIndustrialRemark.text.toString()
 

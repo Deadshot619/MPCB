@@ -28,10 +28,10 @@ class ReportRequest {
 class Data {
     @SerializedName("industry_category_reselect")
     @Expose
-    var industryCategoryReselect: String? = null
+    var industryCategoryReselect = ""
     @SerializedName("routine_report")
     @Expose
-    var routineReport: RoutineReport = RoutineReport()
+    var routineReport = RoutineReport()
     @SerializedName("routine_report_products")
     @Expose
     var routineReportProducts: ArrayList<RoutineReportProduct> = arrayListOf()
@@ -55,157 +55,92 @@ class Data {
     var routineReportBankDetails: ArrayList<RoutineReportBankDetail> = arrayListOf()
 }
 
-class JvsSampleCollectedAirSource : BaseObservable() {
-    @SerializedName("name_of_source")
-    @Expose
-    var nameOfSource: String = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.nameOfSource)
-        }
-    @SerializedName("jvs_air_source_parameter")
-    @Expose
-    var jvsAirSourceParameter: ArrayList<String> = arrayListOf()
-    @SerializedName("jvs_air_source_std_prescribed")
-    @Expose
-    var jvsAirSourceStdPrescribed: ArrayList<String> = arrayListOf()
-
-    var ambientAirChild: ArrayList<AmbientAirChild> = arrayListOf()
-}
-
-class AmbientAirChild : BaseObservable() {
-    var parameter = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.parameter)
-        }
-    var prescribedValue = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.prescribedValue)
-        }
-}
-
-
-class JvsSampleCollectedWaterSource {
-    @SerializedName("name_of_source")
-    @Expose
-    var nameOfSource: String? = null
-    @SerializedName("jvs_water_source_parameter")
-    @Expose
-    var jvsWaterSourceParameter: ArrayList<String> = arrayListOf()
-    @SerializedName("jvs_water_source_std_prescribed")
-    @Expose
-    var jvsWaterSourceStdPrescribed: ArrayList<String> = arrayListOf()
-
-    var lastJvsChild = arrayListOf<LastJVSChild>()
-}
-
-class LastJVSChild : BaseObservable() {
-    var parameter = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.parameter)
-        }
-    var prescribedValue = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.prescribedValue)
-        }
-}
-
-
 class RoutineReport {
     @SerializedName("visited_on")
     @Expose
-    var visitedOn: String? = null
+    var visitedOn = ""
     @SerializedName("email_address")
     @Expose
-    var emailAddress: String? = null
+    var emailAddress = ""
     @SerializedName("telephone_number")
     @Expose
-    var telephoneNumber: String? = null
+    var telephoneNumber = ""
     @SerializedName("consent_obtain")
     @Expose
     var consentObtain: Int? = null
     @SerializedName("validity_of_consent_upto")
     @Expose
-    var validityOfConsentUpto: String? = null
+    var validityOfConsentUpto = ""
     @SerializedName("validity_of_consent_ie")
     @Expose
-    var validityOfConsentIe: String? = null
+    var validityOfConsentIe = ""
     @SerializedName("hw_of_valid_upto_de")
     @Expose
-    var hwOfValidUptoDe: String? = null
+    var hwOfValidUptoDe = ""
 
 
     @SerializedName("generation_industrial_as_consent")
     @Expose
-    var generationIndustrialAsConsent: String? = null
+    var generationIndustrialAsConsent = ""
     @SerializedName("generation_industrial_as_consent_cooling")
     @Expose
-    var generationIndustrialAsConsentCooling: String? = null
+    var generationIndustrialAsConsentCooling = ""
     @SerializedName("generation_domestic_as_consent")
     @Expose
-    var generationDomesticAsConsent: String? = null
+    var generationDomesticAsConsent = ""
     @SerializedName("generation_industrial_actual")
     @Expose
-    var generationIndustrialActual: String? = null
+    var generationIndustrialActual = ""
     @SerializedName("generation_industrial_actual_cooling")
     @Expose
-    var generationIndustrialActualCooling: String? = null
+    var generationIndustrialActualCooling = ""
     @SerializedName("generation_domestic_actual")
     @Expose
-    var generationDomesticActual: String? = null
+    var generationDomesticActual = ""
 
 
     @SerializedName("treatment_industrial_primary")
     @Expose
-    var treatmentIndustrialPrimary: Int = 0
+    var treatmentIndustrialPrimary: Int? = null
     @SerializedName("industrial_primary_OG_trap")
     @Expose
-    var industrialPrimaryOGTrap: Int = 0
+    var industrialPrimaryOGTrap: Int? = null
     @SerializedName("industrial_primary_screening")
     @Expose
-    var industrialPrimaryScreening: Int = 0
+    var industrialPrimaryScreening: Int? = null
     @SerializedName("industrial_primary_neutralization")
     @Expose
-    var industrialPrimaryNeutralization: Int = 0
+    var industrialPrimaryNeutralization: Int? = null
     @SerializedName("industrial_primary_primary_settling")
     @Expose
-    var industrialPrimaryPrimarySettling: Int = 0
+    var industrialPrimaryPrimarySettling: Int? = null
     @SerializedName("industrial_primary_any_other")
     @Expose
-    var industrialPrimaryAnyOther: Int = 0
+    var industrialPrimaryAnyOther: Int? = null
     @SerializedName("industrial_primary_any_other_text")
     @Expose
     var industrialPrimaryAnyOtherText: String = ""
     @SerializedName("treatment_domestic_septic_tank")
     @Expose
-    var treatmentDomesticSepticTank: Int = 0
+    var treatmentDomesticSepticTank: Int? = null
     @SerializedName("treatment_industrial_secondary")
     @Expose
-    var treatmentIndustrialSecondary: Int = 0
+    var treatmentIndustrialSecondary: Int? = null
     @SerializedName("industrial_secondary_activated_sludge_process")
     @Expose
-    var industrialSecondaryActivatedSludgeProcess: Int = 0
+    var industrialSecondaryActivatedSludgeProcess: Int? = null
     @SerializedName("industrial_secondary_mbbr")
     @Expose
-    var industrialSecondaryMbbr: Int = 0
+    var industrialSecondaryMbbr: Int? = null
     @SerializedName("industrial_secondary_sbr")
     @Expose
-    var industrialSecondarySbr: Int = 0
+    var industrialSecondarySbr: Int? = null
     @SerializedName("industrial_secondary_trickling_filter")
     @Expose
-    var industrialSecondaryTricklingFilter: Int = 0
+    var industrialSecondaryTricklingFilter: Int? = null
     @SerializedName("industrial_secondary_any_other")
     @Expose
-    var industrialSecondaryAnyOther: Int = 0
+    var industrialSecondaryAnyOther: Int? = null
     @SerializedName("industrial_secondary_any_other_text")
     @Expose
     var industrialSecondaryAnyOtherText: String = ""
@@ -229,49 +164,49 @@ class RoutineReport {
     var treatmentDomesticAnyOther: Int? = null
     @SerializedName("treatment_domestic_any_other_text")
     @Expose
-    var treatmentDomesticAnyOtherText: String? = null
+    var treatmentDomesticAnyOtherText = ""
     @SerializedName("treatment_industrial_tertiary")
     @Expose
     var treatmentIndustrialTertiary: Int? = null
     @SerializedName("industrial_tertiary_presser_sand_filter")
     @Expose
-    var industrialTertiaryPresserSandFilter: Int = 0
+    var industrialTertiaryPresserSandFilter: Int? = null
     @SerializedName("industrial_tertiary_activated_carbon_filter")
     @Expose
-    var industrialTertiaryActivatedCarbonFilter: Int = 0
+    var industrialTertiaryActivatedCarbonFilter: Int? = null
     @SerializedName("industrial_tertiary_dual_media_filter")
     @Expose
-    var industrialTertiaryDualMediaFilter: Int = 0
+    var industrialTertiaryDualMediaFilter: Int? = null
     @SerializedName("industrial_tertiary_any_other")
     @Expose
-    var industrialTertiaryAnyOther: Int = 0
+    var industrialTertiaryAnyOther: Int? = null
     @SerializedName("industrial_tertiary_any_other_text")
     @Expose
-    var industrialTertiaryAnyOtherText: String? = null
+    var industrialTertiaryAnyOtherText = ""
     @SerializedName("treatment_industrial_advanced")
     @Expose
     var treatmentIndustrialAdvanced: Int? = null
     @SerializedName("industrial_advanced_reverse_osmosis")
     @Expose
-    var industrialAdvancedReverseOsmosis: Int = 0
+    var industrialAdvancedReverseOsmosis: Int? = null
     @SerializedName("industrial_advanced_mee")
     @Expose
-    var industrialAdvancedMee: Int = 0
+    var industrialAdvancedMee: Int? = null
     @SerializedName("ultra_filtration")
     @Expose
-    var ultraFiltration: Int = 0
+    var ultraFiltration: Int? = null
     @SerializedName("nano_filtration")
     @Expose
-    var nanoFiltration: Int = 0
+    var nanoFiltration: Int? = null
     @SerializedName("atfd")
     @Expose
-    var atfd: Int = 0
+    var atfd: Int? = null
     @SerializedName("industrial_advanced_any_other")
     @Expose
-    var industrialAdvancedAnyOther: Int = 0
+    var industrialAdvancedAnyOther: Int? = null
     @SerializedName("industrial_advanced_any_other_text")
     @Expose
-    var industrialAdvancedAnyOtherText: String? = null
+    var industrialAdvancedAnyOtherText = ""
     @SerializedName("treatment_observation")
     @Expose
     var treatmentObservation: String = ""
@@ -285,148 +220,150 @@ class RoutineReport {
 
     @SerializedName("disposal_industrial_CETP")
     @Expose
-    var disposalIndustrialCETP: Int = 0
+    var disposalIndustrialCETP: Int? = null
     @SerializedName("disposal_industrial_CETP_text")
     @Expose
-    var disposalIndustrialCETPText: String? = null
+    var disposalIndustrialCETPText = ""
     @SerializedName("disposal_domestic_CETP")
     @Expose
-    var disposalDomesticCETP: Int = 0
+    var disposalDomesticCETP: Int? = null
     @SerializedName("disposal_domestic_CETP_text")
     @Expose
-    var disposalDomesticCETPText: String? = null
+    var disposalDomesticCETPText = ""
     @SerializedName("disposal_industrial_land_gardening")
     @Expose
-    var disposalIndustrialLandGardening: Int = 0
+    var disposalIndustrialLandGardening: Int? = null
     @SerializedName("disposal_industrial_land_gardening_text")
     @Expose
-    var disposalIndustrialLandGardeningText: String? = null
+    var disposalIndustrialLandGardeningText = ""
     @SerializedName("disposal_domestic_land_gardening")
     @Expose
-    var disposalDomesticLandGardening: Int = 0
+    var disposalDomesticLandGardening: Int? = null
     @SerializedName("disposal_domestic_land_gardening_text")
     @Expose
-    var disposalDomesticLandGardeningText: String? = null
+    var disposalDomesticLandGardeningText = ""
     @SerializedName("disposal_industrial_recycle")
     @Expose
-    var disposalIndustrialRecycle: Int = 0
+    var disposalIndustrialRecycle: Int? = null
     @SerializedName("disposal_industrial_recycle_text")
     @Expose
-    var disposalIndustrialRecycleText: String? = null
+    var disposalIndustrialRecycleText = ""
     @SerializedName("disposal_domestic_recycle")
     @Expose
-    var disposalDomesticRecycle: Int = 0
+    var disposalDomesticRecycle: Int? = null
     @SerializedName("disposal_domestic_recycle_text")
     @Expose
-    var disposalDomesticRecycleText: String? = null
+    var disposalDomesticRecycleText = ""
     @SerializedName("disposal_industrial_local_body_sewage")
     @Expose
-    var disposalIndustrialLocalBodySewage: Int = 0
+    var disposalIndustrialLocalBodySewage: Int? = null
     @SerializedName("disposal_industrial_local_body_sewage_text")
     @Expose
-    var disposalIndustrialLocalBodySewageText: String? = null
+    var disposalIndustrialLocalBodySewageText = ""
     @SerializedName("disposal_domestic_local_body_sewage")
     @Expose
-    var disposalDomesticLocalBodySewage: Int = 0
+    var disposalDomesticLocalBodySewage: Int? = null
     @SerializedName("disposal_domestic_local_body_sewage_text")
     @Expose
-    var disposalDomesticLocalBodySewageText: String? = null
+    var disposalDomesticLocalBodySewageText = ""
     @SerializedName("disposal_industrial_any_other")
     @Expose
-    var disposalIndustrialAnyOther: Int = 0
+    var disposalIndustrialAnyOther: Int? = null
     @SerializedName("disposal_industrial_any_other_text_remarks")
     @Expose
-    var disposalIndustrialAnyOtherTextRemarks: String? = null
+    var disposalIndustrialAnyOtherTextRemarks = ""
     @SerializedName("disposal_industrial_any_other_text")
     @Expose
-    var disposalIndustrialAnyOtherText: String? = null
+    var disposalIndustrialAnyOtherText = ""
     @SerializedName("disposal_domestic_any_other")
     @Expose
-    var disposalDomesticAnyOther: Int = 0
+    var disposalDomesticAnyOther: Int? = null
     @SerializedName("disposal_domestic_any_other_text_remarks")
     @Expose
-    var disposalDomesticAnyOtherTextRemarks: String? = null
+    var disposalDomesticAnyOtherTextRemarks = ""
     @SerializedName("disposal_domestic_any_other_text")
     @Expose
-    var disposalDomesticAnyOtherText: String? = null
+    var disposalDomesticAnyOtherText = ""
     @SerializedName("disposal_industrial_total")
     @Expose
-    var disposalIndustrialTotal: Int = 0
+    var disposalIndustrialTotal: Int? = null
     @SerializedName("disposal_domestic_total")
     @Expose
-    var disposalDomesticTotal: Int = 0
+    var disposalDomesticTotal: Int? = null
     @SerializedName("disposal_observation")
     @Expose
-    var disposalObservation: String? = null
+    var disposalObservation = ""
     @SerializedName("disposal_industrial_as_per_consent")
     @Expose
-    var disposalIndustrialAsPerConsent: String? = null
+    var disposalIndustrialAsPerConsent = ""
     @SerializedName("disposal_domestic_as_per_consent")
     @Expose
-    var disposalDomesticAsPerConsent: String? = null
+    var disposalDomesticAsPerConsent = ""
     @SerializedName("operation_and_maintainance_insus")
     @Expose
-    var operationAndMaintainanceInsus: String? = null
+    var operationAndMaintainanceInsus = ""
     @SerializedName("operation_and_maintainance_domestic")
     @Expose
-    var operationAndMaintainanceDomestic: String? = null
+    var operationAndMaintainanceDomestic = ""
 
 
     @SerializedName("omsw_applicable")
     @Expose
-    var omswApplicable: Int = 0
+    var omswApplicable: Int? = null
     @SerializedName("omsw_installed")
     @Expose
-    var omswInstalled: Int = 0
+    var omswInstalled: Int? = null
     @SerializedName("omsw_cpcb")
     @Expose
-    var omswCpcb: Int = 0
+    var omswCpcb: Int? = null
     @SerializedName("omsw_mpcb")
     @Expose
-    var omswMpcb: Int = 0
+    var omswMpcb: Int? = null
     @SerializedName("remote_cal_applicable_water")
     @Expose
-    var remoteCalApplicableWater: Int = 0
+    var remoteCalApplicableWater: Int? = null
     @SerializedName("sensor_placed_water")
     @Expose
-    var sensorPlacedWater: Int = 0
+    var sensorPlacedWater: Int? = null
 
 
     @SerializedName("electrict_meter_provided")
     @Expose
-    var electrictMeterProvided: Int = 0
+    var electrictMeterProvided: Int? = null
     @SerializedName("electrict_meter_reading")
     @Expose
-    var electrictMeterReading: Int = 0
+    var electrictMeterReading: Int? = null
 
 
     @SerializedName("date_of_collection_indus")
     @Expose
-    var dateOfCollectionIndus: String? = null
+    var dateOfCollectionIndus = ""
     @SerializedName("date_of_collection_domestic")
     @Expose
-    var dateOfCollectionDomestic: String? = null
+    var dateOfCollectionDomestic = ""
     @SerializedName("payment_details_indus")
     @Expose
-    var paymentDetailsIndus: String? = null
+    var paymentDetailsIndus = ""
     @SerializedName("payment_details_domestic")
     @Expose
-    var paymentDetailsDomestic: String? = null
+    var paymentDetailsDomestic = ""
     @SerializedName("payment_details_indus_amount")
     @Expose
-    var paymentDetailsIndusAmount: String? = null
+    var paymentDetailsIndusAmount = ""
     @SerializedName("payment_details_domestic_amount")
     @Expose
-    var paymentDetailsDomesticAmount: String? = null
+    var paymentDetailsDomesticAmount = ""
     @SerializedName("payment_details_indus_date")
     @Expose
-    var paymentDetailsIndusDate: String? = null
+    var paymentDetailsIndusDate = ""
     @SerializedName("payment_details_domestic_date")
     @Expose
-    var paymentDetailsDomesticDate: String? = null
+    var paymentDetailsDomesticDate = ""
     @SerializedName("jvs_sample_collected_for_water")
     @Expose
     var jvsSampleCollectedForWater: Int? = null
+
+
     @SerializedName("air_pollution_observation")
     @Expose
     var airPollutionObservation: String? = null
@@ -434,7 +371,7 @@ class RoutineReport {
 
     @SerializedName("omsa_applicable")
     @Expose
-    var omsaApplicable: Int = 0
+    var omsaApplicable: Int? = null
     @SerializedName("omsa_installed")
     @Expose
     var omsaInstalled: Int? = null
@@ -530,6 +467,108 @@ class RoutineReport {
     var legalActionUnitComplied: Int? = null
 }
 
+class RoutineReportProduct : BaseObservable() {
+    @SerializedName("product_name")
+    @Expose
+    var productName = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.productName)
+
+        }
+    @SerializedName("product_quantity")
+    @Expose
+    var productQuantity = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.productQuantity)
+        }
+    @SerializedName("product_uom")
+    @Expose
+    var productUom: String? = null
+    @SerializedName("product_quantity_actual")
+    @Expose
+    var productQuantityActual = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.productQuantityActual)
+        }
+    @SerializedName("product_uom_actual")
+    @Expose
+    var productUomActual: String? = null
+}
+
+class JvsSampleCollectedAirSource : BaseObservable() {
+    @SerializedName("name_of_source")
+    @Expose
+    var nameOfSource: String = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.nameOfSource)
+        }
+    @SerializedName("jvs_air_source_parameter")
+    @Expose
+    var jvsAirSourceParameter: ArrayList<String> = arrayListOf()
+    @SerializedName("jvs_air_source_std_prescribed")
+    @Expose
+    var jvsAirSourceStdPrescribed: ArrayList<String> = arrayListOf()
+
+    var ambientAirChild: ArrayList<AmbientAirChild> = arrayListOf()
+}
+
+class AmbientAirChild : BaseObservable() {
+    var parameter = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.parameter)
+        }
+    var prescribedValue = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.prescribedValue)
+        }
+}
+
+class JvsSampleCollectedWaterSource : BaseObservable() {
+    @SerializedName("name_of_source")
+    @Expose
+    var nameOfSource = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.nameOfSource)
+        }
+    @SerializedName("jvs_water_source_parameter")
+    @Expose
+    var jvsWaterSourceParameter: ArrayList<String> = arrayListOf()
+    @SerializedName("jvs_water_source_std_prescribed")
+    @Expose
+    var jvsWaterSourceStdPrescribed: ArrayList<String> = arrayListOf()
+
+    var lastJvsChild = arrayListOf<LastJVSChild>()
+}
+
+class LastJVSChild : BaseObservable() {
+    var parameter = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.parameter)
+        }
+    var prescribedValue = ""
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.prescribedValue)
+        }
+}
+
 class RoutineReportAirPollution : BaseObservable() {
     @SerializedName("air_pollution_source")
     @Expose
@@ -537,6 +576,11 @@ class RoutineReportAirPollution : BaseObservable() {
     @SerializedName("air_pollution_source_other")
     @Expose
     var airPollutionSourceOther: String? = null
+        @Bindable get
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.airPollutionSourceOther)
+        }
     @SerializedName("air_pollution_type")
     @Expose
     var airPollutionType: String? = null
@@ -650,79 +694,129 @@ class RoutineReportBankDetail : BaseObservable() {
 class RoutineReportHazardousWaste : BaseObservable() {
     @SerializedName("hazardous_waste_category_name")
     @Expose
-    var hazardousWasteCategoryName: String = ""
+    var hazardousWasteCategoryName: String? = null
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hazardousWasteCategoryName)
         }
+
     @SerializedName("hazardous_waste_quantity")
     @Expose
-    var hazardousWasteQuantity: String = ""
+    var hazardousWasteQuantity: Int? = null
+    var hazardousWasteQuantityString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.hazardousWasteQuantity)
+            notifyPropertyChanged(BR.hazardousWasteQuantityString)
+            hazardousWasteQuantity = try {
+                hazardousWasteQuantityString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
+
     @SerializedName("hw_disposal_method")
     @Expose
-    var hwDisposalMethod: String = ""
+    var hwDisposalMethod: Int? = null
+    var hwDisposalMethodString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.hwDisposalMethod)
+            notifyPropertyChanged(BR.hwDisposalMethodString)
+            hwDisposalMethod = try {
+                hwDisposalMethodString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("hw_actual_disposal")
     @Expose
-    var hwActualDisposal: String = ""
+    var hwActualDisposal: Int? = null
+    var hwActualDisposalString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.hwActualDisposal)
+            notifyPropertyChanged(BR.hwActualDisposalString)
+            hwActualDisposal = try {
+                hwActualDisposalString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("hw_form_disposal")
     @Expose
-    var hwFormDisposal: String = ""
+    var hwFormDisposal: Int? = null
+    var hwFormDisposalString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.hwFormDisposal)
+            notifyPropertyChanged(BR.hwFormDisposalString)
+            hwFormDisposal = try {
+                hwFormDisposalString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("hw_form_cswtsdf")
     @Expose
-    var hwFormCswtsdf: String = ""
+    var hwFormCswtsdf: Int? = null
+    var hwFormCswtsdfString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.hwFormCswtsdf)
+            notifyPropertyChanged(BR.hwFormCswtsdfString)
+            hwFormCswtsdf = try {
+                hwFormCswtsdfString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("hw_form_co_processing")
     @Expose
-    var hwFormCoProcessing: String = ""
+    var hwFormCoProcessing: Int? = null
+    var hwFormCoProcessingString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.hwFormCoProcessing)
+            notifyPropertyChanged(BR.hwFormCoProcessingString)
+            hwFormCoProcessing = try {
+                hwFormCoProcessingString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("hw_disposed_actualuser")
     @Expose
-    var hwDisposedActualuser: String = ""
+    var hwDisposedActualuser: Int? = null
+    var hwDisposedActualuserString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.hwDisposedActualuser)
+            notifyPropertyChanged(BR.hwDisposedActualuserString)
+            hwDisposedActualuser = try {
+                hwDisposedActualuserString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("hw_disposal_quantity")
     @Expose
-    var hwDisposalQuantity: String = ""
+    var hwDisposalQuantity: Int? = null
+    var hwDisposalQuantityString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.hwDisposalQuantity)
+            notifyPropertyChanged(BR.hwDisposalQuantityString)
+            hwDisposalQuantity = try {
+                hwDisposalQuantityString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("hw_disposal_date")
     @Expose
-    var hwDisposalDate: String = ""
+    var hwDisposalDate: String? = null
         @Bindable get
         set(value) {
             field = value
@@ -730,13 +824,13 @@ class RoutineReportHazardousWaste : BaseObservable() {
         }
     @SerializedName("hw_disposal_quantity_unit")
     @Expose
-    var hwDisposalQuantityUnit: String = ""
+    var hwDisposalQuantityUnit: Int? = null
 }
 
 class RoutineReportNonHazardousWaste : BaseObservable() {
     @SerializedName("nhw_waste_name")
     @Expose
-    var nhwWasteName = ""
+    var nhwWasteName: String? = null
         @Bindable get
         set(value) {
             field = value
@@ -744,15 +838,21 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
         }
     @SerializedName("nhw_quantity")
     @Expose
-    var nhwQuantity = ""
+    var nhwQuantity: Int? = null
+    var nhwQuantityString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.nhwQuantity)
+            notifyPropertyChanged(BR.nhwQuantityString)
+            nhwQuantity = try {
+                nhwQuantityString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("nhw_disposal_method")
     @Expose
-    var nhwDisposalMethod: String = ""
+    var nhwDisposalMethod: String? = null
         @Bindable get
         set(value) {
             field = value
@@ -760,7 +860,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
         }
     @SerializedName("nhw_disposal_date")
     @Expose
-    var nhwDisposalDate: String = ""
+    var nhwDisposalDate: String? = null
         @Bindable get
         set(value) {
             field = value
@@ -768,55 +868,33 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
         }
     @SerializedName("nhw_disposal_quantity")
     @Expose
-    var nhwDisposalQuantity: String = ""
+    var nhwDisposalQuantity: Int? = null
+    var nhwDisposalQuantityString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.nhwDisposalQuantity)
+            notifyPropertyChanged(BR.nhwDisposalQuantityString)
+            nhwDisposalQuantity = try {
+                nhwDisposalQuantityString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("nhw_actualdisposal")
     @Expose
-    var nhwActualdisposal: String = ""
+    var nhwActualdisposal: Int? = null
+    var nhwActualdisposalString: String? = null
         @Bindable get
         set(value) {
             field = value
-            notifyPropertyChanged(BR.nhwActualdisposal)
+            notifyPropertyChanged(BR.nhwActualdisposalString)
+            nhwActualdisposal = try {
+                nhwActualdisposalString!!.toInt()
+            } catch (e: Exception) {
+                0
+            }
         }
     @SerializedName("nhw_disposal_quantity_unit")
     @Expose
-    var nhwDisposalQuantityUnit: String = ""
-}
-
-class RoutineReportProduct : BaseObservable() {
-    @SerializedName("product_name")
-    @Expose
-    var productName = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.productName)
-
-        }
-    @SerializedName("product_quantity")
-    @Expose
-    var productQuantity = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.productQuantity)
-        }
-    @SerializedName("product_uom")
-    @Expose
-    var productUom: String? = null
-    @SerializedName("product_quantity_actual")
-    @Expose
-    var productQuantityActual = ""
-        @Bindable get
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.productQuantityActual)
-        }
-    @SerializedName("product_uom_actual")
-    @Expose
-    var productUomActual: String? = null
+    var nhwDisposalQuantityUnit: Int? = null
 }

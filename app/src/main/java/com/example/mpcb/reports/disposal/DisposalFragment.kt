@@ -23,8 +23,8 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_5)
-
         setListener()
+
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
 
@@ -41,16 +41,30 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         mBinding.cbDomesticSewageTreatment.setOnCheckedChangeListener(this)
         mBinding.cbDomesticAnyOther.setOnCheckedChangeListener(this)
 
-        mBinding.rgDisposalConsent.setOnCheckedChangeListener { group, checkedId ->
+        mBinding.rgIndusDisposalConsent.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.disposalIndustrialAsPerConsent =
-                if (checkedId == R.id.rbDisposalYes) "1" else "0"
+                if (checkedId == R.id.rbIndusDisposalYes) "1" else "0"
         }
 
-        mBinding.rgOperationMaintenance.setOnCheckedChangeListener { group, checkedId ->
+        mBinding.rgDomesticDisposalConsent.setOnCheckedChangeListener { group, checkedId ->
+            report.data.routineReport.disposalDomesticAsPerConsent =
+                if (checkedId == R.id.rbDomesticDisposalYes) "1" else "0"
+        }
+
+        mBinding.rgIndusOperationMaintenance.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.operationAndMaintainanceInsus = when (checkedId) {
-                R.id.rbPoor -> "0"
-                R.id.rbAverage -> "1"
-                R.id.rbGood -> "2"
+                R.id.rbIndusPoor -> "0"
+                R.id.rbIndusAverage -> "1"
+                R.id.rbIndusGood -> "2"
+                else -> ""
+            }
+        }
+
+        mBinding.rgDomesticOperationMaintenance.setOnCheckedChangeListener { group, checkedId ->
+            report.data.routineReport.operationAndMaintainanceDomestic = when (checkedId) {
+                R.id.rbDomesticPoor -> "0"
+                R.id.rbDomesticAverage -> "1"
+                R.id.rbDomesticGood -> "2"
                 else -> ""
             }
         }

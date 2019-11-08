@@ -23,8 +23,8 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
         setUpRecyclerView()
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
-        mBinding.imgAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
+        mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
 
     }
 
