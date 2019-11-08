@@ -44,6 +44,10 @@ class ProfileViewModel : BaseViewModel<ProfileNavigator>() {
         dialogVisibility.value = true
         mDisposable.add(DataProvider.updateProfile(request, Consumer {
             dialogVisibility.value = false
+            userData.name = request.name
+            userData.email = request.email
+            userData.mobile = request.phone
+            PreferencesHelper.setPreferences(Constants.USER, Gson().toJson(userData))
             mNavigator!!.onUpdateProfileSuccess(it.message)
         }, Consumer { checkError(it) }))
     }

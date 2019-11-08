@@ -91,9 +91,11 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
             report.data.routineReport.jvsSampleCollectedForWater =
                 if (checkedId == R.id.rbJVSSampleYes) {
                     mBinding.rvJVS.visibility = View.VISIBLE
+                    mBinding.txtAddMore.visibility = View.VISIBLE
                     1
                 } else {
                     mBinding.rvJVS.visibility = View.GONE
+                    mBinding.txtAddMore.visibility = View.GONE
                     0
                 }
         }

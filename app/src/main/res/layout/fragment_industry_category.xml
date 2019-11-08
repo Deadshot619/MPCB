@@ -50,48 +50,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/industry_cat_lbl" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtConsent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Consent Obtained"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cat_spinner" />
-
-                <RadioGroup
-                    android:id="@+id/rgConsent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtConsent">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbConsentYes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Yes"
-                        android:textSize="18sp" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbConsentNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginTop="4dp"
-                        android:text="No"
-                        android:textSize="18sp" />
-                </RadioGroup>
-
 
                 <View
                     android:id="@+id/view_separator_cat"
@@ -101,7 +59,7 @@
                     android:background="@color/light_white_100"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rgConsent" />
+                    app:layout_constraintTop_toBottomOf="@+id/cat_spinner" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -302,6 +260,48 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtConsent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="Consent Obtained"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/consent_de_lbl" />
+
+                <RadioGroup
+                    android:id="@+id/rgConsent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtConsent">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbConsentYes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Yes"
+                        android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbConsentNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginTop="4dp"
+                        android:text="No"
+                        android:textSize="18sp" />
+                </RadioGroup>
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSubmit"
                     style="@style/save_btn_style"
@@ -317,7 +317,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/consent_de_lbl" />
+                    app:layout_constraintTop_toBottomOf="@+id/rgConsent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

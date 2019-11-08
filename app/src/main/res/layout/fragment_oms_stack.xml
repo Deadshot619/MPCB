@@ -83,7 +83,7 @@
                         android:id="@+id/rbWOSA"
                         android:layout_width="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Applicable"
+                        android:text="Installed"
                         android:textSize="18sp"
                         android:layout_height="wrap_content" />
 
@@ -91,7 +91,7 @@
                         android:id="@+id/rbWOSNA"
                         android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
-                        android:text="Not Applicable"
+                        android:text="Not Installed"
                         android:layout_marginLeft="32dp"
                         android:layout_marginStart="32dp"
                         android:textSize="18sp"
@@ -255,7 +255,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Whether calibration facility exists?"
+                    android:text="Connectivity"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rgWCalSys" />

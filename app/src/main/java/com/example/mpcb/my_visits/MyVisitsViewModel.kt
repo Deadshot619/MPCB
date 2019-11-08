@@ -32,8 +32,11 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     fun getVisitListData() {
         val request = MyVisitRequest()
         request.userId = user.userId.toString()
+//        request.toDate = "2019-09-30"
         request.fromDate = "2017-09-01"
         request.toDate = "2019-09-30"
+//        request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
+//        request.fromDate = request.toDate.replaceRange(8, 10, "01")
         dialogVisibility.value = true
         dialogMessage.value = "Fetching List..."
         mDisposable.add(DataProvider.getVisitList(request, Consumer {

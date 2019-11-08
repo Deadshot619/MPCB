@@ -88,6 +88,12 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
 
         mBinding.cbDomesticSepticTank.setOnCheckedChangeListener(this)
         mBinding.cbDomesticSewage.setOnCheckedChangeListener(this)
+
+        mBinding.cbSewageActivated.setOnCheckedChangeListener(this)
+        mBinding.cbSewageMBBR.setOnCheckedChangeListener(this)
+        mBinding.cbSewageSBR.setOnCheckedChangeListener(this)
+        mBinding.cbSewageTrickling.setOnCheckedChangeListener(this)
+        mBinding.cbSewageAnyOther.setOnCheckedChangeListener(this)
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
@@ -161,7 +167,29 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
             R.id.cbDomesticSepticTank -> report.data.routineReport.treatmentDomesticSepticTank =
                 if (isChecked) 1 else 0
             R.id.cbDomesticSewage -> report.data.routineReport.treatmentDomesticSeverageTreatmentPlant =
+                if (isChecked) {
+                    mBinding.layLinSewage.visibility = View.VISIBLE
+                    1
+                } else {
+                    mBinding.layLinSewage.visibility = View.GONE
+                    0
+                }
+            R.id.cbSewageActivated -> report.data.routineReport.treatmentDomesticActivatedSludgeProcess =
                 if (isChecked) 1 else 0
+            R.id.cbSewageMBBR -> report.data.routineReport.treatmentDomesticMbbr =
+                if (isChecked) 1 else 0
+            R.id.cbSewageSBR -> report.data.routineReport.treatmentDomesticSbr =
+                if (isChecked) 1 else 0
+            R.id.cbSewageTrickling -> report.data.routineReport.treatmentDomesticTricklingFilter =
+                if (isChecked) 1 else 0
+            R.id.cbSewageAnyOther -> report.data.routineReport.treatmentDomesticAnyOther =
+                if (isChecked) {
+                    mBinding.SewageOtherRemarkLayout.visibility = View.VISIBLE
+                    1
+                } else {
+                    mBinding.SewageOtherRemarkLayout.visibility = View.GONE
+                    0
+                }
         }
     }
 
@@ -216,6 +244,17 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                 report.data.routineReport.industrialAdvancedAnyOtherText = ""
             }
         }
+        if (report.data.routineReport.treatmentDomesticSeverageTreatmentPlant == 0) {
+            report.data.routineReport.treatmentDomesticActivatedSludgeProcess = 0
+            report.data.routineReport.treatmentDomesticMbbr = 0
+            report.data.routineReport.treatmentDomesticSbr = 0
+            report.data.routineReport.treatmentDomesticTricklingFilter = 0
+            report.data.routineReport.treatmentDomesticAnyOther = 0
+            if (report.data.routineReport.treatmentDomesticAnyOther == 0) {
+                report.data.routineReport.treatmentDomesticAnyOtherText = ""
+            }
+        }
+
 
         report.data.routineReport.treatmentObservation =
             mBinding.edtIndustrialRemark.text.toString()

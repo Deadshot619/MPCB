@@ -18,7 +18,7 @@ class NonHazardousViewModel : BaseViewModel<NonHazardousNavigator>() {
 
     fun deleteItem() {
         val list = sourceList.value
-        if (list!!.size > 1) {
+        if (list != null && list.size > 1) {
             list.removeAt(list.size - 1)
             sourceList.value = list
         }

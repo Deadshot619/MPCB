@@ -484,6 +484,72 @@
                         android:layout_marginTop="8dp"
                         android:text="Sewage treatment plant"
                         android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/layLinSewage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/linLayThird">
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSewageActivated"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Activated Sludge Process"
+                            android:textSize="18sp" />
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSewageMBBR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="MBBR"
+                            android:textSize="18sp" />
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSewageSBR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="SBR"
+                            android:textSize="18sp" />
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSewageTrickling"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trickling Filter"
+                            android:textSize="18sp" />
+
+                        <androidx.appcompat.widget.AppCompatCheckBox
+                            android:id="@+id/cbSewageAnyOther"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Any Other"
+                            android:textSize="18sp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/SewageOtherRemarkLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="gone"
+                            android:layout_marginTop="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:hint="Any Other Remark"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/layLinTopSection">
+
+                            <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/edtSewageOtherRemark"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

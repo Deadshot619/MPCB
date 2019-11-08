@@ -56,7 +56,17 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         }
         mBinding.rgSampleCollected.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.jvsSampleCollectedForAir =
-                if (checkedId == R.id.rbSampleYes) 1 else 0
+                if (checkedId == R.id.rbSampleYes) {
+                    mBinding.rvAmbientAir.visibility = View.VISIBLE
+                    mBinding.txtAddMore.visibility = View.VISIBLE
+                    mBinding.imgDelete.visibility = View.VISIBLE
+                    1
+                } else {
+                    mBinding.rvAmbientAir.visibility = View.GONE
+                    mBinding.txtAddMore.visibility = View.GONE
+                    mBinding.imgDelete.visibility = View.GONE
+                    0
+                }
         }
         mBinding.cbCPCB.setOnCheckedChangeListener { buttonView, isChecked ->
             report.data.routineReport.omsamCpcb = if (isChecked) 1 else 0

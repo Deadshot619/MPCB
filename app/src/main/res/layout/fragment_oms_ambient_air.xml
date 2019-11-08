@@ -97,7 +97,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Applicable"
+                        android:text="Installed"
                         android:textSize="18sp" />
 
                     <androidx.appcompat.widget.AppCompatRadioButton
@@ -107,9 +107,44 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginTop="4dp"
-                        android:text="Not Applicable"
+                        android:text="Not Installed"
                         android:textSize="18sp" />
                 </RadioGroup>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtConnectivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Connectivity"
+                    android:textColor="@color/grey"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rgOMSInstalled" />
+
+                <LinearLayout
+                    android:id="@+id/linLayConnectivity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtConnectivity">
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cbCPCB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CPCB" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/cbMPCB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="MPCB" />
+                </LinearLayout>
+
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtSampleCollected"
@@ -117,10 +152,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="JVS Sample Collected for Water"
+                    android:text="JVS Sample Collected for Air"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgOMSInstalled" />
+                    app:layout_constraintTop_toBottomOf="@id/linLayConnectivity" />
 
                 <RadioGroup
                     android:id="@+id/rgSampleCollected"
@@ -150,40 +185,6 @@
                         android:textSize="18sp" />
                 </RadioGroup>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtConnectivity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Connectivity"
-                    android:textColor="@color/grey"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgSampleCollected" />
-
-                <LinearLayout
-                    android:id="@+id/linLayConnectivity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtConnectivity">
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                        android:id="@+id/cbCPCB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CPCB" />
-
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                        android:id="@+id/cbMPCB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:text="MPCB" />
-                </LinearLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/RemarkLayout"
                     android:layout_width="match_parent"
@@ -193,7 +194,7 @@
                     android:layout_marginRight="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/linLayConnectivity">
+                    app:layout_constraintTop_toBottomOf="@id/rgSampleCollected">
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/edtRemark"
@@ -227,8 +228,7 @@
                     android:id="@+id/imgDelete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
+                    app:layout_goneMarginRight="16dp"
                     android:layout_marginTop="16dp"
                     android:drawableStart="@drawable/ic_delete"
                     android:drawableLeft="@drawable/ic_delete"
