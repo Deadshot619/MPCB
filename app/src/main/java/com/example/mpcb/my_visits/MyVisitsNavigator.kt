@@ -10,4 +10,6 @@ interface MyVisitsNavigator : BaseNavigator {
     fun onCheckInClicked(model: MyVisitModel)
 
     fun onCheckInSuccess(msg: String)
+
+    fun dismissCheckinDialog()
 }

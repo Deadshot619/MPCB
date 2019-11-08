@@ -1,9 +1,11 @@
 package com.example.mpcb.network
 
 import com.example.mpcb.BuildConfig
+import com.example.mpcb.base.MPCBApp
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -80,6 +82,7 @@ class APIClient {
                 builder.sslSocketFactory(sslSocketFactory, trustAllCerts[0] as X509TrustManager)
                 builder.hostnameVerifier { hostname, session -> true }
                 builder.addNetworkInterceptor(StethoInterceptor())
+                builder.addNetworkInterceptor(ChuckInterceptor(MPCBApp.instance))
                 return builder
             } catch (e: Exception) {
                 throw RuntimeException(e)

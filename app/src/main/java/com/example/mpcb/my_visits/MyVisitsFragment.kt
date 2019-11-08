@@ -44,11 +44,6 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        mViewModel.getVisitListData()
-    }
-
     private fun showCalendarDialog() {
         val calendar = Calendar.getInstance()
         val datePickerDialog =
@@ -71,12 +66,17 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         mViewModel.getVisitList().observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
         })
+        mViewModel.getVisitListData()
     }
 
     override fun onVisitItemClicked(item: MyVisitModel) {
         val bundle = Bundle()
         bundle.putParcelable(Constants.VISIT_ITEM_KEY, item)
         addFragment(VisitReportFragment(), true, bundle)
+    }
+
+    override fun dismissCheckinDialog() {
+        dialogFragment.dismiss()
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -105,8 +105,8 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     }
 
     override fun onCheckInSuccess(msg: String) {
-        dialogFragment.dismiss()
         showMessage(msg)
+        mViewModel.getVisitListData()
     }
 
     override fun onRequestPermissionsResult(

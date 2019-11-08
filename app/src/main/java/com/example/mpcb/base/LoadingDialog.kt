@@ -3,7 +3,6 @@ package com.example.mpcb.base
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.Window
 import androidx.appcompat.app.AppCompatDialog
@@ -19,6 +18,7 @@ class LoadingDialog(context: Context) : AppCompatDialog(context) {
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(dialogProgressBinding.root)
+        setCancelable(false)
         Objects.requireNonNull(window).setLayout(WRAP_CONTENT, WRAP_CONTENT)
     }
 

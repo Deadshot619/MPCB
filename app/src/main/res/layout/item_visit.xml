@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="56dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:text="@{model.industryName}"
                     android:textColor="@android:color/black" />
 

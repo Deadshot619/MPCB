@@ -1,6 +1,5 @@
 package com.example.mpcb.my_visits
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.base.MPCBApp
@@ -71,33 +70,24 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         val selfieImageBody: RequestBody
         val selfieImagePart: MultipartBody.Part
 
-        val userId =
-            RequestBody.create(MediaType.parse("multipart/form-data"), user.userId.toString())
-        val visitId =
-            RequestBody.create(MediaType.parse("multipart/form-data"), visitSchedulerId.toString())
-        val latitude = RequestBody.create(
-            MediaType.parse("multipart/form-data"),
-            PreferencesHelper.getCurrentLatitude()
-        )
-        val longitude = RequestBody.create(
-            MediaType.parse("multipart/form-data"),
-            PreferencesHelper.getCurrentLongitude()
-        )
+        val userId = user.userId.toString()
+        val visitId = visitSchedulerId.toString()
+        val latitude = PreferencesHelper.getCurrentLatitude()
+        val longitude = PreferencesHelper.getCurrentLongitude()
 
         val file = File(path)
-        selfieImageBody = RequestBody.create(MediaType.parse("multipart/form-data"), file)
+        selfieImageBody = RequestBody.create(MediaType.parse("image/*"), file)
         selfieImagePart =
             MultipartBody.Part.createFormData("selfie_img", file.name, selfieImageBody)
+
         dialogMessage.value = "Checking In..."
         dialogVisibility.value = true
-        mDisposable.add(
-            DataProvider.checkIn(userId, visitId, latitude, longitude, selfieImagePart, Consumer {
+        mNavigator!!.dismissCheckinDialog()
+        mDisposable.add(DataProvider.checkIn(userId, visitId, latitude, longitude, selfieImagePart,
+            Consumer {
                 dialogVisibility.value = false
                 mNavigator!!.onCheckInSuccess(it.message)
-            }, Consumer {
-                dialogVisibility.value = false
-                Log.e("Error", it.message)
-            })
+            }, Consumer { checkError(it) })
         )
     }
 }

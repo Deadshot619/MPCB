@@ -40,10 +40,10 @@ interface RemoteDataProvider {
     ): Disposable
 
     fun checkIn(
-        userId: RequestBody,
-        visitId: RequestBody,
-        latitude: RequestBody,
-        longitude: RequestBody,
+        userId: String,
+        visitId: String,
+        latitude: String,
+        longitude: String,
         selfieImagePart: MultipartBody.Part,
         success: Consumer<CheckInResponse>,
         error: Consumer<Throwable>

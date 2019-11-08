@@ -82,5 +82,8 @@ dependencies {
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0-rc01'
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc01'
 
+    debugImplementation 'com.readystatesoftware.chuck:library:1.1.0'
+    releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.1.0'
+
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 }
