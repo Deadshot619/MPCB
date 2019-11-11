@@ -12,4 +12,6 @@ interface MyVisitsNavigator : BaseNavigator {
     fun onCheckInSuccess(msg: String)
 
     fun dismissCheckinDialog()
+
+    fun showAlert(message: String)
 }

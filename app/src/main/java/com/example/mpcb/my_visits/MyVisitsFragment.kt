@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.DatePicker
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import com.example.mpcb.utils.addFragment
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.dialog.CheckInDialog
 import com.example.mpcb.utils.dialog.DialogHelper
+import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.locationservice.LocationHelper
 import com.example.mpcb.utils.permission.PermissionUtils
 import com.example.mpcb.utils.showMessage
@@ -26,7 +28,14 @@ import java.util.*
 
 
 class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
-    MyVisitsNavigator {
+    MyVisitsNavigator, DatePickerDialog.OnDateSetListener {
+    override fun showAlert(message: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     private lateinit var model: MyVisitModel
     private lateinit var dialogFragment: CheckInDialog
@@ -40,8 +49,11 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     override fun onBinding() {
         setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title))
         setUpRecyclerView()
-        mBinding.toolbarLayout.imgCalendar.setOnClickListener { showCalendarDialog() }
-
+        mBinding.toolbarLayout.imgCalendar.setOnClickListener {
+            val pd = MonthYearPickerDialog()
+            pd.setListener(this)
+            pd.show(fragmentManager!!, "MonthYearPickerDialog")
+        }
     }
 
     private fun showCalendarDialog() {
@@ -66,12 +78,16 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         mViewModel.getVisitList().observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
         })
-        mViewModel.getVisitListData()
+        val calendar = Calendar.getInstance()
+        val date =
+            calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
+                    calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
+        mViewModel.getVisitListData(date)
     }
 
-    override fun onVisitItemClicked(item: MyVisitModel) {
+    override fun onVisitItemClicked(viewModel: MyVisitModel) {
         val bundle = Bundle()
-        bundle.putParcelable(Constants.VISIT_ITEM_KEY, item)
+        bundle.putParcelable(Constants.VISIT_ITEM_KEY, viewModel)
         addFragment(VisitReportFragment(), true, bundle)
     }
 
@@ -106,7 +122,11 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     override fun onCheckInSuccess(msg: String) {
         showMessage(msg)
-        mViewModel.getVisitListData()
+        val calendar = Calendar.getInstance()
+        val date =
+            calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
+                    calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
+        mViewModel.getVisitListData(date)
     }
 
     override fun onRequestPermissionsResult(

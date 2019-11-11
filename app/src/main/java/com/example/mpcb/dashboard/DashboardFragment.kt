@@ -6,21 +6,27 @@ import android.util.Log
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.showMessage
-import java.util.*
+import java.text.SimpleDateFormat
+import java.util.Calendar.*
 
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
     DashboardNavigator, DatePickerDialog.OnDateSetListener {
+    override fun showAlert(errorMessage: String) {
+        Toast.makeText(activity!!, errorMessage, Toast.LENGTH_LONG).show()
+    }
+
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        val calender = Calendar.getInstance()
-        val day = calender.getActualMinimum(Calendar.DAY_OF_MONTH)
-        mViewModel.getDashboardData("$year-${month + 1}-$day")
+        val calender = getInstance()
+        val day = calender.getActualMinimum(DAY_OF_MONTH)
+        mViewModel.getDashboardData("$year-$month-$day")
     }
 
     override fun getLayoutId() = R.layout.fragment_dashboard
@@ -33,12 +39,58 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         mBinding.dashboardModel = mViewModel.getDashboardModel()
         setToolbar(mBinding.toolbarLayout, "MPCB")
         mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
-        mViewModel.getDashboardData("2019-10-01")
+        val calendar = getInstance()
+        val fromDate =
+            calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" + calendar.getActualMinimum(
+                DAY_OF_MONTH
+            ).toString()
+        mViewModel.getDashboardData(fromDate)
 
         setListeners()
+
+        setDateView()
+    }
+
+    private fun setDateView() {
+
+        val calendar = getInstance()
+        val currentTime = calendar.time
+        val monthFormat = SimpleDateFormat("MMM")
+
+        with(mBinding) {
+            tvMonthOne.text =
+                monthFormat.format(currentTime)
+            tvYearOne.text =
+                calendar.get(YEAR).toString()
+
+            calendar.add(MONTH, -1)
+            tvMonthTwo.text =
+                monthFormat.format(calendar.time)
+            tvYearTwo.text =
+                calendar.get(YEAR).toString()
+
+            calendar.time = currentTime
+            calendar.add(MONTH, -2)
+            tvMonthThree.text =
+                monthFormat.format(calendar.time)
+            tvYearThree.text =
+                calendar.get(YEAR).toString()
+
+            calendar.time = currentTime
+            calendar.add(MONTH, -3)
+            tvMonthFour.text =
+                monthFormat.format(calendar.time)
+            tvYearFour.text =
+                calendar.get(YEAR).toString()
+
+        }
     }
 
     private fun setListeners() {
+        val calendar = getInstance()
+        val currentTime = calendar.time
+        val monthFormat = SimpleDateFormat("MMM")
+
         mBinding.monthLayOne.setOnClickListener {
             setAllView(
                 R.drawable.cal_back_select,
@@ -46,7 +98,11 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                 mBinding.monthLayOne
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthOne, mBinding.tvYearOne)
-            mViewModel.getDashboardData("2019-11-01")
+            calendar.time = currentTime
+            val date =
+                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" +
+                        calendar.getActualMinimum(DAY_OF_MONTH)
+            mViewModel.getDashboardData(date)
         }
         mBinding.monthLayTwo.setOnClickListener {
             setAllView(
@@ -55,7 +111,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                 mBinding.monthLayTwo
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthTwo, mBinding.tvYearTwo)
-            mViewModel.getDashboardData("2019-10-01")
+            calendar.time = currentTime
+            calendar.add(MONTH, -1)
+            val date =
+                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" +
+                        calendar.getActualMinimum(DAY_OF_MONTH)
+            mViewModel.getDashboardData(date)
         }
         mBinding.monthLayThree.setOnClickListener {
             setAllView(
@@ -64,7 +125,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                 mBinding.monthLayThree
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthThree, mBinding.tvYearThree)
-            mViewModel.getDashboardData("2019-09-01")
+            calendar.time = currentTime
+            calendar.add(MONTH, -2)
+            val date =
+                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" +
+                        calendar.getActualMinimum(DAY_OF_MONTH)
+            mViewModel.getDashboardData(date)
         }
         mBinding.monthLayFour.setOnClickListener {
             setAllView(
@@ -73,7 +139,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                 mBinding.monthLayFour
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthFour, mBinding.tvYearFour)
-            mViewModel.getDashboardData("2019-08-01")
+            calendar.time = currentTime
+            calendar.add(MONTH, -3)
+            val date =
+                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" +
+                        calendar.getActualMinimum(DAY_OF_MONTH)
+            mViewModel.getDashboardData(date)
         }
         mBinding.calPickerLay.setOnClickListener {
             val pd = MonthYearPickerDialog()
@@ -83,7 +154,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     }
 
     private fun showCalendarDialog() {
-        val calendar = Calendar.getInstance()
+        val calendar = getInstance()
         val datePickerDialog =
             DatePickerDialog(
                 getBaseActivity(),
@@ -91,9 +162,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                     Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
                     mViewModel.getDashboardData("$year-${month + 1}-$dayOfMonth")
                 },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
+                calendar.get(YEAR),
+                calendar.get(MONTH),
+                calendar.get(DAY_OF_MONTH)
             )
         datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
         datePickerDialog.show()
