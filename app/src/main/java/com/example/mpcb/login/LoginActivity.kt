@@ -36,7 +36,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
         mBinding.model = login
         mBinding.viewModel = mViewModel
 
+        mBinding.model!!.apply {
+            userName = "fo_s1nm"
+            password = "Admin@123"
+        }
+
     }
-
-
 }

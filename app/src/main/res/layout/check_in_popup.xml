@@ -1,265 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="model"
-            type="com.example.mpcb.network.response.MyVisitModel" />
+                name="model"
+                type="com.example.mpcb.network.response.MyVisitModel" />
 
         <variable
-            name="viewModel"
-            type="com.example.mpcb.my_visits.MyVisitsViewModel" />
+                name="viewModel"
+                type="com.example.mpcb.my_visits.MyVisitsViewModel" />
     </data>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp">
-
-        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="2dp">
+            android:layout_margin="8dp">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="2dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/btnCancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:src="@drawable/ic_close"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                        android:id="@+id/btnCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/ic_close"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/pop_up_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:gravity="center"
-                    android:text="@{model.industryName}"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_xlarge"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btnCancel" />
+                        android:id="@+id/pop_up_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:gravity="center"
+                        android:text="@{model.industryName}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_xlarge"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/btnCancel" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/industry_lbl_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:background="@drawable/background_green"
-                    android:padding="8dp"
-                    android:text='@{"#" + model.industryIMISId}'
-                    android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pop_up_title" />
+                        android:id="@+id/industry_lbl_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/background_green"
+                        android:padding="8dp"
+                        android:text='@{"#" + model.industryIMISId}'
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pop_up_title" />
 
                 <View
-                    android:id="@+id/line_separator"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/view_line"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
-                    android:background="@color/grey"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/industry_lbl_id" />
+                        android:id="@+id/line_separator"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_line"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:background="@color/grey"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/industry_lbl_id" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/lbl_address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Address:"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintStart_toStartOf="@+id/line_separator"
-                    app:layout_constraintTop_toBottomOf="@+id/line_separator" />
+                        android:id="@+id/lbl_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Address:"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintStart_toStartOf="@+id/line_separator"
+                        app:layout_constraintTop_toBottomOf="@+id/line_separator" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/adress_detail_vw"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
-                    android:text="@{model.industryAddress}"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/lbl_address"
-                    app:layout_constraintTop_toBottomOf="@+id/lbl_address" />
+                        android:id="@+id/adress_detail_vw"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:text="@{model.industryAddress}"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/lbl_address"
+                        app:layout_constraintTop_toBottomOf="@+id/lbl_address" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/visit_schedule_lbl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Visit Scheduled On:"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintStart_toStartOf="@+id/adress_detail_vw"
-                    app:layout_constraintTop_toBottomOf="@+id/adress_detail_vw" />
+                        android:id="@+id/visit_schedule_lbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Visit Scheduled On:"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintStart_toStartOf="@+id/adress_detail_vw"
+                        app:layout_constraintTop_toBottomOf="@+id/adress_detail_vw" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/visit_schedule_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintBottom_toBottomOf="@+id/visit_schedule_lbl"
-                    app:layout_constraintStart_toEndOf="@+id/visit_schedule_lbl"
-                    app:layout_constraintTop_toTopOf="@+id/visit_schedule_lbl"
-                    app:parseDate="@{model.scheduledOn}" />
+                        android:id="@+id/visit_schedule_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintBottom_toBottomOf="@+id/visit_schedule_lbl"
+                        app:layout_constraintStart_toEndOf="@+id/visit_schedule_lbl"
+                        app:layout_constraintTop_toTopOf="@+id/visit_schedule_lbl"
+                        app:parseDate="@{model.scheduledOn}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/visit_date_lbl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Visit On: "
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintStart_toStartOf="@+id/visit_schedule_lbl"
-                    app:layout_constraintTop_toBottomOf="@+id/visit_schedule_lbl" />
+                        android:id="@+id/visit_date_lbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Visit On: "
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintStart_toStartOf="@+id/visit_schedule_lbl"
+                        app:layout_constraintTop_toBottomOf="@+id/visit_schedule_lbl" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/visit_date_vw"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintBottom_toBottomOf="@+id/visit_date_lbl"
-                    app:layout_constraintStart_toEndOf="@+id/visit_date_lbl"
-                    app:layout_constraintTop_toTopOf="@+id/visit_date_lbl"
-                    app:parseDate="@{model.visitedOn}" />
+                        android:id="@+id/visit_date_vw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintBottom_toBottomOf="@+id/visit_date_lbl"
+                        app:layout_constraintStart_toEndOf="@+id/visit_date_lbl"
+                        app:layout_constraintTop_toTopOf="@+id/visit_date_lbl"
+                        app:parseDate="@{model.visitedOn}" />
 
 
                 <LinearLayout
-                    android:id="@+id/cordinate_pt_lay"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/visit_date_lbl">
-
-                    <LinearLayout
-                        android:id="@+id/latitude_pt_lay"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="24dp"
-                        android:layout_marginRight="24dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/latitude_lbl"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Latitude"
-                            android:textColor="@color/light_grey"
-                            android:textSize="@dimen/text_large" />
-
-                        <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/latitude_ed"
-                            android:focusable="false"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/text_large" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/longitude_pt_lay"
+                        android:id="@+id/cordinate_pt_lay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginLeft="24dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginRight="24dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/visit_date_lbl">
+
+                    <LinearLayout
+                            android:id="@+id/latitude_pt_lay"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="24dp"
+                            android:layout_marginRight="24dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/longitude_lbl"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Longitude"
-                            android:textColor="@color/light_grey"
-                            android:textSize="@dimen/text_large" />
+                                android:id="@+id/latitude_lbl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Latitude"
+                                android:textColor="@color/light_grey"
+                                android:textSize="@dimen/text_large" />
 
                         <androidx.appcompat.widget.AppCompatEditText
-                            android:id="@+id/longitude_ed"
+                                android:id="@+id/latitude_ed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_large" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:id="@+id/longitude_pt_lay"
                             android:layout_width="match_parent"
-                            android:focusable="false"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/grey"
-                            android:textSize="@dimen/text_large" />
+                            android:layout_marginStart="24dp"
+                            android:layout_marginLeft="24dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/longitude_lbl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Longitude"
+                                android:textColor="@color/light_grey"
+                                android:textSize="@dimen/text_large" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/longitude_ed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:textColor="@color/grey"
+                                android:textSize="@dimen/text_large" />
 
                     </LinearLayout>
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/appCompatImageView"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:src="@drawable/ic_checkin_profile"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cordinate_pt_lay" />
+                        android:id="@+id/appCompatImageView"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/ic_checkin_profile"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cordinate_pt_lay" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/check_in_btn"
-                    style="@style/save_btn_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="Check In"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
+                        android:id="@+id/check_in_btn"
+                        style="@style/save_btn_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:text="Check In"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/appCompatImageView" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

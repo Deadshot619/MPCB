@@ -78,4 +78,25 @@ class IndustryReportFragment :
         saveReportData()
         addReportFragment(Constants.REPORT_2)
     }
+
+    private fun validate(): Boolean {
+        if (report.data.industryCategoryReselect == "0") {
+            showMessage("Select Category")
+            return false
+        }
+        if (report.data.routineReport.visitedOn.isEmpty()) {
+            showMessage("Enter Visited Industry On")
+            return false
+        }
+        if (report.data.routineReport.emailAddress.isEmpty()) {
+            showMessage("Enter Email Address of Unit")
+            return false
+        }
+        if (report.data.routineReport.telephoneNumber.isEmpty()) {
+            showMessage("Enter Email Address of Unit")
+            return false
+        }
+
+        return true
+    }
 }

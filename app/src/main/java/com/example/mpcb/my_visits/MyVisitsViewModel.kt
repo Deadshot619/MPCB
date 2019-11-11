@@ -32,7 +32,6 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     fun getVisitListData() {
         val request = MyVisitRequest()
         request.userId = user.userId.toString()
-//        request.toDate = "2019-09-30"
         request.fromDate = "2017-09-01"
         request.toDate = "2019-09-30"
 //        request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
@@ -63,10 +62,21 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     fun onVisitItemClick(visitItem: MyVisitModel) {
         mNavigator!!.onVisitItemClicked(visitItem)
+//        if (visitItem.checkInStatus == 1)
+//            if (visitItem.visitStatus == "Visited")
+//                mNavigator!!.onError("Already Visited!")
+//            else
+//                mNavigator!!.onVisitItemClicked(visitItem)
+//        else
+//            mNavigator!!.onError("Please Check in first!")
     }
 
     fun onCheckInClick(model: MyVisitModel) {
-        mNavigator!!.onCheckInClicked(model)
+
+        if (model.checkInStatus != 1)
+            mNavigator!!.onCheckInClicked(model)
+        else
+            mNavigator!!.onError("Already Checked In!")
     }
 
     fun onSubmitClicked(path: String, visitSchedulerId: Long) {

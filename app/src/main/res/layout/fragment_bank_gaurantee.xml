@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.mpcb.utils.constants.Constants"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <include
+                    android:id="@+id/toolbarLayout"
+                    layout="@layout/toolbar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/llBGForms"
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="2sp"
+                    android:background="@color/colorAccent"
+                    app:cardUseCompatPadding="true"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+
+                <include
+                        layout="@layout/item_bank_gaurantee_details"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBGDetails"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"/>
+
+            <TextView android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:drawableLeft="@drawable/ic_add_more"
+                      android:padding="10dp"
+                      android:text="Add More"
+                      android:layout_marginLeft="10dp"
+                      android:gravity="center_vertical"
+                      android:textColor="@color/colorAccent"
+                      android:drawablePadding="10dp"
+                      android:textSize="14sp" android:drawableStart="@drawable/ic_add_more"
+                      android:layout_marginStart="10dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/industry_cat_save_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_continue"
+                    android:textSize="@dimen/text_large"
+                    android:textColor="@color/white"
+                    android:background="@drawable/btn_drawable"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="@dimen/button_padding_left"
+                    android:paddingRight="@dimen/button_padding_right"
+                    android:paddingStart="@dimen/button_padding_left"
+                    android:paddingEnd="@dimen/button_padding_right"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

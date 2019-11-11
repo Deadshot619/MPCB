@@ -4,16 +4,24 @@ package com.example.mpcb.dashboard
 import android.app.DatePickerDialog
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
+import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.showMessage
 import java.util.*
 
 
-class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(), DashboardNavigator {
+class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
+    DashboardNavigator, DatePickerDialog.OnDateSetListener {
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        val calender = Calendar.getInstance()
+        val day = calender.getActualMinimum(Calendar.DAY_OF_MONTH)
+        mViewModel.getDashboardData("$year-${month + 1}-$day")
+    }
 
     override fun getLayoutId() = R.layout.fragment_dashboard
     override fun getViewModel() = DashboardViewModel::class.java
@@ -32,35 +40,61 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
     private fun setListeners() {
         mBinding.monthLayOne.setOnClickListener {
-            setAllView(R.drawable.cal_back_select, R.drawable.cal_back_unselect, mBinding.monthLayOne)
+            setAllView(
+                R.drawable.cal_back_select,
+                R.drawable.cal_back_unselect,
+                mBinding.monthLayOne
+            )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthOne, mBinding.tvYearOne)
-            mViewModel.getDashboardData("2019-10-01")
+            mViewModel.getDashboardData("2019-11-01")
         }
         mBinding.monthLayTwo.setOnClickListener {
-            setAllView(R.drawable.cal_back_select, R.drawable.cal_back_unselect, mBinding.monthLayTwo)
+            setAllView(
+                R.drawable.cal_back_select,
+                R.drawable.cal_back_unselect,
+                mBinding.monthLayTwo
+            )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthTwo, mBinding.tvYearTwo)
-            mViewModel.getDashboardData("2019-09-01")
+            mViewModel.getDashboardData("2019-10-01")
         }
         mBinding.monthLayThree.setOnClickListener {
-            setAllView(R.drawable.cal_back_select, R.drawable.cal_back_unselect, mBinding.monthLayThree)
+            setAllView(
+                R.drawable.cal_back_select,
+                R.drawable.cal_back_unselect,
+                mBinding.monthLayThree
+            )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthThree, mBinding.tvYearThree)
-            mViewModel.getDashboardData("2019-08-01")
+            mViewModel.getDashboardData("2019-09-01")
         }
         mBinding.monthLayFour.setOnClickListener {
-            setAllView(R.drawable.cal_back_select, R.drawable.cal_back_unselect, mBinding.monthLayFour)
+            setAllView(
+                R.drawable.cal_back_select,
+                R.drawable.cal_back_unselect,
+                mBinding.monthLayFour
+            )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthFour, mBinding.tvYearFour)
-            mViewModel.getDashboardData("2019-07-01")
+            mViewModel.getDashboardData("2019-08-01")
         }
-        mBinding.calPickerLay.setOnClickListener { showCalendarDialog() }
+        mBinding.calPickerLay.setOnClickListener {
+            val pd = MonthYearPickerDialog()
+            pd.setListener(this)
+            pd.show(fragmentManager!!, "MonthYearPickerDialog")
+        }
     }
 
     private fun showCalendarDialog() {
         val calendar = Calendar.getInstance()
         val datePickerDialog =
-            DatePickerDialog(getBaseActivity(), DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
-                mViewModel.getDashboardData("$year-${month + 1}-$dayOfMonth")
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+            DatePickerDialog(
+                getBaseActivity(),
+                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+                    Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
+                    mViewModel.getDashboardData("$year-${month + 1}-$dayOfMonth")
+                },
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
         datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
         datePickerDialog.show()
     }

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.example.mpcb.utils.constants.Constants" />
+
+        <variable
+                name="bgModel"
+                type="com.example.mpcb.reports.bankgaurantee.model.BankGuaranteeDetailModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+        <TextView
+                android:id="@+id/txtBgImposed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="1.3sp"
+                android:padding="5dp"
+                android:text="BG imposed"
+                android:textColor="@color/warm_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+                android:id="@+id/rgBGImposed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/txtBgImposed">
+
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="Yes"
+                    android:textColor="@color/text_light_black"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="No"
+                    android:textColor="@color/text_light_black"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/txtBgImposedAgainst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:lineSpacingExtra="1.3sp"
+                android:padding="5dp"
+                android:text="BG imposed Against"
+                android:textColor="@color/warm_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgBGImposed" />
+
+        <RadioGroup
+                android:id="@+id/rgBGImposedAgainst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/txtBgImposedAgainst">
+
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="Consent"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="Directions"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/txtNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="1.3sp"
+                android:padding="5dp"
+                android:text="Number (Only for Directions)"
+                android:textColor="@color/warm_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgBGImposedAgainst" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="16dp"
+                android:text="@={bgModel.numberDirections}"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtNumber"
+                tools:ignore="RtlSymmetry" />
+
+        <View
+                android:id="@+id/viewDivider"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/light_white_100"
+                app:layout_constraintTop_toBottomOf="@+id/edtNumber" />
+
+        <TextView
+                android:id="@+id/txtBGImposedFor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="1.3sp"
+                android:padding="5dp"
+                android:text="Bank Guarantee Imposed for"
+                android:textColor="@color/warm_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewDivider" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtBGImposedFor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="16dp"
+                android:text="@={bgModel.bgImposedFor}"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGImposedFor"
+                tools:ignore="RtlSymmetry" />
+
+        <TextView
+                android:id="@+id/txtBGSubmitted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="5dp"
+                android:text="BG Submitted"
+                android:textColor="@color/warm_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtBGImposedFor" />
+
+        <RadioGroup
+                android:id="@+id/rgBGSubmitted"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGSubmitted">
+
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="Yes"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:paddingStart="5dp"
+                    android:paddingLeft="5dp"
+                    android:text="No"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp"
+                    tools:ignore="RtlSymmetry" />
+        </RadioGroup>
+
+        <TextView
+                android:id="@+id/txtBGNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="1.3sp"
+                android:padding="5dp"
+                android:text="Bank Guarantee No"
+                android:textColor="@color/warm_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgBGSubmitted" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtBGNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="16dp"
+                android:text="@={bgModel.bgNo}"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGNo"
+                tools:ignore="RtlSymmetry" />
+
+        <TextView
+                android:id="@+id/txtBGDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="1.3sp"
+                android:padding="5dp"
+                android:text="Date"
+                android:textColor="@color/warm_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtBGNo" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtBGDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_calendar"
+                android:hint=""
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="16dp"
+                android:text="@{bgModel.bgDate}"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGDate"
+                tools:ignore="RtlSymmetry" />
+
+        <TextView
+                android:id="@+id/txtBGValidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="1.3sp"
+                android:padding="5dp"
+                android:text="Validity"
+                android:textColor="@color/warm_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtBGDate" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtBGValidity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint=""
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="16dp"
+                android:text="@={bgModel.bgValidity}"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/text_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGValidity"
+                tools:ignore="RtlSymmetry" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

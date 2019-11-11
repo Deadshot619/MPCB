@@ -40,7 +40,13 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         val dialog = LoadingDialog(this@BaseActivity)
         mViewModel.getVisibility().observe(this@BaseActivity, Observer { show ->
             dialog.run {
-                if (show) show() else hide()
+                if (show) {
+                    if (!isShowing)
+                        show()
+                } else {
+                    if (isShowing)
+                        hide()
+                }
             }
         })
         mViewModel.getMessage().observe(this@BaseActivity, Observer {

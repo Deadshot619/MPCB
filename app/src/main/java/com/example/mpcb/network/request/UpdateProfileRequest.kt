@@ -19,7 +19,7 @@ class UpdateProfileRequest : BaseObservable() {
     @Expose
     @SerializedName("name")
     var name = ""
-        @Bindable get() = field
+        @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.name)
@@ -28,7 +28,7 @@ class UpdateProfileRequest : BaseObservable() {
     @Expose
     @SerializedName("email_address")
     var email = ""
-        @Bindable get() = field
+        @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.email)
@@ -37,7 +37,7 @@ class UpdateProfileRequest : BaseObservable() {
     @Expose
     @SerializedName("tel_no")
     var phone = ""
-        @Bindable get() = field
+        @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.phone)

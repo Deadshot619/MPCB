@@ -4,118 +4,123 @@
 
     <data>
 
-        <variable name="viewModel"
-                  type="com.example.mpcb.profile.ProfileViewModel"/>
+        <variable
+                name="viewModel"
+                type="com.example.mpcb.profile.ProfileViewModel" />
 
-        <variable name="model"
-                  type="com.example.mpcb.network.request.UpdateProfileRequest"/>
+        <variable
+                name="model"
+                type="com.example.mpcb.network.request.UpdateProfileRequest" />
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg_grey"
-        android:padding="8dp"
-        tools:context="com.example.mpcb.profile.ProfileFragment">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_grey"
+            android:padding="8dp"
+            tools:context="com.example.mpcb.profile.ProfileFragment">
 
         <include
-            android:id="@+id/toolbarLayout"
-            layout="@layout/toolbar"
-            app:layout_constraintBottom_toTopOf="@id/cardviewLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="parent"/>
+                android:id="@+id/toolbarLayout"
+                layout="@layout/toolbar"
+                app:layout_constraintBottom_toTopOf="@id/cardviewLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardviewLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="4dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                android:id="@+id/cardviewLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/nameLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/nameLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         android:hint="Name"
-                        android:text="@={model.name}"/>
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={model.name}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/emailLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/nameLayout">
-                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/emailLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:hint="Email"
-                        android:text="@={model.email}"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/nameLayout">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@={model.email}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/mobileLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/emailLayout">
-                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/mobileLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:hint="Mobile No."
-                        android:inputType="number"
-                        android:text="@={model.phone}"/>
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/emailLayout">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:text="@={model.phone}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnLogin"
-                    style="@style/save_btn_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/btn_drawable"
-                    android:onClick="@{() -> viewModel.onUpdateClick(model)}"
-                    android:text="Update"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/mobileLayout"/>
+                        android:id="@+id/btnLogin"
+                        style="@style/save_btn_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/btn_drawable"
+                        android:onClick="@{() -> viewModel.onUpdateClick(model)}"
+                        android:text="Update"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/mobileLayout" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtChangePwd"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:text="Change Password"
-                    android:textColor="@color/green"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                        android:id="@+id/txtChangePwd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:text="Change Password"
+                        android:textColor="@color/green"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
