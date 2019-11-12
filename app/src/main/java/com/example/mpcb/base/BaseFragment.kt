@@ -106,8 +106,12 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         getBaseActivity().addReportFragment(fragment, true)
     }
 
-    protected fun saveReportData() {
+    protected fun saveReportData(reportKey: Int = 0) {
         PreferencesHelper.setPreferences(Constants.REPORT_KEY, Gson().toJson(report))
+
+        //saves the status of current report
+        PreferencesHelper.setPreferences(Constants.getReportFlag(reportKey), true)
+
     }
 }
 

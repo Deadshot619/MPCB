@@ -91,7 +91,6 @@ object PreferencesHelper {
         return ""
     }
 
-
     //Module wise Preference Helper
 
     fun isLogin(defValue: Boolean = false) = getBooleanPreference(Constants.mloginKey, defValue)

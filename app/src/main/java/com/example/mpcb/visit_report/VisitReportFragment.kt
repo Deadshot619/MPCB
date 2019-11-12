@@ -19,6 +19,8 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
 
     private lateinit var visitItem: MyVisitModel
 
+    private lateinit var reportsStatus: MutableList<Boolean>
+
     override fun getLayoutId() = R.layout.fragment_visit_report
     override fun getViewModel() = VisitReportViewModel::class.java
     override fun getNavigator() = this@VisitReportFragment
@@ -42,7 +44,13 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
         mBinding.itemListener = ReportItemListener(getBaseActivity(), visitItem)
     }
 
-
+//    fun getFlagStatus(){
+//        for (i in 1..18){
+//            if (PreferencesHelper.getBooleanPreference(Constants.getReportFlag(i))){
+//                mBinding.industryTag
+//            }
+//        }
+//    }
 }
 
 class ReportItemListener(
@@ -113,6 +121,7 @@ class ReportItemListener(
         }
         context.startActivity(reportIntent)
     }
+
 }
 
 

@@ -188,6 +188,34 @@ class Constants {
             return reportHashMap.get(reportKey)!!
         }
 
+        /**
+         * Method to return a string 'FLAG' that will be used to store flag's status in
+         * shared preference
+         */
+        fun getReportFlag(reportKey: Int): String{
+            return when(reportKey){
+                1 -> "FLAG_$REPORT_1"
+                2 -> "FLAG_$REPORT_2"
+                3 -> "FLAG_$REPORT_3"
+                4 -> "FLAG_$REPORT_4"
+                5 -> "FLAG_$REPORT_5"
+                6 -> "FLAG_$REPORT_6"
+                7 -> "FLAG_$REPORT_7"
+                8 -> "FLAG_$REPORT_8"
+                9 -> "FLAG_$REPORT_9"
+                10 -> "FLAG_$REPORT_10"
+                11 -> "FLAG_$REPORT_11"
+                12 -> "FLAG_$REPORT_12"
+                13 -> "FLAG_$REPORT_13"
+                14 -> "FLAG_$REPORT_14"
+                15 -> "FLAG_$REPORT_15"
+                16 -> "FLAG_$REPORT_16"
+                17 -> "FLAG_$REPORT_17"
+                18 -> "FLAG_$REPORT_18"
+                else -> "FLAG_NOT_DEFINED"
+            }
+        }
+
         fun getCurrentDate(dateFormat: String): String {
             return try {
                 val date = Date()
