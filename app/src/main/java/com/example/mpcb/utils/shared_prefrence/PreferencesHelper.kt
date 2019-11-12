@@ -91,6 +91,21 @@ object PreferencesHelper {
         return ""
     }
 
+    /**
+     * Method to set the Flag status of specified Reports.
+     */
+    fun setReportFlagStatus(reportKey: Int, b: Boolean){
+        //saves the status of current report
+        setPreferences(Constants.getReportFlag(reportKey), true)
+    }
+
+    /**
+     * Returns the Flag Status of the specified Report
+     */
+    fun getReportFlagStatus(reportKey: Int): Boolean{
+        return getBooleanPreference(Constants.getReportFlag(reportKey))
+    }
+
     //Module wise Preference Helper
 
     fun isLogin(defValue: Boolean = false) = getBooleanPreference(Constants.mloginKey, defValue)

@@ -76,7 +76,10 @@ class IndustryReportFragment :
         report.data.routineReport.hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_1,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_2)
         }
     }

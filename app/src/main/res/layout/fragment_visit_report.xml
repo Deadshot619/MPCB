@@ -72,8 +72,10 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_face"
-                            android:visibility="gone"/>
+                            android:src="@drawable/ic_check_circle"
+                                android:tint="?attr/colorAccent"
+                            android:visibility="gone"
+                                tools:visibility="visible"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -118,8 +120,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -158,8 +162,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -200,8 +206,10 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_face"
-                            android:visibility="gone"/>
+                            android:src="@drawable/ic_check_circle"
+                                android:tint="?attr/colorAccent"
+                                android:visibility="gone"
+                                tools:visibility="visible"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -247,8 +255,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -288,8 +298,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -336,8 +348,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -376,8 +390,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -424,8 +440,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -464,8 +482,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -506,8 +526,10 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_face"
-                            android:visibility="gone"/>
+                            android:src="@drawable/ic_check_circle"
+                                android:tint="?attr/colorAccent"
+                                android:visibility="gone"
+                                tools:visibility="visible"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -547,16 +569,11 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_face"
-                            android:visibility="gone"/>
+                            android:src="@drawable/ic_check_circle"
+                                android:tint="?attr/colorAccent"
+                                android:visibility="gone"
+                                tools:visibility="visible"/>
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:text="@string/report_11"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -602,8 +619,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -642,8 +661,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -690,8 +711,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
@@ -730,8 +753,10 @@
                                 android:layout_centerVertical="true"
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_face"
-                                android:visibility="gone"/>
+                                android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible"/>
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -772,8 +797,10 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_face"
-                            android:visibility="gone"/>
+                            android:src="@drawable/ic_check_circle"
+                                android:tint="?attr/colorAccent"
+                                android:visibility="gone"
+                                tools:visibility="visible"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -813,8 +840,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
                             android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_face"
-                            android:visibility="gone"/>
+                            android:src="@drawable/ic_check_circle"
+                                android:tint="?attr/colorAccent"
+                                android:visibility="gone"
+                                tools:visibility="visible"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
