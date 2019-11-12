@@ -34,7 +34,9 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     fun getVisitListData(fromDate: String) {
         val request = MyVisitRequest()
         request.userId = user.userId.toString()
-        request.fromDate = fromDate
+        request.fromDate = "2017-11-01"
+        request.toDate = "2019-11-11"
+//        request.fromDate = fromDate
         val time = SimpleDateFormat("yyyy-MM-dd").parse(fromDate)
         val selectedCalender = Calendar.getInstance()
         val currentCalendar = Calendar.getInstance()
