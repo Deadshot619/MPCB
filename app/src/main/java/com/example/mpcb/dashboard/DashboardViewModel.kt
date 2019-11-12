@@ -45,7 +45,7 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
         else if (selectedCalender.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH))
             request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
         else
-            mNavigator!!.showAlert("Futur Date Selected!")
+            mNavigator!!.showAlert("Future Date Selected!")
         request.jurisdictionStat = 0
         dialogMessage.value = "Fetching..."
         dialogVisibility.value = true
