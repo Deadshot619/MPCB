@@ -40,7 +40,10 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
             mBinding.edtMeterReading.text.toString().parseToInt()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_7,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_8)
         }
     }

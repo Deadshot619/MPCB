@@ -42,7 +42,10 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     private fun onSubmit() {
         if (validate()) {
             report.data.routineReportProducts = mViewModel.getProductList().value!!
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_2,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_3)
         }
     }

@@ -259,7 +259,10 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
             mBinding.edtIndustrialRemark.text.toString()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_3,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_4)
         }
     }

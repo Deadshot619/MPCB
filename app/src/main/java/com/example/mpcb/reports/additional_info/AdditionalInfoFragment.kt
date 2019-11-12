@@ -37,7 +37,10 @@ class AdditionalInfoFragment :
         report.data.routineReport.additionalInfo = mBinding.edtAddInfo.text.toString()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_18,
+                reportStatus = true
+            )
             mViewModel.submitReport()
         }
     }

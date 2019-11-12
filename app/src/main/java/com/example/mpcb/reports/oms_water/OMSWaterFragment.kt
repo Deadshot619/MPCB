@@ -90,7 +90,10 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
         }
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_6,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_7)
         }
     }

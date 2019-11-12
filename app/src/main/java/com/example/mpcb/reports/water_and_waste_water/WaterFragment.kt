@@ -41,7 +41,10 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
             mBinding.edtDomesticActual.text.toString()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_4,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_5)
         }
     }

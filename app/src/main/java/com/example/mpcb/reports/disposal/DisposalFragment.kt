@@ -129,7 +129,10 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         report.data.routineReport.disposalObservation = mBinding.edRemark.text.toString()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_5,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_6)
         }
     }

@@ -51,7 +51,10 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
         report.data.routineReport.specialCompliance = mBinding.edtSpecificCompliance.text.toString()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_16,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_17)
         }
     }

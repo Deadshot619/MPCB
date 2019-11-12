@@ -56,7 +56,10 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
         report.data.routineReport.envStatementReport = mBinding.edtEnvironmentReport.text.toString()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_15,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_16)
         }
     }

@@ -48,7 +48,10 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
         report.data.routineReportBankDetails = mViewModel.getSourceList().value!!
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_17,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_18)
         }
     }

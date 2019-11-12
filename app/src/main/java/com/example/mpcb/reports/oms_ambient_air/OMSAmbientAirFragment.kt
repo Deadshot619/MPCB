@@ -113,7 +113,10 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
             report.data.jvsSampleCollectedAirSource = mViewModel.getReportData()
         }
 
-        saveReportData()
+        saveReportData(
+            reportKey = Constants.REPORT_11,
+            reportStatus = true
+        )
         addReportFragment(Constants.REPORT_12)
     }
 }

@@ -106,7 +106,10 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
         }
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_10,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_11)
         }
     }

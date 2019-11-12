@@ -39,7 +39,10 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 
     private fun onSubmit() {
         report.data.routineReportHazardousWaste = mViewModel.getSourceList().value!!
-        saveReportData()
+        saveReportData(
+            reportKey = Constants.REPORT_12,
+            reportStatus = true
+        )
         addReportFragment(Constants.REPORT_13)
     }
 }

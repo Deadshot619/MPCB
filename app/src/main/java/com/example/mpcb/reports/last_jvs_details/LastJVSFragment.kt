@@ -117,7 +117,10 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
         if (report.data.routineReport.jvsSampleCollectedForWater == 1) {
             report.data.jvsSampleCollectedWaterSource = mViewModel.getReportData()
         }
-        saveReportData()
+        saveReportData(
+            reportKey = Constants.REPORT_8,
+            reportStatus = true
+        )
         addReportFragment(Constants.REPORT_9)
     }
 

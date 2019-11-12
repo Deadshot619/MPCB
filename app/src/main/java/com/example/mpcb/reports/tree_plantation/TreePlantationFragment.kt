@@ -38,7 +38,10 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
             mBinding.edtProposedPlantation.text.toString()
 
         if (validate()) {
-            saveReportData()
+            saveReportData(
+                reportKey = Constants.REPORT_14,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_15)
         }
     }
