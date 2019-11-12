@@ -89,7 +89,28 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
             report.data.routineReport.omswMpcb = 0
         }
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_7)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_7)
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (report.data.routineReport.omsaApplicable == 1) {
+            if (report.data.routineReport.omswInstalled == null) {
+                showMessage("Select Online Monitoring System Installed")
+                return false
+            }
+            if (report.data.routineReport.remoteCalApplicableWater == null) {
+                showMessage("Select Remote Caliberation Applicable")
+                return false
+            }
+            if (report.data.routineReport.sensorPlacedWater == null) {
+                showMessage("Sensor Properly Placed")
+                return false
+            }
+        }
+
+        return true
     }
 }

@@ -128,7 +128,105 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
         report.data.routineReport.disposalObservation = mBinding.edRemark.text.toString()
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_6)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_6)
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (mBinding.cbIndusCETP.isChecked) {
+            if (mBinding.edIndusCETP.text.isNullOrEmpty()) {
+                showMessage("Enter CEPT for Industrial")
+                return false
+            }
+        }
+        if (mBinding.cbIndusLandGardening.isChecked) {
+            if (mBinding.edIndusLandGardening.text.isNullOrEmpty()) {
+                showMessage("Enter Land gardening for Industrial")
+                return false
+            }
+        }
+        if (mBinding.cbIndusRecycle.isChecked) {
+            if (mBinding.edIndusRecycle.text.isNullOrEmpty()) {
+                showMessage("Enter Recycle for Industrial")
+                return false
+            }
+        }
+        if (mBinding.cbIndusSewageTreatment.isChecked) {
+            if (mBinding.edIndusSewageTreatment.text.isNullOrEmpty()) {
+                showMessage("Enter Local Sewage Treatment for Industrial")
+                return false
+            }
+        }
+        if (mBinding.cbIndusAnyOther.isChecked) {
+            if (mBinding.edIndusExtraName.text.isNullOrEmpty()) {
+                showMessage("Enter Any Other Text for Industrial")
+                return false
+            }
+            if (mBinding.edIndusExtraNameValue.text.isNullOrEmpty()) {
+                showMessage("Enter Any Other Value for Industrial")
+                return false
+            }
+        }
+
+        if (report.data.routineReport.disposalIndustrialAsPerConsent.isEmpty()) {
+            showMessage("Select Disposal As Per Consent for Industrial")
+            return false
+        }
+
+        if (report.data.routineReport.operationAndMaintainanceInsus.isEmpty()) {
+            showMessage("Select Operation And Maintenance for Industrial")
+            return false
+        }
+
+
+        if (mBinding.cbDomesticCETP.isChecked) {
+            if (mBinding.edDomesticCETP.text.isNullOrEmpty()) {
+                showMessage("Enter CEPT for Domestic")
+                return false
+            }
+        }
+        if (mBinding.cbDomesticLandGardening.isChecked) {
+            if (mBinding.edDomesticLandGardening.text.isNullOrEmpty()) {
+                showMessage("Enter Land gardening for Domestic")
+                return false
+            }
+        }
+        if (mBinding.cbDomesticRecycle.isChecked) {
+            if (mBinding.edDomesticRecycle.text.isNullOrEmpty()) {
+                showMessage("Enter Recycle for Domestic")
+                return false
+            }
+        }
+        if (mBinding.cbDomesticSewageTreatment.isChecked) {
+            if (mBinding.edDomesticSewageTreatment.text.isNullOrEmpty()) {
+                showMessage("Enter Local Sewage Treatment for Domestic")
+                return false
+            }
+        }
+        if (mBinding.cbDomesticAnyOther.isChecked) {
+            if (mBinding.edDomesticExtraName.text.isNullOrEmpty()) {
+                showMessage("Enter Any Other Text for Domestic")
+                return false
+            }
+            if (mBinding.edDomesticExtraNameValue.text.isNullOrEmpty()) {
+                showMessage("Enter Any Other Value for Domestic")
+                return false
+            }
+        }
+
+        if (report.data.routineReport.disposalDomesticAsPerConsent.isEmpty()) {
+            showMessage("Select Disposal As Per Consent for Domestic")
+            return false
+        }
+
+        if (report.data.routineReport.operationAndMaintainanceDomestic.isEmpty()) {
+            showMessage("Select Operation And Maintenance for Domestic")
+            return false
+        }
+
+
+        return true
     }
 }

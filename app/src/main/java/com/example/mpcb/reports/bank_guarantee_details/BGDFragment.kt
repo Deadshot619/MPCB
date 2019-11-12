@@ -46,7 +46,14 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
 
         report.data.routineReport.bgImposedNumber = mBinding.edtNumber.text.toString()
         report.data.routineReportBankDetails = mViewModel.getSourceList().value!!
-        saveReportData()
-        addReportFragment(Constants.REPORT_18)
+
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_18)
+        }
+    }
+
+    private fun validate(): Boolean {
+        return true
     }
 }

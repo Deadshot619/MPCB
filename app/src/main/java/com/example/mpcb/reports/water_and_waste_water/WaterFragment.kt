@@ -40,8 +40,38 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
         report.data.routineReport.generationDomesticActual =
             mBinding.edtDomesticActual.text.toString()
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_5)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_5)
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (report.data.routineReport.generationIndustrialAsConsent.isEmpty()) {
+            showMessage("Enter Industry Process as per Concent")
+            return false
+        }
+        if (report.data.routineReport.generationIndustrialActual.isEmpty()) {
+            showMessage("Enter Industry Process Actual")
+            return false
+        }
+        if (report.data.routineReport.generationIndustrialAsConsentCooling.isEmpty()) {
+            showMessage("Enter Industrial Cooling as per Concent")
+            return false
+        }
+        if (report.data.routineReport.generationIndustrialActualCooling.isEmpty()) {
+            showMessage("Enter Industrial Cooling Actual")
+            return false
+        }
+        if (report.data.routineReport.generationDomesticAsConsent.isEmpty()) {
+            showMessage("Enter Domestic as per Concent")
+            return false
+        }
+        if (report.data.routineReport.generationDomesticActual.isEmpty()) {
+            showMessage("Enter Domestic Actual")
+            return false
+        }
+        return true
     }
 
 }

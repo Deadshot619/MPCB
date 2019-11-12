@@ -61,12 +61,12 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                 getBaseActivity(),
                 DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                     when (id) {
-                        INDUS_DATE_OF_COLLECTION -> mBinding.edtIndusDateOfCollection.setText("$dayOfMonth-${month + 1}-$year")
-                        INDUS_DATE -> mBinding.edtDateIndus.setText("$dayOfMonth-${month + 1}-$year")
+                        INDUS_DATE_OF_COLLECTION -> mBinding.edtIndusDateOfCollection.setText("$year-${month + 1}-$dayOfMonth")
+                        INDUS_DATE -> mBinding.edtDateIndus.setText("$year-${month + 1}-$dayOfMonth")
                         DOMESTIC_DATE_OF_COLLECTION -> mBinding.edtDomesticDateOfCollection.setText(
-                            "$dayOfMonth-${month + 1}-$year"
+                            "$year-${month + 1}-$dayOfMonth"
                         )
-                        DOMESTIC_DATE -> mBinding.edtDateDomestic.setText("$dayOfMonth-${month + 1}-$year")
+                        DOMESTIC_DATE -> mBinding.edtDateDomestic.setText("$year-${month + 1}-$dayOfMonth")
                     }
                 },
                 calendar.get(Calendar.YEAR),
