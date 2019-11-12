@@ -44,13 +44,18 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
         mBinding.itemListener = ReportItemListener(getBaseActivity(), visitItem)
     }
 
-//    fun getFlagStatus(){
+    fun getFlagStatus(reportKey: Int): Boolean{
+        return PreferencesHelper.getBooleanPreference(Constants.getReportFlag(reportKey))
+    }
+
+//    fun displayImage(){
 //        for (i in 1..18){
-//            if (PreferencesHelper.getBooleanPreference(Constants.getReportFlag(i))){
-//                mBinding.industryTag
+//            when (i){
+//                1 -> if (getFlagStatus(Constants.REPORT_1))
 //            }
 //        }
 //    }
+
 }
 
 class ReportItemListener(
