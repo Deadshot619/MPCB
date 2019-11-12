@@ -212,7 +212,6 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
             if (report.data.routineReport.industrialPrimaryAnyOther == 0) {
                 report.data.routineReport.industrialPrimaryAnyOtherText = ""
             }
-
         }
         if (report.data.routineReport.treatmentIndustrialSecondary == 0) {
             report.data.routineReport.industrialSecondaryActivatedSludgeProcess = 0
@@ -259,7 +258,96 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
         report.data.routineReport.treatmentObservation =
             mBinding.edtIndustrialRemark.text.toString()
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_4)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_4)
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (mBinding.cbPrimary.isChecked) {
+            if (!mBinding.cbPrimaryOG.isChecked && !mBinding.cbPrimaryScreening.isChecked && !mBinding.cbPrimaryNeutralization.isChecked
+                && !mBinding.cbPrimarySetting.isChecked && !mBinding.cbPrimaryAnyOther.isChecked
+            ) {
+                showMessage("Select atleast One Primary Option")
+                return false
+            }
+        }
+        if (mBinding.cbPrimaryAnyOther.isChecked && mBinding.edtPrimaryOtherRemark.text.isNullOrEmpty()) {
+            showMessage("Enter Any Other Text")
+            return false
+        }
+
+        if (mBinding.cbSecondary.isChecked) {
+            if (!mBinding.cbSecondaryActivated.isChecked && !mBinding.cbSecondaryMBBR.isChecked && !mBinding.cbSecondarySBR.isChecked
+                && !mBinding.cbSecondaryTrickling.isChecked && !mBinding.cbSecondaryAnyOther.isChecked
+            ) {
+                showMessage("Select atleast one Secondary Option")
+                return false
+            }
+        }
+        if (mBinding.cbSecondaryAnyOther.isChecked && mBinding.edtSecondaryOtherRemark.text.isNullOrEmpty()) {
+            showMessage("Enter Any Other Text")
+            return false
+        }
+
+        if (mBinding.cbTertiary.isChecked) {
+            if (!mBinding.cbTertiaryPress.isChecked && !mBinding.cbTertiaryActivated.isChecked
+                && !mBinding.cbTertiaryDual.isChecked && !mBinding.cbTertiaryAnyOther.isChecked
+            ) {
+                showMessage("Select atleast one Tertiary Option")
+                return false
+            }
+        }
+        if (mBinding.cbTertiaryAnyOther.isChecked && mBinding.edtTertiaryOtherRemark.text.isNullOrEmpty()) {
+            showMessage("Enter Any Other Text")
+            return false
+        }
+
+        if (mBinding.cbAdvance.isChecked) {
+            if (!mBinding.cbAdvanceReverse.isChecked && !mBinding.cbAdvanceMEE.isChecked && !mBinding.cbAdvanceUltra.isChecked
+                && !mBinding.cbAdvanceNano.isChecked && !mBinding.cbAdvanceATFD.isChecked && !mBinding.cbAdvanceAnyOther.isChecked
+            ) {
+                showMessage("Select atleast one Advance Option")
+                return false
+            }
+        }
+        if (mBinding.cbAdvanceAnyOther.isChecked && mBinding.edtAdvanceOtherRemark.text.isNullOrEmpty()) {
+            showMessage("Enter Any Other Text")
+            return false
+        }
+
+        if (mBinding.edtIndustrialRemark.text.isNullOrEmpty()) {
+            showMessage("Enter Industrial Remark")
+            return false
+        }
+
+        if (report.data.routineReport.etpOperational == null) {
+            showMessage("Select ETP Operational")
+            return false
+        }
+
+        if (mBinding.cbDomesticSewage.isChecked) {
+            if (!mBinding.cbSewageActivated.isChecked && !mBinding.cbSewageMBBR.isChecked && !mBinding.cbSewageSBR.isChecked
+                && !mBinding.cbSewageTrickling.isChecked && !mBinding.cbSewageAnyOther.isChecked
+            ) {
+                showMessage("Select atleast one Sewage Treatment Plant Option")
+                return false
+            }
+        }
+        if (mBinding.edtSewageOtherRemark.text.isNullOrEmpty()) {
+            showMessage("Enter Any other Remark")
+            return false
+        }
+        if (mBinding.edtDomesticRemark.text.isNullOrEmpty()) {
+            showMessage("Enter Any other Remark")
+            return false
+        }
+        if (report.data.routineReport.stpOperational == null) {
+            showMessage("Select STP Operational")
+            return false
+        }
+
+        return true
     }
 }

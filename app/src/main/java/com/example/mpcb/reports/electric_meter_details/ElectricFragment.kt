@@ -39,8 +39,22 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
         report.data.routineReport.electrictMeterReading =
             mBinding.edtMeterReading.text.toString().parseToInt()
 
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_8)
+        }
+    }
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_8)
+    private fun validate(): Boolean {
+        if (report.data.routineReport.electrictMeterProvided == null) {
+            showMessage("Electrical Meter Provided")
+            return false
+        }
+        if (mBinding.edtMeterReading.text.isNullOrEmpty()) {
+            showMessage("Enter Meter Reading")
+            return false
+        }
+
+        return true
     }
 }

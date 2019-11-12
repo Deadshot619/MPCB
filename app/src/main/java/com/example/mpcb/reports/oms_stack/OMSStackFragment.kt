@@ -96,16 +96,51 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
 
     private fun onSubmit() {
         if (report.data.routineReport.omsaApplicable == 0) {
-            report.data.routineReport.omsaInstalled = 0
-            report.data.routineReport.remoteCalApplicable = 0
-            report.data.routineReport.sensorPlaced = 0
-            report.data.routineReport.stackFacilityExist = 0
-            report.data.routineReport.calFacExist = 0
-            report.data.routineReport.omsaCpcb = 0
-            report.data.routineReport.omsaMpcb = 0
+//            report.data.routineReport.omsaInstalled = 0
+//            report.data.routineReport.remoteCalApplicable = 0
+//            report.data.routineReport.sensorPlaced = 0
+//            report.data.routineReport.stackFacilityExist = 0
+//            report.data.routineReport.calFacExist = 0
+//            report.data.routineReport.omsaCpcb = 0
+//            report.data.routineReport.omsaMpcb = 0
         }
-        saveReportData()
-        addReportFragment(Constants.REPORT_11)
+
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_11)
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (report.data.routineReport.omsaApplicable == null) {
+            showMessage("Select Online Monitoring System")
+            return false
+        }
+        if (report.data.routineReport.omsaApplicable == 1) {
+            if (report.data.routineReport.omsaInstalled == null) {
+                showMessage("Select Online Monitoring System Installed")
+                return false
+            }
+            if (report.data.routineReport.remoteCalApplicable == null) {
+                showMessage("Select Remote Caliberation Applicable")
+                return false
+            }
+            if (report.data.routineReport.sensorPlaced == null) {
+                showMessage("Select Sensor Properly Placed")
+                return false
+            }
+            if (report.data.routineReport.stackFacilityExist == null) {
+                showMessage("Select proper stack monitoring system exists")
+                return false
+            }
+            if (report.data.routineReport.calFacExist == null) {
+                showMessage("Select calibration facility exists")
+                return false
+            }
+        }
+
+
+        return true
     }
 
 }

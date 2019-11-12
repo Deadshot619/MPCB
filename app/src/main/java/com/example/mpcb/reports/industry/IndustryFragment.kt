@@ -48,8 +48,8 @@ class IndustryReportFragment :
                 getBaseActivity(),
                 DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                     when (id) {
-                        VISITED_ON -> mBinding.edtVisitedIndustryOn.setText("$dayOfMonth-${month + 1}-$year")
-                        VALID_UPTO -> mBinding.edtValidUpto.setText("$dayOfMonth-${month + 1}-$year")
+                        VISITED_ON -> mBinding.edtVisitedIndustryOn.setText("$year-${month + 1}-$dayOfMonth")
+                        VALID_UPTO -> mBinding.edtValidUpto.setText("$year-${month + 1}-$dayOfMonth")
                     }
                 },
                 calendar.get(Calendar.YEAR),
@@ -66,7 +66,7 @@ class IndustryReportFragment :
     }
 
     private fun onSubmit() {
-        report.data.industryCategoryReselect = "${mBinding.catSpinner.selectedItemPosition + 1}"
+        report.data.industryCategoryReselect = "${mBinding.catSpinner.selectedItemPosition}"
 
         report.data.routineReport.visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
         report.data.routineReport.emailAddress = mBinding.visitCatEmailEd.text.toString()
@@ -75,8 +75,10 @@ class IndustryReportFragment :
         report.data.routineReport.validityOfConsentIe = mBinding.consentIeEd.text.toString()
         report.data.routineReport.hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_2)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_2)
+        }
     }
 
     private fun validate(): Boolean {
@@ -93,7 +95,23 @@ class IndustryReportFragment :
             return false
         }
         if (report.data.routineReport.telephoneNumber.isEmpty()) {
-            showMessage("Enter Email Address of Unit")
+            showMessage("Enter Telephone No of Unit")
+            return false
+        }
+        if (report.data.routineReport.validityOfConsentUpto.isEmpty()) {
+            showMessage("Enter Validity Upto")
+            return false
+        }
+        if (report.data.routineReport.validityOfConsentIe.isEmpty()) {
+            showMessage("Enter I.E(m3/day)")
+            return false
+        }
+        if (report.data.routineReport.hwOfValidUptoDe.isEmpty()) {
+            showMessage("Enter D.E(m3/day)")
+            return false
+        }
+        if (report.data.routineReport.consentObtain == null) {
+            showMessage("Select Consent Obtained")
             return false
         }
 

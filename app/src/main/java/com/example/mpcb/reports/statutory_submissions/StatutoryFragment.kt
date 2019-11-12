@@ -40,8 +40,8 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
                 getBaseActivity(),
                 DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                     when (id) {
-                        HAZARDOUS_WASTE -> mBinding.edtHazardousWaste.setText("$dayOfMonth-${month + 1}-$year")
-                        ENVIRONMENT_REPORT -> mBinding.edtEnvironmentReport.setText("$dayOfMonth-${month + 1}-$year")
+                        HAZARDOUS_WASTE -> mBinding.edtHazardousWaste.setText("$year-${month + 1}-$dayOfMonth")
+                        ENVIRONMENT_REPORT -> mBinding.edtEnvironmentReport.setText("$year-${month + 1}-$dayOfMonth")
                     }
                 },
                 calendar.get(Calendar.YEAR),
@@ -55,8 +55,23 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
         report.data.routineReport.hwAnnualReturnDate = mBinding.edtHazardousWaste.text.toString()
         report.data.routineReport.envStatementReport = mBinding.edtEnvironmentReport.text.toString()
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_16)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_16)
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (report.data.routineReport.hwAnnualReturnDate.isNullOrEmpty()) {
+            showMessage("Enter Hazardous Waste Annual Returns")
+            return false
+        }
+        if (report.data.routineReport.envStatementReport.isNullOrEmpty()) {
+            showMessage("Enter Environment Statement Report")
+            return false
+        }
+
+        return true
     }
 
 

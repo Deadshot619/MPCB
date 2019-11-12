@@ -40,9 +40,44 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     }
 
     private fun onSubmit() {
-        report.data.routineReportProducts = mViewModel.getProductList().value!!
-        saveReportData()
-        addReportFragment(Constants.REPORT_3)
+        if (validate()) {
+            report.data.routineReportProducts = mViewModel.getProductList().value!!
+            saveReportData()
+            addReportFragment(Constants.REPORT_3)
+        }
+    }
+
+    private fun validate(): Boolean {
+        var isValid = true
+        val productList = mViewModel.getProductList().value!!
+        for (item in productList) {
+            if (item.productName.isEmpty()) {
+                showMessage("Enter Product Name")
+                isValid = false
+                break
+            }
+            if (item.productQuantity.isEmpty()) {
+                showMessage("Enter Product Concent Quantity")
+                isValid = false
+                break
+            }
+            if (item.productUom == "0") {
+                showMessage("Select Unit As Concent")
+                isValid = false
+                break
+            }
+            if (item.productQuantityActual.isEmpty()) {
+                showMessage("Enter Product Actual Quantity")
+                isValid = false
+                break
+            }
+            if (item.productUomActual == "0") {
+                showMessage("Select Unit As Actual")
+                isValid = false
+                break
+            }
+        }
+        return isValid
     }
 
 }

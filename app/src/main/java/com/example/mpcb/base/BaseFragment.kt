@@ -82,24 +82,24 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     protected fun addReportFragment(reportKey: Int) {
         val fragment = when (reportKey) {
-            Constants.REPORT_1 -> IndustryReportFragment()
-            Constants.REPORT_2 -> ProductionFragment()// listing
-            Constants.REPORT_3 -> TreatmentFragment()
-            Constants.REPORT_4 -> WaterFragment()
-            Constants.REPORT_5 -> DisposalFragment()
-            Constants.REPORT_6 -> OMSWaterFragment()
-            Constants.REPORT_7 -> ElectricFragment()
+            Constants.REPORT_1 -> IndustryReportFragment() //v
+            Constants.REPORT_2 -> ProductionFragment()// listing //v
+            Constants.REPORT_3 -> TreatmentFragment()//v
+            Constants.REPORT_4 -> WaterFragment()//v
+            Constants.REPORT_5 -> DisposalFragment()//v
+            Constants.REPORT_6 -> OMSWaterFragment() //v
+            Constants.REPORT_7 -> ElectricFragment() //v
             Constants.REPORT_8 -> LastJVSFragment() // listing
             Constants.REPORT_9 -> AirFragment() // listing
-            Constants.REPORT_10 -> OMSStackFragment()
+            Constants.REPORT_10 -> OMSStackFragment()//v
             Constants.REPORT_11 -> OMSAmbientAirFragment()// listing
             Constants.REPORT_12 -> HazardousFragment()// listing
             Constants.REPORT_13 -> NonHazardousFragment()// listing
-            Constants.REPORT_14 -> TreePlantationFragment()
-            Constants.REPORT_15 -> StatutoryFragment()
-            Constants.REPORT_16 -> PreviousLegalFragment()
+            Constants.REPORT_14 -> TreePlantationFragment()//v
+            Constants.REPORT_15 -> StatutoryFragment() //v
+            Constants.REPORT_16 -> PreviousLegalFragment() //v
             Constants.REPORT_17 -> BGDFragment()// listing
-            Constants.REPORT_18 -> AdditionalInfoFragment()
+            Constants.REPORT_18 -> AdditionalInfoFragment() //v
             else -> Fragment()
         }
 

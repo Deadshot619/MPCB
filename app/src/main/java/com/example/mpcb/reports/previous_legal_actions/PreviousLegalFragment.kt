@@ -37,7 +37,7 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
                 getBaseActivity(),
                 DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                     Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
-                    mBinding.edtActionInitiated.setText("$dayOfMonth-${month + 1}-$year")
+                    mBinding.edtActionInitiated.setText("$year-${month + 1}-$dayOfMonth")
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -50,9 +50,23 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
         report.data.routineReport.actionInitiatedDate = mBinding.edtActionInitiated.text.toString()
         report.data.routineReport.specialCompliance = mBinding.edtSpecificCompliance.text.toString()
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_17)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_17)
+        }
     }
 
+    private fun validate(): Boolean {
+        if (report.data.routineReport.actionInitiatedDate.isNullOrEmpty()) {
+            showMessage("Enter Action Initiated Date")
+            return false
+        }
+        if (report.data.routineReport.specialCompliance.isNullOrEmpty()) {
+            showMessage("Enter Specific Compliance")
+            return false
+        }
+
+        return true
+    }
 
 }

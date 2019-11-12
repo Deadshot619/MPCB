@@ -27,9 +27,6 @@ class ProductionAdapter(
 
     override fun onBindViewHolder(holder: ProductionViewHolder, position: Int) {
         val item = sourceList[position]
-//        holder.itemBinding.model = item
-//        holder.itemBinding.viewModel = viewModel
-
         holder.setSpinner(item)
         holder.itemBinding.model = sourceList[position]
 
@@ -65,7 +62,7 @@ class ProductionAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUnitActual.setSelection(position)
-                        item.productUomActual = "${position + 1}"
+                        item.productUomActual = "$position"
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -80,9 +77,10 @@ class ProductionAdapter(
                         view: View?,
                         position: Int,
                         id: Long
+
                     ) {
                         itemBinding.spnUnitConsent.setSelection(position)
-                        item.productUom = "${position + 1}"
+                        item.productUom = "$position"
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}

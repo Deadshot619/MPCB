@@ -1,116 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true">
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/category_parent_lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/industry_cat_title"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/category_parent_lay"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Industry Category"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/text_xlarge"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/industry_cat_lbl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="Select Category"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/industry_cat_title" />
+                        android:id="@+id/industry_cat_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="Industry Category"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_xlarge"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/industry_cat_lbl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="Select Category"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/industry_cat_title" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/cat_spinner"
-                    style="@style/industry_cat_frag_space_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/industry_cat_lbl" />
-
-
-                <View
-                    android:id="@+id/view_separator_cat"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/view_line_two"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/light_white_100"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cat_spinner" />
-
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/visit_cat_title"
-                    style="@style/industry_cat_frag_space_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Visited On"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/text_xlarge"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view_separator_cat" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/visit_cat_date_lbl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="Visited Industry on"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/visit_cat_title">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtVisitedIndustryOn"
+                        android:id="@+id/cat_spinner"
                         style="@style/industry_cat_frag_space_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:focusable="false"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/industry_cat_lbl" />
+
+
+                <View
+                        android:id="@+id/view_separator_cat"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_line_two"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/light_white_100"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cat_spinner" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/visit_cat_title"
+                        style="@style/industry_cat_frag_space_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Visited On"
                         android:textColor="@color/grey"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:textSize="@dimen/text_xlarge"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view_separator_cat" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/visit_cat_date_lbl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Visited Industry on"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/visit_cat_title">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edtVisitedIndustryOn"
+                            style="@style/industry_cat_frag_space_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:textColor="@color/grey"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/visit_cat_email_lbl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="Email Address of Unit"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/visit_cat_date_lbl">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/visit_cat_email_ed"
-                        style="@style/industry_cat_frag_space_style"
+                        android:id="@+id/visit_cat_email_lbl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:layout_marginTop="16dp"
+                        android:hint="Email Address of Unit"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/visit_cat_date_lbl">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/visit_cat_email_ed"
+                            style="@style/industry_cat_frag_space_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,21 +137,23 @@
                          app:layout_constraintTop_toBottomOf="@+id/visit_cat_email_lbl"/> -->
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/visit_cat_telephone_lbl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="Telephone No. of Unit"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/visit_cat_email_lbl">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/visit_cat_telephone_ed"
-                        style="@style/industry_cat_frag_space_style"
+                        android:id="@+id/visit_cat_telephone_lbl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:layout_marginTop="16dp"
+                        android:hint="Telephone No. of Unit"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/visit_cat_email_lbl">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/visit_cat_telephone_ed"
+                            style="@style/industry_cat_frag_space_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:textColor="@color/grey"
+                            app:layout_constraintStart_toStartOf="parent" />
 
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -180,144 +182,144 @@
 
 
                 <View
-                    android:id="@+id/view_separator_visit"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/view_line_two"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/light_white_100"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/visit_cat_telephone_lbl" />
+                        android:id="@+id/view_separator_visit"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_line_two"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/light_white_100"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/visit_cat_telephone_lbl" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/consent_status_title"
-                    style="@style/industry_cat_frag_space_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Consent Status"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/text_xlarge"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view_separator_visit" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/consent_vaild_date_lbl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="Valid Upto"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/consent_status_title">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtValidUpto"
+                        android:id="@+id/consent_status_title"
                         style="@style/industry_cat_frag_space_style"
                         android:layout_width="match_parent"
-                        android:focusable="false"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Consent Status"
                         android:textColor="@color/grey"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:textSize="@dimen/text_xlarge"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view_separator_visit" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/consent_vaild_date_lbl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Valid Upto"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/consent_status_title">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edtValidUpto"
+                            style="@style/industry_cat_frag_space_style"
+                            android:layout_width="match_parent"
+                            android:focusable="false"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/consent_ie_lbl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="I.E.(m3/day)"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/consent_vaild_date_lbl">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/consent_ie_ed"
-                        style="@style/industry_cat_frag_space_style"
+                        android:id="@+id/consent_ie_lbl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:layout_marginTop="16dp"
+                        android:hint="I.E.(m3/day)"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/consent_vaild_date_lbl">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/consent_ie_ed"
+                            style="@style/industry_cat_frag_space_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/consent_de_lbl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:hint="D.E.(m3/day)"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/consent_ie_lbl">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/consent_de_ed"
-                        style="@style/industry_cat_frag_space_style"
+                        android:id="@+id/consent_de_lbl"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:layout_marginTop="16dp"
+                        android:hint="D.E.(m3/day)"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/consent_ie_lbl">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/consent_de_ed"
+                            style="@style/industry_cat_frag_space_style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/grey"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtConsent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Consent Obtained"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/consent_de_lbl" />
+                        android:id="@+id/txtConsent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Consent Obtained"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/consent_de_lbl" />
 
                 <RadioGroup
-                    android:id="@+id/rgConsent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtConsent">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbConsentYes"
+                        android:id="@+id/rgConsent"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="Yes"
-                        android:textSize="18sp" />
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtConsent">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbConsentNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginTop="4dp"
-                        android:text="No"
-                        android:textSize="18sp" />
+                            android:id="@+id/rbConsentYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Yes"
+                            android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rbConsentNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginTop="4dp"
+                            android:text="No"
+                            android:textSize="18sp" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSubmit"
-                    style="@style/save_btn_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="@string/save_continue"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rgConsent" />
+                        android:id="@+id/btnSubmit"
+                        style="@style/save_btn_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:text="@string/save_continue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rgConsent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,9 +37,35 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         report.data.routineReport.treePlantationProposedPlantation =
             mBinding.edtProposedPlantation.text.toString()
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_15)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_15)
+        }
     }
 
+    private fun validate(): Boolean {
+        if (report.data.routineReport.treePlantationPlotArea.isNullOrEmpty()) {
+            showMessage("Enter Total Plot Area in sq.mt")
+            return false
+        }
+        if (report.data.routineReport.treePlantationBuiltArea.isNullOrEmpty()) {
+            showMessage("Enter Built Up Area in sq.mt")
+            return false
+        }
+        if (report.data.routineReport.treePlantationGreenBeltArea.isNullOrEmpty()) {
+            showMessage("Enter Green Belt Area in sq.mt")
+            return false
+        }
+        if (report.data.routineReport.treePlantationPlantationNo.isNullOrEmpty()) {
+            showMessage("Enter Plantation done in No")
+            return false
+        }
+        if (report.data.routineReport.treePlantationProposedPlantation.isNullOrEmpty()) {
+            showMessage("Enter Proposed Plantation")
+            return false
+        }
+
+        return true
+    }
 
 }

@@ -36,8 +36,22 @@ class AdditionalInfoFragment :
     private fun onSubmit() {
         report.data.routineReport.additionalInfo = mBinding.edtAddInfo.text.toString()
 
-        saveReportData()
-        mViewModel.submitReport()
+        if (validate()) {
+            saveReportData()
+            mViewModel.submitReport()
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (report.data.routineReport.additionalInfo.isNullOrEmpty()) {
+            showMessage("Enter Additional Information")
+            return false
+        }
+        if (report.data.routineReport.legalActionUnitComplied == null) {
+            showMessage("Select Unit Compiled")
+            return false
+        }
+        return true
     }
 
     override fun onSubmitReportSuccess(msg: String) {
