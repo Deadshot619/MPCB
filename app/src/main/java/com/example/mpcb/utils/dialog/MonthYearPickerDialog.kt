@@ -28,12 +28,12 @@ class MonthYearPickerDialog : DialogFragment() {
         val monthPicker = dialog.findViewById(R.id.picker_month) as NumberPicker
         val yearPicker = dialog.findViewById(R.id.picker_year) as NumberPicker
 
-        monthPicker.minValue = 0
-        monthPicker.maxValue = 11
+        monthPicker.minValue = 1
+        monthPicker.maxValue = 12
         monthPicker.value = cal.get(Calendar.MONTH)
 
         val year = cal.get(Calendar.YEAR)
-        yearPicker.minValue = 1970
+        yearPicker.minValue = 2016
         yearPicker.maxValue = year
         yearPicker.value = year
 

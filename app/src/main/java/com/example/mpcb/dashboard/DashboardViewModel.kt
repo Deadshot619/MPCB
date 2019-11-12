@@ -9,6 +9,8 @@ import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.google.gson.Gson
 import io.reactivex.functions.Consumer
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
 
@@ -22,7 +24,28 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
         val request = DashboardDataRequest()
         request.userId = userModel.userId.toString()
         request.fromDate = fromDate
-        request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
+        val time = SimpleDateFormat("yyyy-MM-dd").parse(fromDate)
+        val selectedCalender = Calendar.getInstance()
+        val currentCalendar = Calendar.getInstance()
+        selectedCalender.time = time
+        if (selectedCalender.get(Calendar.YEAR) < currentCalendar.get(Calendar.YEAR))
+            request.toDate =
+                selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
+                    Calendar.MONTH
+                ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
+                    Calendar.DAY_OF_MONTH
+                ).toString()
+        else if (selectedCalender.get(Calendar.MONTH) < currentCalendar.get(Calendar.MONTH))
+            request.toDate =
+                selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
+                    Calendar.MONTH
+                ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
+                    Calendar.DAY_OF_MONTH
+                ).toString()
+        else if (selectedCalender.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH))
+            request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
+        else
+            mNavigator!!.showAlert("Futur Date Selected!")
         request.jurisdictionStat = 0
         dialogMessage.value = "Fetching..."
         dialogVisibility.value = true

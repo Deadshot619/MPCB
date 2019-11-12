@@ -51,15 +51,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="NOV"
-                        android:textColor="@color/white" />
+                        android:text=""
+                        android:textColor="@color/white"
+                        app:textAllCaps="true" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvYearOne"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="2019"
+                        android:text=""
                         android:textColor="@color/white" />
 
             </LinearLayout>
@@ -78,15 +79,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="OCT"
-                        android:textColor="@color/grey" />
+                        android:text=""
+                        android:textColor="@color/grey"
+                        app:textAllCaps="true" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvYearTwo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="2019"
+                        android:text=""
                         android:textColor="@color/grey" />
 
             </LinearLayout>
@@ -105,15 +107,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="SEP"
-                        android:textColor="@color/grey" />
+                        android:text=""
+                        android:textColor="@color/grey"
+                        app:textAllCaps="true" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvYearThree"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="2019"
+                        android:text=""
                         android:textColor="@color/grey" />
 
             </LinearLayout>
@@ -132,15 +135,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="AUG"
-                        android:textColor="@color/grey" />
+                        android:text=""
+                        android:textColor="@color/grey"
+                        app:textAllCaps="true" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvYearFour"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="2019"
+                        android:text=""
                         android:textColor="@color/grey" />
 
             </LinearLayout>

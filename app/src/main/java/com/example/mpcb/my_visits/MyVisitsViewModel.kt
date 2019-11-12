@@ -17,6 +17,8 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
@@ -29,13 +31,32 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     fun getVisitList() = visitList
 
-    fun getVisitListData() {
+    fun getVisitListData(fromDate: String) {
         val request = MyVisitRequest()
         request.userId = user.userId.toString()
-        request.fromDate = "2017-09-01"
-        request.toDate = "2019-09-30"
-//        request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
-//        request.fromDate = request.toDate.replaceRange(8, 10, "01")
+        request.fromDate = fromDate
+        val time = SimpleDateFormat("yyyy-MM-dd").parse(fromDate)
+        val selectedCalender = Calendar.getInstance()
+        val currentCalendar = Calendar.getInstance()
+        selectedCalender.time = time
+        if (selectedCalender.get(Calendar.YEAR) < currentCalendar.get(Calendar.YEAR))
+            request.toDate =
+                selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
+                    Calendar.MONTH
+                ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
+                    Calendar.DAY_OF_MONTH
+                ).toString()
+        else if (selectedCalender.get(Calendar.MONTH) < currentCalendar.get(Calendar.MONTH))
+            request.toDate =
+                selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
+                    Calendar.MONTH
+                ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
+                    Calendar.DAY_OF_MONTH
+                ).toString()
+        else if (selectedCalender.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH))
+            request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
+        else
+            mNavigator!!.showAlert("Future Date Selected!")
         dialogVisibility.value = true
         dialogMessage.value = "Fetching List..."
         mDisposable.add(DataProvider.getVisitList(request, Consumer {
