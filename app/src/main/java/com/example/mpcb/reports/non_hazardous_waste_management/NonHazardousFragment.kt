@@ -39,7 +39,53 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
 
     private fun onSubmit() {
         report.data.routineReportNonHazardousWaste = mViewModel.getSourceList().value!!
-        saveReportData()
-        addReportFragment(Constants.REPORT_14)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_14)
+        }
+    }
+
+    private fun validate(): Boolean {
+        var isValid = true
+        val sourceList = mViewModel.getSourceList().value!!
+        for (item in sourceList) {
+            if (item.nhwWasteName.isNullOrEmpty()) {
+                showMessage("Enter Waste Name")
+                isValid = false
+                break
+            }
+            if (item.nhwQuantityString.isNullOrEmpty()) {
+                showMessage("Enter Quantity As per Consent")
+                isValid = false
+                break
+            }
+            if (item.nhwDisposalMethod.isNullOrEmpty()) {
+                showMessage("Enter Disposal Method")
+                isValid = false
+                break
+            }
+            if (item.nhwDisposalDate.isNullOrEmpty()) {
+                showMessage("Enter Last Disposal Date")
+                isValid = false
+                break
+            }
+            if (item.nhwDisposalQuantityString.isNullOrEmpty()) {
+                showMessage("Enter Last Disposal Quantity")
+                isValid = false
+                break
+            }
+            if (item.nhwActualdisposalString.isNullOrEmpty()) {
+                showMessage("Enter Actual Disposal")
+                isValid = false
+                break
+            }
+            if (item.nhwDisposalQuantityUnit == 0) {
+                showMessage("Select UOM")
+                isValid = false
+                break
+            }
+        }
+
+        return isValid
     }
 }

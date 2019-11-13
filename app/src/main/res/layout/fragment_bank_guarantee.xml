@@ -3,203 +3,205 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true">
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtBgImposed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/barlow_regular"
-                    android:text="BG imposed"
-                    android:textColor="@color/grey"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                        android:id="@+id/txtBgImposed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/barlow_regular"
+                        android:text="BG imposed"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <RadioGroup
-                    android:id="@+id/rgBGImposed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBgImposed">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbBGYes"
+                        android:id="@+id/rgBGImposed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:text="Yes"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp"/>
+                        android:layout_marginLeft="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtBgImposed">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbBGNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:text="No"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp"
-                        app:fontFamily="@font/barlow_semi_bold"/>
+                            android:id="@+id/rbBGYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_semi_bold"
+                            android:text="Yes"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rbBGNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:text="No"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp"
+                            app:fontFamily="@font/barlow_semi_bold" />
                 </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtBgImposedAgainst"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/barlow_regular"
-                    android:lineSpacingExtra="1.3sp"
-                    android:text="BG imposed Against"
-                    android:textColor="@color/grey"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rgBGImposed"/>
+                        android:id="@+id/txtBgImposedAgainst"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/barlow_regular"
+                        android:lineSpacingExtra="1.3sp"
+                        android:text="BG imposed Against"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rgBGImposed" />
 
                 <RadioGroup
-                    android:id="@+id/rgBGImposedAgainst"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtBgImposedAgainst">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbBGAgainstYes"
+                        android:id="@+id/rgBGImposedAgainst"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:paddingStart="5dp"
-                        android:paddingLeft="5dp"
-                        android:text="Consent"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp"
-                        tools:ignore="RtlSymmetry"/>
+                        android:layout_marginLeft="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtBgImposedAgainst">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbBGAgainstNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:fontFamily="@font/barlow_semi_bold"
-                        android:paddingStart="5dp"
-                        android:paddingLeft="5dp"
-                        android:text="Directions"
-                        android:textColor="@color/grey"
-                        android:textSize="14sp"
-                        tools:ignore="RtlSymmetry"/>
+                            android:id="@+id/rbBGAgainstYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/barlow_semi_bold"
+                            android:paddingStart="5dp"
+                            android:paddingLeft="5dp"
+                            android:text="Consent"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp"
+                            tools:ignore="RtlSymmetry" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rbBGAgainstNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="32dp"
+                            android:fontFamily="@font/barlow_semi_bold"
+                            android:paddingStart="5dp"
+                            android:paddingLeft="5dp"
+                            android:text="Directions"
+                            android:textColor="@color/grey"
+                            android:textSize="14sp"
+                            tools:ignore="RtlSymmetry" />
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/txtNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
-                    android:hint="Number (Only for Directions)"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rgBGImposedAgainst">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtNumber"
+                        android:id="@+id/txtNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/barlow_regular"
-                        android:textColor="@color/grey"
-                        app:layout_constraintStart_toStartOf="parent"/>
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:hint="Number (Only for Directions)"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rgBGImposedAgainst">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edtNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:fontFamily="@font/barlow_regular"
+                            android:textColor="@color/grey"
+                            app:layout_constraintStart_toStartOf="parent" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
-                    android:id="@+id/viewDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/view_line_two"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/light_white_100"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtNumber"/>
+                        android:id="@+id/viewDivider"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_line_two"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/light_white_100"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtNumber" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvBank"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewDivider"/>
+                        android:id="@+id/rvBank"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/viewDivider" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvAddMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="8dp"
-                    android:drawableStart="@drawable/ic_add_more"
-                    android:drawableLeft="@drawable/ic_add_more"
-                    android:drawablePadding="10dp"
-                    android:fontFamily="@font/barlow_semi_bold"
-                    android:gravity="center_vertical"
-                    android:padding="5dp"
-                    android:text="Add More"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvBank"/>
+                        android:id="@+id/tvAddMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableStart="@drawable/ic_add_more"
+                        android:drawableLeft="@drawable/ic_add_more"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/barlow_semi_bold"
+                        android:gravity="center_vertical"
+                        android:padding="5dp"
+                        android:text="Add More"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rvBank" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/imgDelete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:drawableStart="@drawable/ic_delete"
-                    android:drawableLeft="@drawable/ic_delete"
-                    android:drawablePadding="10dp"
-                    android:text="Delete"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/rvBank" />
+                        android:id="@+id/imgDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:drawableStart="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawablePadding="10dp"
+                        android:text="Delete"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintTop_toBottomOf="@id/rvBank" />
 
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSubmit"
-                    style="@style/save_btn_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="@string/save_continue"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvAddMore"/>
+                        android:id="@+id/btnSubmit"
+                        style="@style/save_btn_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:text="@string/save_continue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvAddMore" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

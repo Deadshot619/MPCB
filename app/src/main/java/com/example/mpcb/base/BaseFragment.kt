@@ -90,15 +90,15 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
             Constants.REPORT_6 -> OMSWaterFragment() //v
             Constants.REPORT_7 -> ElectricFragment() //v
             Constants.REPORT_8 -> LastJVSFragment() // listing
-            Constants.REPORT_9 -> AirFragment() // listing
+            Constants.REPORT_9 -> AirFragment() // listing //v
             Constants.REPORT_10 -> OMSStackFragment()//v
             Constants.REPORT_11 -> OMSAmbientAirFragment()// listing
-            Constants.REPORT_12 -> HazardousFragment()// listing
-            Constants.REPORT_13 -> NonHazardousFragment()// listing
+            Constants.REPORT_12 -> HazardousFragment()// listing//v
+            Constants.REPORT_13 -> NonHazardousFragment()// listing //v
             Constants.REPORT_14 -> TreePlantationFragment()//v
             Constants.REPORT_15 -> StatutoryFragment() //v
             Constants.REPORT_16 -> PreviousLegalFragment() //v
-            Constants.REPORT_17 -> BGDFragment()// listing
+            Constants.REPORT_17 -> BGDFragment()// listing //v
             Constants.REPORT_18 -> AdditionalInfoFragment() //v
             else -> Fragment()
         }

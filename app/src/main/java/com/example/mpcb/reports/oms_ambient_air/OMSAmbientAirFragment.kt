@@ -81,8 +81,6 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         if (showView) {
             mBinding.txtOMSInstalled.visibility = View.VISIBLE
             mBinding.rgOMSInstalled.visibility = View.VISIBLE
-            mBinding.txtSampleCollected.visibility = View.VISIBLE
-            mBinding.rgSampleCollected.visibility = View.VISIBLE
             mBinding.txtConnectivity.visibility = View.VISIBLE
             mBinding.linLayConnectivity.visibility = View.VISIBLE
             mBinding.cbCPCB.visibility = View.VISIBLE
@@ -90,8 +88,6 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         } else {
             mBinding.txtOMSInstalled.visibility = View.GONE
             mBinding.rgOMSInstalled.visibility = View.GONE
-            mBinding.txtSampleCollected.visibility = View.GONE
-            mBinding.rgSampleCollected.visibility = View.GONE
             mBinding.txtConnectivity.visibility = View.GONE
             mBinding.linLayConnectivity.visibility = View.GONE
             mBinding.cbCPCB.visibility = View.GONE
@@ -113,7 +109,33 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
             report.data.jvsSampleCollectedAirSource = mViewModel.getReportData()
         }
 
-        saveReportData()
-        addReportFragment(Constants.REPORT_12)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_12)
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (report.data.routineReport.omsamApplicable == null) {
+            showMessage("Online Monitoring System")
+            return false
+        }
+        if (report.data.routineReport.omsamApplicable == 1) {
+            if (report.data.routineReport.omsamInstalled == null) {
+                showMessage("Select Online Monitoring System Installed")
+                return false
+            }
+            if (report.data.routineReport.omsamInstalled == null) {
+                showMessage("Select Online Monitoring System Installed")
+                return false
+            }
+        }
+        if (report.data.routineReport.jvsObservation.isNullOrEmpty()) {
+            showMessage("Enter Remarks")
+            return false
+        }
+
+
+        return true
     }
 }

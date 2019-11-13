@@ -25,7 +25,6 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
-
     }
 
     private fun setUpRecyclerView() {
@@ -39,7 +38,73 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 
     private fun onSubmit() {
         report.data.routineReportHazardousWaste = mViewModel.getSourceList().value!!
-        saveReportData()
-        addReportFragment(Constants.REPORT_13)
+        if (validate()) {
+            saveReportData()
+            addReportFragment(Constants.REPORT_13)
+        }
+    }
+
+    private fun validate(): Boolean {
+        var isValid = true
+        val sourceList = mViewModel.getSourceList().value!!
+        for (item in sourceList) {
+            if (item.hazardousWasteCategoryName.isNullOrEmpty()) {
+                showMessage("Enter Hazardous Waste Category Name")
+                isValid = false
+                break
+            }
+            if (item.hazardousWasteQuantityString.isNullOrEmpty()) {
+                showMessage("Enter Quantity As per Consent")
+                isValid = false
+                break
+            }
+            if (item.hwDisposalMethodString.isNullOrEmpty()) {
+                showMessage("Enter Disposal Method")
+                isValid = false
+                break
+            }
+            if (item.hwActualDisposalString.isNullOrEmpty()) {
+                showMessage("Enter Actual Disposal")
+                isValid = false
+                break
+            }
+            if (item.hwFormDisposalString.isNullOrEmpty()) {
+                showMessage("Enter Quantity Disposal")
+                isValid = false
+                break
+            }
+            if (item.hwFormCswtsdfString.isNullOrEmpty()) {
+                showMessage("Enter Quantity disposal at CSWTSDS")
+                isValid = false
+                break
+            }
+            if (item.hwFormCoProcessingString.isNullOrEmpty()) {
+                showMessage("Enter Quantity disposal for co-processing")
+                isValid = false
+                break
+            }
+            if (item.hwDisposedActualuserString.isNullOrEmpty()) {
+                showMessage("Enter Quantity disposed by actual user")
+                isValid = false
+                break
+            }
+            if (item.hwDisposalQuantityString.isNullOrEmpty()) {
+                showMessage("Enter Last disposal Quantity")
+                isValid = false
+                break
+            }
+            if (item.hwDisposalDate.isNullOrEmpty()) {
+                showMessage("Enter Last disposal date")
+                isValid = false
+                break
+            }
+            if (item.hwDisposalQuantityUnit == 0) {
+                showMessage("Select UOM")
+                isValid = false
+                break
+            }
+        }
+
+        return isValid
     }
 }

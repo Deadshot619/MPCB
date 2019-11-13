@@ -54,6 +54,49 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
     }
 
     private fun validate(): Boolean {
-        return true
+        var isValid = true
+        if (report.data.routineReport.bgImposed.isNullOrEmpty()) {
+            showMessage("Select BG Imposed")
+            return false
+        }
+        if (report.data.routineReport.bgImposedAgainst.isNullOrEmpty()) {
+            showMessage("Select BG Imposed Against")
+            return false
+        }
+        if (report.data.routineReport.bgImposedNumber.isNullOrEmpty()) {
+            showMessage("Enter BG Imposed Number")
+            return false
+        }
+
+
+        val sourceList = mViewModel.getSourceList().value!!
+        for (item in sourceList) {
+            if (item.bankGuaranteeImposedFor.isEmpty()) {
+                showMessage("Enter Bank Guarantee Imposed For")
+                isValid = false
+                break
+            }
+            if (item.bankSubmitted.isEmpty()) {
+                showMessage("Select BG Submitted")
+                isValid = false
+                break
+            }
+            if (item.bankGuarentedNo.isEmpty()) {
+                showMessage("Enter Bank Guaranted No")
+                isValid = false
+                break
+            }
+            if (item.dateOfGuarantee.isEmpty()) {
+                showMessage("Enter Date of Guarantee")
+                isValid = false
+                break
+            }
+            if (item.dateOfValidity.isEmpty()) {
+                showMessage("Enter Date Of Validity")
+                isValid = false
+                break
+            }
+        }
+        return isValid
     }
 }
