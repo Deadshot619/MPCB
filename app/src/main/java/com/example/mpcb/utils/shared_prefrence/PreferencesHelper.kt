@@ -94,9 +94,9 @@ object PreferencesHelper {
     /**
      * Method to set the Flag status of specified Reports.
      */
-    fun setReportFlagStatus(reportKey: Int, b: Boolean){
+    fun setReportFlagStatus(reportKey: Int, reportStatus: Boolean){
         //saves the status of current report
-        setPreferences(Constants.getReportFlag(reportKey), true)
+        setPreferences(Constants.getReportFlag(reportKey), reportStatus)
     }
 
     /**

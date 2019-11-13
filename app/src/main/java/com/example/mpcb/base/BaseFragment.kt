@@ -40,6 +40,12 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     protected lateinit var mViewModel: V
     protected lateinit var report: ReportRequest
 
+    /**
+     * This method is to be implemented in the child classes.
+     * This method should retrieve & set data to views in Reports.
+     */
+    protected open fun setDataToViews(){}
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -118,6 +124,16 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
         //saves the status of current report
         PreferencesHelper.setReportFlagStatus(reportKey, reportStatus)
+    }
+
+    /**
+     * This method is used to retrieve Reports data from Shared Prefs
+     *
+     * @return [ReportRequest] returns an object of ReportRequest
+     */
+    protected fun getReportData(): ReportRequest{
+        val reports = PreferencesHelper.getPreferences(Constants.REPORT_KEY, "")
+        return Gson().fromJson(reports as String, ReportRequest::class.java)
     }
 }
 
