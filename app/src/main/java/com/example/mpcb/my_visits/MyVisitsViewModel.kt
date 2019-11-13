@@ -34,6 +34,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     fun getVisitListData(fromDate: String) {
         val request = MyVisitRequest()
         request.userId = user.userId.toString()
+        //TODO 13/11/19 Change these dates to current month in development build
         request.fromDate = "2017-11-01"
         request.toDate = "2019-11-11"
 //        request.fromDate = fromDate
