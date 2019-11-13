@@ -99,17 +99,26 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
     }
 
     private fun validate(): Boolean {
-        if (report.data.routineReport.omsaApplicable == 1) {
-            if (report.data.routineReport.omswInstalled == null) {
+        if (!mBinding.rbOMSApplicable.isChecked && !mBinding.rbOMSNotApplicable.isChecked) {
+            showMessage("Select Online Monitoring System")
+            return false
+        }
+
+        if (mBinding.rbOMSApplicable.isChecked) {
+            if (!mBinding.rbOMSInstalledApplicable.isChecked && !mBinding.rbOMSInstalledNotApplicable.isChecked) {
                 showMessage("Select Online Monitoring System Installed")
                 return false
             }
-            if (report.data.routineReport.remoteCalApplicableWater == null) {
+            if (!mBinding.rbRemoteYes.isChecked && !mBinding.rbRemoteNo.isChecked) {
                 showMessage("Select Remote Caliberation Applicable")
                 return false
             }
-            if (report.data.routineReport.sensorPlacedWater == null) {
+            if (!mBinding.rbSensorYes.isChecked && !mBinding.rbSensorNo.isChecked) {
                 showMessage("Sensor Properly Placed")
+                return false
+            }
+            if (!mBinding.cbMPCB.isChecked && !mBinding.cbCPCB.isChecked) {
+                showMessage("Select Connectivity")
                 return false
             }
         }

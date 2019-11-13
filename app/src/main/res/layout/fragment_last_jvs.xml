@@ -1,331 +1,335 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardviewLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/cardviewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Last JVS Details"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                        android:id="@+id/txtLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Last JVS Details"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dateOfCollectionIndusLayout"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/txtLabel"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:hint="Date Of Collection"
-                    app:layout_constraintStart_toStartOf="parent">
+                        android:id="@+id/dateOfCollectionIndusLayout"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/txtLabel"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:hint="Date Of Collection"
+                        app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtIndusDateOfCollection"
-                        android:focusable="false"
-                        android:drawableRight="@drawable/ic_calendar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                            android:id="@+id/edtIndusDateOfCollection"
+                            android:focusable="false"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtPymntDetailsIndus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Payment details"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dateOfCollectionIndusLayout" />
+                        android:id="@+id/txtPymntDetailsIndus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Payment details"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dateOfCollectionIndusLayout" />
 
 
                 <RadioGroup
-                    android:id="@+id/rgPymntDetailsIndus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtPymntDetailsIndus">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbPymntDetailsIndusYes"
+                        android:id="@+id/rgPymntDetailsIndus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Yes"
-                        android:textSize="18sp" />
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtPymntDetailsIndus">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbPymntDetailsIndusNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginTop="4dp"
-                        android:text="No"
-                        android:textSize="18sp" />
+                            android:id="@+id/rbPymntDetailsIndusYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Yes"
+                            android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rbPymntDetailsIndusNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginTop="4dp"
+                            android:text="No"
+                            android:textSize="18sp" />
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/amtIndusLayout"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsIndus"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:hint="Amount"
-                    app:layout_constraintStart_toStartOf="parent">
+                        android:id="@+id/amtIndusLayout"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsIndus"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:hint="Amount"
+                        app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtAmtIndus"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                            android:id="@+id/edtAmtIndus"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dateIndusLayout"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/amtIndusLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:hint="Date"
-                    app:layout_constraintStart_toStartOf="parent">
+                        android:id="@+id/dateIndusLayout"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/amtIndusLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:hint="Date"
+                        app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtDateIndus"
-                        android:focusable="false"
-                        android:drawableRight="@drawable/ic_calendar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                            android:id="@+id/edtDateIndus"
+                            android:focusable="false"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
-                    android:id="@+id/viewDividerTwo"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/view_line_two"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/light_white_100"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dateIndusLayout" />
+                        android:id="@+id/viewDividerTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/view_line_two"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/light_white_100"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dateIndusLayout" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dateOfCollectionDomesticLayout"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/viewDividerTwo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:hint="Date Of Collection"
-                    app:layout_constraintStart_toStartOf="parent">
+                        android:id="@+id/dateOfCollectionDomesticLayout"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/viewDividerTwo"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:hint="Date Of Collection"
+                        app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtDomesticDateOfCollection"
-                        android:drawableRight="@drawable/ic_calendar"
-                        android:layout_width="match_parent"
-                        android:focusable="false"
-                        android:layout_height="wrap_content" />
+                            android:id="@+id/edtDomesticDateOfCollection"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:layout_width="match_parent"
+                            android:focusable="false"
+                            android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtPymntDetailsDomestic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
-                    android:text="Payment details"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dateOfCollectionDomesticLayout" />
+                        android:id="@+id/txtPymntDetailsDomestic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Payment details"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dateOfCollectionDomesticLayout" />
 
 
                 <RadioGroup
-                    android:id="@+id/rgPymntDetailsDomestic"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="4dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtPymntDetailsDomestic">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbPymntDetailsDomesticYes"
+                        android:id="@+id/rgPymntDetailsDomestic"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="horizontal"
                         android:layout_marginTop="4dp"
-                        android:text="Yes"
-                        android:textSize="18sp" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtPymntDetailsDomestic">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbPymntDetailsDomesticNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginTop="4dp"
-                        android:text="No"
-                        android:textSize="18sp" />
+                            android:id="@+id/rbPymntDetailsDomesticYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Yes"
+                            android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rbPymntDetailsDomesticNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginTop="4dp"
+                            android:text="No"
+                            android:textSize="18sp" />
                 </RadioGroup>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/amtDomesticLayout"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsDomestic"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:hint="Amount"
-                    app:layout_constraintStart_toStartOf="parent">
+                        android:id="@+id/amtDomesticLayout"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsDomestic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:hint="Amount"
+                        app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtAmtDomestic"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                            android:id="@+id/edtAmtDomestic"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dateDomesticLayout"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/amtDomesticLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:hint="Date"
-                    app:layout_constraintStart_toStartOf="parent">
+                        android:id="@+id/dateDomesticLayout"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/amtDomesticLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:hint="Date"
+                        app:layout_constraintStart_toStartOf="parent">
 
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/edtDateDomestic"
-                        android:focusable="false"
-                        android:drawableRight="@drawable/ic_calendar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                            android:id="@+id/edtDateDomestic"
+                            android:focusable="false"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtJVSSample"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="16dp"
-                    android:text="JVS Sample Collected for Water"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/dateDomesticLayout" />
+                        android:id="@+id/txtJVSSample"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
+                        android:text="JVS Sample Collected for Water"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/dateDomesticLayout" />
 
                 <RadioGroup
-                    android:id="@+id/rgJVSSample"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtJVSSample">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbJVSSampleYes"
+                        android:id="@+id/rgJVSSample"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Yes"
-                        android:textSize="18sp" />
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtJVSSample">
 
                     <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/rbJVSSampleNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginTop="4dp"
-                        android:text="No"
-                        android:textSize="18sp" />
+                            android:id="@+id/rbJVSSampleYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Yes"
+                            android:textSize="18sp" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                            android:id="@+id/rbJVSSampleNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="32dp"
+                            android:layout_marginLeft="32dp"
+                            android:layout_marginTop="4dp"
+                            android:text="No"
+                            android:textSize="18sp" />
                 </RadioGroup>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvJVS"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgJVSSample" />
+                        android:id="@+id/rvJVS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rgJVSSample" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtAddMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Add More Source"
-                    android:gravity="center_vertical"
-                    android:drawablePadding="10dp"
-                    android:drawableLeft="@drawable/ic_plus"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvJVS" />
+                        android:id="@+id/txtAddMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Add More Source"
+                        android:gravity="center_vertical"
+                        android:drawablePadding="10dp"
+                        android:drawableLeft="@drawable/ic_plus"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rvJVS" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSubmit"
-                    style="@style/save_btn_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/btn_drawable"
-                    android:text="Save &amp; Continue"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore" />
+                        android:id="@+id/btnSubmit"
+                        style="@style/save_btn_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="@drawable/btn_drawable"
+                        android:text="Save &amp; Continue"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtAddMore" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -110,36 +110,58 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         }
 
         if (validate()) {
-            saveReportData(
-                reportKey = Constants.REPORT_11,
-                reportStatus = true
-            )
+            saveReportData(reportKey = Constants.REPORT_11, reportStatus = true)
             addReportFragment(Constants.REPORT_12)
         }
     }
 
 
     private fun validate(): Boolean {
-        if (report.data.routineReport.omsamApplicable == null) {
-            showMessage("Online Monitoring System")
+        if (!mBinding.rbOMSApplicable.isChecked && !mBinding.rbOMSNotApplicable.isChecked) {
+            showMessage("Select Online Monitoring System")
             return false
         }
-        if (report.data.routineReport.omsamApplicable == 1) {
-            if (report.data.routineReport.omsamInstalled == null) {
+        if (mBinding.rbOMSApplicable.isChecked) {
+            if (!mBinding.rbOMSInstalledApplicable.isChecked && !mBinding.rbOMSInstalledNotApplicable.isChecked) {
                 showMessage("Select Online Monitoring System Installed")
                 return false
             }
-            if (report.data.routineReport.omsamInstalled == null) {
-                showMessage("Select Online Monitoring System Installed")
+            if (!mBinding.cbCPCB.isChecked && !mBinding.cbMPCB.isChecked) {
+                showMessage("Select Connectivity")
                 return false
             }
         }
-        if (report.data.routineReport.jvsObservation.isNullOrEmpty()) {
+        if (mBinding.edtRemark.text.isNullOrEmpty()) {
             showMessage("Enter Remarks")
             return false
         }
+        if (!mBinding.rbSampleYes.isChecked && !mBinding.rbSampleNo.isChecked) {
+            showMessage("Select JVS Sample")
+            return false
+        }
+
+        var isValid = true
+        val sampleList = mViewModel.getReportData()
+
+        if (mBinding.rbSampleYes.isChecked) {
+            outer@ for (item in sampleList) {
+                if (item.nameOfSource.isEmpty()) {
+                    showMessage("Enter Source")
+                    isValid = false
+                    break
+                }
+                for (childItem in item.ambientAirChild) {
+                    if (childItem.prescribedValue.isEmpty()) {
+                        showMessage("Enter Prescribed Value")
+                        isValid = false
+                        break@outer
+                    }
+                }
+            }
+
+        }
 
 
-        return true
+        return isValid
     }
 }
