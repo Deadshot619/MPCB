@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentProductionBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
@@ -14,6 +15,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     ProductionNavigator {
 
     lateinit var adapter: ProductionAdapter
+    private var reports: ReportRequest? = null
 
     override fun getLayoutId() = R.layout.fragment_production
     override fun getViewModel() = ProductionViewModel::class.java
@@ -35,12 +37,15 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
         mBinding.rvProduction.layoutManager =
             LinearLayoutManager(getBaseActivity().applicationContext)
         mBinding.rvProduction.adapter = adapter
-        mViewModel.getProductList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
+        mViewModel.getProductList().observe(viewLifecycleOwner, Observer {
+            adapter.updateList(it)
+        })
         mViewModel.populateData()
     }
 
     private fun onSubmit() {
         if (validate()) {
+            report.data.routineReportProducts.clear()
             report.data.routineReportProducts = mViewModel.getProductList().value!!
             saveReportData(
                 reportKey = Constants.REPORT_2,
@@ -81,6 +86,20 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
             }
         }
         return isValid
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        reports = getReportData()
+        if(reports?.data?.routineReportProducts != null)
+            mViewModel.populateData(reports?.data?.routineReportProducts!!)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
     }
 
 }

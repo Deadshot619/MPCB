@@ -1,7 +1,6 @@
 package com.example.mpcb.reports.industry
 
 import android.app.DatePickerDialog
-import android.util.Log
 import android.widget.ArrayAdapter
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
@@ -19,7 +18,7 @@ class IndustryReportFragment :
 
     private val VISITED_ON = 1
     private val VALID_UPTO = 2
-    private lateinit var reports: ReportRequest
+    private var reports: ReportRequest? = null
 
     override fun getLayoutId() = R.layout.fragment_industry_category
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -129,7 +128,7 @@ class IndustryReportFragment :
     override fun onStart() {
         super.onStart()
         setDataToViews()
-        Log.i("Industry", getReportData().data.industryCategoryReselect)
+//        Log.i("Industry", getReportData()?.data?.industryCategoryReselect)
     }
 
     /**
@@ -138,14 +137,15 @@ class IndustryReportFragment :
     override fun setDataToViews(){
         reports = getReportData()
         //Spinner
-        mBinding.catSpinner.setSelection(reports.data.industryCategoryReselect.toInt())
-        mBinding.edtVisitedIndustryOn.setText(reports.data.routineReport.visitedOn)
-        mBinding.visitCatEmailEd.setText(reports.data.routineReport.emailAddress)
-        mBinding.visitCatTelephoneEd.setText(reports.data.routineReport.telephoneNumber)
-        mBinding.edtValidUpto.setText(reports.data.routineReport.validityOfConsentUpto)
-        mBinding.consentIeEd.setText(reports.data.routineReport.validityOfConsentIe)
-        mBinding.consentDeEd.setText(reports.data.routineReport.hwOfValidUptoDe)
-        //TODO 13/11/19 Retrieve & Set consent Data on the field
-
+        if(reports!=null) {
+            mBinding.catSpinner.setSelection(reports?.data?.industryCategoryReselect!!.toInt())
+            mBinding.edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
+            mBinding.visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
+            mBinding.visitCatTelephoneEd.setText(reports?.data?.routineReport?.telephoneNumber)
+            mBinding.edtValidUpto.setText(reports?.data?.routineReport?.validityOfConsentUpto)
+            mBinding.consentIeEd.setText(reports?.data?.routineReport?.validityOfConsentIe)
+            mBinding.consentDeEd.setText(reports?.data?.routineReport?.hwOfValidUptoDe)
+            //TODO 13/11/19 Retrieve & Set consent Data on the field
+        }
     }
 }

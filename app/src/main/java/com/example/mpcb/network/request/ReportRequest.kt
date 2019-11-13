@@ -467,6 +467,7 @@ class RoutineReport {
     var legalActionUnitComplied: Int? = null
 }
 
+//Production Details Report data
 class RoutineReportProduct : BaseObservable() {
     @SerializedName("product_name")
     @Expose
