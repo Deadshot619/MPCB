@@ -59,7 +59,7 @@ class NonHazardousAdapter(
                 DatePickerDialog(
                     context,
                     DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                        holder.itemBinding.edtDisposalDate.setText("$dayOfMonth-${month + 1}-$year")
+                        holder.itemBinding.edtDisposalDate.setText("$year-${month + 1}-$dayOfMonth")
                     },
                     calendar.get(Calendar.YEAR),
                     calendar.get(Calendar.MONTH),
@@ -78,7 +78,7 @@ class NonHazardousAdapter(
     fun updateList(list: ArrayList<RoutineReportNonHazardousWaste>) {
         this.visitList.clear()
         this.visitList.addAll(list)
-        notifyItemInserted(list.size - 1)
+        notifyDataSetChanged()
     }
 
 
@@ -103,7 +103,7 @@ class NonHazardousAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUOM.setSelection(position)
-                        item.nhwDisposalQuantityUnit = (position + 1)
+                        item.nhwDisposalQuantityUnit = position
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}

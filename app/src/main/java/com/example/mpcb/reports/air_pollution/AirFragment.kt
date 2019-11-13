@@ -37,10 +37,57 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
     private fun onSubmit() {
         report.data.routineReport.airPollutionObservation = mBinding.edtRemarks.text.toString()
         report.data.routineReportAirPollution = mViewModel.getSourceList().value!!
-        saveReportData(
-            reportKey = Constants.REPORT_9,
-            reportStatus = true
-        )
+
         addReportFragment(Constants.REPORT_10)
+        if (validate()) {
+            saveReportData(
+                reportKey = Constants.REPORT_9,
+                reportStatus = true
+            )
+            addReportFragment(Constants.REPORT_10)
+        }
+    }
+
+    private fun validate(): Boolean {
+        var isValid = true
+        val sourceList = mViewModel.getSourceList().value!!
+        for (item in sourceList) {
+            if (item.airPollutionType.isNullOrEmpty()) {
+                showMessage("Select Process / Fuel Burning")
+                isValid = false
+                break
+            }
+            if (item.airPollutionFuelName.isEmpty()) {
+                showMessage("Enter Fuel Name")
+                isValid = false
+                break
+            }
+            if (item.airPollutionFuelQuantity.isEmpty()) {
+                showMessage("Enter Fuel Quantity")
+                isValid = false
+                break
+            }
+            if (item.airPollutionFuelUnit.isEmpty()) {
+                showMessage("Enter Fuel Unit")
+                isValid = false
+                break
+            }
+            if (item.airPollutionPollutants.isEmpty()) {
+                showMessage("Enter Pollutants")
+                isValid = false
+                break
+            }
+            if (item.airPollutionStackHeight.isEmpty()) {
+                showMessage("Enter Stack Height")
+                isValid = false
+                break
+            }
+        }
+        if (isValid && report.data.routineReport.airPollutionObservation.isNullOrEmpty()) {
+            showMessage("Enter Remarks")
+            return false
+        }
+
+        return isValid
     }
 }

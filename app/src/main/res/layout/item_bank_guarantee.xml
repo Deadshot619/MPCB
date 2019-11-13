@@ -1,149 +1,153 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
-            name="model"
-            type="com.example.mpcb.network.request.RoutineReportBankDetail" />
+                name="model"
+                type="com.example.mpcb.network.request.RoutineReportBankDetail" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="20dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtBGImposedFor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp"
-            android:hint="Bank Guarantee Imposed for"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:paddingBottom="20dp">
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtBGImposedFor"
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtBGImposedFor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_regular"
-                android:text="@={model.bankGuaranteeImposedFor}"
-                android:textColor="@color/grey"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                android:hint="Bank Guarantee Imposed for"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtBGImposedFor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_regular"
+                    android:text="@={model.bankGuaranteeImposedFor}"
+                    android:textColor="@color/grey"
+                    app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtBGSubmitted"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/barlow_regular"
-            android:text="BG Submitted"
-            android:textColor="@color/grey"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtBGImposedFor" />
+                android:id="@+id/txtBGSubmitted"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/barlow_regular"
+                android:text="BG Submitted"
+                android:textColor="@color/grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGImposedFor" />
 
         <RadioGroup
-            android:id="@+id/rgBGSubmitted"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtBGSubmitted">
-
-            <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbSubmittedYes"
+                android:id="@+id/rgBGSubmitted"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:text="Yes"
-                android:textColor="@color/grey"
-                android:textSize="14sp" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGSubmitted">
 
             <androidx.appcompat.widget.AppCompatRadioButton
-                android:id="@+id/rbSubmittedNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:fontFamily="@font/barlow_semi_bold"
-                android:text="No"
-                android:textColor="@color/grey"
-                android:textSize="14sp" />
+                    android:id="@+id/rbSubmittedYes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:text="Yes"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                    android:id="@+id/rbSubmittedNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:fontFamily="@font/barlow_semi_bold"
+                    android:text="No"
+                    android:textColor="@color/grey"
+                    android:textSize="14sp" />
         </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtBGNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:hint="Bank Guarantee No"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rgBGSubmitted">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtBGNo"
+                android:id="@+id/txtBGNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={model.bankGuarentedNo}"
-                android:fontFamily="@font/barlow_regular"
-                android:textColor="@color/grey"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Bank Guarantee No"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rgBGSubmitted">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtBGNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={model.bankGuarentedNo}"
+                    android:inputType="number"
+                    android:maxLength="5"
+                    android:fontFamily="@font/barlow_regular"
+                    android:textColor="@color/grey"
+                    app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtBGDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:hint="Date"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtBGNo">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtBGDate"
+                android:id="@+id/txtBGDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/barlow_regular"
-                android:textColor="@color/grey"
-                android:text="@={model.dateOfGuarantee}"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGNo">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtBGDate"
+                    android:layout_width="match_parent"
+                    android:focusable="false"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_regular"
+                    android:textColor="@color/grey"
+                    android:text="@={model.dateOfGuarantee}"
+                    app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtBGValidity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
-            android:hint="Validity"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtBGDate">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/edtBGValidity"
+                android:id="@+id/txtBGValidity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={model.dateOfValidity}"
-                android:fontFamily="@font/barlow_regular"
-                android:textColor="@color/grey"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="Validity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBGDate">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtBGValidity"
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={model.dateOfValidity}"
+                    android:fontFamily="@font/barlow_regular"
+                    android:textColor="@color/grey"
+                    app:layout_constraintStart_toStartOf="parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

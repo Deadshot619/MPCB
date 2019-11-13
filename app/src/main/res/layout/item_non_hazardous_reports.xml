@@ -4,256 +4,263 @@
     <data>
 
         <variable
-            name="model"
-            type="com.example.mpcb.network.request.RoutineReportNonHazardousWaste" />
+                name="model"
+                type="com.example.mpcb.network.request.RoutineReportNonHazardousWaste" />
     </data>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_rectangle"
-        android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rectangle"
+            android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/reports"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp">
+                android:id="@+id/reports"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp">
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txtReportTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:text="Report 1"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+                    android:id="@+id/txtReportTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Report 1"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgExpandCollapse"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/ic_down_arrow" />
+                    android:id="@+id/imgExpandCollapse"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_down_arrow" />
         </RelativeLayout>
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/black" />
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/black" />
 
         <LinearLayout
-            android:id="@+id/layLinChild"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/haz_category"
+                android:id="@+id/layLinChild"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:gravity="center_vertical"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:id="@+id/haz_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:layout_marginRight="16dp"
-                    android:text="Name of Waste"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:layout_marginRight="16dp"
+                        android:text="Name of Waste"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:text="@={model.nhwWasteName}"
-                    android:textColor="@color/text_light_black" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3.5"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:text="@={model.nhwWasteName}"
+                        android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/haz_quantity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:layout_marginRight="16dp"
-                android:orientation="horizontal">
+                    android:id="@+id/haz_quantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:text="@string/hztxt_quantity"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large" />
+                        android:layout_width="0dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:text="@string/hztxt_quantity"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:inputType="number"
-                    android:text="@={model.nhwQuantityString}"
-                    android:textColor="@color/text_light_black" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3.5"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:text="@={model.nhwQuantityString}"
+                        android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/haz_method_disposal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:layout_marginRight="16dp"
-                android:orientation="horizontal">
+                    android:id="@+id/haz_method_disposal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:layout_marginRight="16dp"
-                    android:text="@string/hztxt_method_disposal"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/hztxt_method_disposal"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:text="@={model.nhwDisposalMethod}"
-                    android:textColor="@color/text_light_black" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3.5"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:text="@={model.nhwDisposalMethod}"
+                        android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/haz_lastdisp_quant_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:layout_marginRight="16dp"
-                android:orientation="horizontal">
+                    android:id="@+id/haz_lastdisp_quant_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:layout_marginRight="16dp"
-                    android:text="@string/hztxt_last_dis_date"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/hztxt_last_dis_date"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/edtDisposalDate"
-                    android:layout_width="0dp"
-                    android:focusable="false"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:text="@={model.nhwDisposalDate}"
-                    android:textColor="@color/text_light_black" />
+                        android:id="@+id/edtDisposalDate"
+                        android:layout_width="0dp"
+                        android:focusable="false"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3.5"
+                        android:text="@={model.nhwDisposalDate}"
+                        android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/haz_lastdisp_quant"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:layout_marginRight="16dp"
-                android:orientation="horizontal">
+                    android:id="@+id/haz_lastdisp_quant"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:text="@string/hztxt_last_disposal"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large" />
+                        android:layout_width="0dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:text="@string/hztxt_last_disposal"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:inputType="number"
-                    android:text="@={model.nhwDisposalQuantityString}"
-                    android:textColor="@color/text_light_black" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3.5"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:text="@={model.nhwDisposalQuantityString}"
+                        android:textColor="@color/text_light_black" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/haz_actual_dis"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:layout_marginRight="16dp"
-                android:orientation="horizontal">
+                    android:id="@+id/haz_actual_dis"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:layout_marginRight="16dp"
-                    android:text="@string/hztxt_actual_disposal"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="6"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/hztxt_actual_disposal"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3.5"
-                    android:inputType="number"
-                    android:text="@={model.nhwActualdisposalString}"
-                    android:textColor="@color/text_light_black" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3.5"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:text="@={model.nhwActualdisposalString}"
+                        android:textColor="@color/text_light_black" />
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:padding="4dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:padding="4dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:layout_marginRight="16dp"
-                    android:text="UOM"
-                    android:textColor="@color/light_grey"
-                    android:textSize="@dimen/text_large" />
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_marginRight="16dp"
+                        android:text="UOM"
+                        android:textColor="@color/light_grey"
+                        android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnUOM"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textColor="@color/text_light_black" />
+                        android:id="@+id/spnUOM"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_light_black" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

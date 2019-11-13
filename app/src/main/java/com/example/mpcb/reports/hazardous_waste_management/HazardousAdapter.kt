@@ -100,7 +100,7 @@ class HazardousAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUOM.setSelection(position)
-                        item.hwDisposalQuantityUnit = (position + 1)
+                        item.hwDisposalQuantityUnit = position
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
