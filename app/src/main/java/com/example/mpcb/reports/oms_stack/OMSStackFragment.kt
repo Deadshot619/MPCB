@@ -96,13 +96,13 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
 
     private fun onSubmit() {
         if (report.data.routineReport.omsaApplicable == 0) {
-//            report.data.routineReport.omsaInstalled = 0
-//            report.data.routineReport.remoteCalApplicable = 0
-//            report.data.routineReport.sensorPlaced = 0
-//            report.data.routineReport.stackFacilityExist = 0
-//            report.data.routineReport.calFacExist = 0
-//            report.data.routineReport.omsaCpcb = 0
-//            report.data.routineReport.omsaMpcb = 0
+            report.data.routineReport.omsaInstalled = 0
+            report.data.routineReport.remoteCalApplicable = 0
+            report.data.routineReport.sensorPlaced = 0
+            report.data.routineReport.stackFacilityExist = 0
+            report.data.routineReport.calFacExist = 0
+            report.data.routineReport.omsaCpcb = 0
+            report.data.routineReport.omsaMpcb = 0
         }
 
         if (validate()) {
@@ -115,29 +115,33 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
     }
 
     private fun validate(): Boolean {
-        if (report.data.routineReport.omsaApplicable == null) {
+        if (!mBinding.rbOSA.isChecked && !mBinding.rbOSNA.isChecked) {
             showMessage("Select Online Monitoring System")
             return false
         }
-        if (report.data.routineReport.omsaApplicable == 1) {
-            if (report.data.routineReport.omsaInstalled == null) {
+        if (mBinding.rbOSA.isChecked) {
+            if (!mBinding.rbWOSA.isChecked && !mBinding.rbWOSNA.isChecked) {
                 showMessage("Select Online Monitoring System Installed")
                 return false
             }
-            if (report.data.routineReport.remoteCalApplicable == null) {
+            if (!mBinding.rbRmtCalYes.isChecked && !mBinding.rbRmtCalNo.isChecked) {
                 showMessage("Select Remote Caliberation Applicable")
                 return false
             }
-            if (report.data.routineReport.sensorPlaced == null) {
+            if (!mBinding.rbSensorPlacedYes.isChecked && !mBinding.rbSensorPlacedNo.isChecked) {
                 showMessage("Select Sensor Properly Placed")
                 return false
             }
-            if (report.data.routineReport.stackFacilityExist == null) {
+            if (!mBinding.rbWSMSYes.isChecked && !mBinding.rbWSMSNo.isChecked) {
                 showMessage("Select proper stack monitoring system exists")
                 return false
             }
-            if (report.data.routineReport.calFacExist == null) {
+            if (!mBinding.rbWCalSysYes.isChecked && !mBinding.rbWCalSysNo.isChecked) {
                 showMessage("Select calibration facility exists")
+                return false
+            }
+            if (!mBinding.cbCPCB.isChecked && !mBinding.cbMPCB.isChecked) {
+                showMessage("Select Connectivity")
                 return false
             }
         }

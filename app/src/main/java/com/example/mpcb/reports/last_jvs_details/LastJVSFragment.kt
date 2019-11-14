@@ -117,11 +117,72 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
         if (report.data.routineReport.jvsSampleCollectedForWater == 1) {
             report.data.jvsSampleCollectedWaterSource = mViewModel.getReportData()
         }
-        saveReportData(
-            reportKey = Constants.REPORT_8,
-            reportStatus = true
-        )
-        addReportFragment(Constants.REPORT_9)
+
+        if (validate()) {
+            saveReportData(reportKey = Constants.REPORT_8, reportStatus = true)
+            addReportFragment(Constants.REPORT_9)
+        }
+    }
+
+    private fun validate(): Boolean {
+        if (mBinding.edtIndusDateOfCollection.text.isNullOrEmpty()) {
+            showMessage("Enter Date of collection")
+            return false
+        }
+        if (!mBinding.rbPymntDetailsIndusYes.isChecked && !mBinding.rbPymntDetailsIndusNo.isChecked) {
+            showMessage("Select Payment Details")
+            return false
+        }
+        if (mBinding.edtAmtIndus.text.isNullOrEmpty()) {
+            showMessage("Enter Amount")
+            return false
+        }
+        if (mBinding.edtDateIndus.text.isNullOrEmpty()) {
+            showMessage("Enter Date")
+            return false
+        }
+        if (mBinding.edtDomesticDateOfCollection.text.isNullOrEmpty()) {
+            showMessage("Enter Date of collection")
+            return false
+        }
+        if (!mBinding.rbPymntDetailsDomesticYes.isChecked && !mBinding.rbPymntDetailsDomesticNo.isChecked) {
+            showMessage("Select Payment Details")
+            return false
+        }
+        if (mBinding.edtAmtDomestic.text.isNullOrEmpty()) {
+            showMessage("Enter Amount")
+            return false
+        }
+        if (mBinding.edtDateDomestic.text.isNullOrEmpty()) {
+            showMessage("Enter Date")
+            return false
+        }
+
+        if (!mBinding.rbJVSSampleYes.isChecked && !mBinding.rbJVSSampleNo.isChecked) {
+            showMessage("Select JVS Sample")
+            return false
+        }
+
+        var isValid = true
+        val sampleList = mViewModel.getReportData()
+
+        if (mBinding.rbJVSSampleYes.isChecked) {
+            outer@ for (item in sampleList) {
+                if (item.nameOfSource.isEmpty()) {
+                    showMessage("Enter Source")
+                    isValid = false
+                    break
+                }
+                for (childItem in item.lastJvsChild) {
+                    if (childItem.prescribedValue.isEmpty()) {
+                        showMessage("Enter Prescribed Value")
+                        isValid = false
+                        break@outer
+                    }
+                }
+            }
+        }
+        return isValid
     }
 
 
