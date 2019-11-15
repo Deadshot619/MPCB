@@ -1,7 +1,6 @@
 package com.example.mpcb.reports.industry
 
 import android.app.DatePickerDialog
-import android.util.Log
 import android.widget.ArrayAdapter
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
@@ -12,6 +11,8 @@ import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isEmailValid
+import com.example.mpcb.utils.validations.isValidMobile
 import java.util.*
 
 class IndustryReportFragment :
@@ -84,19 +85,36 @@ class IndustryReportFragment :
             hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
         }
 
-        if (validate()) {
-            saveReportData(
-                reportKey = Constants.REPORT_1,
-                reportStatus = true
-            )
-            addReportFragment(Constants.REPORT_2)
+        if (validateFieldsFilled()) {
+            if (validateFieldsFilledCorrect()) {
+                saveReportData(
+                    reportKey = Constants.REPORT_1,
+                    reportStatus = true
+                )
+                addReportFragment(Constants.REPORT_2)
+            }
         }
     }
 
     /**
-     * Method to validate if fields of report form are filled correctly
+     * Method to check if the fields are correctly filled
      */
-    private fun validate(): Boolean {
+    private fun validateFieldsFilledCorrect(): Boolean {
+        if(!isEmailValid(report.data.routineReport.emailAddress)){
+            showMessage("Email Id is invalid")
+            return false
+        }
+        if (!isValidMobile(report.data.routineReport.telephoneNumber)){
+            showMessage("Invalid Number")
+            return false
+        }
+        return true
+    }
+
+    /**
+     * Method to validate if fields of report form are filled.
+     */
+    private fun validateFieldsFilled(): Boolean {
         if (report.data.industryCategoryReselect == "0") {
             showMessage("Select Category")
             return false

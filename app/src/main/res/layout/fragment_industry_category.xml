@@ -150,9 +150,10 @@
                             style="@style/industry_cat_frag_space_style"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:maxLength="10"
+                            android:maxLength="13"
                             android:textColor="@color/grey"
+                            android:digits="+0123456789"
+                            android:inputType="phone"
                             app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -224,6 +225,7 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+<!--                I.E.-->
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/consent_ie_lbl"
                         android:layout_width="match_parent"
@@ -239,10 +241,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/grey"
+                            android:digits=".0123456789"
+                            android:inputType="phone"
                             app:layout_constraintStart_toStartOf="parent" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+<!--                D.E.-->
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/consent_de_lbl"
                         android:layout_width="match_parent"
@@ -258,6 +263,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="@color/grey"
+                            android:digits=".0123456789"
+                            android:inputType="phone"
                             app:layout_constraintStart_toStartOf="parent" />
 
                 </com.google.android.material.textfield.TextInputLayout>
