@@ -3,135 +3,180 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="itemListener"
-                  type="com.example.mpcb.visit_report.ReportItemListener"/>
+
+        <variable
+                name="itemListener"
+                type="com.example.mpcb.visit_report.ReportItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg_grey"
-        tools:context="com.example.mpcb.visit_report.VisitReportFragment">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_grey"
+            tools:context="com.example.mpcb.visit_report.VisitReportFragment">
 
         <include
-            android:id="@+id/toolbarLayout"
-            layout="@layout/toolbar_reports"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+                android:id="@+id/toolbarLayout"
+                layout="@layout/toolbar_reports"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
-
-            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
-                <!-- Industry Category, ......-->
-                <androidx.cardview.widget.CardView
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
-                    <RelativeLayout
-                        android:id="@+id/industryTag"
+                <!-- Industry Category, ......-->
+                <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:onClick="@{(v) -> itemListener.onClick(v)}">
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+                    <RelativeLayout
+                            android:id="@+id/industryTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:text="@string/report_1"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                android:text="@string/report_1"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/iv_industryTag"
                                 android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_check_circle"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/ic_check_circle"
                                 android:tint="?attr/colorAccent"
-                            android:visibility="gone"
-                                tools:visibility="visible"/>
+                                android:visibility="gone"
+                                tools:visibility="visible" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-<!--                    Product Category-->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <!--                    Product Category-->
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/productTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/productTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:text="@string/report_2"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="16dp"
+                                    android:text="@string/report_2"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_productTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-<!--                    Treatment System-->
+                    <!--                    Treatment System-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+                        <RelativeLayout
+                                android:id="@+id/treatmentTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="16dp"
+                                    android:text="@string/report_3"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_treatmentTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <!--                Water Waste-->
+                <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="2dp"
                         app:cardUseCompatPadding="true"
@@ -139,590 +184,590 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
-                        <RelativeLayout
-                            android:id="@+id/treatmentTag"
+                    <RelativeLayout
+                            android:id="@+id/waterWasteTag"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="4dp"
                             android:onClick="@{(v) -> itemListener.onClick(v)}">
 
-                            <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:text="@string/report_3"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
-
-                            <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/iv_treatmentTag"
+                        <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
-                                    android:tint="?attr/colorAccent"
-                                    android:visibility="gone"
-                                    tools:visibility="visible"/>
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-<!--                Water Waste-->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
-
-                    <RelativeLayout
-                        android:id="@+id/waterWasteTag"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="4dp"
-                        android:onClick="@{(v) -> itemListener.onClick(v)}">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:text="@string/report_4"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
+                                android:padding="16dp"
+                                android:text="@string/report_4"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/iv_waterWasteTag"
                                 android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_check_circle"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/ic_check_circle"
                                 android:tint="?attr/colorAccent"
                                 android:visibility="gone"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-<!--                    Disposal-->
+                    <!--                    Disposal-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/disposalTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/disposalTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:padding="16dp"
-                                android:text="@string/report_5"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:padding="16dp"
+                                    android:text="@string/report_5"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_disposalTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-<!--                    Online Monitoring System-->
+                    <!--                    Online Monitoring System-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/omsWaterTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/omsWaterTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:text="@string/report_6"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="16dp"
+                                    android:text="@string/report_6"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_omsWaterTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-<!--                    Electric Meter Details-->
+                    <!--                    Electric Meter Details-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/electricTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/electricTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:padding="16dp"
-                                android:text="@string/report_7"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:padding="16dp"
+                                    android:text="@string/report_7"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_electricTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-<!--                    Last JCS Details-->
+                    <!--                    Last JCS Details-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/lastJVSTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/lastJVSTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:text="@string/report_8"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="16dp"
+                                    android:text="@string/report_8"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_lastJVSTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-<!--                    Air Pollution Aspect-->
+                    <!--                    Air Pollution Aspect-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/airPollutionTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/airPollutionTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:padding="16dp"
-                                android:text="@string/report_9"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:padding="16dp"
+                                    android:text="@string/report_9"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_airPollutionTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-<!--                    Online Monitoring System (Stack)-->
+                    <!--                    Online Monitoring System (Stack)-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/omsStackTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/omsStackTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:text="@string/report_10"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="16dp"
+                                    android:text="@string/report_10"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_omsStackTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
-<!--                Online Monitoring System (Ambient Air)-->
+                <!--                Online Monitoring System (Ambient Air)-->
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
-
-                    <RelativeLayout
-                        android:id="@+id/omsAmbientTag"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:onClick="@{(v) -> itemListener.onClick(v)}">
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+                    <RelativeLayout
+                            android:id="@+id/omsAmbientTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:text="@string/report_11"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                android:text="@string/report_11"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/iv_omsAmbientTag"
                                 android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_check_circle"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/ic_check_circle"
                                 android:tint="?attr/colorAccent"
                                 android:visibility="gone"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-<!--                Hazardous Waste Management-->
+                <!--                Hazardous Waste Management-->
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
-
-                    <RelativeLayout
-                        android:id="@+id/hazardousTag"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:onClick="@{(v) -> itemListener.onClick(v)}">
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+                    <RelativeLayout
+                            android:id="@+id/hazardousTag"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:text="@string/report_12"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                android:text="@string/report_12"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/iv_hazardoudTag"
                                 android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_check_circle"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/ic_check_circle"
                                 android:tint="?attr/colorAccent"
                                 android:visibility="gone"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
 
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-<!--                    Non-Hazardous Waste Management-->
+                    <!--                    Non-Hazardous Waste Management-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/nonHazardousTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/nonHazardousTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:padding="16dp"
-                                android:text="@string/report_13"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:padding="16dp"
+                                    android:text="@string/report_13"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_nonHazardousTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-<!--                    Tree Plantation-->
+                    <!--                    Tree Plantation-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/treeTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/treeTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="16dp"
-                                android:text="@string/report_14"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="16dp"
+                                    android:text="@string/report_14"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_treeTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-<!--                    Statutory Submissions-->
+                    <!--                    Statutory Submissions-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
                         <RelativeLayout
-                            android:id="@+id/statutoryTag"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:onClick="@{(v) -> itemListener.onClick(v)}">
+                                android:id="@+id/statutoryTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:padding="16dp"
-                                android:text="@string/report_15"
-                                android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:padding="16dp"
+                                    android:text="@string/report_15"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
 
                             <androidx.appcompat.widget.AppCompatImageView
                                     android:id="@+id/iv_statutoryTag"
                                     android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_centerVertical="true"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginRight="16dp"
-                                android:src="@drawable/ic_check_circle"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
                                     android:tint="?attr/colorAccent"
                                     android:visibility="gone"
-                                    tools:visibility="visible"/>
+                                    tools:visibility="visible" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-<!--                    Previous Legal Actions-->
+                    <!--                    Previous Legal Actions-->
                     <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="2dp"
+                            app:cardUseCompatPadding="true"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+                        <RelativeLayout
+                                android:id="@+id/previousTag"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:onClick="@{(v) -> itemListener.onClick(v)}">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="16dp"
+                                    android:text="@string/report_16"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_previousTag"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginRight="16dp"
+                                    android:src="@drawable/ic_check_circle"
+                                    android:tint="?attr/colorAccent"
+                                    android:visibility="gone"
+                                    tools:visibility="visible" />
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <!--                Bank Guarantee Details-->
+                <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="2dp"
                         app:cardUseCompatPadding="true"
@@ -730,23 +775,25 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
-                        <RelativeLayout
-                            android:id="@+id/previousTag"
+                    <RelativeLayout
+                            android:id="@+id/bankGuaranteeTag"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
                             android:onClick="@{(v) -> itemListener.onClick(v)}">
 
-                            <androidx.appcompat.widget.AppCompatTextView
+                        <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="16dp"
-                                android:text="@string/report_16"
+                                android:text="@string/report_17"
                                 android:textSize="15sp"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
 
-                            <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/iv_previousTag"
-                                    android:layout_width="wrap_content"
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/iv_bankGuaranteeTag"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentRight="true"
@@ -754,96 +801,52 @@
                                 android:layout_marginEnd="16dp"
                                 android:layout_marginRight="16dp"
                                 android:src="@drawable/ic_check_circle"
-                                    android:tint="?attr/colorAccent"
-                                    android:visibility="gone"
-                                    tools:visibility="visible"/>
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-<!--                Bank Guarantee Details-->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
-
-                    <RelativeLayout
-                        android:id="@+id/bankGuaranteeTag"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:onClick="@{(v) -> itemListener.onClick(v)}">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:text="@string/report_17"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/iv_bankGuaranteeTag"
-                                android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_check_circle"
                                 android:tint="?attr/colorAccent"
                                 android:visibility="gone"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 
-<!--                Additional Information-->
+                <!--                Additional Information-->
                 <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="2dp"
-                    app:cardUseCompatPadding="true"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
-
-                    <LinearLayout
-                        android:id="@+id/additionalTag"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:gravity="center_vertical"
-                        android:onClick="@{(v) -> itemListener.onClick(v)}"
-                        android:orientation="horizontal">
+                        android:layout_marginBottom="20dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        app:cardUseCompatPadding="true"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
+
+                    <LinearLayout
+                            android:id="@+id/additionalTag"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_vertical"
+                            android:onClick="@{(v) -> itemListener.onClick(v)}"
+                            android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="16dp"
-                            android:text="@string/add_info"
-                            android:textSize="15sp"
-                            android:textStyle="bold"/>
+                                android:layout_height="wrap_content"
+                                android:padding="16dp"
+                                android:text="@string/add_info"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/iv_additionalTag"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:src="@drawable/ic_check_circle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginRight="16dp"
+                                android:src="@drawable/ic_check_circle"
                                 android:tint="?attr/colorAccent"
                                 android:visibility="gone"
-                                tools:visibility="visible"/>
+                                tools:visibility="visible" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
