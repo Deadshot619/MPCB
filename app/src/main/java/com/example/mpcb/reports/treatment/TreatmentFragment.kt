@@ -61,6 +61,9 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
         }
     }
 
+    /**
+     * Method to Set listeners to Checkboxes
+     */
     private fun setCheckBoxListener() {
         mBinding.cbPrimaryOG.setOnCheckedChangeListener(this)
         mBinding.cbPrimaryScreening.setOnCheckedChangeListener(this)
@@ -174,6 +177,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                     mBinding.layLinSewage.visibility = View.GONE
                     0
                 }
+
             R.id.cbSewageActivated -> report.data.routineReport.treatmentDomesticActivatedSludgeProcess =
                 if (isChecked) 1 else 0
             R.id.cbSewageMBBR -> report.data.routineReport.treatmentDomesticMbbr =
@@ -267,85 +271,163 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
         }
     }
 
+    /**
+     * Method to check if the fields are correctly filled
+     */
     private fun validate(): Boolean {
+//        INDUSTRIAL
+
+        //Check if either of the industrial types have been selected as
+        //one of them has to be selected
+        if(!mBinding.cbPrimary.isChecked && !mBinding.cbSecondary.isChecked &&
+            !mBinding.cbTertiary.isChecked && !mBinding.cbAdvance.isChecked){
+            showMessage("Select atleast one of the Industrial type")
+            return false
+        }
+
+        /*
+         *  Check if Primary checkbox is selected
+         *  If yes, then check if any one of the Primary checkboxes is selected.
+         */
         if (mBinding.cbPrimary.isChecked) {
+            //check if any one of the Primary checkboxes is selected.
             if (!mBinding.cbPrimaryOG.isChecked && !mBinding.cbPrimaryScreening.isChecked && !mBinding.cbPrimaryNeutralization.isChecked
                 && !mBinding.cbPrimarySetting.isChecked && !mBinding.cbPrimaryAnyOther.isChecked
             ) {
                 showMessage("Select atleast One Primary Option")
                 return false
             }
-        }
-        if (mBinding.cbPrimaryAnyOther.isChecked && mBinding.edtPrimaryOtherRemark.text.isNullOrEmpty()) {
-            showMessage("Enter Any Other Text")
-            return false
+
+            //Check if Primary any other checkbox is selected.
+            //If yes, then check if remark is given or not as it is required
+            if (mBinding.cbPrimaryAnyOther.isChecked) {
+                if (mBinding.edtPrimaryOtherRemark.text.isNullOrEmpty()) {
+                    showMessage("Enter any other remark in Primary type")
+                    return false
+                }
+            }
         }
 
+
+        /*
+         *  Check if Secondary checkbox is selected
+         *  If yes, then check if any one of the Secondary checkboxes is selected.
+         */
         if (mBinding.cbSecondary.isChecked) {
+            //check if any one of the Secondary checkboxes is selected.
             if (!mBinding.cbSecondaryActivated.isChecked && !mBinding.cbSecondaryMBBR.isChecked && !mBinding.cbSecondarySBR.isChecked
                 && !mBinding.cbSecondaryTrickling.isChecked && !mBinding.cbSecondaryAnyOther.isChecked
             ) {
                 showMessage("Select atleast one Secondary Option")
                 return false
             }
-        }
-        if (mBinding.cbSecondaryAnyOther.isChecked && mBinding.edtSecondaryOtherRemark.text.isNullOrEmpty()) {
-            showMessage("Enter Any Other Text")
-            return false
+
+            //Check if Secondary any other checkbox is selected.
+            //If yes, then check if remark is given or not as it is required
+            if (mBinding.cbSecondaryAnyOther.isChecked) {
+                if (mBinding.edtSecondaryOtherRemark.text.isNullOrEmpty()) {
+                    showMessage("Enter any other remark in Secondary type")
+                    return false
+                }
+            }
         }
 
+        /*
+         *  Check if Tertiary checkbox is selected
+         *  If yes, then check if any one of the Tertiary checkboxes is selected.
+         */
         if (mBinding.cbTertiary.isChecked) {
+            //check if any one of the Tertiary checkboxes is selected.
             if (!mBinding.cbTertiaryPress.isChecked && !mBinding.cbTertiaryActivated.isChecked
                 && !mBinding.cbTertiaryDual.isChecked && !mBinding.cbTertiaryAnyOther.isChecked
             ) {
                 showMessage("Select atleast one Tertiary Option")
                 return false
             }
-        }
-        if (mBinding.cbTertiaryAnyOther.isChecked && mBinding.edtTertiaryOtherRemark.text.isNullOrEmpty()) {
-            showMessage("Enter Any Other Text")
-            return false
+
+            //Check if Tertiary any other checkbox is selected.
+            //If yes, then check if remark is given or not as it is required
+            if (mBinding.cbTertiaryAnyOther.isChecked) {
+                if (mBinding.edtTertiaryOtherRemark.text.isNullOrEmpty()) {
+                    showMessage("Enter any other remark in Secondary type")
+                    return false
+                }
+            }
         }
 
+
+        /*
+         *  Check if Advance checkbox is selected
+         *  If yes, then check if any one of the Advance checkboxes is selected.
+         */
         if (mBinding.cbAdvance.isChecked) {
+            //check if any one of the Advance checkboxes is selected.
             if (!mBinding.cbAdvanceReverse.isChecked && !mBinding.cbAdvanceMEE.isChecked && !mBinding.cbAdvanceUltra.isChecked
                 && !mBinding.cbAdvanceNano.isChecked && !mBinding.cbAdvanceATFD.isChecked && !mBinding.cbAdvanceAnyOther.isChecked
             ) {
                 showMessage("Select atleast one Advance Option")
                 return false
             }
-        }
-        if (mBinding.cbAdvanceAnyOther.isChecked && mBinding.edtAdvanceOtherRemark.text.isNullOrEmpty()) {
-            showMessage("Enter Any Other Text")
-            return false
+
+            //Check if Advance any other checkbox is selected.
+            //If yes, then check if remark is given or not as it is required
+            if (mBinding.cbAdvanceAnyOther.isChecked) {
+                if (mBinding.edtAdvanceOtherRemark.text.isNullOrEmpty()) {
+                    showMessage("Enter any other remark in Advance type")
+                    return false
+                }
+            }
         }
 
-        if (mBinding.edtIndustrialRemark.text.isNullOrEmpty()) {
-            showMessage("Enter Industrial Remark")
-            return false
-        }
+        //Currently Industrial Remark is not necessary
+//        if (mBinding.edtIndustrialRemark.text.isNullOrEmpty()) {
+//            showMessage("Enter Industrial Remark")
+////            return false
+//        }
 
+        //Check if ETP is set or not
         if (report.data.routineReport.etpOperational == null) {
             showMessage("Select ETP Operational")
             return false
         }
 
+
+//        DOMESTIC
+        /*
+        *   Check if either of the domestic type is selected or not.
+        *   Since atleast one should be checked!
+        */
+        if (!mBinding.cbDomesticSepticTank.isChecked && !mBinding.cbDomesticSewage.isChecked){
+            showMessage("Select any one of the Domestic option")
+            return false
+        }
+
+        //Check if Domestic Sewage is checked
         if (mBinding.cbDomesticSewage.isChecked) {
+            //Check if one of the sewage options is checked
             if (!mBinding.cbSewageActivated.isChecked && !mBinding.cbSewageMBBR.isChecked && !mBinding.cbSewageSBR.isChecked
                 && !mBinding.cbSewageTrickling.isChecked && !mBinding.cbSewageAnyOther.isChecked
             ) {
-                showMessage("Select atleast one Sewage Treatment Plant Option")
+                showMessage("Select atleast one of Sewage Treatment Plant Option")
                 return false
             }
+
+            //Check if any other option is selected
+            if (mBinding.cbSewageAnyOther.isChecked) {
+                if (mBinding.edtSewageOtherRemark.text.isNullOrEmpty()){
+                    showMessage("Enter Any other Remark")
+                    return false
+                }
+            }
         }
-        if (mBinding.edtSewageOtherRemark.text.isNullOrEmpty()) {
-            showMessage("Enter Any other Remark")
-            return false
-        }
-        if (mBinding.edtDomesticRemark.text.isNullOrEmpty()) {
-            showMessage("Enter Any other Remark")
-            return false
-        }
+
+//        Domestic Remark is not necessary as of now
+//        if (mBinding.edtDomesticRemark.text.isNullOrEmpty()) {
+//            showMessage("Enter Any other Remark")
+//            return false
+//        }
+
+        //Check if STP is set or not
         if (report.data.routineReport.stpOperational == null) {
             showMessage("Select STP Operational")
             return false
