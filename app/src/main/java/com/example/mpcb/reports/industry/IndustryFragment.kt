@@ -61,8 +61,12 @@ class IndustryReportFragment :
         datePickerDialog.show()
     }
 
+    /**
+     * Set listener on Radio Button
+     */
     private fun setListener() {
         mBinding.rgConsent.setOnCheckedChangeListener { group, checkedId ->
+            //Save Consent Obtained in Shared Pref
             report.data.routineReport.consentObtain = if (checkedId == R.id.rbConsentYes) 1 else 0
         }
     }
@@ -70,14 +74,14 @@ class IndustryReportFragment :
     private fun onSubmit() {
         report.data.industryCategoryReselect = "${mBinding.catSpinner.selectedItemPosition}"
 
-        report.data.routineReport.visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
-        report.data.routineReport.emailAddress = mBinding.visitCatEmailEd.text.toString()
-        report.data.routineReport.telephoneNumber = mBinding.visitCatTelephoneEd.text.toString()
-        report.data.routineReport.validityOfConsentUpto = mBinding.edtValidUpto.text.toString()
-        report.data.routineReport.validityOfConsentIe = mBinding.consentIeEd.text.toString()
-        report.data.routineReport.hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
-        //TODO 13/11/19 Save Consent Obtained in Shared Pref
-//        report.data.routineReport.consentObtain = mBinding.
+        report.data.routineReport.run{
+            visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
+            emailAddress = mBinding.visitCatEmailEd.text.toString()
+            telephoneNumber = mBinding.visitCatTelephoneEd.text.toString()
+            validityOfConsentUpto = mBinding.edtValidUpto.text.toString()
+            validityOfConsentIe = mBinding.consentIeEd.text.toString()
+            hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
+        }
 
         if (validate()) {
             saveReportData(
@@ -88,6 +92,9 @@ class IndustryReportFragment :
         }
     }
 
+    /**
+     * Method to validate if fields of report form are filled correctly
+     */
     private fun validate(): Boolean {
         if (report.data.industryCategoryReselect == "0") {
             showMessage("Select Category")
@@ -138,14 +145,21 @@ class IndustryReportFragment :
         reports = getReportData()
         //Spinner
         if(reports!=null) {
-            mBinding.catSpinner.setSelection(reports?.data?.industryCategoryReselect!!.toInt())
-            mBinding.edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
-            mBinding.visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
-            mBinding.visitCatTelephoneEd.setText(reports?.data?.routineReport?.telephoneNumber)
-            mBinding.edtValidUpto.setText(reports?.data?.routineReport?.validityOfConsentUpto)
-            mBinding.consentIeEd.setText(reports?.data?.routineReport?.validityOfConsentIe)
-            mBinding.consentDeEd.setText(reports?.data?.routineReport?.hwOfValidUptoDe)
-            //TODO 13/11/19 Retrieve & Set consent Data on the field
+            mBinding.run {
+                catSpinner.setSelection(reports?.data?.industryCategoryReselect!!.toInt())
+                edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
+                visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
+                visitCatTelephoneEd.setText(reports?.data?.routineReport?.telephoneNumber)
+                edtValidUpto.setText(reports?.data?.routineReport?.validityOfConsentUpto)
+                consentIeEd.setText(reports?.data?.routineReport?.validityOfConsentIe)
+                consentDeEd.setText(reports?.data?.routineReport?.hwOfValidUptoDe)
+                if (reports?.data?.routineReport?.consentObtain == 1) {
+                    rgConsent.check(R.id.rbConsentYes)
+                } else if (reports?.data?.routineReport?.consentObtain == 0) {
+                    rgConsent.check(R.id.rbConsentNo)
+                }
+            }
         }
+
     }
 }
