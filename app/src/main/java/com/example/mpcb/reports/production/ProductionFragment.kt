@@ -44,7 +44,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     }
 
     private fun onSubmit() {
-        if (validate()) {
+        if (validateFieldsFilled()) {
             report.data.routineReportProducts.clear()
             report.data.routineReportProducts = mViewModel.getProductList().value!!
             saveReportData(
@@ -55,7 +55,11 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
         }
     }
 
-    private fun validate(): Boolean {
+
+    /**
+     * Method to validate if fields of report form are filled.
+     */
+    private fun validateFieldsFilled(): Boolean {
         var isValid = true
         val productList = mViewModel.getProductList().value!!
         for (item in productList) {

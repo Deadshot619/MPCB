@@ -163,7 +163,7 @@ class IndustryReportFragment :
     override fun setDataToViews(){
         reports = getReportData()
         //Spinner
-        if(reports!=null) {
+        if(reports != null) {
             mBinding.run {
                 catSpinner.setSelection(reports?.data?.industryCategoryReselect!!.toInt())
                 edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
