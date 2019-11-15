@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -41,6 +42,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp"
                         android:layout_marginTop="20dp"
+                        tools:text="Korde Chemicals Pvt. Lyd."
                         android:text="@{model.industryName}"
                         android:textColor="@android:color/black" />
 
@@ -54,7 +56,7 @@
                             android:id="@+id/txtxVisitScheduledOn"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="visit Scheduled On: "
+                            android:text="@string/txt_visit_scheduled"
                             android:textSize="15sp" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -62,6 +64,7 @@
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/txtxVisitScheduledOn"
                             android:textColor="@android:color/black"
+                            tools:text="03/69/6969"
                             app:parseDate="@{model.scheduledOn}" />
 
                     <androidx.appcompat.widget.AppCompatImageView
@@ -73,11 +76,12 @@
                             android:src="@drawable/ic_down_arrow" />
                 </RelativeLayout>
 
+<!--                Address-->
                 <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Address:"
+                        android:text="@string/txt_address"
                         android:textSize="15sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -85,6 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="10dp"
+                        tools:text="bleh bleh bleh bleh bleh bleh "
                         android:text="@{model.industryAddress}"
                         android:textColor="@android:color/black" />
 
@@ -93,6 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        tools:visibility="visible"
                         android:visibility="gone">
 
                     <View
@@ -115,7 +121,7 @@
                             <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="visit Scheduled On: "
+                                    android:text="@string/txt_visit_scheduled"
                                     android:textSize="15sp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -123,13 +129,14 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
                                     android:textColor="@android:color/black"
+                                    tools:text="69/69/6969"
                                     app:parseDate="@{model.scheduledOn}" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
-                                    android:text="Report Submited On: "
+                                    android:text="@string/txt_report_submited"
                                     android:textSize="15sp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -137,6 +144,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
                                     android:textColor="@android:color/black"
+                                    tools:text="69/69/6969"
                                     app:parseDate="@{model.reportSubmittedOn}" />
                         </LinearLayout>
 
@@ -149,7 +157,7 @@
                             <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="visited On"
+                                    android:text="@string/txt_visited_on"
                                     android:textSize="15sp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -157,6 +165,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
                                     android:textColor="@android:color/black"
+                                    tools:text="69/69/6969"
                                     app:parseDate="@{model.visitedOn}" />
 
                             <androidx.appcompat.widget.AppCompatTextView
@@ -210,6 +219,7 @@
                                 android:background="@drawable/shape_industry_background"
                                 android:gravity="center_horizontal"
                                 android:padding="8dp"
+                                tools:text="Visited"
                                 android:text="@{model.visitStatus}"
                                 android:textColor="@android:color/white"
                                 android:textStyle="bold" />
@@ -230,6 +240,7 @@
                 android:maxLength="20"
                 android:padding="8dp"
                 android:singleLine="false"
+                tools:text="#696969"
                 android:text='@{"#" + model.industryIMISId}'
                 android:textColor="@android:color/white"
                 android:textStyle="bold"

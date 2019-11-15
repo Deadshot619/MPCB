@@ -138,13 +138,15 @@ class IndustryReportFragment :
     override fun setDataToViews(){
         reports = getReportData()
         //Spinner
-        mBinding.catSpinner.setSelection(reports.data.industryCategoryReselect.toInt())
-        mBinding.edtVisitedIndustryOn.setText(reports.data.routineReport.visitedOn)
-        mBinding.visitCatEmailEd.setText(reports.data.routineReport.emailAddress)
-        mBinding.visitCatTelephoneEd.setText(reports.data.routineReport.telephoneNumber)
-        mBinding.edtValidUpto.setText(reports.data.routineReport.validityOfConsentUpto)
-        mBinding.consentIeEd.setText(reports.data.routineReport.validityOfConsentIe)
-        mBinding.consentDeEd.setText(reports.data.routineReport.hwOfValidUptoDe)
+        mBinding.run {
+            catSpinner.setSelection(reports.data.industryCategoryReselect.toInt())
+            edtVisitedIndustryOn.setText(reports.data.routineReport.visitedOn)
+            visitCatEmailEd.setText(reports.data.routineReport.emailAddress)
+            visitCatTelephoneEd.setText(reports.data.routineReport.telephoneNumber)
+            edtValidUpto.setText(reports.data.routineReport.validityOfConsentUpto)
+            consentIeEd.setText(reports.data.routineReport.validityOfConsentIe)
+            consentDeEd.setText(reports.data.routineReport.hwOfValidUptoDe)
+        }
         //TODO 13/11/19 Retrieve & Set consent Data on the field
 
     }

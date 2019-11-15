@@ -44,4 +44,10 @@
     <string name="attendance_title">Attendance</string>
     <string name="task_mngt_title">Task Management</string>
 
+<!--    My Visits-->
+    <string name="txt_visit_scheduled">Visit Scheduled On: </string>
+    <string name="txt_address">Address: </string>
+    <string name="txt_report_submited">Report Submited On:</string>
+    <string name="txt_visited_on">Visited On</string>
+
 </resources>
