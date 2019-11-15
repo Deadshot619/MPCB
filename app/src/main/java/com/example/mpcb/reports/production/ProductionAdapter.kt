@@ -53,6 +53,8 @@ class ProductionAdapter(
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnUnitActual.adapter = adapter
+            if (item.productUomActual != null && item.productUomActual != "")
+                itemBinding.spnUnitActual.setSelection(item.productUomActual!!.toInt())
             itemBinding.spnUnitActual.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -70,6 +72,8 @@ class ProductionAdapter(
                 }
 
             itemBinding.spnUnitConsent.adapter = adapter
+            if (item.productUom != null && item.productUom != "")
+                itemBinding.spnUnitConsent.setSelection(item.productUom!!.toInt())
             itemBinding.spnUnitConsent.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(

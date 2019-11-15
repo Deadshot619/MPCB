@@ -11,14 +11,14 @@ class ProductionViewModel : BaseViewModel<ProductionNavigator>() {
 
     fun getProductList() = sourceList
 
-    fun populateData() {
-        val list = arrayListOf(RoutineReportProduct())
-        sourceList.value = list
+    fun populateData(list: ArrayList<RoutineReportProduct>? = arrayListOf(RoutineReportProduct())) {
+        if (list!=null)
+            sourceList.value = list
     }
 
     fun deleteItem() {
         val list = sourceList.value
-        if (list!!.size > 1) {
+        if (list?.size!! > 1) {
             list.removeAt(list.size - 1)
             sourceList.value = list
         }

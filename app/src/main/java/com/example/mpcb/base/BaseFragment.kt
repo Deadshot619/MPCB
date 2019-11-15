@@ -131,7 +131,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
      *
      * @return [ReportRequest] returns an object of ReportRequest
      */
-    protected fun getReportData(): ReportRequest{
+    protected fun getReportData(): ReportRequest?{
         val reports = PreferencesHelper.getPreferences(Constants.REPORT_KEY, "")
         return Gson().fromJson(reports as String, ReportRequest::class.java)
     }
