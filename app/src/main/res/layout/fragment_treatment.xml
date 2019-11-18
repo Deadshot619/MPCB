@@ -229,6 +229,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/layLinSecondaryChild" />
 
+<!--                    Tertiary-->
                     <androidx.appcompat.widget.AppCompatCheckBox
                             android:id="@+id/cbTertiary"
                             android:layout_width="wrap_content"
@@ -238,6 +239,7 @@
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 
+<!--                    Tertiary Checkboxes-->
                     <LinearLayout
                             android:id="@+id/layLinTertiaryChild"
                             android:layout_width="match_parent"
@@ -306,6 +308,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/layLinTertiaryChild" />
 
+<!--                    Advance-->
                     <androidx.appcompat.widget.AppCompatCheckBox
                             android:id="@+id/cbAdvance"
                             android:layout_width="wrap_content"
@@ -315,7 +318,7 @@
                             android:textColor="@color/black"
                             android:textSize="18sp" />
 
-
+<!--                    Advance Checkboxes-->
                     <LinearLayout
                             android:id="@+id/layLinAdvanceChild"
                             android:layout_width="match_parent"
@@ -391,7 +394,7 @@
 
                 </LinearLayout>
 
-
+<!--                Industrial Remark-->
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/industrialRemarkLayout"
                         android:layout_width="match_parent"
@@ -464,6 +467,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/industrialRemarkLayout" />
 
+<!--                Domestic-->
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtDomestic"
                         android:layout_width="wrap_content"
@@ -476,6 +480,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/viewDividerOne" />
 
+<!--                Domestic Checkboxes-->
                 <LinearLayout
                         android:id="@+id/linLayThird"
                         android:layout_width="match_parent"
@@ -487,6 +492,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/txtDomestic">
 
+<!--                    Septic tank checkbox-->
                     <androidx.appcompat.widget.AppCompatCheckBox
                             android:id="@+id/cbDomesticSepticTank"
                             android:layout_width="wrap_content"
@@ -494,6 +500,7 @@
                             android:text="Septic tank &amp; Soak pit"
                             android:textSize="18sp" />
 
+<!--                    Sewage Treatment Plant Checkbox-->
                     <androidx.appcompat.widget.AppCompatCheckBox
                             android:id="@+id/cbDomesticSewage"
                             android:layout_width="wrap_content"
@@ -502,6 +509,7 @@
                             android:text="Sewage treatment plant"
                             android:textSize="18sp" />
 
+<!--                Sewage Treatment Plant Checkboxes-->
                     <LinearLayout
                             android:id="@+id/layLinSewage"
                             android:layout_width="match_parent"
@@ -569,6 +577,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
+<!--                Domestic Remark-->
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/domesticRemarkLayout"
                         android:layout_width="match_parent"

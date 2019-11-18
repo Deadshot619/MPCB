@@ -153,6 +153,7 @@ class IndustryReportFragment :
 
     override fun onStart() {
         super.onStart()
+        //set data to views in onStart
         setDataToViews()
 //        Log.i("Industry", getReportData()?.data?.industryCategoryReselect)
     }

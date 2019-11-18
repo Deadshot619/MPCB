@@ -6,6 +6,7 @@ import android.widget.CompoundButton
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentTreatmentBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
@@ -16,6 +17,9 @@ import com.example.mpcb.utils.showMessage
 class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageViewModel>(),
     ReportsPageNavigator,
     CompoundButton.OnCheckedChangeListener {
+
+
+    private var reports: ReportRequest? = null
 
     override fun getLayoutId() = R.layout.fragment_treatment
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -207,6 +211,10 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
         report.data.routineReport.industrialAdvancedAnyOtherText =
             mBinding.edtAdvanceOtherRemark.text.toString()
 
+        //Domestic Sewage Any Other text
+        report.data.routineReport.treatmentDomesticAnyOtherText =
+            mBinding.edtSewageOtherRemark.text.toString()
+
         if (report.data.routineReport.treatmentIndustrialPrimary == 0) {
             report.data.routineReport.industrialPrimaryOGTrap = 0
             report.data.routineReport.industrialPrimaryScreening = 0
@@ -248,19 +256,25 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
             }
         }
         if (report.data.routineReport.treatmentDomesticSeverageTreatmentPlant == 0) {
-            report.data.routineReport.treatmentDomesticActivatedSludgeProcess = 0
-            report.data.routineReport.treatmentDomesticMbbr = 0
-            report.data.routineReport.treatmentDomesticSbr = 0
-            report.data.routineReport.treatmentDomesticTricklingFilter = 0
-            report.data.routineReport.treatmentDomesticAnyOther = 0
-            if (report.data.routineReport.treatmentDomesticAnyOther == 0) {
-                report.data.routineReport.treatmentDomesticAnyOtherText = ""
+            report.data.routineReport.run{
+                treatmentDomesticActivatedSludgeProcess = 0
+                treatmentDomesticMbbr = 0
+                treatmentDomesticSbr = 0
+                treatmentDomesticTricklingFilter = 0
+                treatmentDomesticAnyOther = 0
+                if (treatmentDomesticAnyOther == 0) {
+                    treatmentDomesticAnyOtherText = ""
+                }
             }
         }
 
-
+        //Industrial Remark
         report.data.routineReport.treatmentObservation =
             mBinding.edtIndustrialRemark.text.toString()
+
+        //Domestic Remark
+        report.data.routineReport.treatmentDomesticObservation =
+            mBinding.edtDomesticRemark.text.toString()
 
         if (validate()) {
             saveReportData(
@@ -434,5 +448,115 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
         }
 
         return true
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        super.setDataToViews()
+        reports  = getReportData()
+
+        if (reports != null){
+            mBinding.run {
+                //Industrial
+                cbPrimary.isChecked = reports?.data?.routineReport?.treatmentIndustrialPrimary == 1
+                cbSecondary.isChecked = reports?.data?.routineReport?.treatmentIndustrialSecondary == 1
+                cbAdvance.isChecked = reports?.data?.routineReport?.treatmentIndustrialAdvanced == 1
+                cbTertiary.isChecked = reports?.data?.routineReport?.treatmentIndustrialTertiary == 1
+
+                //Industrial Primary
+                if (cbPrimary.isChecked){
+                    cbPrimaryOG.isChecked = reports?.data?.routineReport?.industrialPrimaryOGTrap == 1
+                    cbPrimaryScreening.isChecked = reports?.data?.routineReport?.industrialPrimaryScreening == 1
+                    cbPrimaryNeutralization.isChecked = reports?.data?.routineReport?.industrialPrimaryNeutralization == 1
+                    cbPrimarySetting.isChecked  = reports?.data?.routineReport?.industrialPrimaryPrimarySettling == 1
+                    cbPrimaryAnyOther.isChecked = reports?.data?.routineReport?.industrialPrimaryAnyOther == 1
+                    if (cbPrimaryAnyOther.isChecked) {
+                        edtPrimaryOtherRemark.setText(reports?.data?.routineReport?.industrialPrimaryAnyOtherText)
+                    }
+                }
+
+                //Industrial Secondary
+                if (cbSecondary.isChecked){
+                    cbSecondaryActivated.isChecked = reports?.data?.routineReport?.industrialSecondaryActivatedSludgeProcess == 1
+                    cbSecondaryMBBR.isChecked = reports?.data?.routineReport?.industrialSecondaryMbbr == 1
+                    cbSecondarySBR.isChecked = reports?.data?.routineReport?.industrialSecondarySbr == 1
+                    cbSecondaryTrickling.isChecked  = reports?.data?.routineReport?.industrialSecondaryTricklingFilter== 1
+                    cbSecondaryAnyOther.isChecked = reports?.data?.routineReport?.industrialSecondaryAnyOther== 1
+                    if (cbSecondaryAnyOther.isChecked) {
+                        edtSecondaryOtherRemark.setText(reports?.data?.routineReport?.industrialSecondaryAnyOtherText)
+                    }
+                }
+
+                //Industrial Tertiary
+                if (cbTertiary.isChecked){
+                    cbTertiaryPress.isChecked = reports?.data?.routineReport?.industrialTertiaryPresserSandFilter == 1
+                    cbTertiaryActivated.isChecked = reports?.data?.routineReport?.industrialTertiaryActivatedCarbonFilter == 1
+                    cbTertiaryDual.isChecked = reports?.data?.routineReport?.industrialTertiaryDualMediaFilter == 1
+                    cbTertiaryAnyOther.isChecked = reports?.data?.routineReport?.industrialTertiaryAnyOther == 1
+                    if (cbTertiaryAnyOther.isChecked) {
+                        edtTertiaryOtherRemark.setText(reports?.data?.routineReport?.industrialTertiaryAnyOtherText)
+                    }
+                }
+
+                //Industrial Advance
+                if (cbAdvance.isChecked){
+                    cbAdvanceReverse.isChecked = reports?.data?.routineReport?.industrialAdvancedReverseOsmosis == 1
+                    cbAdvanceMEE.isChecked = reports?.data?.routineReport?.industrialAdvancedMee == 1
+                    cbAdvanceUltra.isChecked = reports?.data?.routineReport?.ultraFiltration == 1
+                    cbAdvanceNano.isChecked = reports?.data?.routineReport?.nanoFiltration == 1
+                    cbAdvanceATFD.isChecked = reports?.data?.routineReport?.atfd == 1
+                    cbAdvanceAnyOther.isChecked = reports?.data?.routineReport?.industrialAdvancedAnyOther == 1
+                    if (cbAdvanceAnyOther.isChecked) {
+                        edtAdvanceOtherRemark.setText(reports?.data?.routineReport?.industrialAdvancedAnyOtherText)
+                    }
+                }
+
+                //Industrial Remark
+                edtIndustrialRemark.setText(reports?.data?.routineReport?.treatmentObservation)
+
+                //Domestic
+                //Septic Tank
+                cbDomesticSepticTank.isChecked = reports?.data?.routineReport?.treatmentDomesticSepticTank == 1
+
+                //Sewage Treatment
+                cbDomesticSewage.isChecked = reports?.data?.routineReport?.treatmentDomesticSeverageTreatmentPlant == 1
+                if (cbDomesticSewage.isChecked){
+                    cbSewageActivated.isChecked = reports?.data?.routineReport?.treatmentDomesticActivatedSludgeProcess == 1
+                    cbSewageMBBR.isChecked = reports?.data?.routineReport?.treatmentDomesticMbbr == 1
+                    cbSewageSBR.isChecked = reports?.data?.routineReport?.treatmentDomesticSbr == 1
+                    cbSewageTrickling.isChecked = reports?.data?.routineReport?.treatmentDomesticTricklingFilter == 1
+                    cbSewageAnyOther.isChecked = reports?.data?.routineReport?.treatmentDomesticAnyOther == 1
+                    if (cbSewageAnyOther.isChecked){
+                        edtSewageOtherRemark.setText(reports?.data?.routineReport?.treatmentDomesticAnyOtherText)
+                    }
+                }
+
+                //Domestic Remark
+                edtDomesticRemark.setText(reports?.data?.routineReport?.treatmentDomesticObservation)
+
+
+//              STP Operational
+                if (reports?.data?.routineReport?.stpOperational == 1){
+                    rgSTP.check(R.id.rbSTPYes)
+                }else{
+                    rgSTP.check(R.id.rbSTPNo)
+                }
+
+//              ETP Operational
+                if (reports?.data?.routineReport?.etpOperational == 1){
+                    rgETP.check(R.id.rbETPYes)
+                }else{
+                    rgETP.check(R.id.rbETPNo)
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //set data to views in onStart
+        setDataToViews()
     }
 }
