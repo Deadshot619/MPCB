@@ -3,15 +3,18 @@ package com.example.mpcb.reports.water_and_waste_water
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentWasteWaterAspectBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimalInputCorrect
 
 class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
+    private var reports: ReportRequest? = null
 
     override fun getLayoutId() = R.layout.fragment_waste_water_aspect
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -28,19 +31,19 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
 
     private fun onSubmit() {
         report.data.routineReport.generationIndustrialAsConsent =
-            mBinding.edtIndustryConcent.text.toString()
+            mBinding.edtIndustryProcessConcent.text.toString()
         report.data.routineReport.generationIndustrialActual =
-            mBinding.edtIndustryActual.text.toString()
+            mBinding.edtIndustryProcessActual.text.toString()
         report.data.routineReport.generationIndustrialAsConsentCooling =
-            mBinding.edtIndustrialConcent.text.toString()
+            mBinding.edtIndustrialCoolingConcent.text.toString()
         report.data.routineReport.generationIndustrialActualCooling =
-            mBinding.edtIndustrialActual.text.toString()
+            mBinding.edtIndustrialCoolingActual.text.toString()
         report.data.routineReport.generationDomesticAsConsent =
             mBinding.edtDomesticConcent.text.toString()
         report.data.routineReport.generationDomesticActual =
             mBinding.edtDomesticActual.text.toString()
 
-        if (validate()) {
+        if (validate() && validateFieldsFilledCorrect()) {
             saveReportData(
                 reportKey = Constants.REPORT_4,
                 reportStatus = true
@@ -77,4 +80,60 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
         return true
     }
 
+    /**
+     * Method to check if the fields are correctly filled
+     */
+    private fun validateFieldsFilledCorrect(): Boolean {
+        if(!isDecimalInputCorrect(report.data.routineReport.generationIndustrialAsConsent)){
+            showMessage("Invalid Industry Process Input")
+            return false
+        }
+        if (!isDecimalInputCorrect(report.data.routineReport.generationIndustrialActual)){
+            showMessage("Invalid Industry Process Input")
+            return false
+        }
+        if (!isDecimalInputCorrect(report.data.routineReport.generationIndustrialAsConsentCooling)){
+            showMessage("Invalid Industry Cooling Input")
+            return false
+        }
+        if (!isDecimalInputCorrect(report.data.routineReport.generationIndustrialActualCooling)){
+            showMessage("Invalid Industry Cooling Input")
+            return false
+        }
+        if (!isDecimalInputCorrect(report.data.routineReport.generationDomesticAsConsent)){
+            showMessage("Invalid Domestic Input")
+            return false
+        }
+        if (!isDecimalInputCorrect(report.data.routineReport.generationDomesticActual)){
+            showMessage("Invalid Domestic Input")
+            return false
+        }
+        return true
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        super.setDataToViews()
+        reports = getReportData()
+
+        if (reports != null){
+            mBinding.run{
+                reports?.data?.routineReport?.run{
+                    edtIndustryProcessConcent.setText(generationIndustrialAsConsent)
+                    edtIndustryProcessActual.setText(generationIndustrialActual)
+                    edtIndustrialCoolingConcent.setText(generationIndustrialAsConsentCooling)
+                    edtIndustrialCoolingActual.setText(generationIndustrialActualCooling)
+                    edtDomesticConcent.setText(generationDomesticAsConsent)
+                    edtDomesticActual.setText(generationDomesticActual)
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
+    }
 }
