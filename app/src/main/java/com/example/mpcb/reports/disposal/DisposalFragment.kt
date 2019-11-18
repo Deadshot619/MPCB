@@ -4,6 +4,7 @@ import android.widget.CompoundButton
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDisposalBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
@@ -14,6 +15,9 @@ import com.example.mpcb.utils.showMessage
 class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewModel>(),
     ReportsPageNavigator,
     CompoundButton.OnCheckedChangeListener {
+
+
+    private var reports: ReportRequest? = null
 
     override fun getLayoutId() = R.layout.fragment_disposal
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -97,22 +101,24 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
     }
 
     private fun onSubmit() {
-        report.data.routineReport.disposalIndustrialCETPText = mBinding.edIndusCETP.text.toString()
+        report.data.routineReport.disposalIndustrialCETPText =
+            mBinding.edIndusCETP.text.toString()
         report.data.routineReport.disposalIndustrialLandGardeningText =
             mBinding.edIndusLandGardening.text.toString()
         report.data.routineReport.disposalIndustrialRecycleText =
             mBinding.edIndusRecycle.text.toString()
         report.data.routineReport.disposalIndustrialLocalBodySewageText =
             mBinding.edIndusSewageTreatment.text.toString()
-        report.data.routineReport.disposalIndustrialAnyOtherTextRemarks =
-            mBinding.edIndusExtraName.text.toString()
         report.data.routineReport.disposalIndustrialAnyOtherText =
+            mBinding.edIndusExtraName.text.toString()
+        report.data.routineReport.disposalIndustrialAnyOtherTextRemarks =
             mBinding.edIndusExtraNameValue.text.toString()
         report.data.routineReport.disposalIndustrialTotal =
             mBinding.edIndustrialTotal.text.toString().parseToInt()
 
 
-        report.data.routineReport.disposalDomesticCETPText = mBinding.edDomesticCETP.text.toString()
+        report.data.routineReport.disposalDomesticCETPText =
+            mBinding.edDomesticCETP.text.toString()
         report.data.routineReport.disposalDomesticLandGardeningText =
             mBinding.edDomesticLandGardening.text.toString()
         report.data.routineReport.disposalDomesticRecycleText =
@@ -138,6 +144,17 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
     }
 
     private fun validate(): Boolean {
+//        Industrial
+
+        //Check if either of the industrial types have been selected as
+        //one of them has to be selected
+        if (!mBinding.cbIndusCETP.isChecked && !mBinding.cbIndusLandGardening.isChecked &&
+                !mBinding.cbIndusRecycle.isChecked && !mBinding.cbIndusSewageTreatment.isChecked
+            && !mBinding.cbIndusAnyOther.isChecked){
+            showMessage("Select atleast one of the Industrial type")
+            return false
+        }
+
         if (mBinding.cbIndusCETP.isChecked) {
             if (mBinding.edIndusCETP.text.isNullOrEmpty()) {
                 showMessage("Enter CEPT for Industrial")
@@ -173,16 +190,28 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             }
         }
 
+//        Disposable checkbox
         if (report.data.routineReport.disposalIndustrialAsPerConsent.isEmpty()) {
             showMessage("Select Disposal As Per Consent for Industrial")
             return false
         }
 
+//        Operation & Maintenance checkbox
         if (report.data.routineReport.operationAndMaintainanceInsus.isEmpty()) {
             showMessage("Select Operation And Maintenance for Industrial")
             return false
         }
 
+//        Domestic
+
+        //Check if either of the industrial types have been selected as
+        //one of them has to be selected
+        if (!mBinding.cbDomesticCETP.isChecked && !mBinding.cbDomesticLandGardening.isChecked &&
+                !mBinding.cbDomesticRecycle.isChecked && !mBinding.cbDomesticSewageTreatment.isChecked
+            && !mBinding.cbDomesticAnyOther.isChecked){
+            showMessage("Select atleast one of the Domestic type")
+            return false
+        }
 
         if (mBinding.cbDomesticCETP.isChecked) {
             if (mBinding.edDomesticCETP.text.isNullOrEmpty()) {
@@ -219,17 +248,114 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             }
         }
 
+//        Domestic Disposable checkbox
         if (report.data.routineReport.disposalDomesticAsPerConsent.isEmpty()) {
             showMessage("Select Disposal As Per Consent for Domestic")
             return false
         }
 
+        //        Domestic Operation & Maintenance checkbox
         if (report.data.routineReport.operationAndMaintainanceDomestic.isEmpty()) {
             showMessage("Select Operation And Maintenance for Domestic")
             return false
         }
 
-
         return true
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        super.setDataToViews()
+        reports = getReportData()
+
+        if (reports != null){
+            mBinding.run {
+                reports?.data?.routineReport?.run{
+//                    Industrial checkboxes
+                    cbIndusCETP.isChecked = disposalIndustrialCETP == 1
+                    cbIndusLandGardening.isChecked = disposalIndustrialLandGardening == 1
+                    cbIndusRecycle.isChecked = disposalIndustrialRecycle == 1
+                    cbIndusSewageTreatment.isChecked = disposalIndustrialLocalBodySewage == 1
+                    cbIndusAnyOther.isChecked = disposalIndustrialAnyOther == 1
+
+//                    Industrial checkboxes text
+                    if (cbIndusCETP.isChecked)
+                        edIndusCETP.setText(disposalIndustrialCETPText)
+                    if (cbIndusLandGardening.isChecked)
+                        edIndusLandGardening.setText(disposalIndustrialLandGardeningText)
+                    if (cbIndusRecycle.isChecked)
+                        edIndusRecycle.setText(disposalIndustrialRecycleText)
+                    if (cbIndusSewageTreatment.isChecked)
+                        edIndusSewageTreatment.setText(disposalIndustrialLocalBodySewageText)
+                    if (cbIndusAnyOther.isChecked) {
+                        edIndusExtraName.setText(disposalIndustrialAnyOtherText)
+                        edIndusExtraNameValue.setText(disposalIndustrialAnyOtherTextRemarks)
+                    }
+
+//                    Industrial Disposal Consent
+                    if (disposalIndustrialAsPerConsent == "1"){
+                        rgIndusDisposalConsent.check(R.id.rbIndusDisposalYes)
+                    }else{
+                        rgIndusDisposalConsent.check(R.id.rbIndusDisposalNo)
+                    }
+
+//                    Indutrial Operatioon & Maintenance
+                    when (operationAndMaintainanceInsus) {
+                        "0" -> rgIndusOperationMaintenance.check(R.id.rbIndusPoor)
+                        "1" -> rgIndusOperationMaintenance.check(R.id.rbIndusAverage)
+                        "2" -> rgIndusOperationMaintenance.check(R.id.rbIndusGood)
+                    }
+
+//                    DOMESTIC
+                    cbDomesticCETP.isChecked = disposalDomesticCETP == 1
+                    cbDomesticLandGardening.isChecked = disposalDomesticLandGardening == 1
+                    cbDomesticRecycle.isChecked = disposalDomesticRecycle == 1
+                    cbDomesticSewageTreatment.isChecked = disposalDomesticLocalBodySewage == 1
+                    cbDomesticAnyOther.isChecked = disposalDomesticAnyOther == 1
+
+//                    Domestic checkboxes text
+                    if (cbDomesticCETP.isChecked)
+                        edDomesticCETP.setText(disposalDomesticCETPText)
+                    if (cbDomesticLandGardening.isChecked)
+                        edDomesticLandGardening.setText(disposalDomesticLandGardeningText)
+                    if (cbDomesticRecycle.isChecked)
+                        edDomesticRecycle.setText(disposalDomesticRecycleText)
+                    if (cbDomesticSewageTreatment.isChecked)
+                        edDomesticSewageTreatment.setText(disposalDomesticLocalBodySewageText)
+                    if (cbDomesticAnyOther.isChecked) {
+                        edDomesticExtraName.setText(disposalDomesticAnyOtherText)
+                        edDomesticExtraNameValue.setText(disposalDomesticAnyOtherTextRemarks)
+                    }
+
+//                    Domestic Disposal Consent
+                    if (disposalDomesticAsPerConsent == "1"){
+                        rgDomesticDisposalConsent.check(R.id.rbDomesticDisposalYes)
+                    }else{
+                        rgDomesticDisposalConsent.check(R.id.rbDomesticDisposalNo)
+                    }
+
+//                    Domestic Operation & Maintenance
+                    when (operationAndMaintainanceDomestic) {
+                        "0" -> rgDomesticOperationMaintenance.check(R.id.rbDomesticPoor)
+                        "1" -> rgDomesticOperationMaintenance.check(R.id.rbDomesticAverage)
+                        "2" -> rgDomesticOperationMaintenance.check(R.id.rbDomesticGood)
+                    }
+
+//                    Disposal remark
+                    edRemark.setText(disposalObservation)
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 }
