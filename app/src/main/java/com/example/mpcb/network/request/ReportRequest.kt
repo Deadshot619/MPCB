@@ -335,7 +335,7 @@ class RoutineReport {
     var electrictMeterProvided: Int? = null
     @SerializedName("electrict_meter_reading")
     @Expose
-    var electrictMeterReading: Int? = null
+    var electrictMeterReading: Double? = null
 
 
     @SerializedName("date_of_collection_indus")
