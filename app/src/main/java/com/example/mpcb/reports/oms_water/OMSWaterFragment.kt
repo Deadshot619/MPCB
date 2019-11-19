@@ -5,6 +5,7 @@ import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentOmsWaterBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
@@ -13,6 +14,9 @@ import com.example.mpcb.utils.showMessage
 
 class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
+
+
+    private var reports: ReportRequest? = null
 
     override fun getLayoutId() = R.layout.fragment_oms_water
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -124,5 +128,58 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
         }
 
         return true
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        super.setDataToViews()
+        reports = getReportData()
+
+        if (reports != null){
+            mBinding.run{
+                reports?.data?.routineReport?.run {
+
+//                    OMS
+                    if (omswApplicable == 1){
+                        rgOMS.check(R.id.rbOMSApplicable)
+                    }else{
+                        rgOMS.check(R.id.rbOMSNotApplicable)
+                    }
+
+//                    OMS Installed
+                    if (omswInstalled == 1){
+                        rgOMSInstalled.check(R.id.rbOMSInstalledApplicable)
+                    }else{
+                        rgOMSInstalled.check(R.id.rbOMSInstalledNotApplicable)
+                    }
+
+//                    Remote Calioberation Applicable
+                    if (remoteCalApplicableWater == 1){
+                        rgRemoteCalliberation.check(R.id.rbRemoteYes)
+                    }else{
+                        rgRemoteCalliberation.check(R.id.rbRemoteNo)
+                    }
+
+//                    Sensor Properly Placed
+                    if (sensorPlacedWater == 1){
+                        rgSensorPlaced.check(R.id.rbSensorYes)
+                    }else{
+                        rgSensorPlaced.check(R.id.rbSensorNo)
+                    }
+
+//                    Connectivity
+                    cbCPCB.isChecked = omswCpcb == 1
+                    cbMPCB.isChecked = omswMpcb == 1
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //set data to views in onStart
+        setDataToViews()
     }
 }

@@ -332,9 +332,9 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         report.data.routineReport.disposalDomesticLocalBodySewageText =
             mBinding.edDomesticSewageTreatment.text.toString()
         report.data.routineReport.disposalDomesticAnyOtherTextRemarks =
-            mBinding.edDomesticExtraName.text.toString()
-        report.data.routineReport.disposalDomesticAnyOtherText =
             mBinding.edDomesticExtraNameValue.text.toString()
+        report.data.routineReport.disposalDomesticAnyOtherText =
+            mBinding.edDomesticExtraName.text.toString()
         report.data.routineReport.disposalDomesticTotal =
             mBinding.edDomesticTotal.text.toString().parseToDouble()
 
