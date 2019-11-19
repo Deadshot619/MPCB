@@ -84,10 +84,22 @@ fun String.md5(): String {
 }
 
 fun String.parseToInt(): Int {
-    try {
-        return this.toInt()
+    return try {
+        this.toInt()
     } catch (e: Exception) {
         e.printStackTrace()
-        return 0
+        0
+    }
+}
+
+/**
+ * Method to parse a String into Double
+ */
+fun String.parseToDouble(): Double {
+    return try {
+        this.toDouble()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        0.0
     }
 }

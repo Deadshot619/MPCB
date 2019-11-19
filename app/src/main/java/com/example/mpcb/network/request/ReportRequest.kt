@@ -289,10 +289,10 @@ class RoutineReport {
     var disposalDomesticAnyOtherText = ""
     @SerializedName("disposal_industrial_total")
     @Expose
-    var disposalIndustrialTotal: Int? = null
+    var disposalIndustrialTotal: Double? = null
     @SerializedName("disposal_domestic_total")
     @Expose
-    var disposalDomesticTotal: Int? = null
+    var disposalDomesticTotal: Double? = null
     @SerializedName("disposal_observation")
     @Expose
     var disposalObservation = ""

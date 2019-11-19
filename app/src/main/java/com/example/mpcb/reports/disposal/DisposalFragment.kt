@@ -1,6 +1,7 @@
 package com.example.mpcb.reports.disposal
 
 import android.widget.CompoundButton
+import androidx.core.widget.addTextChangedListener
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDisposalBinding
@@ -9,7 +10,7 @@ import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
-import com.example.mpcb.utils.parseToInt
+import com.example.mpcb.utils.parseToDouble
 import com.example.mpcb.utils.showMessage
 
 class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewModel>(),
@@ -18,7 +19,26 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
 
     private var reports: ReportRequest? = null
-    private var indusTotal: Double = 0.0
+
+    //for Industrial input fields
+    private var indusCept: Double = 0.0
+    private var indusLandGardening: Double = 0.0
+    private var indusRecycle: Double = 0.0
+    private var indusLocalSewage: Double = 0.0
+    private var indusAnyOther: Double = 0.0
+
+    //for Domestic input fields
+    private var domesticCept: Double = 0.0
+    private var domesticLandGardening: Double = 0.0
+    private var domesticRecycle: Double = 0.0
+    private var domesticLocalSewage: Double = 0.0
+    private var domesticAnyOther: Double = 0.0
+
+    private val indusTotal: Double
+        get() = indusCept + indusLandGardening + indusRecycle + indusLocalSewage + indusAnyOther
+
+    private val domesticTotal: Double
+        get() = domesticCept + domesticLandGardening + domesticRecycle + domesticLocalSewage + domesticAnyOther
 
     override fun getLayoutId() = R.layout.fragment_disposal
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -74,43 +94,107 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             }
         }
 
-//        mBinding.run {
-//            edIndusCETP.addTextChangedListener{
-//                if (edIndusCETP.text.toString() != "")
-//                    indusTotal += edIndusCETP.text.toString().toDouble()
-//                edIndustrialTotal.setText(indusTotal.toString())
-//            }
-//
-//            edIndusLandGardening.addTextChangedListener{
-//                if (edIndusLandGardening.text.toString() != "")
-//                    indusTotal += edIndusLandGardening.text.toString().toDouble()
-//                edIndustrialTotal.setText(indusTotal.toString())
-//            }
-//
-//            edIndusRecycle.addTextChangedListener{
-//                if (edIndusRecycle.text.toString() != "")
-//                    indusTotal += edIndusRecycle.text.toString().toDouble()
-//                edIndustrialTotal.setText(indusTotal.toString())
-//            }
-//
-//            edIndusSewageTreatment.addTextChangedListener{
-//                if (edIndusSewageTreatment.text.toString() != "")
-//                    indusTotal += edIndusSewageTreatment.text.toString().toDouble()
-//                edIndustrialTotal.setText(indusTotal.toString())
-//            }
-//
-//            edIndusExtraNameValue.addTextChangedListener{
-//                if (edIndusExtraNameValue.text.toString() != "")
-//                    indusTotal += edIndusExtraNameValue.text.toString().toDouble()
-//                edIndustrialTotal.setText(indusTotal.toString())
-//            }
-//oh
+        //Industrial Text change Listener
+        //This block checks the input fields & sets the text to Total field according to it
+        mBinding.run {
+            edIndusCETP.addTextChangedListener {
+                indusCept = if (edIndusCETP.text.toString() != "")
+                    edIndusCETP.text.toString().toDouble()
+                else
+                    0.0
+                edIndustrialTotal.setText(indusTotal.toString())
+            }
+
+            edIndusLandGardening.addTextChangedListener {
+                indusLandGardening = if (edIndusLandGardening.text.toString() != "")
+                    edIndusLandGardening.text.toString().toDouble()
+                else
+                    0.0
+                edIndustrialTotal.setText(indusTotal.toString())
+            }
+
+            edIndusRecycle.addTextChangedListener {
+                indusRecycle = if (edIndusRecycle.text.toString() != "")
+                    edIndusRecycle.text.toString().toDouble()
+                else
+                    0.0
+                edIndustrialTotal.setText(indusTotal.toString())
+            }
+
+            edIndusSewageTreatment.addTextChangedListener {
+                indusLocalSewage = if (edIndusSewageTreatment.text.toString() != "")
+                    edIndusSewageTreatment.text.toString().toDouble()
+                else
+                    0.0
+                edIndustrialTotal.setText(indusTotal.toString())
+            }
+
+            edIndusExtraNameValue.addTextChangedListener {
+                indusAnyOther = if (edIndusExtraNameValue.text.toString() != "")
+                    edIndusExtraNameValue.text.toString().toDouble()
+                else
+                    0.0
+                edIndustrialTotal.setText(indusTotal.toString())
+            }
+
+        }
+
+        //Domestic Text change Listener
+        //This block checks the input fields & sets the text to Total field according to it
+        mBinding.run {
+            edDomesticCETP.addTextChangedListener {
+                domesticCept = if (edDomesticCETP.text.toString() != "")
+                    edDomesticCETP.text.toString().toDouble()
+                else
+                    0.0
+                edDomesticTotal.setText(domesticTotal.toString())
+            }
+
+            edDomesticLandGardening.addTextChangedListener {
+                domesticLandGardening = if (edDomesticLandGardening.text.toString() != "")
+                    edDomesticLandGardening.text.toString().toDouble()
+                else
+                    0.0
+                edDomesticTotal.setText(domesticTotal.toString())
+            }
+
+            edDomesticRecycle.addTextChangedListener {
+                domesticRecycle = if (edDomesticRecycle.text.toString() != "")
+                    edDomesticRecycle.text.toString().toDouble()
+                else
+                    0.0
+                edDomesticTotal.setText(domesticTotal.toString())
+            }
+
+            edDomesticSewageTreatment.addTextChangedListener {
+                domesticLocalSewage = if (edDomesticSewageTreatment.text.toString() != "")
+                    edDomesticSewageTreatment.text.toString().toDouble()
+                else
+                    0.0
+                edDomesticTotal.setText(domesticTotal.toString())
+            }
+
+            edDomesticExtraNameValue.addTextChangedListener {
+                domesticAnyOther = if (edDomesticExtraNameValue.text.toString() != "")
+                    edDomesticExtraNameValue.text.toString().toDouble()
+                else
+                    0.0
+                edDomesticTotal.setText(domesticTotal.toString())
+            }
+
+        }
 
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
         mBinding.run {
             when (buttonView!!.id) {
+                /**
+                 * In this method fields are enabled & disabled according to the checkbox state.
+                 * If the checkbox is checked, Field is enabled.
+                 * If the checkbox is not checked, Field is disabled & cleared.
+                 */
+
 //                Industrial
                 R.id.cbIndusCETP -> report.data.routineReport.disposalIndustrialCETP =
                 if (isChecked) {
@@ -236,7 +320,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         report.data.routineReport.disposalIndustrialAnyOtherTextRemarks =
             mBinding.edIndusExtraNameValue.text.toString()
         report.data.routineReport.disposalIndustrialTotal =
-            mBinding.edIndustrialTotal.text.toString().parseToInt()
+            mBinding.edIndustrialTotal.text.toString().parseToDouble()
 
 
         report.data.routineReport.disposalDomesticCETPText =
@@ -252,7 +336,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         report.data.routineReport.disposalDomesticAnyOtherText =
             mBinding.edDomesticExtraNameValue.text.toString()
         report.data.routineReport.disposalDomesticTotal =
-            mBinding.edDomesticTotal.text.toString().parseToInt()
+            mBinding.edDomesticTotal.text.toString().parseToDouble()
 
         report.data.routineReport.disposalObservation = mBinding.edRemark.text.toString()
 
