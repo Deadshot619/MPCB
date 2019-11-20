@@ -39,15 +39,17 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
     }
 
     private fun onSubmit() {
-        report.data.routineReport.airPollutionObservation = mBinding.edtRemarks.text.toString()
-        report.data.routineReportAirPollution = mViewModel.getSourceList().value!!
-
-        addReportFragment(Constants.REPORT_10)
+//        addReportFragment(Constants.REPORT_10)
         if (validate()) {
+            report.data.routineReportAirPollution.clear()
+            report.data.routineReport.airPollutionObservation = mBinding.edtRemarks.text.toString()
+            report.data.routineReportAirPollution = mViewModel.getSourceList().value!!
+
             saveReportData(
                 reportKey = Constants.REPORT_9,
                 reportStatus = true
             )
+
             addReportFragment(Constants.REPORT_10)
         }
     }
@@ -56,37 +58,71 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
         var isValid = true
         val sourceList = mViewModel.getSourceList().value!!
         for (item in sourceList) {
+            //Source other
+            if (item.airPollutionSource == "5"){
+                if (item.airPollutionSourceOther.isNullOrEmpty()){
+                    showMessage("Please enter any other source")
+                    isValid = false
+                    break
+                }
+            }
+
             if (item.airPollutionType.isNullOrEmpty()) {
                 showMessage("Select Process / Fuel Burning")
                 isValid = false
                 break
             }
-            if (item.airPollutionFuelName.isEmpty()) {
-                showMessage("Enter Fuel Name")
-                isValid = false
-                break
+
+            //Pollution type Fuel Burning selected
+            if (item.airPollutionType == "0"){
+                //Fuel Name
+                if (item.airPollutionFuelName.isEmpty()) {
+                    showMessage("Enter Fuel Name")
+                    isValid = false
+                    break
+                }
+
+                //Fuel Quantity
+                if (item.airPollutionFuelQuantity.isEmpty()) {
+                    showMessage("Enter Fuel Quantity")
+                    isValid = false
+                    break
+                }
+
+                //Fuel Unit
+                if (item.airPollutionFuelUnit.isEmpty()) {
+                    showMessage("Enter Fuel Unit")
+                    isValid = false
+                    break
+                }
             }
-            if (item.airPollutionFuelQuantity.isEmpty()) {
-                showMessage("Enter Fuel Quantity")
-                isValid = false
-                break
-            }
-            if (item.airPollutionFuelUnit.isEmpty()) {
-                showMessage("Enter Fuel Unit")
-                isValid = false
-                break
-            }
+
+//            Pollutants
             if (item.airPollutionPollutants.isEmpty()) {
                 showMessage("Enter Pollutants")
                 isValid = false
                 break
             }
+
+//            Checkboxes
+            if (!(item.airPollutionMechDustCollector == 1 || item.airPollutionCycloneDustCollector == 1
+                || item.airPollutionMultiDustCollector == 1 || item.airPollutionFabricBagFilter == 1
+                || item.airPollutionPackageTower == 1 || item.airPollutionVenturiScrubber == 1
+                || item.airPollutionElectroStatic == 1 || item.airPollutionNoProvision == 1
+                || item.airPollutionAnyOther == 1)){
+                showMessage("Please check atleast one of the checkbox")
+                isValid = false
+                break
+            }
+
+
             if (item.airPollutionStackHeight.isEmpty()) {
                 showMessage("Enter Stack Height")
                 isValid = false
                 break
             }
         }
+
         if (isValid && report.data.routineReport.airPollutionObservation.isNullOrEmpty()) {
             showMessage("Enter Remarks")
             return false
@@ -101,6 +137,10 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
     override fun setDataToViews() {
         reports= getReportData()
 
+//        Air Pollution Remarl/Observation
+        mBinding.edtRemarks.setText(reports?.data?.routineReport?.airPollutionObservation)
+
+//        Air Pollution data
         if (reports?.data?.routineReportAirPollution != null)
             mViewModel.populateData(reports?.data?.routineReportAirPollution)
     }

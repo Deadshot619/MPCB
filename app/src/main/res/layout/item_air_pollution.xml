@@ -66,7 +66,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/anyOtherLayout" />
 
-
+<!--        Process / Fuel Burning-->
         <RadioGroup
                 android:id="@+id/rgProcessFuelBurning"
                 android:layout_width="wrap_content"
@@ -107,6 +107,7 @@
                 app:layout_constraintTop_toBottomOf="@id/rgProcessFuelBurning">
 
             <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/ed_fuel_name"
                     android:text="@={model.airPollutionFuelName}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -125,8 +126,10 @@
                 app:layout_constraintTop_toBottomOf="@id/fuel_name">
 
             <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/ed_fuel_quantity"
                     android:layout_width="match_parent"
-                    android:inputType="number"
+                    android:inputType="phone"
+                    android:digits=".0123456789"
                     android:maxLength="5"
                     android:text="@={model.airPollutionFuelQuantity}"
                     android:layout_height="wrap_content" />
@@ -145,6 +148,7 @@
                 app:layout_constraintTop_toBottomOf="@id/fuelQtyLayout">
 
             <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/ed_fuel_unit"
                     android:layout_width="match_parent"
                     android:text="@={model.airPollutionFuelUnit}"
                     android:layout_height="wrap_content" />
@@ -163,6 +167,7 @@
                 app:layout_constraintTop_toBottomOf="@id/fuelUnitLayout">
 
             <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/ed_pollutants"
                     android:layout_width="match_parent"
                     android:text="@={model.airPollutionPollutants}"
                     android:layout_height="wrap_content" />
@@ -280,12 +285,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cbNoProvision" />
 
+<!--        Stack Height-->
         <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/stackHeightLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginRight="16dp"
                 android:hint="Stack Height(mtrs)"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -293,11 +299,12 @@
                 app:layout_constraintTop_toBottomOf="@id/cbAnyOther">
 
             <androidx.appcompat.widget.AppCompatEditText
-                    android:text="@={model.airPollutionStackHeight}"
-                    android:inputType="number"
-                    android:maxLength="5"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:maxLength="5"
+                    android:digits=".0123456789"
+                    android:text="@={model.airPollutionStackHeight}" />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

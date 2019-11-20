@@ -20,13 +20,22 @@ import java.math.BigInteger
 import java.security.MessageDigest
 import java.text.SimpleDateFormat
 
+var toast: Toast? = null
 
 fun AppCompatActivity.showMessage(message: String) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    if (toast != null){
+        toast?.cancel()
+    }
+    toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+    toast?.show()
 }
 
 fun Fragment.showMessage(message: String) {
-    Toast.makeText(this.activity, message, Toast.LENGTH_SHORT).show()
+    if (toast != null){
+        toast?.cancel()
+    }
+    toast = Toast.makeText(this.activity, message, Toast.LENGTH_SHORT)
+    toast?.show()
 }
 
 

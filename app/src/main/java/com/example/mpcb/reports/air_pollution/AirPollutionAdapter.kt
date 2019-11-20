@@ -31,6 +31,7 @@ class AirPollutionAdapter(
         holder.itemBinding.model = item
 
         holder.setListeners(item)
+        holder.setDataToViews(item)
 
     }
 
@@ -56,6 +57,7 @@ class AirPollutionAdapter(
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnSource.adapter = adapter
+
             itemBinding.spnSource.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -68,6 +70,8 @@ class AirPollutionAdapter(
                         item.airPollutionSource = "${position + 1}"
                         if (position == 4) {
                             itemBinding.anyOtherLayout.visibility = View.VISIBLE
+                            //Retrieve & set data to other Source text
+                            itemBinding.edtAnyOther.setText(item.airPollutionSourceOther)
                         } else {
                             itemBinding.anyOtherLayout.visibility = View.GONE
                             itemBinding.edtAnyOther.setText("")
@@ -78,8 +82,30 @@ class AirPollutionAdapter(
 
                 }
 
+            //Process or Fuel Burning Radio Button
             itemBinding.rgProcessFuelBurning.setOnCheckedChangeListener { group, checkedId ->
-                item.airPollutionType = if (checkedId == R.id.rbProcess) "1" else "0"
+                item.airPollutionType = if (checkedId == R.id.rbProcess) {
+                    itemBinding.run{
+                        //Disable text field
+                        edFuelName.isEnabled = false
+                        edFuelQuantity.isEnabled = false
+                        edFuelUnit.isEnabled = false
+
+                        //Empty Text field
+                        edFuelName.setText("")
+                        edFuelQuantity.setText("")
+                        edFuelUnit.setText("")
+                    }
+                    "1"
+                } else{
+                    itemBinding.run{
+                        //Enable text field
+                        edFuelName.isEnabled = true
+                        edFuelQuantity.isEnabled = true
+                        edFuelUnit.isEnabled = true
+                    }
+                    "0"
+                }
             }
 
             itemBinding.cbMechanicalDuster.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -113,6 +139,37 @@ class AirPollutionAdapter(
                 item.airPollutionAnyOther = if (isChecked) 1 else 0
             }
 
+        }
+
+        /**
+         * This method is used to set the data to the views
+         */
+        fun setDataToViews(item: RoutineReportAirPollution) {
+
+            itemBinding.run {
+                //Set Source item
+                if (item.airPollutionSource != null && item.airPollutionSource != "")
+                    spnSource.setSelection(item.airPollutionSource!!.toInt() - 1)
+
+                //Set Process/Fuel Burning radio button
+                if (item.airPollutionType == "1"){
+                    rgProcessFuelBurning.check(R.id.rbProcess)
+                }else{
+                    rgProcessFuelBurning.check(R.id.rbFuelBurning)
+                }
+
+                //Set Process/Fuel Burning
+                //Check the checkboxes
+                cbMechanicalDuster.isChecked = item.airPollutionMechDustCollector == 1
+                cbCycloneDust.isChecked = item.airPollutionCycloneDustCollector == 1
+                cbMultiCycloneDust.isChecked = item.airPollutionMultiDustCollector == 1
+                cbFabricBagFilter.isChecked = item.airPollutionFabricBagFilter == 1
+                cbPackageTower.isChecked = item.airPollutionPackageTower == 1
+                cbVenturiScrubber.isChecked = item.airPollutionVenturiScrubber == 1
+                cbElectroStatic.isChecked = item.airPollutionElectroStatic == 1
+                cbNoProvision.isChecked = item.airPollutionNoProvision == 1
+                cbAnyOther.isChecked = item.airPollutionAnyOther == 1
+            }
         }
 
     }
