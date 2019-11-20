@@ -30,15 +30,13 @@ fun isValidMobile(phone: String): Boolean{
 /**
  * This method checks if the input value is a proper Decimal value
  */
-fun isDecimalInputCorrect(value: String): Boolean{
-    //Value should not start or end with a "."
-    if (value.startsWith(".") || value.endsWith("."))
-        return false
+fun isDecimal(value: String): Boolean{
 
-    //TODO 18/11/19 Make this work
-    //Value should not contain more than 1 decimal
-//    if (value.count { value.contains('.') } > 1)
-//        return false
+    return try {
+        value.toDouble()
+        true
+    }catch (e: Exception){
+        false
+    }
 
-    return true
 }

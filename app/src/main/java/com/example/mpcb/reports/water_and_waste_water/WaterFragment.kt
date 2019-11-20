@@ -9,7 +9,9 @@ import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
-import com.example.mpcb.utils.validations.isDecimalInputCorrect
+import com.example.mpcb.utils.validations.isDecimal
+
+//import com.example.mpcb.utils.validations.isDecimalInputCorrect
 
 class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
@@ -84,27 +86,27 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
      * Method to check if the fields are correctly filled
      */
     private fun validateFieldsFilledCorrect(): Boolean {
-        if(!isDecimalInputCorrect(report.data.routineReport.generationIndustrialAsConsent)){
+        if(!isDecimal(report.data.routineReport.generationIndustrialAsConsent)){
             showMessage("Invalid Industry Process Input")
             return false
         }
-        if (!isDecimalInputCorrect(report.data.routineReport.generationIndustrialActual)){
+        if (!isDecimal(report.data.routineReport.generationIndustrialActual)){
             showMessage("Invalid Industry Process Input")
             return false
         }
-        if (!isDecimalInputCorrect(report.data.routineReport.generationIndustrialAsConsentCooling)){
+        if (!isDecimal(report.data.routineReport.generationIndustrialAsConsentCooling)){
             showMessage("Invalid Industry Cooling Input")
             return false
         }
-        if (!isDecimalInputCorrect(report.data.routineReport.generationIndustrialActualCooling)){
+        if (!isDecimal(report.data.routineReport.generationIndustrialActualCooling)){
             showMessage("Invalid Industry Cooling Input")
             return false
         }
-        if (!isDecimalInputCorrect(report.data.routineReport.generationDomesticAsConsent)){
+        if (!isDecimal(report.data.routineReport.generationDomesticAsConsent)){
             showMessage("Invalid Domestic Input")
             return false
         }
-        if (!isDecimalInputCorrect(report.data.routineReport.generationDomesticActual)){
+        if (!isDecimal(report.data.routineReport.generationDomesticActual)){
             showMessage("Invalid Domestic Input")
             return false
         }

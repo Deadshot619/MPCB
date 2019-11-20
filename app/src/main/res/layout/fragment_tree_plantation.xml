@@ -46,7 +46,8 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtTotalPlot"
-                            android:inputType="number"
+                            android:inputType="phone"
+                            android:digits=".0123456789"
                             android:maxLength="6"
                             android:hint="Total Plot Area in sq.mt"
                             android:layout_width="match_parent"
@@ -67,7 +68,8 @@
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtBuiltArea"
                             android:hint="Built Up Area in sq.mt"
-                            android:inputType="number"
+                            android:inputType="phone"
+                            android:digits=".0123456789"
                             android:maxLength="6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -88,7 +90,8 @@
                             android:id="@+id/edtGreenBelt"
                             android:hint="Green Belt Area in sq.mt"
                             android:layout_width="match_parent"
-                            android:inputType="number"
+                            android:inputType="phone"
+                            android:digits=".0123456789"
                             android:maxLength="6"
                             android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -107,8 +110,8 @@
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtPlantationDone"
                             android:hint="Plantation done in No"
-                            android:inputType="number"
-                            android:maxLength="6"
+                            android:inputType="phone"
+                            android:digits=".0123456789"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -127,8 +130,8 @@
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtProposedPlantation"
                             android:hint="Proposed Plantation"
-                            android:inputType="number"
-                            android:maxLength="6"
+                            android:inputType="phone"
+                            android:digits=".0123456789"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
