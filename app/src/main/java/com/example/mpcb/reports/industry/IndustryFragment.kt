@@ -166,7 +166,10 @@ class IndustryReportFragment :
         //Spinner
         if(reports != null) {
             mBinding.run {
-                catSpinner.setSelection(reports?.data?.industryCategoryReselect!!.toInt())
+                if (reports?.data?.industryCategoryReselect != "")
+                    reports?.data?.industryCategoryReselect?.toInt()?.let {
+                        catSpinner.setSelection(it)
+                    }
                 edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
                 visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
                 visitCatTelephoneEd.setText(reports?.data?.routineReport?.telephoneNumber)

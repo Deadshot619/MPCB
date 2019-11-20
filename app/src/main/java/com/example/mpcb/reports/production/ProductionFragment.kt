@@ -40,7 +40,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
         mViewModel.getProductList().observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
         })
-        mViewModel.populateData()
+//        mViewModel.populateData()
     }
 
     private fun onSubmit() {
@@ -98,7 +98,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     override fun setDataToViews() {
         reports = getReportData()
         if(reports?.data?.routineReportProducts != null)
-            mViewModel.populateData(reports?.data?.routineReportProducts!!)
+            mViewModel.populateData(reports?.data?.routineReportProducts)
     }
 
     override fun onStart() {

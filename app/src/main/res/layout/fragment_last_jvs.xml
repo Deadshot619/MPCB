@@ -113,6 +113,7 @@
                             android:id="@+id/edtAmtIndus"
                             android:inputType="number"
                             android:maxLength="5"
+                            android:digits=".0123456789"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -227,6 +228,7 @@
                             android:id="@+id/edtAmtDomestic"
                             android:inputType="number"
                             android:maxLength="5"
+                            android:digits=".0123456789"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>

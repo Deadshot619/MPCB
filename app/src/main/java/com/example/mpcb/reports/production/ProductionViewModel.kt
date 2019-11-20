@@ -12,8 +12,10 @@ class ProductionViewModel : BaseViewModel<ProductionNavigator>() {
     fun getProductList() = sourceList
 
     fun populateData(list: ArrayList<RoutineReportProduct>? = arrayListOf(RoutineReportProduct())) {
-        if (list!=null)
+        if (list?.size!! >= 1 )
             sourceList.value = list
+        else
+            sourceList.value = arrayListOf(RoutineReportProduct())
     }
 
     fun deleteItem() {

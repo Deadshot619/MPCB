@@ -11,14 +11,17 @@ class AirViewModel : BaseViewModel<AirNavigator>() {
 
     fun getSourceList() = sourceList
 
-    fun populateData() {
-        val list = arrayListOf(RoutineReportAirPollution())
-        sourceList.value = list
+    fun populateData(list: ArrayList<RoutineReportAirPollution>? = arrayListOf(RoutineReportAirPollution())) {
+//        val list = arrayListOf(RoutineReportAirPollution())
+        if (list?.size!! < 1)
+            sourceList.value = arrayListOf(RoutineReportAirPollution())
+        else
+            sourceList.value = list
     }
 
     fun deleteItem() {
         val list = sourceList.value
-        if (list!!.size > 1) {
+        if (list?.size!! > 1) {
             list.removeAt(list.size - 1)
             sourceList.value = list
         }

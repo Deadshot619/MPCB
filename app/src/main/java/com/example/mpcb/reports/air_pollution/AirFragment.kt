@@ -5,11 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentAirPollutionBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), AirNavigator {
+
+    private var reports: ReportRequest? = null
+
     override fun getLayoutId() = R.layout.fragment_air_pollution
     override fun getViewModel() = AirViewModel::class.java
     override fun getNavigator() = this@AirFragment
@@ -89,5 +93,20 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
         }
 
         return isValid
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        reports= getReportData()
+
+        if (reports?.data?.routineReportAirPollution != null)
+            mViewModel.populateData(reports?.data?.routineReportAirPollution)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
     }
 }

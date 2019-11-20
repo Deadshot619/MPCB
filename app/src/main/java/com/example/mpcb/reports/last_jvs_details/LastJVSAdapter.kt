@@ -17,7 +17,6 @@ class LastJVSAdapter(
 
     private val parentList = ArrayList<JvsSampleCollectedWaterSource>()
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastJvsViewHolder {
         val itemBinding = ItemLastJvsBinding.inflate(mInflater, parent, false)
         return LastJvsViewHolder(itemBinding)
