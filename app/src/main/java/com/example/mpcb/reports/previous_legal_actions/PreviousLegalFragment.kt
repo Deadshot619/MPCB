@@ -6,6 +6,7 @@ import android.util.Log
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentPreviousLegalBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
@@ -15,6 +16,8 @@ import java.util.*
 
 class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
+
+    private var reports: ReportRequest? = null
 
     override fun getLayoutId() = R.layout.fragment_previous_legal
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -72,4 +75,27 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
         return true
     }
 
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        super.setDataToViews()
+        reports = getReportData()
+
+        if (reports != null){
+            mBinding.run{
+                reports?.data?.routineReport?.run{
+                    //Set the value to texts
+                    edtActionInitiated.setText(actionInitiatedDate)
+                    edtSpecificCompliance.setText(specialCompliance)
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //set data to views in onStart
+        setDataToViews()
+    }
 }
