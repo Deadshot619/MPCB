@@ -4,6 +4,7 @@ import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentOmsStackBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
@@ -12,6 +13,9 @@ import com.example.mpcb.utils.showMessage
 
 class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
+
+
+    private var reports: ReportRequest? = null
 
     override fun getLayoutId() = R.layout.fragment_oms_stack
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -38,7 +42,24 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
             }
         }
         mBinding.rgWhetherOnlineSys.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.omsaInstalled = if (checkedId == R.id.rbWOSA) 1 else 0
+            report.data.routineReport.omsaInstalled = if (checkedId == R.id.rbWOSA) {
+                mBinding.run {
+                    txtConnectivity.visibility = View.VISIBLE
+                    cbCPCB.visibility = View.VISIBLE
+                    cbMPCB.visibility = View.VISIBLE
+                }
+                1
+            } else {
+                mBinding.run {
+                    txtConnectivity.visibility = View.GONE
+                    cbCPCB.visibility = View.GONE
+                    cbMPCB.visibility = View.GONE
+
+                    cbCPCB.isChecked = false
+                    cbMPCB.isChecked = false
+                }
+                0
+            }
         }
         mBinding.rgRmtCal.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.remoteCalApplicable =
@@ -74,9 +95,8 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
             mBinding.rgWSMS.visibility = View.VISIBLE
             mBinding.txtWCalSys.visibility = View.VISIBLE
             mBinding.rgWCalSys.visibility = View.VISIBLE
-            mBinding.txtConnectivity.visibility = View.VISIBLE
-            mBinding.cbCPCB.visibility = View.VISIBLE
-            mBinding.cbMPCB.visibility = View.VISIBLE
+
+            mBinding.rgWhetherOnlineSys.check(R.id.rbWOSNA)
         } else {
             mBinding.txtWhetherOnlineSys.visibility = View.GONE
             mBinding.rgWhetherOnlineSys.visibility = View.GONE
@@ -95,17 +115,17 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
     }
 
     private fun onSubmit() {
-        if (report.data.routineReport.omsaApplicable == 0) {
-            report.data.routineReport.omsaInstalled = 0
-            report.data.routineReport.remoteCalApplicable = 0
-            report.data.routineReport.sensorPlaced = 0
-            report.data.routineReport.stackFacilityExist = 0
-            report.data.routineReport.calFacExist = 0
-            report.data.routineReport.omsaCpcb = 0
-            report.data.routineReport.omsaMpcb = 0
-        }
 
         if (validate()) {
+            if (report.data.routineReport.omsaApplicable == 0) {
+                report.data.routineReport.omsaInstalled = 0
+                report.data.routineReport.remoteCalApplicable = 0
+                report.data.routineReport.sensorPlaced = 0
+                report.data.routineReport.stackFacilityExist = 0
+                report.data.routineReport.calFacExist = 0
+                report.data.routineReport.omsaCpcb = 0
+                report.data.routineReport.omsaMpcb = 0
+            }
             saveReportData(
                 reportKey = Constants.REPORT_10,
                 reportStatus = true
@@ -120,34 +140,113 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
             return false
         }
         if (mBinding.rbOSA.isChecked) {
+//            OMS Installed
             if (!mBinding.rbWOSA.isChecked && !mBinding.rbWOSNA.isChecked) {
                 showMessage("Select Online Monitoring System Installed")
                 return false
             }
+
+            if (mBinding.rbWOSA.isChecked){
+//                Connectivity
+                if (!mBinding.cbCPCB.isChecked && !mBinding.cbMPCB.isChecked) {
+                    showMessage("Select Connectivity")
+                    return false
+                }
+            }
+
+//            Remote Caliberation Applicable
             if (!mBinding.rbRmtCalYes.isChecked && !mBinding.rbRmtCalNo.isChecked) {
                 showMessage("Select Remote Caliberation Applicable")
                 return false
             }
+
+//            Sensor Properly Placed
             if (!mBinding.rbSensorPlacedYes.isChecked && !mBinding.rbSensorPlacedNo.isChecked) {
                 showMessage("Select Sensor Properly Placed")
                 return false
             }
+
+//            Stack Monitoring System exists
             if (!mBinding.rbWSMSYes.isChecked && !mBinding.rbWSMSNo.isChecked) {
                 showMessage("Select proper stack monitoring system exists")
                 return false
             }
+
+//            Calibration Facility exists
             if (!mBinding.rbWCalSysYes.isChecked && !mBinding.rbWCalSysNo.isChecked) {
                 showMessage("Select calibration facility exists")
                 return false
             }
-            if (!mBinding.cbCPCB.isChecked && !mBinding.cbMPCB.isChecked) {
-                showMessage("Select Connectivity")
-                return false
-            }
-        }
 
+        }
 
         return true
     }
 
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        super.setDataToViews()
+        reports = getReportData()
+
+        if (reports != null){
+            mBinding.run{
+                reports?.data?.routineReport?.run {
+
+                    //                        OMS
+                    if (omsaApplicable == 1){
+                        rgOnlineSys.check(R.id.rbOSA)
+                    }else{
+                        rgOnlineSys.check(R.id.rbOSNA)
+                    }
+
+//                    OMS Installed
+                    if (omsaInstalled == 1){
+                        rgWhetherOnlineSys.check(R.id.rbWOSA)
+                    }else{
+                        rgWhetherOnlineSys.check(R.id.rbWOSNA)
+                    }
+
+//                    Remote Calioberation Applicable
+                    if (remoteCalApplicable == 1){
+                        rgRmtCal.check(R.id.rbRmtCalYes)
+                    }else{
+                        rgRmtCal.check(R.id.rbRmtCalNo)
+                    }
+
+//                    Sensor Properly Placed
+                    if (sensorPlaced == 1){
+                        rgSensorPlaced.check(R.id.rbSensorPlacedYes)
+                    }else{
+                        rgSensorPlaced.check(R.id.rbSensorPlacedNo)
+                    }
+
+//                     Proper stack monitoring system
+                    if (stackFacilityExist == 1){
+                        rgWSMS.check(R.id.rbWSMSYes)
+                    }else{
+                        rgWSMS.check(R.id.rbWSMSNo)
+                    }
+
+//                     Proper stack monitoring system
+                    if (calFacExist == 1){
+                        rgWCalSys.check(R.id.rbWCalSysYes)
+                    }else{
+                        rgWCalSys.check(R.id.rbWCalSysNo)
+                    }
+
+//                    Connectivity
+                    cbCPCB.isChecked = omsaCpcb == 1
+                    cbMPCB.isChecked = omsaMpcb == 1
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //set data to views in onStart
+        setDataToViews()
+    }
 }

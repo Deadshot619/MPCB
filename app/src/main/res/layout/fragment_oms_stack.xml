@@ -33,6 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
+<!--                OMS-->
                 <RadioGroup
                     android:id="@+id/rgOnlineSys"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +72,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rgOnlineSys" />
 
+<!--                OMS installed-->
                 <RadioGroup
                     android:id="@+id/rgWhetherOnlineSys"
                     app:layout_constraintStart_toStartOf="parent"
@@ -107,8 +109,9 @@
                     android:text="Remote Caliberation Applicable"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rgWhetherOnlineSys" />
+                    app:layout_constraintTop_toBottomOf="@+id/cbCPCB" />
 
+<!--                Remote Caliberation-->
                 <RadioGroup
                     android:id="@+id/rgRmtCal"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,6 +150,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rgRmtCal" />
 
+<!--                Sensor Placed-->
                 <RadioGroup
                     android:id="@+id/rgSensorPlaced"
                     app:layout_constraintStart_toStartOf="parent"
@@ -185,6 +189,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rgSensorPlaced" />
 
+<!--                Proper stack monitoring system-->
                 <RadioGroup
                     android:id="@+id/rgWSMS"
                     app:layout_constraintStart_toStartOf="parent"
@@ -223,6 +228,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rgWSMS" />
 
+
+<!--           Proper stack monitoring system-->
                 <RadioGroup
                     android:id="@+id/rgWCalSys"
                     app:layout_constraintStart_toStartOf="parent"
@@ -256,15 +263,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Connectivity"
+                        android:visibility="gone"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rgWCalSys" />
+                    app:layout_constraintTop_toBottomOf="@+id/rgWhetherOnlineSys" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/cbCPCB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CPCB"
+                        android:visibility="gone"
                     android:layout_marginTop="4dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtConnectivity" />
@@ -274,6 +283,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MPCB"
+                        android:visibility="gone"
                     android:layout_marginStart="32dp"
                     android:layout_marginLeft="32dp"
                     app:layout_constraintBottom_toBottomOf="@+id/cbCPCB"
@@ -294,7 +304,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cbCPCB" />
+                    app:layout_constraintTop_toBottomOf="@+id/rgWCalSys" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
