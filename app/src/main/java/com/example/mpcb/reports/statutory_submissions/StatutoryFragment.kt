@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentStatutoryBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
@@ -15,6 +16,9 @@ import java.util.*
 
 class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
+
+
+    private var reports: ReportRequest? = null
 
     private val HAZARDOUS_WASTE = 1
     private val ENVIRONMENT_REPORT = 2
@@ -77,5 +81,28 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
         return true
     }
 
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        super.setDataToViews()
+        reports = getReportData()
+
+        if (reports != null){
+            mBinding.run{
+                reports?.data?.routineReport?.run{
+                    //Set the value to texts
+                    edtHazardousWaste.setText(hwAnnualReturnDate)
+                    edtEnvironmentReport.setText(envStatementReport)
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        //set data to views in onStart
+        setDataToViews()
+    }
 
 }
