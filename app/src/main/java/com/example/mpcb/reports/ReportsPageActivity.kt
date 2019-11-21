@@ -1,5 +1,6 @@
 package com.example.mpcb.reports
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
@@ -38,10 +39,10 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
 
     override fun onBinding() {
         if (intent != null && intent.extras != null) {
-            val visitReportId = intent?.extras?.get(Constants.VISIT_REPORT_ID) as String
+            val visitReportId: String = intent?.extras?.get(Constants.VISIT_REPORT_ID) as String
             mBinding.visitId.text = "#$visitReportId"
             reportPageNo = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
-            addFragment(reportPageNo)
+            addFragment(reportPageNo, visitReportId)
         }
         setToolbar(reportPageNo)
 
@@ -56,8 +57,8 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         mBinding.reportProgress.progress = reportPage
     }
 
-    private fun addFragment(reportPage: Int) {
-        val fragment = when (reportPage) {
+    private fun addFragment(reportPage: Int, visitReportId: String) {
+        val fragment: Fragment = when (reportPage) {
             Constants.REPORT_1 -> IndustryReportFragment()
             Constants.REPORT_2 -> ProductionFragment()
             Constants.REPORT_3 -> TreatmentFragment()
@@ -78,6 +79,13 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             Constants.REPORT_18 -> AdditionalInfoFragment()
             else -> Fragment()
         }
+
+        //Put the Visit Report ID in bundle to share to Fragments
+        val bundle = Bundle()
+        bundle.putString("visitReportId", visitReportId)
+
+        //Set fragment arguments
+        fragment.arguments = bundle
         addReportFragment(fragment, false)
     }
 }

@@ -62,6 +62,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         return mBinding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createDialog()
@@ -113,13 +114,20 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     }
 
     /**
+     * This method is used to get data from Fragment arguments
+     */
+    protected fun getDataFromArguments(context: Fragment, key: String): String{
+        return context.arguments?.getString(key)!!
+    }
+
+    /**
      * This method is used to save the reports data & its status in the
      * shared preference.
      * @param reportKey 0 by default. Specifies the Report
      * @param reportStatus false by default. Indicates whether the report status is completed
      *                      or not
      */
-    protected fun saveReportData(reportKey: Int = 0, reportStatus: Boolean = false) {
+    protected fun saveReportData(reportNo: String = "", reportKey: Int = 0, reportStatus: Boolean = false) {
         PreferencesHelper.setPreferences(Constants.REPORT_KEY, Gson().toJson(report))
 
         //saves the status of current report
