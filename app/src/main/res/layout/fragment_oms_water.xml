@@ -105,7 +105,7 @@
                     android:text="Remote Caliberation Applicable"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgOMSInstalled" />
+                    app:layout_constraintTop_toBottomOf="@id/linLayConnectivity" />
 
                 <RadioGroup
                     android:id="@+id/rgRemoteCalliberation"
@@ -171,20 +171,24 @@
                         android:textSize="18sp" />
                 </RadioGroup>
 
+<!--                Connectivity Text-->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtConnectivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                        android:visibility="gone"
                     android:text="Connectivity"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rgSensorPlaced" />
+                    app:layout_constraintTop_toBottomOf="@id/rgOMSInstalled" />
 
+<!--                Connectivity-->
                 <LinearLayout
                     android:id="@+id/linLayConnectivity"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                        android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtConnectivity">
@@ -215,7 +219,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linLayConnectivity" />
+                    app:layout_constraintTop_toBottomOf="@+id/rgSensorPlaced" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

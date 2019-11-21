@@ -50,6 +50,7 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
         mBinding.rgWhetherOnlineSys.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.omsaInstalled = if (checkedId == R.id.rbWOSA) {
                 mBinding.run {
+                    //Connectivity Visible
                     txtConnectivity.visibility = View.VISIBLE
                     cbCPCB.visibility = View.VISIBLE
                     cbMPCB.visibility = View.VISIBLE
@@ -57,10 +58,12 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
                 1
             } else {
                 mBinding.run {
+                    //Connectivity not Visible
                     txtConnectivity.visibility = View.GONE
                     cbCPCB.visibility = View.GONE
                     cbMPCB.visibility = View.GONE
 
+                    //clear selection
                     cbCPCB.isChecked = false
                     cbMPCB.isChecked = false
                 }
@@ -145,6 +148,7 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
     }
 
     private fun validate(): Boolean {
+
         if (!mBinding.rbOSA.isChecked && !mBinding.rbOSNA.isChecked) {
             showMessage("Select Online Monitoring System")
             return false

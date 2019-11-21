@@ -50,7 +50,25 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
         }
         mBinding.rgOMSInstalled.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.omswInstalled =
-                if (checkedId == R.id.rbOMSInstalledApplicable) 1 else 0
+                if (checkedId == R.id.rbOMSInstalledApplicable) {
+                    mBinding.run {
+                        //Connectivity Visible
+                        txtConnectivity.visibility = View.VISIBLE
+                        linLayConnectivity.visibility = View.VISIBLE
+                    }
+                    1
+                } else {
+                    mBinding.run {
+                        //Connectivity not Visible
+                        txtConnectivity.visibility = View.GONE
+                        linLayConnectivity.visibility = View.GONE
+
+                        //clear selection
+                        cbCPCB.isChecked = false
+                        cbMPCB.isChecked = false
+                    }
+                    0
+                }
         }
         mBinding.rgRemoteCalliberation.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.remoteCalApplicableWater =
@@ -76,8 +94,11 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
             mBinding.rgRemoteCalliberation.visibility = View.VISIBLE
             mBinding.txtSensorPlaced.visibility = View.VISIBLE
             mBinding.rgSensorPlaced.visibility = View.VISIBLE
-            mBinding.txtConnectivity.visibility = View.VISIBLE
-            mBinding.linLayConnectivity.visibility = View.VISIBLE
+//            mBinding.txtConnectivity.visibility = View.VISIBLE
+//            mBinding.linLayConnectivity.visibility = View.VISIBLE
+
+            //Check Not installed Radio B   utton
+            mBinding.rgOMSInstalled.check(R.id.rbOMSInstalledNotApplicable)
         } else {
             mBinding.txtOMSInstalled.visibility = View.GONE
             mBinding.rgOMSInstalled.visibility = View.GONE
@@ -113,27 +134,39 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
     }
 
     private fun validate(): Boolean {
-        if (!mBinding.rbOMSApplicable.isChecked && !mBinding.rbOMSNotApplicable.isChecked) {
-            showMessage("Select Online Monitoring System")
-            return false
-        }
+        mBinding.run {
+            //OMS
+            if (!rbOMSApplicable.isChecked && !rbOMSNotApplicable.isChecked) {
+                showMessage("Select Online Monitoring System")
+                return false
+            }
 
-        if (mBinding.rbOMSApplicable.isChecked) {
-            if (!mBinding.rbOMSInstalledApplicable.isChecked && !mBinding.rbOMSInstalledNotApplicable.isChecked) {
-                showMessage("Select Online Monitoring System Installed")
-                return false
-            }
-            if (!mBinding.rbRemoteYes.isChecked && !mBinding.rbRemoteNo.isChecked) {
-                showMessage("Select Remote Caliberation Applicable")
-                return false
-            }
-            if (!mBinding.rbSensorYes.isChecked && !mBinding.rbSensorNo.isChecked) {
-                showMessage("Sensor Properly Placed")
-                return false
-            }
-            if (!mBinding.cbMPCB.isChecked && !mBinding.cbCPCB.isChecked) {
-                showMessage("Select Connectivity")
-                return false
+            if (rbOMSApplicable.isChecked) {
+                //OMS Installed
+                if (!rbOMSInstalledApplicable.isChecked && !rbOMSInstalledNotApplicable.isChecked) {
+                    showMessage("Select Online Monitoring System Installed")
+                    return false
+                }
+
+                if (rbOMSInstalledApplicable.isChecked){
+                    //Connectivity
+                    if (!cbMPCB.isChecked && !cbCPCB.isChecked) {
+                        showMessage("Select Connectivity")
+                        return false
+                    }
+                }
+
+//              Remote Caliberation Applicable
+                if (!rbRemoteYes.isChecked && !rbRemoteNo.isChecked) {
+                    showMessage("Select Remote Caliberation Applicable")
+                    return false
+                }
+
+                //Sensor Properly Placed
+                if (!rbSensorYes.isChecked && !rbSensorNo.isChecked) {
+                    showMessage("Sensor Properly Placed")
+                    return false
+                }
             }
         }
 
