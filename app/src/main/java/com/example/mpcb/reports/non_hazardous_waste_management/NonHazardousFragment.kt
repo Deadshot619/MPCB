@@ -5,12 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentNonHazardiousBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
     NonHazardousNavigator {
+    private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_non_hazardious
     override fun getViewModel() = NonHazardousViewModel::class.java
@@ -21,6 +24,10 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_13)
         setUpRecyclerView()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
@@ -43,6 +50,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
         addReportFragment(Constants.REPORT_14)
         if (validate()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_13,
                 reportStatus = true
             )

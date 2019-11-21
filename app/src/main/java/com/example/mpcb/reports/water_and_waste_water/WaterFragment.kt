@@ -17,6 +17,7 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_waste_water_aspect
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -26,6 +27,10 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_4)
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
@@ -47,6 +52,7 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
 
         if (validate() && validateFieldsFilledCorrect()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_4,
                 reportStatus = true
             )

@@ -18,6 +18,7 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_previous_legal
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -27,6 +28,10 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_16)
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.edtActionInitiated.setOnClickListener { showDateDialog() }
 
@@ -55,6 +60,7 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
 
         if (validate()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_16,
                 reportStatus = true
             )

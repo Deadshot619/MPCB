@@ -16,6 +16,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
 
     lateinit var adapter: ProductionAdapter
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_production
     override fun getViewModel() = ProductionViewModel::class.java
@@ -26,6 +27,10 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_2)
         setUpRecyclerView()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
@@ -48,6 +53,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
             report.data.routineReportProducts.clear()
             report.data.routineReportProducts = mViewModel.getProductList().value!!
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_2,
                 reportStatus = true
             )

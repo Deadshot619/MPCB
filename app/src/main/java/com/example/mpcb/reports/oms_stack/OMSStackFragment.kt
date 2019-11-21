@@ -16,6 +16,7 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
 
 
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_oms_stack
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -26,6 +27,10 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_10)
         setListener()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
 
@@ -127,6 +132,7 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
                 report.data.routineReport.omsaMpcb = 0
             }
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_10,
                 reportStatus = true
             )

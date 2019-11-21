@@ -19,6 +19,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
 
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     //for Industrial input fields
     private var indusCept: Double = 0.0
@@ -49,6 +50,10 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_5)
         setListener()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
@@ -342,6 +347,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
         if (validate()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_5,
                 reportStatus = true
             )

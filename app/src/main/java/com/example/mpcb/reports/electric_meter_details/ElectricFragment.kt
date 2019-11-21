@@ -17,6 +17,7 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_electric
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -27,6 +28,10 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_7)
         setListener()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
@@ -51,6 +56,7 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
 
         if (validate()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_7,
                 reportStatus = true
             )

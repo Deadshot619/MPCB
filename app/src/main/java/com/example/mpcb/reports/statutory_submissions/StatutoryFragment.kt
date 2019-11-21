@@ -17,8 +17,8 @@ import java.util.*
 class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
-
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     private val HAZARDOUS_WASTE = 1
     private val ENVIRONMENT_REPORT = 2
@@ -31,6 +31,10 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_15)
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.edtHazardousWaste.setOnClickListener { showDateDialog(HAZARDOUS_WASTE) }
         mBinding.edtEnvironmentReport.setOnClickListener { showDateDialog(ENVIRONMENT_REPORT) }
@@ -61,6 +65,7 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
 
         if (validate()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_15,
                 reportStatus = true
             )

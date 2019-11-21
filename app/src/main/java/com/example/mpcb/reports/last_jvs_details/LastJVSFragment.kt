@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentLastJvsBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
@@ -20,6 +21,9 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
     private val DOMESTIC_DATE_OF_COLLECTION = 3
     private val DOMESTIC_DATE = 4
 
+    private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
+
     override fun getLayoutId() = R.layout.fragment_last_jvs
     override fun getViewModel() = LastJVSViewModel::class.java
     override fun getNavigator() = this@LastJVSFragment
@@ -30,6 +34,10 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_8)
         setUpRecyclerView()
         setListener()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.edtIndusDateOfCollection.setOnClickListener {
             showDateDialog(INDUS_DATE_OF_COLLECTION)
@@ -119,7 +127,11 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
         }
 
         if (validate()) {
-            saveReportData(reportKey = Constants.REPORT_8, reportStatus = true)
+            saveReportData(
+                reportNo = visitReportId,
+                reportKey = Constants.REPORT_8,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_9)
         }
     }

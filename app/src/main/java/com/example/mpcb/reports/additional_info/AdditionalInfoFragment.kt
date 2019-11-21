@@ -4,6 +4,7 @@ package com.example.mpcb.reports.additional_info
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentAdditionalInfoBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
@@ -11,6 +12,9 @@ import com.example.mpcb.utils.showMessage
 class AdditionalInfoFragment :
     BaseFragment<FragmentAdditionalInfoBinding, AdditionalInfoViewModel>(),
     AdditionalInfoNavigator {
+
+    private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_additional_info
     override fun getViewModel() = AdditionalInfoViewModel::class.java
@@ -21,6 +25,10 @@ class AdditionalInfoFragment :
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_18)
         setListener()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
 
@@ -38,6 +46,7 @@ class AdditionalInfoFragment :
 
         if (validate()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_18,
                 reportStatus = true
             )

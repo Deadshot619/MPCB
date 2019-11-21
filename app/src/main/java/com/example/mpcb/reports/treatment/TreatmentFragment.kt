@@ -20,6 +20,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
 
 
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_treatment
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -28,6 +29,10 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
     override fun onInternetError() {}
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_3)
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         setListeners()
         setCheckBoxListener()
@@ -276,8 +281,11 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
         report.data.routineReport.treatmentDomesticObservation =
             mBinding.edtDomesticRemark.text.toString()
 
+
+
         if (validate()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_3,
                 reportStatus = true
             )

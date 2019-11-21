@@ -18,6 +18,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
 
 
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_tree_plantation
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -27,6 +28,10 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_14)
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
@@ -44,6 +49,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
 
         if (validate()) {
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_14,
                 reportStatus = true
             )

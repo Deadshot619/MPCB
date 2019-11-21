@@ -21,6 +21,7 @@ class IndustryReportFragment :
     private val VISITED_ON = 1
     private val VALID_UPTO = 2
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_industry_category
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -31,6 +32,10 @@ class IndustryReportFragment :
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_1)
         setListener()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         val adapter = ArrayAdapter(
             getBaseActivity(),
@@ -88,6 +93,7 @@ class IndustryReportFragment :
         if (validateFieldsFilled()) {
             if (validateFieldsFilledCorrect()) {
                 saveReportData(
+                    reportNo = visitReportId,
                     reportKey = Constants.REPORT_1,
                     reportStatus = true
                 )

@@ -7,12 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentOmsAmbientAirBinding
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
 
 class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbientAirViewModel>(),
     OMSAmbientAirNavigator {
+    private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
+
     override fun getLayoutId() = R.layout.fragment_oms_ambient_air
     override fun getViewModel() = OMSAmbientAirViewModel::class.java
     override fun getNavigator() = this@OMSAmbientAirFragment
@@ -23,6 +27,10 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_11)
         setUpRecyclerView()
         setListeners()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
@@ -110,7 +118,11 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         }
 
         if (validate()) {
-            saveReportData(reportKey = Constants.REPORT_11, reportStatus = true)
+            saveReportData(
+                reportNo = visitReportId,
+                reportKey = Constants.REPORT_11,
+                reportStatus = true
+            )
             addReportFragment(Constants.REPORT_12)
         }
     }

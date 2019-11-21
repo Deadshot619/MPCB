@@ -145,6 +145,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvBank"
                         android:layout_width="0dp"
+                        tools:listitem="@layout/item_bank_guarantee"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

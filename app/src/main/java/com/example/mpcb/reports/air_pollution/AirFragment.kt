@@ -13,6 +13,7 @@ import com.example.mpcb.utils.showMessage
 class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), AirNavigator {
 
     private var reports: ReportRequest? = null
+    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_air_pollution
     override fun getViewModel() = AirViewModel::class.java
@@ -23,6 +24,10 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_9)
         setUpRecyclerView()
+
+        //Get Visit Report ID from arguments
+        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
@@ -46,6 +51,7 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
             report.data.routineReportAirPollution = mViewModel.getSourceList().value!!
 
             saveReportData(
+                reportNo = visitReportId,
                 reportKey = Constants.REPORT_9,
                 reportStatus = true
             )
