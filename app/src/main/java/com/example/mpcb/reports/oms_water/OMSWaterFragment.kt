@@ -1,6 +1,7 @@
 package com.example.mpcb.reports.oms_water
 
 
+import android.os.Bundle
 import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
@@ -30,7 +31,7 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         setListener()
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
@@ -104,7 +105,10 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
                 reportKey = Constants.REPORT_6,
                 reportStatus = true
             )
-            addReportFragment(Constants.REPORT_7)
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_7, bundle)
         }
     }
 

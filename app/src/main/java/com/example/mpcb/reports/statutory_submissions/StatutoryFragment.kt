@@ -2,6 +2,7 @@ package com.example.mpcb.reports.statutory_submissions
 
 
 import android.app.DatePickerDialog
+import android.os.Bundle
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentStatutoryBinding
@@ -34,7 +35,7 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.edtHazardousWaste.setOnClickListener { showDateDialog(HAZARDOUS_WASTE) }
         mBinding.edtEnvironmentReport.setOnClickListener { showDateDialog(ENVIRONMENT_REPORT) }
@@ -69,7 +70,10 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
                 reportKey = Constants.REPORT_15,
                 reportStatus = true
             )
-            addReportFragment(Constants.REPORT_16)
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_16, bundle)
         }
     }
 

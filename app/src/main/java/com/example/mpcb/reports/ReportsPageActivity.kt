@@ -29,6 +29,10 @@ import com.example.mpcb.utils.showMessage
 class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
+    private lateinit var _visitReportId: String
+    val visitReportId: String
+        get() = _visitReportId
+
     override fun getLayoutId() = R.layout.activity_reports_page
     override fun getViewModel() = ReportsPageViewModel::class.java
     override fun getNavigator() = this@ReportsPageActivity
@@ -39,7 +43,8 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
 
     override fun onBinding() {
         if (intent != null && intent.extras != null) {
-            val visitReportId: String = intent?.extras?.get(Constants.VISIT_REPORT_ID) as String
+            _visitReportId = intent?.extras?.get(Constants.VISIT_REPORT_ID) as String
+
             mBinding.visitId.text = "#$visitReportId"
             reportPageNo = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
             addFragment(reportPageNo, visitReportId)
@@ -82,10 +87,10 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
 
         //Put the Visit Report ID in bundle to share to Fragments
         val bundle = Bundle()
-        bundle.putString("visitReportId", visitReportId)
+        bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
 
         //Set fragment arguments
         fragment.arguments = bundle
-        addReportFragment(fragment, false)
+        addReportFragment(fragment, false, bundle)
     }
 }

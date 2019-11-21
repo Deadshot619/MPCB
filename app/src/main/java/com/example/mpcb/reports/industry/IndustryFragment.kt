@@ -1,6 +1,7 @@
 package com.example.mpcb.reports.industry
 
 import android.app.DatePickerDialog
+import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
@@ -35,7 +36,7 @@ class IndustryReportFragment :
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         val adapter = ArrayAdapter(
             getBaseActivity(),
@@ -97,7 +98,10 @@ class IndustryReportFragment :
                     reportKey = Constants.REPORT_1,
                     reportStatus = true
                 )
-                addReportFragment(Constants.REPORT_2)
+                //Put the Visit Report ID in bundle to share to Fragments
+                val bundle = Bundle()
+                bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+                addReportFragment(Constants.REPORT_2, bundle)
             }
         }
     }

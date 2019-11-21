@@ -1,5 +1,6 @@
 package com.example.mpcb.reports.disposal
 
+import android.os.Bundle
 import android.widget.CompoundButton
 import androidx.core.widget.addTextChangedListener
 import com.example.mpcb.R
@@ -53,7 +54,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
@@ -351,7 +352,11 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
                 reportKey = Constants.REPORT_5,
                 reportStatus = true
             )
-            addReportFragment(Constants.REPORT_6)
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+
+            addReportFragment(Constants.REPORT_6, bundle)
         }
     }
 

@@ -87,7 +87,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         toolbarBinding.txtToolbarTitle.text = title
     }
 
-    protected fun addReportFragment(reportKey: Int) {
+    protected fun addReportFragment(reportKey: Int, bundle: Bundle? = null) {
         val fragment = when (reportKey) {
             Constants.REPORT_1 -> IndustryReportFragment() //v
             Constants.REPORT_2 -> ProductionFragment()// listing //v
@@ -110,7 +110,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
             else -> Fragment()
         }
 
-        getBaseActivity().addReportFragment(fragment, true)
+        getBaseActivity().addReportFragment(fragment, true, bundle)
     }
 
     /**
@@ -118,7 +118,10 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
      */
     protected fun getDataFromArguments(context: Fragment, key: String): String{
         return context.arguments?.getString(key)!!
+        //Not a good way to do, due to tight coupling of fragment to activity
+//        return ReportsPageActivity().visitReportId
     }
+
 
     /**
      * This method is used to save the reports data & its status in the

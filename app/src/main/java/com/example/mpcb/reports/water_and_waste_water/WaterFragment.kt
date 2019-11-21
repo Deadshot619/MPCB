@@ -1,5 +1,6 @@
 package com.example.mpcb.reports.water_and_waste_water
 
+import android.os.Bundle
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentWasteWaterAspectBinding
@@ -30,7 +31,7 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
@@ -56,7 +57,10 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
                 reportKey = Constants.REPORT_4,
                 reportStatus = true
             )
-            addReportFragment(Constants.REPORT_5)
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_5, bundle)
         }
     }
 

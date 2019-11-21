@@ -1,5 +1,6 @@
 package com.example.mpcb.reports.non_hazardous_waste_management
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -27,7 +28,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
@@ -54,7 +55,10 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
                 reportKey = Constants.REPORT_13,
                 reportStatus = true
             )
-            addReportFragment(Constants.REPORT_14)
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_14, bundle)
         }
     }
 

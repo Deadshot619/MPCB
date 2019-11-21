@@ -1,6 +1,7 @@
 package com.example.mpcb.reports.production
 
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -30,7 +31,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
@@ -57,7 +58,10 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
                 reportKey = Constants.REPORT_2,
                 reportStatus = true
             )
-            addReportFragment(Constants.REPORT_3)
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_3, bundle)
         }
     }
 

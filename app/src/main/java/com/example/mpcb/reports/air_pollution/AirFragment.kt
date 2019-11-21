@@ -1,5 +1,6 @@
 package com.example.mpcb.reports.air_pollution
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -27,7 +28,7 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
@@ -55,8 +56,11 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
                 reportKey = Constants.REPORT_9,
                 reportStatus = true
             )
+//Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
 
-            addReportFragment(Constants.REPORT_10)
+            addReportFragment(Constants.REPORT_10, bundle)
         }
     }
 

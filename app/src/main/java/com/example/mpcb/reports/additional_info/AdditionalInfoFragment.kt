@@ -28,7 +28,7 @@ class AdditionalInfoFragment :
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
 

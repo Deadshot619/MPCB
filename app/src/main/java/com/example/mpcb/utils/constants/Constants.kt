@@ -22,6 +22,14 @@ class Constants {
         const val VISIT_ITEM_KEY: String = "visit_item_key"
         const val VISIT_REPORT_ID: String = "visit_report_id"
 
+        /**
+         * This value is used to save report visit id in shared pref temporarily when
+         * Report Page Activity is initiated & will be cleared when Report Page Activity
+         * is destroyed.
+         */
+        const val TEMP_VISIT_REPORT_ID: String = "temp_visit_report_id"
+
+
         const val VISIT_ID: String = "visit_id"
         const val INDUS_IMIS_ID: String = "indus_imis_id"
 

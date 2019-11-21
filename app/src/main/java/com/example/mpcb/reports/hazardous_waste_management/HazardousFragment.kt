@@ -1,5 +1,6 @@
 package com.example.mpcb.reports.hazardous_waste_management
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -28,7 +29,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
@@ -53,8 +54,10 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
                 reportNo = visitReportId,
                 reportKey = Constants.REPORT_12,
                 reportStatus = true
-            )
-            addReportFragment(Constants.REPORT_13)
+            )//Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_13, bundle)
         }
     }
 

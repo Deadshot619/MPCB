@@ -2,6 +2,7 @@ package com.example.mpcb.reports.last_jvs_details
 
 
 import android.app.DatePickerDialog
+import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,7 +38,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.edtIndusDateOfCollection.setOnClickListener {
             showDateDialog(INDUS_DATE_OF_COLLECTION)
@@ -132,7 +133,10 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                 reportKey = Constants.REPORT_8,
                 reportStatus = true
             )
-            addReportFragment(Constants.REPORT_9)
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_9, bundle)
         }
     }
 

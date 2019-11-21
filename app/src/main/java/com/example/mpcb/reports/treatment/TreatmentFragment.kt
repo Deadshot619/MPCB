@@ -1,6 +1,7 @@
 package com.example.mpcb.reports.treatment
 
 
+import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
 import com.example.mpcb.R
@@ -32,7 +33,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         setListeners()
         setCheckBoxListener()
@@ -289,7 +290,10 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                 reportKey = Constants.REPORT_3,
                 reportStatus = true
             )
-            addReportFragment(Constants.REPORT_4)
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_4, bundle)
         }
     }
 

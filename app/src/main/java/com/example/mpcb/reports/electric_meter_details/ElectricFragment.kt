@@ -1,6 +1,7 @@
 package com.example.mpcb.reports.electric_meter_details
 
 
+import android.os.Bundle
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentElectricBinding
@@ -31,7 +32,7 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-//        showMessage(visitReportId)
+        showMessage(visitReportId)
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
@@ -59,8 +60,10 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
                 reportNo = visitReportId,
                 reportKey = Constants.REPORT_7,
                 reportStatus = true
-            )
-            addReportFragment(Constants.REPORT_8)
+            )//Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+            addReportFragment(Constants.REPORT_8, bundle)
         }
     }
 
