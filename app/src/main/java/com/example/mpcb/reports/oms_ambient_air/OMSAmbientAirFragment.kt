@@ -61,7 +61,6 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
                             showHideView(false)
                             0
                         }
-
                 }
 
                 //OMS Installed
@@ -98,10 +97,12 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
                         }
                 }
 
+//                CPCB
                 cbCPCB.setOnCheckedChangeListener { buttonView, isChecked ->
                     omsamCpcb = if (isChecked) 1 else 0
                 }
 
+//                MPCB
                 cbMPCB.setOnCheckedChangeListener { buttonView, isChecked ->
                     omsamMpcb = if (isChecked) 1 else 0
                 }
@@ -138,9 +139,12 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         //OMS
         if (report.data.routineReport.omsamApplicable == 0) {
             report.data.routineReport.omsamInstalled = 0
-            report.data.routineReport.jvsSampleCollectedForAir = 0
             report.data.routineReport.omsamCpcb = 0
             report.data.routineReport.omsamMpcb = 0
+        }
+
+        if(report.data.routineReport.jvsSampleCollectedForAir == 0){
+            report.data.jvsSampleCollectedAirSource = arrayListOf()
         }
 
         report.data.routineReport.jvsObservation = mBinding.edtRemark.text.toString()
@@ -175,6 +179,7 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
                 return false
             }
 
+            //if OMS checked
             if (rbOMSApplicable.isChecked) {
 
                 if (!rbOMSInstalledApplicable.isChecked && !rbOMSInstalledNotApplicable.isChecked) {
@@ -263,20 +268,22 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
                             cbMPCB.isChecked = omsamMpcb == 1
                         }
 
-                        //JVS Sample Collected
-                        if (jvsSampleCollectedForAir == 1)
-                            rgSampleCollected.check(R.id.rbSampleYes)
-                        else
-                            rgSampleCollected.check(R.id.rbSampleNo)
-
-                        //Remark
-                        edtRemark.setText(jvsObservation)
-
-                        if (jvsSampleCollectedForAir == 1)
-                            if (reports?.data?.jvsSampleCollectedAirSource != null)
-                                mViewModel.populateData(reports?.data?.jvsSampleCollectedAirSource!!)
 
                     }
+
+                    //JVS Sample Collected
+                    if (jvsSampleCollectedForAir == 1)
+                        rgSampleCollected.check(R.id.rbSampleYes)
+                    else
+                        rgSampleCollected.check(R.id.rbSampleNo)
+
+                    //Remark
+                    edtRemark.setText(jvsObservation)
+
+//                        if (jvsSampleCollectedForAir == 1)
+                    if (reports?.data?.jvsSampleCollectedAirSource != null)
+                        mViewModel.populateData(reports?.data?.jvsSampleCollectedAirSource)
+
                 }
             }
         }
