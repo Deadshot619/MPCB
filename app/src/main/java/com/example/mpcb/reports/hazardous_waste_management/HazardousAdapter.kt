@@ -68,6 +68,8 @@ class HazardousAdapter(
             datePickerDialog.show()
         }
         holder.setSpinner(item)
+
+        holder.setDataToViews(item)
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -108,5 +110,13 @@ class HazardousAdapter(
                 }
         }
 
+        /**
+         * This function is used to set data to views
+         */
+        fun setDataToViews(item: RoutineReportHazardousWaste) {
+            //UOM
+            if (item.hwDisposalQuantityUnit != null)
+                itemBinding.spnUOM.setSelection(item.hwDisposalQuantityUnit!!)
+        }
     }
 }
