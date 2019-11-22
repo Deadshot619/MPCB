@@ -12,6 +12,7 @@ import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 import com.example.mpcb.utils.validations.isEmailValid
 import com.example.mpcb.utils.validations.isValidMobile
 import java.util.*
@@ -110,14 +111,26 @@ class IndustryReportFragment :
      * Method to check if the fields are correctly filled
      */
     private fun validateFieldsFilledCorrect(): Boolean {
-        if(!isEmailValid(report.data.routineReport.emailAddress)){
-            showMessage("Email Id is invalid")
-            return false
+
+        report.data.routineReport.run {
+            if(!isEmailValid(emailAddress)){
+                showMessage("Email Id is invalid")
+                return false
+            }
+            if (!isValidMobile(telephoneNumber)){
+                showMessage("Invalid Number")
+                return false
+            }
+            if (!isDecimal(validityOfConsentIe)){
+                showMessage("Invalid I.E. Number")
+                return false
+            }
+            if (!isDecimal(hwOfValidUptoDe)){
+                showMessage("Invalid D.E. Number")
+                return false
+            }
         }
-        if (!isValidMobile(report.data.routineReport.telephoneNumber)){
-            showMessage("Invalid Number")
-            return false
-        }
+
         return true
     }
 
@@ -129,33 +142,36 @@ class IndustryReportFragment :
             showMessage("Select Category")
             return false
         }
-        if (report.data.routineReport.visitedOn.isEmpty()) {
-            showMessage("Enter Visited Industry On")
-            return false
-        }
-        if (report.data.routineReport.emailAddress.isEmpty()) {
-            showMessage("Enter Email Address of Unit")
-            return false
-        }
-        if (report.data.routineReport.telephoneNumber.isEmpty()) {
-            showMessage("Enter Telephone No of Unit")
-            return false
-        }
-        if (report.data.routineReport.validityOfConsentUpto.isEmpty()) {
-            showMessage("Enter Validity Upto")
-            return false
-        }
-        if (report.data.routineReport.validityOfConsentIe.isEmpty()) {
-            showMessage("Enter I.E(m3/day)")
-            return false
-        }
-        if (report.data.routineReport.hwOfValidUptoDe.isEmpty()) {
-            showMessage("Enter D.E(m3/day)")
-            return false
-        }
-        if (report.data.routineReport.consentObtain == null) {
-            showMessage("Select Consent Obtained")
-            return false
+
+        report.data.routineReport.run {
+            if (visitedOn.isEmpty()) {
+                showMessage("Enter Visited Industry On")
+                return false
+            }
+            if (emailAddress.isEmpty()) {
+                showMessage("Enter Email Address of Unit")
+                return false
+            }
+            if (telephoneNumber.isEmpty()) {
+                showMessage("Enter Telephone No of Unit")
+                return false
+            }
+            if (validityOfConsentUpto.isEmpty()) {
+                showMessage("Enter Validity Upto")
+                return false
+            }
+            if (validityOfConsentIe.isEmpty()) {
+                showMessage("Enter I.E(m3/day)")
+                return false
+            }
+            if (hwOfValidUptoDe.isEmpty()) {
+                showMessage("Enter D.E(m3/day)")
+                return false
+            }
+            if (consentObtain == null) {
+                showMessage("Select Consent Obtained")
+                return false
+            }
         }
 
         return true
