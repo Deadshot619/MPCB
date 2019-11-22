@@ -525,7 +525,10 @@ class JvsSampleCollectedAirSource : BaseObservable() {
 }
 
 class AmbientAirChild : BaseObservable() {
-    var parameter = ""
+    //Used to store selection of spinner
+    var position: Int = 0
+
+    var parameter: String = ""
         @Bindable get
         set(value) {
             field = value

@@ -26,12 +26,19 @@ class AmbientAirAdapter(
     override fun onBindViewHolder(holder: AmbientAirViewHolder, position: Int) {
         val item = parentList[position]
         holder.itemBinding.model = item
-        holder.setData(viewModel, item.ambientAirChild, position)
+        holder.setData(
+            viewModel,
+//            if (item.ambientAirChild == null)
+//                arrayListOf(AmbientAirChild())
+//            else
+                item.ambientAirChild,
+            position
+        )
     }
 
     override fun getItemId(position: Int) = position.toLong()
     override fun getItemViewType(position: Int) = position
-    override fun getItemCount() = parentList.size
+    override fun getItemCount() = if (parentList.size == 0 ) 1 else parentList.size
 
     fun updateList(list: ArrayList<JvsSampleCollectedAirSource>) {
         this.parentList.clear()
@@ -47,9 +54,17 @@ class AmbientAirAdapter(
             childList: ArrayList<AmbientAirChild>,
             position: Int
         ) {
-            itemBinding.rvChild.layoutManager = LinearLayoutManager(itemBinding.root.context)
+            itemBinding.rvChild.layoutManager =
+                LinearLayoutManager(itemBinding.root.context)
+
             val adapter =
-                AmbientAirChildAdapter(itemBinding.root.context, viewModel, childList, position)
+                AmbientAirChildAdapter(
+                    itemBinding.root.context,
+                    viewModel,
+                    childList,
+                    position
+                )
+
             itemBinding.rvChild.adapter = adapter
         }
     }

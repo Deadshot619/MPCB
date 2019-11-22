@@ -41,14 +41,14 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
         val adapter = AirPollutionAdapter(getBaseActivity(), mViewModel)
         mBinding.rvSource.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
-        mViewModel.populateData()
+//        mViewModel.populateData()
     }
 
     private fun onSubmit() {
 //        addReportFragment(Constants.REPORT_10)
+        report.data.routineReport.airPollutionObservation = mBinding.edtRemarks.text.toString()
         if (validate()) {
             report.data.routineReportAirPollution.clear()
-            report.data.routineReport.airPollutionObservation = mBinding.edtRemarks.text.toString()
             report.data.routineReportAirPollution = mViewModel.getSourceList().value!!
 
             saveReportData(

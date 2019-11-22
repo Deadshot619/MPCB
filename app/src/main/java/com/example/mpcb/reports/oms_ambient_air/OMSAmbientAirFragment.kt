@@ -105,6 +105,7 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
     }
 
     private fun onSubmit() {
+        //OMS
         if (report.data.routineReport.omsamApplicable == 0) {
             report.data.routineReport.omsamInstalled = 0
             report.data.routineReport.jvsSampleCollectedForAir = 0
@@ -114,9 +115,11 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
 
         report.data.routineReport.jvsObservation = mBinding.edtRemark.text.toString()
 
+
         if (report.data.routineReport.jvsSampleCollectedForAir == 1) {
             report.data.jvsSampleCollectedAirSource = mViewModel.getReportData()
         }
+
 
         if (validate()) {
             saveReportData(
@@ -134,28 +137,45 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
 
 
     private fun validate(): Boolean {
-        if (!mBinding.rbOMSApplicable.isChecked && !mBinding.rbOMSNotApplicable.isChecked) {
-            showMessage("Select Online Monitoring System")
-            return false
-        }
-        if (mBinding.rbOMSApplicable.isChecked) {
-            if (!mBinding.rbOMSInstalledApplicable.isChecked && !mBinding.rbOMSInstalledNotApplicable.isChecked) {
-                showMessage("Select Online Monitoring System Installed")
+
+        mBinding.run {
+            //OMS
+            if (!rbOMSApplicable.isChecked && !rbOMSNotApplicable.isChecked) {
+                showMessage("Select Online Monitoring System")
                 return false
             }
-            if (!mBinding.cbCPCB.isChecked && !mBinding.cbMPCB.isChecked) {
-                showMessage("Select Connectivity")
+
+            if (rbOMSApplicable.isChecked) {
+
+                if (!rbOMSInstalledApplicable.isChecked && !rbOMSInstalledNotApplicable.isChecked) {
+                    showMessage("Select Online Monitoring System Installed")
+                    return false
+                }
+
+                //Connectivity
+                if (rbOMSInstalledApplicable.isChecked ){
+                    if (!cbCPCB.isChecked && !cbMPCB.isChecked) {
+                        showMessage("Select Connectivity")
+                        return false
+                    }
+                }
+            }
+
+            //JVS
+            if (!rbSampleYes.isChecked && !rbSampleNo.isChecked) {
+                showMessage("Select JVS Sample")
+                return false
+            }
+
+            //Remark
+            if (edtRemark.text.isNullOrEmpty()) {
+                showMessage("Enter Remarks")
                 return false
             }
         }
-        if (mBinding.edtRemark.text.isNullOrEmpty()) {
-            showMessage("Enter Remarks")
-            return false
-        }
-        if (!mBinding.rbSampleYes.isChecked && !mBinding.rbSampleNo.isChecked) {
-            showMessage("Select JVS Sample")
-            return false
-        }
+
+
+
 
         var isValid = true
         val sampleList = mViewModel.getReportData()
@@ -180,5 +200,61 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
 
 
         return isValid
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        reports= getReportData()
+
+        if (reports != null){
+
+            mBinding.run{
+                reports?.data?.routineReport?.run {
+                    //OMS
+                    if (omsamApplicable == 1){
+                        rgOMS.check(R.id.rbOMSApplicable)
+                    }else{
+                        rgOMS.check(R.id.rbOMSNotApplicable)
+                    }
+
+                    //Check if OMS is selected
+                    if (omsamApplicable == 1){
+                        //OMS Installed
+                        if (omsamInstalled == 1)
+                            rgOMSInstalled.check(R.id.rbOMSInstalledApplicable)
+                        else
+                            rgOMSInstalled.check(R.id.rbOMSInstalledNotApplicable)
+
+                        //Check if OMS installed is selected
+                        if (omsamInstalled == 1){
+                            cbCPCB.isChecked = omsamCpcb == 1
+                            cbMPCB.isChecked = omsamMpcb == 1
+                        }
+
+                        //JVS Sample Collected
+                        if (jvsSampleCollectedForAir == 1)
+                            rgSampleCollected.check(R.id.rbSampleYes)
+                        else
+                            rgSampleCollected.check(R.id.rbSampleNo)
+
+                        //Remark
+                        edtRemark.setText(jvsObservation)
+
+                        if (jvsSampleCollectedForAir == 1)
+                            if (reports?.data?.jvsSampleCollectedAirSource != null)
+                                mViewModel.populateData(reports?.data?.jvsSampleCollectedAirSource!!)
+
+                    }
+                }
+            }
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
     }
 }

@@ -12,11 +12,16 @@ class OMSAmbientAirViewModel : BaseViewModel<OMSAmbientAirNavigator>() {
 
     fun getSourceList() = sourceList
 
-    fun populateData() {
-        val parentModel = JvsSampleCollectedAirSource()
-        val childList = arrayListOf(AmbientAirChild())
-        parentModel.ambientAirChild = childList
-        sourceList.value = arrayListOf(parentModel)
+    fun populateData(list: ArrayList<JvsSampleCollectedAirSource>? = arrayListOf(JvsSampleCollectedAirSource())) {
+//TODO 22/11/19 Try Changing the value in if condition
+        if (list?.size!! < 2){
+            val parentModel = JvsSampleCollectedAirSource()
+            val childList = arrayListOf(AmbientAirChild())
+            parentModel.ambientAirChild = childList
+            sourceList.value = arrayListOf(parentModel)
+        }else{
+            sourceList.value = list
+        }
     }
 
     fun deleteItem() {
@@ -28,11 +33,11 @@ class OMSAmbientAirViewModel : BaseViewModel<OMSAmbientAirNavigator>() {
     }
 
     fun addItem() {
-        val parentList = sourceList.value!!
+        val parentList = sourceList.value
         val parentModel = JvsSampleCollectedAirSource()
         val childList = arrayListOf(AmbientAirChild())
         parentModel.ambientAirChild = childList
-        parentList.add(parentModel)
+        parentList!!.add(parentModel)
         sourceList.value = parentList
     }
 

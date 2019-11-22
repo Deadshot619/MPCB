@@ -34,6 +34,7 @@ class AmbientAirChildAdapter(
             childList.add(AmbientAirChild())
             notifyItemChanged(position)
         }
+
         holder.itemBinding.imgDelete.setOnClickListener {
             if (childList.size > 1) {
                 childList.removeAt(position)
@@ -42,6 +43,8 @@ class AmbientAirChildAdapter(
         }
 
         holder.setSpinner(item)
+
+        holder.setDataToViews(item)
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -64,8 +67,10 @@ class AmbientAirChildAdapter(
                 R.layout.simple_spinner_item,
                 Constants.AMBIENT_AIR_PARAM_LIST
             )
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+
             itemBinding.spnParameter.adapter = adapter
+
             itemBinding.spnParameter.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -75,6 +80,8 @@ class AmbientAirChildAdapter(
                         id: Long
                     ) {
                         itemBinding.spnParameter.setSelection(position)
+                        //save selected position
+                        item.position = position
                         item.parameter = itemBinding.spnParameter.selectedItem.toString()
                     }
 
@@ -82,5 +89,21 @@ class AmbientAirChildAdapter(
 
                 }
         }
+
+        /**
+         * This method is used to set the data to the views
+         */
+        fun setDataToViews(item: AmbientAirChild) {
+
+            itemBinding.run {
+                //Parameter
+//                if (item.position != "")
+                    spnParameter.setSelection(item.position)
+                //Prescribed Value
+                if (item.prescribedValue != "")
+                    itemBinding.edtPrescribedValue.setText(item.prescribedValue)
+            }
+        }
+
     }
 }

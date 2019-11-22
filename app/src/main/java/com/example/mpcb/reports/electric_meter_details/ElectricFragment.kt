@@ -12,6 +12,7 @@ import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.parseToDouble
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 
 
 class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewModel>(),
@@ -68,13 +69,21 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
     }
 
     private fun validate(): Boolean {
+        //Electric Meter Provided
         if (report.data.routineReport.electrictMeterProvided == null) {
             showMessage("Select Electrical Meter Provided")
             return false
         }
-        if (mBinding.edtMeterReading.text.isNullOrEmpty()) {
-            showMessage("Enter Meter Reading")
-            return false
+
+        if (report.data.routineReport.electrictMeterProvided == 1) {
+            if (mBinding.edtMeterReading.text.isNullOrEmpty()) {
+                showMessage("Enter Meter Reading")
+                return false
+            }else if (!isDecimal(mBinding.edtMeterReading.text.toString())){
+                //Check if input value is correct Decimal Value.
+                showMessage("Invalid Meter Reading")
+                return false
+            }
         }
 
         return true
