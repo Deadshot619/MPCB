@@ -25,11 +25,12 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_12)
-        setUpRecyclerView()
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
+
+        setUpRecyclerView()
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
@@ -48,7 +49,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
     private fun onSubmit() {
         report.data.routineReportHazardousWaste = mViewModel.getSourceList().value!!
 
-        addReportFragment(Constants.REPORT_13)
+//        addReportFragment(Constants.REPORT_13)
         if (validate()) {
             saveReportData(
                 reportNo = visitReportId,

@@ -48,59 +48,89 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
     }
 
     private fun setListeners() {
-        mBinding.rgOMS.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.omsamApplicable =
-                if (checkedId == R.id.rbOMSApplicable) {
-                    showHideView(true)
-                    1
-                } else {
-                    showHideView(false)
-                    0
+        mBinding.run {
+            report.data.routineReport.run {
+
+                //OMS
+                rgOMS.setOnCheckedChangeListener { group, checkedId ->
+                    omsamApplicable =
+                        if (checkedId == R.id.rbOMSApplicable) {
+                            showHideView(true)
+                            1
+                        } else {
+                            showHideView(false)
+                            0
+                        }
+
                 }
 
-        }
-        mBinding.rgOMSInstalled.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.omsamInstalled =
-                if (checkedId == R.id.rbOMSInstalledApplicable) 1 else 0
-        }
-        mBinding.rgSampleCollected.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.jvsSampleCollectedForAir =
-                if (checkedId == R.id.rbSampleYes) {
-                    mBinding.rvAmbientAir.visibility = View.VISIBLE
-                    mBinding.txtAddMore.visibility = View.VISIBLE
-                    mBinding.imgDelete.visibility = View.VISIBLE
-                    1
-                } else {
-                    mBinding.rvAmbientAir.visibility = View.GONE
-                    mBinding.txtAddMore.visibility = View.GONE
-                    mBinding.imgDelete.visibility = View.GONE
-                    0
-                }
-        }
-        mBinding.cbCPCB.setOnCheckedChangeListener { buttonView, isChecked ->
-            report.data.routineReport.omsamCpcb = if (isChecked) 1 else 0
-        }
-        mBinding.cbMPCB.setOnCheckedChangeListener { buttonView, isChecked ->
-            report.data.routineReport.omsamMpcb = if (isChecked) 1 else 0
-        }
+                //OMS Installed
+                rgOMSInstalled.setOnCheckedChangeListener { group, checkedId ->
+                    omsamInstalled =
+                        if (checkedId == R.id.rbOMSInstalledApplicable) {
+                            txtConnectivity.visibility = View.VISIBLE
+                            linLayConnectivity.visibility = View.VISIBLE
+                            1
+                        } else {
+                            txtConnectivity.visibility = View.GONE
+                            linLayConnectivity.visibility = View.GONE
 
+                            cbCPCB.isChecked = false
+                            cbMPCB.isChecked = false
+
+                            0
+                        }
+                }
+
+//                JVS Sample Collected
+                rgSampleCollected.setOnCheckedChangeListener { group, checkedId ->
+                    jvsSampleCollectedForAir =
+                        if (checkedId == R.id.rbSampleYes) {
+                            rvAmbientAir.visibility = View.VISIBLE
+                            txtAddMore.visibility = View.VISIBLE
+                            imgDelete.visibility = View.VISIBLE
+                            1
+                        } else {
+                            rvAmbientAir.visibility = View.GONE
+                            txtAddMore.visibility = View.GONE
+                            imgDelete.visibility = View.GONE
+                            0
+                        }
+                }
+
+                cbCPCB.setOnCheckedChangeListener { buttonView, isChecked ->
+                    omsamCpcb = if (isChecked) 1 else 0
+                }
+
+                cbMPCB.setOnCheckedChangeListener { buttonView, isChecked ->
+                    omsamMpcb = if (isChecked) 1 else 0
+                }
+            }
+        }
     }
 
     private fun showHideView(showView: Boolean) {
         if (showView) {
             mBinding.txtOMSInstalled.visibility = View.VISIBLE
             mBinding.rgOMSInstalled.visibility = View.VISIBLE
-            mBinding.txtConnectivity.visibility = View.VISIBLE
-            mBinding.linLayConnectivity.visibility = View.VISIBLE
-            mBinding.cbCPCB.visibility = View.VISIBLE
-            mBinding.cbMPCB.visibility = View.VISIBLE
+//            mBinding.txtConnectivity.visibility = View.VISIBLE
+//            mBinding.linLayConnectivity.visibility = View.VISIBLE
+
+            //set check to Not Installed
+            mBinding.rgOMSInstalled.check(R.id.rbOMSInstalledNotApplicable)
+//            mBinding.cbCPCB.visibility = View.VISIBLE
+//            mBinding.cbMPCB.visibility = View.VISIBLE
         } else {
             mBinding.txtOMSInstalled.visibility = View.GONE
             mBinding.rgOMSInstalled.visibility = View.GONE
-            mBinding.txtConnectivity.visibility = View.GONE
-            mBinding.linLayConnectivity.visibility = View.GONE
-            mBinding.cbCPCB.visibility = View.GONE
-            mBinding.cbMPCB.visibility = View.GONE
+//            mBinding.txtConnectivity.visibility = View.GONE
+//            mBinding.linLayConnectivity.visibility = View.GONE
+
+            //set check to Not Installed
+            mBinding.rgOMSInstalled.check(R.id.rbOMSInstalledNotApplicable)
+
+//            mBinding.cbCPCB.visibility = View.GONE
+//            mBinding.cbMPCB.visibility = View.GONE
         }
     }
 

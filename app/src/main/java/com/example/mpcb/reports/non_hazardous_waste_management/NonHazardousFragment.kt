@@ -24,11 +24,12 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_13)
-        setUpRecyclerView()
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
+
+        setUpRecyclerView()
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
@@ -48,7 +49,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
     private fun onSubmit() {
         report.data.routineReportNonHazardousWaste = mViewModel.getSourceList().value!!
 
-        addReportFragment(Constants.REPORT_14)
+//        addReportFragment(Constants.REPORT_14)
         if (validate()) {
             saveReportData(
                 reportNo = visitReportId,

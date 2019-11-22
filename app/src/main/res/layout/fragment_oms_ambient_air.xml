@@ -33,6 +33,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+<!--                OMS Text-->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtOMS"
                     android:layout_width="wrap_content"
@@ -44,6 +45,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtTitle" />
 
+<!--                OMS -->
                 <RadioGroup
                     android:id="@+id/rgOMS"
                     android:layout_width="wrap_content"
@@ -72,6 +74,7 @@
                         android:textSize="18sp" />
                 </RadioGroup>
 
+<!--                OMS Installed Text -->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtOMSInstalled"
                     android:layout_width="wrap_content"
@@ -83,6 +86,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rgOMS" />
 
+<!--                OMS Installed-->
                 <RadioGroup
                     android:id="@+id/rgOMSInstalled"
                     android:layout_width="wrap_content"
@@ -111,6 +115,7 @@
                         android:textSize="18sp" />
                 </RadioGroup>
 
+<!--                Connectivity Text -->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/txtConnectivity"
                     android:layout_width="wrap_content"
@@ -118,25 +123,30 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:text="Connectivity"
+                        android:visibility="gone"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/rgOMSInstalled" />
 
+<!--                Connectivity Layout-->
                 <LinearLayout
                     android:id="@+id/linLayConnectivity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
+                        android:visibility="gone"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtConnectivity">
 
+<!--                    CPCB-->
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/cbCPCB"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="CPCB" />
 
+<!--                    MPCB-->
                     <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/cbMPCB"
                         android:layout_width="wrap_content"
