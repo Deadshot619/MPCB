@@ -106,4 +106,18 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
 
         return isValid
     }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        reports = getReportData()
+        if(reports?.data?.routineReportProducts != null)
+            mViewModel.populateData(reports?.data?.routineReportNonHazardousWaste)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
+    }
 }

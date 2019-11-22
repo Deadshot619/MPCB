@@ -68,6 +68,8 @@ class NonHazardousAdapter(
             datePickerDialog.show()
         }
         holder.setSpinner(item)
+        holder.setDataToViews(item)
+
 
     }
 
@@ -109,6 +111,15 @@ class NonHazardousAdapter(
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
                 }
+        }
+
+        /**
+         * This Method is used to set data to Views
+         */
+        fun setDataToViews(item: RoutineReportNonHazardousWaste) {
+            //UOM
+            if (item.nhwDisposalQuantityUnit != null)
+                itemBinding.spnUOM.setSelection(item.nhwDisposalQuantityUnit!!)
         }
 
     }

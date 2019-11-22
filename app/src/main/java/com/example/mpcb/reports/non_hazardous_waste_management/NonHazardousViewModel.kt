@@ -11,9 +11,13 @@ class NonHazardousViewModel : BaseViewModel<NonHazardousNavigator>() {
 
     fun getSourceList() = sourceList
 
-    fun populateData() {
-        val list = arrayListOf(RoutineReportNonHazardousWaste())
-        sourceList.value = list
+    fun populateData(list: ArrayList<RoutineReportNonHazardousWaste>? = arrayListOf(RoutineReportNonHazardousWaste())) {
+        if (list?.size!! >= 1){
+            sourceList.value = list
+        }else{
+            sourceList.value = arrayListOf(RoutineReportNonHazardousWaste())
+
+        }
     }
 
     fun deleteItem() {
