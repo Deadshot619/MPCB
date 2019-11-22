@@ -10,6 +10,7 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 
 class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), AirNavigator {
 
@@ -97,6 +98,10 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
                     showMessage("Enter Fuel Quantity")
                     isValid = false
                     break
+                }else if (!isDecimal(item.airPollutionFuelQuantity)){
+                    showMessage("Invalid Fuel Quantity")
+                    isValid = false
+                    break
                 }
 
                 //Fuel Unit
@@ -105,6 +110,11 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
                     isValid = false
                     break
                 }
+//                else if (!isDecimal(item.airPollutionFuelUnit)){
+//                    showMessage("Invalid Fuel Unit")
+//                    isValid = false
+//                    break
+//                }
             }
 
 //            Pollutants
@@ -125,14 +135,19 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
                 break
             }
 
-
+            //Stack Height
             if (item.airPollutionStackHeight.isEmpty()) {
                 showMessage("Enter Stack Height")
+                isValid = false
+                break
+            }else if (!isDecimal(item.airPollutionStackHeight)){
+                showMessage("Invalid Stack Height")
                 isValid = false
                 break
             }
         }
 
+        //Remark
         if (isValid && report.data.routineReport.airPollutionObservation.isNullOrEmpty()) {
             showMessage("Enter Remarks")
             return false
