@@ -11,6 +11,7 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 
 class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionViewModel>(),
     ProductionNavigator {
@@ -33,9 +34,11 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
 
-        mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
-        mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.run{
+            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            imgDelete.setOnClickListener { mViewModel.deleteItem() }
+            btnSubmit.setOnClickListener { onSubmit() }
+        }
     }
 
     private fun setUpRecyclerView() {
@@ -82,6 +85,11 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
                 showMessage("Enter Product Concent Quantity")
                 isValid = false
                 break
+            }else if (!isDecimal(item.productQuantity)){
+                //Check if correct decimal value
+                showMessage("Invalid Product Concent Quantity")
+                isValid = false
+                break
             }
             if (item.productUom == "0") {
                 showMessage("Select Unit As Concent")
@@ -90,6 +98,11 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
             }
             if (item.productQuantityActual.isEmpty()) {
                 showMessage("Enter Product Actual Quantity")
+                isValid = false
+                break
+            }else if (!isDecimal(item.productQuantityActual)){
+                //Check if correct decimal value
+                showMessage("Invalid Product Actual Quantity")
                 isValid = false
                 break
             }
