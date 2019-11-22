@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -51,10 +52,12 @@
         <LinearLayout
                 android:id="@+id/layLinChild"
                 android:visibility="gone"
+                tools:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+<!--            Name-->
             <LinearLayout
                     android:id="@+id/haz_category"
                     android:layout_width="match_parent"
@@ -79,12 +82,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
-                        android:inputType="number"
-                        android:maxLength="5"
+                        android:inputType="text"
                         android:text="@={model.nhwWasteName}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 
+<!--            Quantity-->
             <LinearLayout
                     android:id="@+id/haz_quantity"
                     android:layout_width="match_parent"
@@ -109,12 +112,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
-                        android:inputType="number"
+                        android:inputType="phone"
+                        android:digits=".0123456789"
                         android:maxLength="5"
                         android:text="@={model.nhwQuantityString}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 
+<!--            Method of disposal as per consent-->
             <LinearLayout
                     android:id="@+id/haz_method_disposal"
                     android:layout_width="match_parent"
@@ -139,8 +144,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
-                        android:inputType="number"
-                        android:maxLength="5"
+                        android:inputType="text"
                         android:text="@={model.nhwDisposalMethod}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
@@ -199,7 +203,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
-                        android:inputType="number"
+                        android:inputType="phone"
+                        android:digits=".0123456789"
                         android:maxLength="5"
                         android:text="@={model.nhwDisposalQuantityString}"
                         android:textColor="@color/text_light_black" />
@@ -229,7 +234,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
-                        android:inputType="number"
+                        android:inputType="phone"
+                        android:digits=".0123456789"
                         android:maxLength="5"
                         android:text="@={model.nhwActualdisposalString}"
                         android:textColor="@color/text_light_black" />

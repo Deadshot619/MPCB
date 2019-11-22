@@ -10,6 +10,7 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 
 class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewModel>(),
     HazardousNavigator {
@@ -66,56 +67,105 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
         var isValid = true
         val sourceList = mViewModel.getSourceList().value!!
         for (item in sourceList) {
+//            Category
             if (item.hazardousWasteCategoryName.isNullOrEmpty()) {
                 showMessage("Enter Hazardous Waste Category Name")
                 isValid = false
                 break
             }
+
+//            Quantity as per consent
             if (item.hazardousWasteQuantityString.isNullOrEmpty()) {
                 showMessage("Enter Quantity As per Consent")
                 isValid = false
                 break
+            }else if (!isDecimal(item.hazardousWasteQuantityString!!)){
+                showMessage("Invalid Quantity As per Consent value")
+                isValid = false
+                break
             }
+
+//            Method of disposal as per consent
             if (item.hwDisposalMethodString.isNullOrEmpty()) {
                 showMessage("Enter Disposal Method")
                 isValid = false
                 break
             }
+
+//            Actual Disposal
             if (item.hwActualDisposalString.isNullOrEmpty()) {
                 showMessage("Enter Actual Disposal")
                 isValid = false
                 break
+            }else if (!isDecimal(item.hwActualDisposalString!!)){
+                showMessage("Inavlid Actual Disposal value")
+                isValid = false
+                break
             }
+
+//            Quantity Disposal form 4
             if (item.hwFormDisposalString.isNullOrEmpty()) {
                 showMessage("Enter Quantity Disposal")
                 isValid = false
                 break
+            }else if (!isDecimal(item.hwFormDisposalString!!)){
+                showMessage("Invalid Quantity Disposal value")
+                isValid = false
+                break
             }
+
+//            Quantity Disposal form CSWTSDS
             if (item.hwFormCswtsdfString.isNullOrEmpty()) {
                 showMessage("Enter Quantity disposal at CSWTSDS")
                 isValid = false
                 break
+            }else if (!isDecimal(item.hwFormCswtsdfString!!)){
+                showMessage("Invalid Quantity disposal at CSWTSDS value")
+                isValid = false
+                break
             }
+
+//            Quantity Disposal form co-processing
             if (item.hwFormCoProcessingString.isNullOrEmpty()) {
                 showMessage("Enter Quantity disposal for co-processing")
                 isValid = false
                 break
+            }else if (!isDecimal(item.hwFormCoProcessingString!!)){
+                showMessage("Invalid Quantity disposal for co-processing value")
+                isValid = false
+                break
             }
+
+//            Quantity Disposed by actual user
             if (item.hwDisposedActualuserString.isNullOrEmpty()) {
                 showMessage("Enter Quantity disposed by actual user")
                 isValid = false
                 break
+            }else if (!isDecimal(item.hwDisposedActualuserString!!)){
+                showMessage("Invalid Quantity disposed by actual user value")
+                isValid = false
+                break
             }
+
+//            Last disposal quantity
             if (item.hwDisposalQuantityString.isNullOrEmpty()) {
                 showMessage("Enter Last disposal Quantity")
                 isValid = false
                 break
+            }else if (!isDecimal(item.hwDisposalQuantityString!!)){
+                showMessage("Invalid Last disposal Quantity value")
+                isValid = false
+                break
             }
+
+//            Last Disposal Date
             if (item.hwDisposalDate.isNullOrEmpty()) {
                 showMessage("Enter Last disposal date")
                 isValid = false
                 break
             }
+
+//            UOM
             if (item.hwDisposalQuantityUnit == 0) {
                 showMessage("Select UOM")
                 isValid = false
