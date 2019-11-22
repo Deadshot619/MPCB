@@ -10,6 +10,7 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 
 class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), BGDNavigator {
 
@@ -55,6 +56,7 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
     private fun onSubmit() {
 
         report.data.routineReport.bgImposedNumber = mBinding.edtNumber.text.toString()
+
         report.data.routineReportBankDetails = mViewModel.getSourceList().value!!
 
         if (validate()) {
@@ -71,16 +73,25 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
 
     private fun validate(): Boolean {
         var isValid = true
+
+//        BG Imposed
         if (report.data.routineReport.bgImposed.isNullOrEmpty()) {
             showMessage("Select BG Imposed")
             return false
         }
+
+//        BG Imposed Against
         if (report.data.routineReport.bgImposedAgainst.isNullOrEmpty()) {
             showMessage("Select BG Imposed Against")
             return false
         }
+
+//        BG Number
         if (report.data.routineReport.bgImposedNumber.isNullOrEmpty()) {
             showMessage("Enter BG Imposed Number")
+            return false
+        }else if (!isDecimal(report.data.routineReport.bgImposedNumber!!)){
+            showMessage("Invalid BG Imposed Number")
             return false
         }
 
@@ -114,5 +125,43 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
             }
         }
         return isValid
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        reports = getReportData()
+
+        if (reports != null){
+            mBinding.run {
+                reports?.data?.routineReport?.run{
+//                    BG Imposed
+                    if (bgImposed == "1")
+                        rgBGImposed.check(R.id.rbBGYes)
+                    else
+                        rgBGImposed.check(R.id.rbBGNo)
+
+//                    BG Imposed Against
+                    if (bgImposedAgainst == "1")
+                        rgBGImposedAgainst.check(R.id.rbBGAgainstYes)
+                    else
+                        rgBGImposedAgainst.check(R.id.rbBGAgainstNo)
+
+//                    BG Number
+                    edtNumber.setText(bgImposedNumber)
+
+                }
+            }
+        }
+
+//        BG Recyler View
+        if(reports?.data?.routineReportProducts != null)
+            mViewModel.populateData(reports?.data?.routineReportBankDetails)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
     }
 }

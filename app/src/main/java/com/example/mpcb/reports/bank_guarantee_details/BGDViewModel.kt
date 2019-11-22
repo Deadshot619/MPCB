@@ -11,9 +11,12 @@ class BGDViewModel : BaseViewModel<BGDNavigator>() {
 
     fun getSourceList() = sourceList
 
-    fun populateData() {
-        val list = arrayListOf(RoutineReportBankDetail())
-        sourceList.value = list
+    fun populateData(list: ArrayList<RoutineReportBankDetail>? = arrayListOf(RoutineReportBankDetail())) {
+        if (list?.size!! >= 1){
+            sourceList.value = list
+        }else{
+            sourceList.value = arrayListOf(RoutineReportBankDetail())
+        }
     }
 
     fun deleteItem() {

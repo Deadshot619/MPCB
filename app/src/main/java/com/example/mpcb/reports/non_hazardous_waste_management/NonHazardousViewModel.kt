@@ -16,7 +16,6 @@ class NonHazardousViewModel : BaseViewModel<NonHazardousNavigator>() {
             sourceList.value = list
         }else{
             sourceList.value = arrayListOf(RoutineReportNonHazardousWaste())
-
         }
     }
 

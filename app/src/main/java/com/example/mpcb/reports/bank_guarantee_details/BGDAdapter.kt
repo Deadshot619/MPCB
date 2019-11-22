@@ -59,6 +59,7 @@ class BGDAdapter(
         }
         holder.setListener(item)
 
+        holder.setDataToViews(item)
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -78,6 +79,17 @@ class BGDAdapter(
             itemBinding.rgBGSubmitted.setOnCheckedChangeListener { group, checkedId ->
                 item.bankSubmitted = if (checkedId == R.id.rbSubmittedYes) "1" else "0"
             }
+        }
+
+        /**
+         * This Method is used to set data to Views
+         */
+        fun setDataToViews(item: RoutineReportBankDetail) {
+//            BG Submitted
+            if (item.bankSubmitted == "1")
+                itemBinding.rgBGSubmitted.check(R.id.rbSubmittedYes)
+            else
+                itemBinding.rgBGSubmitted.check(R.id.rbSubmittedNo)
         }
 
     }

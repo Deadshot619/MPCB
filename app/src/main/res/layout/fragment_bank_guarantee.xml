@@ -125,8 +125,9 @@
                             android:id="@+id/edtNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="number"
+                            android:inputType="phone"
                             android:maxLength="5"
+                            android:digits=".0123456789"
                             android:fontFamily="@font/barlow_regular"
                             android:textColor="@color/grey"
                             app:layout_constraintStart_toStartOf="parent" />
