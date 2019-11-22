@@ -180,7 +180,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        reports = getReportData()
+        reports = getReportData(visitReportId)
         if(reports?.data?.routineReportProducts != null)
             mViewModel.populateData(reports?.data?.routineReportHazardousWaste)
     }

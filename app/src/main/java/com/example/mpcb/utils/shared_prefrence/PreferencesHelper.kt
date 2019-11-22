@@ -94,16 +94,21 @@ object PreferencesHelper {
     /**
      * Method to set the Flag status of specified Reports.
      */
-    fun setReportFlagStatus(reportKey: Int, reportStatus: Boolean){
+    fun setReportFlagStatus(reportNo: String, reportKey: Int, reportStatus: Boolean){
         //saves the status of current report
-        setPreferences(Constants.getReportFlag(reportKey), reportStatus)
+        //The status of the flag is stored as the combination of Visit Report Id
+        //& Individual reports keys of that Visit Report
+        setPreferences(
+            key = reportNo + Constants.getReportFlag(reportKey),
+            value = reportStatus
+        )
     }
 
     /**
      * Returns the Flag Status of the specified Report
      */
-    fun getReportFlagStatus(reportKey: Int): Boolean{
-        return getBooleanPreference(Constants.getReportFlag(reportKey))
+    fun getReportFlagStatus(reportNo: String, reportKey: Int): Boolean{
+        return getBooleanPreference(reportNo + Constants.getReportFlag(reportKey))
     }
 
     //Module wise Preference Helper

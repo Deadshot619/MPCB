@@ -49,7 +49,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
         mViewModel.getProductList().observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
         })
-//        mViewModel.populateData()
+        mViewModel.populateData()
     }
 
     private fun onSubmit() {
@@ -119,7 +119,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        reports = getReportData()
+        reports = getReportData(visitReportId)
         if(reports?.data?.routineReportProducts != null)
             mViewModel.populateData(reports?.data?.routineReportProducts)
     }

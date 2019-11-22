@@ -130,11 +130,25 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
      * @param reportStatus false by default. Indicates whether the report status is completed
      *                      or not
      */
-    protected fun saveReportData(reportNo: String = "", reportKey: Int = 0, reportStatus: Boolean = false) {
-        PreferencesHelper.setPreferences(Constants.REPORT_KEY, Gson().toJson(report))
+    protected fun saveReportData(
+        reportNo: String,
+        reportKey: Int = 0,
+        reportStatus: Boolean = false
+    ) {
+//        PreferencesHelper.setPreferences(Constants.REPORT_KEY, Gson().toJson(report))
+
+        //Reports are saved according to their Report No.
+        PreferencesHelper.setPreferences(
+            key = reportNo,
+            value = Gson().toJson(report)
+        )
 
         //saves the status of current report
-        PreferencesHelper.setReportFlagStatus(reportKey, reportStatus)
+        PreferencesHelper.setReportFlagStatus(
+            reportNo = reportNo,
+            reportKey = reportKey,
+            reportStatus = reportStatus
+        )
     }
 
     /**
@@ -142,8 +156,9 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
      *
      * @return [ReportRequest] returns an object of ReportRequest
      */
-    protected fun getReportData(): ReportRequest?{
-        val reports = PreferencesHelper.getPreferences(Constants.REPORT_KEY, "")
+    protected fun getReportData(reportNo: String): ReportRequest?{
+//        val reports = PreferencesHelper.getPreferences(Constants.REPORT_KEY, "")
+        val reports = PreferencesHelper.getPreferences(reportNo, "")
         return Gson().fromJson(reports as String, ReportRequest::class.java)
     }
 }

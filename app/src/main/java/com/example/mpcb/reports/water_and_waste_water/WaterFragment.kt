@@ -128,7 +128,7 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
      */
     override fun setDataToViews() {
         super.setDataToViews()
-        reports = getReportData()
+        reports = getReportData(visitReportId)
 
         if (reports != null){
             mBinding.run{

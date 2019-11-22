@@ -94,7 +94,7 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
      */
     override fun setDataToViews() {
         super.setDataToViews()
-        reports = getReportData()
+        reports = getReportData(visitReportId)
 
         if (reports != null){
             mBinding.run{

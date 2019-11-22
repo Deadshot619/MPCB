@@ -118,7 +118,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
      */
     override fun setDataToViews() {
         super.setDataToViews()
-        reports = getReportData()
+        reports = getReportData(visitReportId)
 
         if (reports != null){
             mBinding.run{

@@ -485,7 +485,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
      */
     override fun setDataToViews() {
         super.setDataToViews()
-        reports = getReportData()
+        reports = getReportData(visitReportId)
 
         if (reports != null){
             mBinding.run {

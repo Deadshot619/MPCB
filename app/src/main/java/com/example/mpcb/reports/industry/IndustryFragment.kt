@@ -188,7 +188,7 @@ class IndustryReportFragment :
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews(){
-        reports = getReportData()
+        reports = getReportData(visitReportId)
         //Spinner
         if(reports != null) {
             mBinding.run {

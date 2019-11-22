@@ -131,7 +131,7 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        reports = getReportData()
+        reports = getReportData(visitReportId)
 
         if (reports != null){
             mBinding.run {

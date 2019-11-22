@@ -177,8 +177,8 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        super.setDataToViews()
-        reports = getReportData()
+//        super.setDataToViews(visitReportId)
+        reports = getReportData(visitReportId)
 
         if (reports != null){
             mBinding.run{
