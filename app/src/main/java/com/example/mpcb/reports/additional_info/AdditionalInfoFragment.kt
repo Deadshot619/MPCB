@@ -50,7 +50,7 @@ class AdditionalInfoFragment :
                 reportKey = Constants.REPORT_18,
                 reportStatus = true
             )
-            mViewModel.submitReport()
+            mViewModel.submitReport(reportRequest = getReportData(visitReportId))
         }
     }
 
@@ -69,5 +69,32 @@ class AdditionalInfoFragment :
     override fun onSubmitReportSuccess(msg: String) {
         showMessage(msg)
         activity!!.finish()
+    }
+
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        reports = getReportData(visitReportId)
+
+        if (reports != null){
+            mBinding.run {
+                reports?.data?.routineReport?.run{
+                    //Additional Info
+                    edtAddInfo.setText(additionalInfo)
+
+                    //Whether Unit Complied
+                    if(legalActionUnitComplied == 1)
+                        rgUnitComplied.check(R.id.rbUnitYes)
+                    else
+                        rgUnitComplied.check(R.id.rbUnitNo)
+                }
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
     }
 }
