@@ -54,10 +54,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         mBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         mViewModel = ViewModelProvider(getBaseActivity()).get(getViewModel())
         mViewModel.setNavigator(getNavigator())
-        val reportData = PreferencesHelper.getStringPreference(Constants.REPORT_KEY, "")
-        report =
-            if (reportData!!.isNotEmpty()) Gson().fromJson(reportData, ReportRequest::class.java)
-            else ReportRequest()
+//        val reportData = PreferencesHelper.getStringPreference(Constants.REPORT_KEY, "")
+
+//        val visitId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+//        report =
+////            if (reportData!!.isNotEmpty()) Gson().fromJson(reportData, ReportRequest::class.java)
+//            if (getReportData(visitId) != null) getReportData(visitId)!!
+//            else ReportRequest()
 
         return mBinding.root
     }
@@ -67,6 +70,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         super.onViewCreated(view, savedInstanceState)
         createDialog()
         onBinding()
+    }
+
+    /**
+     * This method is used to set data to [report] variable
+     */
+    fun setReportVariableData(visitReportId: String){
+        report = getReportData(visitReportId) ?: ReportRequest()
     }
 
     private fun createDialog() {

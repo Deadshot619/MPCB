@@ -27,12 +27,15 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_10)
-        setListener()
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
 
+        //set report variable data
+        setReportVariableData(visitReportId)
+
+        setListener()
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
 
     }

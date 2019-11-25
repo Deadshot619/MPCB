@@ -37,6 +37,9 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
 
+        //set report variable data
+        setReportVariableData(visitReportId)
+
         mBinding.edtHazardousWaste.setOnClickListener { showDateDialog(HAZARDOUS_WASTE) }
         mBinding.edtEnvironmentReport.setOnClickListener { showDateDialog(ENVIRONMENT_REPORT) }
         mBinding.btnSubmit.setOnClickListener { onSubmit() }

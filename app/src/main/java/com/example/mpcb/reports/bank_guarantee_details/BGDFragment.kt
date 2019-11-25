@@ -25,12 +25,15 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_17)
-        setUpRecyclerView()
-        setListener()
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
+        //set report variable data
+        setReportVariableData(visitReportId)
+
+        setUpRecyclerView()
+        setListener()
 
         mBinding.tvAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }

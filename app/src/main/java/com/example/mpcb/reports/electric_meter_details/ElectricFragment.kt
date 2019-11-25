@@ -35,6 +35,9 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
 
+        //set report variable data
+        setReportVariableData(visitReportId)
+
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
 

@@ -34,6 +34,9 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
 
+        //set report variable data
+        setReportVariableData(visitReportId)
+
         mBinding.edtActionInitiated.setOnClickListener { showDateDialog() }
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }

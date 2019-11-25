@@ -33,6 +33,9 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
 
+        //set report variable data
+        setReportVariableData(visitReportId)
+
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
     }
 

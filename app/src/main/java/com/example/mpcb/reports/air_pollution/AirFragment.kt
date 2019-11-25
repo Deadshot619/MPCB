@@ -25,11 +25,14 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_9)
-        setUpRecyclerView()
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
+        //set report variable data
+        setReportVariableData(visitReportId)
+
+        setUpRecyclerView()
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }

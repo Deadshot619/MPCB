@@ -30,6 +30,9 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
 
+        //set report variable data
+        setReportVariableData(visitReportId)
+
         setUpRecyclerView()
 
         mBinding.btnSubmit.setOnClickListener { onSubmit() }

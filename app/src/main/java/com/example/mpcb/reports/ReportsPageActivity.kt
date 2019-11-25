@@ -30,7 +30,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     ReportsPageNavigator {
 
     private lateinit var _visitReportId: String
-    val visitReportId: String
+    private val visitReportId: String
         get() = _visitReportId
 
     override fun getLayoutId() = R.layout.activity_reports_page

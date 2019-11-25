@@ -40,6 +40,9 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
 
+        //set report variable data
+        setReportVariableData(visitReportId)
+
         mBinding.edtIndusDateOfCollection.setOnClickListener {
             showDateDialog(INDUS_DATE_OF_COLLECTION)
         }

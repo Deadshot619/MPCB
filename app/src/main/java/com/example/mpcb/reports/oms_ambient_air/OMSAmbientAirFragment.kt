@@ -26,12 +26,16 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
 
     override fun onBinding() {
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_11)
-        setUpRecyclerView()
-        setListeners()
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
         showMessage(visitReportId)
+
+        //set report variable data
+        setReportVariableData(visitReportId)
+
+        setUpRecyclerView()
+        setListeners()
 
         mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
         mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
