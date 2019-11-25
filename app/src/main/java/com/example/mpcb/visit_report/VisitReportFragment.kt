@@ -4,6 +4,7 @@ package com.example.mpcb.visit_report
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import android.widget.Toast
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentVisitReportBinding
@@ -13,6 +14,7 @@ import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.toast
 
 
 class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReportViewModel>(),
@@ -56,56 +58,66 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
      * if true, this makes the check image visible which indicates the report is completely filled
      */
     private fun displayCheckImage(){
-        for (i in 1..18){
-            when (i){
+        mBinding.run {
+            for (i in 1..18) {
+                when (i) {
 //                1 -> if (true) mBinding.ivIndustryTag.visibility = View.VISIBLE
-                1 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_1))
-                    mBinding.ivIndustryTag.visibility = View.VISIBLE
-                2 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_2))
-                    mBinding.ivProductTag.visibility = View.VISIBLE
-                3 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_3))
-                    mBinding.ivTreatmentTag.visibility = View.VISIBLE
-                4 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_4))
-                    mBinding.ivWaterWasteTag.visibility = View.VISIBLE
-                5 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_5))
-                    mBinding.ivDisposalTag.visibility = View.VISIBLE
-                6 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_6))
-                    mBinding.ivOmsWaterTag.visibility = View.VISIBLE
-                7 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_7))
-                    mBinding.ivElectricTag.visibility = View.VISIBLE
-                8 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_8))
-                    mBinding.ivLastJVSTag.visibility = View.VISIBLE
-                9 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_9))
-                    mBinding.ivAirPollutionTag.visibility = View.VISIBLE
-                10 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_10))
-                    mBinding.ivOmsStackTag.visibility = View.VISIBLE
-                11 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_11))
-                    mBinding.ivOmsAmbientTag.visibility = View.VISIBLE
-                12 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_12))
-                    mBinding.ivHazardoudTag.visibility = View.VISIBLE
-                13 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_13))
-                    mBinding.ivNonHazardousTag.visibility = View.VISIBLE
-                14 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_14))
-                    mBinding.ivTreeTag.visibility = View.VISIBLE
-                15 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_15))
-                    mBinding.ivStatutoryTag.visibility = View.VISIBLE
-                16 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_16))
-                    mBinding.ivPreviousTag.visibility = View.VISIBLE
-                17 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_17))
-                    mBinding.ivBankGuaranteeTag.visibility = View.VISIBLE
-                18 -> if (getReportFlagStatus(visitItem.industryIMISId, Constants.REPORT_18))
-                    mBinding.ivAdditionalTag.visibility = View.VISIBLE
+                    1 -> if (getFlagStatus(Constants.REPORT_1))
+                        ivIndustryTag.visibility = View.VISIBLE
+                    2 -> if (getFlagStatus(Constants.REPORT_2))
+                        ivProductTag.visibility = View.VISIBLE
+                    3 -> if (getFlagStatus(Constants.REPORT_3))
+                        ivTreatmentTag.visibility = View.VISIBLE
+                    4 -> if (getFlagStatus(Constants.REPORT_4))
+                        ivWaterWasteTag.visibility = View.VISIBLE
+                    5 -> if (getFlagStatus(Constants.REPORT_5))
+                        ivDisposalTag.visibility = View.VISIBLE
+                    6 -> if (getFlagStatus(Constants.REPORT_6))
+                        ivOmsWaterTag.visibility = View.VISIBLE
+                    7 -> if (getFlagStatus(Constants.REPORT_7))
+                        ivElectricTag.visibility = View.VISIBLE
+                    8 -> if (getFlagStatus(Constants.REPORT_8))
+                        ivLastJVSTag.visibility = View.VISIBLE
+                    9 -> if (getFlagStatus(Constants.REPORT_9))
+                        ivAirPollutionTag.visibility = View.VISIBLE
+                    10 -> if (getFlagStatus(Constants.REPORT_10))
+                        ivOmsStackTag.visibility = View.VISIBLE
+                    11 -> if (getFlagStatus(Constants.REPORT_11))
+                        ivOmsAmbientTag.visibility = View.VISIBLE
+                    12 -> if (getFlagStatus(Constants.REPORT_12))
+                        ivHazardoudTag.visibility = View.VISIBLE
+                    13 -> if (getFlagStatus(Constants.REPORT_13))
+                        ivNonHazardousTag.visibility = View.VISIBLE
+                    14 -> if (getFlagStatus(Constants.REPORT_14))
+                        ivTreeTag.visibility = View.VISIBLE
+                    15 -> if (getFlagStatus(Constants.REPORT_15))
+                        ivStatutoryTag.visibility = View.VISIBLE
+                    16 -> if (getFlagStatus(Constants.REPORT_16))
+                        ivPreviousTag.visibility = View.VISIBLE
+                    17 -> if (getFlagStatus(Constants.REPORT_17))
+                        ivBankGuaranteeTag.visibility = View.VISIBLE
+                    18 -> if (getFlagStatus(Constants.REPORT_18))
+                        ivAdditionalTag.visibility = View.VISIBLE
+                }
             }
         }
     }
 
+    /**
+     * This function is used to get Flag Status of Reports
+     *
+     * @param reportNumber Takes a Constant.Report_Number as input.
+     * @return [Boolean] returns the state of of form. 1 if completed otherwise 0.
+     */
+    private fun getFlagStatus(reportNumber: Int): Boolean{
+        return getReportFlagStatus(visitItem.industryIMISId, reportNumber)
+    }
 }
 
 class ReportItemListener(
     val context: Context,
     val visitItem: MyVisitModel
 ) {
-
     fun onClick(v: View) {
         val reportIntent = Intent(context, ReportsPageActivity::class.java)
         reportIntent.putExtra(Constants.VISIT_REPORT_ID, visitItem.industryIMISId)
@@ -116,60 +128,165 @@ class ReportItemListener(
                 reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_1)
             }
             R.id.productTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_2)
+                if (getFlagStatus(Constants.REPORT_1))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_2)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.treatmentTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_3)
+                if (getFlagStatus(Constants.REPORT_2))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_3)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.waterWasteTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_4)
+                if (getFlagStatus(Constants.REPORT_3))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_4)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.disposalTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_5)
+                if (getFlagStatus(Constants.REPORT_4))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_5)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.omsWaterTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_6)
+                if (getFlagStatus(Constants.REPORT_5))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_6)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.electricTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_7)
+                if (getFlagStatus(Constants.REPORT_6))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_7)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.lastJVSTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_8)
+                if (getFlagStatus(Constants.REPORT_7))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_8)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.airPollutionTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_9)
+                if (getFlagStatus(Constants.REPORT_8))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_9)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.omsStackTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_10)
+                if (getFlagStatus(Constants.REPORT_9))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_10)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.omsAmbientTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_11)
+                if (getFlagStatus(Constants.REPORT_10))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_11)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.hazardousTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_12)
+                if (getFlagStatus(Constants.REPORT_11))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_12)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.nonHazardousTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_13)
+                if (getFlagStatus(Constants.REPORT_12))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_13)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.treeTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_14)
+                if (getFlagStatus(Constants.REPORT_13))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_14)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.statutoryTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_15)
+                if (getFlagStatus(Constants.REPORT_14))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_15)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.previousTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_16)
+                if (getFlagStatus(Constants.REPORT_15))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_16)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.bankGuaranteeTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_17)
+                if (getFlagStatus(Constants.REPORT_16))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_17)
+                else{
+                    showMessage()
+                    return
+                }
             }
             R.id.additionalTag -> {
-                reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_18)
+                if (getFlagStatus(Constants.REPORT_17))
+                    reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_18)
+                else{
+                    showMessage()
+                    return
+                }
             }
         }
         context.startActivity(reportIntent)
     }
 
+    /**
+     * This method is used to get Flag Status of Reports
+     *
+     * @param reportNumber Takes a Constant.Report_Number as input.
+     * @return [Boolean] returns the state of of form. 1 if completed otherwise 0.
+     */
+    private fun getFlagStatus(reportNumber: Int): Boolean{
+        return getReportFlagStatus(visitItem.industryIMISId, reportNumber)
+    }
+
+    /**
+     * This method is used to display message to user regarding Reports
+     */
+    private fun showMessage() {
+        if (toast != null){
+            toast?.cancel()
+        }
+        toast = Toast.makeText(context, "Please complete previous Report first", Toast.LENGTH_SHORT)
+        toast?.show()
+    }
 }
 
 
