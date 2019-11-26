@@ -30,11 +30,16 @@ import java.util.*
 class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
     MyVisitsNavigator, DatePickerDialog.OnDateSetListener {
     override fun showAlert(message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showMessage("To be implemented")
+        //TODO 26/11/19 To be implemented
+        //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showMessage("To be implemented")
+        //TODO 26/11/19 To be implemented
+
+        // To change body of created functions use File | Settings | File Templates.
     }
 
     private lateinit var model: MyVisitModel

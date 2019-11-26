@@ -266,6 +266,10 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                         showMessage("Enter Prescribed Value")
                         isValid = false
                         break@outer
+                    }else if (!isDecimal(childItem.prescribedValue)){
+                        showMessage("Invalid Prescribed value.")
+                        isValid = false
+                        break@outer
                     }
                 }
             }

@@ -12,6 +12,7 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 
 class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbientAirViewModel>(),
     OMSAmbientAirNavigator {
@@ -213,9 +214,6 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
             }
         }
 
-
-
-
         var isValid = true
         val sampleList = mViewModel.getReportData()
 
@@ -231,12 +229,15 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
                         showMessage("Enter Prescribed Value")
                         isValid = false
                         break@outer
+                    }else if (!isDecimal(childItem.prescribedValue)){
+                        showMessage("Invalid Prescribed value.")
+                        isValid = false
+                        break@outer
                     }
                 }
             }
 
         }
-
 
         return isValid
     }
