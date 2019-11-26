@@ -43,17 +43,25 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
         //set report variable data
         setReportVariableData(visitReportId)
 
-        mBinding.edtIndusDateOfCollection.setOnClickListener {
-            showDateDialog(INDUS_DATE_OF_COLLECTION)
-        }
-        mBinding.edtDateIndus.setOnClickListener { showDateDialog(INDUS_DATE) }
-        mBinding.edtDomesticDateOfCollection.setOnClickListener {
-            showDateDialog(DOMESTIC_DATE_OF_COLLECTION)
-        }
-        mBinding.edtDateDomestic.setOnClickListener { showDateDialog(DOMESTIC_DATE) }
+        mBinding.run {
 
-        mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+            edtIndusDateOfCollection.setOnClickListener {
+                showDateDialog(INDUS_DATE_OF_COLLECTION)
+            }
+            edtDateIndus.setOnClickListener { showDateDialog(INDUS_DATE) }
+            edtDomesticDateOfCollection.setOnClickListener {
+                showDateDialog(DOMESTIC_DATE_OF_COLLECTION)
+            }
+            edtDateDomestic.setOnClickListener { showDateDialog(DOMESTIC_DATE) }
+
+            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            btnSubmit.setOnClickListener { onSubmit() }
+
+            //Delete Button
+            imgDelete.setOnClickListener {
+                mViewModel.deleteItem()
+            }
+        }
 
     }
 

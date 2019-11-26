@@ -35,22 +35,22 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/dateOfCollectionIndusLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/txtLabel"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
                         android:hint="Date Of Collection"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtLabel">
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtIndusDateOfCollection"
-                            android:focusable="false"
-                            android:drawableRight="@drawable/ic_calendar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:focusable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -71,8 +71,8 @@
                         android:id="@+id/rgPymntDetailsIndus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginRight="16dp"
                         android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
@@ -99,43 +99,43 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/amtIndusLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsIndus"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
                         android:hint="Amount"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsIndus">
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtAmtIndus"
-                            android:inputType="number"
-                            android:maxLength="5"
-                            android:digits=".0123456789"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:digits=".0123456789"
+                            android:inputType="number"
+                            android:maxLength="5" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/dateIndusLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/amtIndusLayout"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
                         android:hint="Date"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/amtIndusLayout">
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtDateIndus"
-                            android:focusable="false"
-                            android:drawableRight="@drawable/ic_calendar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:focusable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
@@ -150,22 +150,22 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/dateOfCollectionDomesticLayout"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/viewDividerTwo"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
                         android:hint="Date Of Collection"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/viewDividerTwo">
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtDomesticDateOfCollection"
-                            android:drawableRight="@drawable/ic_calendar"
                             android:layout_width="match_parent"
-                            android:focusable="false"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:focusable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -187,9 +187,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginRight="16dp"
                         android:orientation="horizontal"
-                        android:layout_marginTop="4dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/txtPymntDetailsDomestic">
 
@@ -214,43 +214,43 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/amtDomesticLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsDomestic"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
                         android:hint="Amount"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rgPymntDetailsDomestic">
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtAmtDomestic"
-                            android:inputType="number"
-                            android:maxLength="5"
-                            android:digits=".0123456789"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:digits=".0123456789"
+                            android:inputType="number"
+                            android:maxLength="5" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/dateDomesticLayout"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/amtDomesticLayout"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="16dp"
                         android:hint="Date"
-                        app:layout_constraintStart_toStartOf="parent">
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/amtDomesticLayout">
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtDateDomestic"
-                            android:focusable="false"
-                            android:drawableRight="@drawable/ic_calendar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:focusable="false" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -271,8 +271,8 @@
                         android:id="@+id/rgJVSSample"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginRight="16dp"
                         android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="parent"
@@ -312,12 +312,35 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="Add More Source"
-                        android:gravity="center_vertical"
-                        android:drawablePadding="10dp"
                         android:drawableLeft="@drawable/ic_plus"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:text="Add More Source"
+                        app:layout_constraintEnd_toStartOf="@+id/imgDelete"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/rvJVS" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/imgDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:drawableStart="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawablePadding="10dp"
+                        android:text="Delete"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/txtAddMore"
+                        app:layout_constraintTop_toBottomOf="@+id/rvJVS"
+                        app:layout_goneMarginRight="16dp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnSubmit"
