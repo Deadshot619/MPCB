@@ -13,6 +13,7 @@ import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.parseToDouble
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 
 class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewModel>(),
     ReportsPageNavigator,
@@ -106,41 +107,58 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         //Industrial Text change Listener
         //This block checks the input fields & sets the text to Total field according to it
         mBinding.run {
+            //CEPT
             edIndusCETP.addTextChangedListener {
                 indusCept = if (edIndusCETP.text.toString() != "")
-                    edIndusCETP.text.toString().toDouble()
+                    if (isDecimal(edIndusCETP.text.toString()))
+                        edIndusCETP.text.toString().toDouble()
+                    else
+                        0.0
                 else
                     0.0
                 edIndustrialTotal.setText(indusTotal.toString())
             }
 
+            //On land gardening
             edIndusLandGardening.addTextChangedListener {
                 indusLandGardening = if (edIndusLandGardening.text.toString() != "")
-                    edIndusLandGardening.text.toString().toDouble()
+                    if (isDecimal(edIndusLandGardening.text.toString()))
+                        edIndusLandGardening.text.toString().toDouble()
+                    else
+                        0.0
                 else
                     0.0
                 edIndustrialTotal.setText(indusTotal.toString())
             }
 
+            //Recycle
             edIndusRecycle.addTextChangedListener {
                 indusRecycle = if (edIndusRecycle.text.toString() != "")
-                    edIndusRecycle.text.toString().toDouble()
+                    if (isDecimal(edIndusRecycle.text.toString()))
+                        edIndusRecycle.text.toString().toDouble()
+                    else 0.0
                 else
                     0.0
                 edIndustrialTotal.setText(indusTotal.toString())
             }
 
+            //Local Sewage Treatment
             edIndusSewageTreatment.addTextChangedListener {
                 indusLocalSewage = if (edIndusSewageTreatment.text.toString() != "")
-                    edIndusSewageTreatment.text.toString().toDouble()
+                    if (isDecimal(edIndusSewageTreatment.text.toString()))
+                        edIndusSewageTreatment.text.toString().toDouble()
+                    else 0.0
                 else
                     0.0
                 edIndustrialTotal.setText(indusTotal.toString())
             }
 
+            //Any Other
             edIndusExtraNameValue.addTextChangedListener {
                 indusAnyOther = if (edIndusExtraNameValue.text.toString() != "")
-                    edIndusExtraNameValue.text.toString().toDouble()
+                    if (isDecimal(edIndusExtraNameValue.text.toString()))
+                        edIndusExtraNameValue.text.toString().toDouble()
+                    else 0.0
                 else
                     0.0
                 edIndustrialTotal.setText(indusTotal.toString())
@@ -151,41 +169,56 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         //Domestic Text change Listener
         //This block checks the input fields & sets the text to Total field according to it
         mBinding.run {
+            //CEPT
             edDomesticCETP.addTextChangedListener {
                 domesticCept = if (edDomesticCETP.text.toString() != "")
-                    edDomesticCETP.text.toString().toDouble()
+                    if (isDecimal(edDomesticCETP.text.toString()))
+                        edDomesticCETP.text.toString().toDouble()
+                    else 0.0
                 else
                     0.0
                 edDomesticTotal.setText(domesticTotal.toString())
             }
 
+            //On Land for Gardening
             edDomesticLandGardening.addTextChangedListener {
                 domesticLandGardening = if (edDomesticLandGardening.text.toString() != "")
-                    edDomesticLandGardening.text.toString().toDouble()
+                    if (isDecimal(edDomesticLandGardening.text.toString()))
+                        edDomesticLandGardening.text.toString().toDouble()
+                    else 0.0
                 else
                     0.0
                 edDomesticTotal.setText(domesticTotal.toString())
             }
 
+            //Recycle
             edDomesticRecycle.addTextChangedListener {
                 domesticRecycle = if (edDomesticRecycle.text.toString() != "")
-                    edDomesticRecycle.text.toString().toDouble()
+                    if (isDecimal(edDomesticRecycle.text.toString()))
+                        edDomesticRecycle.text.toString().toDouble()
+                    else 0.0
                 else
                     0.0
                 edDomesticTotal.setText(domesticTotal.toString())
             }
 
+            //Local Sewage Treatment
             edDomesticSewageTreatment.addTextChangedListener {
                 domesticLocalSewage = if (edDomesticSewageTreatment.text.toString() != "")
-                    edDomesticSewageTreatment.text.toString().toDouble()
+                    if (isDecimal(edDomesticSewageTreatment.text.toString()))
+                        edDomesticSewageTreatment.text.toString().toDouble()
+                    else 0.0
                 else
                     0.0
                 edDomesticTotal.setText(domesticTotal.toString())
             }
 
+            //Any Other
             edDomesticExtraNameValue.addTextChangedListener {
                 domesticAnyOther = if (edDomesticExtraNameValue.text.toString() != "")
-                    edDomesticExtraNameValue.text.toString().toDouble()
+                    if (isDecimal(edDomesticExtraNameValue.text.toString()))
+                        edDomesticExtraNameValue.text.toString().toDouble()
+                    else 0.0
                 else
                     0.0
                 edDomesticTotal.setText(domesticTotal.toString())
@@ -206,111 +239,111 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
 //                Industrial
                 R.id.cbIndusCETP -> report.data.routineReport.disposalIndustrialCETP =
-                if (isChecked) {
-                    edIndusCETP.isEnabled = true
-                    1
-                } else {
-                    edIndusCETP.isEnabled = false
-                    edIndusCETP.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edIndusCETP.isEnabled = true
+                        1
+                    } else {
+                        edIndusCETP.isEnabled = false
+                        edIndusCETP.setText("")
+                        0
+                    }
 
                 R.id.cbIndusLandGardening -> report.data.routineReport.disposalIndustrialLandGardening =
-                if (isChecked) {
-                    edIndusLandGardening.isEnabled = true
-                    1
-                } else {
-                    edIndusLandGardening.isEnabled = false
-                    edIndusLandGardening.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edIndusLandGardening.isEnabled = true
+                        1
+                    } else {
+                        edIndusLandGardening.isEnabled = false
+                        edIndusLandGardening.setText("")
+                        0
+                    }
 
                 R.id.cbIndusRecycle -> report.data.routineReport.disposalIndustrialRecycle =
-                if (isChecked) {
-                    edIndusRecycle.isEnabled = true
-                    1
-                } else {
-                    edIndusRecycle.isEnabled = false
-                    edIndusRecycle.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edIndusRecycle.isEnabled = true
+                        1
+                    } else {
+                        edIndusRecycle.isEnabled = false
+                        edIndusRecycle.setText("")
+                        0
+                    }
 
                 R.id.cbIndusSewageTreatment -> report.data.routineReport.disposalIndustrialLocalBodySewage =
-                if (isChecked) {
-                    edIndusSewageTreatment.isEnabled = true
-                    1
-                } else {
-                    edIndusSewageTreatment.isEnabled = false
-                    edIndusSewageTreatment.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edIndusSewageTreatment.isEnabled = true
+                        1
+                    } else {
+                        edIndusSewageTreatment.isEnabled = false
+                        edIndusSewageTreatment.setText("")
+                        0
+                    }
 
                 R.id.cbIndusAnyOther -> report.data.routineReport.disposalIndustrialAnyOther =
-                if (isChecked) {
-                    edIndusExtraName.isEnabled = true
-                    edIndusExtraNameValue.isEnabled = true
-                    1
-                } else {
-                    edIndusExtraName.isEnabled = false
-                    edIndusExtraNameValue.isEnabled = false
-                    edIndusExtraName.setText("")
-                    edIndusExtraNameValue.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edIndusExtraName.isEnabled = true
+                        edIndusExtraNameValue.isEnabled = true
+                        1
+                    } else {
+                        edIndusExtraName.isEnabled = false
+                        edIndusExtraNameValue.isEnabled = false
+                        edIndusExtraName.setText("")
+                        edIndusExtraNameValue.setText("")
+                        0
+                    }
 
                 //Domestic
                 R.id.cbDomesticCETP -> report.data.routineReport.disposalDomesticCETP =
-                if (isChecked) {
-                    edDomesticCETP.isEnabled = true
-                    1
-                } else {
-                    edDomesticCETP.isEnabled = false
-                    edDomesticCETP.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edDomesticCETP.isEnabled = true
+                        1
+                    } else {
+                        edDomesticCETP.isEnabled = false
+                        edDomesticCETP.setText("")
+                        0
+                    }
 
                 R.id.cbDomesticLandGardening -> report.data.routineReport.disposalDomesticLandGardening =
-                if (isChecked) {
-                    edDomesticLandGardening.isEnabled = true
-                    1
-                } else {
-                    edDomesticLandGardening.isEnabled = false
-                    edDomesticLandGardening.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edDomesticLandGardening.isEnabled = true
+                        1
+                    } else {
+                        edDomesticLandGardening.isEnabled = false
+                        edDomesticLandGardening.setText("")
+                        0
+                    }
 
                 R.id.cbDomesticRecycle -> report.data.routineReport.disposalDomesticRecycle =
-                if (isChecked) {
-                    edDomesticRecycle.isEnabled = true
-                    1
-                } else {
-                    edDomesticRecycle.isEnabled = false
-                    edDomesticRecycle.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edDomesticRecycle.isEnabled = true
+                        1
+                    } else {
+                        edDomesticRecycle.isEnabled = false
+                        edDomesticRecycle.setText("")
+                        0
+                    }
 
                 R.id.cbDomesticSewageTreatment -> report.data.routineReport.disposalDomesticLocalBodySewage =
-                if (isChecked) {
-                    edDomesticSewageTreatment.isEnabled = true
-                    1
-                } else {
-                    edDomesticSewageTreatment.isEnabled = false
-                    edDomesticSewageTreatment.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edDomesticSewageTreatment.isEnabled = true
+                        1
+                    } else {
+                        edDomesticSewageTreatment.isEnabled = false
+                        edDomesticSewageTreatment.setText("")
+                        0
+                    }
 
                 R.id.cbDomesticAnyOther -> report.data.routineReport.disposalDomesticAnyOther =
-                if (isChecked) {
-                    edDomesticExtraName.isEnabled = true
-                    edDomesticExtraNameValue.isEnabled = true
-                    1
-                } else {
-                    edDomesticExtraName.isEnabled = false
-                    edDomesticExtraNameValue.isEnabled = false
-                    edDomesticExtraName.setText("")
-                    edDomesticExtraNameValue.setText("")
-                    0
-                }
+                    if (isChecked) {
+                        edDomesticExtraName.isEnabled = true
+                        edDomesticExtraNameValue.isEnabled = true
+                        1
+                    } else {
+                        edDomesticExtraName.isEnabled = false
+                        edDomesticExtraNameValue.isEnabled = false
+                        edDomesticExtraName.setText("")
+                        edDomesticExtraNameValue.setText("")
+                        0
+                    }
             }
         }
     }
@@ -364,122 +397,155 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
     }
 
     private fun validate(): Boolean {
-//        Industrial
+        mBinding.run {
+            //        Industrial
 
-        //Check if either of the industrial types have been selected as
-        //one of them has to be selected
-        if (!mBinding.cbIndusCETP.isChecked && !mBinding.cbIndusLandGardening.isChecked &&
-                !mBinding.cbIndusRecycle.isChecked && !mBinding.cbIndusSewageTreatment.isChecked
-            && !mBinding.cbIndusAnyOther.isChecked){
-            showMessage("Select atleast one of the Industrial type")
-            return false
-        }
+            //Check if either of the industrial types have been selected as
+            //one of them has to be selected
+            if (!cbIndusCETP.isChecked && !cbIndusLandGardening.isChecked &&
+                !cbIndusRecycle.isChecked && !cbIndusSewageTreatment.isChecked
+                && !cbIndusAnyOther.isChecked
+            ) {
+                showMessage("Select atleast one of the Industrial type")
+                return false
+            }
 
-        if (mBinding.cbIndusCETP.isChecked) {
-            if (mBinding.edIndusCETP.text.isNullOrEmpty()) {
-                showMessage("Enter CEPT for Industrial")
-                return false
+            if (cbIndusCETP.isChecked) {
+                if (edIndusCETP.text.isNullOrEmpty()) {
+                    showMessage("Enter CEPT for Industrial")
+                    return false
+                } else if (!isDecimal(edIndusCETP.text.toString())) {
+                    showMessage("Invalid CEPT for Industrial value")
+                    return false
+                }
             }
-        }
-        if (mBinding.cbIndusLandGardening.isChecked) {
-            if (mBinding.edIndusLandGardening.text.isNullOrEmpty()) {
-                showMessage("Enter Land gardening for Industrial")
-                return false
+            if (cbIndusLandGardening.isChecked) {
+                if (edIndusLandGardening.text.isNullOrEmpty()) {
+                    showMessage("Enter Land gardening for Industrial")
+                    return false
+                } else if (!isDecimal(edIndusLandGardening.text.toString())) {
+                    showMessage("Invalid Land gardening for Industrial value")
+                    return false
+                }
             }
-        }
-        if (mBinding.cbIndusRecycle.isChecked) {
-            if (mBinding.edIndusRecycle.text.isNullOrEmpty()) {
-                showMessage("Enter Recycle for Industrial")
-                return false
+            if (cbIndusRecycle.isChecked) {
+                if (edIndusRecycle.text.isNullOrEmpty()) {
+                    showMessage("Enter Recycle for Industrial")
+                    return false
+                } else if (!isDecimal(edIndusRecycle.text.toString())) {
+                    showMessage("Invalid Recycle for Industrial value")
+                    return false
+                }
             }
-        }
-        if (mBinding.cbIndusSewageTreatment.isChecked) {
-            if (mBinding.edIndusSewageTreatment.text.isNullOrEmpty()) {
-                showMessage("Enter Local Sewage Treatment for Industrial")
-                return false
+            if (cbIndusSewageTreatment.isChecked) {
+                if (edIndusSewageTreatment.text.isNullOrEmpty()) {
+                    showMessage("Enter Local Sewage Treatment for Industrial")
+                    return false
+                } else if (!isDecimal(edIndusSewageTreatment.text.toString())) {
+                    showMessage("Invalid Local Sewage Treatment for Industrial value")
+                    return false
+                }
             }
-        }
-        if (mBinding.cbIndusAnyOther.isChecked) {
-            if (mBinding.edIndusExtraName.text.isNullOrEmpty()) {
-                showMessage("Enter Any Other Text for Industrial")
-                return false
+            if (cbIndusAnyOther.isChecked) {
+                if (edIndusExtraName.text.isNullOrEmpty()) {
+                    showMessage("Enter Any Other Text for Industrial")
+                    return false
+                }
+                if (edIndusExtraNameValue.text.isNullOrEmpty()) {
+                    showMessage("Enter Any Other Value for Industrial")
+                    return false
+                } else if (!isDecimal(edIndusExtraNameValue.text.toString())) {
+                    showMessage("Invalid Any Other Value for Industrial value")
+                    return false
+                }
             }
-            if (mBinding.edIndusExtraNameValue.text.isNullOrEmpty()) {
-                showMessage("Enter Any Other Value for Industrial")
-                return false
-            }
-        }
 
 //        Disposable checkbox
-        if (report.data.routineReport.disposalIndustrialAsPerConsent.isEmpty()) {
-            showMessage("Select Disposal As Per Consent for Industrial")
-            return false
-        }
+            if (report.data.routineReport.disposalIndustrialAsPerConsent.isEmpty()) {
+                showMessage("Select Disposal As Per Consent for Industrial")
+                return false
+            }
 
 //        Operation & Maintenance checkbox
-        if (report.data.routineReport.operationAndMaintainanceInsus.isEmpty()) {
-            showMessage("Select Operation And Maintenance for Industrial")
-            return false
-        }
+            if (report.data.routineReport.operationAndMaintainanceInsus.isEmpty()) {
+                showMessage("Select Operation And Maintenance for Industrial")
+                return false
+            }
 
 //        Domestic
 
-        //Check if either of the industrial types have been selected as
-        //one of them has to be selected
-        if (!mBinding.cbDomesticCETP.isChecked && !mBinding.cbDomesticLandGardening.isChecked &&
-                !mBinding.cbDomesticRecycle.isChecked && !mBinding.cbDomesticSewageTreatment.isChecked
-            && !mBinding.cbDomesticAnyOther.isChecked){
-            showMessage("Select atleast one of the Domestic type")
-            return false
-        }
+            //Check if either of the industrial types have been selected as
+            //one of them has to be selected
+            if (!cbDomesticCETP.isChecked && !cbDomesticLandGardening.isChecked &&
+                !cbDomesticRecycle.isChecked && !cbDomesticSewageTreatment.isChecked
+                && !cbDomesticAnyOther.isChecked
+            ) {
+                showMessage("Select atleast one of the Domestic type")
+                return false
+            }
 
-        if (mBinding.cbDomesticCETP.isChecked) {
-            if (mBinding.edDomesticCETP.text.isNullOrEmpty()) {
-                showMessage("Enter CEPT for Domestic")
-                return false
+            if (cbDomesticCETP.isChecked) {
+                if (edDomesticCETP.text.isNullOrEmpty()) {
+                    showMessage("Enter CEPT for Domestic")
+                    return false
+                } else if (!isDecimal(edDomesticCETP.text.toString())) {
+                    showMessage("Invalid CEPT for Domestic value")
+                    return false
+                }
             }
-        }
-        if (mBinding.cbDomesticLandGardening.isChecked) {
-            if (mBinding.edDomesticLandGardening.text.isNullOrEmpty()) {
-                showMessage("Enter Land gardening for Domestic")
-                return false
+            if (cbDomesticLandGardening.isChecked) {
+                if (edDomesticLandGardening.text.isNullOrEmpty()) {
+                    showMessage("Enter Land gardening for Domestic")
+                    return false
+                } else if (!isDecimal(edDomesticLandGardening.text.toString())) {
+                    showMessage("Invalid Land gardening for Domestic value")
+                    return false
+                }
             }
-        }
-        if (mBinding.cbDomesticRecycle.isChecked) {
-            if (mBinding.edDomesticRecycle.text.isNullOrEmpty()) {
-                showMessage("Enter Recycle for Domestic")
-                return false
+            if (cbDomesticRecycle.isChecked) {
+                if (edDomesticRecycle.text.isNullOrEmpty()) {
+                    showMessage("Enter Recycle for Domestic")
+                    return false
+                } else if (!isDecimal(edDomesticRecycle.text.toString())) {
+                    showMessage("Invalid Recycle for Domestic value")
+                    return false
+                }
             }
-        }
-        if (mBinding.cbDomesticSewageTreatment.isChecked) {
-            if (mBinding.edDomesticSewageTreatment.text.isNullOrEmpty()) {
-                showMessage("Enter Local Sewage Treatment for Domestic")
-                return false
+            if (cbDomesticSewageTreatment.isChecked) {
+                if (edDomesticSewageTreatment.text.isNullOrEmpty()) {
+                    showMessage("Enter Local Sewage Treatment for Domestic")
+                    return false
+                } else if (!isDecimal(edDomesticSewageTreatment.text.toString())) {
+                    showMessage("Invalid Local Sewage Treatment for Domestic value")
+                    return false
+                }
             }
-        }
-        if (mBinding.cbDomesticAnyOther.isChecked) {
-            if (mBinding.edDomesticExtraName.text.isNullOrEmpty()) {
-                showMessage("Enter Any Other Text for Domestic")
-                return false
+            if (cbDomesticAnyOther.isChecked) {
+                if (edDomesticExtraName.text.isNullOrEmpty()) {
+                    showMessage("Enter Any Other Text for Domestic")
+                    return false
+                }
+                if (edDomesticExtraNameValue.text.isNullOrEmpty()) {
+                    showMessage("Enter Any Other Value for Domestic")
+                    return false
+                } else if (!isDecimal(edDomesticExtraNameValue.text.toString())) {
+                    showMessage("Invalid Any Other Value for Domestic value")
+                    return false
+                }
             }
-            if (mBinding.edDomesticExtraNameValue.text.isNullOrEmpty()) {
-                showMessage("Enter Any Other Value for Domestic")
-                return false
-            }
-        }
 
 //        Domestic Disposable checkbox
-        if (report.data.routineReport.disposalDomesticAsPerConsent.isEmpty()) {
-            showMessage("Select Disposal As Per Consent for Domestic")
-            return false
-        }
+            if (report.data.routineReport.disposalDomesticAsPerConsent.isEmpty()) {
+                showMessage("Select Disposal As Per Consent for Domestic")
+                return false
+            }
 
-        //        Domestic Operation & Maintenance checkbox
-        if (report.data.routineReport.operationAndMaintainanceDomestic.isEmpty()) {
-            showMessage("Select Operation And Maintenance for Domestic")
-            return false
+            //        Domestic Operation & Maintenance checkbox
+            if (report.data.routineReport.operationAndMaintainanceDomestic.isEmpty()) {
+                showMessage("Select Operation And Maintenance for Domestic")
+                return false
+            }
         }
-
         return true
     }
 
@@ -490,10 +556,10 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         super.setDataToViews()
         reports = getReportData(visitReportId)
 
-        if (reports != null){
+        if (reports != null) {
             mBinding.run {
-                reports?.data?.routineReport?.run{
-//                    Industrial checkboxes
+                reports?.data?.routineReport?.run {
+                    //                    Industrial checkboxes
                     cbIndusCETP.isChecked = disposalIndustrialCETP == 1
                     cbIndusLandGardening.isChecked = disposalIndustrialLandGardening == 1
                     cbIndusRecycle.isChecked = disposalIndustrialRecycle == 1
@@ -515,9 +581,9 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
                     }
 
 //                    Industrial Disposal Consent
-                    if (disposalIndustrialAsPerConsent == "1"){
+                    if (disposalIndustrialAsPerConsent == "1") {
                         rgIndusDisposalConsent.check(R.id.rbIndusDisposalYes)
-                    }else{
+                    } else {
                         rgIndusDisposalConsent.check(R.id.rbIndusDisposalNo)
                     }
 
@@ -550,9 +616,9 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
                     }
 
 //                    Domestic Disposal Consent
-                    if (disposalDomesticAsPerConsent == "1"){
+                    if (disposalDomesticAsPerConsent == "1") {
                         rgDomesticDisposalConsent.check(R.id.rbDomesticDisposalYes)
-                    }else{
+                    } else {
                         rgDomesticDisposalConsent.check(R.id.rbDomesticDisposalNo)
                     }
 

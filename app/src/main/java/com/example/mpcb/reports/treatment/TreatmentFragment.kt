@@ -128,6 +128,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                     1
                 } else {
                     mBinding.primaryOtherRemarkLayout.visibility = View.GONE
+                    mBinding.edtPrimaryOtherRemark.setText("")
                     0
                 }
 
@@ -145,6 +146,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                     1
                 } else {
                     mBinding.secondaryOtherRemarkLayout.visibility = View.GONE
+                    mBinding.edtSecondaryOtherRemark.setText("")
                     0
                 }
 
@@ -160,6 +162,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                     1
                 } else {
                     mBinding.tertiaryOtherRemarkLayout.visibility = View.GONE
+                    mBinding.edtTertiaryOtherRemark.setText("")
                     0
                 }
 
@@ -177,6 +180,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                     1
                 } else {
                     mBinding.advanceOtherRemarkLayout.visibility = View.GONE
+                    mBinding.edtAdvanceOtherRemark.setText("")
                     0
                 }
 
@@ -205,6 +209,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                     1
                 } else {
                     mBinding.SewageOtherRemarkLayout.visibility = View.GONE
+                    mBinding.edtSewageOtherRemark.setText("")
                     0
                 }
         }
