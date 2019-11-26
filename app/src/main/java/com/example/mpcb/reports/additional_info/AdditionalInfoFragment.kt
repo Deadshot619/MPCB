@@ -7,6 +7,7 @@ import com.example.mpcb.databinding.FragmentAdditionalInfoBinding
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
 import com.example.mpcb.utils.showMessage
 
 class AdditionalInfoFragment :
@@ -53,8 +54,29 @@ class AdditionalInfoFragment :
                 reportKey = Constants.REPORT_18,
                 reportStatus = true
             )
-            mViewModel.submitReport(reportRequest = getReportData(visitReportId))
+
+            //submit report only if all the reports are filled.
+            if (checkIfReportsFilled()){
+                mViewModel.submitReport(reportRequest = getReportData(visitReportId))
+            }else {
+                showMessage("Please fill all the reports!")
+            }
+
         }
+    }
+
+    /**
+     * This method is used to check if all the reports are filled.
+     *  @return returns false if even one of the report is not filled. otherwise true
+     */
+    private fun checkIfReportsFilled(): Boolean{
+        //"i" represents report key
+        for (i in 1..18){
+            if (!getReportFlagStatus(visitReportId, i)){
+                return false
+            }
+        }
+        return true
     }
 
     private fun validate(): Boolean {

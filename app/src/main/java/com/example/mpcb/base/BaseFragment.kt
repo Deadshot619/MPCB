@@ -75,7 +75,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     /**
      * This method is used to set data to [report] variable
      */
-    fun setReportVariableData(visitReportId: String){
+    protected fun setReportVariableData(visitReportId: String){
         report = getReportData(visitReportId) ?: ReportRequest()
     }
 

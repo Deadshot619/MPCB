@@ -268,13 +268,16 @@ class ReportItemListener(
     }
 
     /**
-     * This method is used to get Flag Status of Reports
+     * This method is used to get Flag Status of Reports.
+     * The reports can only be filled if previous report is filled.
      *
      * @param reportNumber Takes a Constant.Report_Number as input.
      * @return [Boolean] returns the state of of form. 1 if completed otherwise 0.
      */
     private fun getFlagStatus(reportNumber: Int): Boolean{
-        return getReportFlagStatus(visitItem.industryIMISId, reportNumber)
+        //Uncomment this if we want to fill report based on completion of previous report
+//        return getReportFlagStatus(visitItem.industryIMISId, reportNumber)
+        return true
     }
 
     /**
