@@ -94,14 +94,13 @@ class AmbientAirChildAdapter(
          * This method is used to set the data to the views
          */
         fun setDataToViews(item: AmbientAirChild) {
-
             itemBinding.run {
                 //Parameter
 //                if (item.position != "")
                     spnParameter.setSelection(item.position)
                 //Prescribed Value
                 if (item.prescribedValue != "")
-                    itemBinding.edtPrescribedValue.setText(item.prescribedValue)
+                    edtPrescribedValue.setText(item.prescribedValue)
             }
         }
 

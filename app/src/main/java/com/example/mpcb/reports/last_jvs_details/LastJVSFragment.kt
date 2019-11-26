@@ -13,6 +13,7 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.isDecimal
 import java.util.*
 
 class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>(), LastJVSNavigator {
@@ -97,27 +98,58 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
     }
 
     private fun setListener() {
-        mBinding.rgPymntDetailsIndus.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.paymentDetailsIndus =
-                if (checkedId == R.id.rbPymntDetailsIndusYes) "1" else "0"
-        }
+        mBinding.run {
+            rgPymntDetailsIndus.setOnCheckedChangeListener { group, checkedId ->
+                report.data.routineReport.paymentDetailsIndus =
+                    if (checkedId == R.id.rbPymntDetailsIndusYes) {
+                        //Enable Amount & Date
+                        edtAmtIndus.isEnabled = true
+                        edtDateIndus.isEnabled = true
+                        "1"
+                    } else {
+                        //Disable Amount & Date
+                        edtAmtIndus.isEnabled = false
+                        edtDateIndus.isEnabled = false
 
-        mBinding.rgPymntDetailsDomestic.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.paymentDetailsDomestic =
-                if (checkedId == R.id.rbPymntDetailsDomesticYes) "1" else "0"
-        }
+                        edtAmtIndus.setText("")
+                        edtDateIndus.setText("")
+                        "0"
+                    }
+            }
 
-        mBinding.rgJVSSample.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.jvsSampleCollectedForWater =
-                if (checkedId == R.id.rbJVSSampleYes) {
-                    mBinding.rvJVS.visibility = View.VISIBLE
-                    mBinding.txtAddMore.visibility = View.VISIBLE
-                    1
-                } else {
-                    mBinding.rvJVS.visibility = View.GONE
-                    mBinding.txtAddMore.visibility = View.GONE
-                    0
-                }
+            rgPymntDetailsDomestic.setOnCheckedChangeListener { group, checkedId ->
+                report.data.routineReport.paymentDetailsDomestic =
+                    if (checkedId == R.id.rbPymntDetailsDomesticYes) {
+                        //Enable Amount & Date
+                        edtAmtDomestic.isEnabled = true
+                        edtDateDomestic.isEnabled = true
+                        "1"
+                    } else {
+                        //Disable Amount & Date
+                        edtAmtDomestic.isEnabled = false
+                        edtDateDomestic.isEnabled = false
+
+                        edtAmtDomestic.setText("")
+                        edtDateDomestic.setText("")
+                        "0"
+                    }
+            }
+
+            //JVS Sample
+            rgJVSSample.setOnCheckedChangeListener { group, checkedId ->
+                report.data.routineReport.jvsSampleCollectedForWater =
+                    if (checkedId == R.id.rbJVSSampleYes) {
+                        rvJVS.visibility = View.VISIBLE
+                        txtAddMore.visibility = View.VISIBLE
+                        imgDelete.visibility = View.VISIBLE
+                        1
+                    } else {
+                        rvJVS.visibility = View.GONE
+                        txtAddMore.visibility = View.GONE
+                        imgDelete.visibility = View.GONE
+                        0
+                    }
+            }
         }
     }
 
@@ -136,6 +168,8 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
 
         if (report.data.routineReport.jvsSampleCollectedForWater == 1) {
             report.data.jvsSampleCollectedWaterSource = mViewModel.getReportData()
+        }else {
+            report.data.jvsSampleCollectedWaterSource = arrayListOf()
         }
 
         if (validate()) {
@@ -152,48 +186,75 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
     }
 
     private fun validate(): Boolean {
+        //Indus Date of Collection
         if (mBinding.edtIndusDateOfCollection.text.isNullOrEmpty()) {
             showMessage("Enter Date of collection")
             return false
         }
+
+        //Indus Payment Details
         if (!mBinding.rbPymntDetailsIndusYes.isChecked && !mBinding.rbPymntDetailsIndusNo.isChecked) {
             showMessage("Select Payment Details")
             return false
         }
-        if (mBinding.edtAmtIndus.text.isNullOrEmpty()) {
-            showMessage("Enter Amount")
-            return false
+
+        if (mBinding.rbPymntDetailsIndusYes.isChecked){
+            //Indus Amount
+            if (mBinding.edtAmtIndus.text.isNullOrEmpty()) {
+                showMessage("Enter Amount")
+                return false
+            }else if (!isDecimal(mBinding.edtAmtIndus.text.toString())){
+                showMessage("Invalid Industrial Amount")
+                return false
+            }
+
+            //Indus Date
+            if (mBinding.edtDateIndus.text.isNullOrEmpty()) {
+                showMessage("Enter Date")
+                return false
+            }
         }
-        if (mBinding.edtDateIndus.text.isNullOrEmpty()) {
-            showMessage("Enter Date")
-            return false
-        }
+
+        //Domestic Date of Collection
         if (mBinding.edtDomesticDateOfCollection.text.isNullOrEmpty()) {
             showMessage("Enter Date of collection")
             return false
         }
+
+        //Domestic Payment Details
         if (!mBinding.rbPymntDetailsDomesticYes.isChecked && !mBinding.rbPymntDetailsDomesticNo.isChecked) {
             showMessage("Select Payment Details")
             return false
         }
-        if (mBinding.edtAmtDomestic.text.isNullOrEmpty()) {
-            showMessage("Enter Amount")
-            return false
-        }
-        if (mBinding.edtDateDomestic.text.isNullOrEmpty()) {
-            showMessage("Enter Date")
-            return false
+
+        if (mBinding.rbPymntDetailsDomesticYes.isChecked){
+            //Domestic Amount
+            if (mBinding.edtAmtDomestic.text.isNullOrEmpty()) {
+                showMessage("Enter Amount")
+                return false
+            }else if (!isDecimal(mBinding.edtAmtDomestic.text.toString())){
+                showMessage("Invalid Domestic Amount")
+                return false
+            }
+
+            //Domestic Date
+            if (mBinding.edtDateDomestic.text.isNullOrEmpty()) {
+                showMessage("Enter Date")
+                return false
+            }
         }
 
+        //JVS Sample Collected for water
         if (!mBinding.rbJVSSampleYes.isChecked && !mBinding.rbJVSSampleNo.isChecked) {
             showMessage("Select JVS Sample")
             return false
         }
 
         var isValid = true
-        val sampleList = mViewModel.getReportData()
 
+        //Validation for JVS Views
         if (mBinding.rbJVSSampleYes.isChecked) {
+            val sampleList = mViewModel.getReportData()
             outer@ for (item in sampleList) {
                 if (item.nameOfSource.isEmpty()) {
                     showMessage("Enter Source")
@@ -209,8 +270,72 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                 }
             }
         }
+
         return isValid
     }
 
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        reports = getReportData(visitReportId)
+
+        if (reports != null){
+
+            mBinding.run{
+                reports?.data?.routineReport?.run {
+                    //Industrail Date
+                    edtIndusDateOfCollection.setText(dateOfCollectionIndus)
+
+                    //Payment Details
+                    if (paymentDetailsIndus == "1"){
+                        rgPymntDetailsIndus.check(R.id.rbPymntDetailsIndusYes)
+                    }else{
+                        rgPymntDetailsIndus.check(R.id.rbPymntDetailsIndusNo)
+                    }
+
+                    //Payment Details Amount
+                    edtAmtIndus.setText(paymentDetailsIndusAmount)
+
+                    //Payment Details Date
+                    edtDateIndus.setText(paymentDetailsIndusDate)
+
+
+                    //Domestic Date
+                    edtDomesticDateOfCollection.setText(dateOfCollectionDomestic)
+
+                    //Domestic Payment Details
+                    if (paymentDetailsDomestic == "1"){
+                        rgPymntDetailsDomestic.check(R.id.rbPymntDetailsDomesticYes)
+                    }else{
+                        rgPymntDetailsDomestic.check(R.id.rbPymntDetailsDomesticNo)
+                    }
+
+                    //Domestic Payment Details Amount
+                    edtAmtDomestic.setText(paymentDetailsDomesticAmount)
+
+                    //Domestic Payment Details Date
+                    edtDateDomestic.setText(paymentDetailsDomesticDate)
+
+                    //JVS Sample Collected
+                    if (jvsSampleCollectedForWater == 1)
+                        rgJVSSample.check(R.id.rbJVSSampleYes)
+                    else
+                        rgJVSSample.check(R.id.rbJVSSampleNo)
+
+                    //JVS Data
+                    if (reports?.data?.jvsSampleCollectedWaterSource != null)
+                        mViewModel.populateData(reports?.data?.jvsSampleCollectedWaterSource)
+
+                }
+            }
+        }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setDataToViews()
+    }
 
 }

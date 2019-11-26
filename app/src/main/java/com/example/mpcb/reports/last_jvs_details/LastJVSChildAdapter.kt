@@ -42,6 +42,9 @@ class LastJVSChildAdapter(
         }
 
         holder.setSpinner(item)
+
+        holder.setDataToViews(item)
+
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -75,12 +78,27 @@ class LastJVSChildAdapter(
                         id: Long
                     ) {
                         itemBinding.spnParameter.setSelection(position)
+                        item.position = position
                         item.parameter = itemBinding.spnParameter.selectedItem.toString()
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
                 }
+        }
+
+        /**
+         * This method is used to set the data to the views
+         */
+        fun setDataToViews(item: LastJVSChild) {
+            itemBinding.run {
+                //Parameter
+                spnParameter.setSelection(item.position)
+
+                //Prescribed Value
+                if (item.prescribedValue != "")
+                    edtPrescribedValue.setText(item.prescribedValue)
+            }
         }
     }
 }

@@ -12,11 +12,17 @@ class LastJVSViewModel : BaseViewModel<LastJVSNavigator>() {
 
     fun getSourceList() = sourceList
 
-    fun populateData() {
-        val parentModel = JvsSampleCollectedWaterSource()
-        val childList = arrayListOf(LastJVSChild())
-        parentModel.lastJvsChild = childList
-        sourceList.value = arrayListOf(parentModel)
+    fun populateData(list: ArrayList<JvsSampleCollectedWaterSource>? = arrayListOf(
+        JvsSampleCollectedWaterSource()
+    )) {
+        if (list?.size!! >= 1){
+            sourceList.value = list
+        }else{
+            val parentModel = JvsSampleCollectedWaterSource()
+            val childList = arrayListOf(LastJVSChild())
+            parentModel.lastJvsChild = childList
+            sourceList.value = arrayListOf(parentModel)
+        }
     }
 
     fun deleteItem() {

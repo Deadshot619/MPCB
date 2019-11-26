@@ -562,6 +562,7 @@ class JvsSampleCollectedWaterSource : BaseObservable() {
 }
 
 class LastJVSChild : BaseObservable() {
+    var position: Int = 0
     var parameter = ""
         @Bindable get
         set(value) {
