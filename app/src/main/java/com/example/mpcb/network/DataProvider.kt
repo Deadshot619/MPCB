@@ -8,7 +8,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 object DataProvider : RemoteDataProvider {
 
@@ -106,7 +105,7 @@ object DataProvider : RemoteDataProvider {
         mServices.getVisitList(request).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
-                if (response.status.equals("0")) {
+                if (response.status == "0") {
                     error.accept(Throwable(response.message))
                 } else {
                     success.accept(response.data)

@@ -17,7 +17,6 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 
 class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
@@ -31,35 +30,42 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     fun getVisitList() = visitList
 
-    fun getVisitListData(fromDate: String) {
+    /**
+     * This method is used to get 'My Visits' data from server of the given month & year.
+     *
+     * @param fromDate Takes the Start date as first parameter.
+     * @param toDate Takes the End date as Second parameter.
+     */
+    fun getVisitListData(fromDate: String, toDate: String) {
         val request = MyVisitRequest()
         request.userId = user.userId.toString()
         //TODO 13/11/19 Change these dates to current month in development build
-        request.fromDate = "2017-11-01"
-        request.toDate = "2019-11-11"
+        request.fromDate = fromDate
+        request.toDate = toDate
 //        request.fromDate = fromDate
-        val time = SimpleDateFormat("yyyy-MM-dd").parse(fromDate)
-        val selectedCalender = Calendar.getInstance()
-        val currentCalendar = Calendar.getInstance()
-        selectedCalender.time = time
-        if (selectedCalender.get(Calendar.YEAR) < currentCalendar.get(Calendar.YEAR))
-            request.toDate =
-                selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
-                    Calendar.MONTH
-                ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
-                    Calendar.DAY_OF_MONTH
-                ).toString()
-        else if (selectedCalender.get(Calendar.MONTH) < currentCalendar.get(Calendar.MONTH))
-            request.toDate =
-                selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
-                    Calendar.MONTH
-                ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
-                    Calendar.DAY_OF_MONTH
-                ).toString()
-        else if (selectedCalender.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH))
-            request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
-        else
-            mNavigator!!.showAlert("Future Date Selected!")
+//        val time = SimpleDateFormat("yyyy-MM-dd").parse(fromDate)
+//        val selectedCalender = Calendar.getInstance()
+//        val currentCalendar = Calendar.getInstance()
+//        selectedCalender.time = time
+//        when {
+//            selectedCalender.get(Calendar.YEAR) < currentCalendar.get(Calendar.YEAR) ->
+//                request.toDate =
+//                    selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
+//                    Calendar.MONTH
+//                    ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
+//                        Calendar.DAY_OF_MONTH
+//                    ).toString()
+//            selectedCalender.get(Calendar.MONTH) < currentCalendar.get(Calendar.MONTH) ->
+//                request.toDate =
+//                    selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
+//                        Calendar.MONTH
+//                    ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
+//                        Calendar.DAY_OF_MONTH
+//                    ).toString()
+//            selectedCalender.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH) ->
+//                request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
+//            else -> mNavigator!!.showAlert("Future Date Selected!")
+//        }
         dialogVisibility.value = true
         dialogMessage.value = "Fetching List..."
         mDisposable.add(DataProvider.getVisitList(request, Consumer {
