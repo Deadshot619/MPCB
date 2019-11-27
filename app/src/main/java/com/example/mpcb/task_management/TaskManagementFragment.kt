@@ -18,7 +18,7 @@ class TaskManagementFragment : BaseFragment<FragmentTaskMngtBinding, TaskManagem
     override fun onInternetError() {}
 
     override fun onBinding() {
-        setToolbar(mBinding.toolbarLayout, getString(R.string.task_mngt_title))
+        setToolbar(mBinding.toolbarLayout, getString(R.string.task_mngt_title), showSearchBar = true)
         setUpRecyclerView()
     }
 
@@ -27,5 +27,4 @@ class TaskManagementFragment : BaseFragment<FragmentTaskMngtBinding, TaskManagem
         val adapter = TaskMngtAdapter(getBaseActivity(), mViewModel)
         mBinding.rvTasks.adapter = adapter
     }
-
 }

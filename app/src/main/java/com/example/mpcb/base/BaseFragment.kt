@@ -44,7 +44,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
      * This method is to be implemented in the child classes.
      * This method should retrieve & set data to views in Reports.
      */
-    protected open fun setDataToViews(){}
+    protected open fun setDataToViews() {}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,7 +75,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     /**
      * This method is used to set data to [report] variable
      */
-    protected fun setReportVariableData(visitReportId: String){
+    protected fun setReportVariableData(visitReportId: String) {
         report = getReportData(visitReportId) ?: ReportRequest()
     }
 
@@ -93,8 +93,36 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     protected fun getBaseActivity() = activity as BaseActivity<*, *>
 
-    protected fun setToolbar(toolbarBinding: ToolbarBinding, title: String) {
+    protected fun setToolbar(toolbarBinding: ToolbarBinding, title: String, showSearchBar: Boolean = false) {
         toolbarBinding.txtToolbarTitle.text = title
+
+        //if true, then Display search icon & add click listeners to it
+        if (showSearchBar){
+            //Show Search Icon
+            toolbarBinding.imgSearch.visibility = View.VISIBLE
+
+            //Search icon click listener
+            toolbarBinding.imgSearch.setOnClickListener {
+                //Hide main toolbar
+                toolbarBinding.mainToolbar.visibility = View.GONE
+                //show searchbar
+                toolbarBinding.searchbarLayout.visibility = View.VISIBLE
+
+                //set focus on search bar programmatically
+                toolbarBinding.searchBar.isIconified = false
+
+            }
+
+            //SearchBar click listener
+            toolbarBinding.searchBar.setOnCloseListener {
+                //show main toolbar
+                toolbarBinding.mainToolbar.visibility = View.VISIBLE
+                //hide searchbar & clear focus form it
+                toolbarBinding.searchBar.clearFocus()
+                toolbarBinding.searchbarLayout.visibility = View.GONE
+                true
+            }
+        }
     }
 
     protected fun addReportFragment(reportKey: Int, bundle: Bundle? = null) {
@@ -126,7 +154,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     /**
      * This method is used to get data from Fragment arguments
      */
-    protected fun getDataFromArguments(context: Fragment, key: String): String{
+    protected fun getDataFromArguments(context: Fragment, key: String): String {
         return context.arguments?.getString(key)!!
         //Not a good way to do, due to tight coupling of fragment to activity
 //        return ReportsPageActivity().visitReportId
@@ -166,7 +194,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
      *
      * @return [ReportRequest] returns an object of ReportRequest
      */
-    protected fun getReportData(reportNo: String): ReportRequest?{
+    protected fun getReportData(reportNo: String): ReportRequest? {
 //        val reports = PreferencesHelper.getPreferences(Constants.REPORT_KEY, "")
         val reports = PreferencesHelper.getPreferences(reportNo, "")
         return Gson().fromJson(reports as String, ReportRequest::class.java)

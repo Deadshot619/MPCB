@@ -57,7 +57,8 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     override fun onInternetError() {}
 
     override fun onBinding() {
-        setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title))
+        setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title), showSearchBar = true)
+
         setUpRecyclerView()
         mBinding.toolbarLayout.imgCalendar.setOnClickListener {
             val pd = MonthYearPickerDialog()

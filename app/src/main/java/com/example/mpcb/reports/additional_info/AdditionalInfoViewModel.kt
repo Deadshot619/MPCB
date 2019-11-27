@@ -12,7 +12,6 @@ import io.reactivex.functions.Consumer
 
 class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
 
-
     fun submitReport(
         reportRequest: ReportRequest?
     ) {
@@ -20,21 +19,22 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
         val user = Gson().fromJson(userData, LoginResponse::class.java)
 
 //        val reportData = PreferencesHelper.getStringPreference(Constants.REPORT_KEY, "")
-        val request = reportRequest
 
-        request?.let {
-            request.userId = user.userId
-            request.visitId = PreferencesHelper.getLongPreference(Constants.VISIT_ID).toInt()
-            request.indusImisId = PreferencesHelper.getStringPreference(Constants.INDUS_IMIS_ID, "")!!
+        reportRequest?.let {
+            reportRequest.userId = user.userId
+            reportRequest.visitId = PreferencesHelper.getLongPreference(Constants.VISIT_ID).toInt()
+            reportRequest.indusImisId = PreferencesHelper.getStringPreference(Constants.INDUS_IMIS_ID, "")!!
             dialogMessage.value = "Report Submitting..."
             dialogVisibility.value = true
 
-            mDisposable.add(DataProvider.submitReport(request, Consumer {
-                dialogVisibility.value = false
-                mNavigator!!.onSubmitReportSuccess(it.message)
-            }, Consumer { checkError(it) }))
+            mDisposable.add(DataProvider.submitReport(
+                reportRequest,
+                Consumer {
+                    dialogVisibility.value = false
+                    mNavigator!!.onSubmitReportSuccess(it.message)
+                },
+                Consumer { checkError(it) })
+            )
         }
-
     }
-
 }
