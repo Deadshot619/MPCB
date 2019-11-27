@@ -38,7 +38,6 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        showMessage("$year-$month-${dayOfMonth+1}")
         //TODO 26/11/19 To be implemented
         mViewModel.getVisitListData(
             fromDate = "$year-$month-${dayOfMonth + 1}",
@@ -87,7 +86,12 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         val adapter = MyVisitsAdapter(getBaseActivity(), mViewModel)
         mBinding.rvMyVisits.adapter = adapter
         mViewModel.getVisitList().observe(viewLifecycleOwner, Observer {
-            adapter.updateList(it)
+            if (it.status == "1" && it.data.size > 0)
+                adapter.updateList(it.data)
+            else if (it.status == "1" && it.data.size == 0)
+                showMessage(it.message)
+            else
+                showMessage(it.message)
         })
         val calendar = Calendar.getInstance()
         val fromDate =
@@ -111,7 +115,6 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCheckInClicked(model: MyVisitModel) {
-
         this.model = model
 
         if (!LocationHelper.isLocationProviderEnabled(context!!)) {

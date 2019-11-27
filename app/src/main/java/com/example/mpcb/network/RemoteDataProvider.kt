@@ -5,7 +5,6 @@ import com.example.mpcb.network.response.*
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 
 interface RemoteDataProvider {
 
@@ -35,7 +34,7 @@ interface RemoteDataProvider {
 
     fun getVisitList(
         request: MyVisitRequest,
-        success: Consumer<ArrayList<MyVisitModel>>,
+        success: Consumer<MyVisitResponse>,
         error: Consumer<Throwable>
     ): Disposable
 

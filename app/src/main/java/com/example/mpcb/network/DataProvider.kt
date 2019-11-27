@@ -99,16 +99,17 @@ object DataProvider : RemoteDataProvider {
 
     override fun getVisitList(
         request: MyVisitRequest,
-        success: Consumer<ArrayList<MyVisitModel>>,
+        success: Consumer<MyVisitResponse>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.getVisitList(request).subscribeOn(Schedulers.io())
+        mServices.getVisitList(request)
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
                 if (response.status == "0") {
                     error.accept(Throwable(response.message))
                 } else {
-                    success.accept(response.data)
+                    success.accept(response)
                 }
             }, error)
     } else {

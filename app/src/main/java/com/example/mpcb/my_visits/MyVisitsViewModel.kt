@@ -7,6 +7,7 @@ import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.MyVisitRequest
 import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.MyVisitModel
+import com.example.mpcb.network.response.MyVisitResponse
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -17,11 +18,10 @@ import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.io.File
-import java.util.*
 
 class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
-    private val visitList = MutableLiveData<ArrayList<MyVisitModel>>()
+    private val visitList = MutableLiveData<MyVisitResponse>()
 
     private val user by lazy {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
@@ -102,7 +102,6 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     }
 
     fun onCheckInClick(model: MyVisitModel) {
-
         if (model.checkInStatus != 1)
             mNavigator!!.onCheckInClicked(model)
         else
