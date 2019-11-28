@@ -8,7 +8,9 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
+import android.widget.SearchView
 import androidx.annotation.RequiresApi
+import androidx.databinding.adapters.SearchViewBindingAdapter
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -30,6 +32,7 @@ import java.util.*
 class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
     MyVisitsNavigator, DatePickerDialog.OnDateSetListener {
 
+    private lateinit var adapter: MyVisitsAdapter
 
     override fun showAlert(message: String) {
         showMessage("To be implemented")
@@ -60,12 +63,36 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title), showSearchBar = true)
 
         setUpRecyclerView()
+        setupSearchListener()
         mBinding.toolbarLayout.imgCalendar.setOnClickListener {
             val pd = MonthYearPickerDialog()
             pd.setListener(this)
             pd.show(fragmentManager!!, "MonthYearPickerDialog")
         }
     }
+
+    /**
+     * This method is used to setup a search listener for searchBar
+     */
+    private fun setupSearchListener(){
+        mBinding.toolbarLayout.searchBar.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener,
+                androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+
+                   return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    //Call the adapter's filter function
+                    adapter.filter.filter(newText)
+                   return false
+                }
+
+            }
+        )
+    }
+
 
     private fun showCalendarDialog() {
         val calendar = Calendar.getInstance()
@@ -84,7 +111,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     private fun setUpRecyclerView() {
         mBinding.rvMyVisits.layoutManager = LinearLayoutManager(getBaseActivity())
-        val adapter = MyVisitsAdapter(getBaseActivity(), mViewModel)
+        adapter = MyVisitsAdapter(getBaseActivity(), mViewModel)
         mBinding.rvMyVisits.adapter = adapter
         mViewModel.getVisitList().observe(viewLifecycleOwner, Observer {
             if (it.status == "1" && it.data.size > 0)
