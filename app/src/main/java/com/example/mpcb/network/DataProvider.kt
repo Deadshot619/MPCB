@@ -118,6 +118,7 @@ object DataProvider : RemoteDataProvider {
     }
 
     override fun checkIn(
+        requestId: String,
         userId: String,
         visitId: String,
         latitude: String,
@@ -128,6 +129,7 @@ object DataProvider : RemoteDataProvider {
     ): Disposable =
         if (isNetworkAvailable()) {
             mServices.checkIn(
+                requestId,
                 userId,
                 visitId,
                 latitude,

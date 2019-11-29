@@ -125,11 +125,18 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         dialogMessage.value = "Checking In..."
         dialogVisibility.value = true
         mNavigator!!.dismissCheckinDialog()
-        mDisposable.add(DataProvider.checkIn(userId, visitId, latitude, longitude, selfieImagePart,
-            Consumer {
+        mDisposable.add(DataProvider.checkIn(
+            requestId = "",
+            userId = userId,
+            visitId = visitId,
+            latitude = latitude,
+            longitude = longitude,
+            selfieImagePart = selfieImagePart,
+            success = Consumer {
                 dialogVisibility.value = false
                 mNavigator!!.onCheckInSuccess(it.message)
-            }, Consumer { checkError(it) })
+            },
+            error = Consumer { checkError(it) })
         )
     }
 }

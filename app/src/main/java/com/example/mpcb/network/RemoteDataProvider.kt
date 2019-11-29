@@ -39,6 +39,7 @@ interface RemoteDataProvider {
     ): Disposable
 
     fun checkIn(
+        requestId: String,
         userId: String,
         visitId: String,
         latitude: String,

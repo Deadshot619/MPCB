@@ -29,6 +29,7 @@ interface APIInterface {
     @Multipart
     @POST("check_in")
     fun checkIn(
+        @Part("RequestId") requestId: String = "",
         @Part("UserId") userId: String,
         @Part("visitId") visitId: String,
         @Part("latitude") latitude: String,
