@@ -10,7 +10,6 @@ import android.util.Log
 import android.widget.DatePicker
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
-import androidx.databinding.adapters.SearchViewBindingAdapter
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -34,6 +33,9 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     private lateinit var adapter: MyVisitsAdapter
 
+    private lateinit var fromDate: String
+    private lateinit var toDate: String
+
     override fun showAlert(message: String) {
         showMessage("To be implemented")
         //TODO 26/11/19 To be implemented
@@ -41,10 +43,12 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        //TODO 26/11/19 To be implemented
+        fromDate = "$year-$month-${dayOfMonth + 1}"
+        toDate = "$year-$month-${dayOfMonth + 31}"
+
         mViewModel.getVisitListData(
-            fromDate = "$year-$month-${dayOfMonth + 1}",
-            toDate = "$year-$month-${dayOfMonth + 31}"
+            fromDate = fromDate,
+            toDate = toDate
         )
 
         // To change body of created functions use File | Settings | File Templates.
@@ -122,10 +126,10 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
                 showMessage(it.message)
         })
         val calendar = Calendar.getInstance()
-        val fromDate =
+        fromDate =
             calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
                     calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
-        val toDate =
+        toDate =
             calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
                     calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         mViewModel.getVisitListData(fromDate, toDate)
@@ -167,13 +171,6 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     override fun onCheckInSuccess(msg: String) {
         showMessage(msg)
-        val calendar = Calendar.getInstance()
-        val fromDate =
-            calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
-                    calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
-        val toDate =
-            calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
-                    calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         mViewModel.getVisitListData(fromDate = fromDate, toDate = toDate)
     }
 
