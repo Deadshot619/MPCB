@@ -4,6 +4,7 @@ import com.example.mpcb.network.request.*
 import com.example.mpcb.network.response.*
 import io.reactivex.Single
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -29,11 +30,11 @@ interface APIInterface {
     @Multipart
     @POST("check_in")
     fun checkIn(
-        @Part("RequestId") requestId: String = "",
-        @Part("UserId") userId: String,
-        @Part("visitId") visitId: String,
-        @Part("latitude") latitude: String,
-        @Part("longitude") longitude: String,
+        @Part("RequestId") requestId: RequestBody,
+        @Part("UserId") userId: RequestBody,
+        @Part("visitId") visitId: RequestBody,
+        @Part("latitude") latitude: RequestBody,
+        @Part("longitude") longitude: RequestBody,
         @Part selfieImagePart: MultipartBody.Part
     ): Single<CheckInResponse>
 

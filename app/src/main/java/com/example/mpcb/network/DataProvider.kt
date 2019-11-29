@@ -8,6 +8,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 object DataProvider : RemoteDataProvider {
 
@@ -118,11 +119,11 @@ object DataProvider : RemoteDataProvider {
     }
 
     override fun checkIn(
-        requestId: String,
-        userId: String,
-        visitId: String,
-        latitude: String,
-        longitude: String,
+        requestId: RequestBody,
+        userId: RequestBody,
+        visitId: RequestBody,
+        latitude: RequestBody,
+        longitude: RequestBody,
         selfieImagePart: MultipartBody.Part,
         success: Consumer<CheckInResponse>,
         error: Consumer<Throwable>

@@ -112,10 +112,22 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         val selfieImageBody: RequestBody
         val selfieImagePart: MultipartBody.Part
 
-        val userId = user.userId.toString()
-        val visitId = visitSchedulerId.toString()
-        val latitude = PreferencesHelper.getCurrentLatitude()
-        val longitude = PreferencesHelper.getCurrentLongitude()
+        //Make a RequestBody of each value to be sent.
+        val requestId = RequestBody.create(
+            MediaType.parse("text/plain"), ""
+        )
+        val userId = RequestBody.create(
+            MediaType.parse("text/plain"), user.userId.toString()
+        )
+        val visitId = RequestBody.create(
+            MediaType.parse("text/plain"), visitSchedulerId.toString()
+        )
+        val latitude = RequestBody.create(
+            MediaType.parse("text/plain"), PreferencesHelper.getCurrentLatitude()
+        )
+        val longitude = RequestBody.create(
+            MediaType.parse("text/plain"), PreferencesHelper.getCurrentLongitude()
+        )
 
         val file = File(path)
         selfieImageBody = RequestBody.create(MediaType.parse("image/*"), file)
@@ -126,7 +138,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         dialogVisibility.value = true
         mNavigator!!.dismissCheckinDialog()
         mDisposable.add(DataProvider.checkIn(
-            requestId = "",
+            requestId = requestId,
             userId = userId,
             visitId = visitId,
             latitude = latitude,
