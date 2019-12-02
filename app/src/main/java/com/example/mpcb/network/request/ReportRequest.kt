@@ -221,8 +221,9 @@ class RoutineReport {
     @SerializedName("treatment_observation")
     @Expose
     var treatmentObservation: String = ""
-    @SerializedName("tba")
-    @Expose
+    //Not yet given
+//    @SerializedName("tba")
+//    @Expose
     var treatmentDomesticObservation: String = ""
     @SerializedName("etp_operational")
     @Expose
