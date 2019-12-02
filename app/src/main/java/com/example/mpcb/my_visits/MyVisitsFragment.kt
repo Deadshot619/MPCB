@@ -33,6 +33,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     private lateinit var adapter: MyVisitsAdapter
 
+    //These variables will be used to set adapter's date to start & end of month
     private lateinit var fromDate: String
     private lateinit var toDate: String
 

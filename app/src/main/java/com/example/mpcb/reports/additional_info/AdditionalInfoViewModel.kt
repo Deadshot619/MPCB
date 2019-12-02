@@ -33,7 +33,9 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
                     dialogVisibility.value = false
                     mNavigator!!.onSubmitReportSuccess(it.message)
                 },
-                Consumer { checkError(it) })
+                Consumer {
+                    checkError(it)
+                })
             )
         }
     }

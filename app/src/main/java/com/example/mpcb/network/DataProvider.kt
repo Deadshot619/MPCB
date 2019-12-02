@@ -154,7 +154,8 @@ object DataProvider : RemoteDataProvider {
         request: ReportRequest,
         success: Consumer<ReportSubmitResponse>,
         error: Consumer<Throwable>
-    ): Disposable = if (isNetworkAvailable()) {
+    ): Disposable =
+        if (isNetworkAvailable()) {
         mServices.submitReport(request)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
