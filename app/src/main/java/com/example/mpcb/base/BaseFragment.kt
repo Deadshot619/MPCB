@@ -93,11 +93,15 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     protected fun getBaseActivity() = activity as BaseActivity<*, *>
 
-    protected fun setToolbar(toolbarBinding: ToolbarBinding, title: String, showSearchBar: Boolean = false) {
+    protected fun setToolbar(
+        toolbarBinding: ToolbarBinding,
+        title: String,
+        showSearchBar: Boolean = false
+    ) {
         toolbarBinding.txtToolbarTitle.text = title
 
         //if true, then Display search icon & add click listeners to it
-        if (showSearchBar){
+        if (showSearchBar) {
             //Show Search Icon
             toolbarBinding.imgSearch.visibility = View.VISIBLE
 
