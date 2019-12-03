@@ -53,7 +53,7 @@ class AirPollutionAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 android.R.layout.simple_spinner_item,
-                Constants.AIR_POLLUTION_LIST
+                Constants.AIR_POLLUTION_LIST.values.toTypedArray()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnSource.adapter = adapter

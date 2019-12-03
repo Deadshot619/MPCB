@@ -45,7 +45,7 @@ class IndustryReportFragment :
         val adapter = ArrayAdapter(
             getBaseActivity(),
             android.R.layout.simple_spinner_item,
-            Constants.CATEGORY_LIST
+            Constants.CATEGORY_LIST.values.toTypedArray()
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mBinding.catSpinner.adapter = adapter

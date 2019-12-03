@@ -65,7 +65,7 @@ class AmbientAirChildAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 R.layout.simple_spinner_item,
-                Constants.AMBIENT_AIR_PARAM_LIST
+                Constants.AMBIENT_AIR_PARAM_LIST.values.toTypedArray()
             )
             adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
 

@@ -65,7 +65,7 @@ class LastJVSChildAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 R.layout.simple_spinner_item,
-                Constants.JVS_PARAM_LIST
+                Constants.JVS_PARAM_LIST.values.toTypedArray()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnParameter.adapter = adapter

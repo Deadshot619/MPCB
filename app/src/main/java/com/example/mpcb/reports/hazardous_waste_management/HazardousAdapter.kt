@@ -89,7 +89,7 @@ class HazardousAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 android.R.layout.simple_spinner_item,
-                Constants.UNIT_LIST
+                Constants.UNIT_LIST.values.toTypedArray()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnUOM.adapter = adapter
