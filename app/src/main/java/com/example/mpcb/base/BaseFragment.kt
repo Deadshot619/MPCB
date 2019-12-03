@@ -98,61 +98,66 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         title: String,
         showSearchBar: Boolean = false
     ) {
-        toolbarBinding.txtToolbarTitle.text = title
+        toolbarBinding.run {
 
-        //if true, then Display search icon & add click listeners to it
-        if (showSearchBar) {
-            //Show Search Icon
-            toolbarBinding.imgSearch.visibility = View.VISIBLE
+            //Toolbar title
+            txtToolbarTitle.text = title
 
-            //Search icon click listener
-            toolbarBinding.imgSearch.setOnClickListener {
-                //Hide main toolbar
-                toolbarBinding.mainToolbar.visibility = View.GONE
-                //show searchbar
-                toolbarBinding.searchbarLayout.visibility = View.VISIBLE
+            //if true, then Display search icon & add click listeners to it
+            if (showSearchBar) {
+                //Show Search Icon
+                imgSearch.visibility = View.VISIBLE
 
-                //set focus on search bar programmatically
-                toolbarBinding.searchBar.isIconified = false
+                //Search icon click listener
+                imgSearch.setOnClickListener {
+                    //Hide main toolbar
+                    mainToolbar.visibility = View.GONE
+                    //show searchbar
+                    searchbarLayout.visibility = View.VISIBLE
 
-            }
+                    //set focus on search bar programmatically
+                    searchBar.isIconified = false
+                }
 
-            //SearchBar click listener
-            toolbarBinding.searchBar.setOnCloseListener {
-                //show main toolbar
-                toolbarBinding.mainToolbar.visibility = View.VISIBLE
-                //hide searchbar & clear focus form it
-                toolbarBinding.searchBar.clearFocus()
-                toolbarBinding.searchbarLayout.visibility = View.GONE
-                true
+                //SearchBar click listener
+                searchBar.setOnCloseListener {
+                    //show main toolbar
+                    mainToolbar.visibility = View.VISIBLE
+                    //hide searchbar & clear focus form it
+                    searchBar.clearFocus()
+                    searchbarLayout.visibility = View.GONE
+                    true
+                }
             }
         }
     }
 
     protected fun addReportFragment(reportKey: Int, bundle: Bundle? = null) {
-        val fragment = when (reportKey) {
-            Constants.REPORT_1 -> IndustryReportFragment() //v
-            Constants.REPORT_2 -> ProductionFragment()// listing //v
-            Constants.REPORT_3 -> TreatmentFragment()//v
-            Constants.REPORT_4 -> WaterFragment()//v
-            Constants.REPORT_5 -> DisposalFragment()//v
-            Constants.REPORT_6 -> OMSWaterFragment() //v
-            Constants.REPORT_7 -> ElectricFragment() //v
-            Constants.REPORT_8 -> LastJVSFragment() // listing
-            Constants.REPORT_9 -> AirFragment() // listing //v
-            Constants.REPORT_10 -> OMSStackFragment()//v
-            Constants.REPORT_11 -> OMSAmbientAirFragment()// listing //v
-            Constants.REPORT_12 -> HazardousFragment()// listing//v
-            Constants.REPORT_13 -> NonHazardousFragment()// listing //v
-            Constants.REPORT_14 -> TreePlantationFragment()//v
-            Constants.REPORT_15 -> StatutoryFragment() //v
-            Constants.REPORT_16 -> PreviousLegalFragment() //v
-            Constants.REPORT_17 -> BGDFragment()// listing //v
-            Constants.REPORT_18 -> AdditionalInfoFragment() //v
-            else -> Fragment()
-        }
+        Constants.run {
+            val fragment = when (reportKey) {
+                REPORT_1 -> IndustryReportFragment() //v
+                REPORT_2 -> ProductionFragment()// listing //v
+                REPORT_3 -> TreatmentFragment()//v
+                REPORT_4 -> WaterFragment()//v
+                REPORT_5 -> DisposalFragment()//v
+                REPORT_6 -> OMSWaterFragment() //v
+                REPORT_7 -> ElectricFragment() //v
+                REPORT_8 -> LastJVSFragment() // listing
+                REPORT_9 -> AirFragment() // listing //v
+                REPORT_10 -> OMSStackFragment()//v
+                REPORT_11 -> OMSAmbientAirFragment()// listing //v
+                REPORT_12 -> HazardousFragment()// listing//v
+                REPORT_13 -> NonHazardousFragment()// listing //v
+                REPORT_14 -> TreePlantationFragment()//v
+                REPORT_15 -> StatutoryFragment() //v
+                REPORT_16 -> PreviousLegalFragment() //v
+                REPORT_17 -> BGDFragment()// listing //v
+                REPORT_18 -> AdditionalInfoFragment() //v
+                else -> Fragment()
+            }
 
-        getBaseActivity().addReportFragment(fragment, true, bundle)
+            getBaseActivity().addReportFragment(fragment, true, bundle)
+        }
     }
 
     /**

@@ -21,7 +21,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/mainToolbar"
                     android:layout_width="match_parent"
-                    tools:visibility="gone"
+                    tools:visibility="visible"
                     android:layout_height="match_parent"
                     android:elevation="30dp"
                     android:gravity="center_vertical"
@@ -86,7 +86,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/searchbarLayout"
                     android:visibility="gone"
-                    tools:visibility="visible"
+                    tools:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 

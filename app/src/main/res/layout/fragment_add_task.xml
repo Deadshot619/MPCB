@@ -6,13 +6,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg_grey"
-            android:padding="8dp"
             tools:context="com.example.mpcb.profile.ProfileFragment">
 
         <include
                 android:id="@+id/toolbarLayout"
                 layout="@layout/toolbar"
-                app:layout_constraintBottom_toTopOf="@id/cardviewLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
@@ -21,6 +19,9 @@
                 android:id="@+id/cardviewLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp"
                 app:cardUseCompatPadding="true"
@@ -31,7 +32,8 @@
 
             <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

@@ -19,20 +19,38 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, TaskManagementViewM
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set Toolbar Layout
         setToolbar(
-            mBinding.toolbarLayout,
-            getString(R.string.add_task_title),
-            showSearchBar = true
+            toolbarBinding = mBinding.toolbarLayout,
+            title = getString(R.string.add_task_title),
+            showSearchBar = false
         )
-        mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
-        mBinding.toolbarLayout.imgSearch.visibility = View.GONE
-        mBinding.toolbarLayout.imgBack.visibility = View.VISIBLE
 
-        mBinding.toolbarLayout.imgBack.setOnClickListener {
-            activity!!.onBackPressed()
+        //Toolbar
+        mBinding.toolbarLayout.run{
+            //Hide Calender icon
+            imgCalendar.visibility = View.GONE
+            //Show Back Button
+            imgBack.visibility = View.VISIBLE
         }
 
-        mBinding.edtReminderDate.setOnClickListener { showDateDialog() }
+        //Set click Listeners To views
+        setClickListeners()
+    }
+
+    /**
+     * Method to set Click Listeners to views
+     */
+    private fun setClickListeners() {
+        mBinding.run {
+            //Set listener to back button in toolbar
+            toolbarLayout.imgBack.setOnClickListener {
+                activity!!.onBackPressed()
+            }
+
+            //Set listener to Date field
+            edtReminderDate.setOnClickListener { showDateDialog() }
+        }
     }
 
     private fun showDateDialog() {
