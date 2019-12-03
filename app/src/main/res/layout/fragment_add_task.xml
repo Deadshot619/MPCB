@@ -79,7 +79,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/UserDetailsLayout"
+                            android:id="@+id/userDetailsLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="16dp"
@@ -107,7 +107,7 @@
                             android:layout_marginRight="16dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/UserDetailsLayout">
+                            app:layout_constraintTop_toBottomOf="@id/userDetailsLayout">
 
                         <androidx.appcompat.widget.AppCompatEditText
                                 android:id="@+id/edtTaskDescription"

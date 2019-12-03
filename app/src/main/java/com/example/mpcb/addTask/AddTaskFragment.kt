@@ -1,4 +1,4 @@
-package com.example.mpcb.task_management
+package com.example.mpcb.addTask
 
 import android.app.DatePickerDialog
 import android.util.Log
@@ -9,11 +9,14 @@ import com.example.mpcb.databinding.FragmentAddTaskBinding
 import com.example.mpcb.utils.showMessage
 import java.util.*
 
-class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, TaskManagementViewModel>()
-    , TaskManagementNavigator {
+class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
+    , AddTaskNavigator {
+
+    //instance of UserListFragment for dialog
+    private lateinit var dialogFragment: UserListDialog
 
     override fun getLayoutId() = R.layout.fragment_add_task
-    override fun getViewModel() = TaskManagementViewModel::class.java
+    override fun getViewModel() = AddTaskViewModel::class.java
     override fun getNavigator() = this@AddTaskFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
@@ -50,7 +53,16 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, TaskManagementViewM
 
             //Set listener to Date field
             edtReminderDate.setOnClickListener { showDateDialog() }
+
+            //Set listener to User Details field
+            edtUserDetails.setOnClickListener { showUsersListDialog() }
         }
+    }
+
+    private fun showUsersListDialog() {
+        dialogFragment = UserListDialog.newInstance(context = activity!!, mViewModel = mViewModel)
+        dialogFragment.show(parentFragmentManager, AddTaskFragment::class.java.simpleName)
+        showMessage("Clicked!")
     }
 
     private fun showDateDialog() {

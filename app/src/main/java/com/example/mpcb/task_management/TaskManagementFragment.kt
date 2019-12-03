@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
+import com.example.mpcb.addTask.AddTaskFragment
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentTaskMngtBinding
 import com.example.mpcb.utils.addFragment

@@ -85,7 +85,6 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
             longitude = PreferencesHelper.getCurrentLongitude()
             dialogBinding.latitudeEd.setText(PreferencesHelper.getCurrentLatitude())
             dialogBinding.longitudeEd.setText(PreferencesHelper.getCurrentLongitude())
-
         }
 
         dialogBinding.appCompatImageView.setOnClickListener {
