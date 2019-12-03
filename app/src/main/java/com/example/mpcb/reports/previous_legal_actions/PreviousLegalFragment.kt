@@ -1,6 +1,5 @@
 package com.example.mpcb.reports.previous_legal_actions
 
-
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
@@ -95,9 +94,9 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
         super.setDataToViews()
         reports = getReportData(visitReportId)
 
-        if (reports != null){
-            mBinding.run{
-                reports?.data?.routineReport?.run{
+        if (reports != null) {
+            mBinding.run {
+                reports?.data?.routineReport?.run {
                     //Set the value to texts
                     edtActionInitiated.setText(actionInitiatedDate)
                     edtSpecificCompliance.setText(specialCompliance)

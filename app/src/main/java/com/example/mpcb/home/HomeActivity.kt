@@ -9,6 +9,7 @@ import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.my_visits.MyVisitsFragment
 import com.example.mpcb.profile.ProfileFragment
+import com.example.mpcb.task_management.AddTaskFragment
 import com.example.mpcb.task_management.TaskManagementFragment
 import com.example.mpcb.utils.showMessage
 
@@ -56,6 +57,15 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                 }
             }
             false
+        }
+    }
+
+    override fun onBackPressed() {
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.container)
+        if (currentFragment is AddTaskFragment) {
+            supportFragmentManager.beginTransaction().remove(currentFragment).commit()
+        } else {
+            super.onBackPressed()
         }
     }
 

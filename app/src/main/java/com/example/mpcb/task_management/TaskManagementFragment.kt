@@ -1,10 +1,13 @@
 package com.example.mpcb.task_management
 
 
+import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentTaskMngtBinding
+import com.example.mpcb.utils.addFragment
 import com.example.mpcb.utils.showMessage
 
 
@@ -18,8 +21,21 @@ class TaskManagementFragment : BaseFragment<FragmentTaskMngtBinding, TaskManagem
     override fun onInternetError() {}
 
     override fun onBinding() {
-        setToolbar(mBinding.toolbarLayout, getString(R.string.task_mngt_title), showSearchBar = true)
+        setToolbar(
+            mBinding.toolbarLayout,
+            getString(R.string.task_mngt_title),
+            showSearchBar = true
+        )
+        mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
         setUpRecyclerView()
+        setFloatingActionButton()
+    }
+
+    private fun setFloatingActionButton() {
+        val bundle = Bundle()
+        mBinding.fabTaskManagement.setOnClickListener {
+            addFragment(AddTaskFragment(), false, bundle)
+        }
     }
 
     private fun setUpRecyclerView() {
