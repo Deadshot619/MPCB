@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemProductionBinding
 import com.example.mpcb.network.request.RoutineReportProduct
-import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST
 
 
 class ProductionAdapter(
@@ -49,12 +49,18 @@ class ProductionAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 android.R.layout.simple_spinner_item,
-                Constants.UNIT_LIST.values.toTypedArray()
+                UNIT_LIST.values.toTypedArray()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnUnitActual.adapter = adapter
             if (item.productUomActual != null && item.productUomActual != "")
-                itemBinding.spnUnitActual.setSelection(item.productUomActual!!.toInt())
+                itemBinding.spnUnitActual.setSelection(
+                    //if the given value doesn't match with any value in the hashmap
+                    //return 0 else return that Key containing that value
+                    if (UNIT_LIST.filterValues { it == item.productUomActual }.keys.isNotEmpty())
+                        UNIT_LIST.filterValues { it == item.productUomActual }.keys.first()
+                    else 0
+                )
             itemBinding.spnUnitActual.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -64,7 +70,7 @@ class ProductionAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUnitActual.setSelection(position)
-                        item.productUomActual = "$position"
+                        item.productUomActual = UNIT_LIST[position]!!
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -73,7 +79,13 @@ class ProductionAdapter(
 
             itemBinding.spnUnitConsent.adapter = adapter
             if (item.productUom != null && item.productUom != "")
-                itemBinding.spnUnitConsent.setSelection(item.productUom!!.toInt())
+                itemBinding.spnUnitConsent.setSelection(
+                    //if the given value doesn't match with any value in the hashmap
+                    //return 0 else return that Key containing that value
+                    if (UNIT_LIST.filterValues { it == item.productUom }.keys.isNotEmpty())
+                        UNIT_LIST.filterValues { it == item.productUom }.keys.first()
+                    else 0
+                )
             itemBinding.spnUnitConsent.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -84,7 +96,7 @@ class ProductionAdapter(
 
                     ) {
                         itemBinding.spnUnitConsent.setSelection(position)
-                        item.productUom = "$position"
+                        item.productUom = UNIT_LIST[position]!!
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}

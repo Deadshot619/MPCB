@@ -10,12 +10,13 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
-import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.CATEGORY_LIST
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.utils.validations.isDecimal
 import com.example.mpcb.utils.validations.isEmailValid
 import com.example.mpcb.utils.validations.isValidMobile
 import java.util.*
+import com.example.mpcb.utils.constants.Constants.Companion as Constants1
 
 class IndustryReportFragment :
     BaseFragment<FragmentIndustryCategoryBinding, ReportsPageViewModel>(), ReportsPageNavigator {
@@ -23,7 +24,6 @@ class IndustryReportFragment :
     private val VISITED_ON = 1
     private val VALID_UPTO = 2
     private var reports: ReportRequest? = null
-    private val CATEGORY_LIST = Constants.CATEGORY_LIST
 
     private lateinit var visitReportId: String
 
@@ -34,11 +34,11 @@ class IndustryReportFragment :
     override fun onInternetError() {}
 
     override fun onBinding() {
-        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_1)
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants1.REPORT_1)
         setListener()
 
         //Get Visit Report ID from arguments
-        visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
+        visitReportId = getDataFromArguments(this, Constants1.VISIT_REPORT_ID)
         showMessage(visitReportId)
         //set report variable data
         setReportVariableData(visitReportId)
@@ -47,7 +47,7 @@ class IndustryReportFragment :
         val adapter = ArrayAdapter(
             getBaseActivity(),
             android.R.layout.simple_spinner_item,
-            Constants.CATEGORY_LIST.values.toTypedArray()
+            CATEGORY_LIST.values.toTypedArray()
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mBinding.catSpinner.adapter = adapter
@@ -101,13 +101,13 @@ class IndustryReportFragment :
             if (validateFieldsFilledCorrect()) {
                 saveReportData(
                     reportNo = visitReportId,
-                    reportKey = Constants.REPORT_1,
+                    reportKey = Constants1.REPORT_1,
                     reportStatus = true
                 )
                 //Put the Visit Report ID in bundle to share to Fragments
                 val bundle = Bundle()
-                bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-                addReportFragment(Constants.REPORT_2, bundle)
+                bundle.putString(Constants1.VISIT_REPORT_ID, visitReportId)
+                addReportFragment(Constants1.REPORT_2, bundle)
             }
         }
     }
@@ -200,11 +200,11 @@ class IndustryReportFragment :
                 if (reports?.data?.industryCategoryReselect != "")
                     reports?.data?.industryCategoryReselect?.let { value ->
                         catSpinner.setSelection(
-                            if (CATEGORY_LIST.filterValues { it == value }.keys.isNotEmpty()){
+                            //if the given value doesn't match with any value in the hashmap
+                            //return 0 else return that Key containing that value
+                            if (CATEGORY_LIST.filterValues { it == value }.keys.isNotEmpty())
                                 CATEGORY_LIST.filterValues { it == value }.keys.first()
-                            }else{
-                                0
-                            }
+                            else 0
                         )
                     }
                 edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
