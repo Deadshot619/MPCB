@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemChildLastJvsBinding
 import com.example.mpcb.network.request.LastJVSChild
-import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.JVS_PARAM_LIST
 
 class LastJVSChildAdapter(
     val context: Context,
@@ -65,9 +65,9 @@ class LastJVSChildAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 R.layout.simple_spinner_item,
-                Constants.JVS_PARAM_LIST.values.toTypedArray()
+                JVS_PARAM_LIST.values.toTypedArray()
             )
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
             itemBinding.spnParameter.adapter = adapter
             itemBinding.spnParameter.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
@@ -78,8 +78,7 @@ class LastJVSChildAdapter(
                         id: Long
                     ) {
                         itemBinding.spnParameter.setSelection(position)
-                        item.position = position
-                        item.parameter = itemBinding.spnParameter.selectedItem.toString()
+                        item.parameter = JVS_PARAM_LIST[position]!!
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -93,7 +92,13 @@ class LastJVSChildAdapter(
         fun setDataToViews(item: LastJVSChild) {
             itemBinding.run {
                 //Parameter
-                spnParameter.setSelection(item.position)
+                spnParameter.setSelection(
+                    //if the given value doesn't match with any value in the hashmap
+                    //return 0 else return that Key containing that value
+                    if (JVS_PARAM_LIST.filterValues { it == item.parameter }.keys.isNotEmpty())
+                        JVS_PARAM_LIST.filterValues { it == item.parameter }.keys.first()
+                    else 0
+                )
 
                 //Prescribed Value
                 if (item.prescribedValue != "")
