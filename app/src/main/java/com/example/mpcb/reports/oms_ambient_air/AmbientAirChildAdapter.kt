@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemChildAmbientAirBinding
 import com.example.mpcb.network.request.AmbientAirChild
-import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.AMBIENT_AIR_PARAM_LIST
 
 class AmbientAirChildAdapter(
     val context: Context,
@@ -65,7 +65,7 @@ class AmbientAirChildAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 R.layout.simple_spinner_item,
-                Constants.AMBIENT_AIR_PARAM_LIST.values.toTypedArray()
+                AMBIENT_AIR_PARAM_LIST.values.toTypedArray()
             )
             adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
 
@@ -80,9 +80,8 @@ class AmbientAirChildAdapter(
                         id: Long
                     ) {
                         itemBinding.spnParameter.setSelection(position)
-                        //save selected position
-                        item.position = position
-                        item.parameter = itemBinding.spnParameter.selectedItem.toString()
+                        //Set dropdown parameter field value
+                        item.parameter = AMBIENT_AIR_PARAM_LIST[position]!!
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -97,7 +96,15 @@ class AmbientAirChildAdapter(
             itemBinding.run {
                 //Parameter
 //                if (item.position != "")
-                    spnParameter.setSelection(item.position)
+                    spnParameter.setSelection(
+                        //if the given value doesn't match with any value in the hashmap
+                        //return 0 else return that Key containing that value
+                        if (AMBIENT_AIR_PARAM_LIST.filterValues { it == item.parameter }.keys.isNotEmpty())
+                            AMBIENT_AIR_PARAM_LIST.filterValues { it == item.parameter }.keys.first()
+                        else 0
+                    )
+
+
                 //Prescribed Value
                 if (item.prescribedValue != "")
                     edtPrescribedValue.setText(item.prescribedValue)
