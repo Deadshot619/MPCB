@@ -23,6 +23,8 @@ class IndustryReportFragment :
     private val VISITED_ON = 1
     private val VALID_UPTO = 2
     private var reports: ReportRequest? = null
+    private val CATEGORY_LIST = Constants.CATEGORY_LIST
+
     private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_industry_category
@@ -84,7 +86,7 @@ class IndustryReportFragment :
     }
 
     private fun onSubmit() {
-        report.data.industryCategoryReselect = "${mBinding.catSpinner.selectedItemPosition}"
+        report.data.industryCategoryReselect = CATEGORY_LIST[mBinding.catSpinner.selectedItemPosition]!!
 
         report.data.routineReport.run{
             visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
@@ -196,8 +198,14 @@ class IndustryReportFragment :
         if(reports != null) {
             mBinding.run {
                 if (reports?.data?.industryCategoryReselect != "")
-                    reports?.data?.industryCategoryReselect?.toInt()?.let {
-                        catSpinner.setSelection(it)
+                    reports?.data?.industryCategoryReselect?.let { value ->
+                        catSpinner.setSelection(
+                            if (CATEGORY_LIST.filterValues { it == value }.keys.isNotEmpty()){
+                                CATEGORY_LIST.filterValues { it == value }.keys.first()
+                            }else{
+                                0
+                            }
+                        )
                     }
                 edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
                 visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
