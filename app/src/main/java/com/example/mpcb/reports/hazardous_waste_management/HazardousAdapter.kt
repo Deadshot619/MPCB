@@ -11,7 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemHazardiousReportsBinding
 import com.example.mpcb.network.request.RoutineReportHazardousWaste
-import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST
+import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST1
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -89,7 +90,7 @@ class HazardousAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 android.R.layout.simple_spinner_item,
-                Constants.UNIT_LIST.values.toTypedArray()
+                UNIT_LIST1.values.toTypedArray()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnUOM.adapter = adapter
@@ -102,7 +103,7 @@ class HazardousAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUOM.setSelection(position)
-                        item.hwDisposalQuantityUnit = position
+                        item.hwDisposalQuantityUnit = UNIT_LIST1.filterValues { it == UNIT_LIST[position] }.keys.first()
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -114,9 +115,14 @@ class HazardousAdapter(
          * This function is used to set data to views
          */
         fun setDataToViews(item: RoutineReportHazardousWaste) {
-            //UOM
-            if (item.hwDisposalQuantityUnit != null)
-                itemBinding.spnUOM.setSelection(item.hwDisposalQuantityUnit!!)
+            //UOM spinner
+            if (item.hwDisposalQuantityUnit != null && item.hwDisposalQuantityUnit != "")
+                itemBinding.spnUOM.setSelection(//Check if the retrieved value is present in the [UNIT_LIST1], return 0 if not present
+                    if (UNIT_LIST1[item.hwDisposalQuantityUnit] != null)
+                    //Filter keys in the [UNIT_LIST] according to value in the given position in UNIT_LIST1
+                        UNIT_LIST.filterValues { it == UNIT_LIST1[item.hwDisposalQuantityUnit] }.keys.first()
+                    else 0
+                )
         }
     }
 }

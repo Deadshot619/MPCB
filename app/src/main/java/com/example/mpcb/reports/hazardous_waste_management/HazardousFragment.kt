@@ -169,7 +169,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
             }
 
 //            UOM
-            if (item.hwDisposalQuantityUnit == 0) {
+            if (item.hwDisposalQuantityUnit == "0") {
                 showMessage("Select UOM")
                 isValid = false
                 break

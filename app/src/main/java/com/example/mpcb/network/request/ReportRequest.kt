@@ -873,8 +873,7 @@ class RoutineReportHazardousWaste : BaseObservable() {
     //TODO 2/12/2019 Change this to String
     @SerializedName("hw_disposal_quantity_unit")
     @Expose
-    var hwDisposalQuantityUnit1: String = "00000004"
-    var hwDisposalQuantityUnit: Int = 0
+    var hwDisposalQuantityUnit: String = ""
 }
 
 //Non-Hazardous Waste
