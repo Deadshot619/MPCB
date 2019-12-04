@@ -9,6 +9,7 @@ import com.example.mpcb.databinding.FragmentAirPollutionBinding
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.AIR_POLLUTION_LIST
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.utils.validations.isDecimal
 
@@ -73,7 +74,7 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
         val sourceList = mViewModel.getSourceList().value!!
         for (item in sourceList) {
             //Source other
-            if (item.airPollutionSource == "5"){
+            if (item.airPollutionSource == AIR_POLLUTION_LIST[4]){
                 if (item.airPollutionSourceOther.isNullOrEmpty()){
                     showMessage("Please enter any other source")
                     isValid = false

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemAirPollutionBinding
 import com.example.mpcb.network.request.RoutineReportAirPollution
-import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.AIR_POLLUTION_LIST
 
 
 class AirPollutionAdapter(
@@ -53,11 +53,17 @@ class AirPollutionAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 android.R.layout.simple_spinner_item,
-                Constants.AIR_POLLUTION_LIST.values.toTypedArray()
+                AIR_POLLUTION_LIST.values.toTypedArray()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnSource.adapter = adapter
-
+            itemBinding.spnSource.setSelection(
+                //if the given value doesn't match with any value in the hashmap
+                //return 0 else return that Key containing that value
+                if (AIR_POLLUTION_LIST.filterValues { it == item.airPollutionSource }.keys.isNotEmpty())
+                    AIR_POLLUTION_LIST.filterValues { it == item.airPollutionSource }.keys.first()
+                else 0
+            )
             itemBinding.spnSource.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(
@@ -66,8 +72,7 @@ class AirPollutionAdapter(
                         position: Int,
                         id: Long
                     ) {
-                        itemBinding.spnSource.setSelection(position)
-                        item.airPollutionSource = "${position + 1}"
+                        item.airPollutionSource = AIR_POLLUTION_LIST[position]!!
                         if (position == 4) {
                             itemBinding.anyOtherLayout.visibility = View.VISIBLE
                             //Retrieve & set data to other Source text
@@ -149,7 +154,13 @@ class AirPollutionAdapter(
             itemBinding.run {
                 //Set Source item
                 if (item.airPollutionSource != null && item.airPollutionSource != "")
-                    spnSource.setSelection(item.airPollutionSource!!.toInt() - 1)
+                    spnSource.setSelection(
+                        //if the given value doesn't match with any value in the hashmap
+                        //return 0 else return that Key containing that value
+                        if (AIR_POLLUTION_LIST.filterValues { it == item.airPollutionSource }.keys.isNotEmpty())
+                            AIR_POLLUTION_LIST.filterValues { it == item.airPollutionSource }.keys.first()
+                        else 0
+                    )
 
                 //Set Process/Fuel Burning radio button
                 if (item.airPollutionType == "1"){

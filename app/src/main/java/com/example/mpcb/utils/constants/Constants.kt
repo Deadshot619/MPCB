@@ -91,7 +91,7 @@ class Constants {
             26 to "m3/hr",
             27 to "m3/month",
             28 to "mg/kg",
-            29 to  "mg/l",
+            29 to "mg/l",
             30 to "MLD",
             31 to "MT",
             32 to "MT/A",
@@ -116,7 +116,7 @@ class Constants {
             51 to "Rooms",
             52 to "SqFeet/D",
             53 to "SqFeet/M",
-            54 to  "SqFeet/Y",
+            54 to "SqFeet/Y",
             55 to "Ton/D",
             56 to "Ton/M",
             57 to "Ton/Y",
@@ -125,14 +125,81 @@ class Constants {
             60 to "Ton/Ton",
             61 to "Mwh"
         )
+        val UNIT_LIST1 = mapOf(
+            "0" to "Select uom",
+            "1" to "--NA--",
+            "00000055" to "Beam/M",
+            "00000006" to "Box",
+            "00000035" to "Brass/A",
+            "00000039" to "Brass/D",
+            "00000034" to "Brass/M",
+            "00000004" to "Gel.",
+            "00000032" to "Kg",
+            "00000033" to "kg/Annum",
+            "00000056" to "kg/Cycle",
+            "00000018" to "Kg/Day",
+            "00000052" to "Kg/Hr",
+            "00000020" to "Kg/M",
+            "00000013" to "KL/A",
+            "00000012" to "KL/D",
+            "00000015" to "KL/M",
+            "00000002" to "KLtr.",
+            "00000026" to "Lit/Day",
+            "00000028" to "Ltr/A",
+            "00000053" to "Ltr/Hr",
+            "00000027" to "Ltr/M",
+            "00000010" to "Ltrs",
+            "00000022" to "M/Day",
+            "00000024" to "m/month",
+            "00000037" to "m3/day",
+            "00000036" to "m3/hr",
+            "00000038" to "m3/month",
+            "00000008" to "mg/kg",
+            "00000009" to "mg/l",
+            "00000019" to "MLD",
+            "00000007" to "MT",
+            "00000014" to "MT/A",
+            "00000023" to "MT/Day",
+            "00000054" to "Mt/Hr",
+            "00000011" to "MT/M",
+            "00000043" to "Mtrs/Day",
+            "00000044" to "Mtrs/M",
+            "00000045" to "Mtrs/Y",
+            "00000021" to "MW",
+            "00000001" to "No.",
+            "00000057" to "No/Cycl",
+            "00000017" to "No/D",
+            "00000016" to "No/M",
+            "00000051" to "Nos./Y",
+            "00000030" to "Pcs/A",
+            "00000029" to "Pcs/M",
+            "00000031" to "Pieces",
+            "00000046" to "Qnt/M",
+            "00000047" to "Qnt/Y",
+            "00000005" to "Rim",
+            "00000025" to "Rooms",
+            "00000040" to "SqFeet/D",
+            "00000041" to "SqFeet/M",
+            "00000042" to "SqFeet/Y",
+            "00000049" to "Ton/D",
+            "00000048" to "Ton/M",
+            "00000050" to "Ton/Y",
+            "00000003" to "Yes.",
+            "00010035" to "CMD",
+            "10000013" to "Ton/Ton",
+            "20000013" to "Mwh",
+            "40000123" to "Ltr/Hr",
+            "00000154" to "Ton/hr",
+            "00000655" to "Million Nos./M"
+        )
 
         val AIR_POLLUTION_LIST = mapOf(
-                0 to "Boiler",
-                1 to "Thermopack",
-                2 to "Thermicfluid Heater",
-                3 to "Furnace process vent",
-                4 to "Any other"
-            )
+            0 to "Boiler",
+            1 to "Thermopack",
+            2 to "Thermicfluid Heater",
+            3 to "Furnace process vent",
+            4 to "Any other"
+        )
 
         val AMBIENT_AIR_PARAM_LIST = mapOf(
             0 to "TPM (mg/Nm3)",
@@ -141,15 +208,15 @@ class Constants {
         )
 
         val JVS_PARAM_LIST = mapOf(
-                0 to "pH",
-                1 to "BOD (mg/l)",
-                2 to "COD (mg/l)",
-                3 to "SS (mg/l)",
-                4 to "O&G (mg/l)",
-                5 to  "TDS (mg/l)",
-                6 to "Chloride (mg/l)",
-                7 to "Sulphate (mg/l)"
-            )
+            0 to "pH",
+            1 to "BOD (mg/l)",
+            2 to "COD (mg/l)",
+            3 to "SS (mg/l)",
+            4 to "O&G (mg/l)",
+            5 to "TDS (mg/l)",
+            6 to "Chloride (mg/l)",
+            7 to "Sulphate (mg/l)"
+        )
 
 
         // reports page value
@@ -201,8 +268,8 @@ class Constants {
          * Method to return a string 'FLAG' that will be used to store flag's status in
          * shared preference
          */
-        fun getReportFlag(reportKey: Int): String{
-            return when(reportKey){
+        fun getReportFlag(reportKey: Int): String {
+            return when (reportKey) {
                 1 -> "FLAG_$REPORT_1"
                 2 -> "FLAG_$REPORT_2"
                 3 -> "FLAG_$REPORT_3"
