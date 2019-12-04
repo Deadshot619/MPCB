@@ -740,6 +740,7 @@ class RoutineReportBankDetail : BaseObservable() {
 
 //Hazardous Waste
 class RoutineReportHazardousWaste : BaseObservable() {
+    //TODO 4/12/2019 Change datatype to Int/Double as required
     @SerializedName("hazardous_waste_category_name")
     @Expose
     var hazardousWasteCategoryName: String = ""
@@ -780,72 +781,72 @@ class RoutineReportHazardousWaste : BaseObservable() {
         }
     @SerializedName("hw_actual_disposal")
     @Expose
-    var hwActualDisposal: Int = 0
+    var hwActualDisposal: Double = 0.0
     var hwActualDisposalString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwActualDisposalString)
             hwActualDisposal = try {
-                hwActualDisposalString.toInt()
+                hwActualDisposalString.toDouble()
             } catch (e: Exception) {
-                0
+                0.0
             }
         }
     @SerializedName("hw_form_disposal")
     @Expose
-    var hwFormDisposal: Int = 0
+    var hwFormDisposal: Double = 0.0
     var hwFormDisposalString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormDisposalString)
             hwFormDisposal = try {
-                hwFormDisposalString.toInt()
+                hwFormDisposalString.toDouble()
             } catch (e: Exception) {
-                0
+                0.0
             }
         }
     @SerializedName("hw_form_cswtsdf")
     @Expose
-    var hwFormCswtsdf: Int = 0
+    var hwFormCswtsdf: Double = 0.0
     var hwFormCswtsdfString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormCswtsdfString)
             hwFormCswtsdf = try {
-                hwFormCswtsdfString.toInt()
+                hwFormCswtsdfString.toDouble()
             } catch (e: Exception) {
-                0
+                0.0
             }
         }
     @SerializedName("hw_form_co_processing")
     @Expose
-    var hwFormCoProcessing: Int = 0
+    var hwFormCoProcessing: Double = 0.0
     var hwFormCoProcessingString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormCoProcessingString)
             hwFormCoProcessing = try {
-                hwFormCoProcessingString.toInt()
+                hwFormCoProcessingString.toDouble()
             } catch (e: Exception) {
-                0
+                0.0
             }
         }
     @SerializedName("hw_disposed_actualuser")
     @Expose
-    var hwDisposedActualuser: Int = 0
+    var hwDisposedActualuser: Double = 0.0
     var hwDisposedActualuserString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwDisposedActualuserString)
             hwDisposedActualuser = try {
-                hwDisposedActualuserString.toInt()
+                hwDisposedActualuserString.toDouble()
             } catch (e: Exception) {
-                0
+                0.0
             }
         }
     @SerializedName("hw_disposal_quantity")
@@ -878,6 +879,8 @@ class RoutineReportHazardousWaste : BaseObservable() {
 
 //Non-Hazardous Waste
 class RoutineReportNonHazardousWaste : BaseObservable() {
+    //TODO 4/12/2019 Change datatype to Int/Double as required
+
     @SerializedName("nhw_waste_name")
     @Expose
     var nhwWasteName: String = ""
