@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemProductionBinding
 import com.example.mpcb.network.request.RoutineReportProduct
 import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST
+import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST1
 
 
 class ProductionAdapter(
@@ -49,17 +50,17 @@ class ProductionAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 android.R.layout.simple_spinner_item,
-                UNIT_LIST.values.toTypedArray()
+                UNIT_LIST1.values.toTypedArray()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnUnitActual.adapter = adapter
             if (item.productUomActual != null && item.productUomActual != "")
                 itemBinding.spnUnitActual.setSelection(
-                    //if the given value doesn't match with any value in the hashmap
-                    //return 0 else return that Key containing that value
-                    if (UNIT_LIST.filterValues { it == item.productUomActual }.keys.isNotEmpty())
-                        UNIT_LIST.filterValues { it == item.productUomActual }.keys.first()
-                    else 0
+                    //Check if the retrieved value is present in the [UNIT_LIST1], return 0 if not present
+                    if (UNIT_LIST1[item.productUomActual] != null)
+                        //Filter keys in the [UNIT_LIST] according to value in the given position in UNIT_LIST1
+                        UNIT_LIST.filterValues { it == UNIT_LIST1[item.productUomActual] }.keys.first()
+                     else 0
                 )
             itemBinding.spnUnitActual.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
@@ -70,7 +71,8 @@ class ProductionAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUnitActual.setSelection(position)
-                        item.productUomActual = UNIT_LIST[position]!!
+                        //Retrieve key from [UNIT_LIST1] according to value retrieved from [UNIT_LIST]
+                        item.productUomActual = UNIT_LIST1.filterValues { it == UNIT_LIST[position] }.keys.first()
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -80,10 +82,10 @@ class ProductionAdapter(
             itemBinding.spnUnitConsent.adapter = adapter
             if (item.productUom != null && item.productUom != "")
                 itemBinding.spnUnitConsent.setSelection(
-                    //if the given value doesn't match with any value in the hashmap
-                    //return 0 else return that Key containing that value
-                    if (UNIT_LIST.filterValues { it == item.productUom }.keys.isNotEmpty())
-                        UNIT_LIST.filterValues { it == item.productUom }.keys.first()
+                    //Check if the retrieved value is present in the [UNIT_LIST1], return 0 if not present
+                    if (UNIT_LIST1[item.productUom] != null)
+                        //Filter keys in the [UNIT_LIST] according to value in the given position in UNIT_LIST1
+                        UNIT_LIST.filterValues { it == UNIT_LIST1[item.productUom] }.keys.first()
                     else 0
                 )
             itemBinding.spnUnitConsent.onItemSelectedListener =
@@ -96,11 +98,11 @@ class ProductionAdapter(
 
                     ) {
                         itemBinding.spnUnitConsent.setSelection(position)
-                        item.productUom = UNIT_LIST[position]!!
+                        //Retrieve key from [UNIT_LIST1] according to value retrieved from [UNIT_LIST]
+                        item.productUom = UNIT_LIST1.filterValues { it == UNIT_LIST[position] }.keys.first()
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
-
                 }
 
         }

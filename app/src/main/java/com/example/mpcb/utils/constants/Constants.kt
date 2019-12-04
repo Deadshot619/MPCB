@@ -61,6 +61,9 @@ class Constants {
             25 to "HW-Recyclers/Re-processors"
         )
 
+        /**
+         * This field is used to map dropdown data according to its position
+         */
         val UNIT_LIST = mapOf(
             0 to "Select uom",
             1 to "--NA--",
@@ -123,8 +126,17 @@ class Constants {
             58 to "Yes.",
             59 to "CMD",
             60 to "Ton/Ton",
-            61 to "Mwh"
+            61 to "Mwh",
+            62 to "Ltr/Hr",
+            63 to "Ton/hr",
+            64 to "Million Nos./M"
+
         )
+
+        /**
+         * This field, maps the values of Unit_List to the actual keys of that values.
+         * These keys will then be sent to server
+         */
         val UNIT_LIST1 = mapOf(
             "0" to "Select uom",
             "1" to "--NA--",
@@ -191,6 +203,74 @@ class Constants {
             "40000123" to "Ltr/Hr",
             "00000154" to "Ton/hr",
             "00000655" to "Million Nos./M"
+        )
+
+        val UNIT_LIST2 = mapOf(
+            0 to mapOf("0" to "Select uom"),
+            1 to mapOf("1" to "--NA--"),
+            2 to mapOf("00000055" to "Beam/M"),
+            3 to mapOf("00000006" to "Box"),
+            4 to mapOf("00000035" to "Brass/A"),
+            5 to mapOf("00000039" to "Brass/D"),
+            6 to mapOf("00000034" to "Brass/M"),
+            7 to mapOf("00000004" to "Gel."),
+            8 to mapOf("00000032" to "Kg"),
+            9 to mapOf("00000033" to "kg/Annum"),
+            10 to mapOf("00000056" to "kg/Cycle"),
+            11 to mapOf("00000018" to "Kg/Day"),
+            12 to mapOf("00000052" to "Kg/Hr"),
+            13 to mapOf("00000020" to "Kg/M"),
+            14 to mapOf("00000013" to "KL/A"),
+            15 to mapOf("00000012" to "KL/D"),
+            16 to mapOf("00000015" to "KL/M"),
+            17 to mapOf("00000002" to "KLtr."),
+            18 to mapOf("00000026" to "Lit/Day"),
+            19 to mapOf("00000028" to "Ltr/A"),
+            20 to mapOf("00000053" to "Ltr/Hr"),
+            21 to mapOf("00000027" to "Ltr/M"),
+            22 to mapOf("00000010" to "Ltrs"),
+            23 to mapOf("00000022" to "M/Day"),
+            24 to mapOf("00000024" to "m/month"),
+            25 to mapOf("00000037" to "m3/day"),
+            26 to mapOf("00000036" to "m3/hr"),
+            27 to mapOf("00000038" to "m3/month"),
+            28 to mapOf("00000008" to "mg/kg"),
+            29 to mapOf("00000009" to "mg/l"),
+            30 to mapOf("00000019" to "MLD"),
+            31 to mapOf("00000007" to "MT"),
+            32 to mapOf("00000014" to "MT/A"),
+            33 to mapOf("00000023" to "MT/Day"),
+            34 to mapOf("00000054" to "Mt/Hr"),
+            35 to mapOf("00000011" to "MT/M"),
+            36 to mapOf("00000043" to "Mtrs/Day"),
+            37 to mapOf("00000044" to "Mtrs/M"),
+            38 to mapOf("00000045" to "Mtrs/Y"),
+            39 to mapOf("00000021" to "MW"),
+            40 to mapOf("00000001" to "No."),
+            41 to mapOf("00000057" to "No/Cycl"),
+            42 to mapOf("00000017" to "No/D"),
+            43 to mapOf("00000016" to "No/M"),
+            44 to mapOf("00000051" to "Nos./Y"),
+            45 to mapOf("00000030" to "Pcs/A"),
+            46 to mapOf("00000029" to "Pcs/M"),
+            47 to mapOf("00000031" to "Pieces"),
+            48 to mapOf("00000046" to "Qnt/M"),
+            49 to mapOf("00000047" to "Qnt/Y"),
+            50 to mapOf("00000005" to "Rim"),
+            51 to mapOf("00000025" to "Rooms"),
+            52 to mapOf("00000040" to "SqFeet/D"),
+            53 to mapOf("00000041" to "SqFeet/M"),
+            54 to mapOf("00000042" to "SqFeet/Y"),
+            55 to mapOf("00000049" to "Ton/D"),
+            56 to mapOf("00000048" to "Ton/M"),
+            57 to mapOf("00000050" to "Ton/Y"),
+            58 to mapOf("00000003" to "Yes."),
+            59 to mapOf("00010035" to "CMD"),
+            60 to mapOf("10000013" to "Ton/Ton"),
+            61 to mapOf("20000013" to "Mwh"),
+            62 to mapOf("40000123" to "Ltr/Hr"),
+            63 to mapOf("00000154" to "Ton/hr"),
+            64 to mapOf("00000655" to "Million Nos./M")
         )
 
         val AIR_POLLUTION_LIST = mapOf(
