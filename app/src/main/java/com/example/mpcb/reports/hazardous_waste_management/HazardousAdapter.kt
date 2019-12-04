@@ -117,7 +117,8 @@ class HazardousAdapter(
         fun setDataToViews(item: RoutineReportHazardousWaste) {
             //UOM spinner
             if (item.hwDisposalQuantityUnit != null && item.hwDisposalQuantityUnit != "")
-                itemBinding.spnUOM.setSelection(//Check if the retrieved value is present in the [UNIT_LIST1], return 0 if not present
+                itemBinding.spnUOM.setSelection(
+                    //Check if the retrieved value is present in the [UNIT_LIST1], return 0 if not present
                     if (UNIT_LIST1[item.hwDisposalQuantityUnit] != null)
                     //Filter keys in the [UNIT_LIST] according to value in the given position in UNIT_LIST1
                         UNIT_LIST.filterValues { it == UNIT_LIST1[item.hwDisposalQuantityUnit] }.keys.first()

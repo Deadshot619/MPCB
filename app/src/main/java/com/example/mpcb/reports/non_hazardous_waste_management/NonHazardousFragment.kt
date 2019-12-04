@@ -126,7 +126,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
             }
 
 //            Uom
-            if (item.nhwDisposalQuantityUnit == 0) {
+            if (item.nhwDisposalQuantityUnit == "0") {
                 showMessage("Select UOM")
                 isValid = false
                 break

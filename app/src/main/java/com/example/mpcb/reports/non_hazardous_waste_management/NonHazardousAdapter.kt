@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemNonHazardousReportsBinding
 import com.example.mpcb.network.request.RoutineReportNonHazardousWaste
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST1
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -92,7 +93,7 @@ class NonHazardousAdapter(
             val adapter = ArrayAdapter(
                 itemBinding.root.context,
                 android.R.layout.simple_spinner_item,
-                Constants.UNIT_LIST.values.toTypedArray()
+                UNIT_LIST1.values.toTypedArray()
             )
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             itemBinding.spnUOM.adapter = adapter
@@ -105,7 +106,8 @@ class NonHazardousAdapter(
                         id: Long
                     ) {
                         itemBinding.spnUOM.setSelection(position)
-                        item.nhwDisposalQuantityUnit = position
+                        item.nhwDisposalQuantityUnit = UNIT_LIST1.filterValues { it == Constants.UNIT_LIST[position] }.keys.first()
+
                     }
 
                     override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -118,8 +120,14 @@ class NonHazardousAdapter(
          */
         fun setDataToViews(item: RoutineReportNonHazardousWaste) {
             //UOM
-            if (item.nhwDisposalQuantityUnit != null)
-                itemBinding.spnUOM.setSelection(item.nhwDisposalQuantityUnit!!)
+            if (item.nhwDisposalQuantityUnit != null && item.nhwDisposalQuantityUnit != "" )
+                itemBinding.spnUOM.setSelection(
+                    //Check if the retrieved value is present in the [UNIT_LIST1], return 0 if not present
+                    if (UNIT_LIST1[item.nhwDisposalQuantityUnit] != null)
+                    //Filter keys in the [UNIT_LIST] according to value in the given position in UNIT_LIST1
+                        Constants.UNIT_LIST.filterValues { it == UNIT_LIST1[item.nhwDisposalQuantityUnit] }.keys.first()
+                    else 0
+                )
         }
 
     }
