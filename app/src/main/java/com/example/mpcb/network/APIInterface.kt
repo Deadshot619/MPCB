@@ -38,6 +38,10 @@ interface APIInterface {
         @Part selfieImagePart: MultipartBody.Part
     ): Single<CheckInResponse>
 
+    @POST("view_check_in")
+    fun getcheckInInfo(@Body request: MyVisitRequest) : Single<CheckInfoResponse>
+
+
     @POST("submit_visit_report")
     fun submitReport(@Body request: ReportRequest): Single<ReportSubmitResponse>
 }

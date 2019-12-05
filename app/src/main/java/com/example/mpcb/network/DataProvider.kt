@@ -118,6 +118,30 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+
+
+    override fun  checkInInfo(
+        request: MyVisitRequest,
+        success: Consumer<CheckInfoResponse>,
+                              error: Consumer<Throwable>
+       ): Disposable = if (isNetworkAvailable()){
+        mServices.getcheckInInfo(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(Consumer { response ->
+                if (response.status) {
+                    success.accept(response)
+                   // error.accept(Throwable(response.message))
+                } else {
+                    error.accept(Throwable(response.message))
+                    //success.accept(response)
+                }
+            }, error)
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
     override fun checkIn(
         requestId: RequestBody,
         userId: RequestBody,
@@ -149,6 +173,9 @@ object DataProvider : RemoteDataProvider {
             noInternetAvailable(error)
             getDefaultDisposable()
         }
+
+
+
 
     override fun submitReport(
         request: ReportRequest,

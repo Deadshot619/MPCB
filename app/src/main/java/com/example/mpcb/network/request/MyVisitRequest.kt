@@ -13,6 +13,10 @@ class MyVisitRequest {
     var userId = ""
 
     @Expose
+    @SerializedName("visitId")
+    var visitId = ""
+
+    @Expose
     @SerializedName("from_date")
     var fromDate = ""
     @Expose

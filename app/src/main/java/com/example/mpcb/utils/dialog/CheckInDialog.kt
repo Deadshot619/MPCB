@@ -14,10 +14,16 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.*
 import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import androidx.fragment.app.DialogFragment
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.mpcb.BuildConfig
+import com.example.mpcb.R
+import com.example.mpcb.base.CheckInCallBack
 import com.example.mpcb.databinding.CheckInPopupBinding
 import com.example.mpcb.my_visits.MyVisitsViewModel
+import com.example.mpcb.network.response.CheckInfoModel
 import com.example.mpcb.network.response.MyVisitModel
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.permission.PermissionUtils
@@ -29,7 +35,8 @@ import java.util.*
 
 
 class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: MyVisitsViewModel) :
-    DialogFragment() {
+    DialogFragment(), CheckInCallBack {
+
 
     private val REQUEST_CAMERA_CODE: Int = 100
     private var printImageFilePath: String = ""
@@ -80,11 +87,53 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
         dialogBinding.model = model
         dialogBinding.viewModel = mViewModel
 
-        dialogBinding.model!!.apply {
-            latitude = PreferencesHelper.getCurrentLatitude()
-            longitude = PreferencesHelper.getCurrentLongitude()
-            dialogBinding.latitudeEd.setText(PreferencesHelper.getCurrentLatitude())
-            dialogBinding.longitudeEd.setText(PreferencesHelper.getCurrentLongitude())
+
+        if (model.checkInStatus != 1) {
+            dialogBinding.model!!.apply {
+                latitude = PreferencesHelper.getCurrentLatitude()
+                longitude = PreferencesHelper.getCurrentLongitude()
+                dialogBinding.latitudeEd.setText(PreferencesHelper.getCurrentLatitude())
+                dialogBinding.longitudeEd.setText(PreferencesHelper.getCurrentLongitude())
+            }
+        } else {
+
+            mViewModel.onCheckInfoClicked(model) { data ->
+                data
+
+                data.apply {
+                    dialogBinding.latitudeEd.setText(data.latitude)
+                    dialogBinding.longitudeEd.setText(data.longitude)
+
+                    data.selfieImage?.let {
+
+
+                        val imgUri = it.toUri().buildUpon().scheme("http").build()
+                        Glide.with(this@CheckInDialog)
+                            .load(imgUri)
+                            .apply(
+                                RequestOptions()
+                                    .placeholder(R.drawable.ic_checkin_profile)
+                                    .error(R.drawable.ic_broken_image_black_24dp))
+                            .into(dialogBinding.appCompatImageView)
+
+                        dialogBinding.appCompatImageView.run {
+                            layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+                            layoutParams.width= ViewGroup.LayoutParams.WRAP_CONTENT
+                            setPadding(0,0,0,24)
+                            isClickable = false
+                        }
+
+
+                    }
+
+/*
+                    Glide.with(this@CheckInDialog).load(data.selfieImage)
+                        .into(dialogBinding.appCompatImageView)*/
+                    dialogBinding.checkInBtn.visibility = View.GONE
+
+                }
+            }
+
 
         }
 
@@ -105,7 +154,19 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
                 model.visitSchedulerId
             )
         }
+
+
     }
+
+    override fun getCheckInfo(): CheckInfoModel {
+
+        var models = CheckInfoModel()
+        Log.d("CheclInfo MOdel", models.toString());
+
+
+        return models;
+    }
+
 
     private fun startCamera() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->

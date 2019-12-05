@@ -19,5 +19,10 @@ data class MyVisitModel(
     @Expose @SerializedName("check_in_status") var checkInStatus: Int = -1,
     @Expose @SerializedName("jvs_details_uploaded") var jvsDetailsUploaded: String = "",
     @Expose @SerializedName("latitude") var latitude: String? = "",
-    @Expose @SerializedName("longitude") var longitude: String? = ""
+    @Expose @SerializedName("longitude") var longitude: String? = "",
+    @Expose @SerializedName("selfie_img") var selfieImage: String? = "",
+    @Expose @SerializedName("checked_in_date") var checkInDate: String? = ""
+
+
+
 ) : Parcelable

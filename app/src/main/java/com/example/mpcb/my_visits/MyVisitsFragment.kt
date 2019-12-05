@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentMyVisitsBinding
+import com.example.mpcb.network.response.CheckInfoModel
 import com.example.mpcb.network.response.MyVisitModel
 import com.example.mpcb.utils.addFragment
 import com.example.mpcb.utils.constants.Constants
@@ -30,6 +31,7 @@ import java.util.*
 
 class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
     MyVisitsNavigator, DatePickerDialog.OnDateSetListener {
+
 
     private lateinit var adapter: MyVisitsAdapter
 
@@ -55,6 +57,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         // To change body of created functions use File | Settings | File Templates.
     }
 
+    private lateinit var models: CheckInfoModel
     private lateinit var model: MyVisitModel
     private lateinit var dialogFragment: CheckInDialog
 
@@ -142,6 +145,21 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         addFragment(VisitReportFragment(), true, bundle)
     }
 
+
+    override fun onAlreadyCheckedIn(viewModel: CheckInfoModel) {
+        this.models = viewModel
+
+        //openCheckinDialog()
+
+
+       // openCheckInfoDialog()
+
+       /* mViewModel.getCurrentLocation()
+        dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
+        dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)*/
+
+    }
+
     override fun dismissCheckinDialog() {
         dialogFragment.dismiss()
     }
@@ -169,6 +187,15 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
         dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)
     }
+
+
+    private fun openCheckInfoDialog() {
+
+        dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
+        dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)
+    }
+
+
 
     override fun onCheckInSuccess(msg: String) {
         showMessage(msg)

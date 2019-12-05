@@ -5,6 +5,7 @@ import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.base.MPCBApp
 import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.MyVisitRequest
+import com.example.mpcb.network.response.CheckInfoModel
 import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.MyVisitModel
 import com.example.mpcb.network.response.MyVisitResponse
@@ -22,6 +23,7 @@ import java.io.File
 class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     private val visitList = MutableLiveData<MyVisitResponse>()
+
 
     private val user by lazy {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
@@ -104,8 +106,53 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     fun onCheckInClick(model: MyVisitModel) {
         if (model.checkInStatus != 1)
             mNavigator!!.onCheckInClicked(model)
-        else
-            mNavigator!!.onError("Already Checked In!")
+        else {
+            // mNavigator!!.onError("Already Checked In!")
+             mNavigator!!.onCheckInClicked(model)
+
+           /* val request = MyVisitRequest()
+            request.userId = user.userId.toString()
+            request.visitId = model.visitSchedulerId.toString()
+            request.requestId = ""
+
+            dialogVisibility.value = true
+            dialogMessage.value = "Fetching CheckIn info ..."
+            mDisposable.add(DataProvider.checkInInfo(request, Consumer {
+                //dialogVisibility.value = true
+               // mNavigator!!.onCheckInSuccess(it.message)
+                mNavigator!!.onAlreadyCheckedIn(it.data)
+
+            },
+                Consumer { checkError(it) }))*/
+        }
+       // mNavigator!!.onAlreadyCheckedIn(model)
+
+
+
+    }
+
+
+    fun onCheckInfoClicked(model: MyVisitModel, dataCall:(CheckInfoModel)->CheckInfoModel)  {
+
+        val request = MyVisitRequest()
+        request.userId = user.userId.toString()
+        request.visitId = model.visitSchedulerId.toString()
+        request.requestId = ""
+
+        dialogVisibility.value = true
+        dialogMessage.value = "Fetching CheckIn info ..."
+        mDisposable.add(DataProvider.checkInInfo(request, Consumer {
+            dialogVisibility.value = false
+            dataCall(it.data)
+            //dialogVisibility.value = true
+            // mNavigator!!.onCheckInSuccess(it.message)
+           // mNavigator!!.onAlreadyCheckedIn( it.data)
+
+
+
+        },
+            Consumer { checkError(it) }))
+
     }
 
     fun onSubmitClicked(path: String, visitSchedulerId: Long) {
