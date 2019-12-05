@@ -67,9 +67,9 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
                     2 -> if (getFlagStatus(Constants.REPORT_2))
                         ivProductTag.visibility = View.VISIBLE
                     3 -> if (getFlagStatus(Constants.REPORT_3))
-                        ivTreatmentTag.visibility = View.VISIBLE
-                    4 -> if (getFlagStatus(Constants.REPORT_4))
                         ivWaterWasteTag.visibility = View.VISIBLE
+                    4 -> if (getFlagStatus(Constants.REPORT_4))
+                        ivTreatmentTag.visibility = View.VISIBLE
                     5 -> if (getFlagStatus(Constants.REPORT_5))
                         ivDisposalTag.visibility = View.VISIBLE
                     6 -> if (getFlagStatus(Constants.REPORT_6))
@@ -124,9 +124,11 @@ class ReportItemListener(
         PreferencesHelper.setLongPreference(Constants.VISIT_ID, visitItem.visitSchedulerId)
         PreferencesHelper.setStringPreference(Constants.INDUS_IMIS_ID, visitItem.industryIMISId)
         when (v.id) {
+            //Report 1
             R.id.industryTag -> {
                 reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_1)
             }
+            //Report 2
             R.id.productTag -> {
                 if (getFlagStatus(Constants.REPORT_1))
                     reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_2)
@@ -135,7 +137,8 @@ class ReportItemListener(
                     return
                 }
             }
-            R.id.treatmentTag -> {
+            //Report 3
+            R.id.waterWasteTag -> {
                 if (getFlagStatus(Constants.REPORT_2))
                     reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_3)
                 else{
@@ -143,7 +146,8 @@ class ReportItemListener(
                     return
                 }
             }
-            R.id.waterWasteTag -> {
+            //Report 4
+            R.id.treatmentTag -> {
                 if (getFlagStatus(Constants.REPORT_3))
                     reportIntent.putExtra(Constants.REPORTS_PAGE_KEY, Constants.REPORT_4)
                 else{

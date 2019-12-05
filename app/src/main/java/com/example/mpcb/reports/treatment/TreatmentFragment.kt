@@ -29,7 +29,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
     override fun onBinding() {
-        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_3)
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_4)
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
@@ -295,13 +295,13 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
         if (validate()) {
             saveReportData(
                 reportNo = visitReportId,
-                reportKey = Constants.REPORT_3,
+                reportKey = Constants.REPORT_4,
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
             val bundle = Bundle()
             bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_4, bundle)
+            addReportFragment(Constants.REPORT_5, bundle)
         }
     }
 

@@ -27,7 +27,7 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
     override fun onInternetError() {}
 
     override fun onBinding() {
-        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_4)
+        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_3)
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
@@ -57,13 +57,13 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
         if (validate() && validateFieldsFilledCorrect()) {
             saveReportData(
                 reportNo = visitReportId,
-                reportKey = Constants.REPORT_4,
+                reportKey = Constants.REPORT_3,
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
             val bundle = Bundle()
             bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_5, bundle)
+            addReportFragment(Constants.REPORT_4, bundle)
         }
     }
 

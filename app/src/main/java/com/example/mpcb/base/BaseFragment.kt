@@ -137,8 +137,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
             val fragment = when (reportKey) {
                 REPORT_1 -> IndustryReportFragment() //v
                 REPORT_2 -> ProductionFragment()// listing //v
-                REPORT_3 -> TreatmentFragment()//v
-                REPORT_4 -> WaterFragment()//v
+                REPORT_3 -> WaterFragment()//v
+                REPORT_4 -> TreatmentFragment()//v
                 REPORT_5 -> DisposalFragment()//v
                 REPORT_6 -> OMSWaterFragment() //v
                 REPORT_7 -> ElectricFragment() //v

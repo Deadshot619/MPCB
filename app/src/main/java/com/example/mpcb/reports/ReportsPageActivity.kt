@@ -66,8 +66,8 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         val fragment: Fragment = when (reportPage) {
             Constants.REPORT_1 -> IndustryReportFragment()
             Constants.REPORT_2 -> ProductionFragment()
-            Constants.REPORT_3 -> TreatmentFragment()
-            Constants.REPORT_4 -> WaterFragment()
+            Constants.REPORT_3 -> WaterFragment()
+            Constants.REPORT_4 -> TreatmentFragment()
             Constants.REPORT_5 -> DisposalFragment()
             Constants.REPORT_6 -> OMSWaterFragment()
             Constants.REPORT_7 -> ElectricFragment()

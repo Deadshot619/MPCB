@@ -4,8 +4,8 @@
     <!-- Reports -->
     <string name="report_1">Industry category, Visit Details &amp; \nConsent status</string>
     <string name="report_2">Production\nDetails</string>
-    <string name="report_3">Treatment\nSystem</string>
-    <string name="report_4">Water &amp; Waste Water Aspect</string>
+    <string name="report_4">Treatment\nSystem</string>
+    <string name="report_3">Water &amp; Waste Water Aspect</string>
     <string name="report_5">Disposal</string>
     <string name="report_6">Online Monitoring System(Water)</string>
     <string name="report_7">Electric\nMeter Details</string>
