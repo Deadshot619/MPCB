@@ -108,7 +108,18 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             mNavigator!!.onError("Already Checked In!")
     }
 
-    fun onSubmitClicked(path: String, visitSchedulerId: Long) {
+    /**
+     *  This method is used to delete file from directory
+     */
+    private fun deleteImageFile(imagePath: String){
+        //Delete image file from directory
+        File(imagePath).deleteRecursively()
+    }
+
+    fun onSubmitClicked(
+        path: String,
+        visitSchedulerId: Long
+    ) {
         val selfieImageBody: RequestBody
         val selfieImagePart: MultipartBody.Part
 
@@ -147,6 +158,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             success = Consumer {
                 dialogVisibility.value = false
                 mNavigator!!.onCheckInSuccess(it.message)
+                deleteImageFile(path)
             },
             error = Consumer { checkError(it) })
         )
