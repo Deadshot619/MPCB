@@ -11,6 +11,9 @@
         <variable
                 name="viewModel"
                 type="com.example.mpcb.my_visits.MyVisitsViewModel" />
+
+
+
     </data>
 
     <RelativeLayout
