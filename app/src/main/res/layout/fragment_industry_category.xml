@@ -203,7 +203,7 @@
                         android:textSize="@dimen/text_xlarge"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/view_separator_visit" />
+                        app:layout_constraintTop_toBottomOf="@+id/rgConsent" />
 
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/consent_vaild_date_lbl"
@@ -275,12 +275,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
                         android:text="Consent Obtained"
                         android:textColor="@color/grey"
                         android:textSize="18sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/consent_de_lbl" />
+                        app:layout_constraintTop_toBottomOf="@+id/view_separator_visit" />
 
                 <RadioGroup
                         android:id="@+id/rgConsent"
@@ -326,7 +325,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rgConsent" />
+                        app:layout_constraintTop_toBottomOf="@+id/consent_de_lbl" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
