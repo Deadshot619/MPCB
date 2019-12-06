@@ -24,6 +24,7 @@ import com.example.mpcb.utils.dialog.DialogHelper
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.locationservice.LocationHelper
 import com.example.mpcb.utils.permission.PermissionUtils
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 import java.util.*
@@ -77,6 +78,19 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
             pd.setListener(this)
             pd.show(fragmentManager!!, "MonthYearPickerDialog")
         }
+
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        showMessage("${PreferencesHelper.getBooleanPreference(Constants.VISIT_STATUS)}")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 
     /**

@@ -13,6 +13,7 @@ import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.setBooleanPreference
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.utils.toast
 
@@ -37,7 +38,8 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
             visitItem = arguments!!.getParcelable(Constants.VISIT_ITEM_KEY)!!
         }
 //        _isVisited = visitItem.visitStatus.let { it.toUpperCase() == "VISITED" }
-
+        //Set visit status in shared pref
+        setBooleanPreference(Constants.VISIT_STATUS, _isVisited)
 
         mBinding.toolbarLayout.visitId.text = "#${visitItem.industryIMISId}"
         mBinding.toolbarLayout.visitName.text = visitItem.industryName
