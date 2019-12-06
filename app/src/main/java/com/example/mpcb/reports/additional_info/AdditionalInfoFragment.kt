@@ -7,6 +7,7 @@ import com.example.mpcb.databinding.FragmentAdditionalInfoBinding
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getBooleanPreference
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
 import com.example.mpcb.utils.showMessage
 
@@ -27,9 +28,10 @@ class AdditionalInfoFragment :
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_18)
         setListener()
 
+
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-        showMessage(visitReportId)
+        showMessage("${getBooleanPreference(Constants.VISIT_STATUS)}")
         //set report variable data
         setReportVariableData(visitReportId)
 

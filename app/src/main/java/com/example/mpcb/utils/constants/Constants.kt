@@ -21,6 +21,7 @@ class Constants {
         const val REPORTS_PAGE_KEY: String = "reports_page_key"
         const val VISIT_ITEM_KEY: String = "visit_item_key"
         const val VISIT_REPORT_ID: String = "visit_report_id"
+        const val VISIT_STATUS: String = "visit_status"
 
         /**
          * This value is used to save report visit id in shared pref temporarily when
