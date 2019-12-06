@@ -54,7 +54,7 @@
                                 android:id="@+id/process_content_ref_lbl"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="As per Concent"
+                                android:text="As per Consent"
                                 android:textColor="@color/light_grey"
                                 android:textSize="@dimen/text_large" />
 
@@ -161,7 +161,7 @@
                                 android:id="@+id/process_cooling_ref_lbl"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="As per Concent"
+                                android:text="As per Consent"
                                 android:textColor="@color/light_grey"
                                 android:textSize="@dimen/text_large" />
 
@@ -264,7 +264,7 @@
                                 android:id="@+id/domestic_cooling_ref_lbl"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="As per Concent"
+                                android:text="As per Consent"
                                 android:textColor="@color/light_grey"
                                 android:textSize="@dimen/text_large" />
 

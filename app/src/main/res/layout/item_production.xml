@@ -47,7 +47,7 @@
                     android:digits=".0123456789"
                     android:inputType="phone"
                 android:text="@={model.productQuantity}"
-                android:hint="Quantity(As Concent)"/>
+                android:hint="Quantity(As Consent)"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Unit(As Concent)"
+            android:text="Unit(As Consent)"
             android:textColor="@color/light_grey"
             android:textSize="@dimen/text_large"
             app:layout_constraintStart_toStartOf="parent"
