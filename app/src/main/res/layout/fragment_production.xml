@@ -18,7 +18,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:id="@+id/category_parent_lay"
+                    android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp">
@@ -38,6 +39,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvProduction"
                     android:layout_width="0dp"
+                        android:focusable="false"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

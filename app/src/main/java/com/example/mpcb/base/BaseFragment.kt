@@ -208,5 +208,15 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         val reports = PreferencesHelper.getPreferences(reportNo, "")
         return Gson().fromJson(reports as String, ReportRequest::class.java)
     }
+
+    protected fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+        for (i in 0 until vg.childCount) {
+            val child = vg.getChildAt(i)
+            child.isEnabled = enable
+            if (child is ViewGroup) {
+                disableEnableControls(enable, child)
+            }
+        }
+    }
 }
 

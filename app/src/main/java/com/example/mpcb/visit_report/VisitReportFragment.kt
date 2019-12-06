@@ -21,6 +21,9 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
     VisitReportNavigator {
 
     private lateinit var visitItem: MyVisitModel
+    //Variable to get visitStatus of report
+    private val _isVisited: Boolean
+        get() = visitItem.visitStatus.let { it.toUpperCase() == "VISITED" }
 
     override fun getLayoutId() = R.layout.fragment_visit_report
     override fun getViewModel() = VisitReportViewModel::class.java
@@ -33,6 +36,7 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
         if (arguments != null && arguments!!.getParcelable<MyVisitModel>(Constants.VISIT_ITEM_KEY) != null) {
             visitItem = arguments!!.getParcelable(Constants.VISIT_ITEM_KEY)!!
         }
+//        _isVisited = visitItem.visitStatus.let { it.toUpperCase() == "VISITED" }
 
 
         mBinding.toolbarLayout.visitId.text = "#${visitItem.industryIMISId}"
@@ -52,51 +56,51 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
         displayCheckImage()
     }
 
-
     /**
      * This method checks the value of report complete flag.
      * if true, this makes the check image visible which indicates the report is completely filled
+     * This can be true if FlagStatus in SharedPref is true or the visitStatus is "Visited"
      */
     private fun displayCheckImage(){
         mBinding.run {
             for (i in 1..18) {
                 when (i) {
 //                1 -> if (true) mBinding.ivIndustryTag.visibility = View.VISIBLE
-                    1 -> if (getFlagStatus(Constants.REPORT_1))
+                    1 -> if (getFlagStatus(Constants.REPORT_1) || _isVisited)
                         ivIndustryTag.visibility = View.VISIBLE
-                    2 -> if (getFlagStatus(Constants.REPORT_2))
+                    2 -> if (getFlagStatus(Constants.REPORT_2) || _isVisited)
                         ivProductTag.visibility = View.VISIBLE
-                    3 -> if (getFlagStatus(Constants.REPORT_3))
+                    3 -> if (getFlagStatus(Constants.REPORT_3) || _isVisited)
                         ivWaterWasteTag.visibility = View.VISIBLE
-                    4 -> if (getFlagStatus(Constants.REPORT_4))
+                    4 -> if (getFlagStatus(Constants.REPORT_4) || _isVisited)
                         ivTreatmentTag.visibility = View.VISIBLE
-                    5 -> if (getFlagStatus(Constants.REPORT_5))
+                    5 -> if (getFlagStatus(Constants.REPORT_5) || _isVisited)
                         ivDisposalTag.visibility = View.VISIBLE
-                    6 -> if (getFlagStatus(Constants.REPORT_6))
+                    6 -> if (getFlagStatus(Constants.REPORT_6) || _isVisited)
                         ivOmsWaterTag.visibility = View.VISIBLE
-                    7 -> if (getFlagStatus(Constants.REPORT_7))
+                    7 -> if (getFlagStatus(Constants.REPORT_7) || _isVisited)
                         ivElectricTag.visibility = View.VISIBLE
-                    8 -> if (getFlagStatus(Constants.REPORT_8))
+                    8 -> if (getFlagStatus(Constants.REPORT_8) || _isVisited)
                         ivLastJVSTag.visibility = View.VISIBLE
-                    9 -> if (getFlagStatus(Constants.REPORT_9))
+                    9 -> if (getFlagStatus(Constants.REPORT_9) || _isVisited)
                         ivAirPollutionTag.visibility = View.VISIBLE
-                    10 -> if (getFlagStatus(Constants.REPORT_10))
+                    10 -> if (getFlagStatus(Constants.REPORT_10) || _isVisited)
                         ivOmsStackTag.visibility = View.VISIBLE
-                    11 -> if (getFlagStatus(Constants.REPORT_11))
+                    11 -> if (getFlagStatus(Constants.REPORT_11) || _isVisited)
                         ivOmsAmbientTag.visibility = View.VISIBLE
-                    12 -> if (getFlagStatus(Constants.REPORT_12))
+                    12 -> if (getFlagStatus(Constants.REPORT_12) || _isVisited)
                         ivHazardoudTag.visibility = View.VISIBLE
-                    13 -> if (getFlagStatus(Constants.REPORT_13))
+                    13 -> if (getFlagStatus(Constants.REPORT_13) || _isVisited)
                         ivNonHazardousTag.visibility = View.VISIBLE
-                    14 -> if (getFlagStatus(Constants.REPORT_14))
+                    14 -> if (getFlagStatus(Constants.REPORT_14) || _isVisited)
                         ivTreeTag.visibility = View.VISIBLE
-                    15 -> if (getFlagStatus(Constants.REPORT_15))
+                    15 -> if (getFlagStatus(Constants.REPORT_15) || _isVisited)
                         ivStatutoryTag.visibility = View.VISIBLE
-                    16 -> if (getFlagStatus(Constants.REPORT_16))
+                    16 -> if (getFlagStatus(Constants.REPORT_16) || _isVisited)
                         ivPreviousTag.visibility = View.VISIBLE
-                    17 -> if (getFlagStatus(Constants.REPORT_17))
+                    17 -> if (getFlagStatus(Constants.REPORT_17) || _isVisited)
                         ivBankGuaranteeTag.visibility = View.VISIBLE
-                    18 -> if (getFlagStatus(Constants.REPORT_18))
+                    18 -> if (getFlagStatus(Constants.REPORT_18) || _isVisited)
                         ivAdditionalTag.visibility = View.VISIBLE
                 }
             }
