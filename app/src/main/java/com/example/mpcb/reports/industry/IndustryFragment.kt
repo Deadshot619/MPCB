@@ -18,6 +18,7 @@ import com.example.mpcb.utils.validations.isValidMobile
 import java.util.*
 import com.example.mpcb.utils.constants.Constants.Companion as Constants1
 
+
 class IndustryReportFragment :
     BaseFragment<FragmentIndustryCategoryBinding, ReportsPageViewModel>(), ReportsPageNavigator {
 
@@ -34,6 +35,7 @@ class IndustryReportFragment :
     override fun onInternetError() {}
 
     override fun onBinding() {
+//        disableEnableControls(false,mBinding.categoryParentLay)
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants1.REPORT_1)
         setListener()
 

@@ -27,6 +27,8 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     override fun onInternetError() {}
 
     override fun onBinding() {
+//        disableEnableControls(false, mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_2)
 
         //Get Visit Report ID from arguments

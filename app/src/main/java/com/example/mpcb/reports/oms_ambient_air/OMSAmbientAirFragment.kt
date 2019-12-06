@@ -152,6 +152,7 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
             report.data.jvsSampleCollectedAirSource = arrayListOf()
         }
 
+        //Remark
         report.data.routineReport.jvsObservation = mBinding.edtRemark.text.toString()
 
 
@@ -208,10 +209,10 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
             }
 
             //Remark
-            if (edtRemark.text.isNullOrEmpty()) {
-                showMessage("Enter Remarks")
-                return false
-            }
+//            if (edtRemark.text.isNullOrEmpty()) {
+//                showMessage("Enter Remarks")
+//                return false
+//            }
         }
 
         var isValid = true

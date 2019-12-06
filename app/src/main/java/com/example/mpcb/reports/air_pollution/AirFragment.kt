@@ -152,10 +152,10 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
         }
 
         //Remark
-        if (isValid && report.data.routineReport.airPollutionObservation.isNullOrEmpty()) {
-            showMessage("Enter Remarks")
-            return false
-        }
+//        if (isValid && report.data.routineReport.airPollutionObservation.isNullOrEmpty()) {
+//            showMessage("Enter Remarks")
+//            return false
+//        }
 
         return isValid
     }
