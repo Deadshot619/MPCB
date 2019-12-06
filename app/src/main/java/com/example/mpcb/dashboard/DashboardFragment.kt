@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
+import com.example.mpcb.network.response.DashboardDataResponse
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.showMessage
 import java.text.SimpleDateFormat
@@ -19,6 +20,15 @@ import java.util.Calendar.*
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
     DashboardNavigator, DatePickerDialog.OnDateSetListener {
+
+
+
+    override fun dashBoardTest(DashboardDataResponse: DashboardDataResponse) {
+       // onBinding()
+      //  Toast.makeText(activity!!, "Fragment!!!", Toast.LENGTH_LONG).show()
+      mBinding.invalidateAll()
+    }
+
     override fun showAlert(errorMessage: String) {
         Toast.makeText(activity!!, errorMessage, Toast.LENGTH_LONG).show()
     }
@@ -49,6 +59,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         setListeners()
 
         setDateView()
+
     }
 
     private fun setDateView() {

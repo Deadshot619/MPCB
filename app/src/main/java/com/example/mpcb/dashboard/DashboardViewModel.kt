@@ -51,12 +51,17 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
         dialogVisibility.value = true
         mDisposable.add(DataProvider.getDashboardData(request, Consumer {
             dialogVisibility.value = false
+
+
             dashboardModel.run {
                 totalVisit = it.totalVisit
                 completedVisit = it.completedVisit
                 pendingVisit = it.pendingVisit
                 visitedOnTime = it.visitedOnTime
                 reportedUploadedOnTime = it.reportedUploadedOnTime
+
+                mNavigator!!.dashBoardTest(dashboardModel)
+
             }
         }, Consumer { checkError(it) }))
     }
