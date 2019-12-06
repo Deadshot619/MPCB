@@ -87,19 +87,36 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
         dialogBinding.model = model
         dialogBinding.viewModel = mViewModel
 
-
+        //if not checked in
         if (model.checkInStatus != 1) {
             dialogBinding.model!!.apply {
                 latitude = PreferencesHelper.getCurrentLatitude()
                 longitude = PreferencesHelper.getCurrentLongitude()
                 dialogBinding.latitudeEd.setText(PreferencesHelper.getCurrentLatitude())
                 dialogBinding.longitudeEd.setText(PreferencesHelper.getCurrentLongitude())
+                //Show Check in Button
+                dialogBinding.checkInBtn.visibility = View.VISIBLE
             }
-        } else {
 
+            //Set listener to Check-In button
+            dialogBinding.checkInBtn.setOnClickListener {
+                mViewModel.onSubmitClicked(
+                    PreferencesHelper.getStringPreference(Constants.IMAGE_PATH)!!,
+                    model.visitSchedulerId
+                )
+            }
+
+            //Set listener to Camera button
+            dialogBinding.appCompatImageView.setOnClickListener {
+                val cameraPermission =
+                    PermissionUtils.checkPermision(activity!!, Manifest.permission.CAMERA)
+                if (cameraPermission)
+                    startCamera()
+                else
+                    requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_CODE)
+            }
+        } else {//if already checked in
             mViewModel.onCheckInfoClicked(model) { data ->
-                data
-
                 data.apply {
                     dialogBinding.latitudeEd.setText(data.latitude)
                     dialogBinding.longitudeEd.setText(data.longitude)
@@ -122,40 +139,16 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
                             setPadding(0,0,0,24)
                             isClickable = false
                         }
-
-
                     }
-
-/*
-                    Glide.with(this@CheckInDialog).load(data.selfieImage)
-                        .into(dialogBinding.appCompatImageView)*/
-                    dialogBinding.checkInBtn.visibility = View.GONE
-
                 }
+
             }
 
 
         }
 
-        dialogBinding.appCompatImageView.setOnClickListener {
-            val cameraPermission =
-                PermissionUtils.checkPermision(activity!!, Manifest.permission.CAMERA)
-            if (cameraPermission)
-                startCamera()
-            else
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_CODE)
-        }
-
+        //Set listener
         dialogBinding.btnCancel.setOnClickListener { dismiss() }
-
-        dialogBinding.checkInBtn.setOnClickListener {
-            mViewModel.onSubmitClicked(
-                PreferencesHelper.getStringPreference(Constants.IMAGE_PATH)!!,
-                model.visitSchedulerId
-            )
-        }
-
-
     }
 
     override fun getCheckInfo(): CheckInfoModel {

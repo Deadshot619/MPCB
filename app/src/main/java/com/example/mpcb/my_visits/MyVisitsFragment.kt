@@ -124,9 +124,11 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         mViewModel.getVisitList().observe(viewLifecycleOwner, Observer {
             if (it.status == "1" && it.data.size > 0)
                 adapter.updateList(it.data)
-            else if (it.status == "1" && it.data.size == 0)
+            else if (it.status == "1" && it.data.size == 0){
+                //Show Empty list
+                adapter.updateList(it.data)
                 showMessage(it.message)
-            else
+            }else
                 showMessage(it.message)
         })
         val calendar = Calendar.getInstance()
@@ -168,16 +170,20 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     override fun onCheckInClicked(model: MyVisitModel) {
         this.model = model
 
-        if (!LocationHelper.isLocationProviderEnabled(context!!)) {
-            DialogHelper.showLocationAlertDialog(context!!)
-        } else {
-            if (activity!!.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(
-                    PermissionUtils.LOCATION_PERMISSTIONS,
-                    100
-                )
+        if (model.checkInStatus == 1){
+            openCheckinDialog()
+        }else{
+            if (!LocationHelper.isLocationProviderEnabled(context!!)) {
+                DialogHelper.showLocationAlertDialog(context!!)
             } else {
-                openCheckinDialog()
+                if (activity!!.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(
+                        PermissionUtils.LOCATION_PERMISSTIONS,
+                        100
+                    )
+                } else {
+                    openCheckinDialog()
+                }
             }
         }
     }

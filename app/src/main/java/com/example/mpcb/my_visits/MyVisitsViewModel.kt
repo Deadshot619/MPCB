@@ -70,10 +70,15 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 //        }
         dialogVisibility.value = true
         dialogMessage.value = "Fetching List..."
-        mDisposable.add(DataProvider.getVisitList(request, Consumer {
-            dialogVisibility.value = false
-            visitList.value = it
-        }, Consumer { checkError(it) }))
+        mDisposable.add(DataProvider.getVisitList(
+            request = request,
+            success = Consumer {
+                dialogVisibility.value = false
+                visitList.value = it
+            },
+            error = Consumer {
+                checkError(it)
+            }))
     }
 
     fun getCurrentLocation() {
