@@ -1,12 +1,16 @@
 package com.example.mpcb.profile
 
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentProfileBinding
+import com.example.mpcb.login.LoginActivity
 import com.example.mpcb.utils.dialog.ChangePwdDialog
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
 
 
@@ -34,13 +38,48 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     override fun onBinding() {
         mBinding.viewModel = mViewModel
         mBinding.model = mViewModel.getUserModel()
-        setToolbar(mBinding.toolbarLayout, getString(R.string.profile_title))
+        setToolbar(mBinding.toolbarLayout, getString(com.example.mpcb.R.string.profile_title))
+        mBinding.toolbarLayout.logout.visibility = View.VISIBLE
         mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
 
         mBinding.txtChangePwd.setOnClickListener {
             changePwdDialog = ChangePwdDialog(activity as Context, mViewModel)
             changePwdDialog.show()
         }
+
+
+        mBinding.toolbarLayout.logout.setOnClickListener {
+
+
+            val builder by lazy {
+                AlertDialog.Builder(context!!)
+                    .setTitle(R.string.txt_logout_title)
+                    .setMessage(R.string.txt_logout_message)
+                    .setPositiveButton(R.string.action_ok){_,_ -> logoutClicked()}
+                    .setNegativeButton(R.string.action_cancel){_,_ -> }
+                    .create()
+            }
+            builder.show()
+
+
+
+        }
+
+    }
+
+    private fun logoutClicked() {
+        /*val sharedPreferences = activity?.getSharedPreferences( , Context.MODE_PRIVATE) ?: return
+        sharedPreferences.edit().clear().apply()*/
+
+        val preferencesHelper = PreferencesHelper.deletAll()
+
+
+        val intent = Intent(context, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        onDestroy()
+
+
     }
 
 

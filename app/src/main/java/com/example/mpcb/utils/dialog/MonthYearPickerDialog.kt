@@ -42,6 +42,7 @@ class MonthYearPickerDialog : DialogFragment() {
             .setPositiveButton(
                 "OK"
             ) { _, id ->
+
                 listener!!.onDateSet(
                     null,
                     yearPicker.value,
