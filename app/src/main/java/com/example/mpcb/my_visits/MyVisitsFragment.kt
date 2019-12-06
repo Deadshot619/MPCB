@@ -25,6 +25,8 @@ import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.locationservice.LocationHelper
 import com.example.mpcb.utils.permission.PermissionUtils
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getBooleanPreference
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.setBooleanPreference
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 import java.util.*
@@ -85,7 +87,12 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     override fun onStart() {
         super.onStart()
         showMessage("${PreferencesHelper.getBooleanPreference(Constants.VISIT_STATUS)}")
-
+        //If Visit Status is true, then refresh the page to show visit status as completed.
+        if (getBooleanPreference(Constants.VISIT_STATUS))
+            mViewModel.getVisitListData(
+                fromDate = fromDate,
+                toDate = toDate
+            )
     }
 
     override fun onResume() {
@@ -144,6 +151,9 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
                 showMessage(it.message)
             }else
                 showMessage(it.message)
+
+            //Set visit status to false
+            setBooleanPreference(Constants.VISIT_STATUS, false)
         })
         val calendar = Calendar.getInstance()
         fromDate =

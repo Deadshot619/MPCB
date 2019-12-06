@@ -32,6 +32,9 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
                 Consumer {
                     dialogVisibility.value = false
                     mNavigator!!.onSubmitReportSuccess(it.message)
+                    //If report submitted successfully, update the list to show status as visited
+                    if (it.status)
+                        PreferencesHelper.setBooleanPreference(Constants.VISIT_STATUS, true)
                 },
                 Consumer {
                     checkError(it)
