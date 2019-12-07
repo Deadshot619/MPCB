@@ -30,6 +30,8 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 
+        //Method to Show or Hide Save & Next Button
+        showNextButton(mBinding.btnSaveNext)
 
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_2)
 

@@ -53,6 +53,9 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         //If true, disable all controls!
         disableViews(mBinding.disposalParentLay)
 
+        //Method to Show or Hide Save & Next Button
+        showNextButton(mBinding.btnSaveNext)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_5)
         setListener()
 

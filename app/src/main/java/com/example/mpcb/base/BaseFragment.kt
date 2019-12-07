@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mpcb.R
+import com.example.mpcb.databinding.ButtonSaveNextLayoutBinding
 import com.example.mpcb.databinding.ToolbarBinding
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.additional_info.AdditionalInfoFragment
@@ -217,6 +218,9 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         return Gson().fromJson(reports as String, ReportRequest::class.java)
     }
 
+    /**
+     * This method Enables/Disables the views in  a viewGroup.
+     */
     protected fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
         for (i in 0 until vg.childCount) {
             val child = vg.getChildAt(i)
@@ -229,10 +233,27 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         }
     }
 
+    /**
+     * This method Enables/Disables the views in  a viewGroup depending on visitStatus
+     */
     protected fun disableViews(viewGroup: ViewGroup){
         //If true, disable all controls!
         if (visitStatus)
             disableEnableControls(false, viewGroup)
+    }
+
+    /**
+     * This method shows or hides the Next button depending on Visit Status.
+     */
+    protected fun showNextButton(btnSaveNextLayoutBinding: ButtonSaveNextLayoutBinding){
+        //If true show 'Next' button & hide 'Save' button
+        if (visitStatus) {
+            btnSaveNextLayoutBinding.btnNext.visibility = View.VISIBLE
+            btnSaveNextLayoutBinding.btnSubmit.visibility = View.GONE
+        } else {
+            btnSaveNextLayoutBinding.btnNext.visibility = View.GONE
+            btnSaveNextLayoutBinding.btnSubmit.visibility = View.VISIBLE
+        }
     }
 }
 
