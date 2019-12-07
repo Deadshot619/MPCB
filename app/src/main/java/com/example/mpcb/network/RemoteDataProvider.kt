@@ -59,6 +59,16 @@ interface RemoteDataProvider {
 
     fun  checkInInfo(request: MyVisitRequest,
                      success: Consumer<CheckInfoResponse>,
-                     error: Consumer<Throwable>):Disposable
+                     error: Consumer<Throwable>
+    ):Disposable
+
+    /**
+     * Method to View Visit Report
+     */
+    fun viewVisitReport(
+        request: ViewVisitRequest,
+        success: Consumer<ViewVisitResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 
 }

@@ -44,4 +44,7 @@ interface APIInterface {
 
     @POST("submit_visit_report")
     fun submitReport(@Body request: ReportRequest): Single<ReportSubmitResponse>
+
+    @POST("view_visit_report")
+    fun viewVisitReport(@Body request: ViewVisitRequest): Single<ViewVisitResponse>
 }
