@@ -34,7 +34,7 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
                     mNavigator!!.onSubmitReportSuccess(it.message)
                     //If report submitted successfully, update the list to show status as visited
                     if (it.status)
-                        PreferencesHelper.setBooleanPreference(Constants.VISIT_STATUS, true)
+                        PreferencesHelper.setBooleanPreference(Constants.FORM_COMPLETE_STATUS, true)
                 },
                 Consumer {
                     checkError(it)

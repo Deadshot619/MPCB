@@ -21,7 +21,10 @@ class Constants {
         const val REPORTS_PAGE_KEY: String = "reports_page_key"
         const val VISIT_ITEM_KEY: String = "visit_item_key"
         const val VISIT_REPORT_ID: String = "visit_report_id"
+        //Constant to maintain state of whether the Visit status if Visited or not
         const val VISIT_STATUS: String = "visit_status"
+        //Constant to maintain state of whether the user submitted the form successfully
+        const val FORM_COMPLETE_STATUS: String = "form_complete_status"
 
         /**
          * This value is used to save report visit id in shared pref temporarily when
