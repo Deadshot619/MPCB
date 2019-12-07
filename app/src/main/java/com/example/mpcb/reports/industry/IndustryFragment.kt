@@ -9,6 +9,7 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.constants.Constants.Companion.CATEGORY_LIST
 import com.example.mpcb.utils.constants.Constants.Companion.REPORT_1
 import com.example.mpcb.utils.constants.Constants.Companion.REPORT_2
@@ -206,7 +207,12 @@ class IndustryReportFragment :
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews(){
-        reports = getReportData(visitReportId)
+        if (visitStatus){
+            reports = getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        }else{
+            reports = getReportData(visitReportId)
+        }
+
         //Spinner
         if(reports != null) {
             mBinding.run {

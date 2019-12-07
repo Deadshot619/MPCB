@@ -6,6 +6,7 @@ import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.base.MPCBApp
 import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.MyVisitRequest
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.network.request.ViewVisitRequest
 import com.example.mpcb.network.response.CheckInfoModel
 import com.example.mpcb.network.response.LoginResponse
@@ -104,6 +105,12 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                     if (it.status) {
                         mNavigator?.onVisitItemClicked(viewModel)
                         Log.i("Hogya BC", it.data.toString())
+
+                        //Store the report data received in Shared Pref
+                        PreferencesHelper.setPreferences(
+                            key = Constants.TEMP_VISIT_REPORT_DATA,
+                            value = Gson().toJson(ReportRequest().apply { data = it.data })
+                        )
                         mNavigator?.showAlert(it.message)
                     }
                 },

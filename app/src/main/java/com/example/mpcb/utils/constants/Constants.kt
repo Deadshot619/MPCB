@@ -27,11 +27,10 @@ class Constants {
         const val FORM_COMPLETE_STATUS: String = "form_complete_status"
 
         /**
-         * This value is used to save report visit id in shared pref temporarily when
-         * Report Page Activity is initiated & will be cleared when Report Page Activity
-         * is destroyed.
+         * This value is used to save report visit data in shared pref temporarily when
+         * already submitted Visit report is to be viewed.
          */
-        const val TEMP_VISIT_REPORT_ID: String = "temp_visit_report_id"
+        const val TEMP_VISIT_REPORT_DATA: String = "temp_visit_report_data"
 
 
         const val VISIT_ID: String = "visit_id"
