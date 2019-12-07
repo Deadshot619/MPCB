@@ -24,6 +24,10 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        if (visitStatus)
+            disableEnableControls(false, mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_17)
 
         //Get Visit Report ID from arguments
@@ -42,7 +46,7 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
 
     private fun setUpRecyclerView() {
         mBinding.rvBank.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
-        val adapter = BGDAdapter(getBaseActivity(), mViewModel)
+        val adapter = BGDAdapter(getBaseActivity(), mViewModel, visitStatus)
         mBinding.rvBank.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
         mViewModel.populateData()

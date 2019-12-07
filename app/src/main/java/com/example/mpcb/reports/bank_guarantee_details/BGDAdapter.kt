@@ -14,7 +14,8 @@ import kotlin.collections.ArrayList
 
 class BGDAdapter(
     val context: Context,
-    private val viewModel: BGDViewModel
+    private val viewModel: BGDViewModel,
+    private val visitStatus: Boolean
 ) : RecyclerView.Adapter<BGDAdapter.BGDViewHolder>() {
 
     private val bankList = ArrayList<RoutineReportBankDetail>()
@@ -59,7 +60,7 @@ class BGDAdapter(
         }
         holder.setListener(item)
 
-        holder.setDataToViews(item)
+        holder.setDataToViews(item, visitStatus)
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -84,13 +85,33 @@ class BGDAdapter(
         /**
          * This Method is used to set data to Views
          */
-        fun setDataToViews(item: RoutineReportBankDetail) {
+        fun setDataToViews(
+            item: RoutineReportBankDetail,
+            visitStatus: Boolean
+        ) {
 //            BG Submitted
             if (item.bankSubmitted == "1")
                 itemBinding.rgBGSubmitted.check(R.id.rbSubmittedYes)
             else
                 itemBinding.rgBGSubmitted.check(R.id.rbSubmittedNo)
+
+
+            //If true, disable all controls!
+            if (visitStatus)
+                disableEnableControls(false, itemBinding.categoryParentLay)
         }
 
+        //Method to Enable/Disable Views
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != com.example.mpcb.R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
+            }
+        }
     }
 }

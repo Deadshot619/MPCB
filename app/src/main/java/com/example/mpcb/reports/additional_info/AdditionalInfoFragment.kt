@@ -25,6 +25,10 @@ class AdditionalInfoFragment :
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        if (visitStatus)
+            disableEnableControls(false, mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_18)
         setListener()
 
