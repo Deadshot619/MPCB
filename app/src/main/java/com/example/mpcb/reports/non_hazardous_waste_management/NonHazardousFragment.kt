@@ -24,6 +24,10 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        if (visitStatus)
+            disableEnableControls(false, mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_13)
 
         //Get Visit Report ID from arguments
@@ -44,7 +48,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
     private fun setUpRecyclerView() {
         mBinding.rvNonHazardous.layoutManager =
             LinearLayoutManager(getBaseActivity().applicationContext)
-        val adapter = NonHazardousAdapter(getBaseActivity(), mViewModel)
+        val adapter = NonHazardousAdapter(getBaseActivity(), mViewModel, visitStatus)
         mBinding.rvNonHazardous.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
         mViewModel.populateData()

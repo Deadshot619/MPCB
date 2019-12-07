@@ -19,7 +19,8 @@ import kotlin.collections.ArrayList
 
 class NonHazardousAdapter(
     val context: Context,
-    private val viewModel: NonHazardousViewModel
+    private val viewModel: NonHazardousViewModel,
+    private val visitStatus: Boolean
 ) : RecyclerView.Adapter<NonHazardousAdapter.NonHazardousViewHolder>() {
 
     private val visitList = ArrayList<RoutineReportNonHazardousWaste>()
@@ -69,7 +70,7 @@ class NonHazardousAdapter(
             datePickerDialog.show()
         }
         holder.setSpinner(item)
-        holder.setDataToViews(item)
+        holder.setDataToViews(item, visitStatus)
 
 
     }
@@ -118,7 +119,10 @@ class NonHazardousAdapter(
         /**
          * This Method is used to set data to Views
          */
-        fun setDataToViews(item: RoutineReportNonHazardousWaste) {
+        fun setDataToViews(
+            item: RoutineReportNonHazardousWaste,
+            visitStatus: Boolean
+        ) {
             //UOM
             if (item.nhwDisposalQuantityUnit != null && item.nhwDisposalQuantityUnit != "" )
                 itemBinding.spnUOM.setSelection(
@@ -128,6 +132,25 @@ class NonHazardousAdapter(
                         Constants.UNIT_LIST.filterValues { it == UNIT_LIST1[item.nhwDisposalQuantityUnit] }.keys.first()
                     else 0
                 )
+
+
+            //If true, disable all controls!
+            if (visitStatus)
+                disableEnableControls(false, itemBinding.layLinChild)
+        }
+
+
+        //Method to Enable/Disable Views
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != com.example.mpcb.R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
+            }
         }
 
     }

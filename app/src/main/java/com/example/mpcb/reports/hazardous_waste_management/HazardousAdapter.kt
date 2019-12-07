@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemHazardiousReportsBinding
 import com.example.mpcb.network.request.RoutineReportHazardousWaste
 import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST
@@ -18,7 +19,8 @@ import kotlin.collections.ArrayList
 
 class HazardousAdapter(
     val context: Context,
-    private val viewModel: HazardousViewModel
+    private val viewModel: HazardousViewModel,
+    val visitStatus: Boolean
 ) : RecyclerView.Adapter<HazardousAdapter.HazardousViewHolder>() {
 
     private val visitList = ArrayList<RoutineReportHazardousWaste>()
@@ -70,7 +72,7 @@ class HazardousAdapter(
         }
         holder.setSpinner(item)
 
-        holder.setDataToViews(item)
+        holder.setDataToViews(item, visitStatus)
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -114,7 +116,10 @@ class HazardousAdapter(
         /**
          * This function is used to set data to views
          */
-        fun setDataToViews(item: RoutineReportHazardousWaste) {
+        fun setDataToViews(
+            item: RoutineReportHazardousWaste,
+            visitStatus: Boolean
+        ) {
             //UOM spinner
             if (item.hwDisposalQuantityUnit != null && item.hwDisposalQuantityUnit != "")
                 itemBinding.spnUOM.setSelection(
@@ -124,6 +129,23 @@ class HazardousAdapter(
                         UNIT_LIST.filterValues { it == UNIT_LIST1[item.hwDisposalQuantityUnit] }.keys.first()
                     else 0
                 )
+
+
+            //If true, disable all controls!
+            if (visitStatus)
+                disableEnableControls(false, itemBinding.layLinChild)
+        }
+
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
+            }
         }
     }
 }
