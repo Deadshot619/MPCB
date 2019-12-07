@@ -232,123 +232,126 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
     }
 
     override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-        mBinding.run {
-            when (buttonView!!.id) {
-                /**
-                 * In this method fields are enabled & disabled according to the checkbox state.
-                 * If the checkbox is checked, Field is enabled.
-                 * If the checkbox is not checked, Field is disabled & cleared.
-                 */
+        //Set listeners to checkbox when Visit Status is is Not Visited
+        if (!visitStatus)
+            mBinding.run {
+                when (buttonView!!.id) {
+                    /**
+                     * In this method fields are enabled & disabled according to the checkbox state.
+                     * If the checkbox is checked, Field is enabled.
+                     * If the checkbox is not checked, Field is disabled & cleared.
+                     */
 
 //                Industrial
-                R.id.cbIndusCETP -> report.data.routineReport.disposalIndustrialCETP =
-                    if (isChecked) {
-                        edIndusCETP.isEnabled = true
-                        1
-                    } else {
-                        edIndusCETP.isEnabled = false
-                        edIndusCETP.setText("")
-                        0
-                    }
+                    R.id.cbIndusCETP -> report.data.routineReport.disposalIndustrialCETP =
+                        if (isChecked) {
+                            edIndusCETP.isEnabled = true
+                            1
+                        } else {
+                            edIndusCETP.isEnabled = false
+                            edIndusCETP.setText("")
+                            0
+                        }
 
-                R.id.cbIndusLandGardening -> report.data.routineReport.disposalIndustrialLandGardening =
-                    if (isChecked) {
-                        edIndusLandGardening.isEnabled = true
-                        1
-                    } else {
-                        edIndusLandGardening.isEnabled = false
-                        edIndusLandGardening.setText("")
-                        0
-                    }
+                    R.id.cbIndusLandGardening -> report.data.routineReport.disposalIndustrialLandGardening =
+                        if (isChecked) {
+                            edIndusLandGardening.isEnabled = true
+                            1
+                        } else {
+                            edIndusLandGardening.isEnabled = false
+                            edIndusLandGardening.setText("")
+                            0
+                        }
 
-                R.id.cbIndusRecycle -> report.data.routineReport.disposalIndustrialRecycle =
-                    if (isChecked) {
-                        edIndusRecycle.isEnabled = true
-                        1
-                    } else {
-                        edIndusRecycle.isEnabled = false
-                        edIndusRecycle.setText("")
-                        0
-                    }
+                    R.id.cbIndusRecycle -> report.data.routineReport.disposalIndustrialRecycle =
+                        if (isChecked) {
+                            edIndusRecycle.isEnabled = true
+                            1
+                        } else {
+                            edIndusRecycle.isEnabled = false
+                            edIndusRecycle.setText("")
+                            0
+                        }
 
-                R.id.cbIndusSewageTreatment -> report.data.routineReport.disposalIndustrialLocalBodySewage =
-                    if (isChecked) {
-                        edIndusSewageTreatment.isEnabled = true
-                        1
-                    } else {
-                        edIndusSewageTreatment.isEnabled = false
-                        edIndusSewageTreatment.setText("")
-                        0
-                    }
+                    R.id.cbIndusSewageTreatment -> report.data.routineReport.disposalIndustrialLocalBodySewage =
+                        if (isChecked) {
+                            edIndusSewageTreatment.isEnabled = true
+                            1
+                        } else {
+                            edIndusSewageTreatment.isEnabled = false
+                            edIndusSewageTreatment.setText("")
+                            0
+                        }
 
-                R.id.cbIndusAnyOther -> report.data.routineReport.disposalIndustrialAnyOther =
-                    if (isChecked) {
-                        edIndusExtraName.isEnabled = true
-                        edIndusExtraNameValue.isEnabled = true
-                        1
-                    } else {
-                        edIndusExtraName.isEnabled = false
-                        edIndusExtraNameValue.isEnabled = false
-                        edIndusExtraName.setText("")
-                        edIndusExtraNameValue.setText("")
-                        0
-                    }
+                    R.id.cbIndusAnyOther -> report.data.routineReport.disposalIndustrialAnyOther =
+                        if (isChecked) {
+                            edIndusExtraName.isEnabled = true
+                            edIndusExtraNameValue.isEnabled = true
+                            1
+                        } else {
+                            edIndusExtraName.isEnabled = false
+                            edIndusExtraNameValue.isEnabled = false
+                            edIndusExtraName.setText("")
+                            edIndusExtraNameValue.setText("")
+                            0
+                        }
 
-                //Domestic
-                R.id.cbDomesticCETP -> report.data.routineReport.disposalDomesticCETP =
-                    if (isChecked) {
-                        edDomesticCETP.isEnabled = true
-                        1
-                    } else {
-                        edDomesticCETP.isEnabled = false
-                        edDomesticCETP.setText("")
-                        0
-                    }
+                    //Domestic
+                    R.id.cbDomesticCETP -> report.data.routineReport.disposalDomesticCETP =
+                        if (isChecked) {
+                            edDomesticCETP.isEnabled = true
+                            1
+                        } else {
+                            edDomesticCETP.isEnabled = false
+                            edDomesticCETP.setText("")
+                            0
+                        }
 
-                R.id.cbDomesticLandGardening -> report.data.routineReport.disposalDomesticLandGardening =
-                    if (isChecked) {
-                        edDomesticLandGardening.isEnabled = true
-                        1
-                    } else {
-                        edDomesticLandGardening.isEnabled = false
-                        edDomesticLandGardening.setText("")
-                        0
-                    }
+                    R.id.cbDomesticLandGardening -> report.data.routineReport.disposalDomesticLandGardening =
+                        if (isChecked) {
+                            edDomesticLandGardening.isEnabled = true
+                            1
+                        } else {
+                            edDomesticLandGardening.isEnabled = false
+                            edDomesticLandGardening.setText("")
+                            0
+                        }
 
-                R.id.cbDomesticRecycle -> report.data.routineReport.disposalDomesticRecycle =
-                    if (isChecked) {
-                        edDomesticRecycle.isEnabled = true
-                        1
-                    } else {
-                        edDomesticRecycle.isEnabled = false
-                        edDomesticRecycle.setText("")
-                        0
-                    }
+                    R.id.cbDomesticRecycle -> report.data.routineReport.disposalDomesticRecycle =
+                        if (isChecked) {
+                            edDomesticRecycle.isEnabled = true
+                            1
+                        } else {
+                            edDomesticRecycle.isEnabled = false
+                            edDomesticRecycle.setText("")
+                            0
+                        }
 
-                R.id.cbDomesticSewageTreatment -> report.data.routineReport.disposalDomesticLocalBodySewage =
-                    if (isChecked) {
-                        edDomesticSewageTreatment.isEnabled = true
-                        1
-                    } else {
-                        edDomesticSewageTreatment.isEnabled = false
-                        edDomesticSewageTreatment.setText("")
-                        0
-                    }
+                    R.id.cbDomesticSewageTreatment -> report.data.routineReport.disposalDomesticLocalBodySewage =
+                        if (isChecked) {
+                            edDomesticSewageTreatment.isEnabled = true
+                            1
+                        } else {
+                            edDomesticSewageTreatment.isEnabled = false
+                            edDomesticSewageTreatment.setText("")
+                            0
+                        }
 
-                R.id.cbDomesticAnyOther -> report.data.routineReport.disposalDomesticAnyOther =
-                    if (isChecked) {
-                        edDomesticExtraName.isEnabled = true
-                        edDomesticExtraNameValue.isEnabled = true
-                        1
-                    } else {
-                        edDomesticExtraName.isEnabled = false
-                        edDomesticExtraNameValue.isEnabled = false
-                        edDomesticExtraName.setText("")
-                        edDomesticExtraNameValue.setText("")
-                        0
-                    }
+                    R.id.cbDomesticAnyOther -> report.data.routineReport.disposalDomesticAnyOther =
+                        if (isChecked) {
+                            edDomesticExtraName.isEnabled = true
+                            edDomesticExtraNameValue.isEnabled = true
+                            1
+                        } else {
+                            edDomesticExtraName.isEnabled = false
+                            edDomesticExtraNameValue.isEnabled = false
+                            edDomesticExtraName.setText("")
+                            edDomesticExtraNameValue.setText("")
+                            0
+                        }
+                }
             }
-        }
+
     }
 
     private fun onSubmit() {
