@@ -207,10 +207,10 @@ class IndustryReportFragment :
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews(){
-        if (visitStatus){
-            reports = getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        reports = if (visitStatus){
+            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
         }else{
-            reports = getReportData(visitReportId)
+            getReportData(visitReportId)
         }
 
         //Spinner

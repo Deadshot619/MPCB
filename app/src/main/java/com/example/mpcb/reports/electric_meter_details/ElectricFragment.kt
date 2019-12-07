@@ -102,8 +102,12 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        super.setDataToViews()
-        reports = getReportData(visitReportId)
+        //If visit status is Visited, then show the data retrieved from Api
+        reports = if (visitStatus) {
+            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        } else {
+            getReportData(visitReportId)
+        }
 
         if (reports != null){
             mBinding.run{

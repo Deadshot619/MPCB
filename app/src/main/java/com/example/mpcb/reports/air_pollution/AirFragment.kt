@@ -171,7 +171,11 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        reports = getReportData(visitReportId)
+        reports = if (visitStatus) {
+            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        } else {
+            getReportData(visitReportId)
+        }
 
 //        Air Pollution Remarl/Observation
         mBinding.edtRemarks.setText(reports?.data?.routineReport?.airPollutionObservation)

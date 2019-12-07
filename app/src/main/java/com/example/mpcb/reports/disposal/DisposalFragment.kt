@@ -561,8 +561,11 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        super.setDataToViews()
-        reports = getReportData(visitReportId)
+        reports = if (visitStatus) {
+            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        } else {
+            getReportData(visitReportId)
+        }
 
         if (reports != null) {
             mBinding.run {

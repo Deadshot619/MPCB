@@ -80,8 +80,7 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
             )
             //Put the Visit Report ID in bundle to share to Fragments
             addReportFragmentLocal(Constants.REPORT_18, visitReportId)
-        }
-    }
+        }}
 
     private fun validate(): Boolean {
         var isValid = true
@@ -143,7 +142,11 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        reports = getReportData(visitReportId)
+        reports = if (visitStatus) {
+            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        } else {
+            getReportData(visitReportId)
+        }
 
         if (reports != null){
             mBinding.run {

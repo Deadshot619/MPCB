@@ -128,7 +128,13 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        reports = getReportData(visitReportId)
+        //If visit status is Visited, then show the data retrieved from Api
+        reports = if (visitStatus) {
+            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        } else {
+            getReportData(visitReportId)
+        }
+
         if(reports?.data?.routineReportProducts != null)
             mViewModel.populateData(reports?.data?.routineReportProducts)
     }

@@ -69,9 +69,9 @@ class AdditionalInfoFragment :
             )
 
             //submit report only if all the reports are filled.
-            if (checkIfReportsFilled()){
+            if (checkIfReportsFilled()) {
                 mViewModel.submitReport(reportRequest = getReportData(visitReportId))
-            }else {
+            } else {
                 showMessage("Please fill all the reports!")
             }
 
@@ -82,10 +82,10 @@ class AdditionalInfoFragment :
      * This method is used to check if all the reports are filled.
      *  @return returns false if even one of the report is not filled. otherwise true
      */
-    private fun checkIfReportsFilled(): Boolean{
+    private fun checkIfReportsFilled(): Boolean {
         //"i" represents report key
-        for (i in 1..18){
-            if (!getReportFlagStatus(visitReportId, i)){
+        for (i in 1..18) {
+            if (!getReportFlagStatus(visitReportId, i)) {
                 return false
             }
         }
@@ -113,16 +113,20 @@ class AdditionalInfoFragment :
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        reports = getReportData(visitReportId)
+        reports = if (visitStatus) {
+            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        } else {
+            getReportData(visitReportId)
+        }
 
-        if (reports != null){
+        if (reports != null) {
             mBinding.run {
-                reports?.data?.routineReport?.run{
+                reports?.data?.routineReport?.run {
                     //Additional Info
                     edtAddInfo.setText(additionalInfo)
 
                     //Whether Unit Complied
-                    if(legalActionUnitComplied == 1)
+                    if (legalActionUnitComplied == 1)
                         rgUnitComplied.check(R.id.rbUnitYes)
                     else
                         rgUnitComplied.check(R.id.rbUnitNo)
