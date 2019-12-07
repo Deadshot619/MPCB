@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemAmbientAirBinding
 import com.example.mpcb.network.request.AmbientAirChild
 import com.example.mpcb.network.request.JvsSampleCollectedAirSource
@@ -12,7 +13,8 @@ import com.example.mpcb.network.request.JvsSampleCollectedAirSource
 
 class AmbientAirAdapter(
     val context: Context,
-    private val viewModel: OMSAmbientAirViewModel
+    private val viewModel: OMSAmbientAirViewModel,
+    private val visitStatus: Boolean
 ) : RecyclerView.Adapter<AmbientAirAdapter.AmbientAirViewHolder>() {
 
     private val parentList = ArrayList<JvsSampleCollectedAirSource>()
@@ -32,7 +34,8 @@ class AmbientAirAdapter(
 //                arrayListOf(AmbientAirChild())
 //            else
                 item.ambientAirChild,
-            position
+            position,
+             visitStatus
         )
     }
 
@@ -52,7 +55,8 @@ class AmbientAirAdapter(
         fun setData(
             viewModel: OMSAmbientAirViewModel,
             childList: ArrayList<AmbientAirChild>,
-            position: Int
+            position: Int,
+            visitStatus: Boolean
         ) {
             itemBinding.rvChild.layoutManager =
                 LinearLayoutManager(itemBinding.root.context)
@@ -62,10 +66,28 @@ class AmbientAirAdapter(
                     itemBinding.root.context,
                     viewModel,
                     childList,
-                    position
+                    position,
+                    visitStatus
                 )
 
             itemBinding.rvChild.adapter = adapter
+
+
+            //If true, disable all controls!
+            if (visitStatus)
+                disableEnableControls(false, itemBinding.categoryParentLay)
+        }
+
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
+            }
         }
     }
 }

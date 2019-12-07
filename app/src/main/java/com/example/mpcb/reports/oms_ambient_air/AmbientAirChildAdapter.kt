@@ -16,7 +16,8 @@ class AmbientAirChildAdapter(
     val context: Context,
     private val viewModel: OMSAmbientAirViewModel,
     private val childList: ArrayList<AmbientAirChild>,
-    private val parentPosition: Int
+    private val parentPosition: Int,
+    val visitStatus: Boolean
 ) : RecyclerView.Adapter<AmbientAirChildAdapter.AmbientAirChildViewHolder>() {
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
@@ -44,7 +45,7 @@ class AmbientAirChildAdapter(
 
         holder.setSpinner(item)
 
-        holder.setDataToViews(item)
+        holder.setDataToViews(item, visitStatus)
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -92,7 +93,10 @@ class AmbientAirChildAdapter(
         /**
          * This method is used to set the data to the views
          */
-        fun setDataToViews(item: AmbientAirChild) {
+        fun setDataToViews(
+            item: AmbientAirChild,
+            visitStatus: Boolean
+        ) {
             itemBinding.run {
                 //Parameter
 //                if (item.position != "")
@@ -108,6 +112,24 @@ class AmbientAirChildAdapter(
                 //Prescribed Value
                 if (item.prescribedValue != "")
                     edtPrescribedValue.setText(item.prescribedValue)
+
+
+                //If true, disable all controls!
+                if (visitStatus)
+                    disableEnableControls(false, itemBinding.categoryParentLay)
+            }
+        }
+
+        //Method to Enable/Disable Views
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != com.example.mpcb.R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
             }
         }
 

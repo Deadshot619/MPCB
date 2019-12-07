@@ -33,6 +33,9 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        disableViews(mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_8)
         setUpRecyclerView()
         setListener()
@@ -69,7 +72,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
     private fun setUpRecyclerView() {
         mBinding.rvJVS.layoutManager =
             LinearLayoutManager(getBaseActivity().applicationContext)
-        val adapter = LastJVSAdapter(getBaseActivity(), mViewModel)
+        val adapter = LastJVSAdapter(getBaseActivity(), mViewModel, visitStatus)
         mBinding.rvJVS.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
         mViewModel.populateData()

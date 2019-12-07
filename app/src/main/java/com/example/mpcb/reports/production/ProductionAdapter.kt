@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemProductionBinding
 import com.example.mpcb.network.request.RoutineReportProduct
 import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST
@@ -15,7 +16,8 @@ import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST1
 
 class ProductionAdapter(
     val context: Context,
-    private val viewModel: ProductionViewModel
+    private val viewModel: ProductionViewModel,
+    val visitStatus: Boolean
 ) : RecyclerView.Adapter<ProductionAdapter.ProductionViewHolder>() {
 
     private val sourceList = ArrayList<RoutineReportProduct>()
@@ -30,7 +32,7 @@ class ProductionAdapter(
         val item = sourceList[position]
         holder.setSpinner(item)
         holder.itemBinding.model = sourceList[position]
-
+        holder.setDataToViews(visitStatus)
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -107,5 +109,22 @@ class ProductionAdapter(
 
         }
 
+        fun setDataToViews(visitStatus: Boolean) {
+            //If true, disable all controls!
+            if (visitStatus)
+                disableEnableControls(false, itemBinding.categoryParentLay)
+        }
+
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
+            }
+        }
     }
 }

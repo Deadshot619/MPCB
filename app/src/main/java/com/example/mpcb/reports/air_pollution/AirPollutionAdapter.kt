@@ -15,7 +15,8 @@ import com.example.mpcb.utils.constants.Constants.Companion.AIR_POLLUTION_LIST
 
 class AirPollutionAdapter(
     val context: Context,
-    private val viewModel: AirViewModel
+    private val viewModel: AirViewModel,
+    private val visitStatus: Boolean
 ) : RecyclerView.Adapter<AirPollutionAdapter.AirPollutionViewHolder>() {
 
     private val sourceList = ArrayList<RoutineReportAirPollution>()
@@ -31,7 +32,7 @@ class AirPollutionAdapter(
         holder.itemBinding.model = item
 
         holder.setListeners(item)
-        holder.setDataToViews(item)
+        holder.setDataToViews(item, visitStatus)
 
     }
 
@@ -149,7 +150,10 @@ class AirPollutionAdapter(
         /**
          * This method is used to set the data to the views
          */
-        fun setDataToViews(item: RoutineReportAirPollution) {
+        fun setDataToViews(
+            item: RoutineReportAirPollution,
+            visitStatus: Boolean
+        ) {
 
             itemBinding.run {
                 //Set Source item
@@ -181,7 +185,22 @@ class AirPollutionAdapter(
                 cbNoProvision.isChecked = item.airPollutionNoProvision == 1
                 cbAnyOther.isChecked = item.airPollutionAnyOther == 1
             }
+
+            //If true, disable all controls!
+            if (visitStatus)
+                disableEnableControls(false, itemBinding.categoryParentLay)
         }
 
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
+            }
+        }
     }
 }

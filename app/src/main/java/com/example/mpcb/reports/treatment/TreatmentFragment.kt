@@ -29,6 +29,9 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
     override fun onBinding() {
+        //If true, disable all controls!
+        disableViews(mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_4)
 
         //Get Visit Report ID from arguments

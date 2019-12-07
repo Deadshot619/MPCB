@@ -26,6 +26,10 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        if (visitStatus)
+            disableEnableControls(false, mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_11)
 
         //Get Visit Report ID from arguments
@@ -46,7 +50,7 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
     private fun setUpRecyclerView() {
         mBinding.rvAmbientAir.layoutManager =
             LinearLayoutManager(getBaseActivity().applicationContext)
-        val adapter = AmbientAirAdapter(getBaseActivity(), mViewModel)
+        val adapter = AmbientAirAdapter(getBaseActivity(), mViewModel, visitStatus)
         mBinding.rvAmbientAir.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
         mViewModel.populateData()

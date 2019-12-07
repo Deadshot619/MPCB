@@ -27,6 +27,9 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        disableViews(mBinding.waterWasteParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_3)
 
         //Get Visit Report ID from arguments

@@ -28,6 +28,9 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        disableViews(mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_7)
         setListener()
 

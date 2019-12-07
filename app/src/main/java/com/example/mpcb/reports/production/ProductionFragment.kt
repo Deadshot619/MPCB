@@ -27,7 +27,9 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     override fun onInternetError() {}
 
     override fun onBinding() {
-//        disableEnableControls(false, mBinding.categoryParentLay)
+        //If true, disable all controls!
+        disableViews(mBinding.categoryParentLay)
+
 
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_2)
 
@@ -47,7 +49,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
     }
 
     private fun setUpRecyclerView() {
-        adapter = ProductionAdapter(getBaseActivity(), mViewModel)
+        adapter = ProductionAdapter(getBaseActivity(), mViewModel, visitStatus)
         mBinding.rvProduction.layoutManager =
             LinearLayoutManager(getBaseActivity().applicationContext)
         mBinding.rvProduction.adapter = adapter

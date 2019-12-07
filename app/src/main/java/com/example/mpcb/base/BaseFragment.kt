@@ -9,6 +9,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.mpcb.R
 import com.example.mpcb.databinding.ToolbarBinding
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.additional_info.AdditionalInfoFragment
@@ -39,6 +40,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     protected lateinit var mBinding: T
     protected lateinit var mViewModel: V
     protected lateinit var report: ReportRequest
+
+    /**
+     * This variable will be used to check if Visit Status if VISITED or not.
+     * Mostly used in Reports to then enable/disable views
+     */
+    protected val visitStatus: Boolean
+        get() = PreferencesHelper.getBooleanPreference(Constants.VISIT_STATUS)
 
     /**
      * This method is to be implemented in the child classes.
@@ -212,11 +220,19 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     protected fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
         for (i in 0 until vg.childCount) {
             val child = vg.getChildAt(i)
-            child.isEnabled = enable
+
+            if(child.id != R.id.btnSubmit)
+                child.isEnabled = enable
             if (child is ViewGroup) {
                 disableEnableControls(enable, child)
             }
         }
+    }
+
+    protected fun disableViews(viewGroup: ViewGroup){
+        //If true, disable all controls!
+        if (visitStatus)
+            disableEnableControls(false, viewGroup)
     }
 }
 

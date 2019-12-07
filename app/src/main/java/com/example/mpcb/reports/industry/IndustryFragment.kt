@@ -35,7 +35,8 @@ class IndustryReportFragment :
     override fun onInternetError() {}
 
     override fun onBinding() {
-//        disableEnableControls(false,mBinding.categoryParentLay)
+        disableViews(mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants1.REPORT_1)
         setListener()
 

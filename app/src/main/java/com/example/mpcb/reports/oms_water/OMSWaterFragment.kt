@@ -27,6 +27,10 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
     override fun onInternetError() {}
 
     override fun onBinding() {
+
+        //If true, disable all controls!
+        disableViews(mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_6)
 
         //Get Visit Report ID from arguments

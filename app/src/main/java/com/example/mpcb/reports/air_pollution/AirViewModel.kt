@@ -21,15 +21,19 @@ class AirViewModel : BaseViewModel<AirNavigator>() {
 
     fun deleteItem() {
         val list = sourceList.value
-        if (list?.size!! > 1) {
-            list.removeAt(list.size - 1)
-            sourceList.value = list
+        list?.size?.run {
+            if (list.size > 1) {
+                list.removeAt(list.size - 1)
+                sourceList.value = list
+            }
         }
     }
 
     fun addItem() {
         val list = sourceList.value
-        list!!.add(RoutineReportAirPollution())
-        sourceList.value = list
+        list?.run {
+            list.add(RoutineReportAirPollution())
+            sourceList.value = list
+        }
     }
 }

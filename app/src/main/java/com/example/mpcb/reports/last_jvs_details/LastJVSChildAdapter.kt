@@ -16,7 +16,8 @@ class LastJVSChildAdapter(
     val context: Context,
     private val viewModel: LastJVSViewModel,
     private val childList: ArrayList<LastJVSChild>,
-    private val parentPosition: Int
+    private val parentPosition: Int,
+    private val visitStatus: Boolean
 ) : RecyclerView.Adapter<LastJVSChildAdapter.LastJvsChildViewHolder>() {
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
@@ -43,7 +44,7 @@ class LastJVSChildAdapter(
 
         holder.setSpinner(item)
 
-        holder.setDataToViews(item)
+        holder.setDataToViews(item, visitStatus)
 
     }
 
@@ -89,7 +90,10 @@ class LastJVSChildAdapter(
         /**
          * This method is used to set the data to the views
          */
-        fun setDataToViews(item: LastJVSChild) {
+        fun setDataToViews(
+            item: LastJVSChild,
+            visitStatus: Boolean
+        ) {
             itemBinding.run {
                 //Parameter
                 spnParameter.setSelection(
@@ -103,6 +107,22 @@ class LastJVSChildAdapter(
                 //Prescribed Value
                 if (item.prescribedValue != "")
                     edtPrescribedValue.setText(item.prescribedValue)
+            }
+
+            //If true, disable all controls!
+            if (visitStatus)
+                disableEnableControls(false, itemBinding.categoryParentLay)
+        }
+
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != com.example.mpcb.R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
             }
         }
     }

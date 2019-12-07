@@ -12,7 +12,8 @@ import com.example.mpcb.network.request.LastJVSChild
 
 class LastJVSAdapter(
     val context: Context,
-    private val viewModel: LastJVSViewModel
+    private val viewModel: LastJVSViewModel,
+    val visitStatus: Boolean
 ) : RecyclerView.Adapter<LastJVSAdapter.LastJvsViewHolder>() {
 
     private val parentList = ArrayList<JvsSampleCollectedWaterSource>()
@@ -25,7 +26,7 @@ class LastJVSAdapter(
     override fun onBindViewHolder(holder: LastJvsViewHolder, position: Int) {
         val item = parentList[position]
         holder.itemBinding.model = item
-        holder.setData(viewModel, item.lastJvsChild, position)
+        holder.setData(viewModel, item.lastJvsChild, position, visitStatus)
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -44,12 +45,29 @@ class LastJVSAdapter(
         fun setData(
             viewModel: LastJVSViewModel,
             childList: ArrayList<LastJVSChild>,
-            position: Int
+            position: Int,
+            visitStatus: Boolean
         ) {
             itemBinding.rvChild.layoutManager = LinearLayoutManager(itemBinding.root.context)
             val adapter =
-                LastJVSChildAdapter(itemBinding.root.context, viewModel, childList, position)
+                LastJVSChildAdapter(itemBinding.root.context, viewModel, childList, position, visitStatus)
             itemBinding.rvChild.adapter = adapter
+
+            //If true, disable all controls!
+            if (visitStatus)
+                disableEnableControls(false, itemBinding.categoryParentLay)
+        }
+
+        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if(child.id != com.example.mpcb.R.id.btnSubmit)
+                    child.isEnabled = enable
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
+            }
         }
     }
 }

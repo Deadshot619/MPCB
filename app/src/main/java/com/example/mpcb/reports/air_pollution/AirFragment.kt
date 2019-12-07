@@ -25,6 +25,10 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        if (visitStatus)
+            disableEnableControls(false, mBinding.categoryParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_9)
 
         //Get Visit Report ID from arguments
@@ -43,7 +47,7 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
 
     private fun setUpRecyclerView() {
         mBinding.rvSource.layoutManager = LinearLayoutManager(getBaseActivity().applicationContext)
-        val adapter = AirPollutionAdapter(getBaseActivity(), mViewModel)
+        val adapter = AirPollutionAdapter(getBaseActivity(), mViewModel, visitStatus)
         mBinding.rvSource.adapter = adapter
         mViewModel.getSourceList().observe(viewLifecycleOwner, Observer { adapter.updateList(it) })
 //        mViewModel.populateData()

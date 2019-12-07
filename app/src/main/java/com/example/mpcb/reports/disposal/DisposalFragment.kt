@@ -50,6 +50,9 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //If true, disable all controls!
+        disableViews(mBinding.disposalParentLay)
+
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_5)
         setListener()
 
