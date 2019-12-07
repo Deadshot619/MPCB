@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_button_save_next"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSubmit"
+                android:visibility="visible"
+                style="@style/save_btn_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_drawable"
+                android:text="Save &amp; Continue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNext"
+                android:visibility="gone"
+                style="@style/save_btn_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_drawable"
+                android:text="Next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

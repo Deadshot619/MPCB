@@ -11,6 +11,9 @@ import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.reports.ReportsPageNavigator
 import com.example.mpcb.reports.ReportsPageViewModel
 import com.example.mpcb.utils.constants.Constants.Companion.CATEGORY_LIST
+import com.example.mpcb.utils.constants.Constants.Companion.REPORT_1
+import com.example.mpcb.utils.constants.Constants.Companion.REPORT_2
+import com.example.mpcb.utils.constants.Constants.Companion.VISIT_REPORT_ID
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.utils.validations.isDecimal
 import com.example.mpcb.utils.validations.isEmailValid
@@ -57,7 +60,7 @@ class IndustryReportFragment :
 
         mBinding.edtVisitedIndustryOn.setOnClickListener { showDateDialog(VISITED_ON) }
         mBinding.edtValidUpto.setOnClickListener { showDateDialog(VALID_UPTO) }
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun showDateDialog(id: Int) {
@@ -104,13 +107,13 @@ class IndustryReportFragment :
             if (validateFieldsFilledCorrect()) {
                 saveReportData(
                     reportNo = visitReportId,
-                    reportKey = Constants1.REPORT_1,
+                    reportKey = REPORT_1,
                     reportStatus = true
                 )
                 //Put the Visit Report ID in bundle to share to Fragments
                 val bundle = Bundle()
-                bundle.putString(Constants1.VISIT_REPORT_ID, visitReportId)
-                addReportFragment(Constants1.REPORT_2, bundle)
+                bundle.putString(VISIT_REPORT_ID, visitReportId)
+                addReportFragment(REPORT_2, bundle)
             }
         }
     }
