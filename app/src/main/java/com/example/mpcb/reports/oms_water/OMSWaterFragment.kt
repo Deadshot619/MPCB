@@ -41,7 +41,7 @@ class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewMo
         setReportVariableData(visitReportId)
 
         setListener()
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun setListener() {

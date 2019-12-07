@@ -56,11 +56,13 @@ class IndustryReportFragment :
             CATEGORY_LIST.values.toTypedArray()
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mBinding.catSpinner.adapter = adapter
+        mBinding.run{
+            catSpinner.adapter = adapter
 
-        mBinding.edtVisitedIndustryOn.setOnClickListener { showDateDialog(VISITED_ON) }
-        mBinding.edtValidUpto.setOnClickListener { showDateDialog(VALID_UPTO) }
-        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+            edtVisitedIndustryOn.setOnClickListener { showDateDialog(VISITED_ON) }
+            edtValidUpto.setOnClickListener { showDateDialog(VALID_UPTO) }
+            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+        }
     }
 
     private fun showDateDialog(id: Int) {

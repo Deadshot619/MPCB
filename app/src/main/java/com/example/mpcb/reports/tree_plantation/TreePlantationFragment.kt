@@ -42,7 +42,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         setReportVariableData(visitReportId)
 
 
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun onSubmit() {

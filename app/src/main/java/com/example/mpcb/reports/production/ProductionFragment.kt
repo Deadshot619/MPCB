@@ -44,7 +44,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
         mBinding.run{
             txtAddMore.setOnClickListener { mViewModel.addItem() }
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
-            btnSubmit.setOnClickListener { onSubmit() }
+            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
         }
     }
 

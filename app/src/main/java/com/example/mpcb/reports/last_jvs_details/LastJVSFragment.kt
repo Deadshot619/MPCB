@@ -59,7 +59,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
             edtDateDomestic.setOnClickListener { showDateDialog(DOMESTIC_DATE) }
 
             txtAddMore.setOnClickListener { mViewModel.addItem() }
-            btnSubmit.setOnClickListener { onSubmit() }
+            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
 
             //Delete Button
             imgDelete.setOnClickListener {

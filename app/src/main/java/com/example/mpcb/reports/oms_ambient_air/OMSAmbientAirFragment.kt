@@ -42,9 +42,11 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         setUpRecyclerView()
         setListeners()
 
-        mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
-        mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.run {
+            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            imgDelete.setOnClickListener { mViewModel.deleteItem() }
+            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+        }
     }
 
     private fun setUpRecyclerView() {

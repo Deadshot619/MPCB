@@ -42,7 +42,7 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
 
         mBinding.edtActionInitiated.setOnClickListener { showDateDialog() }
 
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun showDateDialog() {

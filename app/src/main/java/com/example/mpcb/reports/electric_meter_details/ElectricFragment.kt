@@ -41,7 +41,7 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
         //set report variable data
         setReportVariableData(visitReportId)
 
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun setListener() {

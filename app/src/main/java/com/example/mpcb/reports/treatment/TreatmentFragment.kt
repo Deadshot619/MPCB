@@ -43,7 +43,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
 
         setListeners()
         setCheckBoxListener()
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun setListeners() {

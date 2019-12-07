@@ -46,7 +46,7 @@ class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageView
 
         mBinding.edtHazardousWaste.setOnClickListener { showDateDialog(HAZARDOUS_WASTE) }
         mBinding.edtEnvironmentReport.setOnClickListener { showDateDialog(ENVIRONMENT_REPORT) }
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
     }
 
     private fun showDateDialog(id: Int) {

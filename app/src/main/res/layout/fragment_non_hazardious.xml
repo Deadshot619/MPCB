@@ -1,101 +1,100 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardviewLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            android:id="@+id/cardviewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/category_parent_lay"
+                    android:id="@+id/category_parent_lay"
                     android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    android:layout_height="wrap_content">
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txt_hwm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Non Hazardous waste management"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/text_large"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                        android:id="@+id/txt_hwm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Non Hazardous waste management"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvNonHazardous"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/text_large"
-                    android:layout_marginTop="@dimen/text_large"
-                    android:layout_marginRight="@dimen/text_large"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_hwm">
+                        android:id="@+id/rvNonHazardous"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/text_large"
+                        android:layout_marginTop="@dimen/text_large"
+                        android:layout_marginRight="@dimen/text_large"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_hwm">
 
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtAddMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_plus"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Add More Reports"
-                    android:gravity="center_vertical"
-                    android:drawablePadding="10dp"
-                    android:textColor="@color/green"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvNonHazardous" />
+                        android:id="@+id/txtAddMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:drawableLeft="@drawable/ic_plus"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:text="Add More Reports"
+                        android:textColor="@color/green"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rvNonHazardous" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/imgDelete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:drawableStart="@drawable/ic_delete"
-                    android:drawableLeft="@drawable/ic_delete"
-                    android:layout_marginEnd="16dp"
-                    android:drawablePadding="10dp"
-                    android:text="Delete"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvNonHazardous" />
+                        android:id="@+id/imgDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:drawableStart="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawablePadding="10dp"
+                        android:text="Delete"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rvNonHazardous" />
 
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSubmit"
-                    style="@style/save_btn_style"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="24dp"
-                    android:text="@string/save_continue"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtAddMore" />
+                <include
+                        android:id="@+id/btnSaveNext"
+                        layout="@layout/button_save_next_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txtAddMore" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.cardview.widget.CardView>

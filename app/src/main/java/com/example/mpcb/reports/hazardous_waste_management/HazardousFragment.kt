@@ -40,9 +40,11 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 
         setUpRecyclerView()
 
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
-        mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
-        mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
+        mBinding.run{
+            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            imgDelete.setOnClickListener { mViewModel.deleteItem() }
+        }
     }
 
     private fun setUpRecyclerView() {

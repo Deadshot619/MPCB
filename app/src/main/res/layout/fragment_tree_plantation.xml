@@ -137,16 +137,14 @@
                             android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnSubmit"
+                <include
+                        android:id="@+id/btnSaveNext"
+                        layout="@layout/button_save_next_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Save &amp; Continue"
                         android:layout_marginBottom="24dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        style="@style/save_btn_style"
-                        android:background="@drawable/btn_drawable"
                         app:layout_constraintTop_toBottomOf="@+id/proposedPlantationLayout"
                         android:layout_marginTop="32dp"
                         app:layout_constraintStart_toStartOf="parent" />

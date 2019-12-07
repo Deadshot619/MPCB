@@ -40,7 +40,7 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
         setReportVariableData(visitReportId)
 
         setListener()
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
 
     }
 

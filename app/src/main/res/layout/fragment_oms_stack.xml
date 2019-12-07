@@ -291,17 +291,15 @@
                     app:layout_constraintStart_toEndOf="@+id/cbCPCB"
                     app:layout_constraintTop_toTopOf="@+id/cbCPCB" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSubmit"
-                    style="@style/save_btn_style"
-                    android:layout_width="wrap_content"
+                <include
+                        android:id="@+id/btnSaveNext"
+                        layout="@layout/button_save_next_layout"
+                        android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="24dp"
-                    android:background="@drawable/btn_drawable"
-                    android:text="Save &amp; Continue"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

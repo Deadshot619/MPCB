@@ -39,7 +39,7 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
         //set report variable data
         setReportVariableData(visitReportId)
 
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
     }
 
 

@@ -39,10 +39,12 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
 
         setUpRecyclerView()
 
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
-        mBinding.imgDelete.setOnClickListener { mViewModel.deleteItem() }
-        mBinding.imgAddMore.setOnClickListener { mViewModel.addItem() }
-        mBinding.txtAddMore.setOnClickListener { mViewModel.addItem() }
+        mBinding.run{
+            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+            imgDelete.setOnClickListener { mViewModel.deleteItem() }
+            imgAddMore.setOnClickListener { mViewModel.addItem() }
+            txtAddMore.setOnClickListener { mViewModel.addItem() }
+        }
     }
 
     private fun setUpRecyclerView() {
