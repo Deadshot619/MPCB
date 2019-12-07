@@ -1,6 +1,5 @@
 package com.example.mpcb.reports.oms_stack
 
-import android.os.Bundle
 import android.view.View
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
@@ -42,8 +41,10 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
         setReportVariableData(visitReportId)
 
         setListener()
-        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
-
+        mBinding.btnSaveNext.run {
+            btnSubmit.setOnClickListener { onSubmit() }
+            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_11, visitReportId) }
+        }
     }
 
     private fun setListener() {
@@ -150,9 +151,7 @@ class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewMo
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
-            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_11, bundle)
+            addReportFragmentLocal(Constants.REPORT_11, visitReportId)
         }
     }
 

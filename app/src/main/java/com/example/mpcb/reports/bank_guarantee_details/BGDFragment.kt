@@ -1,6 +1,5 @@
 package com.example.mpcb.reports.bank_guarantee_details
 
-import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
@@ -44,7 +43,10 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
         mBinding.run{
             tvAddMore.setOnClickListener { mViewModel.addItem() }
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
-            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+            btnSaveNext.run {
+                btnSubmit.setOnClickListener { onSubmit() }
+                btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_18, visitReportId) }
+            }
         }
     }
 
@@ -75,10 +77,9 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
                 reportNo = visitReportId,
                 reportKey = Constants.REPORT_17,
                 reportStatus = true
-            )//Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
-            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_18, bundle)
+            )
+            //Put the Visit Report ID in bundle to share to Fragments
+            addReportFragmentLocal(Constants.REPORT_18, visitReportId)
         }
     }
 

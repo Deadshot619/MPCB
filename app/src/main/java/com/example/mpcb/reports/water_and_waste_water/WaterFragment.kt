@@ -1,6 +1,5 @@
 package com.example.mpcb.reports.water_and_waste_water
 
-import android.os.Bundle
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentWasteWaterAspectBinding
@@ -42,7 +41,10 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
         //set report variable data
         setReportVariableData(visitReportId)
 
-        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.run {
+            btnSubmit.setOnClickListener { onSubmit() }
+            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_4, visitReportId) }
+        }
     }
 
 
@@ -67,9 +69,7 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
-            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_4, bundle)
+            addReportFragmentLocal(Constants.REPORT_4, visitReportId)
         }
     }
 

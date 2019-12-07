@@ -1,7 +1,6 @@
 package com.example.mpcb.reports.tree_plantation
 
 
-import android.os.Bundle
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentTreePlantationBinding
@@ -44,7 +43,10 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         setReportVariableData(visitReportId)
 
 
-        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.run {
+            btnSubmit.setOnClickListener { onSubmit() }
+            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_15, visitReportId) }
+        }
     }
 
     private fun onSubmit() {
@@ -64,9 +66,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
-            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_15, bundle)
+            addReportFragmentLocal(Constants.REPORT_15, visitReportId)
         }
     }
 

@@ -2,7 +2,6 @@ package com.example.mpcb.reports.last_jvs_details
 
 
 import android.app.DatePickerDialog
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -62,7 +61,10 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
             edtDateDomestic.setOnClickListener { showDateDialog(DOMESTIC_DATE) }
 
             txtAddMore.setOnClickListener { mViewModel.addItem() }
-            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+            btnSaveNext.run {
+                btnSubmit.setOnClickListener { onSubmit() }
+                btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_9, visitReportId) }
+            }
 
             //Delete Button
             imgDelete.setOnClickListener {
@@ -185,9 +187,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
-            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_9, bundle)
+            addReportFragmentLocal(Constants.REPORT_9, visitReportId)
         }
     }
 

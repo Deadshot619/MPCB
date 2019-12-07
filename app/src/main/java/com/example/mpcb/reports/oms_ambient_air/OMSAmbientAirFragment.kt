@@ -1,7 +1,6 @@
 package com.example.mpcb.reports.oms_ambient_air
 
 
-import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,7 +46,10 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         mBinding.run {
             txtAddMore.setOnClickListener { mViewModel.addItem() }
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
-            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+            btnSaveNext.run {
+                btnSubmit.setOnClickListener { onSubmit() }
+                btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_12, visitReportId) }
+            }
         }
     }
 
@@ -177,9 +179,7 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
             )
 
             //Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
-            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_12, bundle)
+            addReportFragmentLocal(Constants.REPORT_12, visitReportId)
         }
     }
 

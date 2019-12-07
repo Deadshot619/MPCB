@@ -1,7 +1,6 @@
 package com.example.mpcb.reports.previous_legal_actions
 
 import android.app.DatePickerDialog
-import android.os.Bundle
 import android.util.Log
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
@@ -44,7 +43,10 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
 
         mBinding.edtActionInitiated.setOnClickListener { showDateDialog() }
 
-        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.run {
+            btnSubmit.setOnClickListener { onSubmit() }
+            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_17, visitReportId) }
+        }
     }
 
     private fun showDateDialog() {
@@ -74,9 +76,7 @@ class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, Reports
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
-            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_17, bundle)
+            addReportFragmentLocal(Constants.REPORT_17, visitReportId)
         }
     }
 

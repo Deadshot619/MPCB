@@ -1,7 +1,6 @@
 package com.example.mpcb.reports.industry
 
 import android.app.DatePickerDialog
-import android.os.Bundle
 import android.widget.ArrayAdapter
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
@@ -64,7 +63,11 @@ class IndustryReportFragment :
 
             edtVisitedIndustryOn.setOnClickListener { showDateDialog(VISITED_ON) }
             edtValidUpto.setOnClickListener { showDateDialog(VALID_UPTO) }
-            btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+            btnSaveNext.run{
+                btnSubmit.setOnClickListener { onSubmit() }
+                btnNext.setOnClickListener { addReportFragmentLocal(REPORT_2, visitReportId) }
+            }
+
         }
     }
 
@@ -115,10 +118,9 @@ class IndustryReportFragment :
                     reportKey = REPORT_1,
                     reportStatus = true
                 )
-                //Put the Visit Report ID in bundle to share to Fragments
-                val bundle = Bundle()
-                bundle.putString(VISIT_REPORT_ID, visitReportId)
-                addReportFragment(REPORT_2, bundle)
+
+                //Do fragment transaction to go to next Page
+                addReportFragmentLocal(REPORT_2, visitReportId)
             }
         }
     }

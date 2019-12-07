@@ -1,7 +1,6 @@
 package com.example.mpcb.reports.treatment
 
 
-import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
 import com.example.mpcb.R
@@ -46,7 +45,10 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
 
         setListeners()
         setCheckBoxListener()
-        mBinding.btnSaveNext.btnSubmit.setOnClickListener { onSubmit() }
+        mBinding.btnSaveNext.run {
+            btnSubmit.setOnClickListener { onSubmit() }
+            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_5, visitReportId) }
+        }
     }
 
     private fun setListeners() {
@@ -305,9 +307,7 @@ class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageView
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
-            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-            addReportFragment(Constants.REPORT_5, bundle)
+            addReportFragmentLocal(Constants.REPORT_5, visitReportId)
         }
     }
 

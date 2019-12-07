@@ -170,6 +170,17 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     }
 
     /**
+     * This method will be used in onClick of Submit/Next button in report fragments to
+     * go to next fragment.
+     */
+    protected fun addReportFragmentLocal(constantReportValue: Int, visitReportId: String) {
+        //Put the Visit Report ID in bundle to share to Fragments
+        val bundle = Bundle()
+        bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+        addReportFragment(constantReportValue, bundle)
+    }
+
+    /**
      * This method is used to get data from Fragment arguments
      */
     protected fun getDataFromArguments(context: Fragment, key: String): String {
@@ -225,7 +236,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         for (i in 0 until vg.childCount) {
             val child = vg.getChildAt(i)
 
-            if(child.id != R.id.btnSubmit)
+            if(child.id != R.id.btnNext)
                 child.isEnabled = enable
             if (child is ViewGroup) {
                 disableEnableControls(enable, child)
