@@ -26,8 +26,10 @@ class AdditionalInfoFragment :
 
     override fun onBinding() {
         //If true, disable all controls!
-        if (visitStatus)
-            disableEnableControls(false, mBinding.categoryParentLay)
+        disableViews(mBinding.categoryParentLay)
+
+        //Method to Show or Hide Save & Next Button
+        showNextButton(mBinding.btnSaveNext)
 
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_18)
         setListener()
@@ -40,8 +42,13 @@ class AdditionalInfoFragment :
         setReportVariableData(visitReportId)
 
 
-        mBinding.btnSubmit.setOnClickListener { onSubmit() }
-
+        mBinding.btnSaveNext.run {
+            btnSubmit.setOnClickListener { onSubmit() }
+            btnNext.apply {
+                text = "Done"
+                setOnClickListener { activity?.finish() }
+            }
+        }
     }
 
     private fun setListener() {
