@@ -1,10 +1,12 @@
 package com.example.mpcb.my_visits
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.base.MPCBApp
 import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.MyVisitRequest
+import com.example.mpcb.network.request.ViewVisitRequest
 import com.example.mpcb.network.response.CheckInfoModel
 import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.MyVisitModel
@@ -23,7 +25,6 @@ import java.io.File
 class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     private val visitList = MutableLiveData<MyVisitResponse>()
-
 
     private val user by lazy {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
@@ -81,6 +82,38 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             }))
     }
 
+    /**
+     * Method to get VisitReport Data
+     */
+    fun getVisitItemData(viewModel: MyVisitModel) {
+        //create request data
+        val request = ViewVisitRequest()
+        request.userId = user.userId.toString()
+        request.indusImisId = viewModel.industryIMISId
+        request.visitId = viewModel.visitSchedulerId
+
+        //show loading dialog
+        dialogVisibility.value = true
+        dialogMessage.value = "Fetching Data..."
+
+        mDisposable.add(
+            DataProvider.viewVisitReport(
+                request = request,
+                success = Consumer {
+                    dialogVisibility.value = false
+                    if (it.status) {
+                        mNavigator?.onVisitItemClicked(viewModel)
+                        Log.i("Hogya BC", it.data.toString())
+                        mNavigator?.showAlert(it.message)
+                    }
+                },
+                error = Consumer {
+                    checkError(it)
+                }
+            )
+        )
+    }
+
     fun getCurrentLocation() {
         val mFusedLocationProviderClient: FusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(MPCBApp.instance)
@@ -98,14 +131,14 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     }
 
     fun onVisitItemClick(visitItem: MyVisitModel) {
-        mNavigator!!.onVisitItemClicked(visitItem)
-//        if (visitItem.checkInStatus == 1)
-//            if (visitItem.visitStatus == "Visited")
-//                mNavigator!!.onError("Already Visited!")
-//            else
-//                mNavigator!!.onVisitItemClicked(visitItem)
-//        else
-//            mNavigator!!.onError("Please Check in first!")
+//        mNavigator!!.onVisitItemClicked(visitItem)
+        if (visitItem.checkInStatus == 1)
+            if (visitItem.visitStatus == "Visited")
+                getVisitItemData(visitItem)
+            else
+                mNavigator!!.onVisitItemClicked(visitItem)
+        else
+            mNavigator!!.onError("Please Check in first!")
     }
 
     fun onCheckInClick(model: MyVisitModel) {

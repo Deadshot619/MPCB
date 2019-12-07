@@ -165,11 +165,11 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     }
 
     override fun onVisitItemClicked(viewModel: MyVisitModel) {
+        showMessage(viewModel.industryIMISId)
         val bundle = Bundle()
         bundle.putParcelable(Constants.VISIT_ITEM_KEY, viewModel)
         addFragment(VisitReportFragment(), true, bundle)
     }
-
 
     override fun onAlreadyCheckedIn(viewModel: CheckInfoModel) {
         this.models = viewModel
