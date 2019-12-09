@@ -107,40 +107,47 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
 
     private fun setListener() {
         mBinding.run {
-            rgPymntDetailsIndus.setOnCheckedChangeListener { group, checkedId ->
-                report.data.routineReport.paymentDetailsIndus =
-                    if (checkedId == R.id.rbPymntDetailsIndusYes) {
-                        //Enable Amount & Date
-                        edtAmtIndus.isEnabled = true
-                        edtDateIndus.isEnabled = true
-                        "1"
-                    } else {
-                        //Disable Amount & Date
-                        edtAmtIndus.isEnabled = false
-                        edtDateIndus.isEnabled = false
 
-                        edtAmtIndus.setText("")
-                        edtDateIndus.setText("")
-                        "0"
-                    }
-            }
+            //If visit Status is true, then do not enable these listeners as it will enable
+            //the textviews.
+            if (!visitStatus) {
+                //Industrial Payment Details
+                rgPymntDetailsIndus.setOnCheckedChangeListener { group, checkedId ->
+                    report.data.routineReport.paymentDetailsIndus =
+                        if (checkedId == R.id.rbPymntDetailsIndusYes) {
+                            //Enable Amount & Date
+                            edtAmtIndus.isEnabled = true
+                            edtDateIndus.isEnabled = true
+                            "1"
+                        } else {
+                            //Disable Amount & Date
+                            edtAmtIndus.isEnabled = false
+                            edtDateIndus.isEnabled = false
 
-            rgPymntDetailsDomestic.setOnCheckedChangeListener { group, checkedId ->
-                report.data.routineReport.paymentDetailsDomestic =
-                    if (checkedId == R.id.rbPymntDetailsDomesticYes) {
-                        //Enable Amount & Date
-                        edtAmtDomestic.isEnabled = true
-                        edtDateDomestic.isEnabled = true
-                        "1"
-                    } else {
-                        //Disable Amount & Date
-                        edtAmtDomestic.isEnabled = false
-                        edtDateDomestic.isEnabled = false
+                            edtAmtIndus.setText("")
+                            edtDateIndus.setText("")
+                            "0"
+                        }
+                }
 
-                        edtAmtDomestic.setText("")
-                        edtDateDomestic.setText("")
-                        "0"
-                    }
+                //Domestic Payment Details
+                rgPymntDetailsDomestic.setOnCheckedChangeListener { group, checkedId ->
+                    report.data.routineReport.paymentDetailsDomestic =
+                        if (checkedId == R.id.rbPymntDetailsDomesticYes) {
+                            //Enable Amount & Date
+                            edtAmtDomestic.isEnabled = true
+                            edtDateDomestic.isEnabled = true
+                            "1"
+                        } else {
+                            //Disable Amount & Date
+                            edtAmtDomestic.isEnabled = false
+                            edtDateDomestic.isEnabled = false
+
+                            edtAmtDomestic.setText("")
+                            edtDateDomestic.setText("")
+                            "0"
+                        }
+                }
             }
 
             //JVS Sample

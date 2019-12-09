@@ -285,20 +285,20 @@ class Constants {
         )
 
         val AMBIENT_AIR_PARAM_LIST = mapOf(
-            0 to "TPM (mg/Nm3)",
-            1 to "SO2 (mg/m3)",
-            2 to "Acid Mist (mg/Nm3)"
+            0 to "TPM(mg/Nm3)",
+            1 to "SO2(mg/m3)",
+            2 to "Acid Mist(mg/Nm3)"
         )
 
         val JVS_PARAM_LIST = mapOf(
             0 to "pH",
-            1 to "BOD (mg/l)",
-            2 to "COD (mg/l)",
-            3 to "SS (mg/l)",
-            4 to "O&G (mg/l)",
-            5 to "TDS (mg/l)",
-            6 to "Chloride (mg/l)",
-            7 to "Sulphate (mg/l)"
+            1 to "BOD(mg/l)",
+            2 to "COD(mg/l)",
+            3 to "SS(mg/l)",
+            4 to "O&G(mg/l)",
+            5 to "TDS(mg/l)",
+            6 to "Chloride(mg/l)",
+            7 to "Sulphate(mg/l)"
         )
 
 

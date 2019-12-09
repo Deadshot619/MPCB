@@ -50,16 +50,20 @@ class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewMo
     }
 
     private fun setListener() {
-        mBinding.rgSeparateMeter.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.electrictMeterProvided =
-                if (checkedId == R.id.rbSeparateYes) {
-                    mBinding.edtMeterReading.isEnabled = true
-                    1
-                } else {
-                    mBinding.edtMeterReading.isEnabled = false
-                    mBinding.edtMeterReading.setText("")
-                    0
-                }
+        //If visit Status is true, then do not enable these listeners as it will enable
+        //the textviews.
+        if (!visitStatus) {
+            mBinding.rgSeparateMeter.setOnCheckedChangeListener { group, checkedId ->
+                report.data.routineReport.electrictMeterProvided =
+                    if (checkedId == R.id.rbSeparateYes) {
+                        mBinding.edtMeterReading.isEnabled = true
+                        1
+                    } else {
+                        mBinding.edtMeterReading.isEnabled = false
+                        mBinding.edtMeterReading.setText("")
+                        0
+                    }
+            }
         }
     }
 
