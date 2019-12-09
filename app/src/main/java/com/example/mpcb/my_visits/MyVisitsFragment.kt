@@ -80,7 +80,6 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
             pd.show(fragmentManager!!, "MonthYearPickerDialog")
         }
 
-
     }
 
     override fun onStart() {

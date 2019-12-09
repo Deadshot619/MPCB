@@ -308,7 +308,7 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/txtAddMore"
+                        android:id="@+id/tvAddMore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -318,7 +318,7 @@
                         android:gravity="center_vertical"
                         android:text="Add More Source"
                         app:layout_constraintEnd_toStartOf="@+id/imgDelete"
-                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintHorizontal_chainStyle="spread_inside"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/rvJVS" />
@@ -339,7 +339,7 @@
                         android:textSize="18sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/txtAddMore"
+                        app:layout_constraintStart_toEndOf="@+id/tvAddMore"
                         app:layout_constraintTop_toBottomOf="@+id/rvJVS"
                         app:layout_goneMarginRight="16dp" />
 
@@ -353,7 +353,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/txtAddMore" />
+                        app:layout_constraintTop_toBottomOf="@+id/tvAddMore" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

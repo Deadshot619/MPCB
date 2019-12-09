@@ -30,18 +30,18 @@ class MonthYearPickerDialog : DialogFragment() {
 
         monthPicker.minValue = 1
         monthPicker.maxValue = 12
-        monthPicker.value = cal.get(Calendar.MONTH)
+        monthPicker.value = if (monthDashboard >= 0) monthDashboard else cal.get(Calendar.MONTH)
 
         val year = cal.get(Calendar.YEAR)
         yearPicker.minValue = 2016
         yearPicker.maxValue = year
-        yearPicker.value = year
+        yearPicker.value = if (yearDashboard >= 0) yearDashboard else year
 
         builder.setView(dialog)
             // Add action buttons
             .setPositiveButton(
                 "OK"
-            ) { _, id ->
+            ) { _, _ ->
 
                 listener!!.onDateSet(
                     null,
@@ -60,5 +60,7 @@ class MonthYearPickerDialog : DialogFragment() {
 
     companion object {
         private val MAX_YEAR = 2099
+        var yearDashboard = -1
+        var monthDashboard = -1
     }
 }

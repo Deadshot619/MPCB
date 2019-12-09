@@ -45,7 +45,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
                 btnSubmit.setOnClickListener { onSubmit() }
                 btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_13, visitReportId) }
             }
-            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            tvAddMore.setOnClickListener { mViewModel.addItem() }
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
         }
     }

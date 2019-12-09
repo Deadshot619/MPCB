@@ -43,7 +43,7 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
         setListeners()
 
         mBinding.run {
-            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            tvAddMore.setOnClickListener { mViewModel.addItem() }
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
@@ -100,13 +100,19 @@ class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbi
                     jvsSampleCollectedForAir =
                         if (checkedId == R.id.rbSampleYes) {
                             rvAmbientAir.visibility = View.VISIBLE
-                            txtAddMore.visibility = View.VISIBLE
-                            imgDelete.visibility = View.VISIBLE
+
+                            if (!visitStatus) {
+                                tvAddMore.visibility = View.VISIBLE
+                                imgDelete.visibility = View.VISIBLE
+                            }
                             1
                         } else {
                             rvAmbientAir.visibility = View.GONE
-                            txtAddMore.visibility = View.GONE
-                            imgDelete.visibility = View.GONE
+
+                            if (!visitStatus) {
+                                tvAddMore.visibility = View.GONE
+                                imgDelete.visibility = View.GONE
+                            }
                             0
                         }
                 }

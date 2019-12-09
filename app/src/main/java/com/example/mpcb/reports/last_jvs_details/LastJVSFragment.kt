@@ -59,7 +59,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
             }
             edtDateDomestic.setOnClickListener { showDateDialog(DOMESTIC_DATE) }
 
-            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            tvAddMore.setOnClickListener { mViewModel.addItem() }
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
                 btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_9, visitReportId) }
@@ -154,13 +154,19 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                 report.data.routineReport.jvsSampleCollectedForWater =
                     if (checkedId == R.id.rbJVSSampleYes) {
                         rvJVS.visibility = View.VISIBLE
-                        txtAddMore.visibility = View.VISIBLE
-                        imgDelete.visibility = View.VISIBLE
+
+                        if (!visitStatus){
+                            tvAddMore.visibility = View.VISIBLE
+                            imgDelete.visibility = View.VISIBLE
+                        }
                         1
                     } else {
                         rvJVS.visibility = View.GONE
-                        txtAddMore.visibility = View.GONE
-                        imgDelete.visibility = View.GONE
+
+                        if (!visitStatus) {
+                            tvAddMore.visibility = View.GONE
+                            imgDelete.visibility = View.GONE
+                        }
                         0
                     }
             }

@@ -238,6 +238,11 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
             if(child.id != R.id.btnNext)
                 child.isEnabled = enable
+
+            //Hide Add more & Delete button
+            if(child.id == R.id.tvAddMore || child.id == R.id.imgDelete)
+                child.visibility = View.GONE
+
             if (child is ViewGroup) {
                 disableEnableControls(enable, child)
             }

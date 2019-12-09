@@ -44,7 +44,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
                 btnSubmit.setOnClickListener { onSubmit() }
                 btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_14, visitReportId) }
             }
-            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            tvAddMore.setOnClickListener { mViewModel.addItem() }
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
         }
 

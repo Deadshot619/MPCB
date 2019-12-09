@@ -46,8 +46,7 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
                 btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_10, visitReportId) }
             }
                 imgDelete.setOnClickListener { mViewModel.deleteItem() }
-                imgAddMore.setOnClickListener { mViewModel.addItem() }
-                txtAddMore.setOnClickListener { mViewModel.addItem() }
+                tvAddMore.setOnClickListener { mViewModel.addItem() }
         }
     }
 

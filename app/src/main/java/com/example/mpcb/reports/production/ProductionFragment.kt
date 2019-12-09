@@ -42,7 +42,7 @@ class ProductionFragment : BaseFragment<FragmentProductionBinding, ProductionVie
 
         setUpRecyclerView()
         mBinding.run{
-            txtAddMore.setOnClickListener { mViewModel.addItem() }
+            tvAddMore.setOnClickListener { mViewModel.addItem() }
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
