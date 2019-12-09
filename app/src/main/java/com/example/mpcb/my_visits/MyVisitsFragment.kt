@@ -85,7 +85,6 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
     override fun onStart() {
         super.onStart()
-        showMessage("${getBooleanPreference(Constants.VISIT_STATUS)}")
         //If FORM_COMPLETE_STATUS is true, then refresh the page to show visit status as completed.
         if (getBooleanPreference(Constants.FORM_COMPLETE_STATUS))
             mViewModel.getVisitListData(
