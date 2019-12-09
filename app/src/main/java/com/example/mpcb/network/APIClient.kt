@@ -13,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
+import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -83,6 +84,9 @@ class APIClient {
                 builder.hostnameVerifier { hostname, session -> true }
                 builder.addNetworkInterceptor(StethoInterceptor())
                 builder.addNetworkInterceptor(ChuckInterceptor(MPCBApp.instance))
+                builder.connectTimeout(1, TimeUnit.MINUTES)
+                builder.readTimeout(30, TimeUnit.SECONDS)
+                builder.writeTimeout(15, TimeUnit.SECONDS)
                 return builder
             } catch (e: Exception) {
                 throw RuntimeException(e)
