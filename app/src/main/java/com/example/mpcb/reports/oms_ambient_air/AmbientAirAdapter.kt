@@ -26,7 +26,25 @@ class AmbientAirAdapter(
     }
 
     override fun onBindViewHolder(holder: AmbientAirViewHolder, position: Int) {
-        val item = parentList[position]
+        val item = parentList[position].apply {
+            //Use this only when visit status is Visited & data is to be displayed from APi
+            if (visitStatus){
+                //If Air Source size is greater than 0 then add that data in 'AmbientAirChil'
+                if (this.jvsAirSourceParameter.size > 0) {
+                    for (i in 0 until jvsAirSourceParameter.size) {
+                        ambientAirChild.add(
+                            AmbientAirChild().apply {
+                                parameter = jvsAirSourceParameter[i]
+                                prescribedValue = jvsAirSourceStdPrescribed[i]
+                            }
+                        )
+                    }
+                }
+            }
+        }
+
+
+
         holder.itemBinding.model = item
         holder.setData(
             viewModel,

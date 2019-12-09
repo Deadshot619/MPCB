@@ -80,7 +80,7 @@ class Constants {
             9 to "kg/Annum",
             10 to "kg/Cycle",
             11 to "Kg/Day",
-            12 to "Kg/H",
+            12 to "Kg/Hr",
             13 to "Kg/M",
             14 to "KL/A",
             15 to "KL/D",

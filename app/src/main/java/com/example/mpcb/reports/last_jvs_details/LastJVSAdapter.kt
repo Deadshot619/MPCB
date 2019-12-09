@@ -30,10 +30,12 @@ class LastJVSAdapter(
                 //If Water Source size is greater than 0 then add that data in 'LastJVSChild'
                 if (jvsWaterSourceParameter.size > 0) {
                     for (i in 0 until jvsWaterSourceParameter.size) {
-                        lastJvsChild.add(LastJVSChild().apply {
+                        lastJvsChild.add(
+                            LastJVSChild().apply {
                             parameter = jvsWaterSourceParameter[i]
                             prescribedValue = jvsWaterSourceStdPrescribed[i]
-                        })
+                            }
+                        )
                     }
                 }
             }

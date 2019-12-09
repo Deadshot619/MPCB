@@ -61,7 +61,12 @@ class ProductionAdapter(
                     //Check if the retrieved value is present in the [UNIT_LIST1], return 0 if not present
                     if (UNIT_LIST1[item.productUomActual] != null)
                         //Filter keys in the [UNIT_LIST] according to value in the given position in UNIT_LIST1
-                        UNIT_LIST.filterValues { it == UNIT_LIST1[item.productUomActual] }.keys.first()
+                        try {
+                            UNIT_LIST
+                                .filterValues { it == UNIT_LIST1[item.productUomActual] }
+                                .keys
+                                .first()
+                        }catch (e: Exception) { 0 }
                      else 0
                 )
             itemBinding.spnUnitActual.onItemSelectedListener =
