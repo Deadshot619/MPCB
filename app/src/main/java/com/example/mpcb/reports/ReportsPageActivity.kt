@@ -49,10 +49,19 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             reportPageNo = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
             addFragment(reportPageNo, visitReportId)
         }
+
         setToolbar(reportPageNo)
 
-        mBinding.imgBack.setOnClickListener {
-            onBackPressed()
+        mBinding.run {
+            //Back Button
+            imgBack.setOnClickListener {
+                onBackPressed()
+            }
+
+            //Exit Button
+            btnClose.setOnClickListener{
+                finish()
+            }
         }
     }
 

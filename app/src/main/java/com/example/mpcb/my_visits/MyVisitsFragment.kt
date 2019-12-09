@@ -77,6 +77,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         mBinding.toolbarLayout.imgCalendar.setOnClickListener {
             val pd = MonthYearPickerDialog()
             pd.setListener(this)
+
             pd.show(fragmentManager!!, "MonthYearPickerDialog")
         }
 
