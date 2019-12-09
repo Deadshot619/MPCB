@@ -55,12 +55,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
                 AlertDialog.Builder(context!!)
                     .setTitle(R.string.txt_logout_title)
                     .setMessage(R.string.txt_logout_message)
-                    .setPositiveButton(R.string.action_ok){_,_ -> logoutClicked()}
-                    .setNegativeButton(R.string.action_cancel){_,_ -> }
+                    .setPositiveButton(R.string.action_ok) { _, _ -> logoutClicked() }
+                    .setNegativeButton(R.string.action_cancel) { _, _ -> }
                     .create()
             }
             builder.show()
-
 
 
         }
