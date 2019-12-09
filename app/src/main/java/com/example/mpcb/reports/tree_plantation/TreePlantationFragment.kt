@@ -37,7 +37,6 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
-        showMessage(visitReportId)
 
         //set report variable data
         setReportVariableData(visitReportId)

@@ -48,7 +48,7 @@ class IndustryReportFragment :
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants1.VISIT_REPORT_ID)
-        showMessage(visitReportId)
+
         //set report variable data
         setReportVariableData(visitReportId)
 
