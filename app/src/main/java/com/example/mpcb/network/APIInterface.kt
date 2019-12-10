@@ -38,13 +38,30 @@ interface APIInterface {
         @Part selfieImagePart: MultipartBody.Part
     ): Single<CheckInResponse>
 
+    //View Check-in info
     @POST("view_check_in")
     fun getcheckInInfo(@Body request: MyVisitRequest) : Single<CheckInfoResponse>
 
-
+    //Submit Visit Report data
     @POST("submit_visit_report")
     fun submitReport(@Body request: ReportRequest): Single<ReportSubmitResponse>
 
+    //Upload Visit Report File
+    @Multipart
+    @POST("upload_visit_report_file")
+    fun uploadVisitReportFile(
+        @Part("RequestId") requestId: RequestBody,
+        @Part("visitId") visitId: RequestBody,
+        @Part("indus_imis_id") indusImisId: RequestBody,
+        @Part("UserId") userId: RequestBody,
+        @Part visitReportFile: MultipartBody.Part
+    ): Single<ReportSubmitResponse>
+
+    //View Visit Report data
     @POST("view_visit_report")
     fun viewVisitReport(@Body request: ViewVisitRequest): Single<ViewVisitResponse>
+
+
+
+
 }
