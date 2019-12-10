@@ -63,12 +63,25 @@ interface RemoteDataProvider {
     ):Disposable
 
     /**
-     * Method to View Visit Report
+     * Method to View Visit Report Data
      */
     fun viewVisitReport(
         request: ViewVisitRequest,
         success: Consumer<ViewVisitResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to Upload Visit Report File
+     */
+    fun uploadVisitReportFile(
+        requestId: RequestBody,
+        visitId: RequestBody,
+        indusImisId: RequestBody,
+        userId: RequestBody,
+        visitReportFile: MultipartBody.Part,
+        success: Consumer<ReportSubmitResponse>,
+        error: Consumer<Throwable>
+    ):Disposable
 
 }
