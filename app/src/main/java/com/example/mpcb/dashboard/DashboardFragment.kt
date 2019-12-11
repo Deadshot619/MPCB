@@ -37,6 +37,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         val calender = getInstance()
         val day = calender.getActualMinimum(DAY_OF_MONTH)
+
+        //Set Year & Month values in MonthYearPickerDialog
+        MonthYearPickerDialog.run {
+            yearDashboard = year
+            monthDashboard = month
+        }
         mViewModel.getDashboardData("$year-$month-$day")
     }
 
@@ -57,10 +63,17 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
 
         val calendar = getInstance()
-        val fromDate =
+
+        //Check if Year & Month is set in DatePickerDialog
+        val fromDate = if (MonthYearPickerDialog.yearDashboard >= 0 && MonthYearPickerDialog.monthDashboard >= 0)
+           MonthYearPickerDialog.yearDashboard.toString() + "-" + (MonthYearPickerDialog.monthDashboard ).toString() + "-" + calendar.getActualMinimum(
+                DAY_OF_MONTH
+            ).toString()
+        else
             calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" + calendar.getActualMinimum(
                 DAY_OF_MONTH
             ).toString()
+
         mViewModel.getDashboardData(fromDate)
 
         setListeners()

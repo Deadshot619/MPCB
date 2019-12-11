@@ -30,7 +30,6 @@ import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
 import java.util.*
 
-
 class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
     MyVisitsNavigator, DatePickerDialog.OnDateSetListener {
 
@@ -50,6 +49,12 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         fromDate = "$year-$month-${dayOfMonth + 1}"
         toDate = "$year-$month-${dayOfMonth + 31}"
+
+        //Set Year & Month values in MonthYearPickerDialog
+        MonthYearPickerDialog.run {
+            yearMyVisit = year
+            monthMyVisit = month
+        }
 
         mViewModel.getVisitListData(
             fromDate = fromDate,
@@ -156,13 +161,27 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
             //Set Form Complete Status to false
             setBooleanPreference(Constants.FORM_COMPLETE_STATUS, false)
         })
+
         val calendar = Calendar.getInstance()
-        fromDate =
+
+        //Check if Year & Month is set in DatePickerDialog
+        fromDate = if (MonthYearPickerDialog.yearMyVisit >= 0 && MonthYearPickerDialog.monthMyVisit >= 0)
+            MonthYearPickerDialog.yearMyVisit.toString() + "-" + (MonthYearPickerDialog.monthMyVisit ).toString() + "-" + calendar.getActualMinimum(
+                Calendar.DAY_OF_MONTH
+            ).toString()
+        else
             calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
                     calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
+
+        //Check if Year & Month is set in DatePickerDialog
         toDate =
-            calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
+            if (MonthYearPickerDialog.yearMyVisit >= 0 && MonthYearPickerDialog.monthMyVisit >= 0)
+                MonthYearPickerDialog.yearMyVisit.toString() + "-" + (MonthYearPickerDialog.monthMyVisit ).toString() + "-" +
+                        calendar.getActualMaximum(Calendar.DAY_OF_MONTH).toString()
+            else
+                calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
                     calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+
         mViewModel.getVisitListData(fromDate, toDate)
     }
 
