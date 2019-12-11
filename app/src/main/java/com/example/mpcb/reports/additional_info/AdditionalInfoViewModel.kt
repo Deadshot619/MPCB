@@ -16,8 +16,9 @@ import java.io.File
 
 class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
 
-    private lateinit var userData: String
-    private lateinit var user: LoginResponse
+    private var userData: String =  PreferencesHelper.getPreferences(Constants.USER, "").toString()
+    private var user: LoginResponse = Gson().fromJson(userData, LoginResponse::class.java)
+
 
     private val visitId = PreferencesHelper.getLongPreference(Constants.VISIT_ID).toInt()
     private val indusImisId = PreferencesHelper.getStringPreference(Constants.INDUS_IMIS_ID, "")
@@ -26,9 +27,6 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
         reportRequest: ReportRequest?,
         file: File
     ) {
-        userData = PreferencesHelper.getPreferences(Constants.USER, "").toString()
-        user = Gson().fromJson(userData, LoginResponse::class.java)
-
 //        val reportData = PreferencesHelper.getStringPreference(Constants.REPORT_KEY, "")
 
         reportRequest?.let {
@@ -58,7 +56,7 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
     }
 
 
-    private fun uploadVisitFile(file: File) {
+    fun uploadVisitFile(file: File) {
         //Make a RequestBody of each value to be sent.
 
         //File
@@ -75,7 +73,7 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
             MediaType.parse("text/plain"), visitId.toString()
         )
         val industryImisIdLocal = RequestBody.create(
-            MediaType.parse("text/plain"), visitId.toString()
+            MediaType.parse("text/plain"), indusImisId.toString()
         )
 
         visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"), file)
