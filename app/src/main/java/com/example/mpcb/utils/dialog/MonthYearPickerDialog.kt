@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 import com.example.mpcb.R
+import com.example.mpcb.utils.constants.Constants
 import java.util.*
 
 
-class MonthYearPickerDialog : DialogFragment() {
+class MonthYearPickerDialog() : DialogFragment() {
     private var listener: DatePickerDialog.OnDateSetListener? = null
+
 
     fun setListener(listener: DatePickerDialog.OnDateSetListener) {
         this.listener = listener
@@ -41,7 +43,8 @@ class MonthYearPickerDialog : DialogFragment() {
             // Add action buttons
             .setPositiveButton(
                 "OK"
-            ) { _, _ ->
+            ) { _, id ->
+
 
                 listener!!.onDateSet(
                     null,
@@ -49,6 +52,9 @@ class MonthYearPickerDialog : DialogFragment() {
                     monthPicker.value,
                     0
                 )
+
+//                yearDashboard = yearPicker.value
+//                monthDashboard = monthPicker.value
             }
             .setNegativeButton(
                 "CANCEL"
@@ -60,7 +66,15 @@ class MonthYearPickerDialog : DialogFragment() {
 
     companion object {
         private val MAX_YEAR = 2099
+
+        //Initialize this with 'CalendarConstant.DASHBOARD'
+        var calendarConstant: Constants.Companion.CalendarConstant =
+            Constants.Companion.CalendarConstant.DASHBOARD
+
         var yearDashboard = -1
         var monthDashboard = -1
+
+        var yearMyVisit = -1
+        var monthMyVisit = -1
     }
 }

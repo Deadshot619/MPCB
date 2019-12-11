@@ -36,6 +36,11 @@ class Constants {
         const val VISIT_ID: String = "visit_id"
         const val INDUS_IMIS_ID: String = "indus_imis_id"
 
+        //These values will be used in MonthYearPickerDialog
+        enum class CalendarConstant{
+            DASHBOARD, MY_VISIT
+        }
+
         val CATEGORY_LIST = mapOf(
             0 to "Select one",
             1 to "17 Category",
