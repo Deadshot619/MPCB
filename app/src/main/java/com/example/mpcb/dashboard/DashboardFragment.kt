@@ -12,6 +12,7 @@ import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
 import com.example.mpcb.network.response.DashboardDataResponse
+import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.showMessage
 import java.text.SimpleDateFormat
@@ -46,9 +47,15 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set calendarConstant to DASHBOARD
+        MonthYearPickerDialog.calendarConstant = Constants.Companion.CalendarConstant.DASHBOARD
+
         mBinding.dashboardModel = mViewModel.getDashboardModel()
+
         setToolbar(mBinding.toolbarLayout, "MPCB")
+
         mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
+
         val calendar = getInstance()
         val fromDate =
             calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" + calendar.getActualMinimum(

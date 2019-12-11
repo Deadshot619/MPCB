@@ -70,6 +70,10 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set calendarConstant to MyVisit
+        MonthYearPickerDialog.calendarConstant = Constants.Companion.CalendarConstant.MY_VISIT
+
+        //Setup Toolbar
         setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title), showSearchBar = true)
 
         setUpRecyclerView()

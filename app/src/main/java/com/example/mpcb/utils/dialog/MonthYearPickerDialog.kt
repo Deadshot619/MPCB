@@ -32,13 +32,25 @@ class MonthYearPickerDialog() : DialogFragment() {
 
         monthPicker.minValue = 1
         monthPicker.maxValue = 12
-        monthPicker.value = if (monthDashboard >= 0) monthDashboard else cal.get(Calendar.MONTH)
 
         val year = cal.get(Calendar.YEAR)
         yearPicker.minValue = 2016
-        yearPicker.maxValue = year
-        yearPicker.value = if (yearDashboard >= 0) yearDashboard else year
+        yearPicker.maxValue = year//                yearDashboard = yearPicker.value
+//                monthDashboard = monthPicker.value
 
+        //Set values to month & year according to calendarConstant
+        when (calendarConstant) {
+            Constants.Companion.CalendarConstant.DASHBOARD -> {
+                monthPicker.value = if (monthDashboard >= 0) monthDashboard else cal.get(Calendar.MONTH)
+                yearPicker.value = if (yearDashboard >= 0) yearDashboard else year
+            }
+            Constants.Companion.CalendarConstant.MY_VISIT -> {
+                monthPicker.value = if (monthMyVisit >= 0) monthMyVisit else cal.get(Calendar.MONTH)
+                yearPicker.value = if (yearMyVisit >= 0) yearMyVisit else year
+            }
+        }
+
+        // Add action buttons
         builder.setView(dialog)
             // Add action buttons
             .setPositiveButton(
@@ -71,9 +83,11 @@ class MonthYearPickerDialog() : DialogFragment() {
         var calendarConstant: Constants.Companion.CalendarConstant =
             Constants.Companion.CalendarConstant.DASHBOARD
 
+        //For Dashboard
         var yearDashboard = -1
         var monthDashboard = -1
 
+        //For MyVisit
         var yearMyVisit = -1
         var monthMyVisit = -1
     }
