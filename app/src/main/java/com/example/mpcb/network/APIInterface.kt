@@ -5,10 +5,7 @@ import com.example.mpcb.network.response.*
 import io.reactivex.Single
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Body
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.*
 
 interface APIInterface {
 
@@ -61,7 +58,7 @@ interface APIInterface {
     @POST("view_visit_report")
     fun viewVisitReport(@Body request: ViewVisitRequest): Single<ViewVisitResponse>
 
-
-
-
+    //Get User List Task
+    @GET("get_user_list_task")
+    fun getUserListTask(): Single<UserListTaskResponse>
 }
