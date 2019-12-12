@@ -4,4 +4,7 @@ import com.example.mpcb.base.BaseViewModel
 import com.futuregroup.kotlintest.splash.SplashNavigator
 
 
-class ReportsPageViewModel : BaseViewModel<SplashNavigator>()
+class ReportsPageViewModel : BaseViewModel<SplashNavigator>(){
+
+
+}
