@@ -58,7 +58,14 @@ interface APIInterface {
     @POST("view_visit_report")
     fun viewVisitReport(@Body request: ViewVisitRequest): Single<ViewVisitResponse>
 
+    //Get User List for Hods
+    @POST("get_subordinate_officer")
+    fun getUserListForHods()
+
     //Get User List Task
     @GET("get_user_list_task")
     fun getUserListTask(): Single<ArrayList<UserListTaskResponse>>
+
+
+
 }
