@@ -7,6 +7,8 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
@@ -16,7 +18,9 @@ import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentMyVisitsBinding
 import com.example.mpcb.network.response.CheckInfoModel
+import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.MyVisitModel
+import com.example.mpcb.network.response.Users
 import com.example.mpcb.utils.addFragment
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.dialog.CheckInDialog
@@ -24,10 +28,12 @@ import com.example.mpcb.utils.dialog.DialogHelper
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.locationservice.LocationHelper
 import com.example.mpcb.utils.permission.PermissionUtils
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getBooleanPreference
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.setBooleanPreference
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.visit_report.VisitReportFragment
+import com.google.gson.Gson
 import java.util.*
 
 class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
@@ -39,6 +45,14 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     //These variables will be used to set adapter's date to start & end of month
     private lateinit var fromDate: String
     private lateinit var toDate: String
+
+    /**
+     * These variables will be used to get user Data from Shared Pref
+     */
+    private val userModel by lazy {
+        val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
+        Gson().fromJson(user, LoginResponse::class.java)
+    }
 
     override fun showAlert(message: String) {
         showMessage("To be implemented")
@@ -90,6 +104,41 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
             pd.show(fragmentManager!!, "MonthYearPickerDialog")
         }
 
+        //Check if the user is a SubOrdinate User
+        //If the user is subordinate user Show the dropdown & get the UserList from Api
+        if (userModel.hasSubbordinateOfficers == 1){
+            mBinding.spinnerUserList.visibility = View.VISIBLE
+
+            mViewModel.userSpinnerData.observe(this, Observer {
+                it?.let {
+                    setSpinnerData(it)
+                }
+            })
+
+            //get User List Data
+            mViewModel.getUserListData()
+        }
+
+
+    }
+
+    //Set data to spinner
+    private fun setSpinnerData(it: List<Users>) {
+        //create spinnerArray that will hold data from Api
+        val spinnerArray = ArrayList<String>()
+        for (element in it)
+            spinnerArray.add(element.userName)
+
+        //Create a adapter that will be used to set in Spinner
+        val adapter = ArrayAdapter<String>(
+            context, android.R.layout.simple_spinner_item, spinnerArray
+        )
+
+        //Set dropdown View Resource
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        //Set adapter to spinner
+        mBinding.spinnerUserList.adapter = adapter
     }
 
     override fun onStart() {

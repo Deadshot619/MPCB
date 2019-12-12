@@ -1,17 +1,16 @@
 package com.example.mpcb.my_visits
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.base.MPCBApp
 import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.MyVisitRequest
 import com.example.mpcb.network.request.ReportRequest
+import com.example.mpcb.network.request.UserListHodRequest
 import com.example.mpcb.network.request.ViewVisitRequest
-import com.example.mpcb.network.response.CheckInfoModel
-import com.example.mpcb.network.response.LoginResponse
-import com.example.mpcb.network.response.MyVisitModel
-import com.example.mpcb.network.response.MyVisitResponse
+import com.example.mpcb.network.response.*
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -26,13 +25,17 @@ import java.io.File
 class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     private val visitList = MutableLiveData<MyVisitResponse>()
+    fun getVisitList() = visitList
+
+    //User List Data
+    private val _userSpinnerData = MutableLiveData<List<Users>>()
+    val userSpinnerData: LiveData<List<Users>>
+        get() = _userSpinnerData
 
     private val user by lazy {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
         Gson().fromJson(user, LoginResponse::class.java)
     }
-
-    fun getVisitList() = visitList
 
     /**
      * This method is used to get 'My Visits' data from server of the given month & year.
@@ -254,5 +257,25 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             },
             error = Consumer { checkError(it) })
         )
+    }
+
+    /**
+     * Method to get User Data List of HOD
+     */
+    fun getUserListData() {
+
+        val request = UserListHodRequest().apply {
+            userId = user.userId.toString()
+        }
+
+        mDisposable.add(DataProvider.getUserListDataForHods(
+            request = request,
+
+            success = Consumer {
+                if (it.status == 1)
+                    _userSpinnerData.value = it.users
+            },
+            error = Consumer { checkError(it) }
+        ))
     }
 }
