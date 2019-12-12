@@ -1,10 +1,13 @@
 package com.example.mpcb.dashboard
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.DashboardDataRequest
 import com.example.mpcb.network.response.DashboardDataResponse
 import com.example.mpcb.network.response.LoginResponse
+import com.example.mpcb.network.response.UserListTaskResponse
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.google.gson.Gson
@@ -15,8 +18,12 @@ import java.util.*
 class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
 
     private val dashboardModel = DashboardDataResponse()
-
     fun getDashboardModel() = dashboardModel
+
+    //User List Data
+    private val _userSpinnerData = MutableLiveData<ArrayList<UserListTaskResponse>>()
+    val userSpinnerData: LiveData<ArrayList<UserListTaskResponse>>
+        get() = _userSpinnerData
 
     fun getDashboardData(fromDate: String) {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
@@ -63,6 +70,16 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
                 mNavigator!!.dashBoardTest(dashboardModel)
 
             }
+
         }, Consumer { checkError(it) }))
+    }
+
+    fun getUserListData(){
+        mDisposable.add(DataProvider.getUserListData(
+            Consumer {
+                _userSpinnerData.value = it
+            },
+            Consumer { checkError(it) }
+        ))
     }
 }

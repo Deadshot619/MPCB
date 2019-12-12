@@ -4,20 +4,22 @@ package com.example.mpcb.dashboard
 import android.app.DatePickerDialog
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
 import com.example.mpcb.network.response.DashboardDataResponse
+import com.example.mpcb.network.response.UserListTaskResponse
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.showMessage
 import java.text.SimpleDateFormat
 import java.util.Calendar.*
-
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
     DashboardNavigator, DatePickerDialog.OnDateSetListener {
@@ -56,11 +58,21 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         //Set calendarConstant to DASHBOARD
         MonthYearPickerDialog.calendarConstant = Constants.Companion.CalendarConstant.DASHBOARD
 
+        //Set lifeCycle owner to this fragment
+        mBinding.lifecycleOwner = this
+
         mBinding.dashboardModel = mViewModel.getDashboardModel()
 
         setToolbar(mBinding.toolbarLayout, "MPCB")
 
-        mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
+        //Toolbar
+        mBinding.toolbarLayout.run {
+            spinnerUserList.visibility = View.VISIBLE
+            imgCalendar.visibility = View.GONE
+        }
+
+        //get User List Data
+        mViewModel.getUserListData()
 
         val calendar = getInstance()
 
@@ -76,17 +88,32 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
         mViewModel.getDashboardData(fromDate)
 
+        mViewModel.userSpinnerData.observe(this, Observer {
+            setSpinnerData(it)
+        })
+
         setListeners()
 
         setDateView()
-
-        setSpinnerData()
-
     }
 
     //Set data to spinner
-    private fun setSpinnerData() {
+    private fun setSpinnerData(it: ArrayList<UserListTaskResponse>) {
+        //create spinnerArray that will hold data from Api
+        val spinnerArray = ArrayList<String>()
+        for (i in 0 until it.size)
+            spinnerArray.add(it[i].name)
 
+        //Create a adapter that will be used to set in Spinner
+        val adapter = ArrayAdapter<String>(
+            context, android.R.layout.simple_spinner_item, spinnerArray
+        )
+
+        //Set dropdown View Resource
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        //Set adapter to spinner
+        mBinding.toolbarLayout.spinnerUserList.adapter = adapter
     }
 
     private fun setDateView() {

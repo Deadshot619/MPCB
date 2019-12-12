@@ -98,15 +98,21 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.47000003" />
 
-
+<!--                Spinner-->
                 <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/spinner_user_list"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:visibility="gone"
+                        android:textAlignment="textEnd"
+                        android:gravity="end|center_vertical"
+                        tools:visibility="visible"
+                        app:layout_constraintBottom_toBottomOf="@+id/txtToolbarTitle"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/imgBack" />
+                        app:layout_constraintStart_toEndOf="@+id/txtToolbarTitle"
+                        app:layout_constraintTop_toTopOf="@+id/txtToolbarTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--            Search bar-->
