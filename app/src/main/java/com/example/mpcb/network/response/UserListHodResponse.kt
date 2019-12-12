@@ -3,8 +3,16 @@ package com.example.mpcb.network.response
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+
 data class UserListHodResponse(
 
+    @Expose @SerializedName("status") var status: Int,
+    @Expose @SerializedName("message") var message: String = "",
+    @Expose @SerializedName("data") var users: Users
+
+)
+
+data class Users (
     @Expose
     @SerializedName("user_id")
     var userId: Int = 0,
@@ -16,5 +24,4 @@ data class UserListHodResponse(
     @Expose
     @SerializedName("designation")
     var designation: String = ""
-
-    )
+)

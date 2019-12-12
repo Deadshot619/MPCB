@@ -85,6 +85,15 @@ interface RemoteDataProvider {
     ):Disposable
 
     /**
+     * Method to get User List for Hods
+     */
+    fun getUserListDataForHods(
+        request: UserListHodRequest,
+        success: Consumer<UserListHodResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
+
+    /**
      * Method to get User List Task Data
      */
     fun getUserListData(

@@ -261,6 +261,33 @@ object DataProvider : RemoteDataProvider {
     }
 
     /**
+     * Method to get User List for Hods
+     */
+    override fun getUserListDataForHods(
+        request: UserListHodRequest,
+        success: Consumer<UserListHodResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.getUserListForHods(request = request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+    /**
      * Method to get User List Task Data
      */
     override fun getUserListData(
