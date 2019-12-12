@@ -14,16 +14,26 @@ import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
 import com.example.mpcb.network.response.DashboardDataResponse
+import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.Users
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
+import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.Calendar.*
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
     DashboardNavigator, DatePickerDialog.OnDateSetListener {
 
+    /**
+     * These variables will be used to get user Data from Shared Pref
+     */
+    private val userModel by lazy {
+        val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
+        Gson().fromJson(user, LoginResponse::class.java)
+    }
 
 
     override fun dashBoardTest(DashboardDataResponse: DashboardDataResponse) {
@@ -67,12 +77,23 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
         //Toolbar
         mBinding.toolbarLayout.run {
-            spinnerUserList.visibility = View.VISIBLE
             imgCalendar.visibility = View.GONE
         }
 
-        //get User List Data
-        mViewModel.getUserListData()
+        //Check if the user is a SubOrdinate User
+        //If the user is subordinate user Show the dropdown & get the UserList from Api
+        if (userModel.hasSubbordinateOfficers == 1){
+            mBinding.toolbarLayout.spinnerUserList.visibility = View.VISIBLE
+
+            mViewModel.userSpinnerData.observe(this, Observer {
+                it?.let {
+                    setSpinnerData(it)
+                }
+            })
+
+            //get User List Data
+            mViewModel.getUserListData()
+        }
 
         val calendar = getInstance()
 
@@ -87,12 +108,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             ).toString()
 
         mViewModel.getDashboardData(fromDate)
-
-        mViewModel.userSpinnerData.observe(this, Observer {
-            it?.let {
-                setSpinnerData(it)
-            }
-        })
 
         setListeners()
 

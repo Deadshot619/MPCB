@@ -79,7 +79,10 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
         }, Consumer { checkError(it) }))
     }
 
-    fun getUserListData(){
+    /**
+     * Method to get User Data List of HOD
+     */
+    fun getUserListData() {
 
         val request = UserListHodRequest().apply {
             userId = userModel.userId.toString()
