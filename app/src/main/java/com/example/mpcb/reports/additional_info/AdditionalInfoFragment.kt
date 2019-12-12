@@ -103,8 +103,7 @@ class AdditionalInfoFragment :
                 )
 //                mViewModel.uploadVisitFile(File(fileP))
             } else {
-                showMessage("Please fill all the reports!")wsx!@#
-
+                showMessage("Please fill all the reports!")
             }
 
         }
