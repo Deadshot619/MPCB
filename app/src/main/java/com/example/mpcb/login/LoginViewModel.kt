@@ -31,7 +31,9 @@ class LoginViewModel : BaseViewModel<LoginNavigator>() {
         reqModel.password = loginRequest.password.md5()
         dialogMessage.value = "Loading..."
         dialogVisibility.value = true
-        mDisposable.add(DataProvider.login(reqModel, Consumer {
+        mDisposable.add(DataProvider.login(
+            reqModel,
+            Consumer {
             dialogVisibility.value = false
             PreferencesHelper.setLogin(true)
             PreferencesHelper.setPreferences(Constants.USER, Gson().toJson(it))

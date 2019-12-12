@@ -37,4 +37,8 @@ class LoginResponse {
     var message: String? = null
         get() = field ?: ""
 
+    @SerializedName("has_subbordinate_officers")
+    @Expose
+    var hasSubbordinateOfficers: Int = 0
+
 }
