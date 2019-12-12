@@ -259,4 +259,25 @@ object DataProvider : RemoteDataProvider {
         noInternetAvailable(error)
         getDefaultDisposable()
     }
+
+    /**
+     * Method to get User List Task Data
+     */
+    override fun getUserListData(
+        success: Consumer<ArrayList<UserListTaskResponse>>,
+        error: Consumer<Throwable>
+    ): Disposable = if(isNetworkAvailable()){
+        mServices.getUserListTask()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer {
+                    success.accept(it)
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 }

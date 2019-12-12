@@ -84,4 +84,11 @@ interface RemoteDataProvider {
         error: Consumer<Throwable>
     ):Disposable
 
+    /**
+     * Method to get User List Task Data
+     */
+    fun getUserListData(
+        success: Consumer<ArrayList<UserListTaskResponse>>,
+        error: Consumer<Throwable>
+    ):Disposable
 }

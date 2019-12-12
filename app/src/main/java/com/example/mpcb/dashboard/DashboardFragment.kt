@@ -80,6 +80,13 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
         setDateView()
 
+        setSpinnerData()
+
+    }
+
+    //Set data to spinner
+    private fun setSpinnerData() {
+
     }
 
     private fun setDateView() {

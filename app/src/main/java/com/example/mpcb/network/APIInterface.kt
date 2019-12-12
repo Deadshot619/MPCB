@@ -60,5 +60,5 @@ interface APIInterface {
 
     //Get User List Task
     @GET("get_user_list_task")
-    fun getUserListTask(): Single<UserListTaskResponse>
+    fun getUserListTask(): Single<ArrayList<UserListTaskResponse>>
 }
