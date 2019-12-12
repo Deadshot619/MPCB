@@ -72,7 +72,7 @@ class AdditionalInfoFragment :
         mBinding.uploadVisitEditTextLayout.setOnClickListener {
             showMessage("Clicked!")
             var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
-            chooseFile.type = "image/*"
+            chooseFile.type = "*/*"
             chooseFile = Intent.createChooser(chooseFile, "Choose a file")
             startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
         }
@@ -97,13 +97,14 @@ class AdditionalInfoFragment :
 
             //submit report only if all the reports are filled.
             if (checkIfReportsFilled() || true) {
-//                mViewModel.submitReport(
-//                    reportRequest = getReportData(visitReportId),
-//                    file = _file
-//                )
-                mViewModel.uploadVisitFile(File(fileP))
+                mViewModel.submitReport(
+                    reportRequest = getReportData(visitReportId),
+                    file = File(fileP)
+                )
+//                mViewModel.uploadVisitFile(File(fileP))
             } else {
-                showMessage("Please fill all the reports!")
+                showMessage("Please fill all the reports!")wsx!@#
+
             }
 
         }

@@ -76,7 +76,7 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
             MediaType.parse("text/plain"), indusImisId.toString()
         )
 
-        visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"), file)
+        visitReportBodyLocal = RequestBody.create(MediaType.parse("image/pdf/*"), file)
         visitReportPartLocal =
             MultipartBody.Part.createFormData("file", file.name, visitReportBodyLocal)
 
