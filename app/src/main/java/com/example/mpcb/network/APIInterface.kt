@@ -67,5 +67,4 @@ interface APIInterface {
     fun getUserListTask(): Single<ArrayList<UserListTaskResponse>>
 
 
-
 }

@@ -8,7 +8,7 @@ data class UserListHodResponse(
 
     @Expose @SerializedName("status") var status: Int,
     @Expose @SerializedName("message") var message: String = "",
-    @Expose @SerializedName("data") var users: Users
+    @Expose @SerializedName("users") var users: List<Users>
 
 )
 

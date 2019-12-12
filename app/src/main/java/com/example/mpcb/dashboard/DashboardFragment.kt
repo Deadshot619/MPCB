@@ -14,7 +14,7 @@ import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentDashboardBinding
 import com.example.mpcb.network.response.DashboardDataResponse
-import com.example.mpcb.network.response.UserListTaskResponse
+import com.example.mpcb.network.response.Users
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.showMessage
@@ -89,7 +89,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         mViewModel.getDashboardData(fromDate)
 
         mViewModel.userSpinnerData.observe(this, Observer {
-            setSpinnerData(it)
+            it?.let {
+                setSpinnerData(it)
+            }
         })
 
         setListeners()
@@ -98,11 +100,11 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     }
 
     //Set data to spinner
-    private fun setSpinnerData(it: ArrayList<UserListTaskResponse>) {
+    private fun setSpinnerData(it: List<Users>) {
         //create spinnerArray that will hold data from Api
         val spinnerArray = ArrayList<String>()
-        for (i in 0 until it.size)
-            spinnerArray.add(it[i].name)
+        for (element in it)
+            spinnerArray.add(element.userName)
 
         //Create a adapter that will be used to set in Spinner
         val adapter = ArrayAdapter<String>(
