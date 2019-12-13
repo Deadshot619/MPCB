@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.SearchView
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentMyVisitsBinding
+import com.example.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUser
+import com.example.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUserId
 import com.example.mpcb.network.response.CheckInfoModel
 import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.MyVisitModel
@@ -106,10 +109,19 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
         //Check if the user is a SubOrdinate User
         //If the user is subordinate user Show the dropdown & get the UserList from Api
-        if (userModel.hasSubbordinateOfficers == 1){
+        checkIfSubordinateUser()
+    }
+
+    /**
+     * Method to check if the user is Sub-Ordinate user
+     * If he is, then Make spinner visible & populate data accordingly
+     * Also set listener to Spinner.
+     */
+    private fun checkIfSubordinateUser() {
+        if (userModel.hasSubbordinateOfficers == 1) {
             mBinding.spinnerUserList.visibility = View.VISIBLE
 
-            mViewModel.userSpinnerData.observe(this, Observer {
+            mViewModel.userSpinnerData.observe(viewLifecycleOwner, Observer {
                 it?.let {
                     setSpinnerData(it)
                 }
@@ -117,9 +129,47 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
             //get User List Data
             mViewModel.getUserListData()
+
+            mBinding.spinnerUserList.let {
+                it.selectedItem?.run {
+                    myVisitsSpinnerSelectedUser = this.toString()
+                    //                    dashboardSpinnerSelectedUserId =
+                    //                        mViewModel.userSpinnerData.value?.get().userId!!
+                }
+
+                //Set listener to Spinner
+                it.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+
+                            if (myVisitsSpinnerSelectedUser != it.getItemAtPosition(p2).toString()                            ) {
+
+                                //Set selected User
+                                myVisitsSpinnerSelectedUser =
+                                    it.getItemAtPosition(p2).toString()
+
+                                //Set selected User id
+                                myVisitsSpinnerSelectedUserId =
+                                    mViewModel.userSpinnerData.value?.get(p2)?.userId!!
+
+                                showMessage(myVisitsSpinnerSelectedUser)
+
+                                //Get dashboard data for current user
+                                mViewModel.getVisitListData(fromDate, toDate)
+                            }
+                        }
+                    }
+            }
         }
-
-
     }
 
     //Set data to spinner
@@ -134,11 +184,28 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
             context, android.R.layout.simple_spinner_item, spinnerArray
         )
 
+        //Set User id of first user
+        myVisitsSpinnerSelectedUserId = it[0].userId
+
         //Set dropdown View Resource
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         //Set adapter to spinner
         mBinding.spinnerUserList.adapter = adapter
+
+        try {
+            mBinding.spinnerUserList.run {
+                //Set data to spinner
+                if (myVisitsSpinnerSelectedUser != selectedItem) {
+                    setSelection(
+                        spinnerArray.indexOf(myVisitsSpinnerSelectedUser)
+                    )
+//                    dashboardSpinnerSelectedUser = selectedItem.toString()
+                }
+            }
+        } catch (e: Exception) {
+            showMessage(e.message.toString())
+        }
     }
 
     override fun onStart() {
@@ -149,11 +216,6 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
                 fromDate = fromDate,
                 toDate = toDate
             )
-    }
-
-    override fun onResume() {
-        super.onResume()
-
     }
 
     /**

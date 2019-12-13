@@ -41,7 +41,6 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
             else
                 userModel.userId.toString()
 
-
         request.fromDate = fromDate
 
         val time = SimpleDateFormat("yyyy-MM-dd").parse(fromDate)

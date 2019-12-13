@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.base.MPCBApp
+import com.example.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUserId
 import com.example.mpcb.network.DataProvider
 import com.example.mpcb.network.request.MyVisitRequest
 import com.example.mpcb.network.request.ReportRequest
@@ -45,7 +46,14 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
      */
     fun getVisitListData(fromDate: String, toDate: String) {
         val request = MyVisitRequest()
-        request.userId = user.userId.toString()
+
+        //If user has subordinate user, then take their ID
+        request.userId =
+            if (user.hasSubbordinateOfficers == 1 && user.hasSubbordinateOfficers != -1)
+                myVisitsSpinnerSelectedUserId.toString()
+            else
+                user.userId.toString()
+
         //TODO 13/11/19 Change these dates to current month in development build
         request.fromDate = fromDate
         request.toDate = toDate
