@@ -4,14 +4,13 @@ package com.example.mpcb.dashboard
 import android.app.DatePickerDialog
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.DatePicker
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
+import com.example.mpcb.dashboard.DashboardUtils.Companion.dashboardSpinnerSelectedUser
+import com.example.mpcb.dashboard.DashboardUtils.Companion.dashboardSpinnerSelectedUserId
 import com.example.mpcb.databinding.FragmentDashboardBinding
 import com.example.mpcb.network.response.DashboardDataResponse
 import com.example.mpcb.network.response.LoginResponse
@@ -35,11 +34,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         Gson().fromJson(user, LoginResponse::class.java)
     }
 
+    private lateinit var fromDate: String
 
     override fun dashBoardTest(DashboardDataResponse: DashboardDataResponse) {
-       // onBinding()
-      //  Toast.makeText(activity!!, "Fragment!!!", Toast.LENGTH_LONG).show()
-      mBinding.invalidateAll()
+        // onBinding()
+        //  Toast.makeText(activity!!, "Fragment!!!", Toast.LENGTH_LONG).show()
+        mBinding.invalidateAll()
     }
 
     override fun showAlert(errorMessage: String) {
@@ -55,7 +55,8 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             yearDashboard = year
             monthDashboard = month
         }
-        mViewModel.getDashboardData("$year-$month-$day")
+        fromDate = "$year-$month-$day"
+        mViewModel.getDashboardData(fromDate)
     }
 
     override fun getLayoutId() = R.layout.fragment_dashboard
@@ -76,42 +77,97 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         setToolbar(mBinding.toolbarLayout, "MPCB")
 
         //Toolbar
-        mBinding.toolbarLayout.run {
-            imgCalendar.visibility = View.GONE
-        }
+        mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
 
         //Check if the user is a SubOrdinate User
         //If the user is subordinate user Show the dropdown & get the UserList from Api
-        if (userModel.hasSubbordinateOfficers == 1){
-            mBinding.toolbarLayout.spinnerUserList.visibility = View.VISIBLE
+        checkIfSubordinateUser()
 
-            mViewModel.userSpinnerData.observe(this, Observer {
-                it?.let {
-                    setSpinnerData(it)
-                }
-            })
-
-            //get User List Data
-            mViewModel.getUserListData()
-        }
-
-        val calendar = getInstance()
-
-        //Check if Year & Month is set in DatePickerDialog
-        val fromDate = if (MonthYearPickerDialog.yearDashboard >= 0 && MonthYearPickerDialog.monthDashboard >= 0)
-           MonthYearPickerDialog.yearDashboard.toString() + "-" + (MonthYearPickerDialog.monthDashboard ).toString() + "-" + calendar.getActualMinimum(
-                DAY_OF_MONTH
-            ).toString()
-        else
-            calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" + calendar.getActualMinimum(
-                DAY_OF_MONTH
-            ).toString()
-
-        mViewModel.getDashboardData(fromDate)
+        //sets initial data on Dashboard
+        setInitialDashboardData()
 
         setListeners()
 
         setDateView()
+    }
+
+    /**
+     * Method to set Initial Data on Dashboard.
+     */
+    private fun setInitialDashboardData() {
+        val calendar = getInstance()
+
+        //Check if Year & Month is set in DatePickerDialog
+        fromDate =
+            if (MonthYearPickerDialog.yearDashboard >= 0 && MonthYearPickerDialog.monthDashboard >= 0)
+                MonthYearPickerDialog.yearDashboard.toString() + "-" + (MonthYearPickerDialog.monthDashboard).toString() + "-" + calendar.getActualMinimum(
+                    DAY_OF_MONTH
+                ).toString()
+            else
+                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" + calendar.getActualMinimum(
+                    DAY_OF_MONTH
+                ).toString()
+
+        mViewModel.getDashboardData(fromDate)
+    }
+
+    /**
+     * Method to check if the user is Sub-Ordinate user
+     * If he is, then Make spinner visible & populate data accordingly
+     * Also set listener to Spinner.
+     */
+    private fun checkIfSubordinateUser() {
+        if (userModel.hasSubbordinateOfficers == 1) {
+            //MAke Spinner visible
+            mBinding.toolbarLayout.spinnerUserList.visibility = View.VISIBLE
+
+            //Observe Spinner Data in viewmodel
+            mViewModel.userSpinnerData.run {
+                //                removeObservers(viewLifecycleOwner)
+                observe(viewLifecycleOwner, Observer {
+                    it?.let {
+                        setSpinnerData(it)
+                    }
+                })
+            }
+            //get User List Data
+            mViewModel.getUserListData()
+
+            mBinding.toolbarLayout.spinnerUserList.let {
+                it.selectedItem?.run {
+                    dashboardSpinnerSelectedUser = this.toString()
+                    //                    dashboardSpinnerSelectedUserId =
+                    //                        mViewModel.userSpinnerData.value?.get().userId!!
+                }
+
+                //Set listener to Spinner
+                it.onItemSelectedListener =
+                    object : AdapterView.OnItemSelectedListener {
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+
+                            if (dashboardSpinnerSelectedUser != it.getItemAtPosition(p2).toString()) {
+                                //Set seleted User
+                                dashboardSpinnerSelectedUser = it.getItemAtPosition(p2).toString()
+                                //Set selected User id
+                                dashboardSpinnerSelectedUserId =
+                                    mViewModel.userSpinnerData.value?.get(p2)?.userId!!
+                                showMessage(dashboardSpinnerSelectedUser)
+                                //Get dashboard data for current user
+                                mViewModel.getDashboardData(fromDate)
+                            }
+                        }
+                    }
+            }
+        }
     }
 
     //Set data to spinner
@@ -126,11 +182,29 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             context, android.R.layout.simple_spinner_item, spinnerArray
         )
 
+        //Set User id of first user
+        dashboardSpinnerSelectedUserId = it[0].userId
+
         //Set dropdown View Resource
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         //Set adapter to spinner
         mBinding.toolbarLayout.spinnerUserList.adapter = adapter
+
+
+        try {
+            mBinding.toolbarLayout.spinnerUserList.run {
+                //Set data to spinner
+                if (dashboardSpinnerSelectedUser != selectedItem) {
+                    setSelection(
+                        spinnerArray.indexOf(dashboardSpinnerSelectedUser)
+                    )
+//                    dashboardSpinnerSelectedUser = selectedItem.toString()
+                }
+            }
+        } catch (e: Exception) {
+            showMessage(e.message.toString())
+        }
     }
 
     private fun setDateView() {
