@@ -60,12 +60,14 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
         super.onStart()
         val dialog = dialog
         if (dialog != null && dialog.window != null) {
-            dialog.window!!.setLayout(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+            dialog.window!!.run{
+                setLayout(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+            }
         }
     }
 
@@ -153,11 +155,10 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
 
     override fun getCheckInfo(): CheckInfoModel {
 
-        var models = CheckInfoModel()
-        Log.d("CheclInfo MOdel", models.toString());
+        val models = CheckInfoModel()
+        Log.d("CheclInfo MOdel", models.toString())
 
-
-        return models;
+        return models
     }
 
 
