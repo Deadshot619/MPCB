@@ -134,11 +134,7 @@ class Constants {
             58 to "Yes.",
             59 to "CMD",
             60 to "Ton/Ton",
-            61 to "Mwh",
-            62 to "Ltr/Hr",
-            63 to "Ton/hr",
-            64 to "Million Nos./M"
-
+            61 to "Mwh"
         )
 
         /**
@@ -207,10 +203,7 @@ class Constants {
             "00000003" to "Yes.",
             "00010035" to "CMD",
             "10000013" to "Ton/Ton",
-            "20000013" to "Mwh",
-            "40000123" to "Ltr/Hr",
-            "00000154" to "Ton/hr",
-            "00000655" to "Million Nos./M"
+            "20000013" to "Mwh"
         )
 
         val UNIT_LIST2 = mapOf(
@@ -275,10 +268,7 @@ class Constants {
             58 to mapOf("00000003" to "Yes."),
             59 to mapOf("00010035" to "CMD"),
             60 to mapOf("10000013" to "Ton/Ton"),
-            61 to mapOf("20000013" to "Mwh"),
-            62 to mapOf("40000123" to "Ltr/Hr"),
-            63 to mapOf("00000154" to "Ton/hr"),
-            64 to mapOf("00000655" to "Million Nos./M")
+            61 to mapOf("20000013" to "Mwh")
         )
 
         val AIR_POLLUTION_LIST = mapOf(
