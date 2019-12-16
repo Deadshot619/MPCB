@@ -48,7 +48,7 @@
     <!--    My Visits-->
     <string name="txt_visit_scheduled">Visit Scheduled On: </string>
     <string name="txt_address">Address: </string>
-    <string name="txt_report_submited">Report Submited On:</string>
+    <string name="txt_report_submited">Report Submitted On:</string>
     <string name="txt_visited_on">Visited On</string>
     <string name="add_task_attach_with_visit">Click here to attach with Visit</string>
 
