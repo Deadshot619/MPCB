@@ -121,62 +121,23 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         if (userModel.hasSubbordinateOfficers == 1) {
             mBinding.spinnerUserList.visibility = View.VISIBLE
 
-            mViewModel.userSpinnerData.observe(viewLifecycleOwner, Observer {
-                it?.let {
-                    setSpinnerData(it)
-                }
-            })
+//            mViewModel.userSpinnerData.observe(viewLifecycleOwner, Observer {
+//                it?.let {
+//                    setSpinnerData(it)
+//                }
+//            })
 
             //get User List Data
             mViewModel.getUserListData()
 
-            mBinding.spinnerUserList.let {
-                it.selectedItem?.run {
-                    myVisitsSpinnerSelectedUser = this.toString()
-                    //                    dashboardSpinnerSelectedUserId =
-                    //                        mViewModel.userSpinnerData.value?.get().userId!!
-                }
-
-                //Set listener to Spinner
-                it.onItemSelectedListener =
-                    object : AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(p0: AdapterView<*>?) {
-                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                        }
-
-                        override fun onItemSelected(
-                            p0: AdapterView<*>?,
-                            p1: View?,
-                            p2: Int,
-                            p3: Long
-                        ) {
-
-                            if (myVisitsSpinnerSelectedUser != it.getItemAtPosition(p2).toString()                            ) {
-
-                                //Set selected User
-                                myVisitsSpinnerSelectedUser =
-                                    it.getItemAtPosition(p2).toString()
-
-                                //Set selected User id
-                                myVisitsSpinnerSelectedUserId =
-                                    mViewModel.userSpinnerData.value?.get(p2)?.userId!!
-
-                                showMessage(myVisitsSpinnerSelectedUser)
-
-                                //Get dashboard data for current user
-                                mViewModel.getVisitListData(fromDate, toDate)
-                            }
-                        }
-                    }
-            }
         }
     }
 
     //Set data to spinner
-    private fun setSpinnerData(it: List<Users>) {
+    override fun setSpinnerData(users: List<Users>) {
         //create spinnerArray that will hold data from Api
         val spinnerArray = ArrayList<String>()
-        for (element in it)
+        for (element in users)
             spinnerArray.add(element.userName)
 
         //Create a adapter that will be used to set in Spinner
@@ -185,7 +146,8 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         )
 
         //Set User id of first user
-        myVisitsSpinnerSelectedUserId = it[0].userId
+        if (myVisitsSpinnerSelectedUserId < 0)
+            myVisitsSpinnerSelectedUserId = users[0].userId
 
         //Set dropdown View Resource
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -206,6 +168,47 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         } catch (e: Exception) {
             showMessage(e.message.toString())
         }
+
+        mBinding.spinnerUserList.let {
+            it.selectedItem?.run {
+                myVisitsSpinnerSelectedUser = this.toString()
+                //                    dashboardSpinnerSelectedUserId =
+                //                        mViewModel.userSpinnerData.value?.get().userId!!
+            }
+
+            //Set listener to Spinner
+            it.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun onItemSelected(
+                        p0: AdapterView<*>?,
+                        p1: View?,
+                        p2: Int,
+                        p3: Long
+                    ) {
+
+                        if (myVisitsSpinnerSelectedUser != it.getItemAtPosition(p2).toString()                            ) {
+
+                            //Set selected User
+                            myVisitsSpinnerSelectedUser =
+                                it.getItemAtPosition(p2).toString()
+
+                            //Set selected User id
+                            myVisitsSpinnerSelectedUserId =
+                                users[p2].userId
+
+                            showMessage(myVisitsSpinnerSelectedUser)
+
+                            //Get dashboard data for current user
+                            mViewModel.getVisitListData(fromDate, toDate)
+                        }
+                    }
+                }
+        }
+
     }
 
     override fun onStart() {
@@ -294,7 +297,10 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
                 calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
                     calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
 
-        mViewModel.getVisitListData(fromDate, toDate)
+        if (userModel.hasSubbordinateOfficers != 1){
+            mViewModel.getVisitListData(fromDate, toDate)
+        }
+
     }
 
     override fun onVisitItemClicked(viewModel: MyVisitModel) {

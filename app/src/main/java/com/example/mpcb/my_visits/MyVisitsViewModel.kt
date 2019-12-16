@@ -1,7 +1,6 @@
 package com.example.mpcb.my_visits
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.mpcb.base.BaseViewModel
 import com.example.mpcb.base.MPCBApp
@@ -11,7 +10,10 @@ import com.example.mpcb.network.request.MyVisitRequest
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.network.request.UserListHodRequest
 import com.example.mpcb.network.request.ViewVisitRequest
-import com.example.mpcb.network.response.*
+import com.example.mpcb.network.response.CheckInfoModel
+import com.example.mpcb.network.response.LoginResponse
+import com.example.mpcb.network.response.MyVisitModel
+import com.example.mpcb.network.response.MyVisitResponse
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -27,11 +29,6 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     private val visitList = MutableLiveData<MyVisitResponse>()
     fun getVisitList() = visitList
-
-    //User List Data
-    private val _userSpinnerData = MutableLiveData<List<Users>>()
-    val userSpinnerData: LiveData<List<Users>>
-        get() = _userSpinnerData
 
     private val user by lazy {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
@@ -97,12 +94,17 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     /**
      * Method to get VisitReport Data
      */
-    fun getVisitItemData(viewModel: MyVisitModel) {
+    private fun getVisitItemData(viewModel: MyVisitModel) {
         //create request data
-        val request = ViewVisitRequest()
-        request.userId = user.userId.toString()
-        request.indusImisId = viewModel.industryIMISId
-        request.visitId = viewModel.visitSchedulerId
+        val request = ViewVisitRequest().apply {
+            userId =
+                if (user.hasSubbordinateOfficers == 1 && user.hasSubbordinateOfficers != -1)
+                    myVisitsSpinnerSelectedUserId.toString()
+                else
+                    user.userId.toString()
+            indusImisId = viewModel.industryIMISId
+            visitId = viewModel.visitSchedulerId
+        }
 
         //show loading dialog
         dialogVisibility.value = true
@@ -148,21 +150,45 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         }
     }
 
+    /**
+     * Method to run on click of Reports icon
+     */
     fun onVisitItemClick(visitItem: MyVisitModel) {
 //        mNavigator!!.onVisitItemClicked(visitItem)
         if (visitItem.checkInStatus == 1)
             if (visitItem.visitStatus == "Visited")
                 getVisitItemData(visitItem)
-            else
+            else {
+                /*
+                 * Check if the user is HOD user.
+                 * If he is, he can only fill his Data & not other users Data.
+                 * HOD can only view other user's Data & not Edit them.
+                 */
+                if (user.hasSubbordinateOfficers == 1)
+                    if (user.userId != myVisitsSpinnerSelectedUserId)
+                        return
                 mNavigator!!.onVisitItemClicked(visitItem)
-        else
+            }
+        else {
+            /*
+                 * Check if the user is HOD user.
+                 * If he is, he can only fill his Data & not other users Data.
+                 * HOD can only view other user's Data & not Edit them.
+                 */
+            if (user.hasSubbordinateOfficers == 1)
+                if (user.userId != myVisitsSpinnerSelectedUserId)
+                    return
             mNavigator!!.onError("Please Check in first!")
+        }
     }
 
     fun onCheckInClick(model: MyVisitModel) {
-        if (model.checkInStatus != 1)
+        if (model.checkInStatus != 1) {
+            if (user.hasSubbordinateOfficers == 1)
+                if (user.userId != myVisitsSpinnerSelectedUserId)
+                    return
             mNavigator!!.onCheckInClicked(model)
-        else {
+        }else {
             // mNavigator!!.onError("Already Checked In!")
              mNavigator!!.onCheckInClicked(model)
 
@@ -190,10 +216,15 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     fun onCheckInfoClicked(model: MyVisitModel, dataCall:(CheckInfoModel)->CheckInfoModel)  {
 
-        val request = MyVisitRequest()
-        request.userId = user.userId.toString()
-        request.visitId = model.visitSchedulerId.toString()
-        request.requestId = ""
+        val request = MyVisitRequest().apply {
+            userId =
+                if (user.hasSubbordinateOfficers == 1 && user.hasSubbordinateOfficers != -1)
+                    myVisitsSpinnerSelectedUserId.toString()
+                else
+                    user.userId.toString()
+            visitId = model.visitSchedulerId.toString()
+            requestId = ""
+        }
 
         dialogVisibility.value = true
         dialogMessage.value = "Fetching CheckIn info ..."
@@ -203,12 +234,8 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             //dialogVisibility.value = true
             // mNavigator!!.onCheckInSuccess(it.message)
            // mNavigator!!.onAlreadyCheckedIn( it.data)
-
-
-
         },
             Consumer { checkError(it) }))
-
     }
 
     /**
@@ -280,9 +307,11 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             request = request,
 
             success = Consumer {
-                if (it.status == 1)
-                    _userSpinnerData.value = it.users
+                if (it.status == 1 && !it.users.isNullOrEmpty()) {
+                    mNavigator?.setSpinnerData(it.users)
+                }
             },
+
             error = Consumer { checkError(it) }
         ))
     }

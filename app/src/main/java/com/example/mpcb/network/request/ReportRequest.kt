@@ -890,6 +890,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.nhwWasteName)
         }
+
     @SerializedName("nhw_quantity")
     @Expose
     var nhwQuantity: Int = 0
@@ -904,6 +905,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
                 0
             }
         }
+
     @SerializedName("nhw_disposal_method")
     @Expose
     var nhwDisposalMethod: String = ""
@@ -912,6 +914,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.nhwDisposalMethod)
         }
+
     @SerializedName("nhw_disposal_date")
     @Expose
     var nhwDisposalDate: String = ""
@@ -920,6 +923,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.nhwDisposalDate)
         }
+
     @SerializedName("nhw_disposal_quantity")
     @Expose
     var nhwDisposalQuantity: Int = 0
@@ -934,6 +938,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
                 0
             }
         }
+
     @SerializedName("nhw_actualdisposal")
     @Expose
     var nhwActualdisposal: Int = 0
@@ -948,6 +953,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
                 0
             }
         }
+
     //TODO 2/12/2019 Change this to String
     @SerializedName("nhw_disposal_quantity_unit")
     @Expose

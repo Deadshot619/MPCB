@@ -3,6 +3,7 @@ package com.example.mpcb.my_visits
 import com.example.mpcb.base.BaseNavigator
 import com.example.mpcb.network.response.CheckInfoModel
 import com.example.mpcb.network.response.MyVisitModel
+import com.example.mpcb.network.response.Users
 
 interface MyVisitsNavigator : BaseNavigator {
 
@@ -17,4 +18,7 @@ interface MyVisitsNavigator : BaseNavigator {
     fun showAlert(message: String)
 
     fun onAlreadyCheckedIn(model: CheckInfoModel)
+
+    //Sets the data in Spinner
+    fun setSpinnerData(users: List<Users>)
 }

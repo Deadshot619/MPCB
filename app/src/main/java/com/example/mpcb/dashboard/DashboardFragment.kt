@@ -107,7 +107,13 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                     DAY_OF_MONTH
                 ).toString()
 
-        mViewModel.getDashboardData(fromDate)
+        /*
+         * If there are sub-Ordinate Users, then do not get the initial Dashboard Data through
+         * this method.
+         */
+        if (userModel.hasSubbordinateOfficers != 1) {
+            mViewModel.getDashboardData(fromDate)
+        }
     }
 
     /**
