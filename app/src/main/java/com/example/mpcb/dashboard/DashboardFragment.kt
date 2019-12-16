@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.Observer
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.dashboard.DashboardUtils.Companion.dashboardSpinnerSelectedUser
@@ -121,60 +120,17 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             //MAke Spinner visible
             mBinding.toolbarLayout.spinnerUserList.visibility = View.VISIBLE
 
-            //Observe Spinner Data in viewmodel
-            mViewModel.userSpinnerData.run {
-                //                removeObservers(viewLifecycleOwner)
-                observe(viewLifecycleOwner, Observer {
-                    it?.let {
-                        setSpinnerData(it)
-                    }
-                })
-            }
             //get User List Data
             mViewModel.getUserListData()
 
-            mBinding.toolbarLayout.spinnerUserList.let {
-                it.selectedItem?.run {
-                    dashboardSpinnerSelectedUser = this.toString()
-                    //                    dashboardSpinnerSelectedUserId =
-                    //                        mViewModel.userSpinnerData.value?.get().userId!!
-                }
-
-                //Set listener to Spinner
-                it.onItemSelectedListener =
-                    object : AdapterView.OnItemSelectedListener {
-                        override fun onNothingSelected(p0: AdapterView<*>?) {
-                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                        }
-
-                        override fun onItemSelected(
-                            p0: AdapterView<*>?,
-                            p1: View?,
-                            p2: Int,
-                            p3: Long
-                        ) {
-
-                            if (dashboardSpinnerSelectedUser != it.getItemAtPosition(p2).toString()) {
-                                //Set seleted User
-                                dashboardSpinnerSelectedUser = it.getItemAtPosition(p2).toString()
-                                //Set selected User id
-                                dashboardSpinnerSelectedUserId =
-                                    mViewModel.userSpinnerData.value?.get(p2)?.userId!!
-                                showMessage(dashboardSpinnerSelectedUser)
-                                //Get dashboard data for current user
-                                mViewModel.getDashboardData(fromDate)
-                            }
-                        }
-                    }
-            }
         }
     }
 
     //Set data to spinner
-    private fun setSpinnerData(it: List<Users>) {
+    override fun setSpinnerData(users: List<Users>) {
         //create spinnerArray that will hold data from Api
         val spinnerArray = ArrayList<String>()
-        for (element in it)
+        for (element in users)
             spinnerArray.add(element.userName)
 
         //Create a adapter that will be used to set in Spinner
@@ -183,14 +139,14 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         )
 
         //Set User id of first user
-        dashboardSpinnerSelectedUserId = it[0].userId
+        if (dashboardSpinnerSelectedUserId < 0)
+            dashboardSpinnerSelectedUserId = users[0].userId
 
         //Set dropdown View Resource
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         //Set adapter to spinner
         mBinding.toolbarLayout.spinnerUserList.adapter = adapter
-
 
         try {
             mBinding.toolbarLayout.spinnerUserList.run {
@@ -205,6 +161,44 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         } catch (e: Exception) {
             showMessage(e.message.toString())
         }
+
+        mBinding.toolbarLayout.spinnerUserList.let {
+            //Set th selected item to
+            it.selectedItem?.run {
+                dashboardSpinnerSelectedUser = this.toString()
+                //                    dashboardSpinnerSelectedUserId =
+                //                        mViewModel.userSpinnerData.value?.get().userId!!
+            }
+
+            //Set listener to Spinner
+            it.onItemSelectedListener =
+                object : AdapterView.OnItemSelectedListener {
+                    override fun onNothingSelected(p0: AdapterView<*>?) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                    override fun onItemSelected(
+                        p0: AdapterView<*>?,
+                        p1: View?,
+                        p2: Int,
+                        p3: Long
+                    ) {
+
+                        if (dashboardSpinnerSelectedUser != it.getItemAtPosition(p2).toString()) {
+                            //Set seleted User
+                            dashboardSpinnerSelectedUser = it.getItemAtPosition(p2).toString()
+                            //Set selected User id
+                            dashboardSpinnerSelectedUserId =
+                                users[p2].userId
+                            showMessage(dashboardSpinnerSelectedUser)
+                            //Get dashboard data for current user
+                            mViewModel.getDashboardData(fromDate)
+                        }
+                    }
+                }
+        }
+
+
     }
 
     private fun setDateView() {
