@@ -1,14 +1,19 @@
 package com.example.mpcb.reports.additional_info
 
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentAdditionalInfoBinding
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.permission.PermissionUtils
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.utils.validations.FilePickUtils
@@ -44,6 +49,7 @@ class AdditionalInfoFragment :
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBinding() {
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
@@ -70,11 +76,34 @@ class AdditionalInfoFragment :
         }
 
         mBinding.uploadVisitEditTextLayout.setOnClickListener {
-            showMessage("Clicked!")
-            var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
-            chooseFile.type = "*/*"
-            chooseFile = Intent.createChooser(chooseFile, "Choose a file")
-            startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
+           // showMessage("Clicked!")
+
+
+            if (!PermissionUtils.isStoragePermissionsGranted(ctx = activity!!)){
+
+
+                if (activity!!.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(
+                        PermissionUtils.STORAGE_PERMISSIONS,
+                        100
+                    )
+                } else {
+
+                    var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
+                    chooseFile.type = "*/*"
+                    chooseFile = Intent.createChooser(chooseFile, "Choose a file")
+                    startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
+                }
+
+
+
+        }else{
+                var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
+                chooseFile.type = "*/*"
+                chooseFile = Intent.createChooser(chooseFile, "Choose a file")
+                startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
+
+            }
         }
     }
 
