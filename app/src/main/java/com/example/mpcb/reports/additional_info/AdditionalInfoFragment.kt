@@ -17,9 +17,6 @@ import com.example.mpcb.utils.permission.PermissionUtils
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.utils.validations.FilePickUtils
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import java.io.File
 
 
@@ -33,8 +30,8 @@ class AdditionalInfoFragment :
      private lateinit var fileP: String
 
     //File to be uploaded
-    private val _file: File
-        get() = File(fileP)
+//    private val _file: File
+//        get() = File(fileP)
 
     //File Uri
     private lateinit var fileUri: Uri
@@ -125,7 +122,7 @@ class AdditionalInfoFragment :
             )
 
             //submit report only if all the reports are filled.
-            if (checkIfReportsFilled() || true) {
+            if (checkIfReportsFilled()) {
                 mViewModel.submitReport(
                     reportRequest = getReportData(visitReportId),
                     file = File(fileP)
@@ -159,6 +156,10 @@ class AdditionalInfoFragment :
         }
         if (report.data.routineReport.legalActionUnitComplied == null) {
             showMessage("Select Unit Compiled")
+            return false
+        }
+        if (mBinding.uploadVisitEditTextLayout.text.isNullOrEmpty()) {
+            showMessage("Select a File")
             return false
         }
         return true
@@ -216,9 +217,9 @@ class AdditionalInfoFragment :
                 mBinding.uploadVisitEditTextLayout.setText(fileP)
 
               //  val visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"), _file.absoluteFile)
-                val visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"),fileP)
-                val visitReportPartLocal =
-                    MultipartBody.Part.createFormData("file", _file.name, visitReportBodyLocal)
+//                val visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"),fileP)
+//                val visitReportPartLocal =
+//                    MultipartBody.Part.createFormData("file", _file.name, visitReportBodyLocal)
             }
         }
     }
