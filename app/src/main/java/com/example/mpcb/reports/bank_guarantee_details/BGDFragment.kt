@@ -9,7 +9,6 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
-import com.example.mpcb.utils.validations.isDecimal
 
 class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), BGDNavigator {
 
@@ -60,7 +59,7 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
 
     private fun setListener() {
         mBinding.rgBGImposed.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.bgImposed = if (checkedId == R.id.rbBGYes) "1" else "0"
+            report.data.routineReport.bgImposed = if (checkedId == R.id.rbBGYes) "0" else "1"
             report.data.routineReport.bgImposedAgainst =
                 if (checkedId == R.id.rbBGAgainstYes) "1" else "0"
         }
@@ -101,10 +100,11 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
         if (report.data.routineReport.bgImposedNumber.isNullOrEmpty()) {
             showMessage("Enter BG Imposed Number")
             return false
-        }else if (!isDecimal(report.data.routineReport.bgImposedNumber!!)){
-            showMessage("Invalid BG Imposed Number")
-            return false
         }
+//        else if (!isDecimal(report.data.routineReport.bgImposedNumber)){
+//            showMessage("Invalid BG Imposed Number")
+//            return false
+//        }
 
 
         val sourceList = mViewModel.getSourceList().value!!
@@ -152,7 +152,7 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
             mBinding.run {
                 reports?.data?.routineReport?.run{
 //                    BG Imposed
-                    if (bgImposed == "1")
+                    if (bgImposed != "1")
                         rgBGImposed.check(R.id.rbBGYes)
                     else
                         rgBGImposed.check(R.id.rbBGNo)

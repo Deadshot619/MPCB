@@ -78,7 +78,7 @@ class BGDAdapter(
 
         fun setListener(item: RoutineReportBankDetail) {
             itemBinding.rgBGSubmitted.setOnCheckedChangeListener { group, checkedId ->
-                item.bankSubmitted = if (checkedId == R.id.rbSubmittedYes) "1" else "0"
+                item.bankSubmitted = if (checkedId == R.id.rbSubmittedYes) "0" else "1"
             }
         }
 
@@ -90,7 +90,7 @@ class BGDAdapter(
             visitStatus: Boolean
         ) {
 //            BG Submitted
-            if (item.bankSubmitted == "1")
+            if (item.bankSubmitted != "1")
                 itemBinding.rgBGSubmitted.check(R.id.rbSubmittedYes)
             else
                 itemBinding.rgBGSubmitted.check(R.id.rbSubmittedNo)
@@ -106,7 +106,7 @@ class BGDAdapter(
             for (i in 0 until vg.childCount) {
                 val child = vg.getChildAt(i)
 
-                if(child.id != com.example.mpcb.R.id.btnSubmit)
+                if(child.id != R.id.btnSubmit)
                     child.isEnabled = enable
                 if (child is ViewGroup) {
                     disableEnableControls(enable, child)

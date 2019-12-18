@@ -41,11 +41,11 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
                 reportRequest,
                 Consumer {
                     dialogVisibility.value = false
-                    mNavigator!!.onSubmitReportSuccess(it.message)
+//                    mNavigator!!.onSubmitReportSuccess(it.message)
                     //If report submitted successfully, update the list to show status as visited
                     if (it.status) {
                         uploadVisitFile(file)
-                        PreferencesHelper.setBooleanPreference(Constants.FORM_COMPLETE_STATUS, true)
+//                        PreferencesHelper.setBooleanPreference(Constants.FORM_COMPLETE_STATUS, true)
                     }
                 },
                 Consumer {
@@ -91,11 +91,11 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
             visitReportFile = visitReportPartLocal,
             success = Consumer {
                 dialogVisibility.value = false
-                mNavigator!!.onSubmitReportSuccess(it.message)
                 //If report submitted successfully, update the list to show status as visited
                 if (it.status) {
                     PreferencesHelper.setBooleanPreference(Constants.FORM_COMPLETE_STATUS, true)
                 }
+                mNavigator!!.onSubmitReportSuccess(it.message)
             },
             error = Consumer { checkError(it) })
         )
