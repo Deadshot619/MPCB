@@ -117,7 +117,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                             //Enable Amount & Date
                             edtAmtIndus.isEnabled = true
                             edtDateIndus.isEnabled = true
-                            "1"
+                            "0"
                         } else {
                             //Disable Amount & Date
                             edtAmtIndus.isEnabled = false
@@ -125,7 +125,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
 
                             edtAmtIndus.setText("")
                             edtDateIndus.setText("")
-                            "0"
+                            "1"
                         }
                 }
 
@@ -136,7 +136,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                             //Enable Amount & Date
                             edtAmtDomestic.isEnabled = true
                             edtDateDomestic.isEnabled = true
-                            "1"
+                            "0"
                         } else {
                             //Disable Amount & Date
                             edtAmtDomestic.isEnabled = false
@@ -144,7 +144,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
 
                             edtAmtDomestic.setText("")
                             edtDateDomestic.setText("")
-                            "0"
+                            "1"
                         }
                 }
             }
@@ -284,11 +284,12 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                         showMessage("Enter Prescribed Value")
                         isValid = false
                         break@outer
-                    }else if (!isDecimal(childItem.prescribedValue)){
-                        showMessage("Invalid Prescribed value.")
-                        isValid = false
-                        break@outer
                     }
+//                    else if (!isDecimal(childItem.prescribedValue)){
+//                        showMessage("Invalid Prescribed value.")
+//                        isValid = false
+//                        break@outer
+//                    }
                 }
             }
         }
@@ -311,11 +312,11 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
 
             mBinding.run{
                 reports?.data?.routineReport?.run {
-                    //Industrail Date
+                    //Industrial Date
                     edtIndusDateOfCollection.setText(dateOfCollectionIndus)
 
                     //Payment Details
-                    if (paymentDetailsIndus == "1"){
+                    if (paymentDetailsIndus != "1"){
                         rgPymntDetailsIndus.check(R.id.rbPymntDetailsIndusYes)
                     }else{
                         rgPymntDetailsIndus.check(R.id.rbPymntDetailsIndusNo)
@@ -332,7 +333,7 @@ class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>()
                     edtDomesticDateOfCollection.setText(dateOfCollectionDomestic)
 
                     //Domestic Payment Details
-                    if (paymentDetailsDomestic == "1"){
+                    if (paymentDetailsDomestic != "1"){
                         rgPymntDetailsDomestic.check(R.id.rbPymntDetailsDomesticYes)
                     }else{
                         rgPymntDetailsDomestic.check(R.id.rbPymntDetailsDomesticNo)

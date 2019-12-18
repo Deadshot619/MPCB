@@ -597,7 +597,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
                         rgIndusDisposalConsent.check(R.id.rbIndusDisposalYes)
                     }
 
-//                    Industrial Operatioon & Maintenance
+//                    Industrial Operation & Maintenance
                     when (operationAndMaintainanceInsus) {
                         "0" -> rgIndusOperationMaintenance.check(R.id.rbIndusPoor)
                         "1" -> rgIndusOperationMaintenance.check(R.id.rbIndusAverage)
