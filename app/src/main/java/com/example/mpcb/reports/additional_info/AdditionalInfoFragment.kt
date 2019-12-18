@@ -1,14 +1,27 @@
 package com.example.mpcb.reports.additional_info
 
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentAdditionalInfoBinding
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.permission.PermissionUtils
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
 import com.example.mpcb.utils.showMessage
+import com.example.mpcb.utils.validations.FilePickUtils
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
+
 
 class AdditionalInfoFragment :
     BaseFragment<FragmentAdditionalInfoBinding, AdditionalInfoViewModel>(),
@@ -17,12 +30,26 @@ class AdditionalInfoFragment :
     private var reports: ReportRequest? = null
     private lateinit var visitReportId: String
 
+     private lateinit var fileP: String
+
+    //File to be uploaded
+    private val _file: File
+        get() = File(fileP)
+
+    //File Uri
+    private lateinit var fileUri: Uri
+    //File Path
+    private lateinit var filePath: String
+
+    val PICKFILE_RESULT_CODE = 1000
+
     override fun getLayoutId() = R.layout.fragment_additional_info
     override fun getViewModel() = AdditionalInfoViewModel::class.java
     override fun getNavigator() = this@AdditionalInfoFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBinding() {
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
@@ -32,7 +59,6 @@ class AdditionalInfoFragment :
 
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_18)
         setListener()
-
 
         //Get Visit Report ID from arguments
         visitReportId = getDataFromArguments(this, Constants.VISIT_REPORT_ID)
@@ -46,6 +72,37 @@ class AdditionalInfoFragment :
             btnNext.apply {
                 text = "Done"
                 setOnClickListener { activity?.finish() }
+            }
+        }
+
+        mBinding.uploadVisitEditTextLayout.setOnClickListener {
+           // showMessage("Clicked!")
+
+
+            if (!PermissionUtils.isStoragePermissionsGranted(ctx = activity!!)){
+
+
+                if (activity!!.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    requestPermissions(
+                        PermissionUtils.STORAGE_PERMISSIONS,
+                        100
+                    )
+                } else {
+
+                    var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
+                    chooseFile.type = "*/*"
+                    chooseFile = Intent.createChooser(chooseFile, "Choose a file")
+                    startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
+                }
+
+
+
+        }else{
+                var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
+                chooseFile.type = "*/*"
+                chooseFile = Intent.createChooser(chooseFile, "Choose a file")
+                startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
+
             }
         }
     }
@@ -68,8 +125,12 @@ class AdditionalInfoFragment :
             )
 
             //submit report only if all the reports are filled.
-            if (checkIfReportsFilled()) {
-                mViewModel.submitReport(reportRequest = getReportData(visitReportId))
+            if (checkIfReportsFilled() || true) {
+                mViewModel.submitReport(
+                    reportRequest = getReportData(visitReportId),
+                    file = File(fileP)
+                )
+//                mViewModel.uploadVisitFile(File(fileP))
             } else {
                 showMessage("Please fill all the reports!")
             }
@@ -138,4 +199,37 @@ class AdditionalInfoFragment :
         super.onStart()
         setDataToViews()
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+
+        when (requestCode) {
+            PICKFILE_RESULT_CODE -> if (resultCode == -1) {
+                //File Uri
+                fileUri = data?.data!!
+                //File Path
+             //   getRealPathFromURI(activity)
+
+                 fileP = FilePickUtils.getSmartFilePath(activity!!,fileUri).toString()
+                filePath = fileUri.path!!
+                mBinding.uploadVisitEditTextLayout.setText(fileP)
+
+              //  val visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"), _file.absoluteFile)
+                val visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"),fileP)
+                val visitReportPartLocal =
+                    MultipartBody.Part.createFormData("file", _file.name, visitReportBodyLocal)
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 }

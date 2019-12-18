@@ -86,13 +86,18 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="16dp"
-                        android:visibility="gone"
+                        android:visibility="visible"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_add_more"
+                        app:endIconContentDescription="Add a File"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/rgUnitComplied">
 
                     <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/uploadVisitEditTextLayout"
                             android:layout_width="match_parent"
+                            android:focusable="false"
                             android:layout_height="wrap_content"
                             android:hint="Upload Visit Report" />
                 </com.google.android.material.textfield.TextInputLayout>

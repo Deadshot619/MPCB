@@ -7,7 +7,7 @@ class ViewVisitRequest {
 
     @Expose
     @SerializedName("RequestId")
-    var requestId = ""
+    var requestId = "12"
 
     @Expose
     @SerializedName("visitId")
