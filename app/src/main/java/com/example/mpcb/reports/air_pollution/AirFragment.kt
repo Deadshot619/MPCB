@@ -95,7 +95,7 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
             }
 
             //Pollution type Fuel Burning selected
-            if (item.airPollutionType == "0"){
+            if (item.airPollutionType == "1"){
                 //Fuel Name
                 if (item.airPollutionFuelName.isEmpty()) {
                     showMessage("Enter Fuel Name")

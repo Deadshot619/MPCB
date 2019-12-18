@@ -102,7 +102,7 @@ class AirPollutionAdapter(
                         edFuelQuantity.setText("")
                         edFuelUnit.setText("")
                     }
-                    "1"
+                    "0"
                 } else{
                     itemBinding.run{
                         //Enable text field
@@ -110,7 +110,7 @@ class AirPollutionAdapter(
                         edFuelQuantity.isEnabled = true
                         edFuelUnit.isEnabled = true
                     }
-                    "0"
+                    "1"
                 }
             }
 
@@ -167,7 +167,7 @@ class AirPollutionAdapter(
                     )
 
                 //Set Process/Fuel Burning radio button
-                if (item.airPollutionType == "1"){
+                if (item.airPollutionType != "1"){
                     rgProcessFuelBurning.check(R.id.rbProcess)
                 }else{
                     rgProcessFuelBurning.check(R.id.rbFuelBurning)
@@ -197,9 +197,9 @@ class AirPollutionAdapter(
 
                 if(child.id != R.id.btnSubmit)
                     child.isEnabled = enable
-                if (child is ViewGroup) {
+
+                if (child is ViewGroup)
                     disableEnableControls(enable, child)
-                }
             }
         }
     }
