@@ -3,6 +3,7 @@ package com.example.mpcb.network.request
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import com.example.mpcb.utils.parseToInt
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
@@ -782,73 +783,53 @@ class RoutineReportHazardousWaste : BaseObservable() {
         }
     @SerializedName("hw_actual_disposal")
     @Expose
-    var hwActualDisposal: Double = 0.0
+    var hwActualDisposal: Int = 0
     var hwActualDisposalString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwActualDisposalString)
-            hwActualDisposal = try {
-                hwActualDisposalString.toDouble()
-            } catch (e: Exception) {
-                0.0
-            }
+            hwActualDisposal = hwActualDisposalString.parseToInt()
         }
     @SerializedName("hw_form_disposal")
     @Expose
-    var hwFormDisposal: Double = 0.0
+    var hwFormDisposal: Int = 0
     var hwFormDisposalString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormDisposalString)
-            hwFormDisposal = try {
-                hwFormDisposalString.toDouble()
-            } catch (e: Exception) {
-                0.0
-            }
+            hwFormDisposal = hwFormDisposalString.parseToInt()
         }
     @SerializedName("hw_form_cswtsdf")
     @Expose
-    var hwFormCswtsdf: Double = 0.0
+    var hwFormCswtsdf: Int = 0
     var hwFormCswtsdfString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormCswtsdfString)
-            hwFormCswtsdf = try {
-                hwFormCswtsdfString.toDouble()
-            } catch (e: Exception) {
-                0.0
-            }
+            hwFormCswtsdf = hwFormCswtsdfString.parseToInt()
         }
     @SerializedName("hw_form_co_processing")
     @Expose
-    var hwFormCoProcessing: Double = 0.0
+    var hwFormCoProcessing: Int = 0
     var hwFormCoProcessingString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormCoProcessingString)
-            hwFormCoProcessing = try {
-                hwFormCoProcessingString.toDouble()
-            } catch (e: Exception) {
-                0.0
-            }
+            hwFormCoProcessing = hwFormCoProcessingString.parseToInt()
         }
     @SerializedName("hw_disposed_actualuser")
     @Expose
-    var hwDisposedActualuser: Double = 0.0
+    var hwDisposedActualuser: Int = 0
     var hwDisposedActualuserString: String = ""
         @Bindable get
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwDisposedActualuserString)
-            hwDisposedActualuser = try {
-                hwDisposedActualuserString.toDouble()
-            } catch (e: Exception) {
-                0.0
-            }
+            hwDisposedActualuser = hwDisposedActualuserString.parseToInt()
         }
     @SerializedName("hw_disposal_quantity")
     @Expose
@@ -858,11 +839,7 @@ class RoutineReportHazardousWaste : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwDisposalQuantityString)
-            hwDisposalQuantity = try {
-                hwDisposalQuantityString.toInt()
-            } catch (e: Exception) {
-                0
-            }
+            hwDisposalQuantity = hwDisposalQuantityString.parseToInt()
         }
     @SerializedName("hw_disposal_date")
     @Expose
