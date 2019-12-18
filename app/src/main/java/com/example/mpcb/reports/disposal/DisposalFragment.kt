@@ -85,12 +85,12 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
         mBinding.rgIndusDisposalConsent.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.disposalIndustrialAsPerConsent =
-                if (checkedId == R.id.rbIndusDisposalYes) "1" else "0"
+                if (checkedId == R.id.rbIndusDisposalNo) "1" else "0"
         }
 
         mBinding.rgDomesticDisposalConsent.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.disposalDomesticAsPerConsent =
-                if (checkedId == R.id.rbDomesticDisposalYes) "1" else "0"
+                if (checkedId == R.id.rbDomesticDisposalNo) "1" else "0"
         }
 
         mBinding.rgIndusOperationMaintenance.setOnCheckedChangeListener { group, checkedId ->
@@ -569,7 +569,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         if (reports != null) {
             mBinding.run {
                 reports?.data?.routineReport?.run {
-                    //                    Industrial checkboxes
+//                    Industrial checkboxes
                     cbIndusCETP.isChecked = disposalIndustrialCETP == 1
                     cbIndusLandGardening.isChecked = disposalIndustrialLandGardening == 1
                     cbIndusRecycle.isChecked = disposalIndustrialRecycle == 1
@@ -592,12 +592,12 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
 //                    Industrial Disposal Consent
                     if (disposalIndustrialAsPerConsent == "1") {
-                        rgIndusDisposalConsent.check(R.id.rbIndusDisposalYes)
-                    } else {
                         rgIndusDisposalConsent.check(R.id.rbIndusDisposalNo)
+                    } else {
+                        rgIndusDisposalConsent.check(R.id.rbIndusDisposalYes)
                     }
 
-//                    Indutrial Operatioon & Maintenance
+//                    Industrial Operatioon & Maintenance
                     when (operationAndMaintainanceInsus) {
                         "0" -> rgIndusOperationMaintenance.check(R.id.rbIndusPoor)
                         "1" -> rgIndusOperationMaintenance.check(R.id.rbIndusAverage)
@@ -627,9 +627,9 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
 
 //                    Domestic Disposal Consent
                     if (disposalDomesticAsPerConsent == "1") {
-                        rgDomesticDisposalConsent.check(R.id.rbDomesticDisposalYes)
-                    } else {
                         rgDomesticDisposalConsent.check(R.id.rbDomesticDisposalNo)
+                    } else {
+                        rgDomesticDisposalConsent.check(R.id.rbDomesticDisposalYes)
                     }
 
 //                    Domestic Operation & Maintenance
