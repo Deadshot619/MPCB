@@ -137,7 +137,7 @@ class IndustryReportFragment :
                 return false
             }
             if (!isValidMobile(telephoneNumber)){
-                showMessage("Invalid Number")
+                showMessage("Invalid Telephone Number")
                 return false
             }
             if (!isDecimal(validityOfConsentIe)){
