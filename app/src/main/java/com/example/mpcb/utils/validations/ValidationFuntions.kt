@@ -24,7 +24,7 @@ fun isPasswordValid(password: String?, confirmPassword: String?): Boolean {
  * Method to Check if Mobile Number is valid
  */
 fun isValidMobile(phone: String): Boolean{
-    return Pattern.matches("[0-9]+", phone) && phone.length in 7..13
+    return Pattern.matches("[0-9]+", phone) && phone.length in 10..10
 }
 
 /**
