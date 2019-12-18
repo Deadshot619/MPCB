@@ -9,7 +9,6 @@ import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.showMessage
-import com.example.mpcb.utils.validations.isDecimal
 
 class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
     NonHazardousNavigator {
@@ -90,11 +89,12 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
                 showMessage("Enter Quantity As per Consent")
                 isValid = false
                 break
-            }else if (!isDecimal(item.nhwQuantityString!!)){
-                showMessage("Invalid Quantity As per Consent value")
-                isValid = false
-                break
             }
+//            else if (!isDecimal(item.nhwQuantityString!!)){
+//                showMessage("Invalid Quantity As per Consent value")
+//                isValid = false
+//                break
+//            }
 
 //            Method of disposal as per consent
             if (item.nhwDisposalMethod.isNullOrEmpty()) {
@@ -115,22 +115,24 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
                 showMessage("Enter Last Disposal Quantity")
                 isValid = false
                 break
-            }else if (!isDecimal(item.nhwDisposalQuantityString!!)){
-                showMessage("Invalid Last Disposal Quantity value")
-                isValid = false
-                break
             }
+//            else if (!isDecimal(item.nhwDisposalQuantityString!!)){
+//                showMessage("Invalid Last Disposal Quantity value")
+//                isValid = false
+//                break
+//            }
 
 //            Actual Disposal
             if (item.nhwActualdisposalString.isNullOrEmpty()) {
                 showMessage("Enter Actual Disposal")
                 isValid = false
                 break
-            }else if (!isDecimal(item.nhwActualdisposalString!!)){
-                showMessage("Invalid Actual Disposal value")
-                isValid = false
-                break
             }
+//            else if (!isDecimal(item.nhwActualdisposalString!!)){
+//                showMessage("Invalid Actual Disposal value")
+//                isValid = false
+//                break
+//            }
 
 //            Uom
             if (item.nhwDisposalQuantityUnit == "0") {

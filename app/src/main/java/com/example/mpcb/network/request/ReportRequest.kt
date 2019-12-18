@@ -876,11 +876,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.nhwQuantityString)
-            nhwQuantity = try {
-                nhwQuantityString.toInt()
-            } catch (e: Exception) {
-                0
-            }
+            nhwQuantity = nhwQuantityString.parseToInt()
         }
 
     @SerializedName("nhw_disposal_method")
@@ -909,11 +905,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.nhwDisposalQuantityString)
-            nhwDisposalQuantity = try {
-                nhwDisposalQuantityString.toInt()
-            } catch (e: Exception) {
-                0
-            }
+            nhwDisposalQuantity = nhwDisposalQuantityString.parseToInt()
         }
 
     @SerializedName("nhw_actualdisposal")
@@ -924,11 +916,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.nhwActualdisposalString)
-            nhwActualdisposal = try {
-                nhwActualdisposalString.toInt()
-            } catch (e: Exception) {
-                0
-            }
+            nhwActualdisposal = nhwActualdisposalString.parseToInt()
         }
 
     //TODO 2/12/2019 Change this to String
