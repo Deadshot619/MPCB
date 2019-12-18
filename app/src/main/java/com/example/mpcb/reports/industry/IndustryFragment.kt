@@ -14,6 +14,7 @@ import com.example.mpcb.utils.constants.Constants.Companion.CATEGORY_LIST
 import com.example.mpcb.utils.constants.Constants.Companion.REPORT_1
 import com.example.mpcb.utils.constants.Constants.Companion.REPORT_2
 import com.example.mpcb.utils.constants.Constants.Companion.VISIT_REPORT_ID
+import com.example.mpcb.utils.parseToInt
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.utils.validations.isDecimal
 import com.example.mpcb.utils.validations.isEmailValid
@@ -101,7 +102,10 @@ class IndustryReportFragment :
     }
 
     private fun onSubmit() {
-        report.data.industryCategoryReselect = CATEGORY_LIST[mBinding.catSpinner.selectedItemPosition]!!
+        report.data.industryCategoryReselect =
+            CATEGORY_LIST.filterValues {
+                it == CATEGORY_LIST[mBinding.catSpinner.selectedItemPosition]
+            }.keys.first().toString()
 
         report.data.routineReport.run{
             visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
@@ -219,11 +223,7 @@ class IndustryReportFragment :
                 if (reports?.data?.industryCategoryReselect != "")
                     reports?.data?.industryCategoryReselect?.let { value ->
                         catSpinner.setSelection(
-                            //if the given value doesn't match with any value in the hashmap
-                            //return 0 else return that Key containing that value
-                            if (CATEGORY_LIST.filterValues { it == value }.keys.isNotEmpty())
-                                CATEGORY_LIST.filterValues { it == value }.keys.first()
-                            else 0
+                            value.parseToInt()
                         )
                     }
                 edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
