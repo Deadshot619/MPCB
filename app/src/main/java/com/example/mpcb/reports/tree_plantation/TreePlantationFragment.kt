@@ -76,7 +76,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         if (report.data.routineReport.treePlantationPlotArea.isNullOrEmpty()) {
             showMessage("Enter Total Plot Area in sq.mt")
             return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationPlotArea!!)){
+        }else if (!isDecimal(report.data.routineReport.treePlantationPlotArea)){
                 showMessage("Please enter valid value")
                 return false
         }
@@ -85,7 +85,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         if (report.data.routineReport.treePlantationBuiltArea.isNullOrEmpty()) {
             showMessage("Enter Built Up Area in sq.mt")
             return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationBuiltArea!!)){
+        }else if (!isDecimal(report.data.routineReport.treePlantationBuiltArea)){
             showMessage("Please enter valid value")
             return false
         }
@@ -94,7 +94,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         if (report.data.routineReport.treePlantationGreenBeltArea.isNullOrEmpty()) {
             showMessage("Enter Green Belt Area in sq.mt")
             return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationGreenBeltArea!!)){
+        }else if (!isDecimal(report.data.routineReport.treePlantationGreenBeltArea)){
             showMessage("Please enter valid value")
             return false
         }
@@ -103,7 +103,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         if (report.data.routineReport.treePlantationPlantationNo.isNullOrEmpty()) {
             showMessage("Enter Plantation done in No")
             return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationPlantationNo!!)){
+        }else if (!isDecimal(report.data.routineReport.treePlantationPlantationNo)){
             showMessage("Please enter valid value")
             return false
         }
@@ -111,7 +111,7 @@ class TreePlantationFragment : BaseFragment<FragmentTreePlantationBinding, Repor
         if (report.data.routineReport.treePlantationProposedPlantation.isNullOrEmpty()) {
             showMessage("Enter Proposed Plantation")
             return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationProposedPlantation!!)){
+        }else if (!isDecimal(report.data.routineReport.treePlantationProposedPlantation)){
             showMessage("Please enter valid value")
             return false
         }

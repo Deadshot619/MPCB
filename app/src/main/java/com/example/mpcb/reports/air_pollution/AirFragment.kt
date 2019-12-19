@@ -150,7 +150,8 @@ class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), A
                 showMessage("Enter Stack Height")
                 isValid = false
                 break
-            }else if (!isDecimal(item.airPollutionStackHeight)){
+            }
+            else if (!isDecimal(item.airPollutionStackHeight)){
                 showMessage("Invalid Stack Height")
                 isValid = false
                 break

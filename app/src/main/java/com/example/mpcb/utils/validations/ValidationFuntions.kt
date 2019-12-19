@@ -31,7 +31,6 @@ fun isValidMobile(phone: String): Boolean{
  * This method checks if the input value is a proper Decimal value
  */
 fun isDecimal(value: String): Boolean{
-
     return try {
         value.toDouble()
         true

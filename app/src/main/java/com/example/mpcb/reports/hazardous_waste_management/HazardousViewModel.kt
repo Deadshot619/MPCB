@@ -9,6 +9,7 @@ class HazardousViewModel : BaseViewModel<HazardousNavigator>() {
 
     private val sourceList = MutableLiveData<ArrayList<RoutineReportHazardousWaste>>()
 
+
     fun getSourceList() = sourceList
 
     fun populateData(list: ArrayList<RoutineReportHazardousWaste>? = arrayListOf(RoutineReportHazardousWaste())) {
