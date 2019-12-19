@@ -118,7 +118,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edIndusCETP.addTextChangedListener {
                 indusCept = if (edIndusCETP.text.toString() != "")
                     if (isDecimal(edIndusCETP.text.toString()))
-                        edIndusCETP.text.toString().toDouble()
+                        edIndusCETP.text.toString().parseToDouble()
                     else
                         0.0
                 else
@@ -130,7 +130,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edIndusLandGardening.addTextChangedListener {
                 indusLandGardening = if (edIndusLandGardening.text.toString() != "")
                     if (isDecimal(edIndusLandGardening.text.toString()))
-                        edIndusLandGardening.text.toString().toDouble()
+                        edIndusLandGardening.text.toString().parseToDouble()
                     else
                         0.0
                 else
@@ -142,7 +142,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edIndusRecycle.addTextChangedListener {
                 indusRecycle = if (edIndusRecycle.text.toString() != "")
                     if (isDecimal(edIndusRecycle.text.toString()))
-                        edIndusRecycle.text.toString().toDouble()
+                        edIndusRecycle.text.toString().parseToDouble()
                     else 0.0
                 else
                     0.0
@@ -153,7 +153,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edIndusSewageTreatment.addTextChangedListener {
                 indusLocalSewage = if (edIndusSewageTreatment.text.toString() != "")
                     if (isDecimal(edIndusSewageTreatment.text.toString()))
-                        edIndusSewageTreatment.text.toString().toDouble()
+                        edIndusSewageTreatment.text.toString().parseToDouble()
                     else 0.0
                 else
                     0.0
@@ -164,7 +164,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edIndusExtraNameValue.addTextChangedListener {
                 indusAnyOther = if (edIndusExtraNameValue.text.toString() != "")
                     if (isDecimal(edIndusExtraNameValue.text.toString()))
-                        edIndusExtraNameValue.text.toString().toDouble()
+                        edIndusExtraNameValue.text.toString().parseToDouble()
                     else 0.0
                 else
                     0.0
@@ -180,7 +180,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edDomesticCETP.addTextChangedListener {
                 domesticCept = if (edDomesticCETP.text.toString() != "")
                     if (isDecimal(edDomesticCETP.text.toString()))
-                        edDomesticCETP.text.toString().toDouble()
+                        edDomesticCETP.text.toString().parseToDouble()
                     else 0.0
                 else
                     0.0
@@ -191,7 +191,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edDomesticLandGardening.addTextChangedListener {
                 domesticLandGardening = if (edDomesticLandGardening.text.toString() != "")
                     if (isDecimal(edDomesticLandGardening.text.toString()))
-                        edDomesticLandGardening.text.toString().toDouble()
+                        edDomesticLandGardening.text.toString().parseToDouble()
                     else 0.0
                 else
                     0.0
@@ -202,7 +202,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edDomesticRecycle.addTextChangedListener {
                 domesticRecycle = if (edDomesticRecycle.text.toString() != "")
                     if (isDecimal(edDomesticRecycle.text.toString()))
-                        edDomesticRecycle.text.toString().toDouble()
+                        edDomesticRecycle.text.toString().parseToDouble()
                     else 0.0
                 else
                     0.0
@@ -213,7 +213,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edDomesticSewageTreatment.addTextChangedListener {
                 domesticLocalSewage = if (edDomesticSewageTreatment.text.toString() != "")
                     if (isDecimal(edDomesticSewageTreatment.text.toString()))
-                        edDomesticSewageTreatment.text.toString().toDouble()
+                        edDomesticSewageTreatment.text.toString().parseToDouble()
                     else 0.0
                 else
                     0.0
@@ -224,7 +224,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
             edDomesticExtraNameValue.addTextChangedListener {
                 domesticAnyOther = if (edDomesticExtraNameValue.text.toString() != "")
                     if (isDecimal(edDomesticExtraNameValue.text.toString()))
-                        edDomesticExtraNameValue.text.toString().toDouble()
+                        edDomesticExtraNameValue.text.toString().parseToDouble()
                     else 0.0
                 else
                     0.0
