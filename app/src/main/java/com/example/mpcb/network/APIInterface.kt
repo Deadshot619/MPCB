@@ -66,5 +66,7 @@ interface APIInterface {
     @GET("get_user_list_task")
     fun getUserListTask(): Single<ArrayList<UserListTaskResponse>>
 
-
+    //Check Application Version
+    @POST("check_app_version")
+    fun checkAppVersion(@Body request: AppVersionRequest): Single<AppVersionResponse>
 }

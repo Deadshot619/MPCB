@@ -307,4 +307,26 @@ object DataProvider : RemoteDataProvider {
         noInternetAvailable(error)
         getDefaultDisposable()
     }
+
+    /**
+     * Method to check current version of the App
+     */
+    override fun checkCurrentVersion(
+        request: AppVersionRequest,
+        success: Consumer<AppVersionResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if(isNetworkAvailable()){
+        mServices.checkAppVersion(request = request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer {
+                    success.accept(it)
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 }

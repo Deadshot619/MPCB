@@ -100,4 +100,13 @@ interface RemoteDataProvider {
         success: Consumer<ArrayList<UserListTaskResponse>>,
         error: Consumer<Throwable>
     ):Disposable
+
+    /**
+     * Method to check current version of the App
+     */
+    fun checkCurrentVersion(
+        request: AppVersionRequest,
+        success: Consumer<AppVersionResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }
