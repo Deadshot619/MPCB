@@ -689,7 +689,7 @@ class RoutineReportAirPollution : BaseObservable() {
     @Expose
     var airPollutionStackHeight1: Double = 0.0
     var airPollutionStackHeight: String = ""
-        @Bindable get
+        @Bindable get() = airPollutionStackHeight1.toString()
         set(value) {
             field = value
             airPollutionStackHeight1 = try{
@@ -756,22 +756,18 @@ class RoutineReportHazardousWaste : BaseObservable() {
     @Expose
     var hazardousWasteQuantity: Int = 0
     var hazardousWasteQuantityString: String = ""
-        @Bindable get
+        @Bindable get() = hazardousWasteQuantity.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.hazardousWasteQuantityString)
-            hazardousWasteQuantity = try {
-                hazardousWasteQuantityString.toInt()
-            } catch (e: Exception) {
-                0
-            }
+            hazardousWasteQuantity = hazardousWasteQuantityString.parseToInt()
         }
 
     @SerializedName("hw_disposal_method")
     @Expose
     var hwDisposalMethod: String = ""
     var hwDisposalMethodString: String = ""
-        @Bindable get
+        @Bindable get() = hwDisposalMethod
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwDisposalMethodString)
@@ -785,7 +781,7 @@ class RoutineReportHazardousWaste : BaseObservable() {
     @Expose
     var hwActualDisposal: Int = 0
     var hwActualDisposalString: String = ""
-        @Bindable get
+        @Bindable get() = hwActualDisposal.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwActualDisposalString)
@@ -795,7 +791,7 @@ class RoutineReportHazardousWaste : BaseObservable() {
     @Expose
     var hwFormDisposal: Int = 0
     var hwFormDisposalString: String = ""
-        @Bindable get
+        @Bindable get() = hwFormDisposal.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormDisposalString)
@@ -805,7 +801,7 @@ class RoutineReportHazardousWaste : BaseObservable() {
     @Expose
     var hwFormCswtsdf: Int = 0
     var hwFormCswtsdfString: String = ""
-        @Bindable get
+        @Bindable get() = hwFormCswtsdf.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormCswtsdfString)
@@ -815,7 +811,7 @@ class RoutineReportHazardousWaste : BaseObservable() {
     @Expose
     var hwFormCoProcessing: Int = 0
     var hwFormCoProcessingString: String = ""
-        @Bindable get
+        @Bindable get() = hwFormCoProcessing.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwFormCoProcessingString)
@@ -825,7 +821,7 @@ class RoutineReportHazardousWaste : BaseObservable() {
     @Expose
     var hwDisposedActualuser: Int = 0
     var hwDisposedActualuserString: String = ""
-        @Bindable get
+        @Bindable get() = hwDisposedActualuser.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwDisposedActualuserString)
@@ -835,7 +831,7 @@ class RoutineReportHazardousWaste : BaseObservable() {
     @Expose
     var hwDisposalQuantity: Int = 0
     var hwDisposalQuantityString: String = ""
-        @Bindable get
+        @Bindable get() = hwDisposalQuantity.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.hwDisposalQuantityString)
@@ -872,7 +868,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
     @Expose
     var nhwQuantity: Int = 0
     var nhwQuantityString: String = ""
-        @Bindable get
+        @Bindable get() = nhwQuantity.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.nhwQuantityString)
@@ -901,7 +897,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
     @Expose
     var nhwDisposalQuantity: Int = 0
     var nhwDisposalQuantityString: String = ""
-        @Bindable get
+        @Bindable get() = nhwDisposalQuantity.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.nhwDisposalQuantityString)
@@ -912,7 +908,7 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
     @Expose
     var nhwActualdisposal: Int = 0
     var nhwActualdisposalString: String = ""
-        @Bindable get
+        @Bindable get() = nhwActualdisposal.toString()
         set(value) {
             field = value
             notifyPropertyChanged(BR.nhwActualdisposalString)
