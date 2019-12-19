@@ -1,5 +1,6 @@
 package com.example.mpcb.splash
 
+import androidx.appcompat.app.AlertDialog
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.base.BaseNavigator
@@ -15,6 +16,21 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
     override fun getViewModel(): Class<SplashViewModel> = SplashViewModel::class.java
     override fun getNavigator(): BaseNavigator = this@SplashActivity
 
+    //Lazily create a Update Dialog
+    private val showUpdateDialog by lazy {
+        AlertDialog.Builder(this).apply {
+            setTitle("Update Available")
+            setMessage("Please update the app to continue!")
+            setPositiveButton("Update") { _, _ ->
+                navigateToNextScreen()
+            }
+            setNegativeButton("Cancel") { _, _ ->
+                finish()
+            }
+            setCancelable(false)
+        }.create()
+    }
+
     override fun showAlert(message: String) {
         showMessage(message)
     }
@@ -26,6 +42,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
             IntentNavigator.navigateToLoginActivity(this)
         }
         finish()
+    }
+
+    override fun showUpdateDialog() {
+        showUpdateDialog.show()
     }
 
     override fun onInternetError() {}

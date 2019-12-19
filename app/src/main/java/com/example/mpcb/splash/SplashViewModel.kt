@@ -26,6 +26,8 @@ class SplashViewModel : BaseViewModel<SplashNavigator>(){
                         mNavigator?.showAlert(it.message + ": Update is Available")
                     }else {
                         mNavigator?.showAlert(it.message + ": Update is not Available")
+                        //Move this to above if condition
+//                        mNavigator?.showUpdateDialog()
                         mNavigator?.navigateToNextScreen()
                     }
                 },
