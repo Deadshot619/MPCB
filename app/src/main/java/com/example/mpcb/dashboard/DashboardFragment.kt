@@ -359,5 +359,4 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             tv.setTextColor(ContextCompat.getColor(getBaseActivity(), colorCode))
         }
     }
-
 }
