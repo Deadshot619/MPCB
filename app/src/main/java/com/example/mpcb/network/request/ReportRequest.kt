@@ -750,8 +750,8 @@ class RoutineReportHazardousWaste : BaseObservable() {
     var hazardousWasteCategoryName: String = ""
         @Bindable get
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.hazardousWasteCategoryName)
+                field = value
+                notifyPropertyChanged(BR.hazardousWasteCategoryName)
         }
 
     @SerializedName("hazardous_waste_quantity")

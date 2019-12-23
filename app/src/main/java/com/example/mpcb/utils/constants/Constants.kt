@@ -42,7 +42,6 @@ class Constants {
         }
 
         val CATEGORY_LIST = mapOf(
-            0 to "Select one",
             1 to "17 Category",
             2 to "Common Facilities",
             3 to "Red(LSI)",
