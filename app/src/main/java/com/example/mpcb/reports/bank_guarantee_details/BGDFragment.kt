@@ -59,9 +59,9 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
 
     private fun setListener() {
         mBinding.rgBGImposed.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.bgImposed = if (checkedId == R.id.rbBGYes) "0" else "1"
+            report.data.routineReport.bgImposed = if (checkedId == R.id.rbBGYes) "1" else "0"
             report.data.routineReport.bgImposedAgainst =
-                if (checkedId == R.id.rbBGAgainstYes) "1" else "0"
+                if (checkedId == R.id.rbBGAgainstYes) "0" else "1"
         }
     }
 
@@ -152,13 +152,13 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
             mBinding.run {
                 reports?.data?.routineReport?.run{
 //                    BG Imposed
-                    if (bgImposed != "1")
+                    if (bgImposed == "1")
                         rgBGImposed.check(R.id.rbBGYes)
                     else
                         rgBGImposed.check(R.id.rbBGNo)
 
 //                    BG Imposed Against
-                    if (bgImposedAgainst == "1")
+                    if (bgImposedAgainst != "1")
                         rgBGImposedAgainst.check(R.id.rbBGAgainstYes)
                     else
                         rgBGImposedAgainst.check(R.id.rbBGAgainstNo)
