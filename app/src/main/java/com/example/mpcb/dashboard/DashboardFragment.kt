@@ -54,6 +54,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             yearDashboard = year
             monthDashboard = month
         }
+
         fromDate = "$year-$month-$day"
         mViewModel.getDashboardData(fromDate)
     }
@@ -255,11 +256,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthOne, mBinding.tvYearOne)
             calendar.time = currentTime
-            val date =
-                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" +
-                        calendar.getActualMinimum(DAY_OF_MONTH)
-            mViewModel.getDashboardData(date)
+
+            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
         }
+
         mBinding.monthLayTwo.setOnClickListener {
             setAllView(
                 R.drawable.cal_back_select,
@@ -269,11 +269,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             setAllText(R.color.white, R.color.black, mBinding.tvMonthTwo, mBinding.tvYearTwo)
             calendar.time = currentTime
             calendar.add(MONTH, -1)
-            val date =
-                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" +
-                        calendar.getActualMinimum(DAY_OF_MONTH)
-            mViewModel.getDashboardData(date)
+
+            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
         }
+
         mBinding.monthLayThree.setOnClickListener {
             setAllView(
                 R.drawable.cal_back_select,
@@ -283,11 +282,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             setAllText(R.color.white, R.color.black, mBinding.tvMonthThree, mBinding.tvYearThree)
             calendar.time = currentTime
             calendar.add(MONTH, -2)
-            val date =
-                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" +
-                        calendar.getActualMinimum(DAY_OF_MONTH)
-            mViewModel.getDashboardData(date)
+
+            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
         }
+
         mBinding.monthLayFour.setOnClickListener {
             setAllView(
                 R.drawable.cal_back_select,
@@ -297,11 +295,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             setAllText(R.color.white, R.color.black, mBinding.tvMonthFour, mBinding.tvYearFour)
             calendar.time = currentTime
             calendar.add(MONTH, -3)
-            val date =
-                calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" +
-                        calendar.getActualMinimum(DAY_OF_MONTH)
-            mViewModel.getDashboardData(date)
+
+            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
         }
+
         mBinding.calPickerLay.setOnClickListener {
             val pd = MonthYearPickerDialog()
             pd.setListener(this)
@@ -339,12 +336,12 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
     private fun setAllText(selecteColor: Int, unselectCol: Int, vararg txtvws: TextView) {
         setCalText(
-            unselectCol, mBinding.tvMonthOne, mBinding.tvYearOne,
+            unselectCol,
+            mBinding.tvMonthOne, mBinding.tvYearOne,
             mBinding.tvMonthTwo, mBinding.tvYearTwo,
             mBinding.tvMonthThree, mBinding.tvYearThree,
             mBinding.tvMonthFour, mBinding.tvYearFour
         )
-
         setCalText(selecteColor, *txtvws)
     }
 
