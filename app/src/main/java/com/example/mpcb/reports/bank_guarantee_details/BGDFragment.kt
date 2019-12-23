@@ -57,12 +57,17 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
         mViewModel.populateData()
     }
 
+    //Set Listeners to Views
     private fun setListener() {
         mBinding.rgBGImposed.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.bgImposed = if (checkedId == R.id.rbBGYes) "1" else "0"
+        }
+
+        mBinding.rgBGImposedAgainst.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.bgImposedAgainst =
                 if (checkedId == R.id.rbBGAgainstYes) "0" else "1"
         }
+
     }
 
     private fun onSubmit() {
@@ -118,22 +123,24 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
                 showMessage("Select BG Submitted")
                 isValid = false
                 break
+            }else if (item.bankSubmitted == "0"){
+                if (item.bankGuarentedNo.isEmpty()) {
+                    showMessage("Enter Bank Guaranted No")
+                    isValid = false
+                    break
+                }
+                if (item.dateOfGuarantee.isEmpty()) {
+                    showMessage("Enter Date of Guarantee")
+                    isValid = false
+                    break
+                }
+                if (item.dateOfValidity.isEmpty()) {
+                    showMessage("Enter Date Of Validity")
+                    isValid = false
+                    break
+                }
             }
-            if (item.bankGuarentedNo.isEmpty()) {
-                showMessage("Enter Bank Guaranted No")
-                isValid = false
-                break
-            }
-            if (item.dateOfGuarantee.isEmpty()) {
-                showMessage("Enter Date of Guarantee")
-                isValid = false
-                break
-            }
-            if (item.dateOfValidity.isEmpty()) {
-                showMessage("Enter Date Of Validity")
-                isValid = false
-                break
-            }
+
         }
         return isValid
     }
@@ -158,7 +165,7 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
                         rgBGImposed.check(R.id.rbBGNo)
 
 //                    BG Imposed Against
-                    if (bgImposedAgainst != "1")
+                    if (bgImposedAgainst == "0")
                         rgBGImposedAgainst.check(R.id.rbBGAgainstYes)
                     else
                         rgBGImposedAgainst.check(R.id.rbBGAgainstNo)

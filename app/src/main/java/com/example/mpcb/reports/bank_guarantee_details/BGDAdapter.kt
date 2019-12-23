@@ -3,6 +3,7 @@ package com.example.mpcb.reports.bank_guarantee_details
 import android.app.DatePickerDialog
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.R
@@ -77,8 +78,28 @@ class BGDAdapter(
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun setListener(item: RoutineReportBankDetail) {
-            itemBinding.rgBGSubmitted.setOnCheckedChangeListener { group, checkedId ->
-                item.bankSubmitted = if (checkedId == R.id.rbSubmittedYes) "0" else "1"
+            itemBinding.run{
+                rgBGSubmitted.setOnCheckedChangeListener { group, checkedId ->
+                    item.bankSubmitted = if (checkedId == R.id.rbSubmittedYes) {
+                        txtBGNo.visibility = View.VISIBLE
+                        txtBGDate.visibility = View.VISIBLE
+                        txtBGValidity.visibility = View.VISIBLE
+                        
+                        "0"
+                    } else {
+                        //Hide views
+                        txtBGNo.visibility = View.GONE
+                        txtBGDate.visibility = View.GONE
+                        txtBGValidity.visibility = View.GONE
+
+                        //Set text to empty string
+                        edtBGNo.setText("")
+                        edtBGDate.setText("")
+                        edtBGValidity.setText("")
+
+                        "1"
+                    }
+                }
             }
         }
 
