@@ -687,16 +687,18 @@ class RoutineReportAirPollution : BaseObservable() {
     //TODO 4/12/2019 Change datatype to Int/Double as required
     @SerializedName("air_pollution_stack_height")
     @Expose
-    var airPollutionStackHeight1: Double = 0.0
+//    var airPollutionStackHeight1: Double = 0.0
     var airPollutionStackHeight: String = ""
-        @Bindable get() = airPollutionStackHeight1.toString()
+        @Bindable get
+//        get() = airPollutionStackHeight1.toString()
         set(value) {
+
             field = value
-            airPollutionStackHeight1 = try{
-                airPollutionStackHeight.toDouble()
-            }catch (e: Exception){
-                0.0
-            }
+//            airPollutionStackHeight1 = try{
+//                airPollutionStackHeight.toDouble()
+//            }catch (e: Exception){
+//                0.0
+//            }
             notifyPropertyChanged(BR.airPollutionStackHeight)
         }
 }

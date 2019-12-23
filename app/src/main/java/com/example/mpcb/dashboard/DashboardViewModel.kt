@@ -28,8 +28,14 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
         val request = DashboardDataRequest()
 
         request.userId =
+            //Check if the user has SubordinateOfficers
             if (userModel.hasSubbordinateOfficers == 1 && userModel.hasSubbordinateOfficers != -1)
-                DashboardUtils.dashboardSpinnerSelectedUserId.toString()
+                //Check if the user selected is 'ALL', if yes then set userdata as of HOD
+                //else set userId of selected user
+                if (DashboardUtils.dashboardSpinnerSelectedUserId == 0)
+                    userModel.userId.toString()
+                else
+                    DashboardUtils.dashboardSpinnerSelectedUserId.toString()
             else
                 userModel.userId.toString()
 
@@ -56,7 +62,10 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
             else -> mNavigator!!.showAlert("Future Date Selected!")
         }
 
-        request.jurisdictionStat = userModel.hasSubbordinateOfficers
+        //Check if the user selected is 'ALL', if yes then set jurisdiction stat as 1
+        request.jurisdictionStat = if (DashboardUtils.dashboardSpinnerSelectedUserId == 0) {
+            userModel.hasSubbordinateOfficers
+        } else 0
 
         dialogMessage.value = "Fetching..."
         dialogVisibility.value = true
