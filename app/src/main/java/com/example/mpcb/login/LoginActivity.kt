@@ -8,6 +8,7 @@ import com.example.mpcb.databinding.ActivityLoginBinding
 import com.example.mpcb.home.HomeActivity
 import com.example.mpcb.network.request.LoginRequest
 import com.example.mpcb.utils.showMessage
+import java.util.*
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), LoginNavigator {
 
@@ -41,5 +42,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
             password = "Admin@123"
         }
 
+        //Set welcome text
+        mBinding.welcomeMsgTwo.text = getWelcomeText(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+    }
+
+    /**
+     * This method is used to set the Welcome Text according to current time.
+     */
+    private fun getWelcomeText(hour: Int): String{
+        return when (hour) {
+            in 5..11 -> "Good Morning"
+            in 12..17 -> "Good Afternoon"
+            else -> "Good Evening"
+        }
     }
 }

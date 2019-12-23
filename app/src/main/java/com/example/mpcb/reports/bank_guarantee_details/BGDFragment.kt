@@ -67,7 +67,6 @@ class BGDFragment : BaseFragment<FragmentBankGuaranteeBinding, BGDViewModel>(), 
             report.data.routineReport.bgImposedAgainst =
                 if (checkedId == R.id.rbBGAgainstYes) "0" else "1"
         }
-
     }
 
     private fun onSubmit() {
