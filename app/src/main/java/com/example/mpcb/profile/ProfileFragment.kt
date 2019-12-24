@@ -29,6 +29,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
     override fun onMobileError() = showMessage("Enter Mobile")
     override fun onCurrentPwdError() = showMessage("Enter Current Password")
     override fun onNewPwdError() = showMessage("Enter New Password")
+    override fun onValidationError(message: String) = showMessage(message)
+
+
     override fun onUpdateProfileSuccess(message: String) = showMessage(message)
     override fun onChangePwdSuccess(msg: String) {
         changePwdDialog.dismiss()
@@ -77,8 +80,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>()
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         onDestroy()
-
-
     }
 
 

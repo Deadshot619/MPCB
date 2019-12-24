@@ -8,6 +8,8 @@ import com.example.mpcb.network.request.UpdateProfileRequest
 import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
+import com.example.mpcb.utils.validations.isEmailValid
+import com.example.mpcb.utils.validations.isValidMobile
 import com.google.gson.Gson
 import io.reactivex.functions.Consumer
 
@@ -29,9 +31,11 @@ class ProfileViewModel : BaseViewModel<ProfileNavigator>() {
 
     fun onUpdateClick(request: UpdateProfileRequest) {
         when {
-            TextUtils.isEmpty(request.name) -> mNavigator!!.onNameError()
-            TextUtils.isEmpty(request.email) -> mNavigator!!.onEmailError()
-            TextUtils.isEmpty(request.phone) -> mNavigator!!.onMobileError()
+            TextUtils.isEmpty(request.name) -> mNavigator?.onNameError()
+            TextUtils.isEmpty(request.email) -> mNavigator?.onEmailError()
+            TextUtils.isEmpty(request.phone) -> mNavigator?.onMobileError()
+            !isEmailValid(request.email) -> mNavigator?.onValidationError("Invalid Email ID")
+            !isValidMobile(request.phone) -> mNavigator?.onValidationError("Invalid Number")
             else -> updateProfile(request)
         }
     }

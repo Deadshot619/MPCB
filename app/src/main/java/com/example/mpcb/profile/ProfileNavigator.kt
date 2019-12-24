@@ -18,4 +18,6 @@ interface ProfileNavigator : BaseNavigator {
     fun onUpdateProfileSuccess(message: String)
 
     fun onChangePwdSuccess(msg:String)
+
+    fun onValidationError(message: String)
 }
