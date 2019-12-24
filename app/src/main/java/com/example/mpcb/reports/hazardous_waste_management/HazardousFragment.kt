@@ -84,7 +84,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
             }
 
 //            Quantity as per consent
-            if (item.hazardousWasteQuantityString.isNullOrEmpty()) {
+            if (item.hazardousWasteQuantityString.toString().isNullOrEmpty()) {
                 showMessage("Enter Quantity As per Consent")
                 isValid = false
                 break
@@ -103,7 +103,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
             }
 
 //            Actual Disposal
-            if (item.hwActualDisposalString.isNullOrEmpty()) {
+            if (item.hwActualDisposalString.toString().isNullOrEmpty()) {
                 showMessage("Enter Actual Disposal")
                 isValid = false
                 break
@@ -115,7 +115,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 //            }
 
 //            Quantity Disposal form 4
-            if (item.hwFormDisposalString.isNullOrEmpty()) {
+            if (item.hwFormDisposalString.toString().isNullOrEmpty()) {
                 showMessage("Enter Quantity Disposal")
                 isValid = false
                 break
@@ -127,7 +127,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 //            }
 
 //            Quantity Disposal form CSWTSDS
-            if (item.hwFormCswtsdfString.isNullOrEmpty()) {
+            if (item.hwFormCswtsdfString.toString().isNullOrEmpty()) {
                 showMessage("Enter Quantity disposal at CSWTSDS")
                 isValid = false
                 break
@@ -139,7 +139,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 //            }
 
 //            Quantity Disposal form co-processing
-            if (item.hwFormCoProcessingString.isNullOrEmpty()) {
+            if (item.hwFormCoProcessingString.toString().isNullOrEmpty()) {
                 showMessage("Enter Quantity disposal for co-processing")
                 isValid = false
                 break
@@ -151,7 +151,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 //            }
 
 //            Quantity Disposed by actual user
-            if (item.hwDisposedActualuserString.isNullOrEmpty()) {
+            if (item.hwDisposedActualuserString.toString().isNullOrEmpty()) {
                 showMessage("Enter Quantity disposed by actual user")
                 isValid = false
                 break
@@ -163,7 +163,7 @@ class HazardousFragment : BaseFragment<FragmentHazardiousBinding, HazardousViewM
 //            }
 
 //            Last disposal quantity
-            if (item.hwDisposalQuantityString.isNullOrEmpty()) {
+            if (item.hwDisposalQuantityString.toString().isNullOrEmpty()) {
                 showMessage("Enter Last disposal Quantity")
                 isValid = false
                 break

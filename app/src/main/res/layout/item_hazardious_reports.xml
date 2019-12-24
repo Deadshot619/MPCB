@@ -113,7 +113,7 @@
                         android:inputType="phone"
                         android:digits="0123456789"
                         android:maxLength="5"
-                        android:text="@={model.hazardousWasteQuantityString}"
+                        android:text="@={`` + model.hazardousWasteQuantityString}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 
@@ -172,7 +172,7 @@
                         android:inputType="phone"
                         android:digits="0123456789"
                         android:maxLength="5"
-                        android:text="@={model.hwActualDisposalString}"
+                        android:text="@={`` + model.hwActualDisposalString}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 
@@ -202,7 +202,7 @@
                         android:inputType="phone"
                         android:digits="0123456789"
                         android:maxLength="5"
-                        android:text="@={model.hwFormDisposalString}"
+                        android:text="@={`` + model.hwFormDisposalString}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 
@@ -232,7 +232,7 @@
                         android:inputType="phone"
                         android:digits="0123456789"
                         android:maxLength="5"
-                        android:text="@={model.hwFormCswtsdfString}"
+                        android:text="@={`` + model.hwFormCswtsdfString}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 
@@ -262,7 +262,7 @@
                         android:inputType="phone"
                         android:digits="0123456789"
                         android:maxLength="5"
-                        android:text="@={model.hwFormCoProcessingString}"
+                        android:text="@={`` + model.hwFormCoProcessingString}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 
@@ -292,7 +292,7 @@
                         android:inputType="phone"
                         android:digits="0123456789"
                         android:maxLength="5"
-                        android:text="@={model.hwDisposedActualuserString}"
+                        android:text="@={`` + model.hwDisposedActualuserString}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 
@@ -322,7 +322,7 @@
                         android:inputType="phone"
                         android:digits="0123456789"
                         android:maxLength="5"
-                        android:text="@={model.hwDisposalQuantityString}"
+                        android:text="@={`` + model.hwDisposalQuantityString}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>
 

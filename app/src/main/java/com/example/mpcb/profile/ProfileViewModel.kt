@@ -70,7 +70,10 @@ class ProfileViewModel : BaseViewModel<ProfileNavigator>() {
         dialogVisibility.value = true
         mDisposable.add(DataProvider.changePassword(request, Consumer {
             dialogVisibility.value = false
-            mNavigator!!.onUpdateProfileSuccess(it.message)
+           // mNavigator!!.onUpdateProfileSuccess(it.message)
+            if (it.status =="1")
+            mNavigator?.onChangePwdSuccess(it.status)else
+                mNavigator!!.onUpdateProfileSuccess(it.message)
         }, Consumer { checkError(it) }))
     }
 

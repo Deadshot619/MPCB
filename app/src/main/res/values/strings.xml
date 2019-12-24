@@ -26,6 +26,7 @@
     <string name="save_continue"><![CDATA[SAVE & CONTINUE]]></string>
     <string name="txt_process">Process / Fuel Burning</string>
     <string name="t_process">Process</string>
+    <string name = "txt_process_control">Control equipment installed</string>
     <string name="t_fuel">Fuel Burning</string>
     <string name="hztxt_categoery">Category No. &amp; type</string>
     <string name="hztxt_quantity">Quantity as per consent</string>
