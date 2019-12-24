@@ -20,7 +20,6 @@ import com.example.mpcb.utils.validations.isDecimal
 import com.example.mpcb.utils.validations.isEmailValid
 import com.example.mpcb.utils.validations.isValidMobile
 import java.util.*
-import com.example.mpcb.utils.constants.Constants.Companion as Constants1
 
 
 class IndustryReportFragment :
@@ -44,11 +43,11 @@ class IndustryReportFragment :
         //Method to Show or Hide Save & Next Button
         showNextButton(mBinding.btnSaveNext)
 
-        (getBaseActivity() as ReportsPageActivity).setToolbar(Constants1.REPORT_1)
+        (getBaseActivity() as ReportsPageActivity).setToolbar(REPORT_1)
         setListener()
 
         //Get Visit Report ID from arguments
-        visitReportId = getDataFromArguments(this, Constants1.VISIT_REPORT_ID)
+        visitReportId = getDataFromArguments(this, VISIT_REPORT_ID)
 
         //set report variable data
         setReportVariableData(visitReportId)
@@ -103,9 +102,13 @@ class IndustryReportFragment :
 
     private fun onSubmit() {
         report.data.industryCategoryReselect =
-            CATEGORY_LIST.filterValues {
-                it == CATEGORY_LIST[mBinding.catSpinner.selectedItemPosition]
-            }.keys.first().toString()
+            try {
+                CATEGORY_LIST.filterValues {
+                    it == CATEGORY_LIST[mBinding.catSpinner.selectedItemPosition]
+                }.keys.first().toString()
+            }catch (e: Exception){
+                "0"
+            }
 
         report.data.routineReport.run{
             visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
@@ -161,10 +164,10 @@ class IndustryReportFragment :
      * Method to validate if fields of report form are filled.
      */
     private fun validateFieldsFilled(): Boolean {
-        if (report.data.industryCategoryReselect == "0") {
-            showMessage("Select Category")
-            return false
-        }
+//        if (report.data.industryCategoryReselect == "0") {
+//            showMessage("Select Category")
+//            return false
+//        }
 
         report.data.routineReport.run {
             if (visitedOn.isEmpty()) {
