@@ -49,9 +49,10 @@
                             android:id="@+id/edtActionInitiated"
                             android:focusable="false"
                             android:hint="Action Initiated Date"
-                            android:drawableRight="@drawable/ic_calendar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:drawableEnd="@drawable/ic_calendar" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
