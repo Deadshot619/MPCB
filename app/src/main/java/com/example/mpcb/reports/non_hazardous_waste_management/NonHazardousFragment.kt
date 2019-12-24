@@ -85,7 +85,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
             }
 
 //            Quantity as per consent
-            if (item.nhwQuantityString.isNullOrEmpty()) {
+            if (item.nhwQuantityString.toString().isNullOrEmpty()) {
                 showMessage("Enter Quantity As per Consent")
                 isValid = false
                 break
@@ -111,7 +111,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
             }
 
 //            Last Disposal Quantity
-            if (item.nhwDisposalQuantityString.isNullOrEmpty()) {
+            if (item.nhwDisposalQuantityString.toString().isNullOrEmpty()) {
                 showMessage("Enter Last Disposal Quantity")
                 isValid = false
                 break
@@ -123,7 +123,7 @@ class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazar
 //            }
 
 //            Actual Disposal
-            if (item.nhwActualdisposalString.isNullOrEmpty()) {
+            if (item.nhwActualdisposalString.toString().isNullOrEmpty()) {
                 showMessage("Enter Actual Disposal")
                 isValid = false
                 break
