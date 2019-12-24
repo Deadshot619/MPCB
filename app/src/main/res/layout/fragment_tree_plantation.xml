@@ -50,7 +50,7 @@
                             android:inputType="phone"
                             android:digits=".0123456789"
                             android:maxLength="6"
-                            android:hint="Total Plot Area in sq.mt"
+                            android:hint="Total Plot Area in sq.mtr"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -68,7 +68,7 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtBuiltArea"
-                            android:hint="Built Up Area in sq.mt"
+                            android:hint="Built Up Area in sq.mtr"
                             android:inputType="phone"
                             android:digits=".0123456789"
                             android:maxLength="6"
@@ -89,7 +89,7 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtGreenBelt"
-                            android:hint="Green Belt Area in sq.mt"
+                            android:hint="Green Belt Area in sq.mtr"
                             android:layout_width="match_parent"
                             android:inputType="phone"
                             android:digits=".0123456789"
@@ -110,7 +110,7 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edtPlantationDone"
-                            android:hint="Plantation done in No"
+                            android:hint="Plantation done in No."
                             android:inputType="phone"
                             android:digits=".0123456789"
                             android:layout_width="match_parent"
