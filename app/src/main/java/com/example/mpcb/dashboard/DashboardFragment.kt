@@ -20,7 +20,9 @@ import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
+import java.util.*
 import java.util.Calendar.*
+import kotlin.collections.ArrayList
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
     DashboardNavigator, DatePickerDialog.OnDateSetListener {
@@ -34,6 +36,42 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     }
 
     private lateinit var fromDate: String
+
+    //Dashboard Dates
+    private lateinit var _currentYear: Number
+    private lateinit var _currentMonth: Number
+    private lateinit var _year_1: Number
+    private lateinit var _month_1: Number
+    private lateinit var _year_2: Number
+    private lateinit var _month_2: Number
+    private lateinit var _year_3: Number
+    private lateinit var _month_3: Number
+
+    /**
+     * Method to set 'Month' & 'Year' to Date variables.
+     */
+    private fun setDataToDateIcon(){
+        val calendar: Calendar = getInstance()
+
+        _currentYear = calendar.get(YEAR)
+        _currentMonth = calendar.get(MONTH)
+
+        calendar.add(MONTH, -1)
+
+        _year_1 = calendar.get(YEAR)
+        _month_1 = calendar.get(MONTH)
+
+        calendar.add(MONTH, -2)
+
+        _year_2 = calendar.get(YEAR)
+        _month_2 = calendar.get(MONTH)
+
+        calendar.add(MONTH, -3)
+
+        _year_3 = calendar.get(YEAR)
+        _month_3 = calendar.get(MONTH)
+    }
+
 
     override fun dashBoardTest(DashboardDataResponse: DashboardDataResponse) {
         // onBinding()
@@ -78,6 +116,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
         //Toolbar
         mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
+
+        //Sets data in date icons
+        setDataToDateIcon()
 
         //Check if the user is a SubOrdinate User
         //If the user is subordinate user Show the dropdown & get the UserList from Api
@@ -244,9 +285,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     }
 
     private fun setListeners() {
-        val calendar = getInstance()
-        val currentTime = calendar.time
-        val monthFormat = SimpleDateFormat("MMM")
+//        val calendar = getInstance()
+//        val currentTime = calendar.time
+//        val monthFormat = SimpleDateFormat("MMM")
 
         mBinding.monthLayOne.setOnClickListener {
             setAllView(
@@ -255,9 +296,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                 mBinding.monthLayOne
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthOne, mBinding.tvYearOne)
-            calendar.time = currentTime
+//            calendar.time = currentTime
 
-            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
+            onDateSet(null, _currentYear.toInt(), _currentMonth.toInt() + 1, 0)
         }
 
         mBinding.monthLayTwo.setOnClickListener {
@@ -267,10 +308,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                 mBinding.monthLayTwo
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthTwo, mBinding.tvYearTwo)
-            calendar.time = currentTime
-            calendar.add(MONTH, -1)
+//            calendar.time = currentTime
+//            calendar.add(MONTH, -1)
 
-            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
+            onDateSet(null, _year_1.toInt(), _month_1.toInt() + 1, 0)
         }
 
         mBinding.monthLayThree.setOnClickListener {
@@ -280,10 +321,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                 mBinding.monthLayThree
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthThree, mBinding.tvYearThree)
-            calendar.time = currentTime
-            calendar.add(MONTH, -2)
+//            calendar.time = currentTime
+//            calendar.add(MONTH, -2)
 
-            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
+            onDateSet(null, _year_2.toInt(), _month_2.toInt() + 1, 0)
         }
 
         mBinding.monthLayFour.setOnClickListener {
@@ -293,10 +334,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                 mBinding.monthLayFour
             )
             setAllText(R.color.white, R.color.black, mBinding.tvMonthFour, mBinding.tvYearFour)
-            calendar.time = currentTime
-            calendar.add(MONTH, -3)
+//            calendar.time = currentTime
+//            calendar.add(MONTH, -3)
 
-            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
+            onDateSet(null, _year_3.toInt(), _month_3.toInt() + 1, 0)
         }
 
         mBinding.calPickerLay.setOnClickListener {
