@@ -165,8 +165,10 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                  * HOD can only view other user's Data & not Edit them.
                  */
                 if (user.hasSubbordinateOfficers == 1)
-                    if (user.userId != myVisitsSpinnerSelectedUserId)
+                    if (user.userId != myVisitsSpinnerSelectedUserId){
+                        mNavigator?.showAlert("HOD user cannot fill other user's data")
                         return
+                    }
                 mNavigator!!.onVisitItemClicked(visitItem)
             }
         else {
@@ -176,8 +178,10 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                  * HOD can only view other user's Data & not Edit them.
                  */
             if (user.hasSubbordinateOfficers == 1)
-                if (user.userId != myVisitsSpinnerSelectedUserId)
+                if (user.userId != myVisitsSpinnerSelectedUserId){
+                    mNavigator?.showAlert("HOD user cannot fill other user's data")
                     return
+                }
             mNavigator!!.onError("Please Check in first!")
         }
     }
