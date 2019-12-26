@@ -58,7 +58,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     }
 
     override fun showAlert(message: String) {
-        showMessage("To be implemented")
+        showMessage(message = message)
         //TODO 26/11/19 To be implemented
         //To change body of created functions use File | Settings | File Templates.
     }
