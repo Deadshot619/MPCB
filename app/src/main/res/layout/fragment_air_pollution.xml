@@ -51,36 +51,36 @@
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/imgDelete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:drawableStart="@drawable/ic_delete"
-                    android:drawableLeft="@drawable/ic_delete"
-                    android:drawablePadding="10dp"
-                    android:text="Delete"
-                    android:textColor="@color/grey"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/remarksLayout" />
+                        android:id="@+id/imgDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:drawableStart="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawablePadding="10dp"
+                        android:text="Delete"
+                        android:textColor="@color/grey"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/remarksLayout" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvAddMore"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                        android:id="@+id/tvAddMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
                         android:drawableStart="@drawable/ic_add_more"
                         android:drawableLeft="@drawable/ic_add_more"
                         android:drawablePadding="10dp"
-                        android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
                         android:gravity="center_vertical"
                         android:text="Add More Source"
-                    android:textColor="@color/green"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/remarksLayout" />
+                        android:textColor="@color/green"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/remarksLayout" />
 
 
                 <include
