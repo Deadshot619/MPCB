@@ -175,6 +175,8 @@
                         android:focusable="false"
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
+                        android:drawableRight="@drawable/ic_calendar"
+                        android:drawableEnd="@drawable/ic_calendar"
                         android:text="@={model.nhwDisposalDate}"
                         android:textColor="@color/text_light_black" />
             </LinearLayout>

@@ -116,6 +116,8 @@
                     android:focusable="false"
                     android:layout_height="wrap_content"
                     android:textColor="@color/grey"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:drawableEnd="@drawable/ic_calendar"
                     android:text="@={model.dateOfGuarantee}"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -138,6 +140,8 @@
                     android:focusable="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:drawableEnd="@drawable/ic_calendar"
                     android:text="@={model.dateOfValidity}"
                     android:textColor="@color/grey"
                     app:layout_constraintStart_toStartOf="parent" />
