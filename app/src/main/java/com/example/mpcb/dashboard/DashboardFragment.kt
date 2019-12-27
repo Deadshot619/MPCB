@@ -2,7 +2,6 @@ package com.example.mpcb.dashboard
 
 
 import android.app.DatePickerDialog
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
@@ -16,11 +15,15 @@ import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.Users
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
+import com.example.mpcb.utils.dialog.MonthYearPickerDialog.Companion.monthDashboard
+import com.example.mpcb.utils.dialog.MonthYearPickerDialog.Companion.yearDashboard
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
 import com.google.gson.Gson
 import java.text.SimpleDateFormat
+import java.util.*
 import java.util.Calendar.*
+import kotlin.collections.ArrayList
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel>(),
     DashboardNavigator, DatePickerDialog.OnDateSetListener {
@@ -34,6 +37,42 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     }
 
     private lateinit var fromDate: String
+
+    //Dashboard Dates
+    private lateinit var _currentYear: Number
+    private lateinit var _currentMonth: Number
+    private lateinit var _year_1: Number
+    private lateinit var _month_1: Number
+    private lateinit var _year_2: Number
+    private lateinit var _month_2: Number
+    private lateinit var _year_3: Number
+    private lateinit var _month_3: Number
+
+    /**
+     * Method to set 'Month' & 'Year' to Date variables.
+     */
+    private fun setDataToDateIconVariables() {
+        val calendar: Calendar = getInstance()
+
+        _currentYear = calendar.get(YEAR)
+        _currentMonth = calendar.get(MONTH) + 1
+
+        calendar.add(MONTH, -1)
+
+        _year_1 = calendar.get(YEAR)
+        _month_1 = calendar.get(MONTH) + 1
+
+        calendar.add(MONTH, -1)
+
+        _year_2 = calendar.get(YEAR)
+        _month_2 = calendar.get(MONTH) + 1
+
+        calendar.add(MONTH, -1)
+
+        _year_3 = calendar.get(YEAR)
+        _month_3 = calendar.get(MONTH) + 1
+    }
+
 
     override fun dashBoardTest(DashboardDataResponse: DashboardDataResponse) {
         // onBinding()
@@ -54,6 +93,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             yearDashboard = year
             monthDashboard = month
         }
+
+        //Select icon on Dashboard
+        selectDashboardDateIcon(year = year, month = month)
 
         fromDate = "$year-$month-$day"
         mViewModel.getDashboardData(fromDate)
@@ -79,6 +121,11 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         //Toolbar
         mBinding.toolbarLayout.imgCalendar.visibility = View.GONE
 
+        //Sets data in date icons
+        setDataToDateIconVariables()
+
+        setDateView()
+
         //Check if the user is a SubOrdinate User
         //If the user is subordinate user Show the dropdown & get the UserList from Api
         checkIfSubordinateUser()
@@ -88,7 +135,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
         setListeners()
 
-        setDateView()
     }
 
     /**
@@ -98,15 +144,23 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         val calendar = getInstance()
 
         //Check if Year & Month is set in DatePickerDialog
-        fromDate =
-            if (MonthYearPickerDialog.yearDashboard >= 0 && MonthYearPickerDialog.monthDashboard >= 0)
-                MonthYearPickerDialog.yearDashboard.toString() + "-" + (MonthYearPickerDialog.monthDashboard).toString() + "-" + calendar.getActualMinimum(
+        if (yearDashboard >= 0 && monthDashboard >= 0) {
+            fromDate =
+                yearDashboard.toString() + "-" + (monthDashboard).toString() + "-" + calendar.getActualMinimum(
                     DAY_OF_MONTH
                 ).toString()
-            else
+
+            //Select Date icon
+            selectDashboardDateIcon(yearDashboard, monthDashboard)
+        } else {
+            fromDate =
                 calendar.get(YEAR).toString() + "-" + (calendar.get(MONTH) + 1).toString() + "-" + calendar.getActualMinimum(
                     DAY_OF_MONTH
                 ).toString()
+
+            //Select Date icon
+            selectDashboardDateIcon(calendar.get(YEAR), (calendar.get(MONTH) + 1))
+        }
 
         /*
          * If there are sub-Ordinate Users, then do not get the initial Dashboard Data through
@@ -208,6 +262,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
     }
 
+    /**
+     * Method to Initialize Date icons
+     */
     private fun setDateView() {
 
         val calendar = getInstance()
@@ -243,60 +300,32 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         }
     }
 
+    /**
+     * Set listeners to views
+     */
     private fun setListeners() {
-        val calendar = getInstance()
-        val currentTime = calendar.time
-        val monthFormat = SimpleDateFormat("MMM")
-
+        //Date icon 1
         mBinding.monthLayOne.setOnClickListener {
-            setAllView(
-                R.drawable.cal_back_select,
-                R.drawable.cal_back_unselect,
-                mBinding.monthLayOne
-            )
-            setAllText(R.color.white, R.color.black, mBinding.tvMonthOne, mBinding.tvYearOne)
-            calendar.time = currentTime
-
-            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
+            onDateSet(null, _currentYear.toInt(), _currentMonth.toInt(), 0)
+//            selectDashboardDate(1)
         }
 
+        //Date icon 2
         mBinding.monthLayTwo.setOnClickListener {
-            setAllView(
-                R.drawable.cal_back_select,
-                R.drawable.cal_back_unselect,
-                mBinding.monthLayTwo
-            )
-            setAllText(R.color.white, R.color.black, mBinding.tvMonthTwo, mBinding.tvYearTwo)
-            calendar.time = currentTime
-            calendar.add(MONTH, -1)
-
-            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
+            onDateSet(null, _year_1.toInt(), _month_1.toInt(), 0)
+//            selectDashboardDate(2)
         }
 
+        //Date icon 3
         mBinding.monthLayThree.setOnClickListener {
-            setAllView(
-                R.drawable.cal_back_select,
-                R.drawable.cal_back_unselect,
-                mBinding.monthLayThree
-            )
-            setAllText(R.color.white, R.color.black, mBinding.tvMonthThree, mBinding.tvYearThree)
-            calendar.time = currentTime
-            calendar.add(MONTH, -2)
-
-            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
+            onDateSet(null, _year_2.toInt(), _month_2.toInt(), 0)
+//            selectDashboardDate(3)
         }
 
+        //Date icon 4
         mBinding.monthLayFour.setOnClickListener {
-            setAllView(
-                R.drawable.cal_back_select,
-                R.drawable.cal_back_unselect,
-                mBinding.monthLayFour
-            )
-            setAllText(R.color.white, R.color.black, mBinding.tvMonthFour, mBinding.tvYearFour)
-            calendar.time = currentTime
-            calendar.add(MONTH, -3)
-
-            onDateSet(null, calendar.get(YEAR), calendar.get(MONTH) + 1, 0)
+            onDateSet(null, _year_3.toInt(), _month_3.toInt(), 0)
+//            selectDashboardDate(4)
         }
 
         mBinding.calPickerLay.setOnClickListener {
@@ -306,24 +335,103 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         }
     }
 
-    private fun showCalendarDialog() {
-        val calendar = getInstance()
-        val datePickerDialog =
-            DatePickerDialog(
-                getBaseActivity(),
-                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                    Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
-                    mViewModel.getDashboardData("$year-${month + 1}-$dayOfMonth")
-                },
-                calendar.get(YEAR),
-                calendar.get(MONTH),
-                calendar.get(DAY_OF_MONTH)
-            )
-        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
-        datePickerDialog.show()
+    /**
+     * This method is used to select Date Views (icons) in the Dashboard
+     */
+    private fun selectDashboardDateIcon(year: Int, month: Int) {
+        when {
+            year == _currentYear && month == _currentMonth -> selectDateView(1)
+            year == _year_1 && month == _month_1 -> selectDateView(2)
+            year == _year_2 && month == _month_2 -> selectDateView(3)
+            year == _year_3 && month == _month_3 -> selectDateView(4)
+            else -> selectDateView(0)
+        }
     }
 
+    /**
+     * Method to select a Date View.
+     * If the selected Date is in one of the icons, then select it else unselect all
+     */
+    private fun selectDateView(layoutNo: Int) {
+        when (layoutNo) {
+            1 -> setSelectedDateView(
+                mBinding.monthLayOne,
+                mBinding.tvMonthOne,
+                mBinding.tvYearOne
+            )
+            2 -> setSelectedDateView(
+                mBinding.monthLayTwo,
+                mBinding.tvMonthTwo,
+                mBinding.tvYearTwo
+            )
+            3 -> setSelectedDateView(
+                mBinding.monthLayThree,
+                mBinding.tvMonthThree,
+                mBinding.tvYearThree
+            )
+            4 -> setSelectedDateView(
+                mBinding.monthLayFour,
+                mBinding.tvMonthFour,
+                mBinding.tvYearFour
+            )
+            else -> unselectDateViews()
+        }
+    }
+
+    /**
+     * This method is used to show Selected Date
+     */
+    private fun setSelectedDateView(monthLayout: View, monthText: TextView, yearText: TextView) {
+        //Set color to layout
+        setAllView(
+            R.drawable.cal_back_select,
+            R.drawable.cal_back_unselect,
+            monthLayout
+        )
+        //Set color to layout text
+        setAllText(R.color.white, R.color.black, monthText, yearText)
+    }
+
+    /**
+     * Method to unselect Date Views Icon
+     */
+    private fun unselectDateViews() {
+        setCalendarView(
+            R.drawable.cal_back_unselect,
+            mBinding.monthLayOne,
+            mBinding.monthLayTwo,
+            mBinding.monthLayThree,
+            mBinding.monthLayFour
+        )
+
+        setCalText(
+            R.color.black,
+            mBinding.tvMonthOne, mBinding.tvYearOne,
+            mBinding.tvMonthTwo, mBinding.tvYearTwo,
+            mBinding.tvMonthThree, mBinding.tvYearThree,
+            mBinding.tvMonthFour, mBinding.tvYearFour
+        )
+    }
+
+//    private fun showCalendarDialog() {
+//        val calendar = getInstance()
+//        val datePickerDialog =
+//            DatePickerDialog(
+//                getBaseActivity(),
+//                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+//                    Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
+//                    mViewModel.getDashboardData("$year-${month + 1}-$dayOfMonth")
+//                },
+//                calendar.get(YEAR),
+//                calendar.get(MONTH),
+//                calendar.get(DAY_OF_MONTH)
+//            )
+//        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
+//        datePickerDialog.show()
+//    }
+
     private fun setAllView(selectedColor: Int, unSelectedColor: Int, vararg views: View) {
+        //First unselect all views
         setCalendarView(
             unSelectedColor,
             mBinding.monthLayOne,
@@ -331,6 +439,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             mBinding.monthLayThree,
             mBinding.monthLayFour
         )
+        // Then select selected view
         setCalendarView(selectedColor, *views)
     }
 
