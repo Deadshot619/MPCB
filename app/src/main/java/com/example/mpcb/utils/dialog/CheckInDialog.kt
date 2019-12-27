@@ -133,11 +133,12 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
                                 RequestOptions()
                                     .placeholder(R.drawable.ic_checkin_profile)
                                     .error(R.drawable.ic_broken_image_black_24dp))
+                            .override(300,350)
                             .into(dialogBinding.appCompatImageView)
 
                         dialogBinding.appCompatImageView.run {
-                            layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
-                            layoutParams.width= ViewGroup.LayoutParams.WRAP_CONTENT
+                            layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+                            layoutParams.width= ViewGroup.LayoutParams.MATCH_PARENT
                             setPadding(0,0,0,24)
                             isClickable = false
                         }
