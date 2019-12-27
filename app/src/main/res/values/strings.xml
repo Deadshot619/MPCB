@@ -38,6 +38,8 @@
     <string name="hztxt_quan_disp_actual_user">Quantity Disposed by actual user</string>
     <string name="hztxt_last_disposal">Last Disposal quantity</string>
     <string name="hztxt_last_dis_date">Last Disposal date</string>
+    <string name="hazardous_was">Hazardous waste annual returns (Submitted upto)</string>
+    <string name="environment_haz">Environmental statement report (Submitted upto)</string>
 
 
     <string name="profile_title">Profile</string>
@@ -55,11 +57,8 @@
 
    <!-- -&#45;&#45; Profile - -->
     <string name="txt_logout_title">Logout</string>
-    <string name="txt_logout_message"> Are you sure you want to logout</string>
+    <string name="txt_logout_message"> Are you sure you want to logout?</string>
     <string name="action_ok">Ok</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_hint">Search by Industry Name or ID</string>
-    <string name="hazardous_was">Hazardous waste annual returns(Submitted upto)</string>
-    <string name="environment_haz">Environmental statement report(Submitted upto)</string>
-
 </resources>
