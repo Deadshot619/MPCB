@@ -41,11 +41,11 @@ class MonthYearPickerDialog() : DialogFragment() {
         //Set values to month & year according to calendarConstant
         when (calendarConstant) {
             Constants.Companion.CalendarConstant.DASHBOARD -> {
-                monthPicker.value = if (monthDashboard >= 0) monthDashboard else cal.get(Calendar.MONTH)
+                monthPicker.value = if (monthDashboard >= 0) monthDashboard else cal.get(Calendar.MONTH) + 1
                 yearPicker.value = if (yearDashboard >= 0) yearDashboard else year
             }
             Constants.Companion.CalendarConstant.MY_VISIT -> {
-                monthPicker.value = if (monthMyVisit >= 0) monthMyVisit else cal.get(Calendar.MONTH)
+                monthPicker.value = if (monthMyVisit >= 0) monthMyVisit else cal.get(Calendar.MONTH) + 1
                 yearPicker.value = if (yearMyVisit >= 0) yearMyVisit else year
             }
         }
