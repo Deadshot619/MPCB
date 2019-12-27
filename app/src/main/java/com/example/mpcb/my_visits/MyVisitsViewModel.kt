@@ -117,6 +117,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                     dialogVisibility.value = false
                     if (it.status) {
                         mNavigator?.onVisitItemClicked(viewModel)
+
                         Log.i("Hogya BC", it.data.toString())
 
                         //Store the report data received in Shared Pref
@@ -124,6 +125,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                             key = Constants.TEMP_VISIT_REPORT_DATA,
                             value = Gson().toJson(ReportRequest().apply { data = it.data })
                         )
+
                         mNavigator?.showAlert(it.message)
                     }
                 },

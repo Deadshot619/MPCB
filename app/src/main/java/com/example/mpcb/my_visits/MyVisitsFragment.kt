@@ -20,6 +20,7 @@ import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentMyVisitsBinding
 import com.example.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUser
 import com.example.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUserId
+import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.network.response.CheckInfoModel
 import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.MyVisitModel
@@ -307,6 +308,26 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         showMessage(viewModel.industryIMISId)
         val bundle = Bundle()
         bundle.putParcelable(Constants.VISIT_ITEM_KEY, viewModel)
+
+        /*
+         * This block of code initializes a report so that some forms don't
+         * show empty screen.
+         */
+        if (viewModel.visitStatus != "Visited"){
+            val reportRequest =
+                //If the report does not exist, initialize a new one
+                if(getReportData(viewModel.industryIMISId) == null)
+                    ReportRequest()
+                else    //If the report exists, get that report
+                    getReportData(viewModel.industryIMISId)
+
+            //Reports are saved according to their Report No.
+            PreferencesHelper.setPreferences(
+                key = viewModel.industryIMISId,
+                value = Gson().toJson(reportRequest)
+            )
+        }
+
         addFragment(VisitReportFragment(), true, bundle)
     }
 
