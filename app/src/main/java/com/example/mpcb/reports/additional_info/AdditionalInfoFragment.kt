@@ -212,7 +212,12 @@ class AdditionalInfoFragment :
                 //File Path
              //   getRealPathFromURI(activity)
 
-                 fileP = FilePickUtils.getSmartFilePath(activity!!,fileUri).toString()
+                fileP =
+                    if (FilePickUtils.getSmartFilePath(activity!!,fileUri) == null)
+                        ""
+                    else
+                        FilePickUtils.getSmartFilePath(activity!!,fileUri).toString()
+
                 filePath = fileUri.path!!
                 mBinding.uploadVisitEditTextLayout.setText(fileP)
 

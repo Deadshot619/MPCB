@@ -206,6 +206,7 @@
         <androidx.core.widget.NestedScrollView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -285,7 +286,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--                Tiles-->
+                <!--                Tiles-->
                 <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/visit_reports_lay"
                         android:layout_width="match_parent"
@@ -348,6 +349,7 @@
                                         android:id="@+id/complete_visit_lbl"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
                                         android:text="COMPLETED VISIT"
                                         android:textStyle="bold"
                                         app:layout_constraintEnd_toEndOf="@+id/complete_visit_iconvw"
@@ -402,6 +404,7 @@
                                         android:id="@+id/pending_visit_lbl"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
                                         android:text="PENDING\nVISIT"
                                         android:textStyle="bold"
                                         app:layout_constraintEnd_toEndOf="@+id/pending_visit_iconvw"
@@ -457,6 +460,7 @@
                                         android:id="@+id/uploaded_visit_lbl"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
                                         android:text="REPORTS UPLOADED ON TIME"
                                         android:textStyle="bold"
                                         app:layout_constraintEnd_toEndOf="@+id/uploaded_visit_iconvw"
@@ -513,6 +517,7 @@
                                         android:id="@+id/performed_visit_lbl"
                                         android:layout_width="0dp"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
                                         android:text="VISIT PERFORMED ON TIME"
                                         android:textStyle="bold"
                                         app:layout_constraintEnd_toEndOf="@+id/performed_visit_iconvw"

@@ -9,6 +9,8 @@ import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+import android.widget.Toast
+import com.example.mpcb.base.MPCBApp
 
 object FilePickUtils {
 
@@ -113,9 +115,10 @@ object FilePickUtils {
                 val column_index = cursor.getColumnIndexOrThrow(column)
                 return cursor.getString(column_index)
             }
+        }catch (e: Exception){
+            Toast.makeText(MPCBApp.instance, "Can't Select this file", Toast.LENGTH_LONG).show()
         } finally {
-            if (cursor != null)
-                cursor.close()
+            cursor?.close()
         }
         return null
     }
