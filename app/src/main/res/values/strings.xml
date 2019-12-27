@@ -58,5 +58,8 @@
     <string name="txt_logout_message"> Are you sure you want to logout</string>
     <string name="action_ok">Ok</string>
     <string name="action_cancel">Cancel</string>
+    <string name="action_hint">Search by Industry Name or ID</string>
+    <string name="hazardous_was">Hazardous waste annual returns(Submitted upto)</string>
+    <string name="environment_haz">Environmental statement report(Submitted upto)</string>
 
 </resources>

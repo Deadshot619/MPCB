@@ -52,7 +52,7 @@
                             android:focusable="false"
                             android:drawableRight="@drawable/ic_calendar"
                             android:drawableEnd="@drawable/ic_calendar"
-                            android:hint="Hazardous Waste Annual Returns" />
+                            android:hint="@string/hazardous_was" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +73,7 @@
                             android:focusable="false"
                             android:drawableRight="@drawable/ic_calendar"
                             android:drawableEnd="@drawable/ic_calendar"
-                            android:hint="Environment Statement Report" />
+                            android:hint="@string/environment_haz" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <include

@@ -219,7 +219,7 @@ class AdditionalInfoFragment :
                         FilePickUtils.getSmartFilePath(activity!!,fileUri).toString()
 
                 filePath = fileUri.path!!
-                mBinding.uploadVisitEditTextLayout.setText(fileP)
+                mBinding.uploadVisitEditTextLayout.setText(File(fileP).name)
 
               //  val visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"), _file.absoluteFile)
 //                val visitReportBodyLocal = RequestBody.create(MediaType.parse("image/*"),fileP)
