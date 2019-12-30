@@ -74,7 +74,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_categoery"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -103,7 +103,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_quantity"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -134,7 +134,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="Method of disposal as per consent"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -162,7 +162,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_actual_disposal"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -192,7 +192,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_quantity_disposal"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -222,7 +222,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_quan_disp_cwtsd"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -252,7 +252,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_quan_disp_processing"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -282,7 +282,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_quan_disp_actual_user"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -312,7 +312,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_last_disposal"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -342,7 +342,7 @@
                         android:layout_weight="6"
                         android:layout_marginRight="16dp"
                         android:text="@string/hztxt_last_dis_date"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -374,7 +374,7 @@
                         android:layout_marginRight="16dp"
                         android:layout_weight="6"
                         android:text="UOM"
-                        android:textColor="@color/light_grey"
+                        android:textColor="@color/text_light_black"
                         android:textSize="@dimen/text_large" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
