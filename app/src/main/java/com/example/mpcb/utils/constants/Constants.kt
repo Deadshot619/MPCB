@@ -391,8 +391,12 @@ class Constants {
             for (i in 0 until vg.childCount) {
                 val child = vg.getChildAt(i)
 
-                if (child.id != R.id.btnNext)
+                //Make TextInputLayput 'not focusable' instead of 'not enable' to make it readable
+                if (child.javaClass.name.contains("TextInputLayout"))
+                    child.isFocusable = enable
+                else if (child.id != R.id.btnNext) //need 'Next' button to be enabled
                     child.isEnabled = enable
+
 
                 //Hide Add more & Delete button
                 if (child.id == R.id.tvAddMore || child.id == R.id.imgDelete)
