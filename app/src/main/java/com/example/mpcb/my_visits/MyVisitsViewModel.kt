@@ -191,8 +191,10 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     fun onCheckInClick(model: MyVisitModel) {
         if (model.checkInStatus != 1) {
             if (user.hasSubbordinateOfficers == 1)
-                if (user.userId != myVisitsSpinnerSelectedUserId)
+                if (user.userId != myVisitsSpinnerSelectedUserId){
+                    mNavigator?.showAlert("HOD user cannot fill other user's data")
                     return
+                }
             mNavigator!!.onCheckInClicked(model)
         }else {
             // mNavigator!!.onError("Already Checked In!")
