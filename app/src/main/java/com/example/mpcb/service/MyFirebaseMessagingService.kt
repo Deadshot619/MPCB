@@ -1,11 +1,19 @@
 package com.example.mpcb.service
 
 import android.util.Log
+import com.example.mpcb.utils.notificationManager
+import com.example.mpcb.utils.sendNotification
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService(){
 
+//    private val notificationManager by lazy {
+//        ContextCompat.getSystemService(
+//            applicationContext,
+//            NotificationManager::class.java
+//        ) as NotificationManager
+//    }
 
     override fun onMessageReceived(p0: RemoteMessage) {
 
@@ -13,7 +21,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
             Log.d("Notification", "Message Notification Body: ${it.body}")
             //Message Services handle notification
 
-//            Toast.makeText(this, "${it.body}", Toast.LENGTH_LONG).show()
+            notificationManager.sendNotification(
+                messageTitle = p0.notification?.title!!,
+                messageBody = p0.notification?.body!!,
+                applicationContext = applicationContext
+            )
         }
     }
 

@@ -15,6 +15,7 @@ import com.example.mpcb.network.response.DashboardDataResponse
 import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.Users
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.createChannel
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
@@ -89,6 +90,13 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         setListeners()
 
         setDateView()
+
+        //Create Notification channel
+        createChannel(
+            context = context!!,
+            channelId = getString(R.string.channel_id_1),
+            channelName = getString(R.string.channel_name_1)
+        )
     }
 
     /**
