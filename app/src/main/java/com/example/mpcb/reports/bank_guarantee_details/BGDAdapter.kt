@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemBankGuaranteeBinding
 import com.example.mpcb.network.request.RoutineReportBankDetail
+import com.example.mpcb.utils.constants.Constants.Companion.disableEnableControls
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -120,19 +121,6 @@ class BGDAdapter(
             //If true, disable all controls!
             if (visitStatus)
                 disableEnableControls(false, itemBinding.categoryParentLay)
-        }
-
-        //Method to Enable/Disable Views
-        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
-            for (i in 0 until vg.childCount) {
-                val child = vg.getChildAt(i)
-
-                if(child.id != R.id.btnSubmit)
-                    child.isEnabled = enable
-                if (child is ViewGroup) {
-                    disableEnableControls(enable, child)
-                }
-            }
         }
     }
 }

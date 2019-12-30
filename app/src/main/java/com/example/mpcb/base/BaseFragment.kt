@@ -9,7 +9,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.mpcb.R
 import com.example.mpcb.databinding.ButtonSaveNextLayoutBinding
 import com.example.mpcb.databinding.ToolbarBinding
 import com.example.mpcb.network.request.ReportRequest
@@ -32,6 +31,7 @@ import com.example.mpcb.reports.treatment.TreatmentFragment
 import com.example.mpcb.reports.tree_plantation.TreePlantationFragment
 import com.example.mpcb.reports.water_and_waste_water.WaterFragment
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.disableEnableControls
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.google.gson.Gson
 
@@ -227,26 +227,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 //        val reports = PreferencesHelper.getPreferences(Constants.REPORT_KEY, "")
         val reports = PreferencesHelper.getPreferences(reportNo, "")
         return Gson().fromJson(reports as String, ReportRequest::class.java)
-    }
-
-    /**
-     * This method Enables/Disables the views in  a viewGroup.
-     */
-    protected fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
-        for (i in 0 until vg.childCount) {
-            val child = vg.getChildAt(i)
-
-            if(child.id != R.id.btnNext)
-                child.isEnabled = enable
-
-            //Hide Add more & Delete button
-            if(child.id == R.id.tvAddMore || child.id == R.id.imgDelete)
-                child.visibility = View.GONE
-
-            if (child is ViewGroup) {
-                disableEnableControls(enable, child)
-            }
-        }
     }
 
     /**

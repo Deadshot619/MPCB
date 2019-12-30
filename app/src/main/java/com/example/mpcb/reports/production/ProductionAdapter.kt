@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemProductionBinding
 import com.example.mpcb.network.request.RoutineReportProduct
 import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST
 import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST1
+import com.example.mpcb.utils.constants.Constants.Companion.disableEnableControls
 
 
 class ProductionAdapter(
@@ -118,18 +118,6 @@ class ProductionAdapter(
             //If true, disable all controls!
             if (visitStatus)
                 disableEnableControls(false, itemBinding.categoryParentLay)
-        }
-
-        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
-            for (i in 0 until vg.childCount) {
-                val child = vg.getChildAt(i)
-
-                if(child.id != R.id.btnSubmit)
-                    child.isEnabled = enable
-                if (child is ViewGroup) {
-                    disableEnableControls(enable, child)
-                }
-            }
         }
     }
 }

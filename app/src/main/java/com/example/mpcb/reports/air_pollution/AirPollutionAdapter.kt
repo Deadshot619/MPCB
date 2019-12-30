@@ -11,6 +11,7 @@ import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemAirPollutionBinding
 import com.example.mpcb.network.request.RoutineReportAirPollution
 import com.example.mpcb.utils.constants.Constants.Companion.AIR_POLLUTION_LIST
+import com.example.mpcb.utils.constants.Constants.Companion.disableEnableControls
 
 
 class AirPollutionAdapter(
@@ -189,18 +190,6 @@ class AirPollutionAdapter(
             //If true, disable all controls!
             if (visitStatus)
                 disableEnableControls(false, itemBinding.categoryParentLay)
-        }
-
-        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
-            for (i in 0 until vg.childCount) {
-                val child = vg.getChildAt(i)
-
-                if(child.id != R.id.btnSubmit)
-                    child.isEnabled = enable
-
-                if (child is ViewGroup)
-                    disableEnableControls(enable, child)
-            }
         }
     }
 }

@@ -13,6 +13,7 @@ import com.example.mpcb.databinding.ItemNonHazardousReportsBinding
 import com.example.mpcb.network.request.RoutineReportNonHazardousWaste
 import com.example.mpcb.utils.constants.Constants
 import com.example.mpcb.utils.constants.Constants.Companion.UNIT_LIST1
+import com.example.mpcb.utils.constants.Constants.Companion.disableEnableControls
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -138,20 +139,5 @@ class NonHazardousAdapter(
             if (visitStatus)
                 disableEnableControls(false, itemBinding.layLinChild)
         }
-
-
-        //Method to Enable/Disable Views
-        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
-            for (i in 0 until vg.childCount) {
-                val child = vg.getChildAt(i)
-
-                if(child.id != com.example.mpcb.R.id.btnSubmit)
-                    child.isEnabled = enable
-                if (child is ViewGroup) {
-                    disableEnableControls(enable, child)
-                }
-            }
-        }
-
     }
 }

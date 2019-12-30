@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemChildAmbientAirBinding
 import com.example.mpcb.network.request.AmbientAirChild
 import com.example.mpcb.utils.constants.Constants.Companion.AMBIENT_AIR_PARAM_LIST
+import com.example.mpcb.utils.constants.Constants.Companion.disableEnableControls
 
 class AmbientAirChildAdapter(
     val context: Context,
@@ -120,18 +121,5 @@ class AmbientAirChildAdapter(
             }
         }
 
-        //Method to Enable/Disable Views
-        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
-            for (i in 0 until vg.childCount) {
-                val child = vg.getChildAt(i)
-
-                if(child.id != com.example.mpcb.R.id.btnSubmit)
-                    child.isEnabled = enable
-                if (child is ViewGroup) {
-                    disableEnableControls(enable, child)
-                }
-            }
-        }
-
-    }
+     }
 }

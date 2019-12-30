@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mpcb.databinding.ItemChildLastJvsBinding
 import com.example.mpcb.network.request.LastJVSChild
 import com.example.mpcb.utils.constants.Constants.Companion.JVS_PARAM_LIST
+import com.example.mpcb.utils.constants.Constants.Companion.disableEnableControls
 
 class LastJVSChildAdapter(
     val context: Context,
@@ -112,18 +113,6 @@ class LastJVSChildAdapter(
             //If true, disable all controls!
             if (visitStatus)
                 disableEnableControls(false, itemBinding.categoryParentLay)
-        }
-
-        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
-            for (i in 0 until vg.childCount) {
-                val child = vg.getChildAt(i)
-
-                if(child.id != com.example.mpcb.R.id.btnSubmit)
-                    child.isEnabled = enable
-                if (child is ViewGroup) {
-                    disableEnableControls(enable, child)
-                }
-            }
         }
     }
 }

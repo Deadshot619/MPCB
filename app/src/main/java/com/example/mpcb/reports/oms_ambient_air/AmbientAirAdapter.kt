@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mpcb.R
 import com.example.mpcb.databinding.ItemAmbientAirBinding
 import com.example.mpcb.network.request.AmbientAirChild
 import com.example.mpcb.network.request.JvsSampleCollectedAirSource
+import com.example.mpcb.utils.constants.Constants.Companion.disableEnableControls
 
 
 class AmbientAirAdapter(
@@ -94,18 +94,6 @@ class AmbientAirAdapter(
             //If true, disable all controls!
             if (visitStatus)
                 disableEnableControls(false, itemBinding.categoryParentLay)
-        }
-
-        private fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
-            for (i in 0 until vg.childCount) {
-                val child = vg.getChildAt(i)
-
-                if(child.id != R.id.btnSubmit)
-                    child.isEnabled = enable
-                if (child is ViewGroup) {
-                    disableEnableControls(enable, child)
-                }
-            }
         }
     }
 }

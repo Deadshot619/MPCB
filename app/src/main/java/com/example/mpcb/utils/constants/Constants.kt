@@ -1,6 +1,8 @@
 package com.example.mpcb.utils.constants
 
 import android.content.Context
+import android.view.View
+import android.view.ViewGroup
 import com.example.mpcb.R
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,7 +42,7 @@ class Constants {
         const val INDUS_IMIS_ID: String = "indus_imis_id"
 
         //These values will be used in MonthYearPickerDialog
-        enum class CalendarConstant{
+        enum class CalendarConstant {
             DASHBOARD, MY_VISIT
         }
 
@@ -381,7 +383,25 @@ class Constants {
                 ""
             }
         }
+
+        /**
+         * This method Enables/Disables the views in  a viewGroup.
+         */
+        fun disableEnableControls(enable: Boolean, vg: ViewGroup) {
+            for (i in 0 until vg.childCount) {
+                val child = vg.getChildAt(i)
+
+                if (child.id != R.id.btnNext)
+                    child.isEnabled = enable
+
+                //Hide Add more & Delete button
+                if (child.id == R.id.tvAddMore || child.id == R.id.imgDelete)
+                    child.visibility = View.GONE
+
+                if (child is ViewGroup) {
+                    disableEnableControls(enable, child)
+                }
+            }
+        }
     }
-
-
 }
