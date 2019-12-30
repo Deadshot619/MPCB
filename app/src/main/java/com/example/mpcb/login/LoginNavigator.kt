@@ -9,4 +9,6 @@ interface LoginNavigator : BaseNavigator {
     fun onPasswordError()
 
     fun onloginSuccess()
+
+    fun onErrorOccured(message: String)
 }

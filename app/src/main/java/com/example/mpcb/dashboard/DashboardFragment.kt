@@ -14,6 +14,7 @@ import com.example.mpcb.network.response.DashboardDataResponse
 import com.example.mpcb.network.response.LoginResponse
 import com.example.mpcb.network.response.Users
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.createChannel
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog.Companion.monthDashboard
 import com.example.mpcb.utils.dialog.MonthYearPickerDialog.Companion.yearDashboard
@@ -135,6 +136,14 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
         setListeners()
 
+        setDateView()
+
+        //Create Notification channel
+        createChannel(
+            context = context!!,
+            channelId = getString(R.string.channel_id_1),
+            channelName = getString(R.string.channel_name_1)
+        )
     }
 
     /**
@@ -412,23 +421,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             mBinding.tvMonthFour, mBinding.tvYearFour
         )
     }
-
-//    private fun showCalendarDialog() {
-//        val calendar = getInstance()
-//        val datePickerDialog =
-//            DatePickerDialog(
-//                getBaseActivity(),
-//                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-//                    Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
-//                    mViewModel.getDashboardData("$year-${month + 1}-$dayOfMonth")
-//                },
-//                calendar.get(YEAR),
-//                calendar.get(MONTH),
-//                calendar.get(DAY_OF_MONTH)
-//            )
-//        datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
-//        datePickerDialog.show()
-//    }
 
     private fun setAllView(selectedColor: Int, unSelectedColor: Int, vararg views: View) {
         //First unselect all views

@@ -56,7 +56,7 @@ object PreferencesHelper {
 
 
     fun getStringPreference(key: String, value: String = ""): String? {
-        return mSharedPreferences!!.getString(key, value)
+        return mSharedPreferences.getString(key, value)
     }
 
     fun getLongPreference(key: String): Long {
