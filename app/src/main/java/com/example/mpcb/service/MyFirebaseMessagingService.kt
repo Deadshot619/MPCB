@@ -8,13 +8,6 @@ import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService(){
 
-//    private val notificationManager by lazy {
-//        ContextCompat.getSystemService(
-//            applicationContext,
-//            NotificationManager::class.java
-//        ) as NotificationManager
-//    }
-
     override fun onMessageReceived(p0: RemoteMessage) {
 
         p0.notification?.let {
@@ -22,8 +15,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
             //Message Services handle notification
 
             notificationManager.sendNotification(
-                messageTitle = p0.notification?.title!!,
-                messageBody = p0.notification?.body!!,
+                messageTitle = p0.notification?.title.toString(),
+                messageBody = p0.notification?.body.toString(),
                 applicationContext = applicationContext
             )
         }

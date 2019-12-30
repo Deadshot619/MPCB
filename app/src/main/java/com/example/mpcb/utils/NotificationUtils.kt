@@ -28,8 +28,8 @@ lateinit var notificationManager: NotificationManager
  * @param context, activity context.
  */
 fun NotificationManager.sendNotification(
-    messageTitle: String,
-    messageBody : String,
+    messageTitle: String = "",
+    messageBody : String = "",
     applicationContext: Context
 ){
 
@@ -53,6 +53,12 @@ fun NotificationManager.sendNotification(
  * Create channel id for Android O & above
  */
 fun createChannel(context: Context, channelId: String, channelName: String) {
+
+    /*
+     * If the device is O & above, then create a channel
+     * else create normal notification manager.
+     */
+
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val notificationChannel = NotificationChannel(
             channelId,
@@ -74,6 +80,7 @@ fun createChannel(context: Context, channelId: String, channelName: String) {
         notificationManager.createNotificationChannel(notificationChannel)
 
     } else {
+
         notificationManager = ContextCompat.getSystemService(
             context,
             NotificationManager::class.java
