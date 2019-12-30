@@ -16,6 +16,7 @@ class LoginRequest : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.userName)
         }
+
     @SerializedName("Password")
     @Expose
     var password = ""
@@ -24,6 +25,12 @@ class LoginRequest : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.password)
         }
+
     @SerializedName("RequestId")
+    @Expose
     var requestId = ""
+
+    @SerializedName("DeviceToken")
+    @Expose
+    var deviceToken = ""
 }

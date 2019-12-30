@@ -8,6 +8,7 @@ import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.base.BaseNavigator
 import com.example.mpcb.base.IntentNavigator
 import com.example.mpcb.databinding.ActivitySplashBinding
+import com.example.mpcb.utils.constants.Constants.Companion.FIREBASE_TOKEN
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.example.mpcb.utils.showMessage
 import com.futuregroup.kotlintest.splash.SplashNavigator
@@ -43,9 +44,10 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
 
     override fun navigateToNextScreen() {
         if (PreferencesHelper.isLogin()) {
-            getFirebaseInstanceId()
             IntentNavigator.navigateToHomeActivity(this)
         } else {
+            //get Firebase instance ID before logging in.
+//            getFirebaseInstanceId()
             IntentNavigator.navigateToLoginActivity(this)
         }
         finish()
@@ -65,6 +67,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
 
     }
 
+    /**
+     * Method to get Firebase token ID for this device
+     */
     private fun getFirebaseInstanceId(){
         FirebaseInstanceId.getInstance().instanceId
             .addOnCompleteListener(OnCompleteListener { task ->
@@ -76,8 +81,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
                 // Get new Instance ID token
                 val token = task.result?.token
 
+                //If token is not null, then save it in Shared Pref.
+                token?.let {
+                    PreferencesHelper.setStringPreference(FIREBASE_TOKEN, token)
+                }
+
                 // Log and toast
-//                val msg = getString(R.string.msg_token_fmt, token)
                 Log.d(_TAG, "Token : $token")
                 Toast.makeText(baseContext, "$token", Toast.LENGTH_SHORT).show()
             })

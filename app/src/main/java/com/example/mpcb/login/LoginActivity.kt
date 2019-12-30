@@ -24,6 +24,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
 
     override fun onUsernameError() = showMessage("Enter Username")
     override fun onPasswordError() = showMessage("Enter Password")
+    override fun onErrorOccured(message: String) = showMessage(message)
 
     override fun onloginSuccess() {
         startActivity(Intent(this@LoginActivity, HomeActivity::class.java))

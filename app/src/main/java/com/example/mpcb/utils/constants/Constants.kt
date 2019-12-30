@@ -26,6 +26,9 @@ class Constants {
         //Constant to maintain state of whether the user submitted the form successfully
         const val FORM_COMPLETE_STATUS: String = "form_complete_status"
 
+        //Constant to maintain firebase notification token
+        const val FIREBASE_TOKEN = "firebase_notification_token"
+
         /**
          * This value is used to save report visit data in shared pref temporarily when
          * already submitted Visit report is to be viewed.
