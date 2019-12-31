@@ -27,6 +27,7 @@ object FilePickUtils {
             cursor.moveToFirst()
             return cursor.getString(column_index)
         }
+        cursor?.close()
         return uri.path
     }
 
@@ -35,7 +36,7 @@ object FilePickUtils {
         if (Build.VERSION.SDK_INT < 19) {
             return getPathDeprecated(ctx, uri)
         }
-        return FilePickUtils.getPath(ctx, uri)
+        return getPath(ctx, uri)
     }
 
     @SuppressLint("NewApi")
@@ -57,7 +58,7 @@ object FilePickUtils {
             } else if (isDownloadsDocument(uri)) {
                 val id = DocumentsContract.getDocumentId(uri)
                 val contentUri = ContentUris.withAppendedId(
-                    Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id)!!)
+                    Uri.parse("content://downloads/public_downloads"), java.lang.Long.valueOf(id))
 
                 return getDataColumn(context, contentUri, null, null)
             } else if (isMediaDocument(uri)) {

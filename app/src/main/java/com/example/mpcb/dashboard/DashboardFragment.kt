@@ -260,7 +260,9 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
                             //Set selected User id
                             dashboardSpinnerSelectedUserId =
                                 users[p2].userId
-                            showMessage(dashboardSpinnerSelectedUser)
+
+//                            showMessage(dashboardSpinnerSelectedUser)
+
                             //Get dashboard data for current user
                             mViewModel.getDashboardData(fromDate)
                         }

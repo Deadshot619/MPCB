@@ -40,7 +40,7 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ".mpcb"
-            buildConfigField "String", "BASE_URL", '"https://mtest.ecmpcb.in/services/"'
+            buildConfigField "String", "BASE_URL", '"https://manage.ecmpcb.in/services/"'
         }
     }
 

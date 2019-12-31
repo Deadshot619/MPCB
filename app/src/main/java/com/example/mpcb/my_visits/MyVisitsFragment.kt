@@ -201,7 +201,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
                             myVisitsSpinnerSelectedUserId =
                                 users[p2].userId
 
-                            showMessage(myVisitsSpinnerSelectedUser)
+//                            showMessage(myVisitsSpinnerSelectedUser)
 
                             //Get dashboard data for current user
                             mViewModel.getVisitListData(fromDate, toDate)
