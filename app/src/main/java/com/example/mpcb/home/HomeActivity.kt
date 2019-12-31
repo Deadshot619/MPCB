@@ -30,6 +30,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
 
     }
 
+    //TODO 31/12/2019 Remove these toast message once the implementation of new features is completed.
     private fun setListeners() {
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {

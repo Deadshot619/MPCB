@@ -85,23 +85,35 @@ class AdditionalInfoFragment :
                         100
                     )
                 } else {
+                    report.data.routineReport.additionalInfo = mBinding.edtAddInfo.text.toString()
 
-                    var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
-                    chooseFile.type = "*/*"
-                    chooseFile = Intent.createChooser(chooseFile, "Choose a file")
-                    startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
+                    pickFile()
                 }
 
 
 
         }else{
-                var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
-                chooseFile.type = "*/*"
-                chooseFile = Intent.createChooser(chooseFile, "Choose a file")
-                startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
+                report.data.routineReport.additionalInfo = mBinding.edtAddInfo.text.toString()
 
+                pickFile()
             }
         }
+    }
+
+    /**
+     * This method creates an intent to choose a file
+     */
+    private fun pickFile(){
+        val mimeTypes = arrayOf("image/*", "application/pdf")
+
+        var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
+        chooseFile.type = "image/*|application/pdf"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            chooseFile.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+        }
+        chooseFile = Intent.createChooser(chooseFile, "Choose a file")
+        startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
+
     }
 
     private fun setListener() {
