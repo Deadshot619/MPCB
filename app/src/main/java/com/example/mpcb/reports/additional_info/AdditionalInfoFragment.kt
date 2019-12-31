@@ -7,14 +7,18 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.core.widget.addTextChangedListener
 import com.example.mpcb.R
 import com.example.mpcb.base.BaseFragment
 import com.example.mpcb.databinding.FragmentAdditionalInfoBinding
 import com.example.mpcb.network.request.ReportRequest
 import com.example.mpcb.reports.ReportsPageActivity
 import com.example.mpcb.utils.constants.Constants
+import com.example.mpcb.utils.constants.Constants.Companion.ADDITIONAL_INFO_TEXT
 import com.example.mpcb.utils.permission.PermissionUtils
 import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.getStringPreference
+import com.example.mpcb.utils.shared_prefrence.PreferencesHelper.setStringPreference
 import com.example.mpcb.utils.showMessage
 import com.example.mpcb.utils.validations.FilePickUtils
 import java.io.File
@@ -85,16 +89,12 @@ class AdditionalInfoFragment :
                         100
                     )
                 } else {
-                    report.data.routineReport.additionalInfo = mBinding.edtAddInfo.text.toString()
-
                     pickFile()
                 }
 
 
 
         }else{
-                report.data.routineReport.additionalInfo = mBinding.edtAddInfo.text.toString()
-
                 pickFile()
             }
         }
@@ -104,6 +104,7 @@ class AdditionalInfoFragment :
      * This method creates an intent to choose a file
      */
     private fun pickFile(){
+
         val mimeTypes = arrayOf("image/*", "application/pdf")
 
         var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
@@ -121,10 +122,18 @@ class AdditionalInfoFragment :
             report.data.routineReport.legalActionUnitComplied =
                 if (checkedId == R.id.rbUnitYes) 1 else 0
         }
+//
+        mBinding.edtAddInfo.addTextChangedListener{
+            //Save data of additional info text in shared pref
+            saveAdditionalInfoTextTemporary(mBinding.edtAddInfo.text.toString())
+        }
     }
 
     private fun onSubmit() {
         report.data.routineReport.additionalInfo = mBinding.edtAddInfo.text.toString()
+
+        //override additional info data in shared pref
+        saveAdditionalInfoTextTemporary()
 
         if (validate()) {
             saveReportData(
@@ -183,6 +192,17 @@ class AdditionalInfoFragment :
     }
 
     /**
+     * Methods to save & retrieve data in shared pref temporarily
+     */
+    private fun saveAdditionalInfoTextTemporary(value: String = ""){
+        setStringPreference(visitReportId + ADDITIONAL_INFO_TEXT, value)
+    }
+
+    private fun getAdditionalInfoTextTemporary(): String? =
+        getStringPreference(visitReportId + ADDITIONAL_INFO_TEXT)
+
+
+    /**
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
@@ -196,7 +216,11 @@ class AdditionalInfoFragment :
             mBinding.run {
                 reports?.data?.routineReport?.run {
                     //Additional Info
-                    edtAddInfo.setText(additionalInfo)
+                    if (!getAdditionalInfoTextTemporary().isNullOrEmpty()){
+                        mBinding.edtAddInfo.setText(getAdditionalInfoTextTemporary())
+                    }else {
+                        edtAddInfo.setText(additionalInfo)
+                    }
 
                     //Whether Unit Complied
                     if (legalActionUnitComplied == 1)
@@ -210,6 +234,7 @@ class AdditionalInfoFragment :
 
     override fun onStart() {
         super.onStart()
+
         setDataToViews()
     }
 

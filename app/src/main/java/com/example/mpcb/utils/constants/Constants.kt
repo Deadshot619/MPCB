@@ -31,6 +31,9 @@ class Constants {
         //Constant to maintain firebase notification token
         const val FIREBASE_TOKEN = "firebase_notification_token"
 
+        //Constant for Additional Info Text
+        const val ADDITIONAL_INFO_TEXT = "additional_info_text"
+
         /**
          * This value is used to save report visit data in shared pref temporarily when
          * already submitted Visit report is to be viewed.
