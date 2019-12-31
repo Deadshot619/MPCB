@@ -131,7 +131,7 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
                             .load(imgUri)
                             .apply(
                                 RequestOptions()
-                                    .placeholder(R.drawable.ic_checkin_profile)
+                                    .placeholder(R.drawable.loading_animation)
                                     .error(R.drawable.ic_broken_image_black_24dp))
                             .override(300,350)
                             .into(dialogBinding.appCompatImageView)
