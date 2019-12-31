@@ -6,7 +6,6 @@ import com.example.mpcb.R
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.databinding.ActivityLoginBinding
 import com.example.mpcb.home.HomeActivity
-import com.example.mpcb.network.request.LoginRequest
 import com.example.mpcb.utils.showMessage
 import java.util.*
 
@@ -32,16 +31,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
     override fun onBinding() {
-        val login = LoginRequest()
-        login.userName = "fo_s1nm"
-        login.password = "Admin@123"
-        mBinding.model = login
-        mBinding.viewModel = mViewModel
+//        val login = LoginRequest()
+//        login.userName = "fo_s1nm"
+//        login.password = "Admin@123"
 
-        mBinding.model!!.apply {
-            userName = "fo_s1nm"
-            password = "Admin@123"
-        }
+        mBinding.viewModel = mViewModel
+        mBinding.model = mViewModel.loginRequest
+
+//        mBinding.model.apply {
+//            userName = "fo_s1nm"
+//            password = "Admin@123"
+//        }
 
         //Set welcome text
         mBinding.welcomeMsgTwo.text = getWelcomeText(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))

@@ -19,7 +19,9 @@ class LoginViewModel : BaseViewModel<LoginNavigator>() {
 
     private val _TAG = "Firebase Token"
 
-    fun onLoginClick(loginRequest: LoginRequest) {
+    val loginRequest = LoginRequest()
+
+    fun onLoginClick() {
         when {
             TextUtils.isEmpty(loginRequest.userName) -> {
                 mNavigator!!.onUsernameError()
