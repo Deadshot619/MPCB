@@ -23,9 +23,15 @@ class SplashViewModel : BaseViewModel<SplashNavigator>(){
                     if (it.status == 1) {
                         //TODO 19/12/2019 : Show a alert dialog when 'force' update is available
                         //which prevents the user from using the app until he updates it.
-                        mNavigator?.showAlert(it.message + ": Update is Available")
+                        mNavigator?.showAlert("Update is Available")
+
+                        if (it.data.forceUpdate)
+                            mNavigator?.showUpdateDialog(it.data.forceUpdate)
+                        else
+                            mNavigator?.showUpdateDialog(it.data.forceUpdate)
+
                     }else {
-                        mNavigator?.showAlert(it.message + ": Update is not Available")
+//                        mNavigator?.showAlert(it.message + ": Update is not Available")
                         //Move this to above if condition
 //                        mNavigator?.showUpdateDialog()
                         mNavigator?.navigateToNextScreen()

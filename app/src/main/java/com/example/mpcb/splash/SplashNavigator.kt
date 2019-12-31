@@ -9,6 +9,6 @@ interface SplashNavigator : BaseNavigator{
 
     fun navigateToNextScreen()
 
-    fun showUpdateDialog()
+    fun showUpdateDialog(flag: Boolean)
 
 }

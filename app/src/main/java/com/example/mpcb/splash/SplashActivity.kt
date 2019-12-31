@@ -23,13 +23,34 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
     override fun getViewModel(): Class<SplashViewModel> = SplashViewModel::class.java
     override fun getNavigator(): BaseNavigator = this@SplashActivity
 
+    override fun showAlert(message: String) {
+        showMessage(message)
+    }
+
     //Lazily create a Update Dialog
     private val showUpdateDialog by lazy {
+        AlertDialog.Builder(this).apply {
+            setTitle("Update Available")
+            setMessage("There's an update available for the app!")
+            setPositiveButton("Update") { _, _ ->
+//                navigateToNextScreen()
+                //TODO 31/12/2019 Add a link to Playstore
+            }
+            setNegativeButton("Later") { _, _ ->
+                navigateToNextScreen()
+            }
+            setCancelable(false)
+        }.create()
+    }
+
+    //Lazily create a Force Update Dialog
+    private val showForceUpdateDialog by lazy {
         AlertDialog.Builder(this).apply {
             setTitle("Update Available")
             setMessage("Please update the app to continue!")
             setPositiveButton("Update") { _, _ ->
                 navigateToNextScreen()
+                //TODO 31/12/2019 Add a link to Playstore
             }
             setNegativeButton("Cancel") { _, _ ->
                 finish()
@@ -38,9 +59,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
         }.create()
     }
 
-    override fun showAlert(message: String) {
-        showMessage(message)
-    }
 
     override fun navigateToNextScreen() {
         if (PreferencesHelper.isLogin()) {
@@ -53,8 +71,16 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
         finish()
     }
 
-    override fun showUpdateDialog() {
-        showUpdateDialog.show()
+    /**
+     * Method to show Update dialog
+     * when true show Force Update dialog,
+     * else show a cancelable update dialog.
+     */
+    override fun showUpdateDialog(flag: Boolean) {
+        if (flag)
+            showForceUpdateDialog.show()
+        else
+            showUpdateDialog.show()
     }
 
     override fun onInternetError() {}
