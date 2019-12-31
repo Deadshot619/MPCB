@@ -571,6 +571,7 @@ class JvsSampleCollectedWaterSource : BaseObservable() {
     @SerializedName("jvs_water_source_parameter")
     @Expose
     var jvsWaterSourceParameter: ArrayList<String> = arrayListOf()
+
     @SerializedName("jvs_water_source_std_prescribed")
     @Expose
     var jvsWaterSourceStdPrescribed: ArrayList<String> = arrayListOf()

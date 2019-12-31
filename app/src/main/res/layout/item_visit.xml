@@ -47,6 +47,7 @@
                         android:textColor="@android:color/black" />
 
                 <RelativeLayout
+                        android:id="@+id/visit_scheduled_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"

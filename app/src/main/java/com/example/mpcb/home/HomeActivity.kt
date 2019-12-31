@@ -4,13 +4,11 @@ import android.content.Context
 import android.content.Intent
 import com.example.mpcb.R
 import com.example.mpcb.addTask.AddTaskFragment
-import com.example.mpcb.attendance.AttendanceFragment
 import com.example.mpcb.base.BaseActivity
 import com.example.mpcb.dashboard.DashboardFragment
 import com.example.mpcb.databinding.ActivityHomeBinding
 import com.example.mpcb.my_visits.MyVisitsFragment
 import com.example.mpcb.profile.ProfileFragment
-import com.example.mpcb.task_management.TaskManagementFragment
 import com.example.mpcb.utils.showMessage
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNavigator {
@@ -36,8 +34,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.task_mngmt -> {
-                    addFragment(TaskManagementFragment(), false)
-                    return@setOnNavigationItemSelectedListener true
+//                    addFragment(TaskManagementFragment(), false)
+                    showMessage(getString(R.string.error_bottom_nav))
+                    return@setOnNavigationItemSelectedListener false
                 }
                 R.id.my_visits -> {
                     addFragment(MyVisitsFragment(), false)
@@ -48,8 +47,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.attendance -> {
-                    addFragment(AttendanceFragment(), false)
-                    return@setOnNavigationItemSelectedListener true
+//                    addFragment(AttendanceFragment(), false)
+                    showMessage(getString(R.string.error_bottom_nav))
+                    return@setOnNavigationItemSelectedListener false
                 }
                 R.id.my_profile -> {
                     addFragment(ProfileFragment(), false)

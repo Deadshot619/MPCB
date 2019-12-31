@@ -32,7 +32,7 @@ class MyVisitsAdapter(
         holder.itemBinding.model = item
         holder.itemBinding.viewModel = viewModel
 
-        holder.itemBinding.imgExpandCollapse.setOnClickListener {
+        holder.itemBinding.visitScheduledLayout.setOnClickListener {
             if (holder.itemBinding.layLinBottom.visibility == View.VISIBLE) {
                 holder.itemBinding.imgExpandCollapse.setImageDrawable(
                     ContextCompat.getDrawable(

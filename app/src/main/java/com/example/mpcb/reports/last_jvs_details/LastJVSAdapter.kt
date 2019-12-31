@@ -33,8 +33,8 @@ class LastJVSAdapter(
                     for (i in 0 until jvsWaterSourceParameter.size) {
                         lastJvsChild.add(
                             LastJVSChild().apply {
-                            parameter = jvsWaterSourceParameter[i]
-                            prescribedValue = jvsWaterSourceStdPrescribed[i]
+                                parameter = jvsWaterSourceParameter[i]
+                                prescribedValue = jvsWaterSourceStdPrescribed[i]
                             }
                         )
                     }
