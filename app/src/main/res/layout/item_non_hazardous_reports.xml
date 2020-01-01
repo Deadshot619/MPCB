@@ -6,7 +6,7 @@
 
         <variable
                 name="model"
-                type="com.example.mpcb.network.request.RoutineReportNonHazardousWaste" />
+                type="com.gov.mpcb.network.request.RoutineReportNonHazardousWaste" />
     </data>
 
     <LinearLayout

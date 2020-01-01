@@ -6,14 +6,14 @@
 
         <variable
                 name="itemListener"
-                type="com.example.mpcb.visit_report.ReportItemListener" />
+                type="com.gov.mpcb.visit_report.ReportItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg_grey"
-            tools:context="com.example.mpcb.visit_report.VisitReportFragment">
+            tools:context="com.gov.mpcb.visit_report.VisitReportFragment">
 
         <include
                 android:id="@+id/toolbarLayout"

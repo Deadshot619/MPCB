@@ -5,7 +5,7 @@
         
         <variable
             name="model"
-            type="com.example.mpcb.network.request.RoutineReportProduct" />
+            type="com.gov.mpcb.network.request.RoutineReportProduct" />
         
     </data>
 

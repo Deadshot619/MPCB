@@ -6,11 +6,11 @@
 
         <variable
                 name="viewModel"
-                type="com.example.mpcb.profile.ProfileViewModel" />
+                type="com.gov.mpcb.profile.ProfileViewModel" />
 
         <variable
                 name="model"
-                type="com.example.mpcb.network.request.UpdateProfileRequest" />
+                type="com.gov.mpcb.network.request.UpdateProfileRequest" />
     </data>
 
 
@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:background="@color/bg_grey"
             android:padding="8dp"
-            tools:context="com.example.mpcb.profile.ProfileFragment">
+            tools:context="com.gov.mpcb.profile.ProfileFragment">
 
         <include
                 android:id="@+id/toolbarLayout"

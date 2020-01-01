@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_grey"
-        tools:context="com.example.mpcb.reports.ReportsPageActivity">
+        tools:context="com.gov.mpcb.reports.ReportsPageActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"

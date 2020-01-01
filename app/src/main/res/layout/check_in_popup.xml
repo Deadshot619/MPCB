@@ -7,11 +7,11 @@
 
         <variable
                 name="model"
-                type="com.example.mpcb.network.response.MyVisitModel" />
+                type="com.gov.mpcb.network.response.MyVisitModel" />
 
         <variable
                 name="viewModel"
-                type="com.example.mpcb.my_visits.MyVisitsViewModel" />
+                type="com.gov.mpcb.my_visits.MyVisitsViewModel" />
 
 
 
