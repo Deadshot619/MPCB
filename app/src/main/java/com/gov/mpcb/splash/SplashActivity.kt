@@ -34,7 +34,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
             setMessage("There's an update available for the app!")
             setPositiveButton("Update") { _, _ ->
 //                navigateToNextScreen()
-                //TODO 31/12/2019 Add a link to Playstore
                 goToPlayStore()
             }
             setNegativeButton("Later") { _, _ ->
@@ -50,8 +49,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
             setTitle("Update Available")
             setMessage("Please update the app to continue!")
             setPositiveButton("Update") { _, _ ->
-//                navigateToNextScreen()
-                //TODO 31/12/2019 Add a link to Playstore
                 goToPlayStore()
             }
             setNegativeButton("Cancel") { _, _ ->
