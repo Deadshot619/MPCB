@@ -12,5 +12,5 @@ class AppVersionRequest {
 
     @SerializedName("version")
     @Expose
-    var version: String = BuildConfig.VERSION_CODE.toString()
+    var version: String = BuildConfig.VERSION_NAME
 }
