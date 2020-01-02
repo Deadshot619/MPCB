@@ -115,6 +115,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                 request = request,
                 success = Consumer {
                     dialogVisibility.value = false
+
                     if (it.status) {
                         mNavigator?.onVisitItemClicked(viewModel)
 

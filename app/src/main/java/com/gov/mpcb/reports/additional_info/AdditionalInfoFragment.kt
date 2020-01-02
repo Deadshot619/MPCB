@@ -227,6 +227,9 @@ class AdditionalInfoFragment :
                         rgUnitComplied.check(R.id.rbUnitYes)
                     else
                         rgUnitComplied.check(R.id.rbUnitNo)
+
+                    if (visitReportFile.isNotEmpty())
+                        mBinding.uploadVisitEditTextLayout.setText(visitReportFile)
                 }
             }
         }

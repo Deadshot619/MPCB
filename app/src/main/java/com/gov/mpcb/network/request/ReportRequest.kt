@@ -482,6 +482,10 @@ class RoutineReport {
     @SerializedName("legal_action_unit_complied")
     @Expose
     var legalActionUnitComplied: Int = 0
+
+    @SerializedName("visit_report_file")
+    @Expose
+    var visitReportFile: String = ""
 }
 
 //Production Details Report data
