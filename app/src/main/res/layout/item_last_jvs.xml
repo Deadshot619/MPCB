@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.example.mpcb.network.request.JvsSampleCollectedWaterSource" />
+            type="com.gov.mpcb.network.request.JvsSampleCollectedWaterSource" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_grey"
-        tools:context="com.example.mpcb.profile.ProfileFragment">
+        tools:context="com.gov.mpcb.profile.ProfileFragment">
 
         <include
             android:id="@+id/toolbarLayout"

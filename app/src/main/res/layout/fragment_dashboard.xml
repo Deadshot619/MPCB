@@ -6,7 +6,7 @@
 
         <variable
                 name="dashboardModel"
-                type="com.example.mpcb.network.response.DashboardDataResponse" />
+                type="com.gov.mpcb.network.response.DashboardDataResponse" />
 
     </data>
 
@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/ic_background"
             android:padding="8dp"
-            tools:context="com.example.mpcb.profile.ProfileFragment">
+            tools:context="com.gov.mpcb.profile.ProfileFragment">
 
         <include
                 android:id="@+id/toolbarLayout"

@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.example.mpcb.network.request.JvsSampleCollectedAirSource" />
+            type="com.gov.mpcb.network.request.JvsSampleCollectedAirSource" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

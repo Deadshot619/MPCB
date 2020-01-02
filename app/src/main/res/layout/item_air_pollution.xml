@@ -5,7 +5,7 @@
 
         <variable
                 name="model"
-                type="com.example.mpcb.network.request.RoutineReportAirPollution" />
+                type="com.gov.mpcb.network.request.RoutineReportAirPollution" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
