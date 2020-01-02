@@ -104,7 +104,12 @@ class IndustryReportFragment :
         report.data.industryCategoryReselect =
             try {
                 CATEGORY_LIST.filterValues {
-                    it == CATEGORY_LIST[mBinding.catSpinner.selectedItemPosition]
+                    it == CATEGORY_LIST[
+                            if (mBinding.catSpinner.selectedItemPosition > 1)
+                                mBinding.catSpinner.selectedItemPosition + 4
+                            else
+                                mBinding.catSpinner.selectedItemPosition
+                    ]
                 }.keys.first().toString()
             }catch (e: Exception){
                 "0"
@@ -226,7 +231,10 @@ class IndustryReportFragment :
                 if (reports?.data?.industryCategoryReselect != "")
                     reports?.data?.industryCategoryReselect?.let { value ->
                         catSpinner.setSelection(
-                            value.parseToInt()
+                            if (value.parseToInt() > 2)
+                                value.parseToInt() - 4
+                            else
+                                value.parseToInt()
                         )
                     }
                 edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
