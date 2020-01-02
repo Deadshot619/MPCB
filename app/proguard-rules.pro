@@ -3,13 +3,13 @@
 # proguardFiles setting in build.gradle.
 #
 # For more details, see
-# http://developer.android.com/guide/developing/tools/proguard.html
+#   http://developer.android.com/guide/developing/tools/proguard.html
 
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-# public *;
+#   public *;
 #}
 
 # Uncomment this to preserve the line number information for
@@ -20,43 +20,43 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.squareup.* {  }
--keep interface com.squareup.* {  }
+-keep class com.squareup.** { *; }
+-keep interface com.squareup.** { *; }
 -dontwarn com.squareup.okhttp.**
--keep class retrofit.* {  }
+-keep class retrofit.** { *; }
 
 -keepclasseswithmembers class * {
-@retrofit.http.* <methods>;
+    @retrofit.http.* <methods>;
 }
 
--keep interface retrofit.* {  }
--keep interface com.squareup.* {  }
+-keep interface retrofit.** { *;}
+-keep interface com.squareup.** { *; }
 -dontwarn rx.**
 -dontwarn retrofit.**
 -dontwarn okio.**
 -dontwarn javax.annotation.**
 
 -dontwarn retrofit2.**
--keep class retrofit2.* {  }
+-keep class retrofit2.** { *; }
 -keepattributes Signature
 -keepattributes Exceptions
--keep class okhttp3.* {  }
--keep interface okhttp3.* {  }
--keep class com.leopard.* {  }
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-keep class com.leopard.** { *; }
 -dontwarn okhttp3.**
 -dontwarn com.google.errorprone.annotations.**
 
 -keepclasseswithmembers class * {
-@retrofit2.http.* <methods>;
+    @retrofit2.http.* <methods>;
 }
 
--keep class com.gov.mpcb.network.request.* {  }
--keep class com.gov.mpcb.network.response.* {  }
-#-keep class net.sqlcipher.* { ; }
-#-keep class net.sqlcipher.database. { ; }
--keepclassmembernames class kotlinx.** {
-volatile <fields>;
-}
+-keep class com.gov.mpcb.network.request.** { *; }
+-keep class com.gov.mpcb.network.response.** { *; }
+#-keep class net.sqlcipher.** { *; }
+#-keep class net.sqlcipher.database.* { *; }
+#-keepclassmembernames class kotlinx.** {
+#    volatile <fields>;
+#}
 
 #-keep public class * extends android.app.Activity
 #-keep public class * extends android.app.Application
@@ -75,22 +75,22 @@ volatile <fields>;
 
 # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
 -keepclasseswithmembernames class * {
-native <methods>;
+ native <methods>;
 }
 
 -keep public class * extends android.view.View {
-public <init>(android.content.Context);
-public <init>(android.content.Context, android.util.AttributeSet);
-public <init>(android.content.Context, android.util.AttributeSet, int);
-public void set*(...);
+ public <init>(android.content.Context);
+ public <init>(android.content.Context, android.util.AttributeSet);
+ public <init>(android.content.Context, android.util.AttributeSet, int);
+ public void set*(...);
 }
 
 -keepclasseswithmembers class * {
-public <init>(android.content.Context, android.util.AttributeSet);
+ public <init>(android.content.Context, android.util.AttributeSet);
 }
 
 -keepclasseswithmembers class * {
-public <init>(android.content.Context, android.util.AttributeSet, int);
+ public <init>(android.content.Context, android.util.AttributeSet, int);
 }
 
 #-keepclassmembers class * extends android.app.Activity {
@@ -107,9 +107,9 @@ public <init>(android.content.Context, android.util.AttributeSet, int);
 # public static final android.os.Parcelable$Creator *;
 #}
 
--keepclassmembers class *.R$ {
-public static <fields>;
+-keepclassmembers class **.R$* {
+ public static <fields>;
 }
 
-#-keep class android.support.v4.app.* { ; }
-#-keep interface android.support.v4.app.* { ; }
+#-keep class android.support.v4.app.** { *; }
+#-keep interface android.support.v4.app.** { *; }
