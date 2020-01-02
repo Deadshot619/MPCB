@@ -298,7 +298,18 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                 mNavigator!!.onCheckInSuccess(it.message)
                 deleteImageFile(path)
             },
-            error = Consumer { checkError(it) })
+            error = Consumer {
+                if (!it.message.isNullOrEmpty()){
+                    if (it.message!!.contains("ENOENT")){
+                        mNavigator?.onError("Please click a Picture first.")
+                        dialogVisibility.value = false
+                    }else{
+                        checkError(it)
+                    }
+                }else{
+                    checkError(it)
+                }
+            })
         )
     }
 
