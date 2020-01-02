@@ -143,7 +143,7 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
 
         //Create a adapter that will be used to set in Spinner
         val adapter = ArrayAdapter<String>(
-            context, android.R.layout.simple_spinner_item, spinnerArray
+            context!!, android.R.layout.simple_spinner_item, spinnerArray
         )
 
         //Set User id of first user

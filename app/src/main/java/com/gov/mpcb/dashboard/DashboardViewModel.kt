@@ -58,7 +58,11 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
                 ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
                     Calendar.DAY_OF_MONTH
                 ).toString()
-            selectedCalender.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH) -> request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
+            selectedCalender.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH) ->
+                request.toDate =
+                    selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
+                    Calendar.MONTH) + 1).toString() + "-" + selectedCalender.getActualMaximum(
+                    Calendar.DAY_OF_MONTH).toString()
             else -> mNavigator!!.showAlert("Future Date Selected!")
         }
 
