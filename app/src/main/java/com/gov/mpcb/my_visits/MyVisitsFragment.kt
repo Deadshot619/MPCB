@@ -40,6 +40,7 @@ import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.visit_report.VisitReportFragment
 import java.util.*
 
+
 class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
     MyVisitsNavigator, DatePickerDialog.OnDateSetListener {
 
@@ -396,9 +397,22 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
         permissions: Array<String>,
         grantResults: IntArray
     ) {
-
-        if (requestCode == 100) {
-            openCheckinDialog()
+        when (requestCode) {
+            100 -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    openCheckinDialog()
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    showAlert("You need to accept this permission to check in!")
+                }
+                return
+            }
         }
     }
 }
