@@ -70,8 +70,12 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        val calender = Calendar.getInstance().apply {
+            set(year, month, dayOfMonth)
+        }
+
         fromDate = "$year-$month-${dayOfMonth + 1}"
-        toDate = "$year-$month-${dayOfMonth + 31}"
+        toDate = "$year-$month-${calender.getActualMaximum(Calendar.DAY_OF_MONTH)}"
 
         //Set Year & Month values in MonthYearPickerDialog
         MonthYearPickerDialog.run {
