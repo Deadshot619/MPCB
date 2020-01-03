@@ -46,6 +46,8 @@ class OMSAmbientAirViewModel : BaseViewModel<OMSAmbientAirNavigator>() {
         val parameterList = arrayListOf<String>()
         val prescribedValueList = arrayListOf<String>()
         for (parentItem in data) {
+            parentItem.jvsAirSourceParameter.clear()
+            parentItem.jvsAirSourceStdPrescribed.clear()
             for (childItem in parentItem.ambientAirChild) {
                 parameterList.add(childItem.parameter)
                 prescribedValueList.add(childItem.prescribedValue)

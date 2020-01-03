@@ -46,7 +46,10 @@ class LastJVSViewModel : BaseViewModel<LastJVSNavigator>() {
         val data = sourceList.value!!
         val parameterList = arrayListOf<String>()
         val prescribedValueList = arrayListOf<String>()
+
         for (parentItem in data) {
+            parentItem.jvsWaterSourceParameter.clear()
+            parentItem.jvsWaterSourceStdPrescribed.clear()
             for (childItem in parentItem.lastJvsChild) {
                 parameterList.add(childItem.parameter)
                 prescribedValueList.add(childItem.prescribedValue)

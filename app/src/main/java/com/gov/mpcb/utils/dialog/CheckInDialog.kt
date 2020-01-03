@@ -254,6 +254,7 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
                             }
                             .show()
 
+
                     } else {
                         showMessage("You need to accept this permission to take picture")
                     }
