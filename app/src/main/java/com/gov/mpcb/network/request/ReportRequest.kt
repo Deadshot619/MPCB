@@ -761,12 +761,15 @@ class RoutineReportHazardousWaste : BaseObservable() {
 
     @SerializedName("hazardous_waste_quantity")
     @Expose
-    var hazardousWasteQuantity: Int = 0
+    var hazardousWasteQuantity: Int = -1
     var hazardousWasteQuantityString: String = ""
-        @Bindable get() = hazardousWasteQuantity.toString()
+        @Bindable get() = if (hazardousWasteQuantity < 0) "" else hazardousWasteQuantity.toString()
         set(value) {
-            field = value
-            hazardousWasteQuantity = value.parseToInt()
+            if (value == "") {
+                field = value
+                hazardousWasteQuantity = -1
+            }else
+                hazardousWasteQuantity = value.parseToInt()
             notifyPropertyChanged(BR.hazardousWasteQuantityString)
         }
 
@@ -780,62 +783,87 @@ class RoutineReportHazardousWaste : BaseObservable() {
         }
     @SerializedName("hw_actual_disposal")
     @Expose
-    var hwActualDisposal: Int = 0
+    var hwActualDisposal: Int = -1
     var hwActualDisposalString: String = ""
-        @Bindable get() = hwActualDisposal.toString()
+        @Bindable get() =
+            if (hwActualDisposal < 0) "" else hwActualDisposal.toString()
         set(value) {
-            field = value
-            hwActualDisposal = value.parseToInt()
+            if (value == "") {
+                field = value
+                hwActualDisposal = -1
+            }else
+                hwActualDisposal = value.parseToInt()
             notifyPropertyChanged(BR.hwActualDisposalString)
         }
     @SerializedName("hw_form_disposal")
     @Expose
-    var hwFormDisposal: Int = 0
+    var hwFormDisposal: Int = -1
     var hwFormDisposalString: String = ""
-        @Bindable get() = hwFormDisposal.toString()
+        @Bindable get() =
+            if (hwFormDisposal < 0) "" else hwFormDisposal.toString()
         set(value) {
-            field = value
-            hwFormDisposal = value.parseToInt()
+            if (value == "") {
+                field = value
+                hwFormDisposal = -1
+            }else
+                hwFormDisposal = value.parseToInt()
             notifyPropertyChanged(BR.hwFormDisposalString)
         }
     @SerializedName("hw_form_cswtsdf")
     @Expose
-    var hwFormCswtsdf: Int = 0
+    var hwFormCswtsdf: Int = -1
     var hwFormCswtsdfString: String = ""
-        @Bindable get() = hwFormCswtsdf.toString()
+        @Bindable get() =
+            if (hwFormCswtsdf < 0) "" else hwFormCswtsdf.toString()
         set(value) {
-            field = value
-            hwFormCswtsdf = value.parseToInt()
+            if (value == "") {
+                field = value
+                hwFormCswtsdf = -1
+            }else
+                hwFormCswtsdf = value.parseToInt()
             notifyPropertyChanged(BR.hwFormCswtsdfString)
         }
     @SerializedName("hw_form_co_processing")
     @Expose
-    var hwFormCoProcessing: Int = 0
+    var hwFormCoProcessing: Int = -1
     var hwFormCoProcessingString: String = ""
-        @Bindable get() = hwFormCoProcessing.toString()
+        @Bindable get() =
+            if (hwFormCoProcessing < 0 ) "" else hwFormCoProcessing.toString()
         set(value) {
-            field = value
-            hwFormCoProcessing = value.parseToInt()
+            if (value == "") {
+                field = value
+                hwFormCoProcessing = -1
+            }else
+                hwFormCoProcessing = value.parseToInt()
             notifyPropertyChanged(BR.hwFormCoProcessingString)
         }
     @SerializedName("hw_disposed_actualuser")
     @Expose
-    var hwDisposedActualuser: Int = 0
+    var hwDisposedActualuser: Int = -1
     var hwDisposedActualuserString: String = ""
-        @Bindable get() = hwDisposedActualuser.toString()
+        @Bindable get() =
+            if (hwDisposedActualuser < 0) "" else hwDisposedActualuser.toString()
         set(value) {
-            field = value
-            hwDisposedActualuser = value.parseToInt()
+            if (value == "") {
+                field = value
+                hwDisposedActualuser = -1
+            }else
+                hwDisposedActualuser = value.parseToInt()
             notifyPropertyChanged(BR.hwDisposedActualuserString)
         }
     @SerializedName("hw_disposal_quantity")
     @Expose
-    var hwDisposalQuantity: Int = 0
+    var hwDisposalQuantity: Int = -1
     var hwDisposalQuantityString: String = ""
-        @Bindable get() = hwDisposalQuantity.toString()
+        @Bindable get() =
+            if (hwDisposalQuantity < 0) "" else hwDisposalQuantity.toString()
         set(value) {
-            field = value
-            hwDisposalQuantity = value.parseToInt()
+            if (value == ""){
+                field = value
+                hwDisposalQuantity = -1
+            }else{
+                hwDisposalQuantity = value.parseToInt()
+            }
             notifyPropertyChanged(BR.hwDisposalQuantityString)
         }
     @SerializedName("hw_disposal_date")
@@ -867,12 +895,16 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
 
     @SerializedName("nhw_quantity")
     @Expose
-    var nhwQuantity: Int = 0
+    var nhwQuantity: Int = -1
     var nhwQuantityString: String = ""
-        @Bindable get() = nhwQuantity.toString()
+        @Bindable get() =
+            if (nhwQuantity < 0) "" else nhwQuantity.toString()
         set(value) {
-            field = value
-            nhwQuantity = value.parseToInt()
+            if (value == "") {
+                field = value
+                nhwQuantity = -1
+            }else
+                nhwQuantity = value.parseToInt()
             notifyPropertyChanged(BR.nhwQuantityString)
         }
 
@@ -896,23 +928,31 @@ class RoutineReportNonHazardousWaste : BaseObservable() {
 
     @SerializedName("nhw_disposal_quantity")
     @Expose
-    var nhwDisposalQuantity: Int = 0
+    var nhwDisposalQuantity: Int = -1
     var nhwDisposalQuantityString: String = ""
-        @Bindable get() = nhwDisposalQuantity.toString()
+        @Bindable get() =
+            if (nhwDisposalQuantity < 0) "" else nhwDisposalQuantity.toString()
         set(value) {
-            field = value
-            nhwDisposalQuantity = value.parseToInt()
+            if (value == "") {
+                field = value
+                nhwDisposalQuantity = -1
+            }else
+                nhwDisposalQuantity = value.parseToInt()
             notifyPropertyChanged(BR.nhwDisposalQuantityString)
         }
 
     @SerializedName("nhw_actualdisposal")
     @Expose
-    var nhwActualdisposal: Int = 0
+    var nhwActualdisposal: Int = -1
     var nhwActualdisposalString: String = ""
-        @Bindable get() = nhwActualdisposal.toString()
+        @Bindable get() =
+            if (nhwActualdisposal < 0) "" else nhwActualdisposal.toString()
         set(value) {
-            field = value
-            nhwActualdisposal = value.parseToInt()
+            if (value == "") {
+                field = value
+                nhwActualdisposal = -1
+            }else
+                nhwActualdisposal = value.parseToInt()
             notifyPropertyChanged(BR.nhwActualdisposalString)
         }
 
