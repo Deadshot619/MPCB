@@ -147,9 +147,11 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     override fun setSpinnerData(users: List<Users>) {
         //create spinnerArray that will hold data from Api
         val spinnerArray = ArrayList<String>()
-        for (element in users)
-            spinnerArray.add(element.userName)
-
+        for (element in users) {
+            if (!element.userName.contains("ALL")) {
+                spinnerArray.add(element.userName)
+            }
+        }
         //Create a adapter that will be used to set in Spinner
         val adapter = ArrayAdapter<String>(
             context!!, android.R.layout.simple_spinner_item, spinnerArray
