@@ -6,8 +6,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
+import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
+import com.google.android.material.snackbar.Snackbar
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentAdditionalInfoBinding
@@ -269,6 +271,53 @@ class AdditionalInfoFragment :
         }
     }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            100 -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    pickFile()
+                } else { // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+
+                    // user rejected the permission
+                    val showRationale= shouldShowRequestPermissionRationale( Manifest.permission.READ_EXTERNAL_STORAGE)
+                    if (! showRationale) {
+                        // user also CHECKED "never ask again"
+                        // you can either enable some fall back,
+                        // disable features of your app
+                        // or open another dialog explaining
+                        // again the permission and directing to
+                        // the app setting
+                        Snackbar.make(
+                            mBinding.root,
+                            "Grant Storage permission to continue!",
+                            Snackbar.LENGTH_LONG
+                        )
+                            .setAction("Open"){
+                                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                                val uri = Uri.fromParts("package", context?.packageName, null);
+                                intent.data = uri
+                                startActivity(intent)
+                            }
+                            .show()
+
+                    } else {
+                        showMessage("You need to accept this permission to continue!")
+                    }
+                }
+                return
+            }
+        }
+    }
 
 
 
