@@ -127,7 +127,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                             value = Gson().toJson(ReportRequest().apply { data = it.data })
                         )
 
-                        mNavigator?.showAlert(it.message)
+//                        mNavigator?.showAlert(it.message)
                     }
                 },
                 error = Consumer {
