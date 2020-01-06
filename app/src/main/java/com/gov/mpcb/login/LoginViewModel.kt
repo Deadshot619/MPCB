@@ -12,6 +12,7 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.constants.Constants.Companion.FIREBASE_TOKEN
 import com.gov.mpcb.utils.md5
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
+import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.setStringPreference
 import io.reactivex.functions.Consumer
 
 
@@ -80,7 +81,7 @@ class LoginViewModel : BaseViewModel<LoginNavigator>() {
                     //If token is not null, then save it in Shared Pref.
                     if (token != null){
                         login(loginRequest, token)
-                        PreferencesHelper.setStringPreference(FIREBASE_TOKEN, token)
+                        setStringPreference(FIREBASE_TOKEN, token)
                     }else{
                         mNavigator?.onErrorOccured("Could not fetch token.")
                     }

@@ -8,7 +8,9 @@ import com.gov.mpcb.network.request.UserListHodRequest
 import com.gov.mpcb.network.response.DashboardDataResponse
 import com.gov.mpcb.network.response.LoginResponse
 import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.constants.Constants.Companion.FIREBASE_TOKEN
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
+import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.getStringPreference
 import io.reactivex.functions.Consumer
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,6 +40,9 @@ class DashboardViewModel : BaseViewModel<DashboardNavigator>() {
                     DashboardUtils.dashboardSpinnerSelectedUserId.toString()
             else
                 userModel.userId.toString()
+
+        //Get device token from shared Pref
+        request.deviceToken = getStringPreference(FIREBASE_TOKEN)!!
 
         request.fromDate = fromDate
 

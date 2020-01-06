@@ -21,4 +21,7 @@ class DashboardDataRequest {
     @SerializedName("get_jurisdiction_stat")
     var jurisdictionStat = 0
 
+    @Expose
+    @SerializedName("DeviceToken")
+    var deviceToken = ""
 }

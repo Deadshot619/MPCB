@@ -3,8 +3,10 @@ package com.gov.mpcb.service
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.gov.mpcb.utils.constants.Constants.Companion.FIREBASE_TOKEN
 import com.gov.mpcb.utils.notificationManager
 import com.gov.mpcb.utils.sendNotification
+import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.setStringPreference
 
 class MyFirebaseMessagingService : FirebaseMessagingService(){
 
@@ -23,7 +25,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService(){
     }
 
     override fun onNewToken(p0: String) {
-
+        //Save new firebase token in Shared Pref
+        setStringPreference(FIREBASE_TOKEN, p0)
     }
 
 }
