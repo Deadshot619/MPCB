@@ -329,4 +329,28 @@ object DataProvider : RemoteDataProvider {
         noInternetAvailable(error)
         getDefaultDisposable()
     }
+
+
+
+    /**
+     * Method to get Task Details of a user
+     */
+    override fun getTaskDetails(
+        request: ViewTaskDetailsRequest,
+        success: Consumer<ViewTaskDetailsResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if(isNetworkAvailable()){
+        mServices.getTaskDetails(request = request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer {
+                    success.accept(it)
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 }

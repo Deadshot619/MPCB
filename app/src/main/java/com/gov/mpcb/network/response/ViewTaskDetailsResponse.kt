@@ -3,7 +3,7 @@ package com.gov.mpcb.network.response
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ViewTaskDetailsReponse(
+data class ViewTaskDetailsResponse(
 
     @Expose @SerializedName("status") var status: Boolean,
     @Expose @SerializedName("message") var message: String = "",
