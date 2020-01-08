@@ -69,4 +69,9 @@ interface APIInterface {
     //Check Application Version
     @POST("check_app_version")
     fun checkAppVersion(@Body request: AppVersionRequest): Single<AppVersionResponse>
+
+    //View Task Details
+    @POST("view_task_details")
+    fun getTaskDetails(@Body request: ViewTaskDetailsRequest): Single<ViewTaskDetailsReponse>
+
 }
