@@ -49,6 +49,15 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
     private lateinit var _year_3: Number
     private lateinit var _month_3: Number
 
+    //variable to obtain device width
+    private val _displayMetrics
+        get() = context?.resources?.displayMetrics
+
+    private val _dpWidth
+        get() = if (_displayMetrics != null) _displayMetrics!!.widthPixels / _displayMetrics!!.density else 0.0F
+
+    private val MIN_DEVICE_WIDTH = 400
+
     /**
      * Method to set 'Month' & 'Year' to Date variables.
      */
@@ -308,6 +317,10 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
             tvYearFour.text =
                 calendar.get(YEAR).toString()
 
+            //If device width is less than specified width, then hide the 4th date layout
+            if (_dpWidth < MIN_DEVICE_WIDTH){
+                mBinding.monthLayFour.visibility = View.GONE
+            }
         }
     }
 
