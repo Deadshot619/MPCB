@@ -183,6 +183,7 @@
                         android:layout_marginTop="4dp"
                         android:textColor="@color/dark_grey"
                         android:textSize="16sp"
+                        app:userAssignedNames="@{model.usersAssignedNames}"
                         app:layout_constraintStart_toStartOf="@+id/appCompatTextView3"
                         app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3"
                         android:text="Lorem Ipsum Is Simply Text"
