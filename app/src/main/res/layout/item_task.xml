@@ -35,12 +35,12 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
+                    android:text="@{model.subject}"
                     android:textColor="@color/dark_grey"
                     android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:text="@{model.subject}"
                     tools:text="Lorem Ipsum Is Simply Text" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -48,31 +48,35 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:text="@{model.description}"
                     android:textColor="@color/light_grey"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="@+id/tv_task_title"
                     app:layout_constraintStart_toStartOf="@+id/tv_task_title"
                     app:layout_constraintTop_toBottomOf="@+id/tv_task_title"
-                    android:text="@{model.description}"
                     tools:text="Lorem Ipsum Is Simply Text Lorem Ipsum Is Simply Text Lorem Ipsum Is Simply Text" />
 
 
             <LinearLayout
                     android:id="@+id/layLinDate"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
                     android:orientation="vertical"
-                    app:layout_constraintStart_toStartOf="@+id/tv_task_description"
+                    app:layout_constraintEnd_toStartOf="@+id/layLinTime"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_task_description">
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:text="Date"
                         android:textColor="@color/light_grey"
                         android:textSize="14sp"
-                        android:text="Date"
                         tools:text="Date" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -80,21 +84,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:text="01/04/2018"
                         android:textColor="@color/dark_grey"
                         android:textSize="16sp"
-                        android:text="01/04/2018"
                         tools:text="01/04/2018" />
             </LinearLayout>
 
             <LinearLayout
                     android:id="@+id/layLinTime"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
                     android:layout_toEndOf="@+id/layLinDate"
                     android:layout_toRightOf="@+id/layLinDate"
                     android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_task_status"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/layLinDate"
                     app:layout_constraintTop_toTopOf="@+id/layLinDate">
 
@@ -102,9 +108,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:text="Time"
                         android:textColor="@color/light_grey"
                         android:textSize="14sp"
-                        android:text="Time"
                         tools:text="Time" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -113,9 +119,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginTop="4dp"
+                        android:text="11:30 AM"
                         android:textColor="@color/dark_grey"
                         android:textSize="16sp"
-                        android:text="11:30 AM"
                         tools:text="11:30 AM" />
             </LinearLayout>
 
@@ -123,8 +129,8 @@
                     android:id="@+id/tv_task_status"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
                     android:layout_toEndOf="@+id/layLinTime"
                     android:layout_toRightOf="@+id/layLinTime"
                     android:background="@drawable/shape_industry_background_green"
@@ -136,6 +142,7 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/view"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/layLinTime"
                     app:layout_constraintTop_toTopOf="@+id/layLinTime"
                     app:layout_constraintVertical_bias="1.0"
@@ -146,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.2dp"
                     android:layout_marginTop="8dp"
-                    android:background="@color/dark_grey"
+                    android:background="@color/bg_grey"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layLinTime" />
@@ -168,12 +175,12 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
+                        android:text="Task assigned to"
                         android:textColor="@color/light_grey"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:text="Task assigned to"
                         tools:text="Task assigned to" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -181,13 +188,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:text="Lorem Ipsum Is Simply Text"
                         android:textColor="@color/dark_grey"
                         android:textSize="16sp"
-                        app:userAssignedNames="@{model.usersAssignedNames}"
                         app:layout_constraintStart_toStartOf="@+id/appCompatTextView3"
                         app:layout_constraintTop_toBottomOf="@+id/appCompatTextView3"
-                        android:text="Lorem Ipsum Is Simply Text"
-                tools:text="Lorem Ipsum Is Simply Text" />
+                        app:userAssignedNames="@{model.usersAssignedNames}"
+                        tools:text="Lorem Ipsum Is Simply Text" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_task_initiated"
@@ -196,12 +203,12 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
+                        android:text="Task initiated by"
                         android:textColor="@color/light_grey"
                         android:textSize="14sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/tv_task_assigned_to"
                         app:layout_constraintTop_toBottomOf="@+id/tv_task_assigned_to"
-                        android:text="Task initiated by"
                         tools:text="Task initiated by" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -211,12 +218,12 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
+                        android:text="@{model.initiatedByName}"
                         android:textColor="@color/dark_grey"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toStartOf="@+id/appCompatImageView2"
                         app:layout_constraintStart_toStartOf="@+id/tv_task_initiated"
                         app:layout_constraintTop_toBottomOf="@+id/tv_task_initiated"
-                        android:text="@{model.initiatedByName}"
                         tools:text="Lorem Ipsum Is Simply Text" />
 
 
