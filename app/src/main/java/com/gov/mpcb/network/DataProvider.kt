@@ -336,8 +336,8 @@ object DataProvider : RemoteDataProvider {
      * Method to get Task Details of a user
      */
     override fun getTaskDetails(
-        request: ViewTaskDetailsRequest,
-        success: Consumer<ViewTaskDetailsResponse>,
+        request: TaskDetailsRequest,
+        success: Consumer<TaskDetailsResponse>,
         error: Consumer<Throwable>
     ): Disposable = if(isNetworkAvailable()){
         mServices.getTaskDetails(request = request)

@@ -114,8 +114,8 @@ interface RemoteDataProvider {
      * Method to get Task Details of a user
      */
     fun getTaskDetails(
-        request: ViewTaskDetailsRequest,
-        success: Consumer<ViewTaskDetailsResponse>,
+        request: TaskDetailsRequest,
+        success: Consumer<TaskDetailsResponse>,
         error: Consumer<Throwable>
     ): Disposable
 }

@@ -3,14 +3,14 @@ package com.gov.mpcb.network.response
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class ViewTaskDetailsResponse(
+data class TaskDetailsResponse(
 
-    @Expose @SerializedName("status") var status: Boolean,
+    @Expose @SerializedName("status") var status: Int,
     @Expose @SerializedName("message") var message: String = "",
-    @Expose @SerializedName("data") var data: List<Data>
+    @Expose @SerializedName("data") var data: List<TaskDetailsData>
 )
 
-data class Data(
+data class TaskDetailsData(
     @Expose @SerializedName("closed_on") val closedOn: String,
     @Expose @SerializedName("created_on") val createdOn: String,
     @Expose @SerializedName("description") val description: String,

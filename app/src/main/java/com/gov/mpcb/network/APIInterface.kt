@@ -72,6 +72,6 @@ interface APIInterface {
 
     //View Task Details
     @POST("view_task_details")
-    fun getTaskDetails(@Body request: ViewTaskDetailsRequest): Single<ViewTaskDetailsResponse>
+    fun getTaskDetails(@Body request: TaskDetailsRequest): Single<TaskDetailsResponse>
 
 }
