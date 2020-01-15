@@ -15,6 +15,12 @@
 <!--    Read External Storage   -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
+
+    <supports-screens android:smallScreens="true"
+            android:normalScreens="true"
+            android:largeScreens="true"
+            android:xlargeScreens="true"/>
+
     <application
             android:name="com.gov.mpcb.base.MPCBApp"
             android:allowBackup="true"
