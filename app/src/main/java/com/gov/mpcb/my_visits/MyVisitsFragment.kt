@@ -392,7 +392,10 @@ class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel
     private fun openCheckinDialog() {
         mViewModel.getCurrentLocation()
         dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
-        dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)
+        dialogFragment.show(
+            parentFragmentManager,
+            MyVisitsFragment::class.java.simpleName
+        )
     }
 
 

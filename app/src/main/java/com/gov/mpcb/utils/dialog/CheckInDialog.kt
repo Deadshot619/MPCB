@@ -86,6 +86,9 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
         if (dialog != null && dialog!!.window != null)
             dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
 
+        //makes Dialog not close when clicked outside of it.
+        isCancelable = false
+
         return dialogBinding.root
     }
 
@@ -97,51 +100,49 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
 
         //if not checked in
         if (model.checkInStatus != 1) {
-            dialogBinding.model!!.apply {
-                //                latitude = PreferencesHelper.getCurrentLatitude()
-//                longitude = PreferencesHelper.getCurrentLongitude()
+            dialogBinding.run {
 
                 //Observe Latitude from the viewmodel
                 mViewModel.latitude.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
                     it?.let {
-                        latitude = it
+                        model?.latitude = it
 
                         //Set latutude value to text
-                        dialogBinding.latitudeEd.setText(it)
+                        latitudeEd.setText(it)
                     }
                 })
 
                 //Observe Longitude from the viewmodel
                 mViewModel.longitude.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
                     it?.let {
-                        longitude = it
+                        model?.longitude = it
 
                         //Set longitude value to text
-                        dialogBinding.longitudeEd.setText(it)
+                        longitudeEd.setText(it)
                     }
                 })
                 //Show Check in Button
-                dialogBinding.checkInBtn.visibility = View.VISIBLE
-            }
+                checkInBtn.visibility = View.VISIBLE
 
-            //Set listener to Check-In button
-            dialogBinding.checkInBtn.setOnClickListener {
-                //Check if fields are field correctly
-                if (checkFieldsFilled())
-                    mViewModel.onSubmitClicked(
-                        getStringPreference(IMAGE_PATH)!!,
-                        model.visitSchedulerId
-                    )
-            }
+                //Set listener to Check-In button
+                checkInBtn.setOnClickListener {
+                    //Check if fields are field correctly
+                    if (checkFieldsFilled())
+                        mViewModel.onSubmitClicked(
+                            getStringPreference(IMAGE_PATH)!!,
+                            model!!.visitSchedulerId
+                        )
+                }
 
-            //Set listener to Camera button
-            dialogBinding.appCompatImageView.setOnClickListener {
-                val cameraPermission =
-                    PermissionUtils.checkPermision(activity!!, Manifest.permission.CAMERA)
-                if (cameraPermission)
-                    startCamera()
-                else
-                    requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_CODE)
+                //Set listener to Camera button
+                appCompatImageView.setOnClickListener {
+                    val cameraPermission =
+                        PermissionUtils.checkPermision(activity!!, Manifest.permission.CAMERA)
+                    if (cameraPermission)
+                        startCamera()
+                    else
+                        requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_CODE)
+                }
             }
         } else {//if already checked in
             mViewModel.onCheckInfoClicked(model) { data ->
