@@ -18,7 +18,7 @@ object LocationHelper {
                 val currentLocation = task.result
                 if (currentLocation != null) {
                     PreferencesHelper.setCurrentLatitude(currentLocation.latitude.toString())
-                    PreferencesHelper.setCurrentLongitude(currentLocation.latitude.toString())
+                    PreferencesHelper.setCurrentLongitude(currentLocation.longitude.toString())
                 }
             }
         }

@@ -1,8 +1,12 @@
 package com.gov.mpcb.my_visits
 
+import android.os.Looper
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.gson.Gson
 import com.gov.mpcb.base.BaseViewModel
@@ -18,7 +22,9 @@ import com.gov.mpcb.network.response.LoginResponse
 import com.gov.mpcb.network.response.MyVisitModel
 import com.gov.mpcb.network.response.MyVisitResponse
 import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.constants.Constants.Companion.IMAGE_PATH
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
+import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.setStringPreference
 import io.reactivex.functions.Consumer
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -30,10 +36,28 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     private val visitList = MutableLiveData<MyVisitResponse>()
     fun getVisitList() = visitList
 
+    //Variable to get an instance on 'FusedLocationProviderClient'
+    private val mFusedLocationProviderClient by lazy {
+        LocationServices.getFusedLocationProviderClient(MPCBApp.instance)
+    }
+
     private val user by lazy {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
         Gson().fromJson(user, LoginResponse::class.java)
     }
+
+    //Variable to store Latitude of the user
+    private val _latitude = MutableLiveData<String>()
+    //This variable will be used to get the private data associated with it in other class
+    val latitude: LiveData<String>
+        get() = _latitude
+
+    //Variable to store Longitude of the user
+    private val _longitude = MutableLiveData<String>()
+    //This variable will be used to get the private data associated with it in other class
+    val longitude: LiveData<String>
+        get() = _longitude
+
 
     /**
      * This method is used to get 'My Visits' data from server of the given month & year.
@@ -80,15 +104,17 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 //        }
         dialogVisibility.value = true
         dialogMessage.value = "Fetching List..."
-        mDisposable.add(DataProvider.getVisitList(
-            request = request,
-            success = Consumer {
-                dialogVisibility.value = false
-                visitList.value = it
-            },
-            error = Consumer {
-                checkError(it)
-            }))
+        mDisposable.add(
+            DataProvider.getVisitList(
+                request = request,
+                success = Consumer {
+                    dialogVisibility.value = false
+                    visitList.value = it
+                },
+                error = Consumer {
+                    checkError(it)
+                })
+        )
     }
 
     /**
@@ -137,22 +163,6 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         )
     }
 
-    fun getCurrentLocation() {
-        val mFusedLocationProviderClient: FusedLocationProviderClient =
-            LocationServices.getFusedLocationProviderClient(MPCBApp.instance)
-
-        val location = mFusedLocationProviderClient.lastLocation
-        location.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val currentLocation = task.result
-                if (currentLocation != null) {
-                    PreferencesHelper.setCurrentLatitude(currentLocation.latitude.toString())
-                    PreferencesHelper.setCurrentLongitude(currentLocation.longitude.toString())
-                }
-            }
-        }
-    }
-
     /**
      * Method to run on click of Reports icon
      */
@@ -168,7 +178,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                  * HOD can only view other user's Data & not Edit them.
                  */
                 if (user.hasSubbordinateOfficers == 1)
-                    if (user.userId != myVisitsSpinnerSelectedUserId){
+                    if (user.userId != myVisitsSpinnerSelectedUserId) {
                         mNavigator?.showAlert("HOD user cannot fill other user's data")
                         return
                     }
@@ -181,7 +191,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                  * HOD can only view other user's Data & not Edit them.
                  */
             if (user.hasSubbordinateOfficers == 1)
-                if (user.userId != myVisitsSpinnerSelectedUserId){
+                if (user.userId != myVisitsSpinnerSelectedUserId) {
                     mNavigator?.showAlert("HOD user cannot fill other user's data")
                     return
                 }
@@ -192,38 +202,37 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     fun onCheckInClick(model: MyVisitModel) {
         if (model.checkInStatus != 1) {
             if (user.hasSubbordinateOfficers == 1)
-                if (user.userId != myVisitsSpinnerSelectedUserId){
+                if (user.userId != myVisitsSpinnerSelectedUserId) {
                     mNavigator?.showAlert("HOD user cannot fill other user's data")
                     return
                 }
             mNavigator!!.onCheckInClicked(model)
-        }else {
+        } else {
             // mNavigator!!.onError("Already Checked In!")
-             mNavigator!!.onCheckInClicked(model)
+            mNavigator!!.onCheckInClicked(model)
 
-           /* val request = MyVisitRequest()
-            request.userId = user.userId.toString()
-            request.visitId = model.visitSchedulerId.toString()
-            request.requestId = ""
+            /* val request = MyVisitRequest()
+             request.userId = user.userId.toString()
+             request.visitId = model.visitSchedulerId.toString()
+             request.requestId = ""
 
-            dialogVisibility.value = true
-            dialogMessage.value = "Fetching CheckIn info ..."
-            mDisposable.add(DataProvider.checkInInfo(request, Consumer {
-                //dialogVisibility.value = true
-               // mNavigator!!.onCheckInSuccess(it.message)
-                mNavigator!!.onAlreadyCheckedIn(it.data)
+             dialogVisibility.value = true
+             dialogMessage.value = "Fetching CheckIn info ..."
+             mDisposable.add(DataProvider.checkInInfo(request, Consumer {
+                 //dialogVisibility.value = true
+                // mNavigator!!.onCheckInSuccess(it.message)
+                 mNavigator!!.onAlreadyCheckedIn(it.data)
 
-            },
-                Consumer { checkError(it) }))*/
+             },
+                 Consumer { checkError(it) }))*/
         }
-       // mNavigator!!.onAlreadyCheckedIn(model)
-
+        // mNavigator!!.onAlreadyCheckedIn(model)
 
 
     }
 
 
-    fun onCheckInfoClicked(model: MyVisitModel, dataCall:(CheckInfoModel)->CheckInfoModel)  {
+    fun onCheckInfoClicked(model: MyVisitModel, dataCall: (CheckInfoModel) -> CheckInfoModel) {
 
         val request = MyVisitRequest().apply {
             userId =
@@ -237,22 +246,25 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
         dialogVisibility.value = true
         dialogMessage.value = "Fetching CheckIn info ..."
-        mDisposable.add(DataProvider.checkInInfo(request, Consumer {
-            dialogVisibility.value = false
-            dataCall(it.data)
-            //dialogVisibility.value = true
-            // mNavigator!!.onCheckInSuccess(it.message)
-           // mNavigator!!.onAlreadyCheckedIn( it.data)
-        },
-            Consumer { checkError(it) }))
+        mDisposable.add(
+            DataProvider.checkInInfo(request, Consumer {
+                dialogVisibility.value = false
+                dataCall(it.data)
+                //dialogVisibility.value = true
+                // mNavigator!!.onCheckInSuccess(it.message)
+                // mNavigator!!.onAlreadyCheckedIn( it.data)
+            },
+                Consumer { checkError(it) })
+        )
     }
 
     /**
      *  This method is used to delete file from directory
      */
-    private fun deleteImageFile(imagePath: String){
+    private fun deleteImageFile(imagePath: String) {
         //Delete image file from directory
         File(imagePath).deleteRecursively()
+        setStringPreference(IMAGE_PATH, "")
     }
 
     fun onSubmitClicked(
@@ -287,30 +299,31 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         dialogMessage.value = "Checking In..."
         dialogVisibility.value = true
         mNavigator!!.dismissCheckinDialog()
-        mDisposable.add(DataProvider.checkIn(
-            requestId = requestId,
-            userId = userId,
-            visitId = visitId,
-            latitude = latitude,
-            longitude = longitude,
-            selfieImagePart = selfieImagePart,
-            success = Consumer {
-                dialogVisibility.value = false
-                mNavigator!!.onCheckInSuccess(it.message)
-                deleteImageFile(path)
-            },
-            error = Consumer {
-                if (!it.message.isNullOrEmpty()){
-                    if (it.message!!.contains("ENOENT")){
-                        mNavigator?.onError("Please click a Picture first.")
-                        dialogVisibility.value = false
-                    }else{
+        mDisposable.add(
+            DataProvider.checkIn(
+                requestId = requestId,
+                userId = userId,
+                visitId = visitId,
+                latitude = latitude,
+                longitude = longitude,
+                selfieImagePart = selfieImagePart,
+                success = Consumer {
+                    dialogVisibility.value = false
+                    mNavigator!!.onCheckInSuccess(it.message)
+                    deleteImageFile(path)
+                },
+                error = Consumer {
+                    if (!it.message.isNullOrEmpty()) {
+                        if (it.message!!.contains("ENOENT")) {
+                            mNavigator?.onError("Please click a Picture first.")
+                            dialogVisibility.value = false
+                        } else {
+                            checkError(it)
+                        }
+                    } else {
                         checkError(it)
                     }
-                }else{
-                    checkError(it)
-                }
-            })
+                })
         )
     }
 
@@ -335,4 +348,72 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             error = Consumer { checkError(it) }
         ))
     }
+
+    /*
+     * FOLLOWING METHODS ARE USED TO RETRIEVE & SAVE LOCATION DATA
+     */
+    /**
+     * Method to set Latitude & Longitude in SharedPref & Live Data resp.
+     *
+     * @param latitude takes a double as [latitude]
+     * @param longitude takes a double as [longitude]
+     */
+    private fun setLatAndLong(latitude: Double, longitude: Double) {
+        PreferencesHelper.run {
+            setCurrentLatitude(latitude.toString())
+            setCurrentLongitude(longitude.toString())
+        }
+
+        _latitude.value = latitude.toString()
+        _longitude.value = longitude.toString()
+    }
+
+    /**
+     * Method to get Current Location of User
+     */
+    fun getCurrentLocation() {
+        mFusedLocationProviderClient.lastLocation.addOnSuccessListener { task ->
+            if (task != null) {
+                setLatAndLong(latitude = task.latitude, longitude = task.longitude)
+            } else { //if previous location data is not present request new one
+                requestNewLocationData()
+            }
+        }
+    }
+
+    /**
+     * Method to request new Location if no previous Location Data is present
+     */
+    private fun requestNewLocationData() {
+        //LocationRequest variable to be used to request location updates
+        val mLocationRequest = LocationRequest().apply {
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+            interval = 0
+            fastestInterval = 0
+            numUpdates = 1
+        }
+
+        //get locoation updates
+        mFusedLocationProviderClient.requestLocationUpdates(
+            mLocationRequest,
+            mLocationCallback,
+            Looper.myLooper()
+        )
+    }
+
+    /**
+     * This variable will be used to retrieve Location updates of the user
+     */
+    private val mLocationCallback = object : LocationCallback() {
+        override fun onLocationResult(p0: LocationResult?) {
+            p0?.lastLocation?.let {
+                setLatAndLong(
+                    latitude = it.latitude,
+                    longitude = it.longitude
+                )
+            }
+        }
+    }
+
 }
+

@@ -29,8 +29,10 @@ import com.gov.mpcb.my_visits.MyVisitsViewModel
 import com.gov.mpcb.network.response.CheckInfoModel
 import com.gov.mpcb.network.response.MyVisitModel
 import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.constants.Constants.Companion.IMAGE_PATH
 import com.gov.mpcb.utils.permission.PermissionUtils
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
+import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.getStringPreference
 import com.gov.mpcb.utils.showMessage
 import java.io.File
 import java.io.IOException
@@ -64,7 +66,7 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
         super.onStart()
         val dialog = dialog
         if (dialog != null && dialog.window != null) {
-            dialog.window!!.run{
+            dialog.window!!.run {
                 setLayout(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
@@ -87,8 +89,8 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
         return dialogBinding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         dialogBinding.model = model
         dialogBinding.viewModel = mViewModel
@@ -96,20 +98,40 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
         //if not checked in
         if (model.checkInStatus != 1) {
             dialogBinding.model!!.apply {
-                latitude = PreferencesHelper.getCurrentLatitude()
-                longitude = PreferencesHelper.getCurrentLongitude()
-                dialogBinding.latitudeEd.setText(PreferencesHelper.getCurrentLatitude())
-                dialogBinding.longitudeEd.setText(PreferencesHelper.getCurrentLongitude())
+                //                latitude = PreferencesHelper.getCurrentLatitude()
+//                longitude = PreferencesHelper.getCurrentLongitude()
+
+                //Observe Latitude from the viewmodel
+                mViewModel.latitude.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                    it?.let {
+                        latitude = it
+
+                        //Set latutude value to text
+                        dialogBinding.latitudeEd.setText(it)
+                    }
+                })
+
+                //Observe Longitude from the viewmodel
+                mViewModel.longitude.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+                    it?.let {
+                        longitude = it
+
+                        //Set longitude value to text
+                        dialogBinding.longitudeEd.setText(it)
+                    }
+                })
                 //Show Check in Button
                 dialogBinding.checkInBtn.visibility = View.VISIBLE
             }
 
             //Set listener to Check-In button
             dialogBinding.checkInBtn.setOnClickListener {
-                mViewModel.onSubmitClicked(
-                    PreferencesHelper.getStringPreference(Constants.IMAGE_PATH)!!,
-                    model.visitSchedulerId
-                )
+                //Check if fields are field correctly
+                if (checkFieldsFilled())
+                    mViewModel.onSubmitClicked(
+                        getStringPreference(IMAGE_PATH)!!,
+                        model.visitSchedulerId
+                    )
             }
 
             //Set listener to Camera button
@@ -136,14 +158,15 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
                             .apply(
                                 RequestOptions()
                                     .placeholder(R.drawable.loading_animation)
-                                    .error(R.drawable.ic_broken_image_black_24dp))
-                            .override(300,350)
+                                    .error(R.drawable.ic_broken_image_black_24dp)
+                            )
+                            .override(300, 350)
                             .into(dialogBinding.appCompatImageView)
 
                         dialogBinding.appCompatImageView.run {
                             layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-                            layoutParams.width= ViewGroup.LayoutParams.MATCH_PARENT
-                            setPadding(0,0,0,24)
+                            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+                            setPadding(0, 0, 0, 24)
                             isClickable = false
                         }
                     }
@@ -156,6 +179,27 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
 
         //Set listener
         dialogBinding.btnCancel.setOnClickListener { dismiss() }
+    }
+
+    /**
+     * Method to check if the the fields are filled correctly.
+     */
+    private fun checkFieldsFilled(): Boolean {
+        return when {
+            dialogBinding.latitudeEd.text.isNullOrEmpty() -> {
+                showMessage("Latitude is not filled")
+                false
+            }
+            dialogBinding.longitudeEd.text.isNullOrEmpty() -> {
+                showMessage("Longitude is not filled")
+                false
+            }
+            getStringPreference(IMAGE_PATH)!!.isNullOrEmpty() -> {
+                showMessage("Please Click a photo!")
+                false
+            }
+            else -> true
+        }
     }
 
     override fun getCheckInfo(): CheckInfoModel {
@@ -228,13 +272,14 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
                     startCamera()
                 } else if (grantResults.isNotEmpty()
                     && grantResults[0] == PackageManager.PERMISSION_DENIED
-                ){
+                ) {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
 
                     // user rejected the permission
-                    val showRationale= shouldShowRequestPermissionRationale( Manifest.permission.CAMERA)
-                    if (! showRationale) {
+                    val showRationale =
+                        shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)
+                    if (!showRationale) {
                         // user also CHECKED "never ask again"
                         // you can either enable some fall back,
                         // disable features of your app
@@ -246,7 +291,7 @@ class CheckInDialog(context: Context, val model: MyVisitModel, val mViewModel: M
                             "Grant Camera permission to continue!",
                             Snackbar.LENGTH_LONG
                         )
-                            .setAction("Open"){
+                            .setAction("Open") {
                                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                                 val uri = Uri.fromParts("package", context?.packageName, null);
                                 intent.data = uri
