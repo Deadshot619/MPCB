@@ -109,4 +109,13 @@ interface RemoteDataProvider {
         success: Consumer<AppVersionResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to get Task Details of a user
+     */
+    fun getTaskDetails(
+        request: TaskDetailsRequest,
+        success: Consumer<TaskDetailsResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }

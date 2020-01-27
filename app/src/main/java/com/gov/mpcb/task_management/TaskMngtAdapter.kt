@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemTaskBinding
+import com.gov.mpcb.network.response.TaskDetailsData
 
 class TaskMngtAdapter(
     val context: Context,
     private val viewModel: TaskManagementViewModel
 ) : RecyclerView.Adapter<TaskMngtAdapter.TaskMngtViewHolder>() {
 
-    private val visitList = ArrayList<String>()
+    //Takes Data of 'ViewTaskDetailsResponse'
+    private val tasksList = ArrayList<TaskDetailsData>()
+
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskMngtViewHolder {
@@ -20,19 +23,18 @@ class TaskMngtAdapter(
     }
 
     override fun onBindViewHolder(holder: TaskMngtViewHolder, position: Int) {
-//        val item = visitList[position]
-//        holder.itemBinding.model = item
+        val item = tasksList[position]
+        holder.itemBinding.model = item
 //        holder.itemBinding.viewModel = viewModel
-
     }
 
     override fun getItemId(position: Int) = position.toLong()
     override fun getItemViewType(position: Int) = position
-    override fun getItemCount() = 3
+    override fun getItemCount() = tasksList.size
 
-    fun updateList(list: ArrayList<String>) {
-        this.visitList.clear()
-        this.visitList.addAll(list)
+    fun updateList(list: ArrayList<TaskDetailsData>) {
+        this.tasksList.clear()
+        this.tasksList.addAll(list)
         notifyDataSetChanged()
     }
 
