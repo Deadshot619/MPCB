@@ -290,7 +290,7 @@ object DataProvider : RemoteDataProvider {
     /**
      * Method to get User List Task Data
      */
-    override fun getUserListData(
+    override fun getUserListTaskData(
         success: Consumer<ArrayList<UserListTaskResponse>>,
         error: Consumer<Throwable>
     ): Disposable = if(isNetworkAvailable()){

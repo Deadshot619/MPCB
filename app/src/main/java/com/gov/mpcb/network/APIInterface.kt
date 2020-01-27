@@ -62,7 +62,7 @@ interface APIInterface {
     @POST("get_subordinate_officer")
     fun getUserListForHods(@Body request: UserListHodRequest): Single<UserListHodResponse>
 
-    //Get User List Task
+    //Get Users Lists in Task Management
     @GET("get_user_list_task")
     fun getUserListTask(): Single<ArrayList<UserListTaskResponse>>
 
