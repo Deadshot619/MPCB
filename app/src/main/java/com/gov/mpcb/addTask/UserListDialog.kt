@@ -1,18 +1,25 @@
 package com.gov.mpcb.addTask
 
 import android.content.Context
+import android.graphics.Color.TRANSPARENT
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gov.mpcb.databinding.DialogUsersListTaskBinding
+import kotlin.math.roundToInt
 
-class UserListDialog (context: Context, val mViewModel: AddTaskViewModel): DialogFragment() {
+class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : DialogFragment() {
 
     //Inflate Layout
     private var dialogBinding = DialogUsersListTaskBinding.inflate(LayoutInflater.from(context))
+
+    private lateinit var mAdapter: UsersListsCBAdapter
+
+    private val mContext = context
+
 
     companion object {
         fun newInstance(
@@ -30,18 +37,82 @@ class UserListDialog (context: Context, val mViewModel: AddTaskViewModel): Dialo
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         if (dialog != null && dialog!!.window != null)
             dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
+
+
 
         return dialogBinding.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//
-//        dialogBinding.model = model
-//        dialogBinding.viewModel = mViewModel
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
+        setUpClickListeners()
+        setUpRecyclerView()
+
+    }
+
+    /**
+     * Method to Setup ClickListeners of the view
+     */
+    private fun setUpClickListeners() {
+        //Close Button
+        dialogBinding.ivBtnClose.setOnClickListener {
+            this.dismiss()
+        }
+    }
+
+    /**
+     * Method to setUp RecyclerView
+     */
+    private fun setUpRecyclerView() {
+        //Set adapter to recycler view
+        mAdapter = UsersListsCBAdapter(mContext)
+
+        dialogBinding.rvUserListData.run {
+            //Set divider to recycler view
+            addItemDecoration(
+                DividerItemDecoration(
+                    mContext,
+                    LinearLayoutManager.VERTICAL
+                )
+            )
+
+            //Set LayoutManager to recycler view
+            layoutManager = LinearLayoutManager(mContext)
+            setHasFixedSize(true)
+            //Set adapter to recycler view
+            adapter = mAdapter
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val dialog = dialog
+        if (dialog != null && dialog.window != null) {
+            dialog.window!!.run {
+                setLayout(
+                    ViewGroup.LayoutParams.MATCH_PARENT ,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+
+                setBackgroundDrawable(ColorDrawable(TRANSPARENT))
+                setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+            }
+        }
+
+        context?.let {
+            //Get Device's size in dp
+            val displayMetrics = it.resources.displayMetrics
+            val dpHeight = displayMetrics.heightPixels / displayMetrics.density
+//            val dpWidth = displayMetrics.widthPixels / displayMetrics.density
+
+            //Set recycler view's height as half of the device height
+            dialogBinding.rvUserListData.layoutParams.height = (dpHeight / 2).roundToInt()
+
+            //Update the list
+            mAdapter.updateList(mViewModel.userData)
+        }
     }
 }

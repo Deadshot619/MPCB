@@ -20,6 +20,7 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
     override fun getNavigator() = this@AddTaskFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
+    override fun showAlert(message: String) = showMessage(message)
 
     override fun onBinding() {
         //Set Toolbar Layout
@@ -39,6 +40,9 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
 
         //Set click Listeners To views
         setClickListeners()
+
+        //Fetch users data list
+        mViewModel.fetchUsersListData()
     }
 
     /**
