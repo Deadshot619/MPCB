@@ -7,9 +7,25 @@ import io.reactivex.functions.Consumer
 
 class AddTaskViewModel : BaseViewModel<AddTaskNavigator>(){
 
+    //variable to store Users Data from [UserListTaskResponse]
     private var _userData = ArrayList<UserListTaskResponse>()
     val userData: ArrayList<UserListTaskResponse>
         get() = _userData
+
+    //Variable to hold values of selected users
+    private var _userAddedList = setOf<Int>()
+    val userAddedList: Set<Int>
+        get() = _userAddedList
+
+    //Holds value of selected users temporarily
+    val selectedUsersTemp = mutableSetOf<Int>()
+
+    /**
+     * Method to add
+     */
+    fun addCheckedUserToListSet(list: Set<Int>){
+        _userAddedList = list
+    }
 
     /**
      * Method to fetch Users List Data for selection
@@ -20,7 +36,7 @@ class AddTaskViewModel : BaseViewModel<AddTaskNavigator>(){
                 success =  Consumer {
                     it?.let{
                         _userData = it
-                        mNavigator?.showAlert(it[0].name)
+//                        mNavigator?.showAlert(it[0].name)
                     }
                 },
                 error = Consumer {

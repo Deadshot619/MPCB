@@ -9,6 +9,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gov.mpcb.databinding.DialogUsersListTaskBinding
+import com.gov.mpcb.utils.CommonUtils.dpHeight
+import com.gov.mpcb.utils.showMessage
 import kotlin.math.roundToInt
 
 class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : DialogFragment() {
@@ -37,11 +39,9 @@ class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : Dialo
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (dialog != null && dialog!!.window != null)
-            dialog!!.window!!.requestFeature(Window.FEATURE_NO_TITLE)
-
-
-
+        if (dialog != null && dialog?.window != null) {
+            dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
+        }
         return dialogBinding.root
     }
 
@@ -50,6 +50,11 @@ class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : Dialo
 
         setUpClickListeners()
         setUpRecyclerView()
+        //Set recycler view's height as half of the device height
+        dialogBinding.rvUserListData.layoutParams.height = (dpHeight / 2).roundToInt()
+
+        //Update the list
+        mAdapter.updateList(mViewModel.userData)
 
     }
 
@@ -61,6 +66,16 @@ class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : Dialo
         dialogBinding.ivBtnClose.setOnClickListener {
             this.dismiss()
         }
+
+        //Add Button
+        dialogBinding.btnAdd.setOnClickListener {
+            if (mViewModel.selectedUsersTemp.isNullOrEmpty())
+                showMessage("Please select atleast one user")
+            else {
+                mViewModel.addCheckedUserToListSet(mViewModel.selectedUsersTemp)
+                dismiss()
+            }
+        }
     }
 
     /**
@@ -68,7 +83,7 @@ class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : Dialo
      */
     private fun setUpRecyclerView() {
         //Set adapter to recycler view
-        mAdapter = UsersListsCBAdapter(mContext)
+        mAdapter = UsersListsCBAdapter(mContext, mViewModel)
 
         dialogBinding.rvUserListData.run {
             //Set divider to recycler view
@@ -89,30 +104,16 @@ class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : Dialo
 
     override fun onStart() {
         super.onStart()
-        val dialog = dialog
-        if (dialog != null && dialog.window != null) {
-            dialog.window!!.run {
-                setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT ,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
 
-                setBackgroundDrawable(ColorDrawable(TRANSPARENT))
-                setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-            }
-        }
+        //Make Dialog bg transparent & width to match_parent
+        dialog?.window?.run {
+            setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT ,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
 
-        context?.let {
-            //Get Device's size in dp
-            val displayMetrics = it.resources.displayMetrics
-            val dpHeight = displayMetrics.heightPixels / displayMetrics.density
-//            val dpWidth = displayMetrics.widthPixels / displayMetrics.density
-
-            //Set recycler view's height as half of the device height
-            dialogBinding.rvUserListData.layoutParams.height = (dpHeight / 2).roundToInt()
-
-            //Update the list
-            mAdapter.updateList(mViewModel.userData)
+            setBackgroundDrawable(ColorDrawable(TRANSPARENT))
+            setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         }
     }
 }
