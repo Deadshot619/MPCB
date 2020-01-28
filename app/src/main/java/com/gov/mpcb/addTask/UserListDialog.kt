@@ -54,7 +54,7 @@ class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : Dialo
         dialogBinding.rvUserListData.layoutParams.height = (dpHeight / 2).roundToInt()
 
         //Update the list
-        mAdapter.updateList(mViewModel.userData)
+//        mAdapter.updateList(mViewModel.userData)
 
     }
 
@@ -98,7 +98,7 @@ class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : Dialo
             layoutManager = LinearLayoutManager(mContext)
             setHasFixedSize(true)
             //Set adapter to recycler view
-            adapter = mAdapter
+            adapter = mAdapter.apply { updateList(mViewModel.userData) }
         }
     }
 

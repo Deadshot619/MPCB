@@ -3,21 +3,48 @@ package com.gov.mpcb.addTask
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemUsersListTaskBinding
 import com.gov.mpcb.network.response.UserListTaskResponse
 
 class UsersListsCBAdapter(val context: Context, val mViewModel: AddTaskViewModel) : RecyclerView.Adapter<UsersListsCBAdapter.UsersListCBViewHolder>(){
 
+    //array that Holds users list value
     private val usersList = ArrayList<UserListTaskResponse>()
+
+    //set to hold values of selected users temporarily
+    private val selectedUsersTempAdapter = mViewModel.selectedUsersTemp
 
     /**
      * The [UsersListCBViewHolder] constructor takes the binding variable from the associated
      * [ItemUsersListTaskBinding] layout, which nicely gives it access to the full [UserListTaskResponse] information.
      */
     class UsersListCBViewHolder(val binding: ItemUsersListTaskBinding):
-        RecyclerView.ViewHolder(binding.root) {    }
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(
+            position: Int,
+            userData: UserListTaskResponse,
+            mViewModel: AddTaskViewModel
+        ) {
+            //Bind userdata in xml
+            binding.userData = userData
+
+            //Set listener to checkbox
+            binding.cbUserName.setOnClickListener {
+                if (binding.cbUserName.isChecked) {
+//                    Toast.makeText(MPCBApp.instance, "${userData.name} is checked", Toast.LENGTH_LONG).show()
+                    mViewModel.selectedUsersTemp.add(userData.value)
+                }else {
+//                    Toast.makeText(MPCBApp.instance, "${userData.name} is unChecked", Toast.LENGTH_LONG).show()
+                    mViewModel.selectedUsersTemp.remove(userData.value)
+                }
+            }
+        }
+
+
+
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsersListCBViewHolder {
@@ -33,23 +60,10 @@ class UsersListsCBAdapter(val context: Context, val mViewModel: AddTaskViewModel
     override fun onBindViewHolder(holder: UsersListCBViewHolder, position: Int) {
         val userData = usersList[position]
 
-        //Bind userdata in xml
-        holder.binding.userData = userData
-
-        //Set listener to checkbox
-        holder.binding.cbUserName.setOnClickListener {
-            if (holder.binding.cbUserName.isChecked) {
-                Toast.makeText(context, "${userData.name} is checked", Toast.LENGTH_LONG).show()
-                mViewModel.selectedUsersTemp.add(userData.value)
-            }else {
-                Toast.makeText(context, "${userData.name} is unChecked", Toast.LENGTH_LONG).show()
-                mViewModel.selectedUsersTemp.remove(userData.value)
-            }
-        }
-
         //Checks if the current user is previously checked, if yes it checks the user.
-        if (mViewModel.userAddedList.contains(userData.value))
-            holder.binding.cbUserName.isChecked = true
+        holder.binding.cbUserName.isChecked = mViewModel.selectedUsersTemp.contains(userData.value)
+
+        holder.bind(position, userData, mViewModel)
     }
 
     override fun getItemCount(): Int = usersList.size
