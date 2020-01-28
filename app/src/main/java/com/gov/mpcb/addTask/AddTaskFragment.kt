@@ -6,6 +6,7 @@ import android.view.View
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentAddTaskBinding
+import com.gov.mpcb.utils.removeFragment
 import com.gov.mpcb.utils.showMessage
 import java.util.*
 
@@ -21,8 +22,11 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
     override fun showAlert(message: String) = showMessage(message)
+    override fun setText(noOfUsers: Int) = setUserDetailsText(noOfUsers)
 
     override fun onBinding() {
+        clearViewModelValues()
+
         //Set Toolbar Layout
         setToolbar(
             toolbarBinding = mBinding.toolbarLayout,
@@ -46,12 +50,23 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
     }
 
     /**
+     * Method to clear values of ViewModel
+     */
+    private fun clearViewModelValues(){
+        mViewModel.run {
+            selectedUsersTemp.clear()
+            addCheckedUserToListSet(selectedUsersTemp)
+        }
+    }
+
+    /**
      * Method to set Click Listeners to views
      */
     private fun setClickListeners() {
         mBinding.run {
             //Set listener to back button in toolbar
             toolbarLayout.imgBack.setOnClickListener {
+                removeFragment(this@AddTaskFragment)
                 activity!!.onBackPressed()
             }
 
@@ -61,6 +76,14 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
             //Set listener to User Details field
             edtUserDetails.setOnClickListener { showUsersListDialog() }
         }
+    }
+
+    //Sets the text in User Details
+    private fun setUserDetailsText(noOfUsers: Int){
+        if (noOfUsers > 0)
+            mBinding.edtUserDetails.setText("$noOfUsers users selected")
+        else
+            mBinding.edtUserDetails.setText("")
     }
 
     private fun showUsersListDialog() {

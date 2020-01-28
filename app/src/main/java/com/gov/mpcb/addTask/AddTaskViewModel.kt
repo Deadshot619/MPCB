@@ -21,6 +21,13 @@ class AddTaskViewModel : BaseViewModel<AddTaskNavigator>(){
     val selectedUsersTemp = mutableSetOf<Int>()
 
     /**
+     * Method to set text on User Details View
+     */
+    fun setText(noOfUsers: Int){
+        mNavigator?.setText(noOfUsers)
+    }
+
+    /**
      * Method to add
      */
     fun addCheckedUserToListSet(list: Set<Int>){
@@ -44,5 +51,10 @@ class AddTaskViewModel : BaseViewModel<AddTaskNavigator>(){
                 }
             )
         )
+    }
+
+
+    fun clearViewModel(){
+        super.onCleared()
     }
 }

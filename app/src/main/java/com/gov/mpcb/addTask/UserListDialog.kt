@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gov.mpcb.databinding.DialogUsersListTaskBinding
 import com.gov.mpcb.utils.CommonUtils.dpHeight
-import com.gov.mpcb.utils.showMessage
 import kotlin.math.roundToInt
 
 class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : DialogFragment() {
@@ -69,12 +68,20 @@ class UserListDialog(context: Context, val mViewModel: AddTaskViewModel) : Dialo
 
         //Add Button
         dialogBinding.btnAdd.setOnClickListener {
-            if (mViewModel.selectedUsersTemp.isNullOrEmpty())
-                showMessage("Please select atleast one user")
-            else {
-                mViewModel.addCheckedUserToListSet(mViewModel.selectedUsersTemp)
-                dismiss()
+            mViewModel.addCheckedUserToListSet(mViewModel.selectedUsersTemp)
+            //Method to set text on User Details View
+            mViewModel.setText(mViewModel.userAddedList.size)
+            dismiss()
+        }
+
+        //Clear All button
+        dialogBinding.btnClearAll.setOnClickListener{
+            mViewModel.run{
+                selectedUsersTemp.clear()
+                addCheckedUserToListSet(selectedUsersTemp)
+                setText(mViewModel.userAddedList.size)
             }
+            mAdapter.notifyDataSetChanged()
         }
     }
 

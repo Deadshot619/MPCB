@@ -75,6 +75,17 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         }
     }
 
+    /**
+     * Method to remove fragment from backStack
+     */
+    fun removeFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            remove(fragment)
+            commit()
+        }
+        supportFragmentManager.popBackStack()
+    }
+
     fun addReportFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
         bundle?.let {
             fragment.arguments = bundle

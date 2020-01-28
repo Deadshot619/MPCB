@@ -51,7 +51,7 @@ class TaskManagementFragment : BaseFragment<FragmentTaskMngtBinding, TaskManagem
     private fun setFloatingActionButton() {
         val bundle = Bundle()
         mBinding.fabTaskManagement.setOnClickListener {
-            addFragment(AddTaskFragment(), false, bundle)
+            addFragment(AddTaskFragment(), true, bundle)
         }
     }
 
