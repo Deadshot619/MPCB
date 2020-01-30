@@ -242,12 +242,14 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
      * This method shows or hides the Next button depending on Visit Status.
      */
     protected fun showNextButton(btnSaveNextLayoutBinding: ButtonSaveNextLayoutBinding){
-        //If true show 'Next' button & hide 'Save' button
+        //If true show 'Next & Previous' button & hide 'Save' button
         if (visitStatus) {
             btnSaveNextLayoutBinding.btnNext.visibility = View.VISIBLE
+            btnSaveNextLayoutBinding.btnPrevious.visibility = View.VISIBLE
             btnSaveNextLayoutBinding.btnSubmit.visibility = View.GONE
         } else {
             btnSaveNextLayoutBinding.btnNext.visibility = View.GONE
+            btnSaveNextLayoutBinding.btnPrevious.visibility = View.GONE
             btnSaveNextLayoutBinding.btnSubmit.visibility = View.VISIBLE
         }
     }

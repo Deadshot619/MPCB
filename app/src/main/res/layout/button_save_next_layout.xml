@@ -6,6 +6,7 @@
             android:id="@+id/layout_button_save_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipToPadding="false"
             android:padding="8dp">
 
         <androidx.appcompat.widget.AppCompatButton
