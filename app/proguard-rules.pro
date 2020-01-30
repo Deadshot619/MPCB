@@ -52,6 +52,7 @@
 
 -keep class com.gov.mpcb.network.request.** { *; }
 -keep class com.gov.mpcb.network.response.** { *; }
+
 #-keep class net.sqlcipher.** { *; }
 #-keep class net.sqlcipher.database.* { *; }
 #-keepclassmembernames class kotlinx.** {

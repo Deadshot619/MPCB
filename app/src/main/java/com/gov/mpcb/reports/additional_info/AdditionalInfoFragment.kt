@@ -111,9 +111,11 @@ class AdditionalInfoFragment :
 
         var chooseFile = Intent(Intent.ACTION_GET_CONTENT)
         chooseFile.type = "image/*|application/pdf"
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             chooseFile.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
         }
+
         chooseFile = Intent.createChooser(chooseFile, "Choose a file")
         startActivityForResult(chooseFile, PICKFILE_RESULT_CODE)
 
