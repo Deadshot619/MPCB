@@ -30,7 +30,7 @@ class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageV
         disableViews(mBinding.waterWasteParentLay)
 
         //Method to Show or Hide Save & Next Button
-        showNextButton(mBinding.btnSaveNext)
+        showNextAndPreviousButton(mBinding.btnSaveNext)
 
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_3)
 

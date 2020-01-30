@@ -58,7 +58,7 @@ class AdditionalInfoFragment :
         disableViews(mBinding.categoryParentLay)
 
         //Method to Show or Hide Save & Next Button
-        showNextButton(mBinding.btnSaveNext)
+        showNextAndPreviousButton(mBinding.btnSaveNext)
 
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_18)
         setListener()

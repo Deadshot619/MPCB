@@ -53,7 +53,7 @@ class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewMo
         disableViews(mBinding.disposalParentLay)
 
         //Method to Show or Hide Save & Next Button
-        showNextButton(mBinding.btnSaveNext)
+        showNextAndPreviousButton(mBinding.btnSaveNext)
 
         (getBaseActivity() as ReportsPageActivity).setToolbar(Constants.REPORT_5)
         setListener()

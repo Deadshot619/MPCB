@@ -41,7 +41,10 @@ class IndustryReportFragment :
         disableViews(mBinding.categoryParentLay)
 
         //Method to Show or Hide Save & Next Button
-        showNextButton(mBinding.btnSaveNext)
+        showNextAndPreviousButton(
+            btnSaveNextLayoutBinding = mBinding.btnSaveNext,
+            showPreviousButton = false
+        )
 
         (getBaseActivity() as ReportsPageActivity).setToolbar(REPORT_1)
         setListener()

@@ -327,26 +327,26 @@ class Constants {
 
         fun getReportByNo(context: Context, reportKey: Int): String {
             val reportHashMap = mutableMapOf<Int, String>()
-            reportHashMap.put(REPORT_1, context.getString(R.string.report_1))
-            reportHashMap.put(REPORT_2, context.getString(R.string.report_2))
-            reportHashMap.put(REPORT_3, context.getString(R.string.report_3))
-            reportHashMap.put(REPORT_4, context.getString(R.string.report_4))
-            reportHashMap.put(REPORT_5, context.getString(R.string.report_5))
-            reportHashMap.put(REPORT_6, context.getString(R.string.report_6))
-            reportHashMap.put(REPORT_7, context.getString(R.string.report_7))
-            reportHashMap.put(REPORT_8, context.getString(R.string.report_8))
-            reportHashMap.put(REPORT_9, context.getString(R.string.report_9))
-            reportHashMap.put(REPORT_10, context.getString(R.string.report_10))
-            reportHashMap.put(REPORT_11, context.getString(R.string.report_11))
-            reportHashMap.put(REPORT_12, context.getString(R.string.report_12))
-            reportHashMap.put(REPORT_13, context.getString(R.string.report_13))
-            reportHashMap.put(REPORT_14, context.getString(R.string.report_14))
-            reportHashMap.put(REPORT_15, context.getString(R.string.report_15))
-            reportHashMap.put(REPORT_16, context.getString(R.string.report_16))
-            reportHashMap.put(REPORT_17, context.getString(R.string.report_17))
-            reportHashMap.put(REPORT_18, context.getString(R.string.add_info))
+            reportHashMap[REPORT_1] = context.getString(R.string.report_1)
+            reportHashMap[REPORT_2] = context.getString(R.string.report_2)
+            reportHashMap[REPORT_3] = context.getString(R.string.report_3)
+            reportHashMap[REPORT_4] = context.getString(R.string.report_4)
+            reportHashMap[REPORT_5] = context.getString(R.string.report_5)
+            reportHashMap[REPORT_6] = context.getString(R.string.report_6)
+            reportHashMap[REPORT_7] = context.getString(R.string.report_7)
+            reportHashMap[REPORT_8] = context.getString(R.string.report_8)
+            reportHashMap[REPORT_9] = context.getString(R.string.report_9)
+            reportHashMap[REPORT_10] = context.getString(R.string.report_10)
+            reportHashMap[REPORT_11] = context.getString(R.string.report_11)
+            reportHashMap[REPORT_12] = context.getString(R.string.report_12)
+            reportHashMap[REPORT_13] = context.getString(R.string.report_13)
+            reportHashMap[REPORT_14] = context.getString(R.string.report_14)
+            reportHashMap[REPORT_15] = context.getString(R.string.report_15)
+            reportHashMap[REPORT_16] = context.getString(R.string.report_16)
+            reportHashMap[REPORT_17] = context.getString(R.string.report_17)
+            reportHashMap[REPORT_18] = context.getString(R.string.add_info)
 
-            return reportHashMap.get(reportKey)!!
+            return reportHashMap[reportKey]!!
         }
 
         /**
