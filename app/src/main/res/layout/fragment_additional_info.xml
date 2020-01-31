@@ -79,6 +79,7 @@
                             android:textSize="18sp" />
                 </RadioGroup>
 
+
                 <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/uploadVisitLayout"
                         android:layout_width="match_parent"
@@ -86,7 +87,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="16dp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:endIconMode="custom"
                         app:endIconDrawable="@drawable/ic_add_more"
                         app:endIconContentDescription="Add a File"

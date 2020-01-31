@@ -25,7 +25,7 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
 
     fun submitReport(
         reportRequest: ReportRequest?,
-        file: File
+        file: File? = null
     ) {
 //        val reportData = PreferencesHelper.getStringPreference(Constants.REPORT_KEY, "")
 
@@ -44,8 +44,9 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
 //                    mNavigator!!.onSubmitReportSuccess(it.message)
                     //If report submitted successfully, update the list to show status as visited
                     if (it.status) {
-                        uploadVisitFile(file)
-//                        PreferencesHelper.setBooleanPreference(Constants.FORM_COMPLETE_STATUS, true)
+//                        uploadVisitFile(file)
+                        PreferencesHelper.setBooleanPreference(Constants.FORM_COMPLETE_STATUS, true)
+                        mNavigator!!.onSubmitReportSuccess(it.message)
                     }
                 },
                 Consumer {
@@ -55,7 +56,7 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
         }
     }
 
-
+    //TODO 31/1/2020 : Remove Upload Report functionality
     fun uploadVisitFile(file: File) {
         //Make a RequestBody of each value to be sent.
 
@@ -95,7 +96,7 @@ class AdditionalInfoViewModel : BaseViewModel<AdditionalInfoNavigator>() {
                 if (it.status) {
                     PreferencesHelper.setBooleanPreference(Constants.FORM_COMPLETE_STATUS, true)
                 }
-                mNavigator!!.onSubmitReportSuccess(it.message)
+//                mNavigator!!.onSubmitReportSuccess(it.message)
             },
             error = Consumer { checkError(it) })
         )

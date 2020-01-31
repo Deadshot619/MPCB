@@ -17,7 +17,6 @@ import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.constants.Constants.Companion.ADDITIONAL_INFO_TEXT
-import com.gov.mpcb.utils.permission.PermissionUtils
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.getReportFlagStatus
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.getStringPreference
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.setStringPreference
@@ -78,7 +77,8 @@ class AdditionalInfoFragment :
             }
         }
 
-        mBinding.uploadVisitEditTextLayout.setOnClickListener {
+        //TODO 31/1/2020 : Remove Upload Report functionality
+        /*mBinding.uploadVisitEditTextLayout.setOnClickListener {
            // showMessage("Clicked!")
 
 
@@ -99,7 +99,7 @@ class AdditionalInfoFragment :
         }else{
                 pickFile()
             }
-        }
+        }*/
     }
 
     /**
@@ -149,8 +149,9 @@ class AdditionalInfoFragment :
             //submit report only if all the reports are filled.
             if (checkIfReportsFilled()) {
                 mViewModel.submitReport(
-                    reportRequest = getReportData(visitReportId),
-                    file = File(fileP)
+                    reportRequest = getReportData(visitReportId)
+                    //TODO 31/1/2020 : Remove Upload Report functionality
+//                    file = File(fileP)
                 )
 //                mViewModel.uploadVisitFile(File(fileP))
             } else {
@@ -183,10 +184,11 @@ class AdditionalInfoFragment :
             showMessage("Select Unit Compiled")
             return false
         }
-        if (mBinding.uploadVisitEditTextLayout.text.isNullOrEmpty()) {
+        //TODO 31/1/2020 : Remove Upload Report functionality
+        /*if (mBinding.uploadVisitEditTextLayout.text.isNullOrEmpty()) {
             showMessage("Select a File")
             return false
-        }
+        }*/
         return true
     }
 
@@ -210,7 +212,7 @@ class AdditionalInfoFragment :
      * This method is used to retrieve & set data to views
      */
     override fun setDataToViews() {
-        reports = if (visitStatus) {
+        reports = if (visitStatus) {    //If true, then retrieve temporary report data from Shared Pref
             getReportData(Constants.TEMP_VISIT_REPORT_DATA)
         } else {
             getReportData(visitReportId)
@@ -232,8 +234,9 @@ class AdditionalInfoFragment :
                     else
                         rgUnitComplied.check(R.id.rbUnitNo)
 
-                    if (visitReportFile.isNotEmpty())
-                        mBinding.uploadVisitEditTextLayout.setText(visitReportFile)
+                    //TODO 31/1/2020 : Remove Upload Report functionality
+/*                    if (visitReportFile.isNotEmpty())
+                        mBinding.uploadVisitEditTextLayout.setText(visitReportFile)*/
                 }
             }
         }
