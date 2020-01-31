@@ -141,7 +141,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         }
     }
 
-    protected fun addReportFragment(reportKey: Int, bundle: Bundle? = null) {
+    protected fun addReportFragment(reportKey: Int, bundle: Bundle? = null, addToBackStack: Boolean = true) {
         Constants.run {
             val fragment = when (reportKey) {
                 REPORT_1 -> IndustryReportFragment() //v
@@ -165,7 +165,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
                 else -> Fragment()
             }
 
-            getBaseActivity().addReportFragment(fragment, true, bundle)
+            getBaseActivity().addReportFragment(fragment, addToBackStack, bundle)
         }
     }
 
@@ -244,15 +244,24 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     protected fun showNextAndPreviousButton(btnSaveNextLayoutBinding: ButtonSaveNextLayoutBinding, showPreviousButton: Boolean = true){
         //If true show 'Next & Previous' button & hide 'Save' button
         if (visitStatus) {
-            btnSaveNextLayoutBinding.btnNext.visibility = View.VISIBLE
-            //if true, Show previous button
-            if (showPreviousButton)
-                btnSaveNextLayoutBinding.btnPrevious.visibility = View.VISIBLE
-            btnSaveNextLayoutBinding.btnSubmit.visibility = View.GONE
+            btnSaveNextLayoutBinding.run {
+                btnNext.visibility = View.VISIBLE
+                //if true, Show previous button
+                if (showPreviousButton)
+                    btnPrevious.run{
+                        visibility = View.VISIBLE
+                        setOnClickListener {
+                            activity?.onBackPressed()
+                        }
+                    }
+                btnSubmit.visibility = View.GONE
+            }
         } else {
-            btnSaveNextLayoutBinding.btnNext.visibility = View.GONE
-            btnSaveNextLayoutBinding.btnPrevious.visibility = View.GONE
-            btnSaveNextLayoutBinding.btnSubmit.visibility = View.VISIBLE
+            btnSaveNextLayoutBinding.run {
+                btnNext.visibility = View.GONE
+                btnPrevious.visibility = View.GONE
+                btnSubmit.visibility = View.VISIBLE
+            }
         }
     }
 }

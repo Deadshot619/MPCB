@@ -397,7 +397,8 @@ class Constants {
                 //Make TextInputLayput 'not focusable' instead of 'not enable' to make it readable
                 if (child.javaClass.name.contains("TextInputLayout"))
                     child.isFocusable = enable
-                else if (child.id != R.id.btnNext) //need 'Next' button to be enabled
+                //need 'Next' & 'Previous' button to be enabled
+                else if (child.id != R.id.btnNext && child.id != R.id.btnPrevious)
                     child.isEnabled = enable
 
 
