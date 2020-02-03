@@ -3,7 +3,7 @@ package com.gov.mpcb.reports.oms_water
 
 import android.view.View
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentOmsWaterBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -12,7 +12,7 @@ import com.gov.mpcb.reports.ReportsPageViewModel
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
-class OMSWaterFragment : BaseFragment<FragmentOmsWaterBinding, ReportsPageViewModel>(),
+class OMSWaterFragment : BaseFragmentReport<FragmentOmsWaterBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
 

@@ -3,7 +3,7 @@ package com.gov.mpcb.reports.air_pollution
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentAirPollutionBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -12,7 +12,7 @@ import com.gov.mpcb.utils.constants.Constants.Companion.AIR_POLLUTION_LIST
 import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
 
-class AirFragment : BaseFragment<FragmentAirPollutionBinding, AirViewModel>(), AirNavigator {
+class AirFragment : BaseFragmentReport<FragmentAirPollutionBinding, AirViewModel>(), AirNavigator {
 
     private var reports: ReportRequest? = null
     private lateinit var visitReportId: String

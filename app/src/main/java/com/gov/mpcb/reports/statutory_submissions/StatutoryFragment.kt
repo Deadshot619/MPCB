@@ -3,7 +3,7 @@ package com.gov.mpcb.reports.statutory_submissions
 
 import android.app.DatePickerDialog
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentStatutoryBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -14,7 +14,7 @@ import com.gov.mpcb.utils.showMessage
 import java.util.*
 
 
-class StatutoryFragment : BaseFragment<FragmentStatutoryBinding, ReportsPageViewModel>(),
+class StatutoryFragment : BaseFragmentReport<FragmentStatutoryBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null

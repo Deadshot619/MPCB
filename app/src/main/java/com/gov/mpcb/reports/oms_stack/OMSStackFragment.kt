@@ -2,7 +2,7 @@ package com.gov.mpcb.reports.oms_stack
 
 import android.view.View
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentOmsStackBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -11,7 +11,7 @@ import com.gov.mpcb.reports.ReportsPageViewModel
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
-class OMSStackFragment : BaseFragment<FragmentOmsStackBinding, ReportsPageViewModel>(),
+class OMSStackFragment : BaseFragmentReport<FragmentOmsStackBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
 

@@ -2,7 +2,7 @@ package com.gov.mpcb.reports.electric_meter_details
 
 
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentElectricBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -14,7 +14,7 @@ import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
 
 
-class ElectricFragment : BaseFragment<FragmentElectricBinding, ReportsPageViewModel>(),
+class ElectricFragment : BaseFragmentReport<FragmentElectricBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null

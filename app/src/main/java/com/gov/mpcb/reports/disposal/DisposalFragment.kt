@@ -3,7 +3,7 @@ package com.gov.mpcb.reports.disposal
 import android.widget.CompoundButton
 import androidx.core.widget.addTextChangedListener
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentDisposalBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -14,7 +14,7 @@ import com.gov.mpcb.utils.parseToDouble
 import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
 
-class DisposalFragment : BaseFragment<FragmentDisposalBinding, ReportsPageViewModel>(),
+class DisposalFragment : BaseFragmentReport<FragmentDisposalBinding, ReportsPageViewModel>(),
     ReportsPageNavigator,
     CompoundButton.OnCheckedChangeListener {
 

@@ -4,7 +4,7 @@ package com.gov.mpcb.reports.treatment
 import android.view.View
 import android.widget.CompoundButton
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentTreatmentBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -14,7 +14,7 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
 
-class TreatmentFragment : BaseFragment<FragmentTreatmentBinding, ReportsPageViewModel>(),
+class TreatmentFragment : BaseFragmentReport<FragmentTreatmentBinding, ReportsPageViewModel>(),
     ReportsPageNavigator,
     CompoundButton.OnCheckedChangeListener {
 

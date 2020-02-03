@@ -3,7 +3,7 @@ package com.gov.mpcb.reports.industry
 import android.app.DatePickerDialog
 import android.widget.ArrayAdapter
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentIndustryCategoryBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -23,7 +23,7 @@ import java.util.*
 
 
 class IndustryReportFragment :
-    BaseFragment<FragmentIndustryCategoryBinding, ReportsPageViewModel>(), ReportsPageNavigator {
+    BaseFragmentReport<FragmentIndustryCategoryBinding, ReportsPageViewModel>(), ReportsPageNavigator {
 
     private val VISITED_ON = 1
     private val VALID_UPTO = 2

@@ -6,7 +6,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentLastJvsBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -15,7 +15,7 @@ import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
 import java.util.*
 
-class LastJVSFragment : BaseFragment<FragmentLastJvsBinding, LastJVSViewModel>(), LastJVSNavigator {
+class LastJVSFragment : BaseFragmentReport<FragmentLastJvsBinding, LastJVSViewModel>(), LastJVSNavigator {
 
     private val INDUS_DATE_OF_COLLECTION = 1
     private val INDUS_DATE = 2

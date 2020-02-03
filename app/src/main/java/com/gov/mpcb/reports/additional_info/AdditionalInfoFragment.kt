@@ -5,7 +5,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.widget.addTextChangedListener
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentAdditionalInfoBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -18,7 +18,7 @@ import com.gov.mpcb.utils.showMessage
 
 
 class AdditionalInfoFragment :
-    BaseFragment<FragmentAdditionalInfoBinding, AdditionalInfoViewModel>(),
+    BaseFragmentReport<FragmentAdditionalInfoBinding, AdditionalInfoViewModel>(),
     AdditionalInfoNavigator {
 
     private var reports: ReportRequest? = null

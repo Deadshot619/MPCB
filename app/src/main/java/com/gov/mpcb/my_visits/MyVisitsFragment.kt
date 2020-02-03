@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentMyVisitsBinding
 import com.gov.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUser
 import com.gov.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUserId
@@ -45,7 +45,7 @@ import com.gov.mpcb.visit_report.VisitReportFragment
 import java.util.*
 
 
-class MyVisitsFragment : BaseFragment<FragmentMyVisitsBinding, MyVisitsViewModel>(),
+class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsViewModel>(),
     MyVisitsNavigator, DatePickerDialog.OnDateSetListener {
 
 

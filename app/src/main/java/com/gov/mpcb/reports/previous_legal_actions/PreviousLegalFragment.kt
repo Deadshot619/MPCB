@@ -3,7 +3,7 @@ package com.gov.mpcb.reports.previous_legal_actions
 import android.app.DatePickerDialog
 import android.util.Log
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentPreviousLegalBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -13,7 +13,7 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 import java.util.*
 
-class PreviousLegalFragment : BaseFragment<FragmentPreviousLegalBinding, ReportsPageViewModel>(),
+class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null

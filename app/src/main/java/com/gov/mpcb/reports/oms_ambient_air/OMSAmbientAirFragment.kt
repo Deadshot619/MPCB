@@ -5,7 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentOmsAmbientAirBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -13,7 +13,7 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
 
-class OMSAmbientAirFragment : BaseFragment<FragmentOmsAmbientAirBinding, OMSAmbientAirViewModel>(),
+class OMSAmbientAirFragment : BaseFragmentReport<FragmentOmsAmbientAirBinding, OMSAmbientAirViewModel>(),
     OMSAmbientAirNavigator {
     private var reports: ReportRequest? = null
     private lateinit var visitReportId: String

@@ -3,14 +3,14 @@ package com.gov.mpcb.reports.non_hazardous_waste_management
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentNonHazardiousBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
-class NonHazardousFragment : BaseFragment<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
+class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
     NonHazardousNavigator {
     private var reports: ReportRequest? = null
     private lateinit var visitReportId: String

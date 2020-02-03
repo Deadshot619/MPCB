@@ -1,7 +1,7 @@
 package com.gov.mpcb.reports.water_and_waste_water
 
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseFragmentReport
 import com.gov.mpcb.databinding.FragmentWasteWaterAspectBinding
 import com.gov.mpcb.network.request.ReportRequest
 import com.gov.mpcb.reports.ReportsPageActivity
@@ -13,7 +13,7 @@ import com.gov.mpcb.utils.validations.isDecimal
 
 //import com.gov.mpcb.utils.validations.isDecimalInputCorrect
 
-class WaterFragment : BaseFragment<FragmentWasteWaterAspectBinding, ReportsPageViewModel>(),
+class WaterFragment : BaseFragmentReport<FragmentWasteWaterAspectBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null

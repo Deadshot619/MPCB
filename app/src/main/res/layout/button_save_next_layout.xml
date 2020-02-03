@@ -8,7 +8,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:padding="8dp">
+            android:paddingBottom="8dp">
 
         <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSubmit"
@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/btn_drawable"
-                android:text="Previous"
+                android:text="Prev."
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
