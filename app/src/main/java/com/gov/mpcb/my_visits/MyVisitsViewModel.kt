@@ -182,6 +182,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                         mNavigator?.showAlert("HOD user cannot fill other user's data")
                         return
                     }
+
                 mNavigator!!.onVisitItemClicked(visitItem)
             }
         else {

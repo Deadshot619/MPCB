@@ -316,6 +316,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                 calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
                     calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
 
+        //If the user isn't a subordinate, get VisitListData
         if (userModel.hasSubbordinateOfficers != 1){
             mViewModel.getVisitListData(fromDate, toDate)
         }
@@ -348,9 +349,17 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
 
         addFragment(VisitReportFragment(), true, bundle)
     }
+        //openCheckinDialog()
 
-    override fun onAlreadyCheckedIn(viewModel: CheckInfoModel) {
-        this.models = viewModel
+
+       // openCheckInfoDialog()
+
+       /* mViewModel.getCurrentLocation()
+        dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
+        dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)*/
+
+    override fun onAlreadyCheckedIn(model: CheckInfoModel) {
+        this.models = model
 
         //openCheckinDialog()
 
@@ -363,6 +372,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
 
     }
 
+    //Method to dismiss Checkin dialog
     override fun dismissCheckinDialog() {
         dialogFragment.dismiss()
     }
@@ -389,6 +399,9 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         }
     }
 
+    /**
+     * Method to open CheckIn Dialog
+     */
     private fun openCheckinDialog() {
         mViewModel.getCurrentLocation()
         dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
@@ -398,15 +411,10 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         )
     }
 
-
-    private fun openCheckInfoDialog() {
-
-        dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
-        dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)
-    }
-
-
-
+    /*
+     * This method is executed when check-in info is submitted successfully.
+     * This reloads the data of My Visit list
+     */
     override fun onCheckInSuccess(msg: String) {
         showMessage(msg)
         mViewModel.getVisitListData(fromDate = fromDate, toDate = toDate)

@@ -21,8 +21,7 @@ data class MyVisitModel(
     @Expose @SerializedName("latitude") var latitude: String? = "",
     @Expose @SerializedName("longitude") var longitude: String? = "",
     @Expose @SerializedName("selfie_img") var selfieImage: String? = "",
-    @Expose @SerializedName("checked_in_date") var checkInDate: String? = ""
-
-
+    @Expose @SerializedName("checked_in_date") var checkInDate: String? = "",
+    @Expose @SerializedName("prev_data_available") var previousDataAvailable: Int = 0
 
 ) : Parcelable
