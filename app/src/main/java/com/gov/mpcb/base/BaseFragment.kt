@@ -141,7 +141,11 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         }
     }
 
-    protected fun addReportFragment(reportKey: Int, bundle: Bundle? = null, addToBackStack: Boolean = true) {
+    protected fun addReportFragment(
+        reportKey: Int,
+        bundle: Bundle? = null,
+        addToBackStack: Boolean = true
+    ) {
         Constants.run {
             val fragment = when (reportKey) {
                 REPORT_1 -> IndustryReportFragment() //v
@@ -232,7 +236,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     /**
      * This method Enables/Disables the views in  a viewGroup depending on visitStatus
      */
-    protected fun disableViews(viewGroup: ViewGroup){
+    protected fun disableViews(viewGroup: ViewGroup) {
         //If true, disable all controls!
         if (visitStatus)
             disableEnableControls(false, viewGroup)
@@ -241,28 +245,31 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     /**
      * This method shows or hides the Next button depending on Visit Status.
      */
-    protected fun showNextAndPreviousButton(btnSaveNextLayoutBinding: ButtonSaveNextLayoutBinding, showPreviousButton: Boolean = true){
+    protected fun showNextAndPreviousButton(
+        btnSaveNextLayoutBinding: ButtonSaveNextLayoutBinding,
+        showPreviousButton: Boolean = true
+    ) {
         //If true show 'Next & Previous' button & hide 'Save' button
         if (visitStatus) {
             btnSaveNextLayoutBinding.run {
                 btnNext.visibility = View.VISIBLE
-                //if true, Show previous button
-                if (showPreviousButton)
-                    btnPrevious.run{
-                        visibility = View.VISIBLE
-                        setOnClickListener {
-                            activity?.onBackPressed()
-                        }
-                    }
                 btnSubmit.visibility = View.GONE
             }
         } else {
             btnSaveNextLayoutBinding.run {
                 btnNext.visibility = View.GONE
-                btnPrevious.visibility = View.GONE
                 btnSubmit.visibility = View.VISIBLE
             }
         }
+
+        //if true, Show previous button & set click listener to it
+        if (showPreviousButton)
+            btnSaveNextLayoutBinding.btnPrevious.run {
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    activity?.onBackPressed()
+                }
+            }
     }
 }
 
