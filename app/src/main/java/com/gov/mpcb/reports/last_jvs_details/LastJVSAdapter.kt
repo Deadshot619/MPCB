@@ -26,8 +26,9 @@ class LastJVSAdapter(
 
     override fun onBindViewHolder(holder: LastJvsViewHolder, position: Int) {
         val item = parentList[position].apply {
-            //Use this only when visit status is Visited & data is to be displayed from APi
-            if (visitStatus){
+            //Use this only when visit status is Visited in which case data is to be displayed from APi
+            //or when the data is to be auto filled from APi
+            if (visitStatus || jvsWaterSourceParameter.size > lastJvsChild.size){
                 //If Water Source size is greater than 0 then add that data in 'LastJVSChild'
                 if (jvsWaterSourceParameter.size > 0) {
                     for (i in 0 until jvsWaterSourceParameter.size) {
