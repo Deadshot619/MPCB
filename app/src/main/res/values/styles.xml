@@ -19,6 +19,17 @@
         <item name="android:background">@drawable/btn_drawable</item>
     </style>
 
+    <style name="save_btn_style_small">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">@dimen/button_padding_left_small</item>
+        <item name="android:paddingStart">@dimen/button_padding_left_small</item>
+        <item name="android:paddingRight">@dimen/button_padding_right_small</item>
+        <item name="android:paddingEnd">@dimen/button_padding_right_small</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/btn_drawable</item>
+    </style>
+
     <style name="cancel_btn_style">
         <item name="android:textColor">@color/warm_grey</item>
         <item name="android:paddingLeft">@dimen/button_padding_left</item>
