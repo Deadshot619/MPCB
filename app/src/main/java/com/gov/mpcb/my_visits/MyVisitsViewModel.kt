@@ -24,6 +24,7 @@ import com.gov.mpcb.network.response.MyVisitResponse
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.constants.Constants.Companion.IMAGE_PATH
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
+import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.getStringPreference
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.setStringPreference
 import io.reactivex.functions.Consumer
 import okhttp3.MediaType
@@ -75,33 +76,9 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             else
                 user.userId.toString()
 
-        //TODO 13/11/19 Change these dates to current month in development build
         request.fromDate = fromDate
         request.toDate = toDate
-//        request.fromDate = fromDate
-//        val time = SimpleDateFormat("yyyy-MM-dd").parse(fromDate)
-//        val selectedCalender = Calendar.getInstance()
-//        val currentCalendar = Calendar.getInstance()
-//        selectedCalender.time = time
-//        when {
-//            selectedCalender.get(Calendar.YEAR) < currentCalendar.get(Calendar.YEAR) ->
-//                request.toDate =
-//                    selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
-//                    Calendar.MONTH
-//                    ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
-//                        Calendar.DAY_OF_MONTH
-//                    ).toString()
-//            selectedCalender.get(Calendar.MONTH) < currentCalendar.get(Calendar.MONTH) ->
-//                request.toDate =
-//                    selectedCalender.get(Calendar.YEAR).toString() + "-" + (selectedCalender.get(
-//                        Calendar.MONTH
-//                    ) + 1).toString() + "-" + selectedCalender.getActualMaximum(
-//                        Calendar.DAY_OF_MONTH
-//                    ).toString()
-//            selectedCalender.get(Calendar.MONTH) == currentCalendar.get(Calendar.MONTH) ->
-//                request.toDate = Constants.getCurrentDate("yyyy-MM-dd")
-//            else -> mNavigator!!.showAlert("Future Date Selected!")
-//        }
+
         dialogVisibility.value = true
         dialogMessage.value = "Fetching List..."
         mDisposable.add(
@@ -118,9 +95,18 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     }
 
     /**
-     * Method to get VisitReport Data
+     * Method is used to get VisitReport Data. This method retrieves data to be autocompleted in fields, & also
+     * retrieves data after a report is submitted.
+     *
+     * @param viewModel Takes a MyVisitModel as parameter
+     * @param storeAsTemporaryData This boolean value determines whether the data to be retrieved is for autoComplete or to
+     *                              view data.
+     *                              If true, it retrieves the data for viewing purposes only & stores its data as
+     *                              temporary data.
+     *                              If False, it retrieves the data to be autoCompleted in fields & stores its data according
+     *                              to its Industry IMIS number.
      */
-    private fun getVisitItemData(viewModel: MyVisitModel) {
+    private fun getVisitItemData(viewModel: MyVisitModel, storeAsTemporaryData: Boolean = true) {
         //create request data
         val request = ViewVisitRequest().apply {
             userId =
@@ -137,29 +123,52 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         dialogMessage.value = "Fetching Data..."
 
         mDisposable.add(
-            DataProvider.viewVisitReport(
-                request = request,
-                success = Consumer {
-                    dialogVisibility.value = false
+            //If true, then call View Visit Report Api & store the data as Temporary Data
+            if (storeAsTemporaryData)
+                DataProvider.viewVisitReport(
+                    request = request,
+                    success = Consumer {
+                        dialogVisibility.value = false
 
-                    if (it.status) {
-                        mNavigator?.onVisitItemClicked(viewModel)
+                        if (it.status) {
+                            Log.i("Hogya BC", it.data.toString())
 
-                        Log.i("Hogya BC", it.data.toString())
-
-                        //Store the report data received in Shared Pref
-                        PreferencesHelper.setPreferences(
-                            key = Constants.TEMP_VISIT_REPORT_DATA,
-                            value = Gson().toJson(ReportRequest().apply { data = it.data })
-                        )
-
-//                        mNavigator?.showAlert(it.message)
+                            //Store the report data received in Shared Pref
+                            PreferencesHelper.setPreferences(
+                                key = Constants.TEMP_VISIT_REPORT_DATA,
+                                value = Gson().toJson(ReportRequest().apply { data = it.data })
+                            )
+                            mNavigator?.onVisitItemClicked(viewModel)
+                        }
+                    },
+                    error = Consumer {
+                        checkError(it)
                     }
-                },
-                error = Consumer {
-                    checkError(it)
-                }
-            )
+                )
+            //If false, then call fetch Previous Visit Report Api & store the data
+            // according to its industry ID
+            else
+                DataProvider.fetchPreviousVisitReportData(
+                    request = request,
+                    success = Consumer {
+                        dialogVisibility.value = false
+
+                        if (it.status) {
+                            Log.i("Hogya BC", it.data.toString())
+
+                            //Store the report data received in Shared Pref
+                            PreferencesHelper.setPreferences(
+                                key = viewModel.industryIMISId,
+                                value = Gson().toJson(ReportRequest().apply { data = it.data })
+                            )
+
+                            mNavigator?.onVisitItemClicked(viewModel)
+                        }
+                    },
+                    error = Consumer {
+                        checkError(it)
+                    }
+                )
         )
     }
 
@@ -183,7 +192,14 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                         return
                     }
 
-                mNavigator!!.onVisitItemClicked(visitItem)
+                /*
+                 *  If previous Data is Available & Data is not stored in shared Pref previously(by user),
+                 *  then retrieve data for to be auto-filled else just navigate to Reports.
+                 */
+                if (visitItem.previousDataAvailable == 1 && getStringPreference(visitItem.industryIMISId).isNullOrEmpty())
+                    getVisitItemData(viewModel = visitItem, storeAsTemporaryData = false)
+                else
+                    mNavigator?.onVisitItemClicked(visitItem)
             }
         else {
             /*
