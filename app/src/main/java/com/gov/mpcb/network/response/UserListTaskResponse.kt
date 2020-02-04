@@ -11,5 +11,5 @@ data class UserListTaskResponse(
 
     @Expose
     @SerializedName("value")
-    var value: Int = 0
+    var value: Int = -1
 )

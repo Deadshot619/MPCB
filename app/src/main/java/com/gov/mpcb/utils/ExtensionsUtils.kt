@@ -50,6 +50,12 @@ fun Fragment.addFragment(fragment: Fragment, addToBackStack: Boolean, bundle: Bu
     activity.addFragment(fragment, addToBackStack, bundle)
 }
 
+//Method to remove fragment from backstack
+fun Fragment.removeFragment(fragment: Fragment){
+    val activity = this.activity as BaseActivity<*, *>
+    activity.removeFragment(fragment)
+}
+
 fun AppCompatActivity.hideKeyboard() {
     val view = this.currentFocus
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
