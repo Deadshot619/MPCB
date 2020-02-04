@@ -74,4 +74,8 @@ interface APIInterface {
     @POST("view_task_details")
     fun getTaskDetails(@Body request: TaskDetailsRequest): Single<TaskDetailsResponse>
 
+    //Get Previous Visit Report Data
+    //This api uses the same Request & Response model as View Visit Report
+    @POST("view_prev_visit_report_data")
+    fun getPreviousVisitReportData(@Body request: ViewVisitRequest): Single<ViewVisitResponse>
 }

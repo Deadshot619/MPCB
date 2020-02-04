@@ -118,4 +118,13 @@ interface RemoteDataProvider {
         success: Consumer<TaskDetailsResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to fetch Previous(common) Visit Report Data
+     */
+    fun fetchPreviousVisitReportData(
+        request: ViewVisitRequest,
+        success: Consumer<ViewVisitResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }
