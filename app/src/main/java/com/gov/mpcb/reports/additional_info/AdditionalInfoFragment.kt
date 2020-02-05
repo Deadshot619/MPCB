@@ -32,6 +32,9 @@ class AdditionalInfoFragment :
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_18
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

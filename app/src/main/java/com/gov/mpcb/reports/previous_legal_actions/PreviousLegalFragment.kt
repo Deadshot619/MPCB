@@ -27,6 +27,9 @@ class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, R
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_16
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

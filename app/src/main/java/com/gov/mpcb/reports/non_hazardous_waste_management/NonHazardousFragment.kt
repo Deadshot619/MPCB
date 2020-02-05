@@ -22,6 +22,9 @@ class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, No
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_13
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

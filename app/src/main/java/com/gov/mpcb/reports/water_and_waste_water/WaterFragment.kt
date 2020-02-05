@@ -10,6 +10,7 @@ import com.gov.mpcb.reports.ReportsPageViewModel
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
+import kotlinx.android.synthetic.main.button_save_next_layout.*
 
 //import com.gov.mpcb.utils.validations.isDecimalInputCorrect
 
@@ -26,6 +27,9 @@ class WaterFragment : BaseFragmentReport<FragmentWasteWaterAspectBinding, Report
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_3
+
         //If true, disable all controls!
         disableViews(mBinding.waterWasteParentLay)
 

@@ -27,6 +27,9 @@ class TreePlantationFragment : BaseFragmentReport<FragmentTreePlantationBinding,
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_14
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

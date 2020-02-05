@@ -38,6 +38,9 @@ class IndustryReportFragment :
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_1
+
         disableViews(mBinding.categoryParentLay)
 
         //Method to Show or Hide Save & Next Button

@@ -28,6 +28,9 @@ class TreatmentFragment : BaseFragmentReport<FragmentTreatmentBinding, ReportsPa
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_4
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

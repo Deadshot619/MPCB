@@ -25,6 +25,9 @@ class OMSStackFragment : BaseFragmentReport<FragmentOmsStackBinding, ReportsPage
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_10
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

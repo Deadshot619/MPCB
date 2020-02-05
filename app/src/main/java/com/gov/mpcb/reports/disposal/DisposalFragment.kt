@@ -49,6 +49,9 @@ class DisposalFragment : BaseFragmentReport<FragmentDisposalBinding, ReportsPage
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_5
+
         //If true, disable all controls!
         disableViews(mBinding.disposalParentLay)
 

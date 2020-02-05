@@ -26,6 +26,8 @@ class OMSWaterFragment : BaseFragmentReport<FragmentOmsWaterBinding, ReportsPage
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_6
 
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)

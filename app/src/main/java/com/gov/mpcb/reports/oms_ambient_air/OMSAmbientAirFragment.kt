@@ -25,6 +25,9 @@ class OMSAmbientAirFragment : BaseFragmentReport<FragmentOmsAmbientAirBinding, O
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_11
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

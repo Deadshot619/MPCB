@@ -30,6 +30,9 @@ class StatutoryFragment : BaseFragmentReport<FragmentStatutoryBinding, ReportsPa
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_15
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

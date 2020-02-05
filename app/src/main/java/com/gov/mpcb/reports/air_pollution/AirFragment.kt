@@ -24,6 +24,9 @@ class AirFragment : BaseFragmentReport<FragmentAirPollutionBinding, AirViewModel
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_9
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

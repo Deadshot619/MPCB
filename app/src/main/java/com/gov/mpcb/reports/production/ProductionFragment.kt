@@ -11,6 +11,7 @@ import com.gov.mpcb.reports.ReportsPageActivity
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
+import kotlinx.android.synthetic.main.button_save_next_layout.*
 
 class ProductionFragment : BaseFragmentReport<FragmentProductionBinding, ProductionViewModel>(),
     ProductionNavigator {
@@ -26,6 +27,9 @@ class ProductionFragment : BaseFragmentReport<FragmentProductionBinding, Product
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_2
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 
@@ -75,7 +79,6 @@ class ProductionFragment : BaseFragmentReport<FragmentProductionBinding, Product
             addReportFragmentLocal(Constants.REPORT_3, visitReportId)
         }
     }
-
 
     /**
      * Method to validate if fields of report form are filled.

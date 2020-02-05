@@ -29,10 +29,12 @@ import com.gov.mpcb.reports.water_and_waste_water.WaterFragment
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
 
-abstract class BaseFragmentReport <T : ViewDataBinding, V : BaseViewModel<*>>:
-    BaseFragment<T, V>(){
+abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
+    BaseFragment<T, V>() {
 
     protected lateinit var report: ReportRequest
+
+    protected var currentReportNumber: Int = 0
 
     /**
      * This variable will be used to check if Visit Status if VISITED or not.
@@ -54,7 +56,7 @@ abstract class BaseFragmentReport <T : ViewDataBinding, V : BaseViewModel<*>>:
         report = getReportData(visitReportId) ?: ReportRequest()
     }
 
-    protected fun addReportFragment(
+    private fun addReportFragment(
         reportKey: Int,
         bundle: Bundle? = null,
         addToBackStack: Boolean = true
@@ -87,16 +89,19 @@ abstract class BaseFragmentReport <T : ViewDataBinding, V : BaseViewModel<*>>:
     }
 
 
-
     /**
      * This method will be used in onClick of Submit/Next button in report fragments to
      * go to next fragment.
      */
-    protected fun addReportFragmentLocal(constantReportValue: Int, visitReportId: String) {
+    protected fun addReportFragmentLocal(
+        constantReportValue: Int,
+        visitReportId: String,
+        addToBackStack: Boolean = false
+    ) {
         //Put the Visit Report ID in bundle to share to Fragments
         val bundle = Bundle()
         bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-        addReportFragment(constantReportValue, bundle)
+        addReportFragment(constantReportValue, bundle, addToBackStack)
     }
 
     /**
@@ -137,7 +142,6 @@ abstract class BaseFragmentReport <T : ViewDataBinding, V : BaseViewModel<*>>:
         val reports = PreferencesHelper.getPreferences(reportNo, "")
         return Gson().fromJson(reports as String, ReportRequest::class.java)
     }
-
 
 
     /**

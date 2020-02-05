@@ -22,6 +22,9 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_17
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 
