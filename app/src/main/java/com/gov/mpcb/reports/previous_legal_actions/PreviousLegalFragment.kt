@@ -11,6 +11,7 @@ import com.gov.mpcb.reports.ReportsPageNavigator
 import com.gov.mpcb.reports.ReportsPageViewModel
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
+import kotlinx.android.synthetic.main.button_save_next_layout.*
 import java.util.*
 
 class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, ReportsPageViewModel>(),
@@ -68,7 +69,7 @@ class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, R
         report.data.routineReport.actionInitiatedDate = mBinding.edtActionInitiated.text.toString()
         report.data.routineReport.specialCompliance = mBinding.edtSpecificCompliance.text.toString()
 
-        if (validate()) {
+        if (/*validate() ||*/ true) {
             saveReportData(
                 reportNo = visitReportId,
                 reportKey = Constants.REPORT_16,
