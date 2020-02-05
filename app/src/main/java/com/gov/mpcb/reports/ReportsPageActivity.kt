@@ -47,7 +47,12 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
 
             mBinding.visitId.text = "#$visitReportId"
             reportPageNo = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
-            addFragment(reportPageNo, visitReportId)
+
+            //Put the Visit Report ID in bundle to share to Fragments
+            val bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+
+            addFragment(reportPageNo, false, bundle)
         }
 
         setToolbar(reportPageNo)
@@ -71,7 +76,9 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         mBinding.reportProgress.progress = reportPage
     }
 
-    private fun addFragment(reportPage: Int, visitReportId: String) {
+    private fun addFragment(reportPage: Int,
+                            addToBackStack: Boolean = false,
+                            bundle: Bundle? = null) {
         val fragment: Fragment = when (reportPage) {
             Constants.REPORT_1 -> IndustryReportFragment()
             Constants.REPORT_2 -> ProductionFragment()
@@ -94,12 +101,6 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             else -> Fragment()
         }
 
-        //Put the Visit Report ID in bundle to share to Fragments
-        val bundle = Bundle()
-        bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-
-        //Set fragment arguments
-        fragment.arguments = bundle
-        addReportFragment(fragment, false, bundle)
+        addReportFragment(fragment, addToBackStack, bundle)
     }
 }
