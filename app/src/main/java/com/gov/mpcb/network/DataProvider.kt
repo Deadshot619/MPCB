@@ -119,19 +119,18 @@ object DataProvider : RemoteDataProvider {
     }
 
 
-
-    override fun  checkInInfo(
+    override fun checkInInfo(
         request: MyVisitRequest,
         success: Consumer<CheckInfoResponse>,
-                              error: Consumer<Throwable>
-       ): Disposable = if (isNetworkAvailable()){
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
         mServices.getcheckInInfo(request)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
                 if (response.status) {
                     success.accept(response)
-                   // error.accept(Throwable(response.message))
+                    // error.accept(Throwable(response.message))
                 } else {
                     error.accept(Throwable(response.message))
                     //success.accept(response)
@@ -175,31 +174,29 @@ object DataProvider : RemoteDataProvider {
         }
 
 
-
-
     override fun submitReport(
         request: ReportRequest,
         success: Consumer<ReportSubmitResponse>,
         error: Consumer<Throwable>
     ): Disposable =
         if (isNetworkAvailable()) {
-        mServices.submitReport(request)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                Consumer { response ->
-                    if (!response.status) {
-                        error.accept(Throwable(response.message))
-                    } else {
-                        success.accept(response)
-                    }
-                },
-                error
-            )
-    } else {
-        noInternetAvailable(error)
-        getDefaultDisposable()
-    }
+            mServices.submitReport(request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    Consumer { response ->
+                        if (!response.status) {
+                            error.accept(Throwable(response.message))
+                        } else {
+                            success.accept(response)
+                        }
+                    },
+                    error
+                )
+        } else {
+            noInternetAvailable(error)
+            getDefaultDisposable()
+        }
 
     override fun viewVisitReport(
         request: ViewVisitRequest,
@@ -235,7 +232,7 @@ object DataProvider : RemoteDataProvider {
         visitReportFile: MultipartBody.Part,
         success: Consumer<ReportSubmitResponse>,
         error: Consumer<Throwable>
-    ): Disposable = if (isNetworkAvailable()){
+    ): Disposable = if (isNetworkAvailable()) {
         mServices.uploadVisitReportFile(
             requestId = requestId,
             visitId = visitId,
@@ -293,7 +290,7 @@ object DataProvider : RemoteDataProvider {
     override fun getUserListTaskData(
         success: Consumer<ArrayList<UserListTaskResponse>>,
         error: Consumer<Throwable>
-    ): Disposable = if(isNetworkAvailable()){
+    ): Disposable = if (isNetworkAvailable()) {
         mServices.getUserListTask()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -315,7 +312,7 @@ object DataProvider : RemoteDataProvider {
         request: AppVersionRequest,
         success: Consumer<AppVersionResponse>,
         error: Consumer<Throwable>
-    ): Disposable = if(isNetworkAvailable()){
+    ): Disposable = if (isNetworkAvailable()) {
         mServices.checkAppVersion(request = request)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -331,7 +328,6 @@ object DataProvider : RemoteDataProvider {
     }
 
 
-
     /**
      * Method to get Task Details of a user
      */
@@ -339,7 +335,7 @@ object DataProvider : RemoteDataProvider {
         request: TaskDetailsRequest,
         success: Consumer<TaskDetailsResponse>,
         error: Consumer<Throwable>
-    ): Disposable = if(isNetworkAvailable()){
+    ): Disposable = if (isNetworkAvailable()) {
         mServices.getTaskDetails(request = request)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
