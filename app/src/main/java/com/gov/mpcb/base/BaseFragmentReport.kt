@@ -154,7 +154,6 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
             Constants.disableEnableControls(false, viewGroup)
     }
 
-
     /**
      * This method shows or hides the Next button depending on Visit Status.
      */
@@ -180,7 +179,7 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
             btnSaveNextLayoutBinding.btnPrevious.run {
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    if (currentReportNumber < 0)
+                    if (currentReportNumber < 1 || currentReportNumber > 18)
                         activity?.onBackPressed()
                     else
                         addReportFragmentLocal(currentReportNumber - 1, visitReportId)
