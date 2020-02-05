@@ -18,7 +18,6 @@ class WaterFragment : BaseFragmentReport<FragmentWasteWaterAspectBinding, Report
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_waste_water_aspect
     override fun getViewModel() = ReportsPageViewModel::class.java

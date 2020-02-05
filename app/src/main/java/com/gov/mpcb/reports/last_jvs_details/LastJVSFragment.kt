@@ -23,7 +23,6 @@ class LastJVSFragment : BaseFragmentReport<FragmentLastJvsBinding, LastJVSViewMo
     private val DOMESTIC_DATE = 4
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_last_jvs
     override fun getViewModel() = LastJVSViewModel::class.java

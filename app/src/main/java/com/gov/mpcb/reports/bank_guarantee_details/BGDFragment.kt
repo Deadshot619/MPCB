@@ -13,7 +13,6 @@ import com.gov.mpcb.utils.showMessage
 class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewModel>(), BGDNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_bank_guarantee
     override fun getViewModel() = BGDViewModel::class.java

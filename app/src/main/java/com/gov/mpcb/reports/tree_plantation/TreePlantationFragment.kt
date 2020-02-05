@@ -18,7 +18,6 @@ class TreePlantationFragment : BaseFragmentReport<FragmentTreePlantationBinding,
 
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_tree_plantation
     override fun getViewModel() = ReportsPageViewModel::class.java

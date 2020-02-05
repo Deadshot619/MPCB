@@ -15,7 +15,6 @@ import com.gov.mpcb.utils.validations.isDecimal
 class AirFragment : BaseFragmentReport<FragmentAirPollutionBinding, AirViewModel>(), AirNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_air_pollution
     override fun getViewModel() = AirViewModel::class.java

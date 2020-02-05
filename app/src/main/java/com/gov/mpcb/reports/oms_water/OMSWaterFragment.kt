@@ -17,7 +17,6 @@ class OMSWaterFragment : BaseFragmentReport<FragmentOmsWaterBinding, ReportsPage
 
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_oms_water
     override fun getViewModel() = ReportsPageViewModel::class.java

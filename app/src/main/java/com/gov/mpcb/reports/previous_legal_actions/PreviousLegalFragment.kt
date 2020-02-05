@@ -18,7 +18,6 @@ class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, R
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_previous_legal
     override fun getViewModel() = ReportsPageViewModel::class.java

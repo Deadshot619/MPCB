@@ -22,7 +22,6 @@ class AdditionalInfoFragment :
     AdditionalInfoNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_additional_info
     override fun getViewModel() = AdditionalInfoViewModel::class.java

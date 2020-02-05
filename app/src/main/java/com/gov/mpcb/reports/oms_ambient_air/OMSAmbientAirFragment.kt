@@ -16,7 +16,6 @@ import com.gov.mpcb.utils.validations.isDecimal
 class OMSAmbientAirFragment : BaseFragmentReport<FragmentOmsAmbientAirBinding, OMSAmbientAirViewModel>(),
     OMSAmbientAirNavigator {
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_oms_ambient_air
     override fun getViewModel() = OMSAmbientAirViewModel::class.java

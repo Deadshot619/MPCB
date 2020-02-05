@@ -14,7 +14,6 @@ class HazardousFragment : BaseFragmentReport<FragmentHazardiousBinding, Hazardou
     HazardousNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_hazardious
     override fun getViewModel() = HazardousViewModel::class.java

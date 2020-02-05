@@ -20,7 +20,6 @@ class TreatmentFragment : BaseFragmentReport<FragmentTreatmentBinding, ReportsPa
 
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_treatment
     override fun getViewModel() = ReportsPageViewModel::class.java

@@ -18,7 +18,6 @@ class ElectricFragment : BaseFragmentReport<FragmentElectricBinding, ReportsPage
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_electric
     override fun getViewModel() = ReportsPageViewModel::class.java

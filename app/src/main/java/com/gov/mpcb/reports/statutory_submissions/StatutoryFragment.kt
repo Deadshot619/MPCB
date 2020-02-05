@@ -18,7 +18,6 @@ class StatutoryFragment : BaseFragmentReport<FragmentStatutoryBinding, ReportsPa
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     private val HAZARDOUS_WASTE = 1
     private val ENVIRONMENT_REPORT = 2

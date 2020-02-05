@@ -29,8 +29,6 @@ class IndustryReportFragment :
     private val VALID_UPTO = 2
     private var reports: ReportRequest? = null
 
-    private lateinit var visitReportId: String
-
     override fun getLayoutId() = R.layout.fragment_industry_category
     override fun getViewModel() = ReportsPageViewModel::class.java
     override fun getNavigator() = this@IndustryReportFragment

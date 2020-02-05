@@ -13,7 +13,6 @@ import com.gov.mpcb.utils.showMessage
 class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
     NonHazardousNavigator {
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_non_hazardious
     override fun getViewModel() = NonHazardousViewModel::class.java

@@ -20,7 +20,6 @@ class DisposalFragment : BaseFragmentReport<FragmentDisposalBinding, ReportsPage
 
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     //for Industrial input fields
     private var indusCept: Double = 0.0

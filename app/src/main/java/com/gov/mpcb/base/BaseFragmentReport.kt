@@ -34,7 +34,8 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
 
     protected lateinit var report: ReportRequest
 
-    protected var currentReportNumber: Int = 0
+    protected var currentReportNumber: Int = -1
+    protected lateinit var visitReportId: String
 
     /**
      * This variable will be used to check if Visit Status if VISITED or not.
@@ -179,7 +180,10 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
             btnSaveNextLayoutBinding.btnPrevious.run {
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    activity?.onBackPressed()
+                    if (currentReportNumber < 0)
+                        activity?.onBackPressed()
+                    else
+                        addReportFragmentLocal(currentReportNumber - 1, visitReportId)
                 }
             }
     }

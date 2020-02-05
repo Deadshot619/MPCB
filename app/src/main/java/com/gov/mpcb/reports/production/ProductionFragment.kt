@@ -18,7 +18,6 @@ class ProductionFragment : BaseFragmentReport<FragmentProductionBinding, Product
 
     lateinit var adapter: ProductionAdapter
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_production
     override fun getViewModel() = ProductionViewModel::class.java
