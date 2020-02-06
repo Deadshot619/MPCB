@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.gov.mpcb.databinding.ButtonSaveNextLayoutBinding
 import com.gov.mpcb.network.request.ReportRequest
+import com.gov.mpcb.reports.ReportsPageActivity
 import com.gov.mpcb.reports.additional_info.AdditionalInfoFragment
 import com.gov.mpcb.reports.air_pollution.AirFragment
 import com.gov.mpcb.reports.bank_guarantee_details.BGDFragment
@@ -34,7 +35,12 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
 
     protected lateinit var report: ReportRequest
 
-    protected var currentReportNumber: Int = -1
+    protected var currentReportNumber: Int
+        get() = (activity as ReportsPageActivity).currentReportNumber
+        set(value) {
+            (activity as ReportsPageActivity).currentReportNumber = value
+        }
+
     protected lateinit var visitReportId: String
 
     /**
@@ -102,7 +108,7 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
         //Put the Visit Report ID in bundle to share to Fragments
         val bundle = Bundle()
         bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-        addReportFragment(constantReportValue, bundle, addToBackStack)
+        (activity as ReportsPageActivity).addReportFragment(constantReportValue, addToBackStack, bundle)
     }
 
     /**
@@ -179,10 +185,7 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
             btnSaveNextLayoutBinding.btnPrevious.run {
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    if (currentReportNumber < 1 || currentReportNumber > 18)
-                        activity?.onBackPressed()
-                    else
-                        addReportFragmentLocal(currentReportNumber - 1, visitReportId)
+                    (activity as ReportsPageActivity).goToPreviousReport(currentReportNumber)
                 }
             }
     }

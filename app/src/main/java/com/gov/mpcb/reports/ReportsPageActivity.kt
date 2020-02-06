@@ -33,10 +33,21 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     private val visitReportId: String
         get() = _visitReportId
 
+     var currentReportNumber: Int = -1
+
+    private lateinit var bundle: Bundle
+
     override fun getLayoutId() = R.layout.activity_reports_page
     override fun getViewModel() = ReportsPageViewModel::class.java
     override fun getNavigator() = this@ReportsPageActivity
     override fun onError(message: String) = showMessage(message)
+    fun goToPreviousReport(currentReportNo: Int) {
+        if (currentReportNo <= 1 || currentReportNo > 18)
+            finish()
+        else
+            addReportFragment(currentReportNo - 1, false, bundle)
+    }
+
     override fun onInternetError() {}
 
     private var reportPageNo = -1
@@ -49,10 +60,10 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             reportPageNo = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
 
             //Put the Visit Report ID in bundle to share to Fragments
-            val bundle = Bundle()
+            bundle = Bundle()
             bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
 
-            addFragment(reportPageNo, false, bundle)
+            addReportFragment(reportPageNo, false, bundle)
         }
 
         setToolbar(reportPageNo)
@@ -64,7 +75,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             }
 
             //Exit Button
-            btnClose.setOnClickListener{
+            btnClose.setOnClickListener {
                 finish()
             }
         }
@@ -76,9 +87,11 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         mBinding.reportProgress.progress = reportPage
     }
 
-    private fun addFragment(reportPage: Int,
-                            addToBackStack: Boolean = false,
-                            bundle: Bundle? = null) {
+    fun addReportFragment(
+        reportPage: Int,
+        addToBackStack: Boolean = false,
+        bundle: Bundle? = null
+    ) {
         val fragment: Fragment = when (reportPage) {
             Constants.REPORT_1 -> IndustryReportFragment()
             Constants.REPORT_2 -> ProductionFragment()
@@ -100,7 +113,10 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             Constants.REPORT_18 -> AdditionalInfoFragment()
             else -> Fragment()
         }
+        super.addReportFragment(fragment, addToBackStack, bundle)
+    }
 
-        addReportFragment(fragment, addToBackStack, bundle)
+    override fun onBackPressed() {
+        goToPreviousReport(currentReportNumber)
     }
 }
