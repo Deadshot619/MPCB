@@ -33,14 +33,23 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     private val visitReportId: String
         get() = _visitReportId
 
-     var currentReportNumber: Int = -1
+    //Variable to hold current report number
+    var currentReportNumber: Int = -1
 
+    //Bundle to be used for fragments
     private lateinit var bundle: Bundle
 
     override fun getLayoutId() = R.layout.activity_reports_page
     override fun getViewModel() = ReportsPageViewModel::class.java
     override fun getNavigator() = this@ReportsPageActivity
     override fun onError(message: String) = showMessage(message)
+
+    /**
+     * This method navigates user to previous Report, if no previous report is available it
+     * redirects to Visit Report page
+     *
+     * @param currentReportNo Takes currentReport Number as an argument
+     */
     fun goToPreviousReport(currentReportNo: Int) {
         if (currentReportNo <= 1 || currentReportNo > 18)
             finish()
@@ -88,32 +97,34 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     }
 
     fun addReportFragment(
-        reportPage: Int,
+        reportKey: Int,
         addToBackStack: Boolean = false,
         bundle: Bundle? = null
     ) {
-        val fragment: Fragment = when (reportPage) {
-            Constants.REPORT_1 -> IndustryReportFragment()
-            Constants.REPORT_2 -> ProductionFragment()
-            Constants.REPORT_3 -> WaterFragment()
-            Constants.REPORT_4 -> TreatmentFragment()
-            Constants.REPORT_5 -> DisposalFragment()
-            Constants.REPORT_6 -> OMSWaterFragment()
-            Constants.REPORT_7 -> ElectricFragment()
-            Constants.REPORT_8 -> LastJVSFragment()
-            Constants.REPORT_9 -> AirFragment()
-            Constants.REPORT_10 -> OMSStackFragment()
-            Constants.REPORT_11 -> OMSAmbientAirFragment()
-            Constants.REPORT_12 -> HazardousFragment()
-            Constants.REPORT_13 -> NonHazardousFragment()
-            Constants.REPORT_14 -> TreePlantationFragment()
-            Constants.REPORT_15 -> StatutoryFragment()
-            Constants.REPORT_16 -> PreviousLegalFragment()
-            Constants.REPORT_17 -> BGDFragment()
-            Constants.REPORT_18 -> AdditionalInfoFragment()
-            else -> Fragment()
+        Constants.run {
+            val fragment = when (reportKey) {
+                REPORT_1 -> IndustryReportFragment() //v
+                REPORT_2 -> ProductionFragment()// listing //v
+                REPORT_3 -> WaterFragment()//v
+                REPORT_4 -> TreatmentFragment()//v
+                REPORT_5 -> DisposalFragment()//v
+                REPORT_6 -> OMSWaterFragment() //v
+                REPORT_7 -> ElectricFragment() //v
+                REPORT_8 -> LastJVSFragment() // listing
+                REPORT_9 -> AirFragment() // listing //v
+                REPORT_10 -> OMSStackFragment()//v
+                REPORT_11 -> OMSAmbientAirFragment()// listing //v
+                REPORT_12 -> HazardousFragment()// listing//v
+                REPORT_13 -> NonHazardousFragment()// listing //v
+                REPORT_14 -> TreePlantationFragment()//v
+                REPORT_15 -> StatutoryFragment() //v
+                REPORT_16 -> PreviousLegalFragment() //v
+                REPORT_17 -> BGDFragment()// listing //v
+                REPORT_18 -> AdditionalInfoFragment() //v
+                else -> Fragment()
+            }
+            super.addReportFragment(fragment, addToBackStack, bundle)
         }
-        super.addReportFragment(fragment, addToBackStack, bundle)
     }
 
     override fun onBackPressed() {

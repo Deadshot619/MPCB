@@ -57,7 +57,6 @@ class IndustryReportFragment :
         //set report variable data
         setReportVariableData(visitReportId)
 
-
         val adapter = ArrayAdapter(
             getBaseActivity(),
             android.R.layout.simple_spinner_item,
@@ -73,7 +72,6 @@ class IndustryReportFragment :
                 btnSubmit.setOnClickListener { onSubmit() }
                 btnNext.setOnClickListener { addReportFragmentLocal(REPORT_2, visitReportId) }
             }
-
         }
     }
 
@@ -255,6 +253,5 @@ class IndustryReportFragment :
                 }
             }
         }
-
     }
 }
