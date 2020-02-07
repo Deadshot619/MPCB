@@ -96,7 +96,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         mBinding.reportProgress.progress = reportPage
     }
 
-    fun addReportFragment(
+    internal fun addReportFragment(
         reportKey: Int,
         addToBackStack: Boolean = false,
         bundle: Bundle? = null
@@ -127,7 +127,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         }
     }
 
-    override fun onBackPressed() {
+    override fun onBackPressed() {  //GoTo previous report on click of back button
         goToPreviousReport(currentReportNumber)
     }
 }
