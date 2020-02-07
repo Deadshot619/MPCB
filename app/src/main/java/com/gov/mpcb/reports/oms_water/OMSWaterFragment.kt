@@ -17,7 +17,6 @@ class OMSWaterFragment : BaseFragmentReport<FragmentOmsWaterBinding, ReportsPage
 
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_oms_water
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -26,6 +25,8 @@ class OMSWaterFragment : BaseFragmentReport<FragmentOmsWaterBinding, ReportsPage
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_6
 
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)

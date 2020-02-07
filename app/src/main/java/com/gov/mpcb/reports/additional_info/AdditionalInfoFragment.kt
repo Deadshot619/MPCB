@@ -22,7 +22,6 @@ class AdditionalInfoFragment :
     AdditionalInfoNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_additional_info
     override fun getViewModel() = AdditionalInfoViewModel::class.java
@@ -32,6 +31,9 @@ class AdditionalInfoFragment :
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_18
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

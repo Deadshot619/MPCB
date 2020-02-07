@@ -18,7 +18,6 @@ class TreePlantationFragment : BaseFragmentReport<FragmentTreePlantationBinding,
 
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_tree_plantation
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -27,6 +26,9 @@ class TreePlantationFragment : BaseFragmentReport<FragmentTreePlantationBinding,
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_14
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

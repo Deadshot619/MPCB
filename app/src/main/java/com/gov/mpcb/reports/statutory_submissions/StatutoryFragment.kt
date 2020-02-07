@@ -18,7 +18,6 @@ class StatutoryFragment : BaseFragmentReport<FragmentStatutoryBinding, ReportsPa
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     private val HAZARDOUS_WASTE = 1
     private val ENVIRONMENT_REPORT = 2
@@ -30,6 +29,9 @@ class StatutoryFragment : BaseFragmentReport<FragmentStatutoryBinding, ReportsPa
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_15
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

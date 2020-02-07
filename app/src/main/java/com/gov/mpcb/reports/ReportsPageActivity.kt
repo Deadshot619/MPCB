@@ -33,10 +33,30 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     private val visitReportId: String
         get() = _visitReportId
 
+    //Variable to hold current report number
+    var currentReportNumber: Int = -1
+
+    //Bundle to be used for fragments
+    private lateinit var bundle: Bundle
+
     override fun getLayoutId() = R.layout.activity_reports_page
     override fun getViewModel() = ReportsPageViewModel::class.java
     override fun getNavigator() = this@ReportsPageActivity
     override fun onError(message: String) = showMessage(message)
+
+    /**
+     * This method navigates user to previous Report, if no previous report is available it
+     * redirects to Visit Report page
+     *
+     * @param currentReportNo Takes currentReport Number as an argument
+     */
+    fun goToPreviousReport(currentReportNo: Int) {
+        if (currentReportNo <= 1 || currentReportNo > 18)
+            finish()
+        else
+            addReportFragment(currentReportNo - 1, false, bundle)
+    }
+
     override fun onInternetError() {}
 
     private var reportPageNo = -1
@@ -47,7 +67,12 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
 
             mBinding.visitId.text = "#$visitReportId"
             reportPageNo = intent?.extras?.get(Constants.REPORTS_PAGE_KEY) as Int
-            addFragment(reportPageNo, visitReportId)
+
+            //Put the Visit Report ID in bundle to share to Fragments
+            bundle = Bundle()
+            bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
+
+            addReportFragment(reportPageNo, false, bundle)
         }
 
         setToolbar(reportPageNo)
@@ -59,7 +84,7 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
             }
 
             //Exit Button
-            btnClose.setOnClickListener{
+            btnClose.setOnClickListener {
                 finish()
             }
         }
@@ -71,35 +96,38 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
         mBinding.reportProgress.progress = reportPage
     }
 
-    private fun addFragment(reportPage: Int, visitReportId: String) {
-        val fragment: Fragment = when (reportPage) {
-            Constants.REPORT_1 -> IndustryReportFragment()
-            Constants.REPORT_2 -> ProductionFragment()
-            Constants.REPORT_3 -> WaterFragment()
-            Constants.REPORT_4 -> TreatmentFragment()
-            Constants.REPORT_5 -> DisposalFragment()
-            Constants.REPORT_6 -> OMSWaterFragment()
-            Constants.REPORT_7 -> ElectricFragment()
-            Constants.REPORT_8 -> LastJVSFragment()
-            Constants.REPORT_9 -> AirFragment()
-            Constants.REPORT_10 -> OMSStackFragment()
-            Constants.REPORT_11 -> OMSAmbientAirFragment()
-            Constants.REPORT_12 -> HazardousFragment()
-            Constants.REPORT_13 -> NonHazardousFragment()
-            Constants.REPORT_14 -> TreePlantationFragment()
-            Constants.REPORT_15 -> StatutoryFragment()
-            Constants.REPORT_16 -> PreviousLegalFragment()
-            Constants.REPORT_17 -> BGDFragment()
-            Constants.REPORT_18 -> AdditionalInfoFragment()
-            else -> Fragment()
+    internal fun addReportFragment(
+        reportKey: Int,
+        addToBackStack: Boolean = false,
+        bundle: Bundle? = null
+    ) {
+        Constants.run {
+            val fragment = when (reportKey) {
+                REPORT_1 -> IndustryReportFragment() //v
+                REPORT_2 -> ProductionFragment()// listing //v
+                REPORT_3 -> WaterFragment()//v
+                REPORT_4 -> TreatmentFragment()//v
+                REPORT_5 -> DisposalFragment()//v
+                REPORT_6 -> OMSWaterFragment() //v
+                REPORT_7 -> ElectricFragment() //v
+                REPORT_8 -> LastJVSFragment() // listing
+                REPORT_9 -> AirFragment() // listing //v
+                REPORT_10 -> OMSStackFragment()//v
+                REPORT_11 -> OMSAmbientAirFragment()// listing //v
+                REPORT_12 -> HazardousFragment()// listing//v
+                REPORT_13 -> NonHazardousFragment()// listing //v
+                REPORT_14 -> TreePlantationFragment()//v
+                REPORT_15 -> StatutoryFragment() //v
+                REPORT_16 -> PreviousLegalFragment() //v
+                REPORT_17 -> BGDFragment()// listing //v
+                REPORT_18 -> AdditionalInfoFragment() //v
+                else -> Fragment()
+            }
+            super.addReportFragment(fragment, addToBackStack, bundle)
         }
+    }
 
-        //Put the Visit Report ID in bundle to share to Fragments
-        val bundle = Bundle()
-        bundle.putString(Constants.VISIT_REPORT_ID, visitReportId)
-
-        //Set fragment arguments
-        fragment.arguments = bundle
-        addReportFragment(fragment, false, bundle)
+    override fun onBackPressed() {  //GoTo previous report on click of back button
+        goToPreviousReport(currentReportNumber)
     }
 }

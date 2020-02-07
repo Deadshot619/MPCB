@@ -18,7 +18,6 @@ class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, R
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_previous_legal
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -27,6 +26,9 @@ class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, R
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_16
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

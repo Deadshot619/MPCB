@@ -20,7 +20,6 @@ class DisposalFragment : BaseFragmentReport<FragmentDisposalBinding, ReportsPage
 
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     //for Industrial input fields
     private var indusCept: Double = 0.0
@@ -49,6 +48,9 @@ class DisposalFragment : BaseFragmentReport<FragmentDisposalBinding, ReportsPage
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_5
+
         //If true, disable all controls!
         disableViews(mBinding.disposalParentLay)
 

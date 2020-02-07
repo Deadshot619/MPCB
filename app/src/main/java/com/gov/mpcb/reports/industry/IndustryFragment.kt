@@ -19,6 +19,7 @@ import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
 import com.gov.mpcb.utils.validations.isEmailValid
 import com.gov.mpcb.utils.validations.isValidMobile
+import kotlinx.android.synthetic.main.button_save_next_layout.*
 import java.util.*
 
 
@@ -29,8 +30,6 @@ class IndustryReportFragment :
     private val VALID_UPTO = 2
     private var reports: ReportRequest? = null
 
-    private lateinit var visitReportId: String
-
     override fun getLayoutId() = R.layout.fragment_industry_category
     override fun getViewModel() = ReportsPageViewModel::class.java
     override fun getNavigator() = this@IndustryReportFragment
@@ -38,6 +37,9 @@ class IndustryReportFragment :
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_1
+
         disableViews(mBinding.categoryParentLay)
 
         //Method to Show or Hide Save & Next Button
@@ -55,7 +57,6 @@ class IndustryReportFragment :
         //set report variable data
         setReportVariableData(visitReportId)
 
-
         val adapter = ArrayAdapter(
             getBaseActivity(),
             android.R.layout.simple_spinner_item,
@@ -71,7 +72,6 @@ class IndustryReportFragment :
                 btnSubmit.setOnClickListener { onSubmit() }
                 btnNext.setOnClickListener { addReportFragmentLocal(REPORT_2, visitReportId) }
             }
-
         }
     }
 
@@ -253,6 +253,5 @@ class IndustryReportFragment :
                 }
             }
         }
-
     }
 }

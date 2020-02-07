@@ -13,7 +13,6 @@ import com.gov.mpcb.utils.showMessage
 class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
     NonHazardousNavigator {
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_non_hazardious
     override fun getViewModel() = NonHazardousViewModel::class.java
@@ -22,6 +21,9 @@ class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, No
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_13
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

@@ -14,7 +14,6 @@ class HazardousFragment : BaseFragmentReport<FragmentHazardiousBinding, Hazardou
     HazardousNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_hazardious
     override fun getViewModel() = HazardousViewModel::class.java
@@ -23,6 +22,9 @@ class HazardousFragment : BaseFragmentReport<FragmentHazardiousBinding, Hazardou
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_12
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

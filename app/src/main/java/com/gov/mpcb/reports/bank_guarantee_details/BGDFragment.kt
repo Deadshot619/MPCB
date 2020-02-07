@@ -13,7 +13,6 @@ import com.gov.mpcb.utils.showMessage
 class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewModel>(), BGDNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_bank_guarantee
     override fun getViewModel() = BGDViewModel::class.java
@@ -22,6 +21,9 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_17
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

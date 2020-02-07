@@ -18,7 +18,6 @@ class ElectricFragment : BaseFragmentReport<FragmentElectricBinding, ReportsPage
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_electric
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -27,6 +26,9 @@ class ElectricFragment : BaseFragmentReport<FragmentElectricBinding, ReportsPage
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_7
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 

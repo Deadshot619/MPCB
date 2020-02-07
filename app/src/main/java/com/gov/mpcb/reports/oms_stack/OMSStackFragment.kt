@@ -16,7 +16,6 @@ class OMSStackFragment : BaseFragmentReport<FragmentOmsStackBinding, ReportsPage
 
 
     private var reports: ReportRequest? = null
-    private lateinit var visitReportId: String
 
     override fun getLayoutId() = R.layout.fragment_oms_stack
     override fun getViewModel() = ReportsPageViewModel::class.java
@@ -25,6 +24,9 @@ class OMSStackFragment : BaseFragmentReport<FragmentOmsStackBinding, ReportsPage
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Set currectReportNumber
+        currentReportNumber = Constants.REPORT_10
+
         //If true, disable all controls!
         disableViews(mBinding.categoryParentLay)
 
