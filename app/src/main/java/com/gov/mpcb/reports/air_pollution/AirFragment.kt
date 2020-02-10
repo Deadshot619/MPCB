@@ -45,7 +45,6 @@ class AirFragment : BaseFragmentReport<FragmentAirPollutionBinding, AirViewModel
         mBinding.run{
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
-                btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_10, visitReportId) }
             }
                 imgDelete.setOnClickListener { mViewModel.deleteItem() }
                 tvAddMore.setOnClickListener { mViewModel.addItem() }

@@ -49,7 +49,6 @@ class OMSAmbientAirFragment : BaseFragmentReport<FragmentOmsAmbientAirBinding, O
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
-                btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_12, visitReportId) }
             }
         }
     }

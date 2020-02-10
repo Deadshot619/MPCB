@@ -46,7 +46,6 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
-                btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_18, visitReportId) }
             }
         }
     }

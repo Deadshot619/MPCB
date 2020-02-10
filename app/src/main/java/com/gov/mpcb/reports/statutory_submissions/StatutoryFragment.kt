@@ -50,7 +50,6 @@ class StatutoryFragment : BaseFragmentReport<FragmentStatutoryBinding, ReportsPa
         mBinding.edtEnvironmentReport.setOnClickListener { showDateDialog(ENVIRONMENT_REPORT) }
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_16, visitReportId) }
         }
     }
 

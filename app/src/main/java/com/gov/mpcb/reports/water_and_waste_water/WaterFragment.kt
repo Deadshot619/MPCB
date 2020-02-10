@@ -45,7 +45,6 @@ class WaterFragment : BaseFragmentReport<FragmentWasteWaterAspectBinding, Report
 
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_4, visitReportId) }
         }
     }
 

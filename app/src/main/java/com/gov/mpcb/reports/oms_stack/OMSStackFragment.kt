@@ -44,7 +44,6 @@ class OMSStackFragment : BaseFragmentReport<FragmentOmsStackBinding, ReportsPage
         setListener()
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_11, visitReportId) }
         }
     }
 

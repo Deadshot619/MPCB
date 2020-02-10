@@ -70,7 +70,6 @@ class IndustryReportFragment :
             edtValidUpto.setOnClickListener { showDateDialog(VALID_UPTO) }
             btnSaveNext.run{
                 btnSubmit.setOnClickListener { onSubmit() }
-                btnNext.setOnClickListener { addReportFragmentLocal(REPORT_2, visitReportId) }
             }
         }
     }

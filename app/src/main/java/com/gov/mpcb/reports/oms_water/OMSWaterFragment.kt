@@ -45,7 +45,6 @@ class OMSWaterFragment : BaseFragmentReport<FragmentOmsWaterBinding, ReportsPage
         setListener()
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_7, visitReportId) }
         }
     }
 

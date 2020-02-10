@@ -49,7 +49,6 @@ class ProductionFragment : BaseFragmentReport<FragmentProductionBinding, Product
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
-                btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_3, visitReportId) }
             }
         }
     }

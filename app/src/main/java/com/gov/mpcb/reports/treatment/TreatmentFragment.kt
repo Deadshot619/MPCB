@@ -48,7 +48,6 @@ class TreatmentFragment : BaseFragmentReport<FragmentTreatmentBinding, ReportsPa
         setCheckBoxListener()
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_5, visitReportId) }
         }
     }
 

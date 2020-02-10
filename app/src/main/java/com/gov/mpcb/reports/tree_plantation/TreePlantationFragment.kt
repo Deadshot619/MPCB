@@ -46,7 +46,6 @@ class TreePlantationFragment : BaseFragmentReport<FragmentTreePlantationBinding,
 
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_15, visitReportId) }
         }
     }
 

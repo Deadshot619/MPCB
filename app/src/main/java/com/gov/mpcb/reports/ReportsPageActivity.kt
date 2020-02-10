@@ -49,12 +49,15 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
      * redirects to Visit Report page
      *
      * @param currentReportNo Takes currentReport Number as an argument
+     * @param direction If true, goto next Report, else previous
      */
-    fun goToPreviousReport(currentReportNo: Int) {
-        if (currentReportNo <= 1 || currentReportNo > 18)
-            finish()
-        else
+    fun goToDirectedReport(currentReportNo: Int, direction: Boolean = false) {
+        if (direction && currentReportNo < 18)
+            addReportFragment(currentReportNo + 1, false, bundle)
+        else if (!direction && currentReportNo > 1)
             addReportFragment(currentReportNo - 1, false, bundle)
+        else
+            finish()
     }
 
     override fun onInternetError() {}
@@ -128,6 +131,6 @@ class ReportsPageActivity : BaseActivity<ActivityReportsPageBinding, ReportsPage
     }
 
     override fun onBackPressed() {  //GoTo previous report on click of back button
-        goToPreviousReport(currentReportNumber)
+        goToDirectedReport(currentReportNumber)
     }
 }

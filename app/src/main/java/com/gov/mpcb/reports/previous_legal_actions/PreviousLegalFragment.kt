@@ -47,7 +47,6 @@ class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, R
 
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_17, visitReportId) }
         }
     }
 

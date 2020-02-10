@@ -68,7 +68,6 @@ class DisposalFragment : BaseFragmentReport<FragmentDisposalBinding, ReportsPage
 
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_6, visitReportId) }
         }
     }
 

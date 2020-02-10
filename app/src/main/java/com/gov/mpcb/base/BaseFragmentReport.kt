@@ -116,8 +116,13 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
         //If true show 'Next & Previous' button & hide 'Save' button
         if (visitStatus) {
             btnSaveNextLayoutBinding.run {
-                btnNext.visibility = View.VISIBLE
-                btnSubmit.visibility = View.GONE
+                btnNext.run {
+                    visibility = View.VISIBLE
+                    setOnClickListener {
+                        (activity as ReportsPageActivity).goToDirectedReport(currentReportNumber, true)
+                    }
+                }
+                    btnSubmit.visibility = View.GONE
             }
         } else {
             btnSaveNextLayoutBinding.run {
@@ -131,7 +136,7 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
             btnSaveNextLayoutBinding.btnPrevious.run {
                 visibility = View.VISIBLE
                 setOnClickListener {
-                    (activity as ReportsPageActivity).goToPreviousReport(currentReportNumber)
+                    (activity as ReportsPageActivity).goToDirectedReport(currentReportNumber)
                 }
             }
     }

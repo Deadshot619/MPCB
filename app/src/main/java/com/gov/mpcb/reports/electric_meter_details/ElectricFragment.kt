@@ -46,7 +46,6 @@ class ElectricFragment : BaseFragmentReport<FragmentElectricBinding, ReportsPage
 
         mBinding.btnSaveNext.run {
             btnSubmit.setOnClickListener { onSubmit() }
-            btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_8, visitReportId) }
         }
     }
 

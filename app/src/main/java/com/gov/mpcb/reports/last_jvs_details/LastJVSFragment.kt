@@ -64,7 +64,6 @@ class LastJVSFragment : BaseFragmentReport<FragmentLastJvsBinding, LastJVSViewMo
             tvAddMore.setOnClickListener { mViewModel.addItem() }
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
-                btnNext.setOnClickListener{ addReportFragmentLocal(Constants.REPORT_9, visitReportId) }
             }
 
             //Delete Button

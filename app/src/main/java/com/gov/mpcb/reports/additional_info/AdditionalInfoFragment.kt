@@ -54,7 +54,6 @@ class AdditionalInfoFragment :
             btnSubmit.setOnClickListener { onSubmit() }
             btnNext.apply {
                 text = "Done"
-                setOnClickListener { activity?.finish() }
             }
         }
     }
