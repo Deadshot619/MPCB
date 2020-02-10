@@ -16,6 +16,9 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
 
     protected lateinit var report: ReportRequest
 
+    /**
+     * Gets & Saves the current Report number from [ReportsPageActivity]
+     */
     protected var currentReportNumber: Int
         get() = (activity as ReportsPageActivity).currentReportNumber
         set(value) {
