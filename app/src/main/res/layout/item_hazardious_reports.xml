@@ -111,7 +111,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
                         android:inputType="phone"
-                        android:digits="0123456789"
+                        android:digits="0123456789."
 
                         android:text="@={model.hazardousWasteQuantityString}"
                         android:textColor="@color/text_light_black" />
@@ -170,7 +170,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
                         android:inputType="phone"
-                        android:digits="0123456789"
+                        android:digits="0123456789."
 
                         android:text="@={model.hwActualDisposalString}"
                         android:textColor="@color/text_light_black" />
@@ -200,7 +200,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
                         android:inputType="phone"
-                        android:digits="0123456789"
+                        android:digits="0123456789."
 
                         android:text="@={model.hwFormDisposalString}"
                         android:textColor="@color/text_light_black" />
@@ -230,7 +230,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
                         android:inputType="phone"
-                        android:digits="0123456789"
+                        android:digits="0123456789."
 
                         android:text="@={model.hwFormCswtsdfString}"
                         android:textColor="@color/text_light_black" />
@@ -260,7 +260,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
                         android:inputType="phone"
-                        android:digits="0123456789"
+                        android:digits="0123456789."
 
                         android:text="@={model.hwFormCoProcessingString}"
                         android:textColor="@color/text_light_black" />
@@ -290,7 +290,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
                         android:inputType="phone"
-                        android:digits="0123456789"
+                        android:digits="0123456789."
 
                         android:text="@={model.hwDisposedActualuserString}"
                         android:textColor="@color/text_light_black" />
@@ -320,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="3.5"
                         android:inputType="phone"
-                        android:digits="0123456789"
+                        android:digits="0123456789."
 
                         android:text="@={model.hwDisposalQuantityString}"
                         android:textColor="@color/text_light_black" />
