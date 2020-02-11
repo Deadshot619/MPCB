@@ -75,15 +75,16 @@ class StatutoryFragment : BaseFragmentReport<FragmentStatutoryBinding, ReportsPa
         report.data.routineReport.hwAnnualReturnDate = mBinding.edtHazardousWaste.text.toString()
         report.data.routineReport.envStatementReport = mBinding.edtEnvironmentReport.text.toString()
 
-        if (validate()) {
-            saveReportData(
+        /*if (validate()) {
+        }*/
+        saveReportData(
                 reportNo = visitReportId,
                 reportKey = Constants.REPORT_15,
                 reportStatus = true
             )
             //Put the Visit Report ID in bundle to share to Fragments
             addReportFragmentLocal(Constants.REPORT_16, visitReportId)
-        }
+
     }
 
     private fun validate(): Boolean {
