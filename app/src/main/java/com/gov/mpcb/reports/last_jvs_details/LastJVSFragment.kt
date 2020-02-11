@@ -205,11 +205,13 @@ class LastJVSFragment : BaseFragmentReport<FragmentLastJvsBinding, LastJVSViewMo
     }
 
     private fun validate(): Boolean {
+        /*Date of collection is not compulsory as of now*/
+
         //Indus Date of Collection
-        if (mBinding.edtIndusDateOfCollection.text.isNullOrEmpty()) {
+        /*if (mBinding.edtIndusDateOfCollection.text.isNullOrEmpty()) {
             showMessage("Enter Date of collection")
             return false
-        }
+        }*/
 
         //Indus Payment Details
         if (!mBinding.rbPymntDetailsIndusYes.isChecked && !mBinding.rbPymntDetailsIndusNo.isChecked) {
@@ -228,17 +230,17 @@ class LastJVSFragment : BaseFragmentReport<FragmentLastJvsBinding, LastJVSViewMo
             }
 
             //Indus Date
-            if (mBinding.edtDateIndus.text.isNullOrEmpty()) {
+            /*if (mBinding.edtDateIndus.text.isNullOrEmpty()) {
                 showMessage("Enter Date")
                 return false
-            }
+            }*/
         }
 
         //Domestic Date of Collection
-        if (mBinding.edtDomesticDateOfCollection.text.isNullOrEmpty()) {
+        /*if (mBinding.edtDomesticDateOfCollection.text.isNullOrEmpty()) {
             showMessage("Enter Date of collection")
             return false
-        }
+        }*/
 
         //Domestic Payment Details
         if (!mBinding.rbPymntDetailsDomesticYes.isChecked && !mBinding.rbPymntDetailsDomesticNo.isChecked) {
@@ -257,10 +259,10 @@ class LastJVSFragment : BaseFragmentReport<FragmentLastJvsBinding, LastJVSViewMo
             }
 
             //Domestic Date
-            if (mBinding.edtDateDomestic.text.isNullOrEmpty()) {
+            /*if (mBinding.edtDateDomestic.text.isNullOrEmpty()) {
                 showMessage("Enter Date")
                 return false
-            }
+            }*/
         }
 
         //JVS Sample Collected for water
