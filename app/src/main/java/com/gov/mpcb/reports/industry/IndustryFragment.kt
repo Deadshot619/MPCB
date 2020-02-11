@@ -98,7 +98,10 @@ class IndustryReportFragment :
     private fun setListener() {
         mBinding.rgConsent.setOnCheckedChangeListener { group, checkedId ->
             //Save Consent Obtained in Shared Pref
-            report.data.routineReport.consentObtain = if (checkedId == R.id.rbConsentYes) 1 else 0
+            report.data.routineReport.consentObtain = if (checkedId == R.id.rbConsentYes) 1 else {
+                mBinding.edtValidUpto.setText("")
+                0
+            }
         }
     }
 
@@ -189,10 +192,6 @@ class IndustryReportFragment :
                 showMessage("Enter Telephone No of Unit")
                 return false
             }
-            if (validityOfConsentUpto.isEmpty()) {
-                showMessage("Enter Validity Upto")
-                return false
-            }
             if (validityOfConsentIe.isEmpty()) {
                 showMessage("Enter I.E(m3/day)")
                 return false
@@ -201,7 +200,16 @@ class IndustryReportFragment :
                 showMessage("Enter D.E(m3/day)")
                 return false
             }
-            if (consentObtain == null) {
+
+            if (consentObtain == 1 || consentObtain == 0) {
+                //If Consent Obtained is 'Yes' then check if 'Valid upto' is filled
+                if (consentObtain == 1) {
+                    if (validityOfConsentUpto.isEmpty()) {
+                        showMessage("Enter Validity Upto")
+                        return false
+                    }
+                }
+            }else{
                 showMessage("Select Consent Obtained")
                 return false
             }
