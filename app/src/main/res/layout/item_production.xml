@@ -1,113 +1,117 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
-    
+
     <data>
-        
+
         <variable
-            name="model"
-            type="com.gov.mpcb.network.request.RoutineReportProduct" />
-        
+                name="model"
+                type="com.gov.mpcb.network.request.RoutineReportProduct" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/category_parent_lay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="20dp">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/productNameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:paddingBottom="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/productNameLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/txt_product_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@={model.productName}"
-                android:hint="Product Name"/>
+                    android:id="@+id/txt_product_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Product Name"
+                    android:text="@={model.productName}" />
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        Quantity (as Concent)-->
+        <!--        Quantity (as Concent)-->
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/qtyLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/productNameLayout">
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/txt_quantity_concent"
-                android:layout_width="match_parent"
+                android:id="@+id/qtyLayout"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/productNameLayout">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/txt_quantity_concent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:digits=".0123456789"
+                    android:hint="Quantity(As Consent)"
                     android:inputType="phone"
-                android:text="@={model.productQuantity}"
-                android:hint="Quantity(As Consent)"/>
+                    android:text="@={model.productQuantity}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtUnitAsConcent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Unit(As Consent)"
-            android:textColor="@color/light_grey"
-            android:textSize="@dimen/text_large"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/qtyLayout"/>
+                android:id="@+id/txtUnitAsConcent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Unit(As Consent)"
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/text_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/qtyLayout" />
 
         <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spnUnitConsent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtUnitAsConcent"/>
-
-<!--        Quantity (Actual)-->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/qtyActualLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spnUnitConsent">
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/txt_quantity_actual"
-                android:layout_width="match_parent"
+                android:id="@+id/spnUnitConsent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtUnitAsConcent" />
+
+        <!--        Quantity (Actual)-->
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/qtyActualLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spnUnitConsent">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/txt_quantity_actual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:digits=".0123456789"
+                    android:hint="Quantity(Actual)"
                     android:inputType="phone"
-                android:text="@={model.productQuantityActual}"
-                android:hint="Quantity(Actual)"/>
+                    android:text="@={model.productQuantityActual}" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/txtUnitActual"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Unit(Actual)"
-            android:textColor="@color/light_grey"
-            android:textSize="@dimen/text_large"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/qtyActualLayout"/>
+                android:id="@+id/txtUnitActual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Unit(Actual)"
+                android:textColor="@color/light_grey"
+                android:textSize="@dimen/text_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/qtyActualLayout" />
 
         <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spnUnitActual"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtUnitActual"/>
+                android:id="@+id/spnUnitActual"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtUnitActual" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
