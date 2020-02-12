@@ -24,7 +24,8 @@ import java.util.*
 
 
 class IndustryReportFragment :
-    BaseFragmentReport<FragmentIndustryCategoryBinding, ReportsPageViewModel>(), ReportsPageNavigator {
+    BaseFragmentReport<FragmentIndustryCategoryBinding, ReportsPageViewModel>(),
+    ReportsPageNavigator {
 
     private val VISITED_ON = 1
     private val VALID_UPTO = 2
@@ -63,12 +64,12 @@ class IndustryReportFragment :
             CATEGORY_LIST.values.toTypedArray()
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        mBinding.run{
+        mBinding.run {
             catSpinner.adapter = adapter
 
             edtVisitedIndustryOn.setOnClickListener { showDateDialog(VISITED_ON) }
             edtValidUpto.setOnClickListener { showDateDialog(VALID_UPTO) }
-            btnSaveNext.run{
+            btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
             }
         }
@@ -98,167 +99,173 @@ class IndustryReportFragment :
     private fun setListener() {
         mBinding.rgConsent.setOnCheckedChangeListener { group, checkedId ->
             //Save Consent Obtained in Shared Pref
-            report.data.routineReport.consentObtain = if (checkedId == R.id.rbConsentYes) 1 else {
-                mBinding.edtValidUpto.setText("")
+            report.data.routineReport.consentObtain = if (checkedId == R.id.rbConsentYes) {
+                mBinding.edtValidUpto.isEnabled = true
+                1
+            } else {
+                mBinding.edtValidUpto.run {
+                    setText("")
+                    isEnabled = false
+                }
                 0
             }
         }
     }
 
-    private fun onSubmit() {
-        report.data.industryCategoryReselect =
-            try {
-                CATEGORY_LIST.filterValues {
-                    it == CATEGORY_LIST[
-                            if (mBinding.catSpinner.selectedItemPosition > 1)
-                                mBinding.catSpinner.selectedItemPosition + 4
-                            else
-                                mBinding.catSpinner.selectedItemPosition
-                    ]
-                }.keys.first().toString()
-            }catch (e: Exception){
-                "0"
-            }
-
-        report.data.routineReport.run{
-            visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
-            emailAddress = mBinding.visitCatEmailEd.text.toString()
-            telephoneNumber = mBinding.visitCatTelephoneEd.text.toString()
-            validityOfConsentUpto = mBinding.edtValidUpto.text.toString()
-            validityOfConsentIe = mBinding.consentIeEd.text.toString()
-            hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
+private fun onSubmit() {
+    report.data.industryCategoryReselect =
+        try {
+            CATEGORY_LIST.filterValues {
+                it == CATEGORY_LIST[
+                        if (mBinding.catSpinner.selectedItemPosition > 1)
+                            mBinding.catSpinner.selectedItemPosition + 4
+                        else
+                            mBinding.catSpinner.selectedItemPosition
+                ]
+            }.keys.first().toString()
+        } catch (e: Exception) {
+            "0"
         }
 
-        if (validateFieldsFilled()) {
-            if (validateFieldsFilledCorrect()) {
-                saveReportData(
-                    reportNo = visitReportId,
-                    reportKey = REPORT_1,
-                    reportStatus = true
-                )
+    report.data.routineReport.run {
+        visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
+        emailAddress = mBinding.visitCatEmailEd.text.toString()
+        telephoneNumber = mBinding.visitCatTelephoneEd.text.toString()
+        validityOfConsentUpto = mBinding.edtValidUpto.text.toString()
+        validityOfConsentIe = mBinding.consentIeEd.text.toString()
+        hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
+    }
 
-                //Do fragment transaction to go to next Page
-                addReportFragmentLocal(REPORT_2, visitReportId)
-            }
+    if (validateFieldsFilled()) {
+        if (validateFieldsFilledCorrect()) {
+            saveReportData(
+                reportNo = visitReportId,
+                reportKey = REPORT_1,
+                reportStatus = true
+            )
+
+            //Do fragment transaction to go to next Page
+            addReportFragmentLocal(REPORT_2, visitReportId)
+        }
+    }
+}
+
+/**
+ * Method to check if the fields are correctly filled
+ */
+private fun validateFieldsFilledCorrect(): Boolean {
+
+    report.data.routineReport.run {
+        if (!isEmailValid(emailAddress)) {
+            showMessage("Email Id is invalid")
+            return false
+        }
+        if (!isValidMobile(telephoneNumber)) {
+            showMessage("Invalid Telephone Number")
+            return false
+        }
+        if (!isDecimal(validityOfConsentIe)) {
+            showMessage("Invalid I.E. Number")
+            return false
+        }
+        if (!isDecimal(hwOfValidUptoDe)) {
+            showMessage("Invalid D.E. Number")
+            return false
         }
     }
 
-    /**
-     * Method to check if the fields are correctly filled
-     */
-    private fun validateFieldsFilledCorrect(): Boolean {
+    return true
+}
 
-        report.data.routineReport.run {
-            if(!isEmailValid(emailAddress)){
-                showMessage("Email Id is invalid")
-                return false
-            }
-            if (!isValidMobile(telephoneNumber)){
-                showMessage("Invalid Telephone Number")
-                return false
-            }
-            if (!isDecimal(validityOfConsentIe)){
-                showMessage("Invalid I.E. Number")
-                return false
-            }
-            if (!isDecimal(hwOfValidUptoDe)){
-                showMessage("Invalid D.E. Number")
-                return false
-            }
-        }
-
-        return true
-    }
-
-    /**
-     * Method to validate if fields of report form are filled.
-     */
-    private fun validateFieldsFilled(): Boolean {
+/**
+ * Method to validate if fields of report form are filled.
+ */
+private fun validateFieldsFilled(): Boolean {
 //        if (report.data.industryCategoryReselect == "0") {
 //            showMessage("Select Category")
 //            return false
 //        }
 
-        report.data.routineReport.run {
-            if (visitedOn.isEmpty()) {
-                showMessage("Enter Visited Industry On")
-                return false
-            }
-            if (emailAddress.isEmpty()) {
-                showMessage("Enter Email Address of Unit")
-                return false
-            }
-            if (telephoneNumber.isEmpty()) {
-                showMessage("Enter Telephone No of Unit")
-                return false
-            }
-            if (validityOfConsentIe.isEmpty()) {
-                showMessage("Enter I.E(m3/day)")
-                return false
-            }
-            if (hwOfValidUptoDe.isEmpty()) {
-                showMessage("Enter D.E(m3/day)")
-                return false
-            }
-
-            if (consentObtain == 1 || consentObtain == 0) {
-                //If Consent Obtained is 'Yes' then check if 'Valid upto' is filled
-                if (consentObtain == 1) {
-                    if (validityOfConsentUpto.isEmpty()) {
-                        showMessage("Enter Validity Upto")
-                        return false
-                    }
-                }
-            }else{
-                showMessage("Select Consent Obtained")
-                return false
-            }
+    report.data.routineReport.run {
+        if (visitedOn.isEmpty()) {
+            showMessage("Enter Visited Industry On")
+            return false
+        }
+        if (emailAddress.isEmpty()) {
+            showMessage("Enter Email Address of Unit")
+            return false
+        }
+        if (telephoneNumber.isEmpty()) {
+            showMessage("Enter Telephone No of Unit")
+            return false
+        }
+        if (validityOfConsentIe.isEmpty()) {
+            showMessage("Enter I.E(m3/day)")
+            return false
+        }
+        if (hwOfValidUptoDe.isEmpty()) {
+            showMessage("Enter D.E(m3/day)")
+            return false
         }
 
-        return true
+        if (consentObtain == 1 || consentObtain == 0) {
+            //If Consent Obtained is 'Yes' then check if 'Valid upto' is filled
+            if (consentObtain == 1) {
+                if (validityOfConsentUpto.isEmpty()) {
+                    showMessage("Enter Validity Upto")
+                    return false
+                }
+            }
+        } else {
+            showMessage("Select Consent Obtained")
+            return false
+        }
     }
 
-    override fun onStart() {
-        super.onStart()
-        //set data to views in onStart
-        setDataToViews()
+    return true
+}
+
+override fun onStart() {
+    super.onStart()
+    //set data to views in onStart
+    setDataToViews()
 //        Log.i("Industry", getReportData()?.data?.industryCategoryReselect)
+}
+
+/**
+ * This method is used to retrieve & set data to views
+ */
+override fun setDataToViews() {
+    reports = if (visitStatus) {
+        getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+    } else {
+        getReportData(visitReportId)
     }
 
-    /**
-     * This method is used to retrieve & set data to views
-     */
-    override fun setDataToViews(){
-        reports = if (visitStatus){
-            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
-        }else{
-            getReportData(visitReportId)
-        }
-
-        //Spinner
-        if(reports != null) {
-            mBinding.run {
-                if (reports?.data?.industryCategoryReselect != "")
-                    reports?.data?.industryCategoryReselect?.let { value ->
-                        catSpinner.setSelection(
-                            if (value.parseToInt() > 2)
-                                value.parseToInt() - 4
-                            else
-                                value.parseToInt()
-                        )
-                    }
-                edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
-                visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
-                visitCatTelephoneEd.setText(reports?.data?.routineReport?.telephoneNumber)
-                edtValidUpto.setText(reports?.data?.routineReport?.validityOfConsentUpto)
-                consentIeEd.setText(reports?.data?.routineReport?.validityOfConsentIe)
-                consentDeEd.setText(reports?.data?.routineReport?.hwOfValidUptoDe)
-                if (reports?.data?.routineReport?.consentObtain == 1) {
-                    rgConsent.check(R.id.rbConsentYes)
-                } else if (reports?.data?.routineReport?.consentObtain == 0) {
-                    rgConsent.check(R.id.rbConsentNo)
+    //Spinner
+    if (reports != null) {
+        mBinding.run {
+            if (reports?.data?.industryCategoryReselect != "")
+                reports?.data?.industryCategoryReselect?.let { value ->
+                    catSpinner.setSelection(
+                        if (value.parseToInt() > 2)
+                            value.parseToInt() - 4
+                        else
+                            value.parseToInt()
+                    )
                 }
+            edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
+            visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
+            visitCatTelephoneEd.setText(reports?.data?.routineReport?.telephoneNumber)
+            edtValidUpto.setText(reports?.data?.routineReport?.validityOfConsentUpto)
+            consentIeEd.setText(reports?.data?.routineReport?.validityOfConsentIe)
+            consentDeEd.setText(reports?.data?.routineReport?.hwOfValidUptoDe)
+            if (reports?.data?.routineReport?.consentObtain == 1) {
+                rgConsent.check(R.id.rbConsentYes)
+            } else if (reports?.data?.routineReport?.consentObtain == 0) {
+                rgConsent.check(R.id.rbConsentNo)
             }
         }
     }
+}
 }
