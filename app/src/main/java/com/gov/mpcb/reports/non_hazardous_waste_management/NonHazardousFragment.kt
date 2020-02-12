@@ -123,7 +123,7 @@ class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, No
             }
 
 //            Actual Disposal
-            if (item.nhwActualdisposalString.toString().isNullOrEmpty()) {
+            if (item.nhwActualdisposalString.isEmpty()) {
                 showMessage("Enter Actual Disposal")
                 isValid = false
                 break
