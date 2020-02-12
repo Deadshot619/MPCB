@@ -170,11 +170,11 @@ class HazardousFragment : BaseFragmentReport<FragmentHazardiousBinding, Hazardou
             }
 
 //            Last Disposal Date
-            if (item.hwDisposalDate.isNullOrEmpty()) {
-                showMessage("Enter Last disposal date")
-                isValid = false
-                break
-            }
+//            if (item.hwDisposalDate.isNullOrEmpty()) {
+//                showMessage("Enter Last disposal date")
+//                isValid = false
+//                break
+//            }
 
 //            UOM
             if (item.hwDisposalQuantityUnit == "0") {

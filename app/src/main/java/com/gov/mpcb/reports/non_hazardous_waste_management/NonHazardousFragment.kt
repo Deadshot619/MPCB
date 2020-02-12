@@ -105,11 +105,11 @@ class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, No
             }
 
 //            Last Disposal Date
-            if (item.nhwDisposalDate.isNullOrEmpty()) {
-                showMessage("Enter Last Disposal Date")
-                isValid = false
-                break
-            }
+//            if (item.nhwDisposalDate.isNullOrEmpty()) {
+//                showMessage("Enter Last Disposal Date")
+//                isValid = false
+//                break
+//            }
 
 //            Last Disposal Quantity
             if (item.nhwDisposalQuantityString.toString().isNullOrEmpty()) {
