@@ -1,5 +1,6 @@
 package com.gov.mpcb.reports.bank_guarantee_details
 
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gov.mpcb.R
@@ -41,7 +42,7 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
         setUpRecyclerView()
         setListener()
 
-        mBinding.run{
+        mBinding.run {
             tvAddMore.setOnClickListener { mViewModel.addItem() }
             imgDelete.setOnClickListener { mViewModel.deleteItem() }
             btnSaveNext.run {
@@ -61,12 +62,37 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
     //Set Listeners to Views
     private fun setListener() {
         mBinding.rgBGImposed.setOnCheckedChangeListener { group, checkedId ->
-            report.data.routineReport.bgImposed = if (checkedId == R.id.rbBGYes) "1" else "0"
+            report.data.routineReport.bgImposed = if (checkedId == R.id.rbBGYes) {
+                //If yes, then make below fields visible
+                mBinding.run {
+                    txtBgImposedAgainst.visibility = View.VISIBLE
+                    rgBGImposedAgainst.visibility = View.VISIBLE
+                    txtNumber.visibility = View.VISIBLE
+                }
+
+                "1"
+            } else {
+                //If no, then make below fields invisible, also clear the selection & text of the fields
+                mBinding.run {
+                    txtBgImposedAgainst.visibility = View.GONE
+                    rgBGImposedAgainst.visibility = View.GONE
+                    txtNumber.visibility = View.GONE
+                }
+
+                mBinding.rgBGImposedAgainst.clearCheck()
+                mBinding.edtNumber.setText("")
+
+                "0"
+            }
         }
 
         mBinding.rgBGImposedAgainst.setOnCheckedChangeListener { group, checkedId ->
             report.data.routineReport.bgImposedAgainst =
-                if (checkedId == R.id.rbBGAgainstYes) "0" else "1"
+                when (checkedId) {
+                    R.id.rbBGAgainstYes -> "0"
+                    R.id.rbBGAgainstNo -> "1"
+                    else -> ""
+                }
         }
     }
 
@@ -84,28 +110,31 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
             )
             //Put the Visit Report ID in bundle to share to Fragments
             addReportFragmentLocal(Constants.REPORT_18, visitReportId)
-        }}
+        }
+    }
 
     private fun validate(): Boolean {
         var isValid = true
 
-//        BG Imposed
+//      BG Imposed
         if (report.data.routineReport.bgImposed.isNullOrEmpty()) {
             showMessage("Select BG Imposed")
             return false
+        } else if (report.data.routineReport.bgImposed == "1") { //Check below fields only if BG imposed is selected as 'YES'
+//          BG Imposed Against
+            if (report.data.routineReport.bgImposedAgainst.isNullOrEmpty()) {
+                showMessage("Select BG Imposed Against")
+                return false
+            }
+
+//          BG Number
+            if (report.data.routineReport.bgImposedNumber.isNullOrEmpty()) {
+                showMessage("Enter BG Imposed Number")
+                return false
+            }
         }
 
-//        BG Imposed Against
-        if (report.data.routineReport.bgImposedAgainst.isNullOrEmpty()) {
-            showMessage("Select BG Imposed Against")
-            return false
-        }
 
-//        BG Number
-        if (report.data.routineReport.bgImposedNumber.isNullOrEmpty()) {
-            showMessage("Enter BG Imposed Number")
-            return false
-        }
 //        else if (!isDecimal(report.data.routineReport.bgImposedNumber)){
 //            showMessage("Invalid BG Imposed Number")
 //            return false
@@ -123,7 +152,7 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
                 showMessage("Select BG Submitted")
                 isValid = false
                 break
-            }else if (item.bankSubmitted == "0"){
+            } else if (item.bankSubmitted == "0") {
                 if (item.bankGuarentedNo.isEmpty()) {
                     showMessage("Enter Bank Guaranted No")
                     isValid = false
@@ -155,10 +184,10 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
             getReportData(visitReportId)
         }
 
-        if (reports != null){
+        if (reports != null) {
             mBinding.run {
-                reports?.data?.routineReport?.run{
-//                    BG Imposed
+                reports?.data?.routineReport?.run {
+                    //                    BG Imposed
                     if (bgImposed == "1")
                         rgBGImposed.check(R.id.rbBGYes)
                     else
@@ -167,7 +196,7 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
 //                    BG Imposed Against
                     if (bgImposedAgainst == "0")
                         rgBGImposedAgainst.check(R.id.rbBGAgainstYes)
-                    else
+                    else if (bgImposedAgainst == "1")
                         rgBGImposedAgainst.check(R.id.rbBGAgainstNo)
 
 //                    BG Number
@@ -178,7 +207,7 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
         }
 
 //        BG Recyler View
-        if(reports?.data?.routineReportProducts != null)
+        if (reports?.data?.routineReportProducts != null)
             mViewModel.populateData(reports?.data?.routineReportBankDetails)
     }
 
