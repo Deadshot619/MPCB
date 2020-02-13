@@ -68,7 +68,7 @@ object PreferencesHelper {
     }
 
     fun getBooleanPreference(key: String, value: Boolean = false): Boolean {
-        return mSharedPreferences!!.getBoolean(key, value)
+        return mSharedPreferences.getBoolean(key, value)
     }
 
 

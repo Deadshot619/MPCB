@@ -101,7 +101,13 @@ class AdditionalInfoFragment :
      */
     private fun checkIfReportsFilled(): Boolean {
         //"i" represents report key
-        for (i in 1..18) {
+        loop@ for (i in 1..18) {
+            //If selected industry category is selected as 'Closed',
+            //then check, only 1st & last form, skip rest.
+            if (isSelectedIndustryCategoryClosed(report))
+                if (i in 2..17)
+                    break@loop
+
             if (!getReportFlagStatus(visitReportId, i)) {
                 return false
             }
