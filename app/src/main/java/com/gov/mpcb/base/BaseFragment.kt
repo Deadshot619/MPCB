@@ -23,7 +23,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         savedInstanceState: Bundle?
     ): View? {
         mBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
-        mViewModel = ViewModelProvider(getBaseActivity()).get(getViewModel())
+        mViewModel = ViewModelProvider(this@BaseFragment).get(getViewModel())
         mViewModel.setNavigator(getNavigator())
 //        val reportData = PreferencesHelper.getStringPreference(Constants.REPORT_KEY, "")
 

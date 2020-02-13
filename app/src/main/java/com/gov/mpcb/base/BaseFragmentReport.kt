@@ -17,6 +17,13 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
     protected lateinit var report: ReportRequest
 
     /**
+     * @return returns 'true' if Industry Category is selected as 'Closed' otherwise 'false'
+     */
+    protected fun isSelectedIndustryCategoryClosed(report: ReportRequest): Boolean {
+        return report.data.industryCategoryReselect == "16"
+    }
+
+    /**
      * Gets & Saves the current Report number from [ReportsPageActivity]
      */
     protected var currentReportNumber: Int

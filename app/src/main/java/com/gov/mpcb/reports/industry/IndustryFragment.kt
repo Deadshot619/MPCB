@@ -1,6 +1,8 @@
 package com.gov.mpcb.reports.industry
 
 import android.app.DatePickerDialog
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragmentReport
@@ -94,9 +96,38 @@ class IndustryReportFragment :
     }
 
     /**
-     * Set listener on Radio Button
+     * Set listeners
      */
     private fun setListener() {
+        mBinding.catSpinner.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                report.data.industryCategoryReselect =
+                    try {
+                        CATEGORY_LIST.filterValues {
+                            it == CATEGORY_LIST[
+                                    if (position > 1)
+                                        position + 4
+                                    else
+                                        position
+                            ]
+                        }.keys.first().toString()
+                    } catch (e: Exception) {
+                        "0"
+                    }
+            }
+
+        }
+
+
         mBinding.rgConsent.setOnCheckedChangeListener { group, checkedId ->
             //Save Consent Obtained in Shared Pref
             report.data.routineReport.consentObtain = if (checkedId == R.id.rbConsentYes) {
@@ -155,25 +186,28 @@ private fun onSubmit() {
  */
 private fun validateFieldsFilledCorrect(): Boolean {
 
-    report.data.routineReport.run {
-        if (!isEmailValid(emailAddress)) {
-            showMessage("Email Id is invalid")
-            return false
-        }
-        if (!isValidMobile(telephoneNumber)) {
-            showMessage("Invalid Telephone Number")
-            return false
-        }
-        if (!isDecimal(validityOfConsentIe)) {
-            showMessage("Invalid I.E. Number")
-            return false
-        }
-        if (!isDecimal(hwOfValidUptoDe)) {
-            showMessage("Invalid D.E. Number")
-            return false
+
+    //If industry category is selected as 'Closed'
+    if (!isSelectedIndustryCategoryClosed(report)) {
+        report.data.routineReport.run {
+            if (!isEmailValid(emailAddress)) {
+                showMessage("Email Id is invalid")
+                return false
+            }
+            if (!isValidMobile(telephoneNumber)) {
+                showMessage("Invalid Telephone Number")
+                return false
+            }
+            if (!isDecimal(validityOfConsentIe)) {
+                showMessage("Invalid I.E. Number")
+                return false
+            }
+            if (!isDecimal(hwOfValidUptoDe)) {
+                showMessage("Invalid D.E. Number")
+                return false
+            }
         }
     }
-
     return true
 }
 
@@ -191,34 +225,38 @@ private fun validateFieldsFilled(): Boolean {
             showMessage("Enter Visited Industry On")
             return false
         }
-        if (emailAddress.isEmpty()) {
-            showMessage("Enter Email Address of Unit")
-            return false
-        }
-        if (telephoneNumber.isEmpty()) {
-            showMessage("Enter Telephone No of Unit")
-            return false
-        }
-        if (validityOfConsentIe.isEmpty()) {
-            showMessage("Enter I.E(m3/day)")
-            return false
-        }
-        if (hwOfValidUptoDe.isEmpty()) {
-            showMessage("Enter D.E(m3/day)")
-            return false
-        }
 
-        if (consentObtain == 1 || consentObtain == 0) {
-            //If Consent Obtained is 'Yes' then check if 'Valid upto' is filled
-            if (consentObtain == 1) {
-                if (validityOfConsentUpto.isEmpty()) {
-                    showMessage("Enter Validity Upto")
-                    return false
-                }
+        //If industry category is selected as 'Closed'
+        if (!isSelectedIndustryCategoryClosed(report)) {
+            if (emailAddress.isEmpty()) {
+                showMessage("Enter Email Address of Unit")
+                return false
             }
-        } else {
-            showMessage("Select Consent Obtained")
-            return false
+            if (telephoneNumber.isEmpty()) {
+                showMessage("Enter Telephone No of Unit")
+                return false
+            }
+            if (validityOfConsentIe.isEmpty()) {
+                showMessage("Enter I.E(m3/day)")
+                return false
+            }
+            if (hwOfValidUptoDe.isEmpty()) {
+                showMessage("Enter D.E(m3/day)")
+                return false
+            }
+
+            if (consentObtain == 1 || consentObtain == 0) {
+                //If Consent Obtained is 'Yes' then check if 'Valid upto' is filled
+                if (consentObtain == 1) {
+                    if (validityOfConsentUpto.isEmpty()) {
+                        showMessage("Enter Validity Upto")
+                        return false
+                    }
+                }
+            } else {
+                showMessage("Select Consent Obtained")
+                return false
+            }
         }
     }
 
