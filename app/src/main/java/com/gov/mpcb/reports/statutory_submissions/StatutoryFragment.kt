@@ -88,15 +88,18 @@ class StatutoryFragment : BaseFragmentReport<FragmentStatutoryBinding, ReportsPa
     }
 
     private fun validate(): Boolean {
-        if (report.data.routineReport.hwAnnualReturnDate.isNullOrEmpty()) {
-            showMessage("Enter Hazardous Waste Annual Returns")
-            return false
-        }
-        if (report.data.routineReport.envStatementReport.isNullOrEmpty()) {
-            showMessage("Enter Environment Statement Report")
-            return false
-        }
+        //If industry category is selected as 'Closed'
+        if (!isSelectedIndustryCategoryClosed(report)) {
 
+            if (report.data.routineReport.hwAnnualReturnDate.isNullOrEmpty()) {
+                showMessage("Enter Hazardous Waste Annual Returns")
+                return false
+            }
+            if (report.data.routineReport.envStatementReport.isNullOrEmpty()) {
+                showMessage("Enter Environment Statement Report")
+                return false
+            }
+        }
         return true
     }
 

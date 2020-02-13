@@ -83,42 +83,47 @@ class ProductionFragment : BaseFragmentReport<FragmentProductionBinding, Product
      */
     private fun validateFieldsFilled(): Boolean {
         var isValid = true
-        val productList = mViewModel.getProductList().value!!
-        for (item in productList) {
-            if (item.productName.isEmpty()) {
-                showMessage("Enter Product Name")
-                isValid = false
-                break
-            }
-            if (item.productQuantity.isEmpty()) {
-                showMessage("Enter Product Concent Quantity")
-                isValid = false
-                break
-            }else if (!isDecimal(item.productQuantity)){
-                //Check if correct decimal value
-                showMessage("Invalid Product Concent Quantity")
-                isValid = false
-                break
-            }
-            if (item.productUom == "0") {
-                showMessage("Select Unit As Concent")
-                isValid = false
-                break
-            }
-            if (item.productQuantityActual.isEmpty()) {
-                showMessage("Enter Product Actual Quantity")
-                isValid = false
-                break
-            }else if (!isDecimal(item.productQuantityActual)){
-                //Check if correct decimal value
-                showMessage("Invalid Product Actual Quantity")
-                isValid = false
-                break
-            }
-            if (item.productUomActual == "0") {
-                showMessage("Select Unit As Actual")
-                isValid = false
-                break
+
+        //If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
+
+            val productList = mViewModel.getProductList().value!!
+            for (item in productList) {
+                if (item.productName.isEmpty()) {
+                    showMessage("Enter Product Name")
+                    isValid = false
+                    break
+                }
+                if (item.productQuantity.isEmpty()) {
+                    showMessage("Enter Product Concent Quantity")
+                    isValid = false
+                    break
+                } else if (!isDecimal(item.productQuantity)) {
+                    //Check if correct decimal value
+                    showMessage("Invalid Product Concent Quantity")
+                    isValid = false
+                    break
+                }
+                if (item.productUom == "0") {
+                    showMessage("Select Unit As Concent")
+                    isValid = false
+                    break
+                }
+                if (item.productQuantityActual.isEmpty()) {
+                    showMessage("Enter Product Actual Quantity")
+                    isValid = false
+                    break
+                } else if (!isDecimal(item.productQuantityActual)) {
+                    //Check if correct decimal value
+                    showMessage("Invalid Product Actual Quantity")
+                    isValid = false
+                    break
+                }
+                if (item.productUomActual == "0") {
+                    showMessage("Select Unit As Actual")
+                    isValid = false
+                    break
+                }
             }
         }
         return isValid

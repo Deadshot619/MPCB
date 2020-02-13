@@ -205,98 +205,102 @@ class LastJVSFragment : BaseFragmentReport<FragmentLastJvsBinding, LastJVSViewMo
     }
 
     private fun validate(): Boolean {
-        /*Date of collection is not compulsory as of now*/
-
-        //Indus Date of Collection
-        /*if (mBinding.edtIndusDateOfCollection.text.isNullOrEmpty()) {
-            showMessage("Enter Date of collection")
-            return false
-        }*/
-
-        //Indus Payment Details
-        if (!mBinding.rbPymntDetailsIndusYes.isChecked && !mBinding.rbPymntDetailsIndusNo.isChecked) {
-            showMessage("Select Payment Details")
-            return false
-        }
-
-        if (mBinding.rbPymntDetailsIndusYes.isChecked){
-            //Indus Amount
-            if (mBinding.edtAmtIndus.text.isNullOrEmpty()) {
-                showMessage("Enter Amount")
-                return false
-            }else if (!isDecimal(mBinding.edtAmtIndus.text.toString())){
-                showMessage("Invalid Industrial Amount")
-                return false
-            }
-
-            //Indus Date
-            /*if (mBinding.edtDateIndus.text.isNullOrEmpty()) {
-                showMessage("Enter Date")
-                return false
-            }*/
-        }
-
-        //Domestic Date of Collection
-        /*if (mBinding.edtDomesticDateOfCollection.text.isNullOrEmpty()) {
-            showMessage("Enter Date of collection")
-            return false
-        }*/
-
-        //Domestic Payment Details
-        if (!mBinding.rbPymntDetailsDomesticYes.isChecked && !mBinding.rbPymntDetailsDomesticNo.isChecked) {
-            showMessage("Select Payment Details")
-            return false
-        }
-
-        if (mBinding.rbPymntDetailsDomesticYes.isChecked){
-            //Domestic Amount
-            if (mBinding.edtAmtDomestic.text.isNullOrEmpty()) {
-                showMessage("Enter Amount")
-                return false
-            }else if (!isDecimal(mBinding.edtAmtDomestic.text.toString())){
-                showMessage("Invalid Domestic Amount")
-                return false
-            }
-
-            //Domestic Date
-            /*if (mBinding.edtDateDomestic.text.isNullOrEmpty()) {
-                showMessage("Enter Date")
-                return false
-            }*/
-        }
-
-        //JVS Sample Collected for water
-        if (!mBinding.rbJVSSampleYes.isChecked && !mBinding.rbJVSSampleNo.isChecked) {
-            showMessage("Select JVS Sample")
-            return false
-        }
-
         var isValid = true
 
-        //Validation for JVS Views
-        if (mBinding.rbJVSSampleYes.isChecked) {
-            val sampleList = mViewModel.getReportData()
-            outer@ for (item in sampleList) {
-                if (item.nameOfSource.isEmpty()) {
-                    showMessage("Enter Source")
-                    isValid = false
-                    break
+        //If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
+
+            /*Date of collection is not compulsory as of now*/
+
+            //Indus Date of Collection
+            /*if (mBinding.edtIndusDateOfCollection.text.isNullOrEmpty()) {
+            showMessage("Enter Date of collection")
+            return false
+        }*/
+
+            //Indus Payment Details
+            if (!mBinding.rbPymntDetailsIndusYes.isChecked && !mBinding.rbPymntDetailsIndusNo.isChecked) {
+                showMessage("Select Payment Details")
+                return false
+            }
+
+            if (mBinding.rbPymntDetailsIndusYes.isChecked) {
+                //Indus Amount
+                if (mBinding.edtAmtIndus.text.isNullOrEmpty()) {
+                    showMessage("Enter Amount")
+                    return false
+                } else if (!isDecimal(mBinding.edtAmtIndus.text.toString())) {
+                    showMessage("Invalid Industrial Amount")
+                    return false
                 }
-                for (childItem in item.lastJvsChild) {
-                    if (childItem.prescribedValue.isEmpty()) {
-                        showMessage("Enter Prescribed Value")
+
+                //Indus Date
+                /*if (mBinding.edtDateIndus.text.isNullOrEmpty()) {
+                showMessage("Enter Date")
+                return false
+            }*/
+            }
+
+            //Domestic Date of Collection
+            /*if (mBinding.edtDomesticDateOfCollection.text.isNullOrEmpty()) {
+            showMessage("Enter Date of collection")
+            return false
+        }*/
+
+            //Domestic Payment Details
+            if (!mBinding.rbPymntDetailsDomesticYes.isChecked && !mBinding.rbPymntDetailsDomesticNo.isChecked) {
+                showMessage("Select Payment Details")
+                return false
+            }
+
+            if (mBinding.rbPymntDetailsDomesticYes.isChecked) {
+                //Domestic Amount
+                if (mBinding.edtAmtDomestic.text.isNullOrEmpty()) {
+                    showMessage("Enter Amount")
+                    return false
+                } else if (!isDecimal(mBinding.edtAmtDomestic.text.toString())) {
+                    showMessage("Invalid Domestic Amount")
+                    return false
+                }
+
+                //Domestic Date
+                /*if (mBinding.edtDateDomestic.text.isNullOrEmpty()) {
+                showMessage("Enter Date")
+                return false
+            }*/
+            }
+
+            //JVS Sample Collected for water
+            if (!mBinding.rbJVSSampleYes.isChecked && !mBinding.rbJVSSampleNo.isChecked) {
+                showMessage("Select JVS Sample")
+                return false
+            }
+
+            //Validation for JVS Views
+            if (mBinding.rbJVSSampleYes.isChecked) {
+                val sampleList = mViewModel.getReportData()
+                outer@ for (item in sampleList) {
+                    if (item.nameOfSource.isEmpty()) {
+                        showMessage("Enter Source")
                         isValid = false
-                        break@outer
+                        break
                     }
+                    for (childItem in item.lastJvsChild) {
+                        if (childItem.prescribedValue.isEmpty()) {
+                            showMessage("Enter Prescribed Value")
+                            isValid = false
+                            break@outer
+                        }
 //                    else if (!isDecimal(childItem.prescribedValue)){
 //                        showMessage("Invalid Prescribed value.")
 //                        isValid = false
 //                        break@outer
 //                    }
+                    }
                 }
             }
-        }
 
+        }
         return isValid
     }
 

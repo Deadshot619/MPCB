@@ -82,23 +82,26 @@ class ElectricFragment : BaseFragmentReport<FragmentElectricBinding, ReportsPage
     }
 
     private fun validate(): Boolean {
-        //Electric Meter Provided
-        if (report.data.routineReport.electrictMeterProvided == null) {
-            showMessage("Select Electrical Meter Provided")
-            return false
-        }
+        //If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
 
-        if (report.data.routineReport.electrictMeterProvided == 1) {
-            if (mBinding.edtMeterReading.text.isNullOrEmpty()) {
-                showMessage("Enter Meter Reading")
-                return false
-            }else if (!isDecimal(mBinding.edtMeterReading.text.toString())){
-                //Check if input value is correct Decimal Value.
-                showMessage("Invalid Meter Reading")
+            //Electric Meter Provided
+            if (report.data.routineReport.electrictMeterProvided == null) {
+                showMessage("Select Electrical Meter Provided")
                 return false
             }
-        }
 
+            if (report.data.routineReport.electrictMeterProvided == 1) {
+                if (mBinding.edtMeterReading.text.isNullOrEmpty()) {
+                    showMessage("Enter Meter Reading")
+                    return false
+                } else if (!isDecimal(mBinding.edtMeterReading.text.toString())) {
+                    //Check if input value is correct Decimal Value.
+                    showMessage("Invalid Meter Reading")
+                    return false
+                }
+            }
+        }
         return true
     }
 

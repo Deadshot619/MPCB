@@ -115,24 +115,26 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
 
     private fun validate(): Boolean {
         var isValid = true
+//If industry category is selected as 'Closed'
+        if (!isSelectedIndustryCategoryClosed(report)) {
 
 //      BG Imposed
-        if (report.data.routineReport.bgImposed.isNullOrEmpty()) {
-            showMessage("Select BG Imposed")
-            return false
-        } else if (report.data.routineReport.bgImposed == "1") { //Check below fields only if BG imposed is selected as 'YES'
-//          BG Imposed Against
-            if (report.data.routineReport.bgImposedAgainst.isNullOrEmpty()) {
-                showMessage("Select BG Imposed Against")
+            if (report.data.routineReport.bgImposed.isNullOrEmpty()) {
+                showMessage("Select BG Imposed")
                 return false
-            }
+            } else if (report.data.routineReport.bgImposed == "1") { //Check below fields only if BG imposed is selected as 'YES'
+//          BG Imposed Against
+                if (report.data.routineReport.bgImposedAgainst.isNullOrEmpty()) {
+                    showMessage("Select BG Imposed Against")
+                    return false
+                }
 
 //          BG Number
-            if (report.data.routineReport.bgImposedNumber.isNullOrEmpty()) {
-                showMessage("Enter BG Imposed Number")
-                return false
+                if (report.data.routineReport.bgImposedNumber.isNullOrEmpty()) {
+                    showMessage("Enter BG Imposed Number")
+                    return false
+                }
             }
-        }
 
 
 //        else if (!isDecimal(report.data.routineReport.bgImposedNumber)){
@@ -141,35 +143,36 @@ class BGDFragment : BaseFragmentReport<FragmentBankGuaranteeBinding, BGDViewMode
 //        }
 
 
-        val sourceList = mViewModel.getSourceList().value!!
-        for (item in sourceList) {
-            if (item.bankGuaranteeImposedFor.isEmpty()) {
-                showMessage("Enter Bank Guarantee Imposed For")
-                isValid = false
-                break
-            }
-            if (item.bankSubmitted.isEmpty()) {
-                showMessage("Select BG Submitted")
-                isValid = false
-                break
-            } else if (item.bankSubmitted == "0") {
-                if (item.bankGuarentedNo.isEmpty()) {
-                    showMessage("Enter Bank Guaranted No")
+            val sourceList = mViewModel.getSourceList().value!!
+            for (item in sourceList) {
+                if (item.bankGuaranteeImposedFor.isEmpty()) {
+                    showMessage("Enter Bank Guarantee Imposed For")
                     isValid = false
                     break
                 }
-                if (item.dateOfGuarantee.isEmpty()) {
-                    showMessage("Enter Date of Guarantee")
+                if (item.bankSubmitted.isEmpty()) {
+                    showMessage("Select BG Submitted")
                     isValid = false
                     break
+                } else if (item.bankSubmitted == "0") {
+                    if (item.bankGuarentedNo.isEmpty()) {
+                        showMessage("Enter Bank Guaranted No")
+                        isValid = false
+                        break
+                    }
+                    if (item.dateOfGuarantee.isEmpty()) {
+                        showMessage("Enter Date of Guarantee")
+                        isValid = false
+                        break
+                    }
+                    if (item.dateOfValidity.isEmpty()) {
+                        showMessage("Enter Date Of Validity")
+                        isValid = false
+                        break
+                    }
                 }
-                if (item.dateOfValidity.isEmpty()) {
-                    showMessage("Enter Date Of Validity")
-                    isValid = false
-                    break
-                }
-            }
 
+            }
         }
         return isValid
     }

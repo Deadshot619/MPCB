@@ -74,50 +74,53 @@ class TreePlantationFragment : BaseFragmentReport<FragmentTreePlantationBinding,
      * This method is used to validate the input fields
      */
     private fun validate(): Boolean {
-        if (report.data.routineReport.treePlantationPlotArea.isNullOrEmpty()) {
-            showMessage("Enter Total Plot Area in sq.mt")
-            return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationPlotArea)){
+//If industry category is selected as 'Closed'
+        if (!isSelectedIndustryCategoryClosed(report)) {
+
+            if (report.data.routineReport.treePlantationPlotArea.isNullOrEmpty()) {
+                showMessage("Enter Total Plot Area in sq.mt")
+                return false
+            } else if (!isDecimal(report.data.routineReport.treePlantationPlotArea)) {
                 showMessage("Please enter valid value")
                 return false
+            }
+
+
+            if (report.data.routineReport.treePlantationBuiltArea.isNullOrEmpty()) {
+                showMessage("Enter Built Up Area in sq.mt")
+                return false
+            } else if (!isDecimal(report.data.routineReport.treePlantationBuiltArea)) {
+                showMessage("Please enter valid value")
+                return false
+            }
+
+
+            if (report.data.routineReport.treePlantationGreenBeltArea.isNullOrEmpty()) {
+                showMessage("Enter Green Belt Area in sq.mt")
+                return false
+            } else if (!isDecimal(report.data.routineReport.treePlantationGreenBeltArea)) {
+                showMessage("Please enter valid value")
+                return false
+            }
+
+
+            if (report.data.routineReport.treePlantationPlantationNo.isNullOrEmpty()) {
+                showMessage("Enter Plantation done in No")
+                return false
+            } else if (!isDecimal(report.data.routineReport.treePlantationPlantationNo)) {
+                showMessage("Please enter valid value")
+                return false
+            }
+
+            if (report.data.routineReport.treePlantationProposedPlantation.isNullOrEmpty()) {
+                showMessage("Enter Proposed Plantation")
+                return false
+            } else if (!isDecimal(report.data.routineReport.treePlantationProposedPlantation)) {
+                showMessage("Please enter valid value")
+                return false
+            }
+
         }
-
-
-        if (report.data.routineReport.treePlantationBuiltArea.isNullOrEmpty()) {
-            showMessage("Enter Built Up Area in sq.mt")
-            return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationBuiltArea)){
-            showMessage("Please enter valid value")
-            return false
-        }
-
-
-        if (report.data.routineReport.treePlantationGreenBeltArea.isNullOrEmpty()) {
-            showMessage("Enter Green Belt Area in sq.mt")
-            return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationGreenBeltArea)){
-            showMessage("Please enter valid value")
-            return false
-        }
-
-
-        if (report.data.routineReport.treePlantationPlantationNo.isNullOrEmpty()) {
-            showMessage("Enter Plantation done in No")
-            return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationPlantationNo)){
-            showMessage("Please enter valid value")
-            return false
-        }
-
-        if (report.data.routineReport.treePlantationProposedPlantation.isNullOrEmpty()) {
-            showMessage("Enter Proposed Plantation")
-            return false
-        }else if (!isDecimal(report.data.routineReport.treePlantationProposedPlantation)){
-            showMessage("Please enter valid value")
-            return false
-        }
-
-
 
         return true
     }

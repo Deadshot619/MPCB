@@ -14,7 +14,8 @@ import com.gov.mpcb.utils.showMessage
 import kotlinx.android.synthetic.main.button_save_next_layout.*
 import java.util.*
 
-class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, ReportsPageViewModel>(),
+class PreviousLegalFragment :
+    BaseFragmentReport<FragmentPreviousLegalBinding, ReportsPageViewModel>(),
     ReportsPageNavigator {
 
     private var reports: ReportRequest? = null
@@ -82,15 +83,17 @@ class PreviousLegalFragment : BaseFragmentReport<FragmentPreviousLegalBinding, R
     }
 
     private fun validate(): Boolean {
-        if (report.data.routineReport.actionInitiatedDate.isNullOrEmpty()) {
-            showMessage("Enter Action Initiated Date")
-            return false
+//If industry category is selected as 'Closed'
+        if (!isSelectedIndustryCategoryClosed(report)) {
+            if (report.data.routineReport.actionInitiatedDate.isNullOrEmpty()) {
+                showMessage("Enter Action Initiated Date")
+                return false
+            }
+            if (report.data.routineReport.specialCompliance.isNullOrEmpty()) {
+                showMessage("Enter Specific Compliance")
+                return false
+            }
         }
-        if (report.data.routineReport.specialCompliance.isNullOrEmpty()) {
-            showMessage("Enter Specific Compliance")
-            return false
-        }
-
         return true
     }
 

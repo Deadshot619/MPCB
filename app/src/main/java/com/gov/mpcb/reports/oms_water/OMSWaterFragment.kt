@@ -143,42 +143,46 @@ class OMSWaterFragment : BaseFragmentReport<FragmentOmsWaterBinding, ReportsPage
     }
 
     private fun validate(): Boolean {
-        mBinding.run {
-            //OMS
-            if (!rbOMSApplicable.isChecked && !rbOMSNotApplicable.isChecked) {
-                showMessage("Select Online Monitoring System")
-                return false
-            }
 
-            if (rbOMSApplicable.isChecked) {
-                //OMS Installed
-                if (!rbOMSInstalledApplicable.isChecked && !rbOMSInstalledNotApplicable.isChecked) {
-                    showMessage("Select Online Monitoring System Installed")
+        //If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
+
+            mBinding.run {
+                //OMS
+                if (!rbOMSApplicable.isChecked && !rbOMSNotApplicable.isChecked) {
+                    showMessage("Select Online Monitoring System")
                     return false
                 }
 
-                if (rbOMSInstalledApplicable.isChecked){
-                    //Connectivity
-                    if (!cbMPCB.isChecked && !cbCPCB.isChecked) {
-                        showMessage("Select Connectivity")
+                if (rbOMSApplicable.isChecked) {
+                    //OMS Installed
+                    if (!rbOMSInstalledApplicable.isChecked && !rbOMSInstalledNotApplicable.isChecked) {
+                        showMessage("Select Online Monitoring System Installed")
+                        return false
+                    }
+
+                    if (rbOMSInstalledApplicable.isChecked) {
+                        //Connectivity
+                        if (!cbMPCB.isChecked && !cbCPCB.isChecked) {
+                            showMessage("Select Connectivity")
+                            return false
+                        }
+                    }
+
+//              Remote Caliberation Applicable
+                    if (!rbRemoteYes.isChecked && !rbRemoteNo.isChecked) {
+                        showMessage("Select Remote Caliberation Applicable")
+                        return false
+                    }
+
+                    //Sensor Properly Placed
+                    if (!rbSensorYes.isChecked && !rbSensorNo.isChecked) {
+                        showMessage("Sensor Properly Placed")
                         return false
                     }
                 }
-
-//              Remote Caliberation Applicable
-                if (!rbRemoteYes.isChecked && !rbRemoteNo.isChecked) {
-                    showMessage("Select Remote Caliberation Applicable")
-                    return false
-                }
-
-                //Sensor Properly Placed
-                if (!rbSensorYes.isChecked && !rbSensorNo.isChecked) {
-                    showMessage("Sensor Properly Placed")
-                    return false
-                }
             }
         }
-
         return true
     }
 

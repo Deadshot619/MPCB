@@ -405,153 +405,157 @@ class DisposalFragment : BaseFragmentReport<FragmentDisposalBinding, ReportsPage
     }
 
     private fun validate(): Boolean {
-        mBinding.run {
-            //        Industrial
+        //If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
 
-            //Check if either of the industrial types have been selected as
-            //one of them has to be selected
-            if (!cbIndusCETP.isChecked && !cbIndusLandGardening.isChecked &&
-                !cbIndusRecycle.isChecked && !cbIndusSewageTreatment.isChecked
-                && !cbIndusAnyOther.isChecked
-            ) {
-                showMessage("Select atleast one of the Industrial type")
-                return false
-            }
+            mBinding.run {
+                //        Industrial
 
-            if (cbIndusCETP.isChecked) {
-                if (edIndusCETP.text.isNullOrEmpty()) {
-                    showMessage("Enter CEPT for Industrial")
-                    return false
-                } else if (!isDecimal(edIndusCETP.text.toString())) {
-                    showMessage("Invalid CEPT for Industrial value")
-                    return false
-                }
-            }
-            if (cbIndusLandGardening.isChecked) {
-                if (edIndusLandGardening.text.isNullOrEmpty()) {
-                    showMessage("Enter Land gardening for Industrial")
-                    return false
-                } else if (!isDecimal(edIndusLandGardening.text.toString())) {
-                    showMessage("Invalid Land gardening for Industrial value")
+                //Check if either of the industrial types have been selected as
+                //one of them has to be selected
+                if (!cbIndusCETP.isChecked && !cbIndusLandGardening.isChecked &&
+                    !cbIndusRecycle.isChecked && !cbIndusSewageTreatment.isChecked
+                    && !cbIndusAnyOther.isChecked
+                ) {
+                    showMessage("Select atleast one of the Industrial type")
                     return false
                 }
-            }
-            if (cbIndusRecycle.isChecked) {
-                if (edIndusRecycle.text.isNullOrEmpty()) {
-                    showMessage("Enter Recycle for Industrial")
-                    return false
-                } else if (!isDecimal(edIndusRecycle.text.toString())) {
-                    showMessage("Invalid Recycle for Industrial value")
-                    return false
+
+                if (cbIndusCETP.isChecked) {
+                    if (edIndusCETP.text.isNullOrEmpty()) {
+                        showMessage("Enter CEPT for Industrial")
+                        return false
+                    } else if (!isDecimal(edIndusCETP.text.toString())) {
+                        showMessage("Invalid CEPT for Industrial value")
+                        return false
+                    }
                 }
-            }
-            if (cbIndusSewageTreatment.isChecked) {
-                if (edIndusSewageTreatment.text.isNullOrEmpty()) {
-                    showMessage("Enter Local Sewage Treatment for Industrial")
-                    return false
-                } else if (!isDecimal(edIndusSewageTreatment.text.toString())) {
-                    showMessage("Invalid Local Sewage Treatment for Industrial value")
-                    return false
+                if (cbIndusLandGardening.isChecked) {
+                    if (edIndusLandGardening.text.isNullOrEmpty()) {
+                        showMessage("Enter Land gardening for Industrial")
+                        return false
+                    } else if (!isDecimal(edIndusLandGardening.text.toString())) {
+                        showMessage("Invalid Land gardening for Industrial value")
+                        return false
+                    }
                 }
-            }
-            if (cbIndusAnyOther.isChecked) {
-                if (edIndusExtraName.text.isNullOrEmpty()) {
-                    showMessage("Enter Any Other Text for Industrial")
-                    return false
+                if (cbIndusRecycle.isChecked) {
+                    if (edIndusRecycle.text.isNullOrEmpty()) {
+                        showMessage("Enter Recycle for Industrial")
+                        return false
+                    } else if (!isDecimal(edIndusRecycle.text.toString())) {
+                        showMessage("Invalid Recycle for Industrial value")
+                        return false
+                    }
                 }
-                if (edIndusExtraNameValue.text.isNullOrEmpty()) {
-                    showMessage("Enter Any Other Value for Industrial")
-                    return false
-                } else if (!isDecimal(edIndusExtraNameValue.text.toString())) {
-                    showMessage("Invalid Any Other Value for Industrial value")
-                    return false
+                if (cbIndusSewageTreatment.isChecked) {
+                    if (edIndusSewageTreatment.text.isNullOrEmpty()) {
+                        showMessage("Enter Local Sewage Treatment for Industrial")
+                        return false
+                    } else if (!isDecimal(edIndusSewageTreatment.text.toString())) {
+                        showMessage("Invalid Local Sewage Treatment for Industrial value")
+                        return false
+                    }
                 }
-            }
+                if (cbIndusAnyOther.isChecked) {
+                    if (edIndusExtraName.text.isNullOrEmpty()) {
+                        showMessage("Enter Any Other Text for Industrial")
+                        return false
+                    }
+                    if (edIndusExtraNameValue.text.isNullOrEmpty()) {
+                        showMessage("Enter Any Other Value for Industrial")
+                        return false
+                    } else if (!isDecimal(edIndusExtraNameValue.text.toString())) {
+                        showMessage("Invalid Any Other Value for Industrial value")
+                        return false
+                    }
+                }
 
 //        Disposable checkbox
-            if (report.data.routineReport.disposalIndustrialAsPerConsent.isEmpty()) {
-                showMessage("Select Disposal As Per Consent for Industrial")
-                return false
-            }
+                if (report.data.routineReport.disposalIndustrialAsPerConsent.isEmpty()) {
+                    showMessage("Select Disposal As Per Consent for Industrial")
+                    return false
+                }
 
 //        Operation & Maintenance checkbox
-            if (report.data.routineReport.operationAndMaintainanceInsus.isEmpty()) {
-                showMessage("Select Operation And Maintenance for Industrial")
-                return false
-            }
+                if (report.data.routineReport.operationAndMaintainanceInsus.isEmpty()) {
+                    showMessage("Select Operation And Maintenance for Industrial")
+                    return false
+                }
 
 //        Domestic
 
-            //Check if either of the industrial types have been selected as
-            //one of them has to be selected
-            if (!cbDomesticCETP.isChecked && !cbDomesticLandGardening.isChecked &&
-                !cbDomesticRecycle.isChecked && !cbDomesticSewageTreatment.isChecked
-                && !cbDomesticAnyOther.isChecked
-            ) {
-                showMessage("Select atleast one of the Domestic type")
-                return false
-            }
+                //Check if either of the industrial types have been selected as
+                //one of them has to be selected
+                if (!cbDomesticCETP.isChecked && !cbDomesticLandGardening.isChecked &&
+                    !cbDomesticRecycle.isChecked && !cbDomesticSewageTreatment.isChecked
+                    && !cbDomesticAnyOther.isChecked
+                ) {
+                    showMessage("Select atleast one of the Domestic type")
+                    return false
+                }
 
-            if (cbDomesticCETP.isChecked) {
-                if (edDomesticCETP.text.isNullOrEmpty()) {
-                    showMessage("Enter CEPT for Domestic")
-                    return false
-                } else if (!isDecimal(edDomesticCETP.text.toString())) {
-                    showMessage("Invalid CEPT for Domestic value")
-                    return false
+                if (cbDomesticCETP.isChecked) {
+                    if (edDomesticCETP.text.isNullOrEmpty()) {
+                        showMessage("Enter CEPT for Domestic")
+                        return false
+                    } else if (!isDecimal(edDomesticCETP.text.toString())) {
+                        showMessage("Invalid CEPT for Domestic value")
+                        return false
+                    }
                 }
-            }
-            if (cbDomesticLandGardening.isChecked) {
-                if (edDomesticLandGardening.text.isNullOrEmpty()) {
-                    showMessage("Enter Land gardening for Domestic")
-                    return false
-                } else if (!isDecimal(edDomesticLandGardening.text.toString())) {
-                    showMessage("Invalid Land gardening for Domestic value")
-                    return false
+                if (cbDomesticLandGardening.isChecked) {
+                    if (edDomesticLandGardening.text.isNullOrEmpty()) {
+                        showMessage("Enter Land gardening for Domestic")
+                        return false
+                    } else if (!isDecimal(edDomesticLandGardening.text.toString())) {
+                        showMessage("Invalid Land gardening for Domestic value")
+                        return false
+                    }
                 }
-            }
-            if (cbDomesticRecycle.isChecked) {
-                if (edDomesticRecycle.text.isNullOrEmpty()) {
-                    showMessage("Enter Recycle for Domestic")
-                    return false
-                } else if (!isDecimal(edDomesticRecycle.text.toString())) {
-                    showMessage("Invalid Recycle for Domestic value")
-                    return false
+                if (cbDomesticRecycle.isChecked) {
+                    if (edDomesticRecycle.text.isNullOrEmpty()) {
+                        showMessage("Enter Recycle for Domestic")
+                        return false
+                    } else if (!isDecimal(edDomesticRecycle.text.toString())) {
+                        showMessage("Invalid Recycle for Domestic value")
+                        return false
+                    }
                 }
-            }
-            if (cbDomesticSewageTreatment.isChecked) {
-                if (edDomesticSewageTreatment.text.isNullOrEmpty()) {
-                    showMessage("Enter Local Sewage Treatment for Domestic")
-                    return false
-                } else if (!isDecimal(edDomesticSewageTreatment.text.toString())) {
-                    showMessage("Invalid Local Sewage Treatment for Domestic value")
-                    return false
+                if (cbDomesticSewageTreatment.isChecked) {
+                    if (edDomesticSewageTreatment.text.isNullOrEmpty()) {
+                        showMessage("Enter Local Sewage Treatment for Domestic")
+                        return false
+                    } else if (!isDecimal(edDomesticSewageTreatment.text.toString())) {
+                        showMessage("Invalid Local Sewage Treatment for Domestic value")
+                        return false
+                    }
                 }
-            }
-            if (cbDomesticAnyOther.isChecked) {
-                if (edDomesticExtraName.text.isNullOrEmpty()) {
-                    showMessage("Enter Any Other Text for Domestic")
-                    return false
+                if (cbDomesticAnyOther.isChecked) {
+                    if (edDomesticExtraName.text.isNullOrEmpty()) {
+                        showMessage("Enter Any Other Text for Domestic")
+                        return false
+                    }
+                    if (edDomesticExtraNameValue.text.isNullOrEmpty()) {
+                        showMessage("Enter Any Other Value for Domestic")
+                        return false
+                    } else if (!isDecimal(edDomesticExtraNameValue.text.toString())) {
+                        showMessage("Invalid Any Other Value for Domestic value")
+                        return false
+                    }
                 }
-                if (edDomesticExtraNameValue.text.isNullOrEmpty()) {
-                    showMessage("Enter Any Other Value for Domestic")
-                    return false
-                } else if (!isDecimal(edDomesticExtraNameValue.text.toString())) {
-                    showMessage("Invalid Any Other Value for Domestic value")
-                    return false
-                }
-            }
 
 //        Domestic Disposable checkbox
-            if (report.data.routineReport.disposalDomesticAsPerConsent.isEmpty()) {
-                showMessage("Select Disposal As Per Consent for Domestic")
-                return false
-            }
+                if (report.data.routineReport.disposalDomesticAsPerConsent.isEmpty()) {
+                    showMessage("Select Disposal As Per Consent for Domestic")
+                    return false
+                }
 
-            //        Domestic Operation & Maintenance checkbox
-            if (report.data.routineReport.operationAndMaintainanceDomestic.isEmpty()) {
-                showMessage("Select Operation And Maintenance for Domestic")
-                return false
+                //        Domestic Operation & Maintenance checkbox
+                if (report.data.routineReport.operationAndMaintainanceDomestic.isEmpty()) {
+                    showMessage("Select Operation And Maintenance for Domestic")
+                    return false
+                }
             }
         }
         return true

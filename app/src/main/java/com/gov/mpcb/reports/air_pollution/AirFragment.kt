@@ -78,93 +78,97 @@ class AirFragment : BaseFragmentReport<FragmentAirPollutionBinding, AirViewModel
 
     private fun validate(): Boolean {
         var isValid = true
-        val sourceList = mViewModel.getSourceList().value!!
-        for (item in sourceList) {
-            //Source other
-            if (item.airPollutionSource == AIR_POLLUTION_LIST[4]){
-                if (item.airPollutionSourceOther.isNullOrEmpty()){
-                    showMessage("Please enter any other source")
-                    isValid = false
-                    break
+        //If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
+
+
+            val sourceList = mViewModel.getSourceList().value!!
+            for (item in sourceList) {
+                //Source other
+                if (item.airPollutionSource == AIR_POLLUTION_LIST[4]) {
+                    if (item.airPollutionSourceOther.isNullOrEmpty()) {
+                        showMessage("Please enter any other source")
+                        isValid = false
+                        break
+                    }
                 }
-            }
 
-            if (item.airPollutionType.isNullOrEmpty()) {
-                showMessage("Select Process / Fuel Burning")
-                isValid = false
-                break
-            }
-
-            //Pollution type Fuel Burning selected
-            if (item.airPollutionType == "1"){
-                //Fuel Name
-                if (item.airPollutionFuelName.isEmpty()) {
-                    showMessage("Enter Fuel Name")
+                if (item.airPollutionType.isNullOrEmpty()) {
+                    showMessage("Select Process / Fuel Burning")
                     isValid = false
                     break
                 }
 
-                //Fuel Quantity
-                if (item.airPollutionFuelQuantity.isEmpty()) {
-                    showMessage("Enter Fuel Quantity")
-                    isValid = false
-                    break
-                }else if (!isDecimal(item.airPollutionFuelQuantity)){
-                    showMessage("Invalid Fuel Quantity")
-                    isValid = false
-                    break
-                }
+                //Pollution type Fuel Burning selected
+                if (item.airPollutionType == "1") {
+                    //Fuel Name
+                    if (item.airPollutionFuelName.isEmpty()) {
+                        showMessage("Enter Fuel Name")
+                        isValid = false
+                        break
+                    }
 
-                //Fuel Unit
-                if (item.airPollutionFuelUnit.isEmpty()) {
-                    showMessage("Enter Fuel Unit")
-                    isValid = false
-                    break
-                }
+                    //Fuel Quantity
+                    if (item.airPollutionFuelQuantity.isEmpty()) {
+                        showMessage("Enter Fuel Quantity")
+                        isValid = false
+                        break
+                    } else if (!isDecimal(item.airPollutionFuelQuantity)) {
+                        showMessage("Invalid Fuel Quantity")
+                        isValid = false
+                        break
+                    }
+
+                    //Fuel Unit
+                    if (item.airPollutionFuelUnit.isEmpty()) {
+                        showMessage("Enter Fuel Unit")
+                        isValid = false
+                        break
+                    }
 //                else if (!isDecimal(item.airPollutionFuelUnit)){
 //                    showMessage("Invalid Fuel Unit")
 //                    isValid = false
 //                    break
 //                }
-            }
+                }
 
 //            Pollutants
-            if (item.airPollutionPollutants.isEmpty()) {
-                showMessage("Enter Pollutants")
-                isValid = false
-                break
-            }
+                if (item.airPollutionPollutants.isEmpty()) {
+                    showMessage("Enter Pollutants")
+                    isValid = false
+                    break
+                }
 
 //            Checkboxes
-            if (!(item.airPollutionMechDustCollector == 1 || item.airPollutionCycloneDustCollector == 1
-                || item.airPollutionMultiDustCollector == 1 || item.airPollutionFabricBagFilter == 1
-                || item.airPollutionPackageTower == 1 || item.airPollutionVenturiScrubber == 1
-                || item.airPollutionElectroStatic == 1 || item.airPollutionNoProvision == 1
-                || item.airPollutionAnyOther == 1)){
-                showMessage("Please check atleast one of the checkbox")
-                isValid = false
-                break
+                if (!(item.airPollutionMechDustCollector == 1 || item.airPollutionCycloneDustCollector == 1
+                            || item.airPollutionMultiDustCollector == 1 || item.airPollutionFabricBagFilter == 1
+                            || item.airPollutionPackageTower == 1 || item.airPollutionVenturiScrubber == 1
+                            || item.airPollutionElectroStatic == 1 || item.airPollutionNoProvision == 1
+                            || item.airPollutionAnyOther == 1)
+                ) {
+                    showMessage("Please check atleast one of the checkbox")
+                    isValid = false
+                    break
+                }
+
+                //Stack Height
+                if (item.airPollutionStackHeight.isEmpty()) {
+                    showMessage("Enter Stack Height")
+                    isValid = false
+                    break
+                } else if (!isDecimal(item.airPollutionStackHeight)) {
+                    showMessage("Invalid Stack Height")
+                    isValid = false
+                    break
+                }
             }
 
-            //Stack Height
-            if (item.airPollutionStackHeight.isEmpty()) {
-                showMessage("Enter Stack Height")
-                isValid = false
-                break
-            }
-            else if (!isDecimal(item.airPollutionStackHeight)){
-                showMessage("Invalid Stack Height")
-                isValid = false
-                break
-            }
-        }
-
-        //Remark
+            //Remark
 //        if (isValid && report.data.routineReport.airPollutionObservation.isNullOrEmpty()) {
 //            showMessage("Enter Remarks")
 //            return false
 //        }
-
+        }
         return isValid
     }
 

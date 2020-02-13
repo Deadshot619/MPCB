@@ -156,52 +156,55 @@ class OMSStackFragment : BaseFragmentReport<FragmentOmsStackBinding, ReportsPage
     }
 
     private fun validate(): Boolean {
+//If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
 
-        if (!mBinding.rbOSA.isChecked && !mBinding.rbOSNA.isChecked) {
-            showMessage("Select Online Monitoring System")
-            return false
-        }
-        if (mBinding.rbOSA.isChecked) {
-//            OMS Installed
-            if (!mBinding.rbWOSA.isChecked && !mBinding.rbWOSNA.isChecked) {
-                showMessage("Select Online Monitoring System Installed")
+
+            if (!mBinding.rbOSA.isChecked && !mBinding.rbOSNA.isChecked) {
+                showMessage("Select Online Monitoring System")
                 return false
             }
-
-            if (mBinding.rbWOSA.isChecked){
-//                Connectivity
-                if (!mBinding.cbCPCB.isChecked && !mBinding.cbMPCB.isChecked) {
-                    showMessage("Select Connectivity")
+            if (mBinding.rbOSA.isChecked) {
+//            OMS Installed
+                if (!mBinding.rbWOSA.isChecked && !mBinding.rbWOSNA.isChecked) {
+                    showMessage("Select Online Monitoring System Installed")
                     return false
                 }
-            }
+
+                if (mBinding.rbWOSA.isChecked) {
+//                Connectivity
+                    if (!mBinding.cbCPCB.isChecked && !mBinding.cbMPCB.isChecked) {
+                        showMessage("Select Connectivity")
+                        return false
+                    }
+                }
 
 //            Remote Caliberation Applicable
-            if (!mBinding.rbRmtCalYes.isChecked && !mBinding.rbRmtCalNo.isChecked) {
-                showMessage("Select Remote Caliberation Applicable")
-                return false
-            }
+                if (!mBinding.rbRmtCalYes.isChecked && !mBinding.rbRmtCalNo.isChecked) {
+                    showMessage("Select Remote Caliberation Applicable")
+                    return false
+                }
 
 //            Sensor Properly Placed
-            if (!mBinding.rbSensorPlacedYes.isChecked && !mBinding.rbSensorPlacedNo.isChecked) {
-                showMessage("Select Sensor Properly Placed")
-                return false
-            }
+                if (!mBinding.rbSensorPlacedYes.isChecked && !mBinding.rbSensorPlacedNo.isChecked) {
+                    showMessage("Select Sensor Properly Placed")
+                    return false
+                }
 
 //            Stack Monitoring System exists
-            if (!mBinding.rbWSMSYes.isChecked && !mBinding.rbWSMSNo.isChecked) {
-                showMessage("Select proper stack monitoring system exists")
-                return false
-            }
+                if (!mBinding.rbWSMSYes.isChecked && !mBinding.rbWSMSNo.isChecked) {
+                    showMessage("Select proper stack monitoring system exists")
+                    return false
+                }
 
 //            Calibration Facility exists
-            if (!mBinding.rbWCalSysYes.isChecked && !mBinding.rbWCalSysNo.isChecked) {
-                showMessage("Select calibration facility exists")
-                return false
+                if (!mBinding.rbWCalSysYes.isChecked && !mBinding.rbWCalSysNo.isChecked) {
+                    showMessage("Select calibration facility exists")
+                    return false
+                }
+
             }
-
         }
-
         return true
     }
 
@@ -216,49 +219,49 @@ class OMSStackFragment : BaseFragmentReport<FragmentOmsStackBinding, ReportsPage
             getReportData(visitReportId)
         }
 
-        if (reports != null){
-            mBinding.run{
+        if (reports != null) {
+            mBinding.run {
                 reports?.data?.routineReport?.run {
 
                     //                        OMS
-                    if (omsaApplicable == 1){
+                    if (omsaApplicable == 1) {
                         rgOnlineSys.check(R.id.rbOSA)
-                    }else{
+                    } else {
                         rgOnlineSys.check(R.id.rbOSNA)
                     }
 
 //                    OMS Installed
-                    if (omsaInstalled == 1){
+                    if (omsaInstalled == 1) {
                         rgWhetherOnlineSys.check(R.id.rbWOSA)
-                    }else{
+                    } else {
                         rgWhetherOnlineSys.check(R.id.rbWOSNA)
                     }
 
 //                    Remote Calioberation Applicable
-                    if (remoteCalApplicable == 1){
+                    if (remoteCalApplicable == 1) {
                         rgRmtCal.check(R.id.rbRmtCalYes)
-                    }else{
+                    } else {
                         rgRmtCal.check(R.id.rbRmtCalNo)
                     }
 
 //                    Sensor Properly Placed
-                    if (sensorPlaced == 1){
+                    if (sensorPlaced == 1) {
                         rgSensorPlaced.check(R.id.rbSensorPlacedYes)
-                    }else{
+                    } else {
                         rgSensorPlaced.check(R.id.rbSensorPlacedNo)
                     }
 
 //                     Proper stack monitoring system
-                    if (stackFacilityExist == 1){
+                    if (stackFacilityExist == 1) {
                         rgWSMS.check(R.id.rbWSMSYes)
-                    }else{
+                    } else {
                         rgWSMS.check(R.id.rbWSMSNo)
                     }
 
 //                     Proper stack monitoring system
-                    if (calFacExist == 1){
+                    if (calFacExist == 1) {
                         rgWCalSys.check(R.id.rbWCalSysYes)
-                    }else{
+                    } else {
                         rgWCalSys.check(R.id.rbWCalSysNo)
                     }
 

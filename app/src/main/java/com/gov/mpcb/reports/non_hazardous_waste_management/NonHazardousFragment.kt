@@ -11,7 +11,8 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.utils.validations.isDecimal
 
-class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
+class NonHazardousFragment :
+    BaseFragmentReport<FragmentNonHazardiousBinding, NonHazardousViewModel>(),
     NonHazardousNavigator {
     private var reports: ReportRequest? = null
 
@@ -41,7 +42,7 @@ class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, No
 
         setUpRecyclerView()
 
-        mBinding.run{
+        mBinding.run {
             btnSaveNext.run {
                 btnSubmit.setOnClickListener { onSubmit() }
             }
@@ -77,32 +78,36 @@ class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, No
 
     private fun validate(): Boolean {
         var isValid = true
-        val sourceList = mViewModel.getSourceList().value!!
-        for (item in sourceList) {
+
+        //If industry category is selected as 'Closed'
+        if (!isSelectedIndustryCategoryClosed(report)) {
+
+            val sourceList = mViewModel.getSourceList().value!!
+            for (item in sourceList) {
 //            Waste NAme
-            if (item.nhwWasteName.isNullOrEmpty()) {
-                showMessage("Enter Waste Name")
-                isValid = false
-                break
-            }
+                if (item.nhwWasteName.isNullOrEmpty()) {
+                    showMessage("Enter Waste Name")
+                    isValid = false
+                    break
+                }
 
 //            Quantity as per consent
-            if (item.nhwQuantityString.toString().isNullOrEmpty()) {
-                showMessage("Enter Quantity As per Consent")
-                isValid = false
-                break
-            }else if (!isDecimal(item.nhwQuantityString!!)){
-                showMessage("Invalid Quantity As per Consent value")
-                isValid = false
-                break
-            }
+                if (item.nhwQuantityString.toString().isNullOrEmpty()) {
+                    showMessage("Enter Quantity As per Consent")
+                    isValid = false
+                    break
+                } else if (!isDecimal(item.nhwQuantityString!!)) {
+                    showMessage("Invalid Quantity As per Consent value")
+                    isValid = false
+                    break
+                }
 
 //            Method of disposal as per consent
-            if (item.nhwDisposalMethod.isNullOrEmpty()) {
-                showMessage("Enter Disposal Method")
-                isValid = false
-                break
-            }
+                if (item.nhwDisposalMethod.isNullOrEmpty()) {
+                    showMessage("Enter Disposal Method")
+                    isValid = false
+                    break
+                }
 
 //            Last Disposal Date
 //            if (item.nhwDisposalDate.isNullOrEmpty()) {
@@ -112,35 +117,35 @@ class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, No
 //            }
 
 //            Last Disposal Quantity
-            if (item.nhwDisposalQuantityString.toString().isNullOrEmpty()) {
-                showMessage("Enter Last Disposal Quantity")
-                isValid = false
-                break
-            }else if (!isDecimal(item.nhwDisposalQuantityString!!)){
-                showMessage("Invalid Last Disposal Quantity value")
-                isValid = false
-                break
-            }
+                if (item.nhwDisposalQuantityString.toString().isNullOrEmpty()) {
+                    showMessage("Enter Last Disposal Quantity")
+                    isValid = false
+                    break
+                } else if (!isDecimal(item.nhwDisposalQuantityString!!)) {
+                    showMessage("Invalid Last Disposal Quantity value")
+                    isValid = false
+                    break
+                }
 
 //            Actual Disposal
-            if (item.nhwActualdisposalString.isEmpty()) {
-                showMessage("Enter Actual Disposal")
-                isValid = false
-                break
-            }else if (!isDecimal(item.nhwActualdisposalString!!)){
-                showMessage("Invalid Actual Disposal value")
-                isValid = false
-                break
-            }
+                if (item.nhwActualdisposalString.isEmpty()) {
+                    showMessage("Enter Actual Disposal")
+                    isValid = false
+                    break
+                } else if (!isDecimal(item.nhwActualdisposalString!!)) {
+                    showMessage("Invalid Actual Disposal value")
+                    isValid = false
+                    break
+                }
 
 //            Uom
-            if (item.nhwDisposalQuantityUnit == "0") {
-                showMessage("Select UOM")
-                isValid = false
-                break
+                if (item.nhwDisposalQuantityUnit == "0") {
+                    showMessage("Select UOM")
+                    isValid = false
+                    break
+                }
             }
         }
-
         return isValid
     }
 
@@ -155,7 +160,7 @@ class NonHazardousFragment : BaseFragmentReport<FragmentNonHazardiousBinding, No
             getReportData(visitReportId)
         }
 
-        if(reports?.data?.routineReportProducts != null)
+        if (reports?.data?.routineReportProducts != null)
             mViewModel.populateData(reports?.data?.routineReportNonHazardousWaste)
     }
 

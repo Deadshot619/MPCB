@@ -191,69 +191,73 @@ class OMSAmbientAirFragment : BaseFragmentReport<FragmentOmsAmbientAirBinding, O
 
 
     private fun validate(): Boolean {
+        var isValid = true
 
-        mBinding.run {
-            //OMS
-            if (!rbOMSApplicable.isChecked && !rbOMSNotApplicable.isChecked) {
-                showMessage("Select Online Monitoring System")
-                return false
-            }
+//If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
 
-            //if OMS checked
-            if (rbOMSApplicable.isChecked) {
 
-                if (!rbOMSInstalledApplicable.isChecked && !rbOMSInstalledNotApplicable.isChecked) {
-                    showMessage("Select Online Monitoring System Installed")
+            mBinding.run {
+                //OMS
+                if (!rbOMSApplicable.isChecked && !rbOMSNotApplicable.isChecked) {
+                    showMessage("Select Online Monitoring System")
                     return false
                 }
 
-                //Connectivity
-                if (rbOMSInstalledApplicable.isChecked ){
-                    if (!cbCPCB.isChecked && !cbMPCB.isChecked) {
-                        showMessage("Select Connectivity")
+                //if OMS checked
+                if (rbOMSApplicable.isChecked) {
+
+                    if (!rbOMSInstalledApplicable.isChecked && !rbOMSInstalledNotApplicable.isChecked) {
+                        showMessage("Select Online Monitoring System Installed")
                         return false
                     }
+
+                    //Connectivity
+                    if (rbOMSInstalledApplicable.isChecked) {
+                        if (!cbCPCB.isChecked && !cbMPCB.isChecked) {
+                            showMessage("Select Connectivity")
+                            return false
+                        }
+                    }
                 }
-            }
 
-            //JVS
-            if (!rbSampleYes.isChecked && !rbSampleNo.isChecked) {
-                showMessage("Select JVS Sample")
-                return false
-            }
+                //JVS
+                if (!rbSampleYes.isChecked && !rbSampleNo.isChecked) {
+                    showMessage("Select JVS Sample")
+                    return false
+                }
 
-            //Remark
+                //Remark
 //            if (edtRemark.text.isNullOrEmpty()) {
 //                showMessage("Enter Remarks")
 //                return false
 //            }
-        }
-
-        var isValid = true
-        val sampleList = mViewModel.getReportData()
-
-        if (mBinding.rbSampleYes.isChecked) {
-            outer@ for (item in sampleList) {
-                if (item.nameOfSource.isEmpty()) {
-                    showMessage("Enter Source")
-                    isValid = false
-                    break
-                }
-                for (childItem in item.ambientAirChild) {
-                    if (childItem.prescribedValue.isEmpty()) {
-                        showMessage("Enter Prescribed Value")
-                        isValid = false
-                        break@outer
-                    }else if (!isDecimal(childItem.prescribedValue)){
-                        showMessage("Invalid Prescribed value.")
-                        isValid = false
-                        break@outer
-                    }
-                }
             }
 
-        }
+            val sampleList = mViewModel.getReportData()
 
+            if (mBinding.rbSampleYes.isChecked) {
+                outer@ for (item in sampleList) {
+                    if (item.nameOfSource.isEmpty()) {
+                        showMessage("Enter Source")
+                        isValid = false
+                        break
+                    }
+                    for (childItem in item.ambientAirChild) {
+                        if (childItem.prescribedValue.isEmpty()) {
+                            showMessage("Enter Prescribed Value")
+                            isValid = false
+                            break@outer
+                        } else if (!isDecimal(childItem.prescribedValue)) {
+                            showMessage("Invalid Prescribed value.")
+                            isValid = false
+                            break@outer
+                        }
+                    }
+                }
+
+            }
+        }
         return isValid
     }
 

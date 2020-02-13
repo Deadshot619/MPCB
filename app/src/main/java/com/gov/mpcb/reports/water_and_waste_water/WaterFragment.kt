@@ -75,29 +75,33 @@ class WaterFragment : BaseFragmentReport<FragmentWasteWaterAspectBinding, Report
     }
 
     private fun validate(): Boolean {
-        if (report.data.routineReport.generationIndustrialAsConsent.isEmpty()) {
-            showMessage("Enter Industry Process as per Concent")
-            return false
-        }
-        if (report.data.routineReport.generationIndustrialActual.isEmpty()) {
-            showMessage("Enter Industry Process Actual")
-            return false
-        }
-        if (report.data.routineReport.generationIndustrialAsConsentCooling.isEmpty()) {
-            showMessage("Enter Industrial Cooling as per Concent")
-            return false
-        }
-        if (report.data.routineReport.generationIndustrialActualCooling.isEmpty()) {
-            showMessage("Enter Industrial Cooling Actual")
-            return false
-        }
-        if (report.data.routineReport.generationDomesticAsConsent.isEmpty()) {
-            showMessage("Enter Domestic as per Concent")
-            return false
-        }
-        if (report.data.routineReport.generationDomesticActual.isEmpty()) {
-            showMessage("Enter Domestic Actual")
-            return false
+        //If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
+
+            if (report.data.routineReport.generationIndustrialAsConsent.isEmpty()) {
+                showMessage("Enter Industry Process as per Concent")
+                return false
+            }
+            if (report.data.routineReport.generationIndustrialActual.isEmpty()) {
+                showMessage("Enter Industry Process Actual")
+                return false
+            }
+            if (report.data.routineReport.generationIndustrialAsConsentCooling.isEmpty()) {
+                showMessage("Enter Industrial Cooling as per Concent")
+                return false
+            }
+            if (report.data.routineReport.generationIndustrialActualCooling.isEmpty()) {
+                showMessage("Enter Industrial Cooling Actual")
+                return false
+            }
+            if (report.data.routineReport.generationDomesticAsConsent.isEmpty()) {
+                showMessage("Enter Domestic as per Concent")
+                return false
+            }
+            if (report.data.routineReport.generationDomesticActual.isEmpty()) {
+                showMessage("Enter Domestic Actual")
+                return false
+            }
         }
         return true
     }
@@ -106,29 +110,33 @@ class WaterFragment : BaseFragmentReport<FragmentWasteWaterAspectBinding, Report
      * Method to check if the fields are correctly filled
      */
     private fun validateFieldsFilledCorrect(): Boolean {
-        if(!isDecimal(report.data.routineReport.generationIndustrialAsConsent)){
-            showMessage("Invalid Industry Process Input")
-            return false
-        }
-        if (!isDecimal(report.data.routineReport.generationIndustrialActual)){
-            showMessage("Invalid Industry Process Input")
-            return false
-        }
-        if (!isDecimal(report.data.routineReport.generationIndustrialAsConsentCooling)){
-            showMessage("Invalid Industry Cooling Input")
-            return false
-        }
-        if (!isDecimal(report.data.routineReport.generationIndustrialActualCooling)){
-            showMessage("Invalid Industry Cooling Input")
-            return false
-        }
-        if (!isDecimal(report.data.routineReport.generationDomesticAsConsent)){
-            showMessage("Invalid Domestic Input")
-            return false
-        }
-        if (!isDecimal(report.data.routineReport.generationDomesticActual)){
-            showMessage("Invalid Domestic Input")
-            return false
+        //If industry category is selected as 'Closed', do not validate the fields
+        if (!isSelectedIndustryCategoryClosed(report)) {
+
+            if (!isDecimal(report.data.routineReport.generationIndustrialAsConsent)) {
+                showMessage("Invalid Industry Process Input")
+                return false
+            }
+            if (!isDecimal(report.data.routineReport.generationIndustrialActual)) {
+                showMessage("Invalid Industry Process Input")
+                return false
+            }
+            if (!isDecimal(report.data.routineReport.generationIndustrialAsConsentCooling)) {
+                showMessage("Invalid Industry Cooling Input")
+                return false
+            }
+            if (!isDecimal(report.data.routineReport.generationIndustrialActualCooling)) {
+                showMessage("Invalid Industry Cooling Input")
+                return false
+            }
+            if (!isDecimal(report.data.routineReport.generationDomesticAsConsent)) {
+                showMessage("Invalid Domestic Input")
+                return false
+            }
+            if (!isDecimal(report.data.routineReport.generationDomesticActual)) {
+                showMessage("Invalid Domestic Input")
+                return false
+            }
         }
         return true
     }
