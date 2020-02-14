@@ -99,7 +99,8 @@ class IndustryReportFragment :
      * Set listeners
      */
     private fun setListener() {
-        mBinding.catSpinner.onItemSelectedListener = object  : AdapterView.OnItemSelectedListener {
+        //Set listener on 'Industry Selected' spinner
+        mBinding.catSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
@@ -110,19 +111,9 @@ class IndustryReportFragment :
                 position: Int,
                 id: Long
             ) {
+                //When item is selected, store the selected item data in 'report' for validation purposes
                 report.data.industryCategoryReselect =
-                    try {
-                        CATEGORY_LIST.filterValues {
-                            it == CATEGORY_LIST[
-                                    if (position > 1)
-                                        position + 4
-                                    else
-                                        position
-                            ]
-                        }.keys.first().toString()
-                    } catch (e: Exception) {
-                        "0"
-                    }
+                    getSelectedSpinnerValueOfCategoryList(position)
             }
 
         }
@@ -143,167 +134,176 @@ class IndustryReportFragment :
         }
     }
 
-private fun onSubmit() {
-    report.data.industryCategoryReselect =
-        try {
-            CATEGORY_LIST.filterValues {
-                it == CATEGORY_LIST[
-                        if (mBinding.catSpinner.selectedItemPosition > 1)
-                            mBinding.catSpinner.selectedItemPosition + 4
-                        else
-                            mBinding.catSpinner.selectedItemPosition
-                ]
-            }.keys.first().toString()
-        } catch (e: Exception) {
-            "0"
-        }
+    private fun onSubmit() {
+        report.data.industryCategoryReselect =
+            getSelectedSpinnerValueOfCategoryList(mBinding.catSpinner.selectedItemPosition)
 
-    report.data.routineReport.run {
-        visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
-        emailAddress = mBinding.visitCatEmailEd.text.toString()
-        telephoneNumber = mBinding.visitCatTelephoneEd.text.toString()
-        validityOfConsentUpto = mBinding.edtValidUpto.text.toString()
-        validityOfConsentIe = mBinding.consentIeEd.text.toString()
-        hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
-    }
-
-    if (validateFieldsFilled()) {
-        if (validateFieldsFilledCorrect()) {
-            saveReportData(
-                reportNo = visitReportId,
-                reportKey = REPORT_1,
-                reportStatus = true
-            )
-
-            //Do fragment transaction to go to next Page
-            addReportFragmentLocal(REPORT_2, visitReportId)
-        }
-    }
-}
-
-/**
- * Method to check if the fields are correctly filled
- */
-private fun validateFieldsFilledCorrect(): Boolean {
-
-
-    //If industry category is selected as 'Closed'
-    if (!isSelectedIndustryCategoryClosed(report)) {
         report.data.routineReport.run {
-            if (!isEmailValid(emailAddress)) {
-                showMessage("Email Id is invalid")
-                return false
-            }
-            if (!isValidMobile(telephoneNumber)) {
-                showMessage("Invalid Telephone Number")
-                return false
-            }
-            if (!isDecimal(validityOfConsentIe)) {
-                showMessage("Invalid I.E. Number")
-                return false
-            }
-            if (!isDecimal(hwOfValidUptoDe)) {
-                showMessage("Invalid D.E. Number")
-                return false
+            visitedOn = mBinding.edtVisitedIndustryOn.text.toString()
+            emailAddress = mBinding.visitCatEmailEd.text.toString()
+            telephoneNumber = mBinding.visitCatTelephoneEd.text.toString()
+            validityOfConsentUpto = mBinding.edtValidUpto.text.toString()
+            validityOfConsentIe = mBinding.consentIeEd.text.toString()
+            hwOfValidUptoDe = mBinding.consentDeEd.text.toString()
+        }
+
+        if (validateFieldsFilled()) {
+            if (validateFieldsFilledCorrect()) {
+                saveReportData(
+                    reportNo = visitReportId,
+                    reportKey = REPORT_1,
+                    reportStatus = true
+                )
+
+                //Do fragment transaction to go to next Page
+                addReportFragmentLocal(REPORT_2, visitReportId)
             }
         }
     }
-    return true
-}
 
-/**
- * Method to validate if fields of report form are filled.
- */
-private fun validateFieldsFilled(): Boolean {
+    /**
+     * Method to check if the fields are correctly filled
+     */
+    private fun validateFieldsFilledCorrect(): Boolean {
+
+
+        //If industry category is selected as 'Closed'
+        if (!isSelectedIndustryCategoryClosed(report)) {
+            report.data.routineReport.run {
+                if (!isEmailValid(emailAddress)) {
+                    showMessage("Email Id is invalid")
+                    return false
+                }
+                if (!isValidMobile(telephoneNumber)) {
+                    showMessage("Invalid Telephone Number")
+                    return false
+                }
+                if (!isDecimal(validityOfConsentIe)) {
+                    showMessage("Invalid I.E. Number")
+                    return false
+                }
+                if (!isDecimal(hwOfValidUptoDe)) {
+                    showMessage("Invalid D.E. Number")
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
+    /**
+     * Method to validate if fields of report form are filled.
+     */
+    private fun validateFieldsFilled(): Boolean {
 //        if (report.data.industryCategoryReselect == "0") {
 //            showMessage("Select Category")
 //            return false
 //        }
 
-    report.data.routineReport.run {
-        if (visitedOn.isEmpty()) {
-            showMessage("Enter Visited Industry On")
-            return false
-        }
-
-        //If industry category is selected as 'Closed'
-        if (!isSelectedIndustryCategoryClosed(report)) {
-            if (emailAddress.isEmpty()) {
-                showMessage("Enter Email Address of Unit")
-                return false
-            }
-            if (telephoneNumber.isEmpty()) {
-                showMessage("Enter Telephone No of Unit")
-                return false
-            }
-            if (validityOfConsentIe.isEmpty()) {
-                showMessage("Enter I.E(m3/day)")
-                return false
-            }
-            if (hwOfValidUptoDe.isEmpty()) {
-                showMessage("Enter D.E(m3/day)")
+        report.data.routineReport.run {
+            if (visitedOn.isEmpty()) {
+                showMessage("Enter Visited Industry On")
                 return false
             }
 
-            if (consentObtain == 1 || consentObtain == 0) {
-                //If Consent Obtained is 'Yes' then check if 'Valid upto' is filled
-                if (consentObtain == 1) {
-                    if (validityOfConsentUpto.isEmpty()) {
-                        showMessage("Enter Validity Upto")
-                        return false
+            //If industry category is selected as 'Closed'
+            if (!isSelectedIndustryCategoryClosed(report)) {
+                if (emailAddress.isEmpty()) {
+                    showMessage("Enter Email Address of Unit")
+                    return false
+                }
+                if (telephoneNumber.isEmpty()) {
+                    showMessage("Enter Telephone No of Unit")
+                    return false
+                }
+                if (validityOfConsentIe.isEmpty()) {
+                    showMessage("Enter I.E(m3/day)")
+                    return false
+                }
+                if (hwOfValidUptoDe.isEmpty()) {
+                    showMessage("Enter D.E(m3/day)")
+                    return false
+                }
+
+                if (consentObtain == 1 || consentObtain == 0) {
+                    //If Consent Obtained is 'Yes' then check if 'Valid upto' is filled
+                    if (consentObtain == 1) {
+                        if (validityOfConsentUpto.isEmpty()) {
+                            showMessage("Enter Validity Upto")
+                            return false
+                        }
                     }
+                } else {
+                    showMessage("Select Consent Obtained")
+                    return false
                 }
-            } else {
-                showMessage("Select Consent Obtained")
-                return false
             }
         }
+
+        return true
     }
 
-    return true
-}
-
-override fun onStart() {
-    super.onStart()
-    //set data to views in onStart
-    setDataToViews()
+    override fun onStart() {
+        super.onStart()
+        //set data to views in onStart
+        setDataToViews()
 //        Log.i("Industry", getReportData()?.data?.industryCategoryReselect)
-}
-
-/**
- * This method is used to retrieve & set data to views
- */
-override fun setDataToViews() {
-    reports = if (visitStatus) {
-        getReportData(Constants.TEMP_VISIT_REPORT_DATA)
-    } else {
-        getReportData(visitReportId)
     }
 
-    //Spinner
-    if (reports != null) {
-        mBinding.run {
-            if (reports?.data?.industryCategoryReselect != "")
-                reports?.data?.industryCategoryReselect?.let { value ->
-                    catSpinner.setSelection(
-                        if (value.parseToInt() > 2)
-                            value.parseToInt() - 4
-                        else
-                            value.parseToInt()
-                    )
+    /**
+     * This method is used to retrieve & set data to views
+     */
+    override fun setDataToViews() {
+        reports = if (visitStatus) {
+            getReportData(Constants.TEMP_VISIT_REPORT_DATA)
+        } else {
+            getReportData(visitReportId)
+        }
+
+        //Spinner
+        if (reports != null) {
+            mBinding.run {
+                if (reports?.data?.industryCategoryReselect != "")
+                    reports?.data?.industryCategoryReselect?.let { value ->
+                        catSpinner.setSelection(
+                            if (value.parseToInt() > 2)
+                                value.parseToInt() - 4
+                            else
+                                value.parseToInt()
+                        )
+                    }
+                edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
+                visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
+                visitCatTelephoneEd.setText(reports?.data?.routineReport?.telephoneNumber)
+                edtValidUpto.setText(reports?.data?.routineReport?.validityOfConsentUpto)
+                consentIeEd.setText(reports?.data?.routineReport?.validityOfConsentIe)
+                consentDeEd.setText(reports?.data?.routineReport?.hwOfValidUptoDe)
+                if (reports?.data?.routineReport?.consentObtain == 1) {
+                    rgConsent.check(R.id.rbConsentYes)
+                } else if (reports?.data?.routineReport?.consentObtain == 0) {
+                    rgConsent.check(R.id.rbConsentNo)
                 }
-            edtVisitedIndustryOn.setText(reports?.data?.routineReport?.visitedOn)
-            visitCatEmailEd.setText(reports?.data?.routineReport?.emailAddress)
-            visitCatTelephoneEd.setText(reports?.data?.routineReport?.telephoneNumber)
-            edtValidUpto.setText(reports?.data?.routineReport?.validityOfConsentUpto)
-            consentIeEd.setText(reports?.data?.routineReport?.validityOfConsentIe)
-            consentDeEd.setText(reports?.data?.routineReport?.hwOfValidUptoDe)
-            if (reports?.data?.routineReport?.consentObtain == 1) {
-                rgConsent.check(R.id.rbConsentYes)
-            } else if (reports?.data?.routineReport?.consentObtain == 0) {
-                rgConsent.check(R.id.rbConsentNo)
             }
         }
     }
-}
+
+    /**
+     * This method is used to get selected spinner item value from [CATEGORY_LIST].
+     *
+     * @param selectedSpinnerItemPosition Takes Selected spinner item position as argument
+     */
+    private fun getSelectedSpinnerValueOfCategoryList(selectedSpinnerItemPosition: Int): String{
+        return try {
+            CATEGORY_LIST.filterValues {
+                it == CATEGORY_LIST[
+                        if (selectedSpinnerItemPosition > 1)
+                            selectedSpinnerItemPosition + 4
+                        else
+                            selectedSpinnerItemPosition
+                ]
+            }.keys.first().toString()
+        } catch (e: Exception) {
+            "0"
+        }
+    }
 }

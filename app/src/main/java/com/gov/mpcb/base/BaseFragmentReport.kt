@@ -45,7 +45,7 @@ abstract class BaseFragmentReport<T : ViewDataBinding, V : BaseViewModel<*>> :
      * This method is to be implemented in the child classes.
      * This method should retrieve & set data to views in Reports.
      */
-    protected open fun setDataToViews() {}
+    protected abstract fun setDataToViews()
 
     /**
      * This method is used to set data to [report] variable
