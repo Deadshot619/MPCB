@@ -4,13 +4,13 @@ import android.app.DatePickerDialog
 import android.util.Log
 import android.view.View
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragmentReport
+import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentAddTaskBinding
 import com.gov.mpcb.utils.removeFragment
 import com.gov.mpcb.utils.showMessage
 import java.util.*
 
-class AddTaskFragment : BaseFragmentReport<FragmentAddTaskBinding, AddTaskViewModel>()
+class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
     , AddTaskNavigator {
 
     //instance of UserListFragment for dialog

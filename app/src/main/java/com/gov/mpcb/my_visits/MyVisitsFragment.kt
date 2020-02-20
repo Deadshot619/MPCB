@@ -467,4 +467,8 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
             }
         }
     }
+
+    override fun setDataToViews() {
+        TODO("not implemented")
+    }
 }
