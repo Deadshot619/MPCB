@@ -16,6 +16,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
 
+        <CalendarView
+                android:id="@+id/calendar_task_mgmt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/toolbarLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTasks"
                 android:layout_width="0dp"
@@ -23,7 +31,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/toolbarLayout"
+                app:layout_constraintTop_toBottomOf="@id/calendar_task_mgmt"
                 tools:listitem="@layout/item_task" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
