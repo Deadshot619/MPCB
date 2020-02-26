@@ -7,7 +7,7 @@ import com.gov.mpcb.addTask.AddTaskFragment
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.dashboard.DashboardFragment
 import com.gov.mpcb.databinding.ActivityHomeBinding
-import com.gov.mpcb.menu_tab.menu.MenuFragment
+import com.gov.mpcb.menu.MenuFragment
 import com.gov.mpcb.my_visits.MyVisitsFragment
 import com.gov.mpcb.profile.ProfileFragment
 import com.gov.mpcb.task_management.TaskManagementFragment

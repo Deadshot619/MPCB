@@ -1,4 +1,4 @@
-package com.gov.mpcb.menu_tab.menu
+package com.gov.mpcb.menu
 
 import com.gov.mpcb.base.BaseViewModel
 
