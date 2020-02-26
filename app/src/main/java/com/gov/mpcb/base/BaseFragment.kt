@@ -59,7 +59,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     protected fun setToolbar(
         toolbarBinding: ToolbarBinding,
         title: String,
-        showSearchBar: Boolean = false
+        showSearchBar: Boolean = false,
+        showCalendar: Boolean = false
     ) {
         toolbarBinding.run {
 
@@ -91,6 +92,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
                     searchbarLayout.visibility = View.GONE
                     true
                 }
+            }
+
+            //If true, show Calendar, else hide it
+            if (showCalendar) {
+                imgCalendar.visibility = View.VISIBLE
+            } else {
+                imgCalendar.visibility = View.GONE
             }
         }
     }

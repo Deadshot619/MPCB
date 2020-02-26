@@ -13,5 +13,14 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), MenuNav
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
-    override fun onBinding() {}
+    override fun onBinding() {
+
+        //Set toolbar
+        setToolbar(
+            toolbarBinding = mBinding.toolbarLayout,
+            title = "Menu",
+            showSearchBar = false,
+            showCalendar = false
+        )
+    }
 }

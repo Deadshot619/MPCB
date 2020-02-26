@@ -106,7 +106,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         MonthYearPickerDialog.calendarConstant = Constants.Companion.CalendarConstant.MY_VISIT
 
         //Setup Toolbar
-        setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title), showSearchBar = true)
+        setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title), showSearchBar = true, showCalendar = true)
 
         setUpRecyclerView()
         setupSearchListener()
