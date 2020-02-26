@@ -60,7 +60,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         toolbarBinding: ToolbarBinding,
         title: String,
         showSearchBar: Boolean = false,
-        showCalendar: Boolean = false
+        showCalendar: Boolean = false,
+        showBackButton: Boolean = false
     ) {
         toolbarBinding.run {
 
@@ -99,6 +100,13 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
                 imgCalendar.visibility = View.VISIBLE
             } else {
                 imgCalendar.visibility = View.GONE
+            }
+
+            //If true, show Back Button, else hide it
+            if (showBackButton) {
+                imgBack.visibility = View.VISIBLE
+            } else {
+                imgBack.visibility = View.GONE
             }
         }
     }

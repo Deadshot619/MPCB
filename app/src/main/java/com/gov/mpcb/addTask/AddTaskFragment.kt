@@ -2,7 +2,6 @@ package com.gov.mpcb.addTask
 
 import android.app.DatePickerDialog
 import android.util.Log
-import android.view.View
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentAddTaskBinding
@@ -31,16 +30,8 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
         setToolbar(
             toolbarBinding = mBinding.toolbarLayout,
             title = getString(R.string.add_task_title),
-            showSearchBar = false
+            showBackButton = true
         )
-
-        //Toolbar
-        mBinding.toolbarLayout.run{
-            //Hide Calender icon
-            imgCalendar.visibility = View.GONE
-            //Show Back Button
-            imgBack.visibility = View.VISIBLE
-        }
 
         //Set click Listeners To views
         setClickListeners()
@@ -67,7 +58,7 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, AddTaskViewModel>()
             //Set listener to back button in toolbar
             toolbarLayout.imgBack.setOnClickListener {
                 removeFragment(this@AddTaskFragment)
-                activity!!.onBackPressed()
+                activity?.onBackPressed()
             }
 
             //Set listener to Date field
