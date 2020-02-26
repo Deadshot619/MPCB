@@ -49,11 +49,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                     addFragment(DashboardFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
-                R.id.attendance -> {
-//                    addFragment(AttendanceFragment(), false)
-                    showMessage(getString(R.string.error_bottom_nav))
-                    return@setOnNavigationItemSelectedListener false
-                }
+//                R.id.attendance -> {
+////                    addFragment(AttendanceFragment(), false)
+//                    showMessage(getString(R.string.error_bottom_nav))
+//                    return@setOnNavigationItemSelectedListener false
+//                }
                 R.id.my_profile -> {
                     addFragment(ProfileFragment(), false)
                     return@setOnNavigationItemSelectedListener true
