@@ -10,10 +10,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/ic_background"
+            android:background="@color/bg_grey"
             android:padding="8dp"
             tools:context=".menu.MenuFragment">
 
+        <!--    Toolbar -->
         <include
                 android:id="@+id/toolbarLayout"
                 layout="@layout/toolbar"
@@ -21,26 +22,123 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent" />
 
-        <androidx.cardview.widget.CardView
+
+        <androidx.core.widget.NestedScrollView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/toolbarLayout">
 
-            <TextView
-                    android:layout_width="wrap_content"
+            <!--    Menu tabs -->
+            <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Circulars"
-                    android:textSize="18sp" />
-        </androidx.cardview.widget.CardView>
+                    android:orientation="vertical"
+                    android:clipToPadding="false"
+                    android:paddingBottom="4dp">
+
+                <!--    Circulars   -->
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/circulars"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/menu_cardview_style">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/menu_textview_style"
+                            android:text="@string/circulars"/>
+                </androidx.cardview.widget.CardView>
+
+                <!--    Industries Location   -->
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/industries_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/menu_cardview_style">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/menu_textview_style"
+                            android:text="@string/industries_location"/>
+                </androidx.cardview.widget.CardView>
+
+                <!--    Email   -->
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/menu_cardview_style">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/menu_textview_style"
+                            android:text="@string/email"/>
+                </androidx.cardview.widget.CardView>
+
+                <!--    Offices   -->
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/offices"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/menu_cardview_style">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/menu_textview_style"
+                            android:text="@string/offices"/>
+                </androidx.cardview.widget.CardView>
+
+                <!--    Laboratories    -->
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/laboratories"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/menu_cardview_style">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/menu_textview_style"
+                            android:text="@string/laboratories"/>
+                </androidx.cardview.widget.CardView>
+
+                <!--    Privacy Policy  -->
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/privacy_policy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/menu_cardview_style">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/menu_textview_style"
+                            android:text="@string/privacy_policy"/>
+                </androidx.cardview.widget.CardView>
+
+                <!--   FAQ  -->
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/faq"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/menu_cardview_style">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/menu_textview_style"
+                            android:text="@string/faq"/>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

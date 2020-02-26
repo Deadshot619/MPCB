@@ -18,7 +18,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(), MenuNav
         //Set toolbar
         setToolbar(
             toolbarBinding = mBinding.toolbarLayout,
-            title = "Menu",
+            title = getString(R.string.title_menu),
             showSearchBar = false,
             showCalendar = false
         )

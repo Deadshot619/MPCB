@@ -71,4 +71,15 @@
 
     <!--    Search Bar-->
     <string name="action_hint">Search by Industry Name or ID</string>
+
+    <!-- Menu Tab -->
+    <string name="title_menu">Menu</string>
+    <string name="circulars">Circulars</string>
+    <string name="industries_location">Industries Location</string>
+    <string name="email">Email</string>
+    <string name="offices">Offices</string>
+    <string name="laboratories">Laboratories</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="faq">FAQ</string>
+
 </resources>
