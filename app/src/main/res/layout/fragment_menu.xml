@@ -12,7 +12,7 @@
             android:layout_height="match_parent"
             android:background="@color/bg_grey"
             android:padding="8dp"
-            tools:context=".menu.MenuFragment">
+            tools:context=".menu_tab.menu.MenuFragment">
 
         <!--    Toolbar -->
         <include
