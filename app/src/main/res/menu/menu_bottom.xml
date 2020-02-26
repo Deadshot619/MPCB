@@ -29,4 +29,9 @@
         android:id="@+id/my_profile"
         android:icon="@drawable/ic_profile"
         android:title=""/>
+
+    <item
+        android:id="@+id/menu"
+        android:icon="@drawable/ic_menu_24dp"
+        android:title=""/>
 </menu>
