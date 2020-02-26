@@ -19,11 +19,11 @@
         android:icon="@drawable/ic_dash"
         android:title=""/>
 
-    <item
-        android:id="@+id/attendance"
-        android:enabled="true"
-        android:icon="@drawable/ic_attendance"
-        android:title=""/>
+<!--    <item-->
+<!--        android:id="@+id/attendance"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_attendance"-->
+<!--        android:title=""/>-->
 
     <item
         android:id="@+id/my_profile"
