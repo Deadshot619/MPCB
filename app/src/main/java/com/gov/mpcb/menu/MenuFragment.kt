@@ -30,6 +30,9 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(),
         setUpListeners()
     }
 
+    /**
+     * Method to setup all types of Listeners
+     */
     private fun setUpListeners() {
         mBinding.faq.setOnClickListener {
             startActivity(Intent(activity, FaqActivity::class.java))

@@ -30,6 +30,9 @@ class FaqActivity : BaseActivity<FragmentFaqBinding, FaqViewModel>(), FaqNavigat
         setUpListeners()
     }
 
+    /**
+     * Method to setup all types of Listeners
+     */
     private fun setUpListeners() {
         mBinding.toolbarLayout.imgBack.setOnClickListener {
             finish()
