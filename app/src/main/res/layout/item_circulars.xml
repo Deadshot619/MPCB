@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <!--    Upper   -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+                <!--                Title-->
+                <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Principal Scientific Officer Division, Mumbai." />
+
+                <!--Date Label-->
+                <TextView
+                        android:id="@+id/tv_date_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        tools:text="Date"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_title"
+                        app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+
+                <!--Date Info-->
+                <TextView
+                        android:id="@+id/tv_date_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        tools:text="9876543210"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_date_label"
+                        app:layout_constraintStart_toStartOf="@id/tv_date_label"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/bg_grey"/>
+
+            <!--    Lower   -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                <!--AST Label-->
+                <TextView
+                        android:id="@+id/tv_ast_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="AST"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                <!--AST Info-->
+                <TextView
+                        android:id="@+id/tv_ast_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        tools:text="Department"
+                        android:textSize="16sp"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintTop_toBottomOf="@id/tv_ast_label"
+                        app:layout_constraintStart_toStartOf="@id/tv_ast_label"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginEnd="16dp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_pdf_img"
+                        android:src="@drawable/ic_picture_as_pdf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="@id/tv_ast_label"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_ast_info"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
