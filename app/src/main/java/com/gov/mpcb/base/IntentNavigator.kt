@@ -15,7 +15,6 @@ object IntentNavigator {
         val intent = HomeActivity.getCallingIntent(context)
         context.startActivity(intent)
     }
-
 }
 
 

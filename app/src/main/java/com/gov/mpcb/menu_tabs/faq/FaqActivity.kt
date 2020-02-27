@@ -2,16 +2,17 @@ package com.gov.mpcb.menu_tabs.faq
 
 
 import com.gov.mpcb.R
-import com.gov.mpcb.base.BaseFragment
+import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.databinding.FragmentFaqBinding
+import com.gov.mpcb.utils.constants.Constants.Companion.setToolbar
 import com.gov.mpcb.utils.showMessage
 
-class FaqFragment : BaseFragment<FragmentFaqBinding, FaqViewModel>(), FaqNavigator {
+class FaqActivity : BaseActivity<FragmentFaqBinding, FaqViewModel>(), FaqNavigator {
 
 
     override fun getLayoutId() = R.layout.fragment_faq
     override fun getViewModel() = FaqViewModel::class.java
-    override fun getNavigator() = this@FaqFragment
+    override fun getNavigator() = this@FaqActivity
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
@@ -25,5 +26,13 @@ class FaqFragment : BaseFragment<FragmentFaqBinding, FaqViewModel>(), FaqNavigat
             showCalendar = false,
             showBackButton = true
         )
+
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        mBinding.toolbarLayout.imgBack.setOnClickListener {
+            finish()
+        }
     }
 }

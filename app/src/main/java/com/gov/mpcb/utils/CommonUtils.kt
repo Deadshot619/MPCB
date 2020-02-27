@@ -13,4 +13,6 @@ object CommonUtils {
     //Get Device's width in dp
     val dpWidth: Float
         get() =  displayMetrics.widthPixels / displayMetrics.density
+
+
 }

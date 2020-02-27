@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import com.gov.mpcb.R
+import com.gov.mpcb.databinding.ToolbarBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -408,6 +409,61 @@ class Constants {
 
                 if (child is ViewGroup) {
                     disableEnableControls(enable, child)
+                }
+            }
+        }
+
+        fun setToolbar(
+            toolbarBinding: ToolbarBinding,
+            title: String,
+            showSearchBar: Boolean = false,
+            showCalendar: Boolean = false,
+            showBackButton: Boolean = false
+        ) {
+            toolbarBinding.run {
+
+                //Toolbar title
+                txtToolbarTitle.text = title
+
+                //if true, then Display search icon & add click listeners to it
+                if (showSearchBar) {
+                    //Show Search Icon
+                    imgSearch.visibility = View.VISIBLE
+
+                    //Search icon click listener
+                    imgSearch.setOnClickListener {
+                        //Hide main toolbar
+                        mainToolbar.visibility = View.GONE
+                        //show searchbar
+                        searchbarLayout.visibility = View.VISIBLE
+
+                        //set focus on search bar programmatically
+                        searchBar.isIconified = false
+                    }
+
+                    //SearchBar click listener
+                    searchBar.setOnCloseListener {
+                        //show main toolbar
+                        mainToolbar.visibility = View.VISIBLE
+                        //hide searchbar & clear focus form it
+                        searchBar.clearFocus()
+                        searchbarLayout.visibility = View.GONE
+                        true
+                    }
+                }
+
+                //If true, show Calendar, else hide it
+                if (showCalendar) {
+                    imgCalendar.visibility = View.VISIBLE
+                } else {
+                    imgCalendar.visibility = View.GONE
+                }
+
+                //If true, show Back Button, else hide it
+                if (showBackButton) {
+                    imgBack.visibility = View.VISIBLE
+                } else {
+                    imgBack.visibility = View.GONE
                 }
             }
         }

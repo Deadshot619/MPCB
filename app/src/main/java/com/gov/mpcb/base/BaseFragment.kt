@@ -9,7 +9,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.gov.mpcb.databinding.ToolbarBinding
 
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment(),
     UICallbacks<V> {
@@ -56,60 +55,60 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
 
     protected fun getBaseActivity() = activity as BaseActivity<*, *>
 
-    protected fun setToolbar(
-        toolbarBinding: ToolbarBinding,
-        title: String,
-        showSearchBar: Boolean = false,
-        showCalendar: Boolean = false,
-        showBackButton: Boolean = false
-    ) {
-        toolbarBinding.run {
-
-            //Toolbar title
-            txtToolbarTitle.text = title
-
-            //if true, then Display search icon & add click listeners to it
-            if (showSearchBar) {
-                //Show Search Icon
-                imgSearch.visibility = View.VISIBLE
-
-                //Search icon click listener
-                imgSearch.setOnClickListener {
-                    //Hide main toolbar
-                    mainToolbar.visibility = View.GONE
-                    //show searchbar
-                    searchbarLayout.visibility = View.VISIBLE
-
-                    //set focus on search bar programmatically
-                    searchBar.isIconified = false
-                }
-
-                //SearchBar click listener
-                searchBar.setOnCloseListener {
-                    //show main toolbar
-                    mainToolbar.visibility = View.VISIBLE
-                    //hide searchbar & clear focus form it
-                    searchBar.clearFocus()
-                    searchbarLayout.visibility = View.GONE
-                    true
-                }
-            }
-
-            //If true, show Calendar, else hide it
-            if (showCalendar) {
-                imgCalendar.visibility = View.VISIBLE
-            } else {
-                imgCalendar.visibility = View.GONE
-            }
-
-            //If true, show Back Button, else hide it
-            if (showBackButton) {
-                imgBack.visibility = View.VISIBLE
-            } else {
-                imgBack.visibility = View.GONE
-            }
-        }
-    }
+//    protected fun setToolbar(
+//        toolbarBinding: ToolbarBinding,
+//        title: String,
+//        showSearchBar: Boolean = false,
+//        showCalendar: Boolean = false,
+//        showBackButton: Boolean = false
+//    ) {
+//        toolbarBinding.run {
+//
+//            //Toolbar title
+//            txtToolbarTitle.text = title
+//
+//            //if true, then Display search icon & add click listeners to it
+//            if (showSearchBar) {
+//                //Show Search Icon
+//                imgSearch.visibility = View.VISIBLE
+//
+//                //Search icon click listener
+//                imgSearch.setOnClickListener {
+//                    //Hide main toolbar
+//                    mainToolbar.visibility = View.GONE
+//                    //show searchbar
+//                    searchbarLayout.visibility = View.VISIBLE
+//
+//                    //set focus on search bar programmatically
+//                    searchBar.isIconified = false
+//                }
+//
+//                //SearchBar click listener
+//                searchBar.setOnCloseListener {
+//                    //show main toolbar
+//                    mainToolbar.visibility = View.VISIBLE
+//                    //hide searchbar & clear focus form it
+//                    searchBar.clearFocus()
+//                    searchbarLayout.visibility = View.GONE
+//                    true
+//                }
+//            }
+//
+//            //If true, show Calendar, else hide it
+//            if (showCalendar) {
+//                imgCalendar.visibility = View.VISIBLE
+//            } else {
+//                imgCalendar.visibility = View.GONE
+//            }
+//
+//            //If true, show Back Button, else hide it
+//            if (showBackButton) {
+//                imgBack.visibility = View.VISIBLE
+//            } else {
+//                imgBack.visibility = View.GONE
+//            }
+//        }
+//    }
 
     /**
      * This method is used to get data from Fragment arguments

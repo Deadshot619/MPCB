@@ -10,7 +10,9 @@
             android:minHeight="?android:attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:contentInsetLeft="16dp"
-            app:contentInsetStart="0dp"
+            app:contentInsetStart="16dp"
+            app:contentInsetRight="16dp"
+            app:contentInsetEnd="16dp"
             app:contentInsetStartWithNavigation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -26,8 +28,7 @@
                     android:layout_height="match_parent"
                     android:elevation="30dp"
                     android:gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
+                    >
 
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imgBack"
@@ -40,7 +41,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:visibility="visible" />
 
-                <!--            Search Icon-->
+                <!--    Title   -->
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtToolbarTitle"
                         android:layout_width="wrap_content"
@@ -50,12 +51,14 @@
                         android:singleLine="true"
                         android:textColor="@color/toolbar_text"
                         android:textSize="24sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imgSearch"
+                        android:layout_marginLeft="8dp"
+                        app:layout_constraintBottom_toBottomOf="@id/imgBack"
+                        app:layout_constraintEnd_toStartOf="@id/imgSearch"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/imgBack"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Hola" />
+                        app:layout_constraintStart_toEndOf="@id/imgBack"
+                        app:layout_constraintTop_toTopOf="@id/imgBack"
+                        tools:text="Hola"
+                        android:layout_marginStart="8dp" />
 
 
 

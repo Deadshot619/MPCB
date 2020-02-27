@@ -32,6 +32,7 @@ import com.gov.mpcb.network.response.MyVisitModel
 import com.gov.mpcb.network.response.Users
 import com.gov.mpcb.utils.addFragment
 import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.constants.Constants.Companion.setToolbar
 import com.gov.mpcb.utils.dialog.CheckInDialog
 import com.gov.mpcb.utils.dialog.DialogHelper
 import com.gov.mpcb.utils.dialog.MonthYearPickerDialog
