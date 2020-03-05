@@ -10,28 +10,31 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera.flash" android:required="false"/>
-
-<!--    Read External Storage   -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-feature
+            android:name="android.hardware.camera.flash"
+            android:required="false" /> <!-- Read External Storage -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <supports-screens
-            android:smallScreens="true"
-            android:normalScreens="true"
             android:largeScreens="true"
-            android:xlargeScreens="true"/>
+            android:normalScreens="true"
+            android:smallScreens="true"
+            android:xlargeScreens="true" />
 
     <application
-            android:name="com.gov.mpcb.base.MPCBApp"
+            android:name=".base.MPCBApp"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
-            android:usesCleartextTraffic="true"
+            android:requestLegacyExternalStorage="true"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:requestLegacyExternalStorage="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:usesCleartextTraffic="true">
+        <activity
+                android:name=".menu_tabs.surprise_inspections.SurpriseInspectionActivity"
+                android:label="@string/title_activity_surprise_inspection"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <provider
                 android:name="androidx.core.content.FileProvider"
@@ -44,24 +47,20 @@
         </provider>
 
         <activity
-                android:name="com.gov.mpcb.reports.ReportsPageActivity"
+                android:name=".reports.ReportsPageActivity"
                 android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name="com.gov.mpcb.home.HomeActivity" />
-        <activity android:name="com.gov.mpcb.login.LoginActivity" />
-        <activity android:name="com.gov.mpcb.splash.SplashActivity">
+        <activity android:name=".home.HomeActivity" />
+        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!--FAQ-->
-        <activity android:name=".menu_tabs.faq.FaqActivity"/>
-
-<!--        Firebase Messaging Service-->
+        </activity> <!-- FAQ -->
+        <activity android:name=".menu_tabs.faq.FaqActivity" /> <!-- Firebase Messaging Service -->
         <service
-                android:name="com.gov.mpcb.service.MyFirebaseMessagingService"
+                android:name=".service.MyFirebaseMessagingService"
                 android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
