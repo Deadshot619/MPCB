@@ -31,10 +31,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity
-                android:name=".menu_tabs.surprise_inspections.SurpriseInspectionActivity"
-                android:label="@string/title_activity_surprise_inspection"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".menu_tabs.surprise_inspections.SurpriseInspectionActivity"></activity>
 
         <provider
                 android:name="androidx.core.content.FileProvider"
