@@ -66,6 +66,20 @@
                             android:text="@string/industries_location"/>
                 </androidx.cardview.widget.CardView>
 
+                <!--    Surprise Inspections   -->
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/surprise_inspections"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/menu_cardview_style">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/menu_textview_style"
+                            android:text="@string/surprise_inspections"/>
+                </androidx.cardview.widget.CardView>
+
                 <!--    Email   -->
                 <androidx.cardview.widget.CardView
                         android:id="@+id/email"
