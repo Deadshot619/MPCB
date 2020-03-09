@@ -5,6 +5,7 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentMenuBinding
 import com.gov.mpcb.menu_tabs.faq.FaqActivity
+import com.gov.mpcb.menu_tabs.surprise_inspections.SurpriseInspectionActivity
 import com.gov.mpcb.utils.constants.Constants.Companion.setToolbar
 import com.gov.mpcb.utils.showMessage
 
@@ -34,8 +35,16 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(),
      * Method to setup all types of Listeners
      */
     private fun setUpListeners() {
-        mBinding.faq.setOnClickListener {
-            startActivity(Intent(activity, FaqActivity::class.java))
+        mBinding.run {
+            //Surprise Inspections Activity
+            surpriseInspections.setOnClickListener {
+                startActivity(Intent(activity, SurpriseInspectionActivity::class.java))
+            }
+
+            //FAQ Activity
+            faq.setOnClickListener {
+                startActivity(Intent(activity, FaqActivity::class.java))
+            }
         }
     }
 }

@@ -19,8 +19,8 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
 
     protected lateinit var mBinding: T
     protected lateinit var mViewModel: V
-    private lateinit var mContext: Context
-    internal lateinit var mPref: PreferencesHelper
+    protected lateinit var mContext: Context
+    protected lateinit var mPref: PreferencesHelper
     private lateinit var mManager: FragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
