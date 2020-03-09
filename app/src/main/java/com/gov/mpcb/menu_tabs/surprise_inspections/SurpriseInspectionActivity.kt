@@ -9,7 +9,7 @@ import com.gov.mpcb.utils.showMessage
 class SurpriseInspectionActivity : BaseActivity<ActivitySurpriseInspectionBinding, SurpriseInspectionsViewModel>(),
 SurpriseInspectionsNavigator{
 
-    override fun getLayoutId() = R.layout.fragment_faq
+    override fun getLayoutId() = R.layout.activity_surprise_inspection
     override fun getViewModel() = SurpriseInspectionsViewModel::class.java
     override fun getNavigator() = this@SurpriseInspectionActivity
     override fun onError(message: String) = showMessage(message)

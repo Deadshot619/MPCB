@@ -12,7 +12,7 @@
 
     <!-- Layout for applying Surprise Inspections  -->
     <include
-
+        android:id="@+id/layout_apply_surprise_inspection"
         layout="@layout/item_apply_surprise_inspection"/>
 
     <!-- Previously Conducted Inspection -->
