@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <!--    Upper   -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+            <!--                Industry Reference Number   -->
+            <TextView
+                    android:id="@+id/tv_industry_ref_no_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_arrow_down"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Industry Reference Number" />
+
+            <!--Industry Reference Number Info-->
+            <TextView
+                    android:id="@+id/tv_industry_ref_no_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_arrow_down"
+                    app:layout_constraintStart_toStartOf="@id/tv_industry_ref_no_label"
+                    app:layout_constraintTop_toBottomOf="@id/tv_industry_ref_no_label"
+                    tools:text="MPCB-CONSENT-000000428" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_arrow_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_down_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--    Lower   -->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="0dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="16dp">
+
+                <!--                Industry Name   -->
+                <TextView
+                        android:id="@+id/tv_industry_name_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Industry Name" />
+
+                <!--    Industry Name Info   -->
+                <TextView
+                        android:id="@+id/tv_industry_name_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_industry_name_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_industry_name_label"
+                        tools:text="Zydus Takeda Healthcare Pvt. Ltd." />
+
+                <!--                Industry Address-->
+                <TextView
+                        android:id="@+id/tv_industry_address_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_industry_name_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_industry_name_info"
+                        tools:text="Industry Address" />
+
+                <!--    Industry Address Info   -->
+                <TextView
+                        android:id="@+id/tv_industry_address_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_industry_address_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_industry_address_label"
+                        tools:text="C-4, MIDC, Village Pawane, Navi Mumbai" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                    android:id="@+id/view_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/bg_grey" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp">
+
+                <!--    Surprise Inspection conducted on Info   -->
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edt_surprise_inspection_conducted_on_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edt_surprise_inspection_conducted_on_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_calendar"
+                            android:drawableRight="@drawable/ic_calendar"
+                            android:hint="Surprise Inspection to be conducted on"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!--    Reason for conducting surprise inspection   -->
+                <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edt_reason_layout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/edt_surprise_inspection_conducted_on_layout"
+                        app:layout_constraintTop_toBottomOf="@id/edt_surprise_inspection_conducted_on_layout">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edt_reason_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Reason for conducting surprise inspection"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_save"
+                        style="@style/save_btn_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/btn_drawable"
+                        android:text="Save"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edt_reason_layout" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_cancel"
+                        style="@style/cancel_btn_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:text="Cancel"
+                        app:layout_constraintBottom_toBottomOf="@id/btn_save"
+                        app:layout_constraintEnd_toStartOf="@id/btn_save"
+                        app:layout_constraintTop_toTopOf="@id/btn_save" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
