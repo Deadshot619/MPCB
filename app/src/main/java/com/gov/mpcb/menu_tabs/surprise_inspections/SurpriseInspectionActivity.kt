@@ -1,5 +1,8 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections
 
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.databinding.ActivitySurpriseInspectionBinding
@@ -26,6 +29,10 @@ SurpriseInspectionsNavigator{
         )
 
         setUpListeners()
+
+        setUpViewpager(viewPager = mBinding.viewpager)
+
+        setUpTabLayoutMediator(tabLayout = mBinding.tabLayout, viewPager = mBinding.viewpager)
     }
 
     /**
@@ -35,5 +42,24 @@ SurpriseInspectionsNavigator{
         mBinding.toolbarLayout.imgBack.setOnClickListener {
             finish()
         }
+    }
+
+    /**
+     * Method to setup ViewPager
+     */
+    private fun setUpViewpager(viewPager: ViewPager2){
+        viewPager.adapter = SurpriseInspectionPagerAdapter(this)
+    }
+
+    /**
+     * Method to setup ViewPager
+     */
+    private fun setUpTabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2){
+        TabLayoutMediator(tabLayout, viewPager){ tab, position ->
+            when (position) {
+                0 -> tab.text = getString(R.string.applied_by_me)
+                1 -> tab.text = getString(R.string.verified_surprise_inspections)
+            }
+        }.attach()
     }
 }
