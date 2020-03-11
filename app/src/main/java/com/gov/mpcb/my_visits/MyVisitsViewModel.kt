@@ -49,12 +49,14 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     //Variable to store Latitude of the user
     private val _latitude = MutableLiveData<String>()
+
     //This variable will be used to get the private data associated with it in other class
     val latitude: LiveData<String>
         get() = _latitude
 
     //Variable to store Longitude of the user
     private val _longitude = MutableLiveData<String>()
+
     //This variable will be used to get the private data associated with it in other class
     val longitude: LiveData<String>
         get() = _longitude

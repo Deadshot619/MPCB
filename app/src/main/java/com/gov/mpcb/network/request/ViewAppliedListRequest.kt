@@ -14,5 +14,5 @@ class ViewAppliedListRequest {
 
     @Expose
     @SerializedName("page")
-    var page = ""
+    var page = 1
 }

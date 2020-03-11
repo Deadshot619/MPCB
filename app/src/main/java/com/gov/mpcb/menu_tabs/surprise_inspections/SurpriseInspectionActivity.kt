@@ -33,6 +33,8 @@ SurpriseInspectionsNavigator{
         setUpViewpager(viewPager = mBinding.viewpager)
 
         setUpTabLayoutMediator(tabLayout = mBinding.tabLayout, viewPager = mBinding.viewpager)
+
+
     }
 
     /**
