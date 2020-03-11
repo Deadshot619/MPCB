@@ -375,4 +375,30 @@ object DataProvider : RemoteDataProvider {
         noInternetAvailable(error)
         getDefaultDisposable()
     }
+
+    /**
+     * Method to fetch Surprise Inspections List applied by user
+     */
+    override fun getAppliedLists(
+        request: ViewAppliedListRequest,
+        success: Consumer<ViewAppliedListResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.viewAppliedLists(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 }

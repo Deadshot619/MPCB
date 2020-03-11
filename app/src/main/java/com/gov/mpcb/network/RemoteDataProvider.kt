@@ -127,4 +127,13 @@ interface RemoteDataProvider {
         success: Consumer<ViewVisitResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to fetch Surprise Inspections List applied by user
+     */
+    fun getAppliedLists(
+        request: ViewAppliedListRequest,
+        success: Consumer<ViewAppliedListResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }

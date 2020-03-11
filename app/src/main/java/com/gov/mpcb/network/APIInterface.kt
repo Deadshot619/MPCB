@@ -78,4 +78,9 @@ interface APIInterface {
     //This api uses the same Request & Response model as View Visit Report
     @POST("view_prev_visit_report_data")
     fun getPreviousVisitReportData(@Body request: ViewVisitRequest): Single<ViewVisitResponse>
+
+    /* Surprise Inspections APis*/
+    //View Applied Lists
+    @POST("view_applied_list")
+    fun viewAppliedLists(@Body request: ViewAppliedListRequest): Single<ViewAppliedListResponse>
 }
