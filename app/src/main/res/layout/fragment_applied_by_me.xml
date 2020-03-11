@@ -11,11 +11,11 @@
             android:layout_height="match_parent"
             tools:context=".menu_tabs.surprise_inspections.applied_by_me.AppliedByMeFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_listings"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Ranjan Das" />
+                tools:listitem="@layout/item_applied_by_me"/>
 
     </LinearLayout>
 </layout>
