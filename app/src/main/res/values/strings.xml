@@ -83,4 +83,8 @@
     <string name="privacy_policy">Privacy Policy</string>
     <string name="faq">FAQ</string>
 
+    <!-- Surprise Inspections -->
+    <string name="applied_by_me">Applied by Me</string>
+    <string name="verified_surprise_inspections">Verified Surprise Inspections</string>
+
 </resources>
