@@ -45,14 +45,14 @@ SurpriseInspectionsNavigator{
     }
 
     /**
-     * Method to setup ViewPager
+     * This method is used to setup ViewPager with [SurpriseInspectionPagerAdapter]
      */
     private fun setUpViewpager(viewPager: ViewPager2){
         viewPager.adapter = SurpriseInspectionPagerAdapter(this)
     }
 
     /**
-     * Method to setup ViewPager
+     * This method sets/links up the Tab Layout with ViewPager using [TabLayoutMediator]
      */
     private fun setUpTabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2){
         TabLayoutMediator(tabLayout, viewPager){ tab, position ->
