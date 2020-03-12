@@ -19,7 +19,9 @@ class SurpriseInspectionPagerAdapter(activity: SurpriseInspectionActivity, list:
             0 -> AppliedByMeFragment().apply {
                 arguments = Bundle().apply {  putParcelable("data", mList)   }
             }
-            1 -> VerifiedSurpriseInspectionsFragment()
+            1 -> VerifiedSurpriseInspectionsFragment().apply {
+                arguments = Bundle().apply {  putParcelable("data", mList)   }
+            }
             else -> AppliedByMeFragment().apply {
                 arguments = Bundle().apply {  putParcelable("data", mList)   }
             }
