@@ -13,6 +13,7 @@ import com.gov.mpcb.databinding.FragmentAppliedByMeBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeAdapter
 import com.gov.mpcb.network.response.ViewAppliedListData
 import com.gov.mpcb.network.response.ViewAppliedListResponse
+import com.gov.mpcb.utils.showMessage
 
 /**
  * A simple [Fragment] subclass.
@@ -47,9 +48,11 @@ class VerifiedSurpriseInspectionsFragment : Fragment() {
     }
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
-        mAdapter = AppliedByMeAdapter()
         recyclerView.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+        mAdapter = AppliedByMeAdapter(AppliedByMeAdapter.OnClickListener {
+            showMessage(it.industry_name)
+        })
         recyclerView.adapter = mAdapter
         viewAppliedListData?.let {
             mAdapter.submitList(filterData(it))

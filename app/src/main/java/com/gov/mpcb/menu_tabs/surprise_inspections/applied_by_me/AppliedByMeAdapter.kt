@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemAppliedByMeBinding
 import com.gov.mpcb.network.response.ViewAppliedListData
 
-class AppliedByMeAdapter :
+class AppliedByMeAdapter(val listener: OnClickListener) :
     ListAdapter<ViewAppliedListData, AppliedByMeAdapter.AppliedByMeViewHolder>(DiffCallback){
 
     private var counter = 0
@@ -39,7 +39,7 @@ class AppliedByMeAdapter :
 
     override fun onBindViewHolder(holder: AppliedByMeAdapter.AppliedByMeViewHolder, position: Int) {
         val viewAppliedListData = getItem(position)
-        holder.bind(viewAppliedListData, ++counter)
+        holder.bind(viewAppliedListData, ++counter, listener)
     }
 
 /**
@@ -50,12 +50,21 @@ class AppliedByMeAdapter :
     class AppliedByMeViewHolder(private var binding: ItemAppliedByMeBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(
             viewAppliedListData: ViewAppliedListData,
-            counter: Int
+            counter: Int,
+            listener: OnClickListener
         ) {
             binding.data = viewAppliedListData
+            binding.clickListener = listener
             binding.tvNumber.text = "$counter"
             binding.executePendingBindings()
         }
+    }
+
+    /**
+     * Interface to call in the [OnClickListener] & passed on to fragment to implement
+     */
+    class OnClickListener(val clickListener: (viewAppliedListData: ViewAppliedListData) -> Unit){
+        fun onClick(viewAppliedListData: ViewAppliedListData) = clickListener(viewAppliedListData)
     }
 
 }/*

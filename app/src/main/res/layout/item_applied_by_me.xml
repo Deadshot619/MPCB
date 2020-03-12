@@ -7,6 +7,10 @@
         <variable
                 name="data"
                 type="com.gov.mpcb.network.response.ViewAppliedListData" />
+
+        <variable
+                name="clickListener"
+                type="com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeAdapter.OnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -14,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:cardUseCompatPadding="true"
+            android:onClick="@{() -> clickListener.onClick(data)}"
             app:cardCornerRadius="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

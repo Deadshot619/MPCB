@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.databinding.FragmentAppliedByMeBinding
+import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeAdapter.OnClickListener
 import com.gov.mpcb.network.response.ViewAppliedListData
 import com.gov.mpcb.network.response.ViewAppliedListResponse
 import com.gov.mpcb.utils.constants.Constants
@@ -56,7 +57,11 @@ class AppliedByMeFragment : Fragment() {
     }
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
-        mAdapter = AppliedByMeAdapter()
+        mAdapter = AppliedByMeAdapter(
+            OnClickListener{
+                showMessage(it.industry_name)
+            }
+        )
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, VERTICAL, false)
             this.adapter = mAdapter
