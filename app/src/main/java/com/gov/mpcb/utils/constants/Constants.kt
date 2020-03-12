@@ -35,6 +35,16 @@ class Constants {
         //Constant for Additional Info Text
         const val ADDITIONAL_INFO_TEXT = "additional_info_text"
 
+    /*  Surprise Inspection   */
+        //SI data
+        const val SI_DATA = "si_data"
+
+        //added by me data
+        const val ADDED_BY_ME = "added_by_me_data"
+
+        //Verified surprise inspection data
+        const val VERIFIED_SURPRISE_INSPECTION_DATA = "verified_surprise_inspection_data"
+
         /**
          * This value is used to save report visit data in shared pref temporarily when
          * already submitted Visit report is to be viewed.

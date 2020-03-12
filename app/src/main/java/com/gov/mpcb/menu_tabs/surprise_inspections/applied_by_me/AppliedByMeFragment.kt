@@ -6,45 +6,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.databinding.FragmentAppliedByMeBinding
-import com.gov.mpcb.menu_tabs.surprise_inspections.SurpriseInspectionsViewModel
 import com.gov.mpcb.network.response.ViewAppliedListData
 import com.gov.mpcb.network.response.ViewAppliedListResponse
+import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.showMessage
 
 /**
  * A simple [Fragment] subclass.
  */
-/*class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMeViewModel>(),
-AppliedByMeNavigator{
-
-    override fun getLayoutId() = R.layout.fragment_applied_by_me
-    override fun getViewModel() = AppliedByMeViewModel::class.java
-    override fun getNavigator() = this@AppliedByMeFragment
-    override fun onError(message: String) = showMessage(message)
-    override fun onInternetError() {}
-
-    override fun onBinding() {
-
-        setUpListeners()
-    }
-
-    private fun setUpListeners() {
-
-    }
-
-}*/
-
 class AppliedByMeFragment : Fragment() {
 
     private lateinit var mBinding: FragmentAppliedByMeBinding
-    private lateinit var mViewModel: SurpriseInspectionsViewModel
-    private lateinit var adapter : AppliedByMeAdapter
+    private lateinit var mAdapter: AppliedByMeAdapter
     private var viewAppliedListData: List<ViewAppliedListData>? = null
+
+    /**
+     * if true, then the data is for Applied For Me section.
+     * if false, then the data is for Verified Surprise Inspections section.
+     */
+    private var isDataForAppliedByMe: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,34 +39,39 @@ class AppliedByMeFragment : Fragment() {
         mBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_applied_by_me, container, false)
 
-        viewAppliedListData = arguments?.getParcelable<ViewAppliedListResponse>("data")?.data?.run { this }
+        viewAppliedListData =
+            arguments?.getParcelable<ViewAppliedListResponse>(Constants.SI_DATA)?.data?.run { this }
+        isDataForAppliedByMe = arguments?.getBoolean(Constants.ADDED_BY_ME) ?: true
 
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        mViewModel = activity?.run {
-            ViewModelProvider(this).get(SurpriseInspectionsViewModel::class.java)
-        }!!
-
         setUpRecyclerView(mBinding.rvListings)
+    }
 
-//        mViewModel._viewAppliedLists.observe(viewLifecycleOwner, Observer {
-//            if (it.data.isNotEmpty()) {
-//                adapter.submitList(viewAppliedListData)
-//            } else
-//                showMessage("${it.total_rows}")
-//        })
+    //This method filters data for Verified Surprise Inspection section
+    private fun filterData(list: List<ViewAppliedListData>): List<ViewAppliedListData> {
+        return list.filter { it.is_approved_by_hod == 1 }
     }
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
-        adapter = AppliedByMeAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(this.context, VERTICAL, false)
-        recyclerView.adapter = adapter
-        adapter.submitList(viewAppliedListData)
+        mAdapter = AppliedByMeAdapter()
+        recyclerView.run {
+            layoutManager = LinearLayoutManager(this.context, VERTICAL, false)
+            this.adapter = mAdapter
+        }
 
-//        recyclerView.adapter!!.notifyDataSetChanged()
-//        recyclerView.setHasFixedSize(true)
+        viewAppliedListData?.let {
+            if (isDataForAppliedByMe) {
+                mAdapter.submitList(it)
+                showMessage("$isDataForAppliedByMe")
+            }
+            else {
+                mAdapter.submitList(filterData(it))
+                showMessage("$isDataForAppliedByMe")
+            }
+        }
     }
 
 }
