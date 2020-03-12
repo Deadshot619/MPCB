@@ -1,11 +1,13 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections
 
+import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.databinding.ActivitySurpriseInspectionBinding
+import com.gov.mpcb.network.response.ViewAppliedListResponse
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
@@ -18,6 +20,8 @@ SurpriseInspectionsNavigator{
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
+    private lateinit var mAdapter : SurpriseInspectionPagerAdapter
+
     override fun onBinding() {
         //Set toolbar
         Constants.setToolbar(
@@ -28,12 +32,12 @@ SurpriseInspectionsNavigator{
             showBackButton = true
         )
 
-        setUpListeners()
 
         setUpViewpager(viewPager = mBinding.viewpager)
 
         setUpTabLayoutMediator(tabLayout = mBinding.tabLayout, viewPager = mBinding.viewpager)
 
+        setUpListeners()
 
     }
 
@@ -44,13 +48,24 @@ SurpriseInspectionsNavigator{
         mBinding.toolbarLayout.imgBack.setOnClickListener {
             finish()
         }
+
+        mViewModel._viewAppliedLists.observe(this, Observer {
+            it.data.run {
+                if (isNotEmpty()){
+//                    mAdapter.refreshData(it)
+                    setUpViewpager(mBinding.viewpager, it)
+//                    mAdapter.notifyDataSetChanged()
+                }
+            }
+        })
     }
 
     /**
      * This method is used to setup ViewPager with [SurpriseInspectionPagerAdapter]
      */
-    private fun setUpViewpager(viewPager: ViewPager2){
-        viewPager.adapter = SurpriseInspectionPagerAdapter(this)
+    private fun setUpViewpager(viewPager: ViewPager2, list: ViewAppliedListResponse = ViewAppliedListResponse()){
+        mAdapter = SurpriseInspectionPagerAdapter(this, list)
+        viewPager.adapter = mAdapter /*SurpriseInspectionPagerAdapter(this)*/
     }
 
     /**

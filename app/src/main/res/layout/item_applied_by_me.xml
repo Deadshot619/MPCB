@@ -4,7 +4,9 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+                name="data"
+                type="com.gov.mpcb.network.response.ViewAppliedListData" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -16,7 +18,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:paddingBottom="16dp">
 
             <!--    Number    -->
@@ -30,7 +32,7 @@
                     android:paddingLeft="18dp"
                     android:paddingRight="18dp"
                     android:textColor="@color/white"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="1" />
@@ -45,6 +47,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    android:text="Surprise Unique ID"
                     tools:text="Surprise Unique ID"
                     android:layout_marginStart="16dp" />
 
@@ -54,6 +57,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
+                    android:text="@{data.imis_value}"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
@@ -72,6 +76,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_surprise_unique_id_info"
                     app:layout_constraintTop_toBottomOf="@id/tv_surprise_unique_id_info"
+                    android:text="Industry Ref No"
                     tools:text="Industry Ref No"/>
 
             <!--    Industry Ref No Info -->
@@ -81,6 +86,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:text="@{data.industry_ref_number}"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
                     tools:text="MPCB-CONSENT-000000045\nRanjan Das"
@@ -98,6 +104,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_industry_ref_no_info"
                     app:layout_constraintTop_toBottomOf="@id/tv_industry_ref_no_info"
+                    android:text="Industry Name"
                     tools:text="Industry Name"/>
 
             <!--    Industry Name Info -->
@@ -107,6 +114,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:text="@{data.industry_name}"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
                     tools:text="Zydus Takeda Healthcare Pvt. Ltd."
@@ -124,6 +132,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_industry_name_info"
                     app:layout_constraintTop_toBottomOf="@id/tv_industry_name_info"
+                    android:text="Address"
                     tools:text="Address"/>
 
             <!--    Address Info -->
@@ -133,6 +142,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:text="@{data.industry_address}"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
                     tools:text="C-4, MIDC, Village Pawane, Navi Mumbai"
@@ -159,6 +169,7 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_address_info"
                     app:layout_constraintTop_toBottomOf="@id/view_separator"
+                    android:text="Surpise Inspections Details"
                     tools:text="Surpise Inspections Details"/>
 
             <!--    Surpise Inspections Details Info -->
@@ -168,6 +179,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:text="@{data.applied_on}"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
                     tools:text="09/01/2020"

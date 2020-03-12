@@ -9,6 +9,7 @@ import com.gov.mpcb.network.request.ViewAppliedListRequest
 import com.gov.mpcb.network.response.LoginResponse
 import com.gov.mpcb.network.response.ViewAppliedListResponse
 import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
 import io.reactivex.functions.Consumer
 
@@ -25,10 +26,15 @@ class SurpriseInspectionsViewModel : BaseViewModel<SurpriseInspectionsNavigator>
         get() = viewAppliedLists
 
     init {
-        getAppliedListsData()
+        //Call this method only if network is available
+        if (isNetworkAvailable())
+            getAppliedListsData()
     }
 
-    fun getAppliedListsData() {
+    /**
+     * This method calls the view_applied_list Api & sets the data to [viewAppliedLists]
+     */
+    private fun getAppliedListsData() {
         val request = ViewAppliedListRequest().apply {
             userId = user.userId.toString()
         }

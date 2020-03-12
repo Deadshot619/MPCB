@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.databinding.FragmentAppliedByMeBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.SurpriseInspectionsViewModel
-import com.gov.mpcb.utils.showMessage
+import com.gov.mpcb.network.response.ViewAppliedListData
+import com.gov.mpcb.network.response.ViewAppliedListResponse
 
 /**
  * A simple [Fragment] subclass.
@@ -36,17 +39,22 @@ AppliedByMeNavigator{
 
 }*/
 
-class AppliedByMeFragment : Fragment(){
+class AppliedByMeFragment : Fragment() {
 
-    private lateinit var mBinding : FragmentAppliedByMeBinding
+    private lateinit var mBinding: FragmentAppliedByMeBinding
     private lateinit var mViewModel: SurpriseInspectionsViewModel
+    private lateinit var adapter : AppliedByMeAdapter
+    private var viewAppliedListData: List<ViewAppliedListData>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_applied_by_me, container,false)
+        mBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_applied_by_me, container, false)
+
+        viewAppliedListData = arguments?.getParcelable<ViewAppliedListResponse>("data")?.data?.run { this }
 
         return mBinding.root
     }
@@ -56,12 +64,24 @@ class AppliedByMeFragment : Fragment(){
             ViewModelProvider(this).get(SurpriseInspectionsViewModel::class.java)
         }!!
 
-        mViewModel._viewAppliedLists.observe(viewLifecycleOwner, Observer {
-            if (it.data.isNotEmpty())
-                showMessage("${it.total_rows}")
-            else
-                showMessage("${it.total_rows}")
-        })
+        setUpRecyclerView(mBinding.rvListings)
+
+//        mViewModel._viewAppliedLists.observe(viewLifecycleOwner, Observer {
+//            if (it.data.isNotEmpty()) {
+//                adapter.submitList(viewAppliedListData)
+//            } else
+//                showMessage("${it.total_rows}")
+//        })
+    }
+
+    private fun setUpRecyclerView(recyclerView: RecyclerView) {
+        adapter = AppliedByMeAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(this.context, VERTICAL, false)
+        recyclerView.adapter = adapter
+        adapter.submitList(viewAppliedListData)
+
+//        recyclerView.adapter!!.notifyDataSetChanged()
+//        recyclerView.setHasFixedSize(true)
     }
 
 }

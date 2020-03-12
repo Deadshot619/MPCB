@@ -9,12 +9,13 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             tools:context=".menu_tabs.surprise_inspections.applied_by_me.AppliedByMeFragment">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_listings"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 tools:listitem="@layout/item_applied_by_me"/>
 
     </LinearLayout>

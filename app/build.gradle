@@ -81,6 +81,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
     // Dependencies for local unit tests
     testImplementation "junit:junit:4.12"
     // Optional -- Robolectric environment
