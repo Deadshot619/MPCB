@@ -1,5 +1,6 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections
 
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -7,6 +8,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.databinding.ActivitySurpriseInspectionBinding
+import com.gov.mpcb.menu_tabs.surprise_inspections.add_surprise_inspection.AddSurpriseInspectionActivity
 import com.gov.mpcb.network.response.ViewAppliedListResponse
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
@@ -49,6 +51,12 @@ SurpriseInspectionsNavigator{
             finish()
         }
 
+        //Start [AddSurpriseInspectionActivity] on click of FAB
+        mBinding.fabSurpriseInspection.setOnClickListener {
+            startActivity(Intent(this, AddSurpriseInspectionActivity::class.java))
+        }
+
+        //This observer setups viewPager with new adapter when new data is available
         mViewModel._viewAppliedLists.observe(this, Observer {
             it.data.run {
                 if (isNotEmpty()){

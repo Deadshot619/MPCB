@@ -86,5 +86,7 @@
     <!-- Surprise Inspections -->
     <string name="applied_by_me">Applied by Me</string>
     <string name="verified_surprise_inspections">Verified Surprise Inspections</string>
+    <string name="industry_list">Industry List</string>
+    <string name="apply_for_surprise_inspection">Apply for Surprise Inspections</string>
 
 </resources>
