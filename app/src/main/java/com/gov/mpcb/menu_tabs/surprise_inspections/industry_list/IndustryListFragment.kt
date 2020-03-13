@@ -23,11 +23,10 @@ IndustryListNavigator{
         Constants.setToolbar(
             toolbarBinding = mBinding.toolbarLayout,
             title = getString(R.string.industry_list),
-            showSearchBar = false,
+            showSearchBar = true,
             showCalendar = false,
             showBackButton = true
         )
-
 
         setListeners()
     }
@@ -41,6 +40,4 @@ IndustryListNavigator{
             activity?.finish()
         }
     }
-
-
 }

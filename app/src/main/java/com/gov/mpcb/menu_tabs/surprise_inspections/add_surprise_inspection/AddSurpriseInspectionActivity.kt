@@ -24,5 +24,10 @@ AddSurpriseInspectionNavigator{
         )
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager.fragments.isEmpty())
+            finish()
+    }
 
 }
