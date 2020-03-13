@@ -4,15 +4,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+                name="viewModel"
+                type="com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.IndustryListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg_grey"
-            android:paddingRight="16dp"
-            android:paddingLeft="16dp"
             tools:context=".menu_tabs.surprise_inspections.industry_list.IndustryListFragment">
 
         <!--    Toolbar -->
@@ -27,10 +27,25 @@
                 android:id="@+id/rv_industry_list"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:listAvailableIndustryData="@{viewModel._viewAvailableIndustriesData}"
                 tools:listitem="@layout/item_industry_list"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
+
+        <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.AppCompat.ProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                app:statusProgressBar="@{viewModel._progressStatus}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,8 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections.industry_list
 
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIndustryListBinding
@@ -12,13 +14,15 @@ import com.gov.mpcb.utils.showMessage
  */
 class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryListViewModel>(),
 IndustryListNavigator{
+
+    private lateinit var mAdapter: IndustryListAdapter
+
     override fun getLayoutId() = R.layout.fragment_industry_list
     override fun getViewModel() = IndustryListViewModel::class.java
     override fun getNavigator() = this@IndustryListFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
     override fun onBinding() {
-
         //Set toolbar
         Constants.setToolbar(
             toolbarBinding = mBinding.toolbarLayout,
@@ -28,7 +32,31 @@ IndustryListNavigator{
             showBackButton = true
         )
 
+        mBinding.lifecycleOwner = viewLifecycleOwner
+        mBinding.viewModel = mViewModel
+
         setListeners()
+
+        setUpRecyclerView(mBinding.rvIndustryList)
+
+        setObservers()
+    }
+
+    /**
+     * Method to setup RecyclerView
+     */
+    private fun setUpRecyclerView(recyclerView: RecyclerView) {
+        mAdapter = IndustryListAdapter()
+        recyclerView.run {
+            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+            this.adapter = mAdapter
+        }
+    }
+
+    /**
+     * Method to setup Observers on this fragment
+     */
+    private fun setObservers() {
     }
 
     /**

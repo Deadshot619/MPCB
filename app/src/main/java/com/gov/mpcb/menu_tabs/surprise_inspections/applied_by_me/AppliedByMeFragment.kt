@@ -51,14 +51,26 @@ class AppliedByMeFragment : Fragment() {
         setUpRecyclerView(mBinding.rvListings)
     }
 
-    //This method filters data for Verified Surprise Inspection section
-    private fun filterData(list: List<ViewAppliedListData>): List<ViewAppliedListData> {
-        return list.filter { it.is_approved_by_hod == 1 }
+    /**
+     * This method filters data for Verified Surprise Inspection section.
+     * Pass value as true if the List passed is for [AppliedByMeFragment], otherwise false
+     *
+     * @param list List of [ViewAppliedListData]
+     * @param dataForAppliedByMe Takes a Boolean as input
+     */
+    private fun filterData(
+        list: List<ViewAppliedListData>,
+        dataForAppliedByMe: Boolean
+    ): List<ViewAppliedListData> {
+        return if (dataForAppliedByMe)
+            list.filter { it.is_approved_by_hod != 1 }
+        else
+            list.filter { it.is_approved_by_hod == 1 }
     }
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         mAdapter = AppliedByMeAdapter(
-            OnClickListener{
+            OnClickListener {
                 showMessage(it.industry_name)
             }
         )
@@ -69,11 +81,10 @@ class AppliedByMeFragment : Fragment() {
 
         viewAppliedListData?.let {
             if (isDataForAppliedByMe) {
-                mAdapter.submitList(it)
+                mAdapter.submitList(filterData(it, isDataForAppliedByMe))
 //                showMessage("$isDataForAppliedByMe")
-            }
-            else {
-                mAdapter.submitList(filterData(it))
+            } else {
+                mAdapter.submitList(filterData(it, isDataForAppliedByMe))
 //                showMessage("$isDataForAppliedByMe")
             }
         }

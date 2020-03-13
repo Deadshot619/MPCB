@@ -1,10 +1,13 @@
 package com.gov.mpcb.utils.bindingAdapters
 
+import android.view.View
+import android.widget.ProgressBar
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
 import com.gov.mpcb.R
 import com.gov.mpcb.network.response.MyVisitModel
 import com.gov.mpcb.network.response.UsersAssignedName
+import com.gov.mpcb.utils.LoadingStatus
 
 /**
  * This adapter is used to set background drawable in Visit Status textview in
@@ -34,5 +37,23 @@ fun bindUserAssignedNames(textView: AppCompatTextView, userNames: List<UsersAssi
         textView.text = username
     }else{
         textView.text = ""
+    }
+}
+
+/**
+ * This adapter shows/hides the progressBar depending on [LoadingStatus]
+ */
+@BindingAdapter("statusProgressBar")
+fun bindProgressBar(progressBar: ProgressBar, status: LoadingStatus?){
+    when(status){
+        LoadingStatus.LOADING -> {
+            progressBar.visibility = View.VISIBLE
+        }
+        LoadingStatus.ERROR -> {
+            progressBar.visibility = View.GONE
+        }
+        LoadingStatus.DONE -> {
+            progressBar.visibility = View.GONE
+        }
     }
 }

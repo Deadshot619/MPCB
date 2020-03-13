@@ -49,7 +49,7 @@ class AppliedByMeAdapter(val listener: OnClickListener) :
 
     override fun onBindViewHolder(holder: AppliedByMeAdapter.AppliedByMeViewHolder, position: Int) {
         val viewAppliedListData = getItem(position)
-        holder.bind(viewAppliedListData, ++counter, listener)
+        holder.bind(viewAppliedListData, position+1, listener)
     }
 
     /**

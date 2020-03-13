@@ -63,7 +63,7 @@ class IndustryListAdapter :
     }
 
     override fun onBindViewHolder(holder: IndustryListViewHolder, position: Int) {
-        holder.bind(getItem(position), ++counter)
+        holder.bind(getItem(position), position+1)
     }
 
 
