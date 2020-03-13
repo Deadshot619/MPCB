@@ -136,4 +136,13 @@ interface RemoteDataProvider {
         success: Consumer<ViewAppliedListResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to fetch Industry List which are available for Surprise Inspections
+     */
+    fun getAvailableIndustries(
+        request: ViewAvailableIndustriesRequest,
+        success: Consumer<ViewAvailableIndustriesResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }

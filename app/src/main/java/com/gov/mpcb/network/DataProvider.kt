@@ -401,4 +401,32 @@ object DataProvider : RemoteDataProvider {
         noInternetAvailable(error)
         getDefaultDisposable()
     }
+
+
+    /**
+     * Method to fetch Industry List which are available for Surprise Inspections
+     */
+    override fun getAvailableIndustries(
+        request: ViewAvailableIndustriesRequest,
+        success: Consumer<ViewAvailableIndustriesResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+            mServices.getAvailableIndustryLists(request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    Consumer { response ->
+                        if (response.status != 1) {
+                            error.accept(Throwable(response.message))
+                        } else {
+                            success.accept(response)
+                        }
+                    },
+                    error
+                )
+        } else {
+            noInternetAvailable(error)
+            getDefaultDisposable()
+        }
+
 }
