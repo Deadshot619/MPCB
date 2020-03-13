@@ -70,11 +70,11 @@ class AppliedByMeFragment : Fragment() {
         viewAppliedListData?.let {
             if (isDataForAppliedByMe) {
                 mAdapter.submitList(it)
-                showMessage("$isDataForAppliedByMe")
+//                showMessage("$isDataForAppliedByMe")
             }
             else {
                 mAdapter.submitList(filterData(it))
-                showMessage("$isDataForAppliedByMe")
+//                showMessage("$isDataForAppliedByMe")
             }
         }
     }
