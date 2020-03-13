@@ -7,11 +7,16 @@
         <variable
             name="data"
             type="com.gov.mpcb.network.response.ViewAvailableIndustriesData" />
+
+        <variable
+                name="clickListener"
+                type="com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.IndustryListAdapter.OnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> clickListener.onClick(data)}"
             app:cardCornerRadius="8dp"
             app:cardElevation="2dp"
             app:cardUseCompatPadding="true">

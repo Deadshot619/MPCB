@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemIndustryListBinding
 import com.gov.mpcb.network.response.ViewAvailableIndustriesData
 
-class IndustryListAdapter :
+class IndustryListAdapter(val listener: OnClickListener) :
     ListAdapter<ViewAvailableIndustriesData, IndustryListAdapter.IndustryListViewHolder>(
         DiffCallback
     ) {
@@ -38,21 +38,6 @@ class IndustryListAdapter :
         }
     }
 
-    /**
-     * The [IndustryListViewHolder] constructor takes the binding variable from the associated
-     * layout, which nicely gives it access to the full [ViewAvailableIndustriesData] information.
-     */
-    class IndustryListViewHolder(private var binding: ItemIndustryListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ViewAvailableIndustriesData?, count: Int) {
-            binding.run {
-                data = item
-                tvNumber.text = "$count"
-                executePendingBindings()
-            }
-        }
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IndustryListViewHolder {
         return IndustryListViewHolder(
@@ -63,8 +48,38 @@ class IndustryListAdapter :
     }
 
     override fun onBindViewHolder(holder: IndustryListViewHolder, position: Int) {
-        holder.bind(getItem(position), position+1)
+        holder.bind(getItem(position), position + 1, listener)
     }
 
+
+    /**
+     * The [IndustryListViewHolder] constructor takes the binding variable from the associated
+     * layout, which nicely gives it access to the full [ViewAvailableIndustriesData] information.
+     */
+    class IndustryListViewHolder(private var binding: ItemIndustryListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(
+            item: ViewAvailableIndustriesData?,
+            count: Int,
+            listener: OnClickListener
+        ) {
+            binding.run {
+                data = item
+                clickListener = listener
+                tvNumber.text = "$count"
+                executePendingBindings()
+            }
+        }
+
+    }
+
+
+    /**
+     * Interface to call in the [OnClickListener] & passed on to fragment to implement
+     */
+    class OnClickListener(val clickListener: (viewAvailableIndustriesData: ViewAvailableIndustriesData) -> Unit) {
+        fun onClick(viewAvailableIndustriesData: ViewAvailableIndustriesData) =
+            clickListener(viewAvailableIndustriesData)
+    }
 
 }

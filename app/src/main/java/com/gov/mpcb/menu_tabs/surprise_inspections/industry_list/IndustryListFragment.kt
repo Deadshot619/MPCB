@@ -13,7 +13,7 @@ import com.gov.mpcb.utils.showMessage
  * A simple [Fragment] subclass.
  */
 class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryListViewModel>(),
-IndustryListNavigator{
+    IndustryListNavigator {
 
     private lateinit var mAdapter: IndustryListAdapter
 
@@ -46,7 +46,9 @@ IndustryListNavigator{
      * Method to setup RecyclerView
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
-        mAdapter = IndustryListAdapter()
+        mAdapter = IndustryListAdapter(IndustryListAdapter.OnClickListener {
+            showMessage(it.industry_name)
+        })
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
             this.adapter = mAdapter
