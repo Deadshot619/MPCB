@@ -1,5 +1,6 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections.industry_list
 
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -69,5 +70,22 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
         mBinding.toolbarLayout.imgBack.setOnClickListener {
             activity?.finish()
         }
+
+        mBinding.toolbarLayout.searchBar.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty())
+                    mViewModel.getAvailableIndustryListsData(query)
+                else
+                    mViewModel.getAvailableIndustryListsData()
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean = false
+
+        })
+
     }
 }

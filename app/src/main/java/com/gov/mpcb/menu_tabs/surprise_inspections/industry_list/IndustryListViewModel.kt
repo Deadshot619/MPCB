@@ -44,9 +44,10 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
     /**
      * This method calls the view_applied_list Api & sets the data to [viewAvailableIndustriesData]
      */
-    private fun getAvailableIndustryListsData() {
+    fun getAvailableIndustryListsData(searchQuery: String = "") {
         val request = ViewAvailableIndustriesRequest().apply {
             userId = user.userId.toString()
+            searchString = searchQuery
         }
 
         progressStatus.value = LoadingStatus.LOADING
