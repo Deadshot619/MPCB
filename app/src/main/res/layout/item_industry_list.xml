@@ -4,7 +4,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="data"
+            type="com.gov.mpcb.network.response.ViewAvailableIndustriesData" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -54,6 +56,7 @@
                     android:id="@+id/tv_industry_reference_no_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:text="Not Defined"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"
@@ -80,6 +83,7 @@
                     android:id="@+id/tv_industry_name_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:text="@{data.industry_name}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"
@@ -107,6 +111,7 @@
                     android:id="@+id/tv_industry_address_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:text="@{data.industry_address}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"
@@ -143,6 +148,7 @@
                     android:id="@+id/tv_industry_type_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:text="@{data.industry_type_name}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"

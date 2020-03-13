@@ -54,7 +54,7 @@ class AppliedByMeAdapter(val listener: OnClickListener) :
 
     /**
      * The [AppliedByMeViewHolder] constructor takes the binding variable from the associated
-     * layout_may_cart, which nicely gives it access to the full [ViewAppliedListData] information.
+     * layout, which nicely gives it access to the full [ViewAppliedListData] information.
      */
 
     class AppliedByMeViewHolder(private var binding: ItemAppliedByMeBinding) :
