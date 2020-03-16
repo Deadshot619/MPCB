@@ -33,9 +33,9 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
     val _viewAvailableIndustriesData : LiveData<List<ViewAvailableIndustriesData>>
         get() = viewAvailableIndustriesData
 
-/*    val totalPage = MutableLiveData<Int>(0)
-    val currentPage = MutableLiveData<Int>(0)
-    */
+    val totalPage = MutableLiveData<Int>(0)
+    val currentPage = MutableLiveData<Int>(1)
+
     init {
         //Call this method only if network is available
         if (isNetworkAvailable())
@@ -46,10 +46,11 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
     /**
      * This method calls the view_applied_list Api & sets the data to [viewAvailableIndustriesData]
      */
-    fun getAvailableIndustryListsData(searchQuery: String = "") {
+    fun getAvailableIndustryListsData(searchQuery: String = "", pageNo: Int = 1) {
         val request = ViewAvailableIndustriesRequest().apply {
             userId = user.userId.toString()
             searchString = searchQuery
+            page = pageNo
         }
 
         progressStatus.value = LoadingStatus.LOADING
@@ -59,6 +60,7 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
                 request = request,
                 success = Consumer {
                     viewAvailableIndustriesData.value = it.data
+                    totalPage.value = it.total_rows
                     progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {

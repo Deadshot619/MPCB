@@ -1,8 +1,10 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections.industry_list
 
 import android.os.Bundle
+import android.view.View
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
@@ -71,6 +73,35 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
      * Method to setup Observers on this fragment
      */
     private fun setObservers() {
+        mViewModel.totalPage.observe(viewLifecycleOwner, Observer {
+            if (it > 1)
+                mBinding.layoutPagination.clPagination.visibility = View.VISIBLE
+            else
+                mBinding.layoutPagination.clPagination.visibility = View.GONE
+
+        })
+
+        mViewModel.currentPage.observe(viewLifecycleOwner, Observer {
+            mBinding.layoutPagination.paginationIndicator.text = "$it"
+
+            if (mViewModel.totalPage.value!! > 1){
+                when (it) {
+                    mViewModel.totalPage.value -> {
+                        mBinding.layoutPagination.paginationNext.visibility = View.INVISIBLE
+                        mBinding.layoutPagination.paginationPrevious.visibility = View.VISIBLE
+                    }
+                    1 -> {
+                        mBinding.layoutPagination.paginationNext.visibility = View.VISIBLE
+                        mBinding.layoutPagination.paginationPrevious.visibility = View.INVISIBLE
+                    }
+                    else -> {
+                        mBinding.layoutPagination.paginationNext.visibility = View.VISIBLE
+                        mBinding.layoutPagination.paginationPrevious.visibility = View.VISIBLE
+                    }
+                }
+            }
+        })
+
     }
 
     /**
@@ -97,6 +128,19 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
             override fun onQueryTextChange(newText: String?): Boolean = false
 
         })
+
+        mBinding.layoutPagination.paginationNext.setOnClickListener {
+            mViewModel.getAvailableIndustryListsData(pageNo = mViewModel.currentPage.value!!)
+            mViewModel.currentPage.value = mViewModel.currentPage.value!! + 1
+        }
+
+        mBinding.layoutPagination.paginationNext.setOnClickListener {
+            mViewModel.getAvailableIndustryListsData(pageNo = mViewModel.currentPage.value!!)
+            mViewModel.currentPage.value = mViewModel.currentPage.value!! - 1
+        }
+    }
+
+    private fun setUpPagination(){
 
     }
 }
