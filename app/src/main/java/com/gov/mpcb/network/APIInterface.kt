@@ -91,4 +91,7 @@ interface APIInterface {
     //Add Surprise Inspection
     @POST("add_surprise_inspection")
     fun addSurpriseInspection(@Body request: AddSurpriseInspectionRequest): Single<AddSurpriseInspectionResponse>
+
+    @POST("view_previous_inspection_list")
+    fun getPreviousConductedInspections(@Body request: ViewPreviousInspectionListRequest): Single<ViewPreviousInspectionListResponse>
 }

@@ -2,6 +2,7 @@ package com.gov.mpcb.utils.bindingAdapters
 
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
 import com.gov.mpcb.R
@@ -56,4 +57,38 @@ fun bindProgressBar(progressBar: ProgressBar, status: LoadingStatus?){
             progressBar.visibility = View.GONE
         }
     }
+}
+
+/**
+ * If [isSurpriseInspection] is 1, then display text as 'Surprise Inspection' else 'Randomised Inspection'
+ */
+@BindingAdapter("isSurpriseInspection")
+fun bindSurpriseInspection(textView: TextView, isSurpriseInspection: Int){
+    if (isSurpriseInspection == 1)
+        textView.text = "Surprise Inspection"
+    else
+        textView.text = "Randomised Inspection"
+}
+
+/**
+ * If visited_on text is present, then display text as 'Yes' else 'No'
+ */
+@BindingAdapter("isVisitConducted")
+fun bindVisitedOn(textView: TextView, visited_on: String?){
+    if (visited_on.isNullOrEmpty())
+        textView.text = "No"
+    else
+        textView.text = "Yes"
+
+}
+
+/**
+ * If download link is available, show download button, else hide it
+ */
+@BindingAdapter("isDownloadLinkAvailable")
+fun bindDownloadReportBtn(textView: TextView, downloadLink: String?){
+    if (downloadLink.isNullOrEmpty())
+        textView.visibility = View.GONE
+    else
+        textView.visibility = View.VISIBLE
 }

@@ -154,4 +154,13 @@ interface RemoteDataProvider {
         success: Consumer<AddSurpriseInspectionResponse>,
         error: Consumer<Throwable>
     ):Disposable
+
+    /**
+     * Method to get Previously Conducted Inspections data
+     */
+    fun getPreviousConductedInspections(
+        request: ViewPreviousInspectionListRequest,
+        success: Consumer<ViewPreviousInspectionListResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }

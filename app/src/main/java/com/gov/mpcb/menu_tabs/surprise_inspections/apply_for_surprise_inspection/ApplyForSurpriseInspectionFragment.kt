@@ -2,6 +2,8 @@ package com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspectio
 
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentApplyForSurpriseInspectionBinding
@@ -20,6 +22,8 @@ class ApplyForSurpriseInspectionFragment :
 
     //Variable to store visibility status of application status
     private var LAYOUT_HIDDEN = true
+
+    private lateinit var mAdapter: PreviouslyConductedInspectionAdapter
 
     private lateinit var viewAvailableIndustriesData: ViewAvailableIndustriesData
 
@@ -57,9 +61,20 @@ class ApplyForSurpriseInspectionFragment :
 
         setListeners()
 
-//        setUpRecyclerView(mBinding.rvIndustryList)
+        setUpRecyclerView(mBinding.rvPreviouslyConductedInspection)
 
         setObservers()
+
+        mViewModel.loadPreviouslyConductedInspections(viewAvailableIndustriesData.industry_iin)
+    }
+
+    private fun setUpRecyclerView(recyclerView: RecyclerView) {
+        mAdapter = PreviouslyConductedInspectionAdapter()
+
+        recyclerView.run {
+            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
+            this.adapter = mAdapter
+        }
     }
 
     /**

@@ -52,7 +52,6 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         mAdapter = IndustryListAdapter(IndustryListAdapter.OnClickListener {
-            showMessage(it.industry_name)
             replaceFragment(
                 fragment = ApplyForSurpriseInspectionFragment(),
                 addToBackStack = true,
@@ -61,6 +60,7 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
                 }
             )
         })
+
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
             this.adapter = mAdapter
