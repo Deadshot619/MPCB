@@ -89,5 +89,7 @@
     <string name="industry_list">Industry List</string>
     <string name="apply_for_surprise_inspection">Apply for Surprise Inspections</string>
     <string name="no_data_available">No data available!</string>
+    <string name="pagination_previous">Previous</string>
+    <string name="pagination_next">Next</string>
 
 </resources>

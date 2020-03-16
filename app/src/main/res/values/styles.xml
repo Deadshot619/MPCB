@@ -73,4 +73,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!--    Style for pagination    -->
+    <style name="pagination_style">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">16dp</item>
+    </style>
+
 </resources>

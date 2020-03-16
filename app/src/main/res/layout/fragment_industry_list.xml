@@ -48,5 +48,14 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
+
+        <!--Pagination layout-->
+        <include
+                android:id="@+id/layout_pagination"
+                layout="@layout/layout_pagination"
+                app:layout_constraintTop_toBottomOf="@id/rv_industry_list"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
