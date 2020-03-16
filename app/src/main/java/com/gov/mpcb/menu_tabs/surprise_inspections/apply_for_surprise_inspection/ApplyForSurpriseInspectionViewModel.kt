@@ -3,4 +3,7 @@ package com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspectio
 import com.gov.mpcb.base.BaseViewModel
 
 class ApplyForSurpriseInspectionViewModel : BaseViewModel<ApplyForSurpriseInspectionNavigator>() {
+
+
+
 }

@@ -1,5 +1,6 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections.industry_list
 
+import android.os.Bundle
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +10,7 @@ import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIndustryListBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection.ApplyForSurpriseInspectionFragment
 import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.constants.Constants.Companion.VIEW_AVAILABLE_INDUSTRY_DATA
 import com.gov.mpcb.utils.replaceFragment
 import com.gov.mpcb.utils.showMessage
 
@@ -54,7 +56,9 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
             replaceFragment(
                 fragment = ApplyForSurpriseInspectionFragment(),
                 addToBackStack = true,
-                bundle = null
+                bundle = Bundle().apply {
+                    putParcelable(VIEW_AVAILABLE_INDUSTRY_DATA, it)
+                }
             )
         })
         recyclerView.run {

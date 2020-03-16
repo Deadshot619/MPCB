@@ -159,6 +159,7 @@
                                 android:layout_height="wrap_content"
                                 android:drawableEnd="@drawable/ic_calendar"
                                 android:drawableRight="@drawable/ic_calendar"
+                                android:focusable="false"
                                 android:hint="Surprise Inspection to be conducted on"
                                 android:textSize="16sp"
                                 android:textStyle="bold" />
