@@ -3,4 +3,5 @@ package com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspectio
 import com.gov.mpcb.base.BaseNavigator
 
 interface ApplyForSurpriseInspectionNavigator : BaseNavigator {
+    fun showToast(msg: String)
 }

@@ -87,4 +87,8 @@ interface APIInterface {
     //View available industry lists
     @POST("list_surprise_industries")
     fun getAvailableIndustryLists(@Body request: ViewAvailableIndustriesRequest): Single<ViewAvailableIndustriesResponse>
+
+    //Add Surprise Inspection
+    @POST("add_surprise_inspection")
+    fun addSurpriseInspection(@Body request: AddSurpriseInspectionRequest): Single<AddSurpriseInspectionResponse>
 }

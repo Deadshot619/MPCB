@@ -145,4 +145,13 @@ interface RemoteDataProvider {
         success: Consumer<ViewAvailableIndustriesResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to submit request for Surprise Inspection
+     */
+    fun addSurpriseInspections(
+        request: AddSurpriseInspectionRequest,
+        success: Consumer<AddSurpriseInspectionResponse>,
+        error: Consumer<Throwable>
+    ):Disposable
 }

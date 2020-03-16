@@ -27,6 +27,7 @@ class ApplyForSurpriseInspectionFragment :
     override fun getViewModel() = ApplyForSurpriseInspectionViewModel::class.java
     override fun getNavigator() = this@ApplyForSurpriseInspectionFragment
     override fun onError(message: String) = showMessage(message)
+    override fun showToast(msg: String) = showMessage(msg)
     override fun onInternetError() {}
     override fun onBinding() {
         //Get industry data from bundle
@@ -103,6 +104,7 @@ class ApplyForSurpriseInspectionFragment :
 
             //Show Date Picker Dialog on click of editText
             layoutApplySurpriseInspection.edtSurpriseInspectionConductedOnInfo.setOnClickListener {
+                layoutApplySurpriseInspection.edtSurpriseInspectionConductedOnInfo.error = null
                 CommonUtils.showDateDialog(
                     context = getBaseActivity(),
                     id = layoutApplySurpriseInspection.edtSurpriseInspectionConductedOnInfo
@@ -111,7 +113,13 @@ class ApplyForSurpriseInspectionFragment :
 
             //SAVE button : Validate whether the form is filled or not
             layoutApplySurpriseInspection.btnSave.setOnClickListener {
-                showMessage("" + validate())
+                if (validate()){
+                    mViewModel.submitInspectionForm(
+                        industryInn = viewAvailableIndustriesData.industry_iin,
+                        date = mBinding.layoutApplySurpriseInspection.edtSurpriseInspectionConductedOnInfo.text.toString(),
+                        reason = mBinding.layoutApplySurpriseInspection.edtReasonInfo.text.toString()
+                    )
+                }
             }
 
             //Clear text on click of 'cancel' button.
@@ -130,8 +138,20 @@ class ApplyForSurpriseInspectionFragment :
      * @return Returns true if all the fields are filled else false.
      */
     private fun validate(): Boolean {
-        return !mBinding.layoutApplySurpriseInspection.run {
-            edtSurpriseInspectionConductedOnInfo.text.isNullOrEmpty() || edtReasonInfo.text.isNullOrEmpty()
+        mBinding.layoutApplySurpriseInspection.run {
+            //check if date is filled
+            if (edtSurpriseInspectionConductedOnInfo.text.isNullOrEmpty()){
+                showMessage("Please select a date")
+                return false
+            }
+
+            //check if reason is filled
+            if (edtReasonInfo.text.isNullOrEmpty()){
+                showMessage("Please enter valid reason")
+                return false
+            }
+
+            return true
         }
     }
 
