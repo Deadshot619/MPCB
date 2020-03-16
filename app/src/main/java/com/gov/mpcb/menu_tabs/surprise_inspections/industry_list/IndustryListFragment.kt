@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIndustryListBinding
+import com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection.ApplyForSurpriseInspectionFragment
 import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.replaceFragment
 import com.gov.mpcb.utils.showMessage
 
 /**
@@ -49,6 +51,11 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         mAdapter = IndustryListAdapter(IndustryListAdapter.OnClickListener {
             showMessage(it.industry_name)
+            replaceFragment(
+                fragment = ApplyForSurpriseInspectionFragment(),
+                addToBackStack = true,
+                bundle = null
+            )
         })
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)

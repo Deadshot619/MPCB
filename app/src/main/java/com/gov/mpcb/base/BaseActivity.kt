@@ -76,6 +76,23 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     }
 
     /**
+     * Method to replace fragment in the container
+     */
+    fun replaceFragment(fragment: Fragment, addToBackstack: Boolean, bundle: Bundle? = null) {
+        bundle?.let {
+            fragment.arguments = bundle
+        }
+
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.container, fragment)
+            if (addToBackstack) {
+                addToBackStack(fragment::class.java.simpleName)
+            }
+            commit()
+        }
+    }
+
+    /**
      * Method to remove fragment from backStack
      */
     fun removeFragment(fragment: Fragment){

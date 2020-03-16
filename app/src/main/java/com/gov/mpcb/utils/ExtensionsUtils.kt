@@ -45,9 +45,15 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Unit) {
     fragmentTransaction.commit()
 }
 
-fun Fragment.addFragment(fragment: Fragment, addToBackStack: Boolean, bundle: Bundle) {
+fun Fragment.addFragment(fragment: Fragment, addToBackStack: Boolean, bundle: Bundle? = null) {
     val activity = this.activity as BaseActivity<*, *>
     activity.addFragment(fragment, addToBackStack, bundle)
+}
+
+//Method to replace fragment in the container
+fun Fragment.replaceFragment(fragment: Fragment, addToBackStack: Boolean, bundle: Bundle? = null) {
+    val activity = this.activity as BaseActivity<*, *>
+    activity.replaceFragment(fragment, addToBackStack, bundle)
 }
 
 //Method to remove fragment from backstack
