@@ -9,6 +9,7 @@ import com.gov.mpcb.network.request.AddSurpriseInspectionRequest
 import com.gov.mpcb.network.request.ViewPreviousInspectionListRequest
 import com.gov.mpcb.network.response.LoginResponse
 import com.gov.mpcb.network.response.ViewPreviousInspectionListData
+import com.gov.mpcb.utils.LoadingStatus
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
 import io.reactivex.functions.Consumer
@@ -19,6 +20,13 @@ class ApplyForSurpriseInspectionViewModel : BaseViewModel<ApplyForSurpriseInspec
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
         Gson().fromJson(user, LoginResponse::class.java)
     }
+
+    /**
+     * This variable holds the data which will be used to show/hide ProgresBar
+     */
+    private val progressStatus = MutableLiveData<LoadingStatus>(LoadingStatus.DONE)
+    val _progressStatus: LiveData<LoadingStatus>
+        get() = progressStatus
 
     //Variable to hold [ViewPreviousInspectionListData] data
     private val previousInspectionListData = MutableLiveData<List<ViewPreviousInspectionListData>>()
@@ -57,7 +65,14 @@ class ApplyForSurpriseInspectionViewModel : BaseViewModel<ApplyForSurpriseInspec
         )
     }
 
+    /**
+     * This method is used to load Previously conducted Inspections Data
+     *
+     * @param industryIin Takes Industry Inspection Number as input
+     */
     fun loadPreviouslyConductedInspections(industryIin: String){
+        progressStatus.value = LoadingStatus.LOADING
+
         val request = ViewPreviousInspectionListRequest().apply {
             this.industryIin = industryIin
         }
@@ -67,9 +82,11 @@ class ApplyForSurpriseInspectionViewModel : BaseViewModel<ApplyForSurpriseInspec
                 request = request,
                 success = Consumer {
                     previousInspectionListData.value = it.data
+                    progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {
                     checkError(it)
+                    progressStatus.value = LoadingStatus.ERROR
                 }
             )
         )
