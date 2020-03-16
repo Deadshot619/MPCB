@@ -59,6 +59,14 @@ fun bindProgressBar(progressBar: ProgressBar, status: LoadingStatus?){
     }
 }
 
+
+/*@BindingAdapter("isListEmpty")
+fun bindIsListEmpty(textView: TextView, list: List<Any>?){
+    if (list.isNullOrEmpty())
+        textView.visibility = View.VISIBLE
+    else
+        textView.visibility = View.GONE
+}*/
 /**
  * If [isSurpriseInspection] is 1, then display text as 'Surprise Inspection' else 'Randomised Inspection'
  */

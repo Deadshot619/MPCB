@@ -61,6 +61,16 @@
                     android:layout_gravity="center"
                     android:indeterminate="true"
                     app:statusProgressBar="@{viewModel._progressStatus}" />
+<!--
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    app:isListEmpty="@{viewModel._previousInspectionListData}"
+                    android:textColor="@color/light_grey"
+                    android:text="@string/no_data_available"
+                    android:layout_gravity="center"/>-->
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </LinearLayout>

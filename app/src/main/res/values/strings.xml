@@ -88,5 +88,6 @@
     <string name="verified_surprise_inspections">Verified Surprise Inspections</string>
     <string name="industry_list">Industry List</string>
     <string name="apply_for_surprise_inspection">Apply for Surprise Inspections</string>
+    <string name="no_data_available">No data available!</string>
 
 </resources>
