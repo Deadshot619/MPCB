@@ -7,6 +7,10 @@
         <variable
                 name="data"
                 type="com.gov.mpcb.network.response.ViewPreviousInspectionListData" />
+
+        <variable
+                name="clickListener"
+                type="com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection.PreviouslyConductedInspectionAdapter.OnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -205,6 +209,7 @@
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     android:textSize="16sp"
+                    android:onClick="@{() -> clickListener.onClick(data.download_link)}"
                     app:isDownloadLinkAvailable="@{data.download_link}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -12,12 +12,6 @@ class IndustryListAdapter(val listener: OnClickListener) :
     ListAdapter<ViewAvailableIndustriesData, IndustryListAdapter.IndustryListViewHolder>(
         DiffCallback
     ) {
-
-    /**
-     * This counter is used to set linear numbering to lists
-     */
-    private var counter = 0
-
     /**
      * Allows the RecyclerView to determine which items have changed when the [List] of [ViewAvailableIndustriesData]
      * has been updated.

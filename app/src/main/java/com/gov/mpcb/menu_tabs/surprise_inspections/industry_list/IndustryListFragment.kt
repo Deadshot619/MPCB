@@ -104,6 +104,12 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
 
         })
 
+//        mBinding.toolbarLayout.searchBar.setOnCloseListener {
+//            mViewModel.getAvailableIndustryListsData()
+//            mViewModel.resetCurrentPage()
+//            true
+//        }
+
         paginationListeners()
     }
 

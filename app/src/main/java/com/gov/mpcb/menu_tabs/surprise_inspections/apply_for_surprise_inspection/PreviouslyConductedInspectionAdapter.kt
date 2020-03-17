@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemPreviouslyConductedInspectionBinding
 import com.gov.mpcb.network.response.ViewPreviousInspectionListData
 
-class PreviouslyConductedInspectionAdapter :
+class PreviouslyConductedInspectionAdapter(val listener: OnClickListener) :
     ListAdapter<ViewPreviousInspectionListData, PreviouslyConductedInspectionAdapter.PreviouslyConductedInspectionViewHolder>(
         DiffCallback
     ) {
@@ -42,7 +42,7 @@ class PreviouslyConductedInspectionAdapter :
     }
 
     override fun onBindViewHolder(holder: PreviouslyConductedInspectionViewHolder, position: Int) {
-        holder.bind(getItem(position), position + 1)
+        holder.bind(getItem(position), position + 1, listener)
     }
 
 
@@ -52,14 +52,24 @@ class PreviouslyConductedInspectionAdapter :
      */
     class PreviouslyConductedInspectionViewHolder(private var binding: ItemPreviouslyConductedInspectionBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: ViewPreviousInspectionListData?, count: Int) {
+        fun bind(
+            item: ViewPreviousInspectionListData?,
+            count: Int,
+            listener: OnClickListener
+        ) {
             binding.run {
                 data = item
+                clickListener = listener
                 tvNumber.text = "$count"
                 executePendingBindings()
             }
         }
+    }
 
-
+    /**
+     * Interface to call in the [OnClickListener] & passed on to fragment to implement
+     */
+    class OnClickListener(val clickListener: (link: String) -> Unit){
+        fun onClick(link: String) = clickListener(link)
     }
 }
