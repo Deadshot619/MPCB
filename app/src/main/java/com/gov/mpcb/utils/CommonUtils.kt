@@ -7,6 +7,7 @@ import com.gov.mpcb.base.MPCBApp
 import java.util.*
 
 enum class LoadingStatus { LOADING, ERROR, DONE }
+enum class ListData { LOADING, PRESENT, EMPTY }
 
 object CommonUtils {
     //Get Device's Display Metrics

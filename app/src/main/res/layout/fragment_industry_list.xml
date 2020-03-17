@@ -37,18 +37,35 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
 
-        <!--Progress Bar-->
-        <androidx.core.widget.ContentLoadingProgressBar
-                android:id="@+id/progress_bar"
-                style="@style/Widget.AppCompat.ProgressBar"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:indeterminate="true"
-                app:statusProgressBar="@{viewModel._progressStatus}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <!--Progress Bar-->
+            <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:layout_gravity="center"
+                    app:statusProgressBar="@{viewModel._progressStatus}"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:textSize="18sp"
+                    app:statusProgress="@{viewModel._progressStatus}"
+                    app:isListEmpty="@{viewModel._viewAvailableIndustriesData}"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_data_available"
+                    />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <!--Pagination layout-->
         <include

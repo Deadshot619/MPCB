@@ -16,11 +16,11 @@ import com.gov.mpcb.utils.LoadingStatus
  * If VisitStatus is Visited the background set to green, otherwise red.
  */
 @BindingAdapter("visitStatus")
-fun bindVisitStatus(textView: AppCompatTextView, visitModel: MyVisitModel?){
+fun bindVisitStatus(textView: AppCompatTextView, visitModel: MyVisitModel?) {
     visitModel?.let {
-        if (visitModel.visitStatus == "Visited"){
+        if (visitModel.visitStatus == "Visited") {
             textView.setBackgroundResource(R.drawable.shape_industry_background_green)
-        }else{
+        } else {
             textView.setBackgroundResource(R.drawable.shape_industry_background_red)
         }
     }
@@ -30,13 +30,13 @@ fun bindVisitStatus(textView: AppCompatTextView, visitModel: MyVisitModel?){
  * This adapter is used to setText to userassigned names text field in [R.layout.item_task]
  */
 @BindingAdapter("userAssignedNames")
-fun bindUserAssignedNames(textView: AppCompatTextView, userNames: List<UsersAssignedName>){
-    if (userNames.isNotEmpty()){
+fun bindUserAssignedNames(textView: AppCompatTextView, userNames: List<UsersAssignedName>) {
+    if (userNames.isNotEmpty()) {
         var username = ""
         for (i in userNames)
             username = username + i.nameOfOfficer + "\n"
         textView.text = username
-    }else{
+    } else {
         textView.text = ""
     }
 }
@@ -45,8 +45,8 @@ fun bindUserAssignedNames(textView: AppCompatTextView, userNames: List<UsersAssi
  * This adapter shows/hides the progressBar depending on [LoadingStatus]
  */
 @BindingAdapter("statusProgressBar")
-fun bindProgressBar(progressBar: ProgressBar, status: LoadingStatus?){
-    when(status){
+fun bindProgressBar(progressBar: ProgressBar, status: LoadingStatus?) {
+    when (status) {
         LoadingStatus.LOADING -> {
             progressBar.visibility = View.VISIBLE
         }
@@ -59,19 +59,31 @@ fun bindProgressBar(progressBar: ProgressBar, status: LoadingStatus?){
     }
 }
 
+/**
+ * This binding adapter will take [LoadingStatus] & a List as input.
+ * When the [LoadingStatus] is [LoadingStatus.DONE] & List is empty or its [LoadingStatus.ERROR], it will show the error text
+ */
+@BindingAdapter("statusProgress", "isListEmpty")
+fun bindIsListEmpty(textView: TextView, status: LoadingStatus, list: List<Any>?) {
+    when (status) {
+        LoadingStatus.LOADING -> {
+            textView.visibility = View.GONE
+        }
+        LoadingStatus.DONE -> {
+            if (list.isNullOrEmpty())
+                textView.visibility = View.VISIBLE
+        }
+        LoadingStatus.ERROR -> {
+            textView.visibility = View.VISIBLE
+        }
+    }
+}
 
-/*@BindingAdapter("isListEmpty")
-fun bindIsListEmpty(textView: TextView, list: List<Any>?){
-    if (list.isNullOrEmpty())
-        textView.visibility = View.VISIBLE
-    else
-        textView.visibility = View.GONE
-}*/
 /**
  * If [isSurpriseInspection] is 1, then display text as 'Surprise Inspection' else 'Randomised Inspection'
  */
 @BindingAdapter("isSurpriseInspection")
-fun bindSurpriseInspection(textView: TextView, isSurpriseInspection: Int){
+fun bindSurpriseInspection(textView: TextView, isSurpriseInspection: Int) {
     if (isSurpriseInspection == 1)
         textView.text = "Surprise Inspection"
     else
@@ -82,7 +94,7 @@ fun bindSurpriseInspection(textView: TextView, isSurpriseInspection: Int){
  * If visited_on text is present, then display text as 'Yes' else 'No'
  */
 @BindingAdapter("isVisitConducted")
-fun bindVisitedOn(textView: TextView, visited_on: String?){
+fun bindVisitedOn(textView: TextView, visited_on: String?) {
     if (visited_on.isNullOrEmpty())
         textView.text = "No"
     else
@@ -94,7 +106,7 @@ fun bindVisitedOn(textView: TextView, visited_on: String?){
  * If download link is available, show download button, else hide it
  */
 @BindingAdapter("isDownloadLinkAvailable")
-fun bindDownloadReportBtn(textView: TextView, downloadLink: String?){
+fun bindDownloadReportBtn(textView: TextView, downloadLink: String?) {
     if (downloadLink.isNullOrEmpty())
         textView.visibility = View.GONE
     else
