@@ -19,6 +19,8 @@
                 android:layout_height="wrap_content"
                 style="@style/pagination_style"
                 android:text="@string/pagination_previous"
+                android:layout_marginRight="18dp"
+                android:visibility="invisible"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -41,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pagination_next"
                 style="@style/pagination_style"
+                android:layout_marginLeft="18dp"
                 app:layout_constraintTop_toTopOf="@+id/pagination_indicator"
                 app:layout_constraintLeft_toRightOf="@id/pagination_indicator"
                 app:layout_constraintRight_toRightOf="parent"

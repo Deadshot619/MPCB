@@ -71,4 +71,17 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
         )
     }
 
+    fun incrementCurrentPage(){
+        currentPage.value = currentPage.value!! + 1
+    }
+
+    fun decrementCurrentPage(){
+        currentPage.value = currentPage.value!! - 1
+    }
+
+    fun resetCurrentPage(){
+        currentPage.value = 1
+    }
+
+
 }
