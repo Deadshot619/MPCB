@@ -43,6 +43,7 @@
                 <androidx.cardview.widget.CardView
                         android:id="@+id/circulars"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         style="@style/menu_cardview_style">
 
@@ -57,6 +58,7 @@
                 <androidx.cardview.widget.CardView
                         android:id="@+id/industries_location"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         style="@style/menu_cardview_style">
 
@@ -86,6 +88,7 @@
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         style="@style/menu_cardview_style">
 
                     <TextView
@@ -99,6 +102,7 @@
                 <androidx.cardview.widget.CardView
                         android:id="@+id/offices"
                         android:layout_width="match_parent"
+                        android:visibility="gone"
                         android:layout_height="wrap_content"
                         style="@style/menu_cardview_style">
 
@@ -114,6 +118,7 @@
                         android:id="@+id/laboratories"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         style="@style/menu_cardview_style">
 
                     <TextView
@@ -128,6 +133,7 @@
                         android:id="@+id/privacy_policy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         style="@style/menu_cardview_style">
 
                     <TextView
@@ -142,6 +148,7 @@
                         android:id="@+id/faq"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         style="@style/menu_cardview_style">
 
                     <TextView
