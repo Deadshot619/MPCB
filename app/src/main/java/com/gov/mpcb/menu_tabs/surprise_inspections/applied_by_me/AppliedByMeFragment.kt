@@ -1,5 +1,6 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
@@ -70,13 +71,22 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
         }
 
         viewAppliedListData?.let {
+            var tempData = listOf<ViewAppliedListData>()
+
             if (isDataForAppliedByMe) {
-                mAdapter.submitList(filterData(it, isDataForAppliedByMe))
+                tempData = filterData(it, isDataForAppliedByMe)
+                mAdapter.submitList(tempData)
 //                showMessage("$isDataForAppliedByMe")
             } else {
-                mAdapter.submitList(filterData(it, isDataForAppliedByMe))
+                tempData = filterData(it, isDataForAppliedByMe)
+                mAdapter.submitList(tempData)
 //                showMessage("$isDataForAppliedByMe")
             }
+
+            //Show error text if data is not present
+            if (tempData.isNullOrEmpty())
+                mBinding.tvErrorText.visibility = View.VISIBLE
+
         }
     }
 
