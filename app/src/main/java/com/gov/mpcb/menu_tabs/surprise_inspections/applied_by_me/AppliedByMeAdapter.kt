@@ -12,11 +12,6 @@ class AppliedByMeAdapter(val listener: OnClickListener) :
     ListAdapter<ViewAppliedListData, AppliedByMeAdapter.AppliedByMeViewHolder>(DiffCallback) {
 
     /**
-     * This counter is used to set linear numbering to lists
-     */
-    private var counter = 0
-
-    /**
      * Allows the RecyclerView to determine which items have changed when the [List] of [ViewAppliedListData]
      * has been updated.
      */
@@ -80,37 +75,4 @@ class AppliedByMeAdapter(val listener: OnClickListener) :
         fun onClick(viewAppliedListData: ViewAppliedListData) = clickListener(viewAppliedListData)
     }
 
-}/*
-class AppliedByMeAdapter(list: List<ViewAppliedListData>?) : RecyclerView.Adapter<AppliedByMeAdapter.AppliedByMeViewHolder>(){
-
-    private val mViewAppliedListData = if (list.isNullOrEmpty()) mutableListOf() else list as MutableList<ViewAppliedListData>
-
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): AppliedByMeAdapter.AppliedByMeViewHolder {
-        return AppliedByMeViewHolder(ItemAppliedByMeBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
-        ))
-    }
-
-    override fun onBindViewHolder(holder: AppliedByMeViewHolder, position: Int) {
-        val viewAppliedListData = mViewAppliedListData[position]
-        holder.bind(viewAppliedListData)
-    }
-
-    override fun getItemCount(): Int = mViewAppliedListData.size
-
-    fun updateList(list: List<ViewAppliedListData>) {
-        this.mViewAppliedListData.clear()
-        this.mViewAppliedListData.addAll(list)
-        notifyDataSetChanged()
-    }
-
-    class AppliedByMeViewHolder(private var binding: ItemAppliedByMeBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(viewAppliedListData: ViewAppliedListData) {
-            binding.data = viewAppliedListData
-            binding.executePendingBindings()
-        }
-    }
-}*/
+}

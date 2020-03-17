@@ -1,15 +1,11 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
+import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentAppliedByMeBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeAdapter.OnClickListener
 import com.gov.mpcb.network.response.ViewAppliedListData
@@ -20,9 +16,8 @@ import com.gov.mpcb.utils.showMessage
 /**
  * A simple [Fragment] subclass.
  */
-class AppliedByMeFragment : Fragment() {
+class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMeViewModel>(), AppliedByMeNavigator {
 
-    private lateinit var mBinding: FragmentAppliedByMeBinding
     private lateinit var mAdapter: AppliedByMeAdapter
     private var viewAppliedListData: List<ViewAppliedListData>? = null
 
@@ -32,22 +27,17 @@ class AppliedByMeFragment : Fragment() {
      */
     private var isDataForAppliedByMe: Boolean = true
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        mBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_applied_by_me, container, false)
+    override fun getLayoutId() = R.layout.fragment_applied_by_me
+    override fun getViewModel() = AppliedByMeViewModel::class.java
+    override fun getNavigator() = this@AppliedByMeFragment
+    override fun onError(message: String) = showMessage(message)
+    override fun onInternetError() {}
 
+    override fun onBinding() {
         viewAppliedListData =
             arguments?.getParcelable<ViewAppliedListResponse>(Constants.SI_DATA)?.data?.run { this }
         isDataForAppliedByMe = arguments?.getBoolean(Constants.ADDED_BY_ME) ?: true
 
-        return mBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpRecyclerView(mBinding.rvListings)
     }
 
