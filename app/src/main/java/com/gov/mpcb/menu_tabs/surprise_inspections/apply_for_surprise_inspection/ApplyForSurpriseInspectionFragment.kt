@@ -36,10 +36,10 @@ class ApplyForSurpriseInspectionFragment :
     override fun onError(message: String) = showMessage(message)
     override fun showToast(msg: String) = showMessage(msg)
     override fun openActivity(activity: Activity) {
-        startActivity(Intent(getBaseActivity(), activity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-        })
+//        startActivity(Intent(getBaseActivity(), activity::class.java).apply {
+//            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+//            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+//        })
         this.activity?.finish()
     }
 

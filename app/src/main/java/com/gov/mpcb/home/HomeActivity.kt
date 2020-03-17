@@ -10,7 +10,6 @@ import com.gov.mpcb.databinding.ActivityHomeBinding
 import com.gov.mpcb.menu.MenuFragment
 import com.gov.mpcb.my_visits.MyVisitsFragment
 import com.gov.mpcb.profile.ProfileFragment
-import com.gov.mpcb.task_management.TaskManagementFragment
 import com.gov.mpcb.utils.showMessage
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNavigator {
@@ -36,11 +35,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
     private fun setListeners() {
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.task_mngmt -> {
+               /* R.id.task_mngmt -> {
                     addFragment(TaskManagementFragment(), false)
 //                    showMessage(getString(R.string.error_bottom_nav))
                     return@setOnNavigationItemSelectedListener true
-                }
+                }*/
                 R.id.my_visits -> {
                     addFragment(MyVisitsFragment(), false)
                     return@setOnNavigationItemSelectedListener true
@@ -49,11 +48,11 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
                     addFragment(DashboardFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
-//                R.id.attendance -> {
-////                    addFragment(AttendanceFragment(), false)
-//                    showMessage(getString(R.string.error_bottom_nav))
-//                    return@setOnNavigationItemSelectedListener false
-//                }
+                R.id.attendance -> {
+//                    addFragment(AttendanceFragment(), false)
+                    showMessage(getString(R.string.error_bottom_nav))
+                    return@setOnNavigationItemSelectedListener false
+                }
                 R.id.my_profile -> {
                     addFragment(ProfileFragment(), false)
                     return@setOnNavigationItemSelectedListener true
