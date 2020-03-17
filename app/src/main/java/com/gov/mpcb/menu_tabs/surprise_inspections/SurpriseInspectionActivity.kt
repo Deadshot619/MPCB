@@ -16,6 +16,8 @@ import com.gov.mpcb.utils.showMessage
 class SurpriseInspectionActivity : BaseActivity<ActivitySurpriseInspectionBinding, SurpriseInspectionsViewModel>(),
 SurpriseInspectionsNavigator{
 
+    private lateinit var reload: String
+
     override fun getLayoutId() = R.layout.activity_surprise_inspection
     override fun getViewModel() = SurpriseInspectionsViewModel::class.java
     override fun getNavigator() = this@SurpriseInspectionActivity
@@ -34,6 +36,7 @@ SurpriseInspectionsNavigator{
             showBackButton = true
         )
 
+//        reload = intent.getStringExtra(Constants.RELOAD_KEY) ?: "null"
 
         setUpViewpager(viewPager = mBinding.viewpager)
 

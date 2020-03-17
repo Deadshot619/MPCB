@@ -1,5 +1,6 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.view.View
@@ -34,6 +35,15 @@ class ApplyForSurpriseInspectionFragment :
     override fun getNavigator() = this@ApplyForSurpriseInspectionFragment
     override fun onError(message: String) = showMessage(message)
     override fun showToast(msg: String) = showMessage(msg)
+    override fun openActivity(activity: Activity) {
+        startActivity(Intent(getBaseActivity(), activity::class.java).apply {
+            putExtra(Constants.RELOAD_KEY, Constants.RELOAD_VALUE)
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        })
+        this.activity?.finish()
+    }
+
     override fun onInternetError() {}
     override fun onBinding() {
         //Get industry data from bundle

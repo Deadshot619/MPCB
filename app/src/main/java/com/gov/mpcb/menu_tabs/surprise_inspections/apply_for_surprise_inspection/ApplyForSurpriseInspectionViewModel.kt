@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.gov.mpcb.base.BaseViewModel
+import com.gov.mpcb.menu_tabs.surprise_inspections.SurpriseInspectionActivity
 import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.AddSurpriseInspectionRequest
 import com.gov.mpcb.network.request.ViewPreviousInspectionListRequest
@@ -57,6 +58,8 @@ class ApplyForSurpriseInspectionViewModel : BaseViewModel<ApplyForSurpriseInspec
                 success = Consumer {
                     dialogVisibility.value = false
                     mNavigator?.showToast(it.message)
+                    if (it.status == 1)
+                        mNavigator?.openActivity(SurpriseInspectionActivity())
                 },
                 error = Consumer {
                     checkError(it)
