@@ -37,7 +37,6 @@ class ApplyForSurpriseInspectionFragment :
     override fun showToast(msg: String) = showMessage(msg)
     override fun openActivity(activity: Activity) {
         startActivity(Intent(getBaseActivity(), activity::class.java).apply {
-            putExtra(Constants.RELOAD_KEY, Constants.RELOAD_VALUE)
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         })

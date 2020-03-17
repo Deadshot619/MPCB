@@ -58,6 +58,7 @@ class ApplyForSurpriseInspectionViewModel : BaseViewModel<ApplyForSurpriseInspec
                 success = Consumer {
                     dialogVisibility.value = false
                     mNavigator?.showToast(it.message)
+                    //Redirect the user to Surprise Inspection activity after successfully submitting the form
                     if (it.status == 1)
                         mNavigator?.openActivity(SurpriseInspectionActivity())
                 },
