@@ -153,7 +153,8 @@ class ApplyForSurpriseInspectionFragment :
                 layoutApplySurpriseInspection.edtSurpriseInspectionConductedOnInfo.error = null
                 CommonUtils.showDateDialog(
                     context = getBaseActivity(),
-                    id = layoutApplySurpriseInspection.edtSurpriseInspectionConductedOnInfo
+                    id = layoutApplySurpriseInspection.edtSurpriseInspectionConductedOnInfo,
+                    hidePreviousDates = true
                 )
             }
 

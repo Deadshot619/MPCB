@@ -27,7 +27,7 @@ object CommonUtils {
      * @param context Takes a context as parameter
      * @param id Takes an EditText view as input
      */
-    fun showDateDialog(context: Context, id: EditText) {
+    fun showDateDialog(context: Context, id: EditText, hidePreviousDates: Boolean = false) {
         val calendar = Calendar.getInstance()
         DatePickerDialog(
             context,
@@ -37,6 +37,6 @@ object CommonUtils {
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
-        ).show()
+        ).apply { if (hidePreviousDates) datePicker.minDate = calendar.timeInMillis - 1000 }.show()
     }
 }
