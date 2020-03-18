@@ -34,7 +34,7 @@ class SurpriseInspectionsViewModel : BaseViewModel<SurpriseInspectionsNavigator>
     /**
      * This method calls the view_applied_list Api & sets the data to [viewAppliedLists]
      */
-    private fun getAppliedListsData() {
+    fun getAppliedListsData() {
         val request = ViewAppliedListRequest().apply {
             userId = user.userId.toString()
         }

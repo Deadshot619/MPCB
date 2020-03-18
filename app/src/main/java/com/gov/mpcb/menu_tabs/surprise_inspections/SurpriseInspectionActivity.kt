@@ -17,6 +17,8 @@ class SurpriseInspectionActivity : BaseActivity<ActivitySurpriseInspectionBindin
 SurpriseInspectionsNavigator{
 
 
+    private var RELOAD = ""
+
     override fun getLayoutId() = R.layout.activity_surprise_inspection
     override fun getViewModel() = SurpriseInspectionsViewModel::class.java
     override fun getNavigator() = this@SurpriseInspectionActivity
@@ -41,6 +43,19 @@ SurpriseInspectionsNavigator{
 
         setUpListeners()
 
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+
+        /**
+         * This method is called when activity is brought back to life.
+         * This checks if the intent has "reload_value" in intent, if yes, it calls the api to fetch list.
+         */
+        RELOAD = intent?.getStringExtra(Constants.RELOAD_KEY) ?: ""
+
+        if (RELOAD == Constants.RELOAD_VALUE)
+            mViewModel.getAppliedListsData()
     }
 
     /**

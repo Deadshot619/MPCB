@@ -11,6 +11,9 @@ import java.util.*
 class Constants {
     companion object {
 
+        const val RELOAD_KEY = "reload_key"
+        const val RELOAD_VALUE = "reload_value"
+
         const val IMAGE_PATH: String = "IMAGE_PATH"
         const val LAT_VALUE: String = "LAT_VALUE"
         const val LONG_VALUE: String = "LONG_VALUE"
