@@ -11,6 +11,10 @@
         <variable
                 name="clickListener"
                 type="com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeAdapter.OnClickListener" />
+
+        <variable
+                name="string"
+                type="String" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -62,7 +66,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:text="@{data.imis_value}"
+                    android:text="@{data.unique_id}"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
@@ -184,7 +188,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:text="@{data.applied_on}"
+                    app:extractDateRemoveTime="@{data.surprise_inspection_on}"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
                     tools:text="09/01/2020"

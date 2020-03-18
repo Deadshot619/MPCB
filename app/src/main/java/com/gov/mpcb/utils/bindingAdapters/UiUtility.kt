@@ -80,6 +80,15 @@ fun bindIsListEmpty(textView: TextView, status: LoadingStatus, list: List<Any>?)
 }
 
 /**
+ * This method will extract the string before the last occurrence of space("") i.e. extract date from date & time string.
+ */
+@BindingAdapter("extractDateRemoveTime")
+fun bindextractDateRemoveTime(textView: TextView, string: String){
+    textView.text = string.substringBeforeLast(" ")
+}
+
+
+/**
  * If [isSurpriseInspection] is 1, then display text as 'Surprise Inspection' else 'Randomised Inspection'
  */
 @BindingAdapter("isSurpriseInspection")

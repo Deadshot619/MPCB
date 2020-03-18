@@ -100,7 +100,14 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
                 return true
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean = false
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //Reset the searc
+                if (newText == "") {
+                    mViewModel.getAvailableIndustryListsData()
+                    mViewModel.resetCurrentPage()
+                }
+                return true
+            }
 
         })
 
