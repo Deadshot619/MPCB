@@ -98,11 +98,29 @@
                     android:text="@{data.industry_ref_number}"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
-                    tools:text="MPCB-CONSENT-000000045\nRanjan Das"
+                    tools:text="MPCB-CONSENT-000000045"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_industry_ref_no"
                     app:layout_constraintTop_toBottomOf="@id/tv_industry_ref_no"
                     android:layout_marginEnd="16dp" />
+
+            <!--    Applied By Name  -->
+            <TextView
+                    android:id="@+id/tv_applied_by_name_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="@{data.applied_by_name}"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="16dp"
+                    tools:text="Ranjan Das"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_industry_ref_no_info"
+                    app:layout_constraintTop_toBottomOf="@id/tv_industry_ref_no_info"
+                    android:layout_marginEnd="16dp" />
+
+
 
             <!--   Industry Name -->
             <TextView
@@ -111,8 +129,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="@id/tv_industry_ref_no_info"
-                    app:layout_constraintTop_toBottomOf="@id/tv_industry_ref_no_info"
+                    app:layout_constraintStart_toStartOf="@id/tv_applied_by_name_info"
+                    app:layout_constraintTop_toBottomOf="@id/tv_applied_by_name_info"
                     android:text="Industry Name"
                     tools:text="Industry Name"/>
 
