@@ -4,12 +4,13 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeFragment
-import com.gov.mpcb.network.response.ViewAppliedListResponse
+import com.gov.mpcb.menu_tabs.surprise_inspections.verified_surprise_inspection.VerifiedSurpriseInspectionsFragment
+import com.gov.mpcb.network.response.ViewAppliedListData
 import com.gov.mpcb.utils.constants.Constants
 
 class SurpriseInspectionPagerAdapter(
     activity: SurpriseInspectionActivity,
-    list: ViewAppliedListResponse = ViewAppliedListResponse()
+    list: ArrayList<ViewAppliedListData> = arrayListOf()
 ) :
     FragmentStateAdapter(activity) {
 
@@ -21,19 +22,19 @@ class SurpriseInspectionPagerAdapter(
         return when (position) {
             0 -> AppliedByMeFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(Constants.SI_DATA, mList)
+                    putParcelableArrayList(Constants.SI_DATA, mList)
                     putBoolean(Constants.ADDED_BY_ME, true)
                 }
             }
-            1 -> AppliedByMeFragment().apply {
+            1 -> VerifiedSurpriseInspectionsFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(Constants.SI_DATA, mList)
+                    putParcelableArrayList(Constants.SI_DATA, mList)
                     putBoolean(Constants.ADDED_BY_ME, false)
                 }
             }
             else -> AppliedByMeFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(Constants.SI_DATA, mList)
+                    putParcelableArrayList(Constants.SI_DATA, mList)
                     putBoolean(Constants.ADDED_BY_ME, true)
                 }
             }
@@ -41,7 +42,7 @@ class SurpriseInspectionPagerAdapter(
     }
 
 
-    fun refreshData(list: ViewAppliedListResponse) {
+    fun refreshData(list: ArrayList<ViewAppliedListData>) {
         mList = list
         notifyDataSetChanged()
     }

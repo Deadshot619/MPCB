@@ -9,7 +9,7 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.databinding.ActivitySurpriseInspectionBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.add_surprise_inspection.AddSurpriseInspectionActivity
-import com.gov.mpcb.network.response.ViewAppliedListResponse
+import com.gov.mpcb.network.response.ViewAppliedListData
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
@@ -73,20 +73,19 @@ SurpriseInspectionsNavigator{
 
         //This observer setups viewPager with new adapter when new data is available
         mViewModel._viewAppliedLists.observe(this, Observer {
-            it.data.run {
-                if (isNotEmpty()){
-//                    mAdapter.refreshData(it)
-                    setUpViewpager(mBinding.viewpager, it)
+            it?.run {
+//                      mAdapter.refreshData(it)
+                    //convert List to ArrayList
+                    setUpViewpager(mBinding.viewpager, arrayListOf<ViewAppliedListData>().apply { addAll(it) })
 //                    mAdapter.notifyDataSetChanged()
                 }
-            }
         })
     }
 
     /**
      * This method is used to setup ViewPager with [SurpriseInspectionPagerAdapter]
      */
-    private fun setUpViewpager(viewPager: ViewPager2, list: ViewAppliedListResponse = ViewAppliedListResponse()){
+    private fun setUpViewpager(viewPager: ViewPager2, list: ArrayList<ViewAppliedListData> = arrayListOf()){
         mAdapter = SurpriseInspectionPagerAdapter(this, list)
         viewPager.adapter = mAdapter /*SurpriseInspectionPagerAdapter(this)*/
     }

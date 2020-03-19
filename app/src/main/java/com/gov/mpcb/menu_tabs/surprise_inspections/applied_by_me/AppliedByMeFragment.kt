@@ -10,7 +10,6 @@ import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentAppliedByMeBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeAdapter.OnClickListener
 import com.gov.mpcb.network.response.ViewAppliedListData
-import com.gov.mpcb.network.response.ViewAppliedListResponse
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
@@ -36,7 +35,8 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
 
     override fun onBinding() {
         viewAppliedListData =
-            arguments?.getParcelable<ViewAppliedListResponse>(Constants.SI_DATA)?.data?.run { this }
+            arguments?.getParcelableArrayList<ViewAppliedListData>(Constants.SI_DATA)?.toList()
+
         isDataForAppliedByMe = arguments?.getBoolean(Constants.ADDED_BY_ME) ?: true
 
         setUpRecyclerView(mBinding.rvListings)
@@ -65,6 +65,7 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
                 showMessage(it.industry_name)
             }
         )
+
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, VERTICAL, false)
             this.adapter = mAdapter

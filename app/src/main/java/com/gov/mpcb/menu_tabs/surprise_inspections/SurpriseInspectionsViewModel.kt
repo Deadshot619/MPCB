@@ -7,7 +7,7 @@ import com.gov.mpcb.base.BaseViewModel
 import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.ViewAppliedListRequest
 import com.gov.mpcb.network.response.LoginResponse
-import com.gov.mpcb.network.response.ViewAppliedListResponse
+import com.gov.mpcb.network.response.ViewAppliedListData
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
@@ -21,8 +21,8 @@ class SurpriseInspectionsViewModel : BaseViewModel<SurpriseInspectionsNavigator>
     }
 
     //Variable to hold [ViewAppliedListResponse] data
-    private val viewAppliedLists = MutableLiveData<ViewAppliedListResponse>()
-    val _viewAppliedLists : LiveData<ViewAppliedListResponse>
+    private val viewAppliedLists = MutableLiveData<List<ViewAppliedListData>>()
+    val _viewAppliedLists : LiveData<List<ViewAppliedListData>>
         get() = viewAppliedLists
 
     init {
@@ -43,7 +43,7 @@ class SurpriseInspectionsViewModel : BaseViewModel<SurpriseInspectionsNavigator>
             DataProvider.getAppliedLists(
                 request = request,
                 success = Consumer {
-                    viewAppliedLists.value = it
+                    viewAppliedLists.value = it.data
                 },
                 error = Consumer {
                     checkError(it)
