@@ -1,7 +1,6 @@
 package com.gov.mpcb.menu_tabs.surprise_inspections
 
 import android.content.Intent
-import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -9,7 +8,6 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.databinding.ActivitySurpriseInspectionBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.add_surprise_inspection.AddSurpriseInspectionActivity
-import com.gov.mpcb.network.response.ViewAppliedListData
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
@@ -50,12 +48,12 @@ SurpriseInspectionsNavigator{
 
         /**
          * This method is called when activity is brought back to life.
-         * This checks if the intent has "reload_value" in intent, if yes, it calls the api to fetch list.
+         * This checks if the intent has "reload_value" in intent, if yes, it resets the ViewPager adapter.
          */
         RELOAD = intent?.getStringExtra(Constants.RELOAD_KEY) ?: ""
 
         if (RELOAD == Constants.RELOAD_VALUE)
-            mViewModel.getAppliedListsData()
+            setUpViewpager(mBinding.viewpager)
     }
 
     /**
@@ -70,23 +68,13 @@ SurpriseInspectionsNavigator{
         mBinding.fabSurpriseInspection.setOnClickListener {
             startActivity(Intent(this, AddSurpriseInspectionActivity::class.java))
         }
-
-        //This observer setups viewPager with new adapter when new data is available
-        mViewModel._viewAppliedLists.observe(this, Observer {
-            it?.run {
-//                      mAdapter.refreshData(it)
-                    //convert List to ArrayList
-                    setUpViewpager(mBinding.viewpager, arrayListOf<ViewAppliedListData>().apply { addAll(it) })
-//                    mAdapter.notifyDataSetChanged()
-                }
-        })
     }
 
     /**
      * This method is used to setup ViewPager with [SurpriseInspectionPagerAdapter]
      */
-    private fun setUpViewpager(viewPager: ViewPager2, list: ArrayList<ViewAppliedListData> = arrayListOf()){
-        mAdapter = SurpriseInspectionPagerAdapter(this, list)
+    private fun setUpViewpager(viewPager: ViewPager2){
+        mAdapter = SurpriseInspectionPagerAdapter(this)
         viewPager.adapter = mAdapter /*SurpriseInspectionPagerAdapter(this)*/
     }
 

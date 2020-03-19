@@ -4,7 +4,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+                name="viewModel"
+                type="com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,7 +42,9 @@
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     android:indeterminate="true"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    app:statusProgressBar="@{viewModel._progressStatus}"/>
+
 
             <!--Error Text-->
             <TextView
@@ -51,6 +55,8 @@
                     android:textSize="18sp"
                     android:layout_height="wrap_content"
                     android:text="@string/no_data_available"
+                    app:statusProgress="@{viewModel._progressStatus}"
+                    app:isListEmpty="@{viewModel._viewAppliedLists}"
                     />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

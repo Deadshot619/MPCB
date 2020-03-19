@@ -55,6 +55,7 @@
                     android:layout_gravity="center"
                     app:statusProgressBar="@{viewModel._progressStatus}"/>
 
+            <!--Error Text-->
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
