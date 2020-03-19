@@ -21,7 +21,7 @@
                 android:layout_marginTop="4dp"
                 tools:listitem="@layout/item_applied_by_me"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layout_pagination"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -60,6 +60,17 @@
                     />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+        <!--Pagination layout-->
+        <include
+                android:id="@+id/layout_pagination"
+                layout="@layout/layout_pagination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/rv_listings"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

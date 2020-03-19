@@ -45,6 +45,8 @@ VerifiedSurpriseInspectionsNavigator{
         setUpRecyclerView(mBinding.rvListings)
 
         setUpObservers()
+
+        setUpListeners()
     }
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
@@ -61,6 +63,10 @@ VerifiedSurpriseInspectionsNavigator{
 
     }
 
+    private fun setUpListeners(){
+        paginationListeners()
+    }
+
     private fun setUpObservers() {
         //This observer setups viewPager with new adapter when new data is available
         mViewModel._viewAppliedLists.observe(this, Observer {
@@ -70,5 +76,77 @@ VerifiedSurpriseInspectionsNavigator{
             if (filteredData.isNullOrEmpty())
                 mBinding.tvErrorText.visibility = View.VISIBLE
         })
+
+        paginationObservers()
+    }
+
+
+    /**
+     * Method to set Observers on pagination
+     */
+    private fun paginationObservers() {
+        //Observe totalPage
+        mViewModel.totalPage.observe(viewLifecycleOwner, Observer {
+            //If totalPages is greater than 1, then show the pagination layout, else hide it
+            if (it > 1)
+                mBinding.layoutPagination.clPagination.visibility = View.VISIBLE
+            else
+                mBinding.layoutPagination.clPagination.visibility = View.GONE
+
+        })
+
+        //Observe CurrentPage
+        mViewModel.currentPage.observe(viewLifecycleOwner, Observer {
+            //set pagination indicator
+            mBinding.layoutPagination.paginationIndicator.text = "$it"
+
+            //Do this only if there are pages available
+            if (mViewModel.totalPage.value!! > 1) {
+                when (it) {
+                    //if currentPage & Total page are same, then hide 'Next' button & only show 'Previous' button
+                    mViewModel.totalPage.value -> {
+                        mBinding.layoutPagination.run {
+                            paginationNext.visibility = View.INVISIBLE
+                            paginationPrevious.visibility = View.VISIBLE
+                        }
+                    }
+                    //if currentPage is 1, then hide 'Previous' button & only show 'Next' button
+                    1 -> {
+                        mBinding.layoutPagination.run{
+                            paginationNext.visibility = View.VISIBLE
+                            paginationPrevious.visibility = View.INVISIBLE
+                        }
+                    }
+                    //if currentPage is between first & last, then show both 'Previous' & 'Next' button
+                    else -> {
+                        mBinding.layoutPagination.run {
+                            paginationNext.visibility = View.VISIBLE
+                            paginationPrevious.visibility = View.VISIBLE
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    /**
+     * Method to set Listeners on pagination
+     */
+    private fun paginationListeners(){
+        //Next
+        mBinding.layoutPagination.paginationNext.setOnClickListener {
+            mViewModel.run {
+                incrementCurrentPage()
+                getAppliedListsData(pageNo = mViewModel.currentPage.value!!)
+            }
+        }
+
+        //Previous
+        mBinding.layoutPagination.paginationPrevious.setOnClickListener {
+            mViewModel.run {
+                decrementCurrentPage()
+                getAppliedListsData(pageNo = mViewModel.currentPage.value!!)
+            }
+        }
     }
 }
