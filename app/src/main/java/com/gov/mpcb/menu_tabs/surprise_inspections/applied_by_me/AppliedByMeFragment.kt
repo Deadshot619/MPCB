@@ -2,6 +2,7 @@ package com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me
 
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 import androidx.recyclerview.widget.RecyclerView
@@ -9,18 +10,16 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentAppliedByMeBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeAdapter.OnClickListener
-import com.gov.mpcb.network.response.ViewAppliedListData
-import com.gov.mpcb.network.response.ViewAppliedListResponse
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
 /**
  * A simple [Fragment] subclass.
  */
-class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMeViewModel>(), AppliedByMeNavigator {
+class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMeViewModel>(),
+    AppliedByMeNavigator {
 
     private lateinit var mAdapter: AppliedByMeAdapter
-    private var viewAppliedListData: List<ViewAppliedListData>? = null
 
     /**
      * if true, then the data is for Applied For Me section.
@@ -35,28 +34,17 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
     override fun onInternetError() {}
 
     override fun onBinding() {
-        viewAppliedListData =
-            arguments?.getParcelable<ViewAppliedListResponse>(Constants.SI_DATA)?.data?.run { this }
+//        viewAppliedListData =
+//            arguments?.getParcelableArrayList<ViewAppliedListData>(Constants.SI_DATA)?.toList()
+
         isDataForAppliedByMe = arguments?.getBoolean(Constants.ADDED_BY_ME) ?: true
 
-        setUpRecyclerView(mBinding.rvListings)
-    }
+        mBinding.lifecycleOwner = viewLifecycleOwner
+        mBinding.viewModel = mViewModel
 
-    /**
-     * This method filters data for Verified Surprise Inspection section.
-     * Pass value as true if the List passed is for [AppliedByMeFragment], otherwise false
-     *
-     * @param list List of [ViewAppliedListData]
-     * @param dataForAppliedByMe Takes a Boolean as input
-     */
-    private fun filterData(
-        list: List<ViewAppliedListData>,
-        dataForAppliedByMe: Boolean
-    ): List<ViewAppliedListData> {
-        return if (dataForAppliedByMe)
-            list.filter { it.is_approved_by_hod != 1 }
-        else
-            list.filter { it.is_approved_by_hod == 1 }
+        setUpRecyclerView(mBinding.rvListings)
+
+        setUpObservers()
     }
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
@@ -65,29 +53,22 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
                 showMessage(it.industry_name)
             }
         )
+
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, VERTICAL, false)
             this.adapter = mAdapter
         }
 
-        viewAppliedListData?.let {
-            var tempData = listOf<ViewAppliedListData>()
-
-            if (isDataForAppliedByMe) {
-                tempData = filterData(it, isDataForAppliedByMe)
-                mAdapter.submitList(tempData)
-//                showMessage("$isDataForAppliedByMe")
-            } else {
-                tempData = filterData(it, isDataForAppliedByMe)
-                mAdapter.submitList(tempData)
-//                showMessage("$isDataForAppliedByMe")
-            }
-
-            //Show error text if data is not present
-            if (tempData.isNullOrEmpty())
-                mBinding.tvErrorText.visibility = View.VISIBLE
-
-        }
     }
 
+    private fun setUpObservers() {
+        //This observer setups viewPager with new adapter when new data is available
+        mViewModel._viewAppliedLists.observe(this, Observer {
+            val filteredData = mViewModel.filterData(it, isDataForAppliedByMe)
+            mAdapter.submitList(filteredData)
+
+            if (filteredData.isNullOrEmpty())
+                mBinding.tvErrorText.visibility = View.VISIBLE
+        })
+    }
 }
