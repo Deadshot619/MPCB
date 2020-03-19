@@ -13,6 +13,7 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
 import io.reactivex.functions.Consumer
+import kotlin.math.ceil
 
 class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
 
@@ -33,6 +34,7 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
     val _viewAvailableIndustriesData : LiveData<List<ViewAvailableIndustriesData>>
         get() = viewAvailableIndustriesData
 
+    //This variable holds the data(total no. of pages)for pagination
     val totalPage = MutableLiveData<Int>(0)
     val currentPage = MutableLiveData<Int>(1)
 
@@ -60,7 +62,8 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
                 request = request,
                 success = Consumer {
                     viewAvailableIndustriesData.value = it.data
-                    totalPage.value = it.total_rows
+                    //Divide the total rows by 25 so that we get total no. of pages
+                    totalPage.value = ceil(it.total_rows / 25.00).toInt()
                     progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {
