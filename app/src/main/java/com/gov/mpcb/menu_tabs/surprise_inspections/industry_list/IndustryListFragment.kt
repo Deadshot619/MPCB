@@ -125,7 +125,7 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
      */
     private fun paginationObservers() {
         //Observe totalPage
-        mViewModel.totalPage.observe(viewLifecycleOwner, Observer {
+        mViewModel._totalPage.observe(viewLifecycleOwner, Observer {
             //If totalPages is greater than 1, then show the pagination layout, else hide it
             if (it > 1)
                 mBinding.layoutPagination.clPagination.visibility = View.VISIBLE
@@ -135,15 +135,15 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
         })
 
         //Observe CurrentPage
-        mViewModel.currentPage.observe(viewLifecycleOwner, Observer {
+        mViewModel._currentPage.observe(viewLifecycleOwner, Observer {
             //set pagination indicator
             mBinding.layoutPagination.paginationIndicator.text = "$it"
 
             //Do this only if there are pages available
-            if (mViewModel.totalPage.value!! > 1) {
+            if (mViewModel._totalPage.value!! > 1) {
                 when (it) {
                     //if currentPage & Total page are same, then hide 'Next' button & only show 'Previous' button
-                    mViewModel.totalPage.value -> {
+                    mViewModel._totalPage.value -> {
                         mBinding.layoutPagination.run {
                             paginationNext.visibility = View.INVISIBLE
                             paginationPrevious.visibility = View.VISIBLE
@@ -178,7 +178,7 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
                 incrementCurrentPage()
                 getAvailableIndustryListsData(
                     searchQuery = mBinding.toolbarLayout.searchBar.query.toString(),
-                    pageNo = mViewModel.currentPage.value!!
+                    pageNo = mViewModel._currentPage.value!!
                 )
             }
         }
@@ -189,7 +189,7 @@ class IndustryListFragment : BaseFragment<FragmentIndustryListBinding, IndustryL
                 decrementCurrentPage()
                 getAvailableIndustryListsData(
                     searchQuery = mBinding.toolbarLayout.searchBar.query.toString(),
-                    pageNo = mViewModel.currentPage.value!!
+                    pageNo = mViewModel._currentPage.value!!
                 )
             }
         }

@@ -72,11 +72,7 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
     private fun setUpObservers() {
         //This observer setups viewPager with new adapter when new data is available
         mViewModel._viewAppliedLists.observe(this, Observer {
-            val filteredData = mViewModel.filterData(it, isDataForAppliedByMe)
-            mAdapter.submitList(filteredData)
-
-            if (filteredData.isNullOrEmpty())
-                mBinding.tvErrorText.visibility = View.VISIBLE
+            mAdapter.submitList(it)
         })
 
         paginationObservers()
@@ -87,26 +83,26 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
      */
     private fun paginationObservers() {
         //Observe totalPage
-        mViewModel.totalPage.observe(viewLifecycleOwner, Observer {
+        mViewModel._totalPage.observe(viewLifecycleOwner, Observer {
             //If totalPages is greater than 1, then show the pagination layout, else hide it
             if (it > 1)
                 //TODO 19/03/2020 : Revert his after changes are made
-                mBinding.layoutPagination.clPagination.visibility = /*View.VISIBLE*/ View.GONE
+                mBinding.layoutPagination.clPagination.visibility = View.VISIBLE
             else
                 mBinding.layoutPagination.clPagination.visibility = View.GONE
 
         })
 
         //Observe CurrentPage
-        mViewModel.currentPage.observe(viewLifecycleOwner, Observer {
+        mViewModel._currentPage.observe(viewLifecycleOwner, Observer {
             //set pagination indicator
             mBinding.layoutPagination.paginationIndicator.text = "$it"
 
             //Do this only if there are pages available
-            if (mViewModel.totalPage.value!! > 1) {
+            if (mViewModel._totalPage.value!! > 1) {
                 when (it) {
                     //if currentPage & Total page are same, then hide 'Next' button & only show 'Previous' button
-                    mViewModel.totalPage.value -> {
+                    mViewModel._totalPage.value -> {
                         mBinding.layoutPagination.run {
                             paginationNext.visibility = View.INVISIBLE
                             paginationPrevious.visibility = View.VISIBLE
@@ -139,7 +135,7 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
         mBinding.layoutPagination.paginationNext.setOnClickListener {
             mViewModel.run {
                 incrementCurrentPage()
-                getAppliedListsData(pageNo = mViewModel.currentPage.value!!)
+                getAppliedListsData(pageNo = mViewModel._currentPage.value!!)
             }
         }
 
@@ -147,7 +143,7 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
         mBinding.layoutPagination.paginationPrevious.setOnClickListener {
             mViewModel.run {
                 decrementCurrentPage()
-                getAppliedListsData(pageNo = mViewModel.currentPage.value!!)
+                getAppliedListsData(pageNo = mViewModel._currentPage.value!!)
             }
         }
     }

@@ -1,21 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+                name="viewModel"
+                type="com.gov.mpcb.menu_tabs.surprise_inspections.verified_surprise_inspection.VerifiedSurpriseInspectionsViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".menu_tabs.surprise_inspections.verified_surprise_inspection.VerifiedSurpriseInspectionsFragment">
+            tools:context=".menu_tabs.surprise_inspections.applied_by_me.AppliedByMeFragment">
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_listings"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/item_applied_by_me"/>
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                tools:listitem="@layout/item_applied_by_me"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/layout_pagination"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-    </LinearLayout>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+            <!--Progress Bar-->
+            <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:indeterminate="true"
+                    android:layout_gravity="center"
+                    app:statusProgressBar="@{viewModel._progressStatus}"/>
+
+
+            <!--Error Text-->
+            <TextView
+                    android:id="@+id/tv_error_text"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_data_available"
+                    app:statusProgress="@{viewModel._progressStatus}"
+                    app:isListEmpty="@{viewModel._viewAppliedLists}"
+                    />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <!--Pagination layout-->
+        <include
+                android:id="@+id/layout_pagination"
+                layout="@layout/layout_pagination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/rv_listings"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

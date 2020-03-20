@@ -35,9 +35,14 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
         get() = viewAvailableIndustriesData
 
     //This variable holds the data(total no. of pages)for pagination
-    val totalPage = MutableLiveData<Int>(0)
-    val currentPage = MutableLiveData<Int>(1)
+    private val totalPage = MutableLiveData<Int>(0)
+    val _totalPage : LiveData<Int>
+        get() = totalPage
 
+    //This variable holds the data(current page)for pagination
+    private val currentPage = MutableLiveData<Int>(1)
+    val _currentPage: LiveData<Int>
+        get() = currentPage
     init {
         //Call this method only if network is available
         if (isNetworkAvailable())

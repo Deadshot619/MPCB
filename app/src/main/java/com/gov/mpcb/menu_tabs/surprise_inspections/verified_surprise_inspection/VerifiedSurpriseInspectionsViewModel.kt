@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.gov.mpcb.base.BaseViewModel
+import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeFragment
 import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.ViewAppliedListRequest
 import com.gov.mpcb.network.response.LoginResponse
@@ -13,6 +14,7 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
 import io.reactivex.functions.Consumer
+import kotlin.math.ceil
 
 class VerifiedSurpriseInspectionsViewModel : BaseViewModel<VerifiedSurpriseInspectionsNavigator>(){
 
@@ -30,10 +32,18 @@ class VerifiedSurpriseInspectionsViewModel : BaseViewModel<VerifiedSurpriseInspe
 
     //Variable to hold [ViewAppliedListResponse] data
     private val viewAppliedLists = MutableLiveData<List<ViewAppliedListData>>()
-    val _viewAppliedLists : LiveData<List<ViewAppliedListData>>
+    val _viewAppliedLists: LiveData<List<ViewAppliedListData>>
         get() = viewAppliedLists
 
+    //This variable holds the data(total no. of pages)for pagination
+    private val totalPage = MutableLiveData<Int>(0)
+    val _totalPage : LiveData<Int>
+        get() = totalPage
 
+    //This variable holds the data(current page)for pagination
+    private val currentPage = MutableLiveData<Int>(1)
+    val _currentPage: LiveData<Int>
+        get() = currentPage
 
     init {
         //Call this method only if network is available
@@ -42,11 +52,29 @@ class VerifiedSurpriseInspectionsViewModel : BaseViewModel<VerifiedSurpriseInspe
     }
 
     /**
+     * This method filters data for Verified Surprise Inspection section.
+     * Pass value as true if the List passed is for [AppliedByMeFragment], otherwise it's for [VerifiedSurpriseInspectionsFragment] i.e false.
+     *
+     * @param list List of [ViewAppliedListData]
+     * @param dataForAppliedByMe Takes a Boolean as input
+     */
+    fun filterData(
+        list: List<ViewAppliedListData>,
+        dataForAppliedByMe: Boolean
+    ): List<ViewAppliedListData> {
+        return if (dataForAppliedByMe)
+            list.filter { it.is_approved_by_hod != 1 }
+        else
+            list.filter { it.is_approved_by_hod == 1 }
+    }
+
+    /**
      * This method calls the view_applied_list Api & sets the data to [viewAppliedLists]
      */
-    fun getAppliedListsData() {
+    fun getAppliedListsData(pageNo: Int = 1) {
         val request = ViewAppliedListRequest().apply {
             userId = user.userId.toString()
+            page = pageNo
         }
 
         progressStatus.value = LoadingStatus.LOADING
@@ -55,7 +83,11 @@ class VerifiedSurpriseInspectionsViewModel : BaseViewModel<VerifiedSurpriseInspe
             DataProvider.getAppliedLists(
                 request = request,
                 success = Consumer {
-                    viewAppliedLists.value = it.data
+                    viewAppliedLists.value = filterData(it.data, false)
+
+                    //Divide the total rows by 25 so that we get total no. of pages
+                    totalPage.value = ceil(it.total_rows / 25.00).toInt()
+
                     progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {
@@ -64,6 +96,19 @@ class VerifiedSurpriseInspectionsViewModel : BaseViewModel<VerifiedSurpriseInspe
                 }
             )
         )
+    }
+
+
+    fun incrementCurrentPage() {
+        currentPage.value = currentPage.value!! + 1
+    }
+
+    fun decrementCurrentPage() {
+        currentPage.value = currentPage.value!! - 1
+    }
+
+    fun resetCurrentPage() {
+        currentPage.value = 1
     }
 
 }

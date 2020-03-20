@@ -36,9 +36,14 @@ class AppliedByMeViewModel : BaseViewModel<AppliedByMeNavigator>() {
         get() = viewAppliedLists
 
     //This variable holds the data(total no. of pages)for pagination
-    val totalPage = MutableLiveData<Int>(0)
-    val currentPage = MutableLiveData<Int>(1)
+    private val totalPage = MutableLiveData<Int>(0)
+    val _totalPage : LiveData<Int>
+        get() = totalPage
 
+    //This variable holds the data(current page)for pagination
+    private val currentPage = MutableLiveData<Int>(1)
+    val _currentPage: LiveData<Int>
+        get() = currentPage
 
     init {
         //Call this method only if network is available
@@ -78,7 +83,7 @@ class AppliedByMeViewModel : BaseViewModel<AppliedByMeNavigator>() {
             DataProvider.getAppliedLists(
                 request = request,
                 success = Consumer {
-                    viewAppliedLists.value = it.data
+                    viewAppliedLists.value = filterData(it.data, true)
 
                     //Divide the total rows by 25 so that we get total no. of pages
                     totalPage.value = ceil(it.total_rows / 25.00).toInt()
@@ -105,6 +110,4 @@ class AppliedByMeViewModel : BaseViewModel<AppliedByMeNavigator>() {
     fun resetCurrentPage() {
         currentPage.value = 1
     }
-
-
 }

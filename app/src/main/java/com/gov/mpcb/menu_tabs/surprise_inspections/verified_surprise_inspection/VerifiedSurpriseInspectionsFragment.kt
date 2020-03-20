@@ -7,16 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
-import com.gov.mpcb.databinding.FragmentAppliedByMeBinding
+import com.gov.mpcb.databinding.FragmentVerifiedSurpriseInspectionsBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeAdapter
-import com.gov.mpcb.menu_tabs.surprise_inspections.applied_by_me.AppliedByMeViewModel
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
 /**
  * A simple [Fragment] subclass.
  */
-class VerifiedSurpriseInspectionsFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMeViewModel>(),
+class VerifiedSurpriseInspectionsFragment : BaseFragment<FragmentVerifiedSurpriseInspectionsBinding, VerifiedSurpriseInspectionsViewModel>(),
 VerifiedSurpriseInspectionsNavigator{
 
     private lateinit var mAdapter: AppliedByMeAdapter
@@ -27,8 +26,8 @@ VerifiedSurpriseInspectionsNavigator{
      */
     private var isDataForAppliedByMe: Boolean = true
 
-    override fun getLayoutId() = R.layout.fragment_applied_by_me
-    override fun getViewModel() = AppliedByMeViewModel::class.java
+    override fun getLayoutId() = R.layout.fragment_verified_surprise_inspections
+    override fun getViewModel() = VerifiedSurpriseInspectionsViewModel::class.java
     override fun getNavigator() = this@VerifiedSurpriseInspectionsFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
@@ -70,11 +69,7 @@ VerifiedSurpriseInspectionsNavigator{
     private fun setUpObservers() {
         //This observer setups viewPager with new adapter when new data is available
         mViewModel._viewAppliedLists.observe(this, Observer {
-            val filteredData = mViewModel.filterData(it, isDataForAppliedByMe)
-            mAdapter.submitList(filteredData)
-
-            if (filteredData.isNullOrEmpty())
-                mBinding.tvErrorText.visibility = View.VISIBLE
+            mAdapter.submitList(it)
         })
 
         paginationObservers()
@@ -86,7 +81,7 @@ VerifiedSurpriseInspectionsNavigator{
      */
     private fun paginationObservers() {
         //Observe totalPage
-        mViewModel.totalPage.observe(viewLifecycleOwner, Observer {
+        mViewModel._totalPage.observe(viewLifecycleOwner, Observer {
             //If totalPages is greater than 1, then show the pagination layout, else hide it
             if (it > 1)
                 mBinding.layoutPagination.clPagination.visibility = View.VISIBLE
@@ -96,15 +91,15 @@ VerifiedSurpriseInspectionsNavigator{
         })
 
         //Observe CurrentPage
-        mViewModel.currentPage.observe(viewLifecycleOwner, Observer {
+        mViewModel._currentPage.observe(viewLifecycleOwner, Observer {
             //set pagination indicator
             mBinding.layoutPagination.paginationIndicator.text = "$it"
 
             //Do this only if there are pages available
-            if (mViewModel.totalPage.value!! > 1) {
+            if (mViewModel._totalPage.value!! > 1) {
                 when (it) {
                     //if currentPage & Total page are same, then hide 'Next' button & only show 'Previous' button
-                    mViewModel.totalPage.value -> {
+                    mViewModel._totalPage.value -> {
                         mBinding.layoutPagination.run {
                             paginationNext.visibility = View.INVISIBLE
                             paginationPrevious.visibility = View.VISIBLE
@@ -137,7 +132,7 @@ VerifiedSurpriseInspectionsNavigator{
         mBinding.layoutPagination.paginationNext.setOnClickListener {
             mViewModel.run {
                 incrementCurrentPage()
-                getAppliedListsData(pageNo = mViewModel.currentPage.value!!)
+                getAppliedListsData(pageNo = mViewModel._currentPage.value!!)
             }
         }
 
@@ -145,7 +140,7 @@ VerifiedSurpriseInspectionsNavigator{
         mBinding.layoutPagination.paginationPrevious.setOnClickListener {
             mViewModel.run {
                 decrementCurrentPage()
-                getAppliedListsData(pageNo = mViewModel.currentPage.value!!)
+                getAppliedListsData(pageNo = mViewModel._currentPage.value!!)
             }
         }
     }
