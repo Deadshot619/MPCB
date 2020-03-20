@@ -104,7 +104,20 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_industry_ref_no"
                     android:layout_marginEnd="16dp" />
 
-            <!--    Applied By Name  -->
+
+            <!--   Applied by Name label  -->
+            <TextView
+                    android:id="@+id/tv_applied_by_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_industry_ref_no_info"
+                    app:layout_constraintTop_toBottomOf="@id/tv_industry_ref_no_info"
+                    android:text="Applied by"
+                    tools:text="Applied by"/>
+
+            <!--    Applied By Name info  -->
             <TextView
                     android:id="@+id/tv_applied_by_name_info"
                     android:layout_width="0dp"
@@ -116,8 +129,8 @@
                     android:layout_marginRight="16dp"
                     tools:text="Ranjan Das"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/tv_industry_ref_no_info"
-                    app:layout_constraintTop_toBottomOf="@id/tv_industry_ref_no_info"
+                    app:layout_constraintStart_toStartOf="@id/tv_applied_by_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_applied_by_name"
                     android:layout_marginEnd="16dp" />
 
 
