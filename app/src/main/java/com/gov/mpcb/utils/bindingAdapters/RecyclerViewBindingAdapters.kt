@@ -1,11 +1,31 @@
 package com.gov.mpcb.utils.bindingAdapters
 
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection.PreviouslyConductedInspectionAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.IndustryListAdapter
 import com.gov.mpcb.network.response.ViewAvailableIndustriesData
 import com.gov.mpcb.network.response.ViewPreviousInspectionListData
+import com.gov.mpcb.utils.LoadingStatus
+
+/**
+ * This adapter will hide the recycler while the recycler view is loading or when some error occured
+ */
+@BindingAdapter("recyclerViewLoading")
+fun bindRecyclerViewLoading(recyclerView: RecyclerView, status: LoadingStatus?) {
+    when (status) {
+        LoadingStatus.LOADING -> {
+            recyclerView.visibility = View.INVISIBLE
+        }
+        LoadingStatus.DONE -> {
+            recyclerView.visibility = View.VISIBLE
+        }
+        LoadingStatus.ERROR -> {
+            recyclerView.visibility = View.INVISIBLE
+        }
+    }
+}
 
 /**
  * When there is no Products List data (data is null), hide the [RecyclerView],

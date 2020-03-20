@@ -32,7 +32,6 @@
                 app:listAvailableIndustryData="@{viewModel._viewAvailableIndustriesData}"
                 tools:listitem="@layout/item_industry_list"
                 app:layout_constraintBottom_toTopOf="@id/layout_pagination"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />

@@ -86,7 +86,6 @@ class AppliedByMeFragment : BaseFragment<FragmentAppliedByMeBinding, AppliedByMe
         mViewModel._totalPage.observe(viewLifecycleOwner, Observer {
             //If totalPages is greater than 1, then show the pagination layout, else hide it
             if (it > 1)
-                //TODO 19/03/2020 : Revert his after changes are made
                 mBinding.layoutPagination.clPagination.visibility = View.VISIBLE
             else
                 mBinding.layoutPagination.clPagination.visibility = View.GONE
