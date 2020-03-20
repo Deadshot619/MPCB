@@ -10,7 +10,9 @@
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -56,7 +58,7 @@
                         android:id="@+id/tv_date_info"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        tools:text="9876543210"
+                        tools:text="69/69/6969"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:layout_marginTop="4dp"

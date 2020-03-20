@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_grey"
+            android:orientation="vertical">
+
+        <!--    Toolbar     -->
+        <include
+                android:id="@+id/toolbarLayout"
+                layout="@layout/toolbar" />
+
+        <!-- Regional Office -->
+        <TextView
+                android:id="@+id/tv_regional_office"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:text="Regional Office"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        <!-- Layout for Regional Office  -->
+        <include
+                android:id="@+id/layout_apply_surprise_inspection"
+                layout="@layout/item_sub_regional_office" />
+
+        <!-- Sub-Regional Office -->
+        <TextView
+                android:id="@+id/tv_sub_regional_office"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="16dp"
+                android:text="Sub-Regional Office"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <!-- Recycler View for Previously Conducted Inspection  -->
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_sub_regional_office"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/item_sub_regional_office"
+                    tools:visibility="visible" />
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                <!--Progress Bar-->
+                <androidx.core.widget.ContentLoadingProgressBar
+                        android:id="@+id/progress_bar"
+                        style="@style/Widget.AppCompat.ProgressBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:layout_gravity="center"/>
+<!--                        app:statusProgressBar="@{viewModel._progressStatus}"/>-->
+
+                <!--Error Text-->
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        android:textSize="18sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_data_available"/>
+<!--                        app:statusProgress="@{viewModel._progressStatus}"-->
+<!--                        app:isListEmpty="@{viewModel._previousInspectionListData}"-->
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </LinearLayout>
+</layout>

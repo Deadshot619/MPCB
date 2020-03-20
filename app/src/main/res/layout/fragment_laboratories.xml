@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/bg_grey"
-            tools:context=".menu_tabs.faq.FaqFragment">
+            tools:context=".menu_tabs.surprise_inspections.industry_list.IndustryListFragment">
 
         <!--    Toolbar -->
         <include
@@ -19,22 +19,19 @@
                 layout="@layout/toolbar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_industry_list"
+                android:id="@+id/rv_laboratories_list"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                tools:listitem="@layout/item_faq"
-                app:layout_constraintBottom_toBottomOf="parent"
+                tools:listitem="@layout/item_laboratories"
+                app:layout_constraintBottom_toTopOf="@id/layout_pagination"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
-<!--
-        app:listAvailableIndustryData="@{viewModel._viewAvailableIndustriesData}"
--->
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="wrap_content"
@@ -52,9 +49,7 @@
                     android:layout_height="wrap_content"
                     android:indeterminate="true"
                     android:layout_gravity="center"/>
-<!--
-                    app:statusProgressBar="@{viewModel._progressStatus}"
--->
+<!--                    app:statusProgressBar="@{viewModel._progressStatus}"/>-->
 
             <!--Error Text-->
             <TextView
@@ -63,15 +58,22 @@
                     android:visibility="gone"
                     android:textSize="18sp"
                     android:layout_height="wrap_content"
-                    android:text="@string/no_data_available"
-                    />
-<!--
-            app:statusProgress="@{viewModel._progressStatus}"
-            app:isListEmpty="@{viewModel._viewAvailableIndustriesData}"
--->
-
+                    android:text="@string/no_data_available"/>
+<!--                    app:statusProgress="@{viewModel._progressStatus}"-->
+<!--                    app:isListEmpty="@{viewModel._viewAvailableIndustriesData}"-->
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+        <!--Pagination layout-->
+        <include
+                android:id="@+id/layout_pagination"
+                layout="@layout/layout_pagination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/rv_laboratories_list"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
