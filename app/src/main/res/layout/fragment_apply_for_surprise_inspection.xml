@@ -21,69 +21,79 @@
                 android:id="@+id/toolbarLayout"
                 layout="@layout/toolbar" />
 
-        <!-- Layout for applying Surprise Inspections  -->
-        <include
-                android:id="@+id/layout_apply_surprise_inspection"
-                layout="@layout/item_apply_surprise_inspection" />
-
-        <!-- Previously Conducted Inspection -->
-        <TextView
-                android:id="@+id/tv_previously_conducted_inspections_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="16dp"
-                android:text="Previously Conducted Inspection"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
-            <!-- Recycler View for Previously Conducted Inspection  -->
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_previously_conducted_inspection"
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    app:listPreviouslyConductedInspections="@{viewModel._previousInspectionListData}"
-                    tools:listitem="@layout/item_previously_conducted_inspection"
-                    tools:visibility="visible" />
+                    android:orientation="vertical">
+                <!-- Layout for applying Surprise Inspections  -->
+                <include
+                        android:id="@+id/layout_apply_surprise_inspection"
+                        layout="@layout/item_apply_surprise_inspection" />
 
-            <androidx.coordinatorlayout.widget.CoordinatorLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-
-                <!--Progress Bar-->
-                <androidx.core.widget.ContentLoadingProgressBar
-                        android:id="@+id/progress_bar"
-                        style="@style/Widget.AppCompat.ProgressBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:indeterminate="true"
-                        android:layout_gravity="center"
-                        app:statusProgressBar="@{viewModel._progressStatus}"/>
-
-                <!--Error Text-->
+                <!-- Previously Conducted Inspection -->
                 <TextView
+                        android:id="@+id/tv_previously_conducted_inspections_label"
                         android:layout_width="wrap_content"
-                        android:layout_gravity="center"
-                        android:visibility="gone"
-                        android:textSize="18sp"
-                        app:statusProgress="@{viewModel._progressStatus}"
-                        app:isListEmpty="@{viewModel._previousInspectionListData}"
                         android:layout_height="wrap_content"
-                        android:text="@string/no_data_available"
-                        />
-            </androidx.coordinatorlayout.widget.CoordinatorLayout>
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Previously Conducted Inspection"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <!-- Recycler View for Previously Conducted Inspection  -->
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_previously_conducted_inspection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            app:listPreviouslyConductedInspections="@{viewModel._previousInspectionListData}"
+                            tools:listitem="@layout/item_previously_conducted_inspection"
+                            tools:visibility="visible" />
+
+                    <androidx.coordinatorlayout.widget.CoordinatorLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        <!--Progress Bar-->
+                        <androidx.core.widget.ContentLoadingProgressBar
+                                android:id="@+id/progress_bar"
+                                style="@style/Widget.AppCompat.ProgressBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:indeterminate="true"
+                                app:statusProgressBar="@{viewModel._progressStatus}" />
+
+                        <!--Error Text-->
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/no_data_available"
+                                android:textSize="18sp"
+                                android:visibility="gone"
+                                app:isListEmpty="@{viewModel._previousInspectionListData}"
+                                app:statusProgress="@{viewModel._progressStatus}" />
+                    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </layout>
