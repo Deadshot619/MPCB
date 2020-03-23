@@ -163,4 +163,13 @@ interface RemoteDataProvider {
         success: Consumer<ViewPreviousInspectionListResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to fetch circulars data
+     */
+    fun getCircularsData(
+        request: CircularsRequest,
+        success: Consumer<CircularsResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }

@@ -92,6 +92,11 @@ interface APIInterface {
     @POST("add_surprise_inspection")
     fun addSurpriseInspection(@Body request: AddSurpriseInspectionRequest): Single<AddSurpriseInspectionResponse>
 
+    //View Previous Inspection Lists
     @POST("view_previous_inspection_list")
     fun getPreviousConductedInspections(@Body request: ViewPreviousInspectionListRequest): Single<ViewPreviousInspectionListResponse>
+
+    //fetch Circulars data
+    @GET("http://www.mpcb.gov.in/view/api/circulars")
+    fun fetchCirculars(@Body requestId: CircularsRequest): Single<CircularsResponse>
 }

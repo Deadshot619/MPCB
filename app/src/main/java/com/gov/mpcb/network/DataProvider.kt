@@ -481,4 +481,26 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    /**
+     * Method to fetch circulars data
+     */
+    override fun getCircularsData(
+        request: CircularsRequest,
+        success: Consumer<CircularsResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchCirculars(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                        success.accept(response)
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
 }
