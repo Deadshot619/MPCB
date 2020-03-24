@@ -43,6 +43,7 @@ class IndustryListViewModel : BaseViewModel<IndustryListNavigator>(){
     private val currentPage = MutableLiveData<Int>(1)
     val _currentPage: LiveData<Int>
         get() = currentPage
+
     init {
         //Call this method only if network is available
         if (isNetworkAvailable())
