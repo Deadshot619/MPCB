@@ -125,6 +125,8 @@
                         android:src="@drawable/ic_picture_as_pdf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        app:isLinkAvailable="@{data.pdfLink}"
+                        android:onClick="@{() -> clickListener.onClick(data)}"
                         app:layout_constraintTop_toTopOf="@id/tv_ast_label"
                         app:layout_constraintBottom_toBottomOf="@id/tv_ast_info"
                         app:layout_constraintEnd_toEndOf="parent" />

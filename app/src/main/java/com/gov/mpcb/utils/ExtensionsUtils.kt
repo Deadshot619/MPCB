@@ -1,5 +1,6 @@
 package com.gov.mpcb.utils
 
+import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -22,7 +23,7 @@ import java.text.SimpleDateFormat
 
 var toast: Toast? = null
 
-fun AppCompatActivity.showMessage(message: String) {
+fun Activity.showMessage(message: String) {
     if (toast != null){
         toast?.cancel()
     }

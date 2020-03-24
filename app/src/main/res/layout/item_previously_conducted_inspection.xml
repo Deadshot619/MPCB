@@ -210,7 +210,7 @@
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:onClick="@{() -> clickListener.onClick(data.download_link)}"
-                    app:isDownloadLinkAvailable="@{data.download_link}"
+                    app:isLinkAvailable="@{data.download_link}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tv_visit_conducted_on_info"/>

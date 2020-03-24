@@ -2,7 +2,6 @@ package com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspectio
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -83,30 +82,13 @@ class ApplyForSurpriseInspectionFragment :
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         mAdapter = PreviouslyConductedInspectionAdapter(PreviouslyConductedInspectionAdapter.OnClickListener{ url ->
-            redirectUserToBrowser(url)
+            //Open Browser
+            CommonUtils.redirectUserToBrowser(activity!!, url)
         })
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
             this.adapter = mAdapter
-        }
-    }
-
-    /**
-     * This method will redirect the user to a browser(if it exists) with the url provided.
-     *
-     * @param url takes a string of url as input
-     */
-    private fun redirectUserToBrowser(url: String){
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-        val title = "Please choose a Browser..."
-        val chooser = Intent.createChooser(intent, title)
-
-        //check if there are apps to open this url
-        if (intent.resolveActivity(activity?.packageManager!!) != null){
-            startActivity(chooser)
-        } else {
-            showMessage("You don't have any apps to open this link with.")
         }
     }
 

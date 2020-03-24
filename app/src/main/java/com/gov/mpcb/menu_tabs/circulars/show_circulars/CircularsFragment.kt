@@ -7,6 +7,7 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentCircularsBinding
 import com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.ShowCircularsAdapter
+import com.gov.mpcb.utils.CommonUtils
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
@@ -49,7 +50,8 @@ class CircularsFragment : BaseFragment<FragmentCircularsBinding, CircularsFragme
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
         mAdapter = ShowCircularsAdapter(ShowCircularsAdapter.OnClickListener{
-            showMessage(it.title)
+            if (!it.pdfLink.isNullOrEmpty())
+                CommonUtils.redirectUserToBrowser(activity!!, it.pdfLink)
         })
 
         recyclerView.run {

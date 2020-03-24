@@ -112,12 +112,12 @@ fun bindVisitedOn(textView: TextView, visited_on: String?) {
 }
 
 /**
- * If download link is available, show download button, else hide it
+ * If link is available, show button, else hide it
  */
-@BindingAdapter("isDownloadLinkAvailable")
-fun bindDownloadReportBtn(textView: TextView, downloadLink: String?) {
+@BindingAdapter("isLinkAvailable")
+fun bindIsLinkAvailable(view: View, downloadLink: String?) {
     if (downloadLink.isNullOrEmpty())
-        textView.visibility = View.GONE
+        view.visibility = View.GONE
     else
-        textView.visibility = View.VISIBLE
+        view.visibility = View.VISIBLE
 }
