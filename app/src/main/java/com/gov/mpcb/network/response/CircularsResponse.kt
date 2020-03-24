@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class CircularsResponse (
-    val data : List<CircularsData>
+    @Expose @SerializedName("JSONArray") val data : List<CircularsData>?
 )
 
 data class CircularsData(

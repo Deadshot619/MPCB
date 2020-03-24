@@ -485,11 +485,11 @@ object DataProvider : RemoteDataProvider {
      * Method to fetch circulars data
      */
     override fun getCircularsData(
-        request: CircularsRequest,
-        success: Consumer<CircularsResponse>,
+//        request: CircularsRequest,
+        success: Consumer<List<CircularsData>>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.fetchCirculars(request)
+        mServices.fetchCirculars(/*request*/)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

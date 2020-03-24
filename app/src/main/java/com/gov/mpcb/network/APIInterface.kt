@@ -98,5 +98,5 @@ interface APIInterface {
 
     //fetch Circulars data
     @GET("http://www.mpcb.gov.in/view/api/circulars")
-    fun fetchCirculars(@Body requestId: CircularsRequest): Single<CircularsResponse>
+    fun fetchCirculars(): Single<List<CircularsData>>
 }
