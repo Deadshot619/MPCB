@@ -169,7 +169,7 @@ interface RemoteDataProvider {
      */
     fun getCircularsData(
 //        request: CircularsRequest,
-        success: Consumer<List<CircularsData>>,
+        success: Consumer<CircularsResponse>,
         error: Consumer<Throwable>
     ): Disposable
 }

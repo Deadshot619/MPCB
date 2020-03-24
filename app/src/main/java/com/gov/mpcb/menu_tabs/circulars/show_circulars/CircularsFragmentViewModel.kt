@@ -13,6 +13,7 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
 import io.reactivex.functions.Consumer
+import kotlin.math.ceil
 
 class CircularsFragmentViewModel : BaseViewModel<CircularsFragmentNavigator>(){
 
@@ -67,9 +68,9 @@ class CircularsFragmentViewModel : BaseViewModel<CircularsFragmentNavigator>(){
             DataProvider.getCircularsData(
 //                request = request,
                 success = Consumer {
-                        circularsData.value = it
+                        circularsData.value = it.data
                         //Divide the total rows by 25 so that we get total no. of pages
-//                    totalPage.value = ceil(it.total_rows / 25.00).toInt()
+                    totalPage.value = ceil(it.pager.total_row_count.toInt() / 25.00).toInt()
                         progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {
