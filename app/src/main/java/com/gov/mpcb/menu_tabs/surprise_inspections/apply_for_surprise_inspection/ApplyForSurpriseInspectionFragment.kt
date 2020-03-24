@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentApplyForSurpriseInspectionBinding
-import com.gov.mpcb.databinding.ItemApplySurpriseInspectionBinding
 import com.gov.mpcb.network.response.ViewAvailableIndustriesData
 import com.gov.mpcb.utils.CommonUtils
 import com.gov.mpcb.utils.constants.Constants
@@ -64,12 +63,8 @@ class ApplyForSurpriseInspectionFragment :
         mBinding.run{
             lifecycleOwner = viewLifecycleOwner
             viewModel = mViewModel
+            layoutApplySurpriseInspection.data = viewAvailableIndustriesData
         }
-
-        setViews(
-            data = viewAvailableIndustriesData,
-            layout = mBinding.layoutApplySurpriseInspection
-        )
 
         setListeners()
 
@@ -89,20 +84,6 @@ class ApplyForSurpriseInspectionFragment :
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
             this.adapter = mAdapter
-        }
-    }
-
-    /**
-     * This method sets data to the provided [ItemApplySurpriseInspectionBinding] layout
-     */
-    private fun setViews(
-        data: ViewAvailableIndustriesData,
-        layout: ItemApplySurpriseInspectionBinding
-    ) {
-        layout.run {
-            tvIndustryRefNoInfo.text = data.industry_iin
-            tvIndustryNameInfo.text = data.industry_name
-            tvIndustryAddressInfo.text = data.industry_address
         }
     }
 
