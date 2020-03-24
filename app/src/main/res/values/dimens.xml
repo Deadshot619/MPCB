@@ -21,4 +21,5 @@
 
 
     <dimen name="ed_frag_disposal_width">100dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

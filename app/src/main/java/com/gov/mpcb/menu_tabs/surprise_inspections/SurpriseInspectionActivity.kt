@@ -14,7 +14,7 @@ import com.gov.mpcb.utils.showMessage
 class SurpriseInspectionActivity : BaseActivity<ActivitySurpriseInspectionBinding, SurpriseInspectionsViewModel>(),
 SurpriseInspectionsNavigator{
 
-
+    //This variable will be used to determine whether or not to reload this fragment
     private var RELOAD = ""
 
     override fun getLayoutId() = R.layout.activity_surprise_inspection

@@ -91,5 +91,14 @@
     <string name="no_data_available">No data available!</string>
     <string name="pagination_previous">Previous</string>
     <string name="pagination_next">Next</string>
+    <string name="title_activity_circulars">CircularsActivity</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+
 
 </resources>

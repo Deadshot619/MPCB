@@ -31,11 +31,14 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-
-        <activity android:name=".menu_tabs.surprise_inspections.add_surprise_inspection.AddSurpriseInspectionActivity"/>
         <activity
-                android:launchMode="singleTop"
-                android:name=".menu_tabs.surprise_inspections.SurpriseInspectionActivity" />
+                android:name=".menu_tabs.circulars.CircularsActivity"
+                android:label="@string/title_activity_circulars"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".menu_tabs.surprise_inspections.add_surprise_inspection.AddSurpriseInspectionActivity" />
+        <activity
+                android:name=".menu_tabs.surprise_inspections.SurpriseInspectionActivity"
+                android:launchMode="singleTop" />
 
         <provider
                 android:name="androidx.core.content.FileProvider"
