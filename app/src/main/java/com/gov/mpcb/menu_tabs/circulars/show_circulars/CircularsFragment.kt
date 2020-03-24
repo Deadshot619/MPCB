@@ -28,5 +28,13 @@ class CircularsFragment : BaseFragment<FragmentCircularsBinding, CircularsFragme
             showCalendar = false,
             showBackButton = true
         )
+
+        setListeners()
+    }
+
+    private fun setListeners() {
+        mBinding.toolbarLayout.imgBack.setOnClickListener {
+            activity?.finish()
+        }
     }
 }

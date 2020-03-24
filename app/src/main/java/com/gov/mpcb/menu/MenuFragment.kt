@@ -4,6 +4,7 @@ import android.content.Intent
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentMenuBinding
+import com.gov.mpcb.menu_tabs.circulars.CircularsActivity
 import com.gov.mpcb.menu_tabs.faq.FaqActivity
 import com.gov.mpcb.menu_tabs.surprise_inspections.SurpriseInspectionActivity
 import com.gov.mpcb.utils.constants.Constants.Companion.setToolbar
@@ -36,6 +37,11 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(),
      */
     private fun setUpListeners() {
         mBinding.run {
+            //Circulars Activity
+            circulars.setOnClickListener {
+                startActivity(Intent(activity, CircularsActivity::class.java))
+            }
+
             //Surprise Inspections Activity
             surpriseInspections.setOnClickListener {
                 startActivity(Intent(activity, SurpriseInspectionActivity::class.java))
