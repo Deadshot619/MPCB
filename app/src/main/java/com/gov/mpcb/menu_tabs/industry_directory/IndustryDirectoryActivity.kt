@@ -3,6 +3,7 @@ package com.gov.mpcb.menu_tabs.industry_directory
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.databinding.ActivityIndustryDirectoryBinding
+import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListFragment
 import com.gov.mpcb.utils.showMessage
 
 class IndustryDirectoryActivity :
@@ -15,6 +16,6 @@ class IndustryDirectoryActivity :
     override fun onInternetError() {}
 
     override fun onBinding() {
-
+        addFragment(fragment = IdIndustryListFragment(), addToBackstack = true, bundle = null)
     }
 }
