@@ -1,6 +1,7 @@
 package com.gov.mpcb.menu_tabs.circulars.show_circulars
 
 import android.view.View
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +37,8 @@ class CircularsFragment : BaseFragment<FragmentCircularsBinding, CircularsFragme
             showCalendar = false,
             showBackButton = true
         )
+        //set searchBar hint
+        mBinding.toolbarLayout.searchBar.queryHint = "Search by Title..."
 
         mBinding.lifecycleOwner = viewLifecycleOwner
         mBinding.viewModel = mViewModel
@@ -69,6 +72,31 @@ class CircularsFragment : BaseFragment<FragmentCircularsBinding, CircularsFragme
         mBinding.toolbarLayout.imgBack.setOnClickListener {
             activity?.finish()
         }
+
+        mBinding.toolbarLayout.searchBar.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                //When query is searched, call the api & reset the page no.
+                if (!query.isNullOrEmpty()) {
+                    mViewModel.getCircularsData(searchQuery = query)
+                    mViewModel.resetCurrentPage()
+                } else
+                    mViewModel.getCircularsData()
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                //Reset the searc
+                if (newText == "") {
+                    mViewModel.getCircularsData()
+                    mViewModel.resetCurrentPage()
+                }
+                return true
+            }
+
+        })
 
         paginationListeners()
     }
@@ -137,10 +165,10 @@ class CircularsFragment : BaseFragment<FragmentCircularsBinding, CircularsFragme
             mViewModel.run {
                 incrementCurrentPage()
                 //TODO 24/03/2020 : Setup pagination with api
-                /*getAvailableIndustryListsData(
+                getCircularsData(
                     searchQuery = mBinding.toolbarLayout.searchBar.query.toString(),
                     pageNo = mViewModel._currentPage.value!!
-                )*/
+                )
             }
         }
 
@@ -148,10 +176,10 @@ class CircularsFragment : BaseFragment<FragmentCircularsBinding, CircularsFragme
         mBinding.layoutPagination.paginationPrevious.setOnClickListener {
             mViewModel.run {
                 decrementCurrentPage()
-                /*getAvailableIndustryListsData(
+                getCircularsData(
                     searchQuery = mBinding.toolbarLayout.searchBar.query.toString(),
                     pageNo = mViewModel._currentPage.value!!
-                )*/
+                )
             }
         }
     }

@@ -411,23 +411,23 @@ object DataProvider : RemoteDataProvider {
         success: Consumer<ViewAvailableIndustriesResponse>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-            mServices.getAvailableIndustryLists(request)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    Consumer { response ->
-                        if (response.status != 1) {
-                            error.accept(Throwable(response.message))
-                        } else {
-                            success.accept(response)
-                        }
-                    },
-                    error
-                )
-        } else {
-            noInternetAvailable(error)
-            getDefaultDisposable()
-        }
+        mServices.getAvailableIndustryLists(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 
     /**
      * Method to submit request for Surprise Inspection
@@ -436,7 +436,7 @@ object DataProvider : RemoteDataProvider {
         request: AddSurpriseInspectionRequest,
         success: Consumer<AddSurpriseInspectionResponse>,
         error: Consumer<Throwable>
-    ):Disposable = if (isNetworkAvailable()) {
+    ): Disposable = if (isNetworkAvailable()) {
         mServices.addSurpriseInspection(request)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -485,16 +485,16 @@ object DataProvider : RemoteDataProvider {
      * Method to fetch circulars data
      */
     override fun getCircularsData(
-//        request: CircularsRequest,
+        request: CircularsRequest,
         success: Consumer<CircularsResponse>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
-        mServices.fetchCirculars(/*request*/)
+        mServices.fetchCirculars(request.page, request.search)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 Consumer { response ->
-                        success.accept(response)
+                    success.accept(response)
                 },
                 error
             )

@@ -53,24 +53,25 @@ class CircularsFragmentViewModel : BaseViewModel<CircularsFragmentNavigator>(){
 
 
     /**
-     * This method calls the view_applied_list Api & sets the data to [circularsData]
+     * This method calls the Api & sets the data to [circularsData]
      */
     fun getCircularsData(searchQuery: String = "", pageNo: Int = 1) {
         val request = CircularsRequest().apply {
 //            userId = user.userId.toString()
             search = searchQuery
-            page = pageNo
+            //page number of this api starts with 0, hence its subracted by -1
+            page = pageNo - 1
         }
 
         progressStatus.value = LoadingStatus.LOADING
 
         mDisposable.add(
             DataProvider.getCircularsData(
-//                request = request,
+                request = request,
                 success = Consumer {
                         circularsData.value = it.data
-                        //Divide the total rows by 25 so that we get total no. of pages
-                    totalPage.value = ceil(it.pager.total_row_count.toInt() / 25.00).toInt()
+                        //Divide the total rows by 10 (i.e Items per page) so that we get total no. of pages
+                    totalPage.value = ceil(it.pager.total_row_count.toInt() / 10.00).toInt()
                         progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {
