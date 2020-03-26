@@ -6,6 +6,7 @@ import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentMenuBinding
 import com.gov.mpcb.menu_tabs.circulars.CircularsActivity
 import com.gov.mpcb.menu_tabs.faq.FaqActivity
+import com.gov.mpcb.menu_tabs.industry_directory.IndustryDirectoryActivity
 import com.gov.mpcb.menu_tabs.surprise_inspections.SurpriseInspectionActivity
 import com.gov.mpcb.utils.constants.Constants.Companion.setToolbar
 import com.gov.mpcb.utils.showMessage
@@ -45,6 +46,11 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(),
             //Surprise Inspections Activity
             surpriseInspections.setOnClickListener {
                 startActivity(Intent(activity, SurpriseInspectionActivity::class.java))
+            }
+
+            //Industry Directory Activity
+            industryDirectory.setOnClickListener {
+                startActivity(Intent(activity, IndustryDirectoryActivity::class.java))
             }
 
             //FAQ Activity

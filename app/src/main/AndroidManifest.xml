@@ -32,9 +32,13 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
         <activity
+                android:name=".menu_tabs.industry_directory.IndustryDirectoryActivity"
+                android:label="@string/title_activity_industry_directory"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
                 android:name=".menu_tabs.circulars.CircularsActivity"
                 android:label="@string/title_activity_circulars"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".menu_tabs.surprise_inspections.add_surprise_inspection.AddSurpriseInspectionActivity" />
         <activity
                 android:name=".menu_tabs.surprise_inspections.SurpriseInspectionActivity"
