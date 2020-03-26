@@ -5,8 +5,8 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-data class ViewAvailableIndustriesResponse(
-    @Expose @SerializedName("data") val data: List<ViewAvailableIndustriesData> = listOf(),
+data class ViewAvailableIndustriesResponse<T>(
+    @Expose @SerializedName("data") val data: List<T> = listOf(),
     @Expose @SerializedName("message") val message: String = "",
     @Expose @SerializedName("status") val status: Int = -1,
     @Expose @SerializedName("total_rows") val total_rows: Int = 0

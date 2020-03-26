@@ -37,7 +37,7 @@ interface APIInterface {
 
     //View Check-in info
     @POST("view_check_in")
-    fun getcheckInInfo(@Body request: MyVisitRequest) : Single<CheckInfoResponse>
+    fun getcheckInInfo(@Body request: MyVisitRequest): Single<CheckInfoResponse>
 
     //Submit Visit Report data
     @POST("submit_visit_report")
@@ -86,7 +86,7 @@ interface APIInterface {
 
     //View available industry lists
     @POST("list_surprise_industries")
-    fun getAvailableIndustryLists(@Body request: ViewAvailableIndustriesRequest): Single<ViewAvailableIndustriesResponse>
+    fun getAvailableIndustryLists(@Body request: ViewAvailableIndustriesRequest): Single<ViewAvailableIndustriesResponse<ViewAvailableIndustriesData>>
 
     //Add Surprise Inspection
     @POST("add_surprise_inspection")
@@ -96,10 +96,17 @@ interface APIInterface {
     @POST("view_previous_inspection_list")
     fun getPreviousConductedInspections(@Body request: ViewPreviousInspectionListRequest): Single<ViewPreviousInspectionListResponse>
 
+    /*  Circulars APi   */
     //fetch Circulars data
     @GET("http://www.mpcb.gov.in/view/api/circulars")
     fun fetchCirculars(
         @Query("page") pageNo: Int,
         @Query("search") searchQuery: String
-        ): Single<CircularsResponse>
+    ): Single<CircularsResponse>
+
+    /*  Industry Directory APi   */
+    //View Directory List data
+    @POST("view_directory_list")
+    fun fetchIndustryDirectoryList(@Body request: ViewAvailableIndustriesRequest): Single<ViewAvailableIndustriesResponse<ViewDirectoryListData>>
+
 }

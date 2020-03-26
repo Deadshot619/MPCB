@@ -128,6 +128,7 @@ interface RemoteDataProvider {
         error: Consumer<Throwable>
     ): Disposable
 
+    /* Surprise Inspections APis*/
     /**
      * Method to fetch Surprise Inspections List applied by user
      */
@@ -142,7 +143,7 @@ interface RemoteDataProvider {
      */
     fun getAvailableIndustries(
         request: ViewAvailableIndustriesRequest,
-        success: Consumer<ViewAvailableIndustriesResponse>,
+        success: Consumer<ViewAvailableIndustriesResponse<ViewAvailableIndustriesData>>,
         error: Consumer<Throwable>
     ): Disposable
 
@@ -164,6 +165,7 @@ interface RemoteDataProvider {
         error: Consumer<Throwable>
     ): Disposable
 
+    /*  Circulars APi   */
     /**
      * Method to fetch circulars data
      */
@@ -172,4 +174,14 @@ interface RemoteDataProvider {
         success: Consumer<CircularsResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /*  Industry Directory APi   */
+    /**
+     * Method to get Industry Directory List
+     */
+    fun getIndustryDirectoryList(
+        request: ViewAvailableIndustriesRequest,
+        success: Consumer<ViewAvailableIndustriesResponse<ViewDirectoryListData>>,
+        error: Consumer<Throwable>
+    ):Disposable
 }

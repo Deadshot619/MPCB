@@ -17,6 +17,6 @@ class ViewAvailableIndustriesRequest {
     var page = 1
 
     @Expose
-    @SerializedName("search_string")
+    @SerializedName(value = "search_string", alternate = ["search_industry"])
     var searchString = ""
 }

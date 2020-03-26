@@ -376,6 +376,7 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    /* Surprise Inspections APis*/
     /**
      * Method to fetch Surprise Inspections List applied by user
      */
@@ -408,7 +409,7 @@ object DataProvider : RemoteDataProvider {
      */
     override fun getAvailableIndustries(
         request: ViewAvailableIndustriesRequest,
-        success: Consumer<ViewAvailableIndustriesResponse>,
+        success: Consumer<ViewAvailableIndustriesResponse<ViewAvailableIndustriesData>>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
         mServices.getAvailableIndustryLists(request)
@@ -481,6 +482,8 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    /*  Circulars APi   */
+
     /**
      * Method to fetch circulars data
      */
@@ -503,4 +506,30 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    /*  Industry Directory APi   */
+    /**
+     * Method to get Industry Directory List
+     */
+    override fun getIndustryDirectoryList(
+        request: ViewAvailableIndustriesRequest,
+        success: Consumer<ViewAvailableIndustriesResponse<ViewDirectoryListData>>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchIndustryDirectoryList(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 }
