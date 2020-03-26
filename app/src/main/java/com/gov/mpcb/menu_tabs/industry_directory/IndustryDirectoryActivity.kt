@@ -18,4 +18,10 @@ class IndustryDirectoryActivity :
     override fun onBinding() {
         addFragment(fragment = IdIndustryListFragment(), addToBackstack = true, bundle = null)
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager.fragments.isEmpty())
+            finish()
+    }
 }

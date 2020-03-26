@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="viewModel"
-                type="com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.IndustryListViewModel" />
+                type="com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                app:listAvailableIndustryData="@{viewModel._viewAvailableIndustriesData}"
+                app:listIndustryDirectory="@{viewModel._viewDirectoryListData}"
                 tools:listitem="@layout/item_id_industry_list"
                 app:layout_constraintBottom_toTopOf="@id/layout_pagination"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
                     android:visibility="gone"
                     android:textSize="18sp"
                     app:statusProgress="@{viewModel._progressStatus}"
-                    app:isListEmpty="@{viewModel._viewAvailableIndustriesData}"
+                    app:isListEmpty="@{viewModel._viewDirectoryListData}"
                     android:layout_height="wrap_content"
                     android:text="@string/no_data_available"
                     />

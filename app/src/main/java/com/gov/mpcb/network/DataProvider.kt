@@ -511,7 +511,7 @@ object DataProvider : RemoteDataProvider {
      * Method to get Industry Directory List
      */
     override fun getIndustryDirectoryList(
-        request: ViewAvailableIndustriesRequest,
+        request: ViewDirectoryListRequest,
         success: Consumer<ViewAvailableIndustriesResponse<ViewDirectoryListData>>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {

@@ -10,7 +10,7 @@
 
         <variable
                 name="clickListener"
-                type="com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.IndustryListAdapter.OnClickListener" />
+                type="com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListAdapter.OnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -63,7 +63,7 @@
                     android:id="@+id/tv_industry_id_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{data.industryId}"
+                    android:text="@{`` + data.industryId}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"

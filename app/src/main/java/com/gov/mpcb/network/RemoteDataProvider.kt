@@ -180,7 +180,7 @@ interface RemoteDataProvider {
      * Method to get Industry Directory List
      */
     fun getIndustryDirectoryList(
-        request: ViewAvailableIndustriesRequest,
+        request: ViewDirectoryListRequest,
         success: Consumer<ViewAvailableIndustriesResponse<ViewDirectoryListData>>,
         error: Consumer<Throwable>
     ):Disposable

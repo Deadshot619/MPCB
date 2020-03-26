@@ -107,6 +107,6 @@ interface APIInterface {
     /*  Industry Directory APi   */
     //View Directory List data
     @POST("view_directory_list")
-    fun fetchIndustryDirectoryList(@Body request: ViewAvailableIndustriesRequest): Single<ViewAvailableIndustriesResponse<ViewDirectoryListData>>
+    fun fetchIndustryDirectoryList(@Body request: ViewDirectoryListRequest): Single<ViewAvailableIndustriesResponse<ViewDirectoryListData>>
 
 }
