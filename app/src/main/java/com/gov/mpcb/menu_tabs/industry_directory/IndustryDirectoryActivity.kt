@@ -16,6 +16,7 @@ class IndustryDirectoryActivity :
     override fun onInternetError() {}
 
     override fun onBinding() {
+        //Add Industry List Fragment
         addFragment(fragment = IdIndustryListFragment(), addToBackstack = true, bundle = null)
     }
 

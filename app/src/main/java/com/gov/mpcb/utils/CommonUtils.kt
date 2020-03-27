@@ -12,6 +12,12 @@ import java.util.*
 enum class LoadingStatus { LOADING, ERROR, DONE }
 enum class ListData { LOADING, PRESENT, EMPTY }
 
+//This enum class will be used to data for [ViewIndustryDirectoryDataRequest]
+enum class IndustryDirectoryType(val value: String) {
+    Consent("CONSENT"), Authorization("AUTH"), Submission("SUBM"),
+    BankGuarantee("BG"), Visits("VISIT"), Legal("LEGAL")
+}
+
 object CommonUtils {
     //Get Device's Display Metrics
     private val displayMetrics = MPCBApp.instance.resources.displayMetrics
@@ -50,13 +56,13 @@ object CommonUtils {
      * @param context takes a context as input
      * @param url takes a string of url as input
      */
-    fun redirectUserToBrowser(activity: Activity, url: String){
+    fun redirectUserToBrowser(activity: Activity, url: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         val title = "Please choose a app..."
         val chooser = Intent.createChooser(intent, title)
 
         //check if there are apps to open this url
-        if (intent.resolveActivity(activity.packageManager!!) != null){
+        if (intent.resolveActivity(activity.packageManager!!) != null) {
             activity.startActivity(chooser)
         } else {
             activity.showMessage("You don't have any apps to open this link with.")
