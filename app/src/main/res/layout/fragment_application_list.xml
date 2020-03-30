@@ -19,18 +19,34 @@
         <!--    Toolbar -->
         <include
                 android:id="@+id/toolbarLayout"
-                layout="@layout/toolbar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                layout="@layout/toolbar"/>
 
-<!--        Application List Info-->
-        <include
-                android:id="@+id/layout_id_application_list"
-                layout="@layout/item_id_application_list"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbarLayout" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+            <!--        Application List Info   -->
+            <include
+                    android:id="@+id/layout_id_application_list"
+                    layout="@layout/item_id_application_list"
+                    app:layoutVisibility="@{viewModel._progressStatus}"
+                    />
+
+
+            <!--Progress Bar-->
+            <androidx.core.widget.ContentLoadingProgressBar
+                    android:id="@+id/progress_bar"
+                    style="@style/Widget.AppCompat.ProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:layout_gravity="center"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:statusProgressBar="@{viewModel._progressStatus}"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </layout>

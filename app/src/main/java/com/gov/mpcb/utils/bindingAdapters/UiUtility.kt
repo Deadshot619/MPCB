@@ -121,3 +121,21 @@ fun bindIsLinkAvailable(view: View, downloadLink: String?) {
     else
         view.visibility = View.VISIBLE
 }
+
+/**
+ * This adapter shows/hides the progressBar depending on [LoadingStatus]
+ */
+@BindingAdapter("layoutVisibility")
+fun bindLayoutVisibility(view: View, status: LoadingStatus?) {
+    when (status) {
+        LoadingStatus.LOADING -> {
+            view.visibility = View.INVISIBLE
+        }
+        LoadingStatus.ERROR -> {
+            view.visibility = View.VISIBLE
+        }
+        LoadingStatus.DONE -> {
+            view.visibility = View.VISIBLE
+        }
+    }
+}

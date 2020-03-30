@@ -7,14 +7,24 @@ import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.ViewIndustryDirectoryDataRequest
 import com.gov.mpcb.network.response.IdIndustryData
 import com.gov.mpcb.utils.IndustryDirectoryType
+import com.gov.mpcb.utils.LoadingStatus
 import io.reactivex.functions.Consumer
 
 class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
+
+    /**
+     * This variable holds the data which will be used to show/hide ProgresBar
+     */
+    private val progressStatus = MutableLiveData<LoadingStatus>(LoadingStatus.DONE)
+    val _progressStatus: LiveData<LoadingStatus>
+        get() = progressStatus
 
     //Variable to hold [ViewAppliedListResponse] data
     private val viewIndustryData = MutableLiveData<IdIndustryData>()
     val _viewIndustryData : LiveData<IdIndustryData>
         get() = viewIndustryData
+
+
 
     fun getIndustryData(industryId: Int){
         val request = ViewIndustryDirectoryDataRequest().apply {
@@ -22,14 +32,18 @@ class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
             type = IndustryDirectoryType.Consent.value
         }
 
+        progressStatus.value = LoadingStatus.LOADING
+
         mDisposable.add(
             DataProvider.getApplicationListData(
                 request = request,
                 success = Consumer {
                     viewIndustryData.value = it.industryData
+                    progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {
                     checkError(it)
+                    progressStatus.value = LoadingStatus.ERROR
                 }
             )
         )
