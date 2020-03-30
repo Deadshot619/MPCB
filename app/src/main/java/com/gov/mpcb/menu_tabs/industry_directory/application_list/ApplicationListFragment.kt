@@ -1,5 +1,6 @@
 package com.gov.mpcb.menu_tabs.industry_directory.application_list
 
+import androidx.lifecycle.Observer
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentApplicationListBinding
@@ -42,7 +43,9 @@ class ApplicationListFragment :
 //        setUpRecyclerView(mBinding.rvIndustryList)
 //
 //
-//        setObservers()
+        setObservers()
+
+        mViewModel.getIndustryData(industryId = industryId)
     }
 
     /**
@@ -52,5 +55,16 @@ class ApplicationListFragment :
         mBinding.toolbarLayout.imgBack.setOnClickListener {
             activity?.onBackPressed()
         }
+    }
+
+    /**
+     * Method to setup Observers on this fragment
+     */
+    private fun setObservers() {
+        mViewModel._viewIndustryData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                mBinding.layoutIdApplicationList.data = it
+            }
+        })
     }
 }
