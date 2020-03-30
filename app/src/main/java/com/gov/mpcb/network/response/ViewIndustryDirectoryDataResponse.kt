@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import com.gov.mpcb.network.request.Data
 
 data class ViewIndustryDirectoryDataResponse(
-    @Expose @SerializedName("status") var status: Boolean,
+    @Expose @SerializedName("status") var status: Int,
     @Expose @SerializedName("message") var message: String = "",
     @Expose @SerializedName("indus_data") var industryData: IdIndustryData,
     @Expose @SerializedName("data") var data: Data

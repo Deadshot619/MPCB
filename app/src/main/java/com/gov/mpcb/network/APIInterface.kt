@@ -109,4 +109,7 @@ interface APIInterface {
     @POST("view_directory_list")
     fun fetchIndustryDirectoryList(@Body request: ViewDirectoryListRequest): Single<ViewAvailableIndustriesResponse<ViewDirectoryListData>>
 
+    //View directory data
+    @POST("view_directory_data")
+    fun fetchApplicationDirectoryData(@Body request: ViewIndustryDirectoryDataRequest): Single<ViewIndustryDirectoryDataResponse>
 }

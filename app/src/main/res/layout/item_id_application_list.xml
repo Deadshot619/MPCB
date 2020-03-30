@@ -4,7 +4,9 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+                name="data"
+                type="com.gov.mpcb.network.response.IdIndustryData" />
     </data>
 
 
@@ -48,8 +50,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_industry_name"
                     app:layout_constraintTop_toBottomOf="@id/tv_industry_name"
-                    android:layout_marginEnd="16dp" />
-<!--            android:text="@{data.assigned_to_officer}"-->
+                    android:layout_marginEnd="16dp"
+            android:text="@{data.industryName}"/>
 
             <!--   Industry Address  -->
             <TextView
@@ -76,7 +78,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_industry_address_label"
                     app:layout_constraintTop_toBottomOf="@id/tv_industry_address_label"
-                    android:layout_marginEnd="16dp" />
+                    android:layout_marginEnd="16dp"
+                    android:text="@{data.address}"/>
+
 
             <View
                     android:id="@+id/view_separator"
@@ -112,7 +116,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_telephone_no_label"
                     app:layout_constraintTop_toBottomOf="@id/tv_telephone_no_label"
-                    android:layout_marginEnd="16dp" />
+                    android:layout_marginEnd="16dp"
+                    android:text="@{data.telNo}"/>
+
 
             <!--   Industry Email  -->
             <TextView
@@ -139,7 +145,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_industry_email_label"
                     app:layout_constraintTop_toBottomOf="@id/tv_industry_email_label"
-                    android:layout_marginEnd="16dp" />
+                    android:layout_marginEnd="16dp"
+                    android:text="@{data.emailId}"/>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

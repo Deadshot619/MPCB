@@ -184,4 +184,13 @@ interface RemoteDataProvider {
         success: Consumer<ViewAvailableIndustriesResponse<ViewDirectoryListData>>,
         error: Consumer<Throwable>
     ):Disposable
+
+    /**
+     * Method to get Application Directory List data
+     */
+    fun getApplicationListData(
+        request: ViewIndustryDirectoryDataRequest,
+        success: Consumer<ViewIndustryDirectoryDataResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }

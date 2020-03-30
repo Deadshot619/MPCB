@@ -532,4 +532,30 @@ object DataProvider : RemoteDataProvider {
         noInternetAvailable(error)
         getDefaultDisposable()
     }
+
+    /**
+     * Method to get Application Directory List data
+     */
+    override fun getApplicationListData(
+        request: ViewIndustryDirectoryDataRequest,
+        success: Consumer<ViewIndustryDirectoryDataResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchApplicationDirectoryData(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 }
