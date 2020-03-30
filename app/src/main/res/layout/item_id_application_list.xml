@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            android:layout_margin="16dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="16dp">
+
+            <!--   Industry Name   -->
+            <TextView
+                    android:id="@+id/tv_industry_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Industry Name"
+                    android:text="Industry Name"
+                    android:layout_marginStart="16dp" />
+
+            <!--    Industry Name info -->
+            <TextView
+                    android:id="@+id/tv_industry_name_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="16dp"
+                    tools:text="Zoetus Pharmaceuticals"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_industry_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_industry_name"
+                    android:layout_marginEnd="16dp" />
+<!--            android:text="@{data.assigned_to_officer}"-->
+
+            <!--   Industry Address  -->
+            <TextView
+                    android:id="@+id/tv_industry_address_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_industry_name_info"
+                    app:layout_constraintTop_toBottomOf="@id/tv_industry_name_info"
+                    android:text="Industry Address"
+                    tools:text="Industry Address"/>
+
+            <!--    Industry Address Info   -->
+            <TextView
+                    android:id="@+id/tv_industry_address_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="16dp"
+                    tools:text="Mumbai"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_industry_address_label"
+                    app:layout_constraintTop_toBottomOf="@id/tv_industry_address_label"
+                    android:layout_marginEnd="16dp" />
+
+            <View
+                    android:id="@+id/view_separator"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/bg_grey"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_industry_address_info"/>
+
+            <!--   Telephone No.  -->
+            <TextView
+                    android:id="@+id/tv_telephone_no_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_industry_address_label"
+                    app:layout_constraintTop_toBottomOf="@id/view_separator"
+                    android:text="Telephone No."
+                    tools:text="Telephone No."/>
+
+            <!--    Telephone No. Info   -->
+            <TextView
+                    android:id="@+id/tv_telephone_no_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="16dp"
+                    tools:text="06-03-2017"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_telephone_no_label"
+                    app:layout_constraintTop_toBottomOf="@id/tv_telephone_no_label"
+                    android:layout_marginEnd="16dp" />
+
+            <!--   Industry Email  -->
+            <TextView
+                    android:id="@+id/tv_industry_email_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@id/tv_telephone_no_info"
+                    app:layout_constraintTop_toBottomOf="@id/tv_telephone_no_info"
+                    android:text="Industry Email"
+                    tools:text="Industry Email"/>
+
+            <!--    Industry Email Info   -->
+            <TextView
+                    android:id="@+id/tv_industry_email_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="16dp"
+                    tools:text="06-03-2017"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_industry_email_label"
+                    app:layout_constraintTop_toBottomOf="@id/tv_industry_email_label"
+                    android:layout_marginEnd="16dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>
