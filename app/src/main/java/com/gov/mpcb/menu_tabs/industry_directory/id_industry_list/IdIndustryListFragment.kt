@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdIndustryListBinding
+import com.gov.mpcb.menu_tabs.industry_directory.application_list.ApplicationListFragment
 import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.replaceFragment
 import com.gov.mpcb.utils.showMessage
 
 class IdIndustryListFragment : BaseFragment<FragmentIdIndustryListBinding, IdIndustryListViewModel>(), IdIndustryListNavigator {
@@ -48,14 +50,7 @@ class IdIndustryListFragment : BaseFragment<FragmentIdIndustryListBinding, IdInd
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
         mAdapter = IdIndustryListAdapter(IdIndustryListAdapter.OnClickListener {
-           showMessage(it.industryName)
-            /*replaceFragment(
-                fragment = ApplyForSurpriseInspectionFragment(),
-                addToBackStack = true,
-                bundle = Bundle().apply {
-                    putParcelable(Constants.VIEW_AVAILABLE_INDUSTRY_DATA, it)
-                }
-            )*/
+            replaceFragment(fragment = ApplicationListFragment(), addToBackStack = true, bundle = null)
         })
 
         recyclerView.run {
