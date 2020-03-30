@@ -52,6 +52,9 @@ class Constants {
         //'ApplyForSurpriseInspectionFragment'
         const val VIEW_AVAILABLE_INDUSTRY_DATA = "view_available_industries_data"
 
+
+        /*  Industry Directory  */
+        const val INDUSTRY_ID = "industry_id"
         /**
          * This value is used to save report visit data in shared pref temporarily when
          * already submitted Visit report is to be viewed.

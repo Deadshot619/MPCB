@@ -10,6 +10,7 @@ class ApplicationListFragment :
     BaseFragment<FragmentApplicationListBinding, ApplicationListViewModel>(),
     ApplicationListNavigator {
 
+    private var industryId: Int = -1
 
     override fun getLayoutId() = R.layout.fragment_application_list
     override fun getViewModel() = ApplicationListViewModel::class.java
@@ -27,8 +28,14 @@ class ApplicationListFragment :
             showBackButton = true
         )
 
-        mBinding.lifecycleOwner = viewLifecycleOwner
-        mBinding.viewModel = mViewModel
+        //get industry id data from bundle
+        industryId = arguments?.getInt(Constants.INDUSTRY_ID) ?: -1
+
+        mBinding.run {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = mViewModel
+        }
+
 
         setUpListeners()
 //

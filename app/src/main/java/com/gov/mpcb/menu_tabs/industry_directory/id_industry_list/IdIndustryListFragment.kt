@@ -1,5 +1,6 @@
 package com.gov.mpcb.menu_tabs.industry_directory.id_industry_list
 
+import android.os.Bundle
 import android.view.View
 import android.widget.SearchView
 import androidx.lifecycle.Observer
@@ -13,7 +14,9 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.replaceFragment
 import com.gov.mpcb.utils.showMessage
 
-class IdIndustryListFragment : BaseFragment<FragmentIdIndustryListBinding, IdIndustryListViewModel>(), IdIndustryListNavigator {
+class IdIndustryListFragment :
+    BaseFragment<FragmentIdIndustryListBinding, IdIndustryListViewModel>(),
+    IdIndustryListNavigator {
 
     private lateinit var mAdapter: IdIndustryListAdapter
 
@@ -50,7 +53,13 @@ class IdIndustryListFragment : BaseFragment<FragmentIdIndustryListBinding, IdInd
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
         mAdapter = IdIndustryListAdapter(IdIndustryListAdapter.OnClickListener {
-            replaceFragment(fragment = ApplicationListFragment(), addToBackStack = true, bundle = null)
+            //On click of a industry, open the 'Application List' Page
+            //put the industry id in a bundle & pass it to fragment
+            replaceFragment(
+                fragment = ApplicationListFragment(),
+                addToBackStack = true,
+                bundle = Bundle().apply { putInt(Constants.INDUSTRY_ID, it.industryId) }
+            )
         })
 
         recyclerView.run {
@@ -141,7 +150,7 @@ class IdIndustryListFragment : BaseFragment<FragmentIdIndustryListBinding, IdInd
                     }
                     //if currentPage is 1, then hide 'Previous' button & only show 'Next' button
                     1 -> {
-                        mBinding.layoutPagination.run{
+                        mBinding.layoutPagination.run {
                             paginationNext.visibility = View.VISIBLE
                             paginationPrevious.visibility = View.INVISIBLE
                         }
@@ -161,7 +170,7 @@ class IdIndustryListFragment : BaseFragment<FragmentIdIndustryListBinding, IdInd
     /**
      * Method to set Listeners on pagination
      */
-    private fun paginationListeners(){
+    private fun paginationListeners() {
         //Next
         mBinding.layoutPagination.paginationNext.setOnClickListener {
             mViewModel.run {
