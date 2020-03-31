@@ -1,5 +1,6 @@
 package com.gov.mpcb.network
 
+import com.google.gson.JsonElement
 import com.gov.mpcb.network.request.*
 import com.gov.mpcb.network.response.*
 import com.gov.mpcb.utils.isNetworkAvailable
@@ -538,7 +539,7 @@ object DataProvider : RemoteDataProvider {
      */
     override fun getApplicationListData(
         request: ViewIndustryDirectoryDataRequest,
-        success: Consumer<ViewIndustryDirectoryDataResponse>,
+        success: Consumer<ViewIndustryDirectoryDataResponse<JsonElement>>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
         mServices.fetchApplicationDirectoryData(request)

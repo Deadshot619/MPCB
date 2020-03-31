@@ -1,5 +1,6 @@
 package com.gov.mpcb.network
 
+import com.google.gson.JsonElement
 import com.gov.mpcb.network.request.*
 import com.gov.mpcb.network.response.*
 import io.reactivex.Single
@@ -111,5 +112,5 @@ interface APIInterface {
 
     //View directory data
     @POST("view_directory_data")
-    fun fetchApplicationDirectoryData(@Body request: ViewIndustryDirectoryDataRequest): Single<ViewIndustryDirectoryDataResponse>
+    fun fetchApplicationDirectoryData(@Body request: ViewIndustryDirectoryDataRequest): Single<ViewIndustryDirectoryDataResponse<JsonElement>>
 }

@@ -324,7 +324,6 @@ class Constants {
             7 to "Sulphate(mg/l)"
         )
 
-
         // reports page value
         const val REPORT_1 = 1
         const val REPORT_2 = 2
@@ -491,5 +490,9 @@ class Constants {
                 }
             }
         }
+
+
     }
+
+
 }
