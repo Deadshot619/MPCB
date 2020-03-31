@@ -3,14 +3,12 @@ package com.gov.mpcb.utils.bindingAdapters
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection.PreviouslyConductedInspectionAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.IndustryListAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.ShowCircularsAdapter
-import com.gov.mpcb.network.response.CircularsData
-import com.gov.mpcb.network.response.ViewAvailableIndustriesData
-import com.gov.mpcb.network.response.ViewDirectoryListData
-import com.gov.mpcb.network.response.ViewPreviousInspectionListData
+import com.gov.mpcb.network.response.*
 import com.gov.mpcb.utils.LoadingStatus
 
 /**
@@ -70,3 +68,14 @@ fun bindListIndustryDirectory(recyclerView: RecyclerView, data: List<ViewDirecto
     val adapter = recyclerView.adapter as IdIndustryListAdapter
     adapter.submitList(data)
 }
+
+/**
+ * When there is no List data (data is null), hide the [RecyclerView],
+ * otherwise show it.
+ */
+@BindingAdapter("listConsent")
+fun bindListConsent(recyclerView: RecyclerView, data: List<IdConsentData>?){
+    val adapter = recyclerView.adapter as IdConsentAdapter
+    adapter.submitList(data)
+}
+

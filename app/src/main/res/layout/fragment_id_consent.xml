@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
                 name="viewModel"
                 type="com.gov.mpcb.menu_tabs.industry_directory.consent.IdConsentViewModel" />
@@ -15,26 +16,23 @@
             tools:context=".menu_tabs.industry_directory.consent.IdConsentFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_industry_list"
+                android:id="@+id/rv_consent_list"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                tools:listitem="@layout/item_id_industry_list"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbarLayout"/>
-<!--                app:listIndustryDirectory="@{viewModel._viewDirectoryListData}"-->
-<!--                />-->
+                app:layout_constraintTop_toTopOf="parent"
+                app:listConsent="@{viewModel._idConsentData}"
+                tools:listitem="@layout/item_id_consent" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintTop_toTopOf="parent">
 
             <!--Progress Bar-->
             <androidx.core.widget.ContentLoadingProgressBar
@@ -42,21 +40,20 @@
                     style="@style/Widget.AppCompat.ProgressBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:indeterminate="true"
-                    android:layout_gravity="center"/>
-<!--                    app:statusProgressBar="@{viewModel._progressStatus}"/>-->
+                    app:statusProgressBar="@{viewModel._progressStatus}" />
 
             <!--Error Text-->
             <TextView
                     android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:visibility="gone"
-                    android:textSize="18sp"
                     android:layout_height="wrap_content"
-                    android:text="@string/no_data_available"/>
-<!--                    app:statusProgress="@{viewModel._progressStatus}"-->
-<!--                    app:isListEmpty="@{viewModel._viewDirectoryListData}"-->
-<!--                    />-->
+                    android:layout_gravity="center"
+                    android:text="@string/no_data_available"
+                    android:textSize="18sp"
+                    android:visibility="gone"
+                    app:isListEmpty="@{viewModel._idConsentData}"
+                    app:statusProgress="@{viewModel._progressStatus}" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

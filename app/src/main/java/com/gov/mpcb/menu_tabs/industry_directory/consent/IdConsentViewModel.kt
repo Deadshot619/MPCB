@@ -10,10 +10,10 @@ import com.gov.mpcb.network.response.IdConsentData
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.LoadingStatus
 import com.gov.mpcb.utils.fromJson
+import com.gov.mpcb.utils.isNetworkAvailable
 import io.reactivex.functions.Consumer
 
 class IdConsentViewModel: BaseViewModel<IdConsentNavigator>() {
-
 
     /**
      * This variable holds the data which will be used to show/hide ProgresBar
@@ -26,6 +26,11 @@ class IdConsentViewModel: BaseViewModel<IdConsentNavigator>() {
     private val idConsentData = MutableLiveData<List<IdConsentData>>()
     val _idConsentData : LiveData<List<IdConsentData>>
         get() = idConsentData
+
+    init {
+        if(isNetworkAvailable())
+            getIndustryData(44)
+    }
 
     //Get data for application list
     fun getIndustryData(industryId: Int){
