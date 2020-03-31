@@ -17,6 +17,7 @@ data class IdIndustryData(
     @Expose @SerializedName("TelNo") val telNo: String
 )
 
+
 data class IdConsentData(
     @Expose @SerializedName("Application_id") val Application_id: Int,
     @Expose @SerializedName("Approval_date") val Approval_date: String,

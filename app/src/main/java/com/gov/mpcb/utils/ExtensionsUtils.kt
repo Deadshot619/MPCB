@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.base.MPCBApp
 import java.math.BigInteger
@@ -125,3 +127,8 @@ fun String.parseToDouble(): Double {
         0.0
     }
 }
+
+/**
+ * This method will a json string as input & return an object of specified type
+ */
+inline fun <reified T> Gson.fromJson(json: String) = fromJson<T>(json, object: TypeToken<T>() {}.type)

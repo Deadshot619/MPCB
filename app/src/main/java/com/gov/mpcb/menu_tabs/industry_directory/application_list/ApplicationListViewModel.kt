@@ -2,12 +2,15 @@ package com.gov.mpcb.menu_tabs.industry_directory.application_list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.gov.mpcb.base.BaseViewModel
 import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.ViewIndustryDirectoryDataRequest
+import com.gov.mpcb.network.response.IdConsentData
 import com.gov.mpcb.network.response.IdIndustryData
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.LoadingStatus
+import com.gov.mpcb.utils.fromJson
 import io.reactivex.functions.Consumer
 
 class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
@@ -38,6 +41,7 @@ class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
                 request = request,
                 success = Consumer {
                     viewIndustryData.value = it.industryData
+                    val hell = Gson().fromJson<List<IdConsentData>>(it.data.toString())
                     progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {
