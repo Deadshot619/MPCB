@@ -29,7 +29,7 @@ class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
     fun getIndustryData(industryId: Int){
         val request = ViewIndustryDirectoryDataRequest().apply {
             this.industryId = industryId
-            type = IndustryDirectoryType.Consent.value
+            industryDirectoryType = IndustryDirectoryType.Consent
         }
 
         progressStatus.value = LoadingStatus.LOADING
