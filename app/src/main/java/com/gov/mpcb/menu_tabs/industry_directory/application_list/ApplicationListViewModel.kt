@@ -24,8 +24,7 @@ class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
     val _viewIndustryData : LiveData<IdIndustryData>
         get() = viewIndustryData
 
-
-
+    //Get data for application list
     fun getIndustryData(industryId: Int){
         val request = ViewIndustryDirectoryDataRequest().apply {
             this.industryId = industryId
