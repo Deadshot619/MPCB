@@ -87,7 +87,7 @@ class ApplicationListFragment :
      * This method is used to setup ViewPager with [SurpriseInspectionPagerAdapter]
      */
     private fun setUpViewpager(viewPager: ViewPager2){
-        mPagerAdapter = ApplicationListPagerAdapter(this)
+        mPagerAdapter = ApplicationListPagerAdapter(fragment = this, industryId = industryId)
         viewPager.adapter = mPagerAdapter /*SurpriseInspectionPagerAdapter(this)*/
     }
 

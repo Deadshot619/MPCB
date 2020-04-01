@@ -7,6 +7,8 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdConsentBinding
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
+import com.gov.mpcb.utils.constants.Constants
+import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.showMessage
 
 /**
@@ -14,6 +16,8 @@ import com.gov.mpcb.utils.showMessage
  */
 class IdConsentFragment : BaseFragment<FragmentIdConsentBinding, IdConsentViewModel>(),
     IdConsentNavigator {
+
+    private var industryId: Int = -1
 
     private lateinit var mAdapter: IdConsentAdapter
 
@@ -29,7 +33,13 @@ class IdConsentFragment : BaseFragment<FragmentIdConsentBinding, IdConsentViewMo
             viewModel = mViewModel
         }
 
+        //get industry id data from bundle
+        industryId = arguments?.getInt(Constants.INDUSTRY_ID) ?: -1
+
         setUpRecyclerView(mBinding.rvConsentList)
+
+        if(isNetworkAvailable())
+            mViewModel.getIndustryData(industryId)
     }
 
 

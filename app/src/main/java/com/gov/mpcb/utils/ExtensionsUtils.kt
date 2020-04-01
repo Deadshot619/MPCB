@@ -131,4 +131,8 @@ fun String.parseToDouble(): Double {
 /**
  * This method will a json string as input & return an object of specified type
  */
-inline fun <reified T> Gson.fromJson(json: String) = fromJson<T>(json, object: TypeToken<T>() {}.type)
+inline fun <reified T> Gson.fromJson(json: String) = try{
+    fromJson<T>(json, object: TypeToken<T>() {}.type)
+}catch (e: java.lang.Exception){
+    null
+}
