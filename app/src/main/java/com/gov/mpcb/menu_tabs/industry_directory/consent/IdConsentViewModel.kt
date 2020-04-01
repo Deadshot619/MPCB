@@ -27,10 +27,13 @@ class IdConsentViewModel: BaseViewModel<IdConsentNavigator>() {
         get() = data
 
     //Get data for application list
-    fun getIndustryData(industryId: Int){
+    fun getIndustryData(
+        industryId: Int,
+        industryDirectoryType: IndustryDirectoryType
+    ){
         val request = ViewIndustryDirectoryDataRequest().apply {
             this.industryId = industryId
-            industryDirectoryType = IndustryDirectoryType.Consent
+            this.industryDirectoryType = industryDirectoryType
         }
 
         progressStatus.value = LoadingStatus.LOADING

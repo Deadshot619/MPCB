@@ -1,32 +1,25 @@
-package com.gov.mpcb.menu_tabs.industry_directory.consent
+package com.gov.mpcb.menu_tabs.industry_directory.authorization
 
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
-import com.gov.mpcb.databinding.FragmentIdConsentBinding
-import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
+import com.gov.mpcb.databinding.FragmentIdAuthorizationBinding
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.showMessage
 
-/**
- * A simple [Fragment] subclass.
- */
-class IdConsentFragment : BaseFragment<FragmentIdConsentBinding, IdConsentViewModel>(),
-    IdConsentNavigator {
+class IdAuthorizationFragment : BaseFragment<FragmentIdAuthorizationBinding, IdAuthorizationViewModel>(), IdAuthorizationNavigator {
 
     private var industryId: Int = -1
-    private val industryDirectoryType = IndustryDirectoryType.Consent
+    private val industryDirectoryType = IndustryDirectoryType.Authorization
 
+    private lateinit var mAdapter: IdAuthorizationAdapter
 
-    private lateinit var mAdapter: IdConsentAdapter
-
-    override fun getLayoutId() = R.layout.fragment_id_consent
-    override fun getViewModel() = IdConsentViewModel::class.java
-    override fun getNavigator() = this@IdConsentFragment
+    override fun getLayoutId() = R.layout.fragment_id_authorization
+    override fun getViewModel() = IdAuthorizationViewModel::class.java
+    override fun getNavigator() = this@IdAuthorizationFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
@@ -52,7 +45,7 @@ class IdConsentFragment : BaseFragment<FragmentIdConsentBinding, IdConsentViewMo
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
-        mAdapter = IdConsentAdapter()
+        mAdapter = IdAuthorizationAdapter()
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)

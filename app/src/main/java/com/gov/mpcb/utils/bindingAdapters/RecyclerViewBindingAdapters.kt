@@ -3,6 +3,7 @@ package com.gov.mpcb.utils.bindingAdapters
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gov.mpcb.menu_tabs.industry_directory.authorization.IdAuthorizationAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection.PreviouslyConductedInspectionAdapter
@@ -49,6 +50,7 @@ fun bindRVPreviouslyConductedInspections(recyclerView: RecyclerView, data: List<
     adapter.submitList(data)
 }
 
+//CIRCULARS
 /**
  * When there is no List data (data is null), hide the [RecyclerView],
  * otherwise show it.
@@ -59,6 +61,7 @@ fun bindListCircularsData(recyclerView: RecyclerView, data: List<CircularsData>?
     adapter.submitList(data)
 }
 
+//INDUSTRY DIRECTORY
 /**
  * When there is no List data (data is null), hide the [RecyclerView],
  * otherwise show it.
@@ -79,3 +82,12 @@ fun bindListConsent(recyclerView: RecyclerView, data: List<IdConsentData>?){
     adapter.submitList(data)
 }
 
+/**
+ * When there is no List data (data is null), hide the [RecyclerView],
+ * otherwise show it.
+ */
+@BindingAdapter("listAuthorization")
+fun bindListAuthorization(recyclerView: RecyclerView, data: List<IdAuthorizationData>?){
+    val adapter = recyclerView.adapter as IdAuthorizationAdapter
+    adapter.submitList(data)
+}
