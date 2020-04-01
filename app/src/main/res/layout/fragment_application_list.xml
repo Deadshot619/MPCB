@@ -79,7 +79,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:tabGravity="center"
                         app:tabIndicatorHeight="3dp"
-                        app:tabMode="fixed"
+                        app:tabMode="scrollable"
                         app:tabPadding="18dp" />
 
                 <!--                Tab Data-->
