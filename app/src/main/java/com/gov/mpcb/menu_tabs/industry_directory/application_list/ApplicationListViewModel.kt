@@ -1,8 +1,11 @@
 package com.gov.mpcb.menu_tabs.industry_directory.application_list
 
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseViewModel
+import com.gov.mpcb.menu_tabs.industry_directory.consent.IdConsentFragment
 import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.ViewIndustryDirectoryDataRequest
 import com.gov.mpcb.network.response.IdIndustryData
@@ -11,6 +14,17 @@ import com.gov.mpcb.utils.LoadingStatus
 import io.reactivex.functions.Consumer
 
 class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
+
+    /**
+     * This variable holds the data for Pager in a map of key value pairs (Name corresponding to its Fragment)
+     */
+    private val PAGER_DATA = mapOf<Int, Fragment>(
+        R.string.consent to IdConsentFragment()
+    )
+    val PAGER_KEYS: List<Int>
+        get() = PAGER_DATA.keys.toList()
+    val PAGER_VALUES: List<Fragment>
+        get() = PAGER_DATA.values.toList()
 
     /**
      * This variable holds the data which will be used to show/hide ProgresBar

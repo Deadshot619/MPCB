@@ -18,10 +18,10 @@ class ApplicationListFragment :
 
     private var industryId: Int = -1
 
-    private lateinit var mPagerAdapter : ApplicationListPagerAdapter
+    private lateinit var mPagerAdapter: ApplicationListPagerAdapter
 
 
-            override fun getLayoutId() = R.layout.fragment_application_list
+    override fun getLayoutId() = R.layout.fragment_application_list
     override fun getViewModel() = ApplicationListViewModel::class.java
     override fun getNavigator() = this@ApplicationListFragment
     override fun onError(message: String) = showMessage(message)
@@ -56,7 +56,7 @@ class ApplicationListFragment :
 
         setUpViewpager(viewPager = mBinding.viewpager)
 
-        setUpTabLayoutMediator(tabLayout = mBinding.tabLayout, viewPager = mBinding.viewpager)
+        setUpTabLayoutMediator(tabLayout = mBinding.tabLayout, viewPager = mBinding.viewpager, pagerData = mViewModel.PAGER_KEYS)
 
 
         mViewModel.getIndustryData(industryId = industryId)
@@ -86,8 +86,12 @@ class ApplicationListFragment :
     /**
      * This method is used to setup ViewPager with [SurpriseInspectionPagerAdapter]
      */
-    private fun setUpViewpager(viewPager: ViewPager2){
-        mPagerAdapter = ApplicationListPagerAdapter(fragment = this, industryId = industryId)
+    private fun setUpViewpager(viewPager: ViewPager2) {
+        mPagerAdapter = ApplicationListPagerAdapter(
+            fragment = this,
+            industryId = industryId,
+            pagerData = mViewModel.PAGER_VALUES
+        )
         viewPager.adapter = mPagerAdapter /*SurpriseInspectionPagerAdapter(this)*/
     }
 
@@ -95,11 +99,12 @@ class ApplicationListFragment :
     /**
      * This method sets/links up the Tab Layout with ViewPager using [TabLayoutMediator]
      */
-    private fun setUpTabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2){
-        TabLayoutMediator(tabLayout, viewPager){ tab, position ->
+    private fun setUpTabLayoutMediator(
+        tabLayout: TabLayout, viewPager: ViewPager2, pagerData: List<Int>
+    ) {
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
-                0 -> tab.text = getString(R.string.consent)
-                1 -> tab.text = getString(R.string.verified_surprise_inspections)
+                position -> tab.text = getString(pagerData[position])
             }
         }.attach()
     }
