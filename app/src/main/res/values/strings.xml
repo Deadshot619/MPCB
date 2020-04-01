@@ -101,8 +101,12 @@
 
     <!-- Industry Directory  -->
     <string name="application_list">Application List</string>
-    <string name="consent">Consent</string>
     <string name="authorization">Authorization</string>
+    <string name="consent">Consent</string>
+    <string name="submission">Submission</string>
+    <string name="bank_guarantee">Bank Guarantee</string>
+    <string name="legal">Legal</string>
+    <string name="visits">Visits</string>
 
 
 </resources>

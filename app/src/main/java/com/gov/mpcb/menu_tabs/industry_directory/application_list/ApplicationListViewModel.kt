@@ -7,6 +7,7 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseViewModel
 import com.gov.mpcb.menu_tabs.industry_directory.authorization.IdAuthorizationFragment
 import com.gov.mpcb.menu_tabs.industry_directory.consent.IdConsentFragment
+import com.gov.mpcb.menu_tabs.industry_directory.submission.IdSubmissionFragment
 import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.ViewIndustryDirectoryDataRequest
 import com.gov.mpcb.network.response.IdIndustryData
@@ -21,7 +22,8 @@ class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
      */
     private val PAGER_DATA = mapOf<Int, Fragment>(
         R.string.consent to IdConsentFragment(),
-        R.string.authorization to IdAuthorizationFragment()
+        R.string.authorization to IdAuthorizationFragment(),
+        R.string.submission to IdSubmissionFragment()
     )
     val PAGER_KEYS: List<Int>
         get() = PAGER_DATA.keys.toList()

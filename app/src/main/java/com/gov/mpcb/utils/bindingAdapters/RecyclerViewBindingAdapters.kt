@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.menu_tabs.industry_directory.authorization.IdAuthorizationAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListAdapter
+import com.gov.mpcb.menu_tabs.industry_directory.submission.IdSubmissionAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection.PreviouslyConductedInspectionAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.IndustryListAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.industry_list.ShowCircularsAdapter
@@ -91,3 +92,45 @@ fun bindListAuthorization(recyclerView: RecyclerView, data: List<IdAuthorization
     val adapter = recyclerView.adapter as IdAuthorizationAdapter
     adapter.submitList(data)
 }
+
+/**
+ * When there is no List data (data is null), hide the [RecyclerView],
+ * otherwise show it.
+ */
+@BindingAdapter("listSubmission")
+fun bindListSubmission(recyclerView: RecyclerView, data: List<IdSubmissionData>?){
+    val adapter = recyclerView.adapter as IdSubmissionAdapter
+    adapter.submitList(data)
+}
+
+/**
+ * When there is no List data (data is null), hide the [RecyclerView],
+ * otherwise show it.
+ */
+/*@BindingAdapter("listBG")
+fun bindListBg(recyclerView: RecyclerView, data: List<IdBankGuaranteeData>?){
+    val adapter = recyclerView.adapter as IdBankGuaranteeAdapter
+    adapter.submitList(data)
+}*/
+
+/**
+ * When there is no List data (data is null), hide the [RecyclerView],
+ * otherwise show it.
+ */
+/*
+@BindingAdapter("listVisits")
+fun bindListVisits(recyclerView: RecyclerView, data: List<IdVisitData>?){
+    val adapter = recyclerView.adapter as IdVisitAdapter
+    adapter.submitList(data)
+}*/
+
+/**
+ * When there is no List data (data is null), hide the [RecyclerView],
+ * otherwise show it.
+ */
+/*
+@BindingAdapter("listLegal")
+fun bindListLegal(recyclerView: RecyclerView, data: List<IdLegalData>?){
+    val adapter = recyclerView.adapter as IdLegalAdapter
+    adapter.submitList(data)
+}*/
