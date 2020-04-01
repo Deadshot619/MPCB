@@ -23,7 +23,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:listConsent="@{viewModel._idConsentData}"
+                app:listConsent="@{viewModel._data}"
                 tools:listitem="@layout/item_id_consent" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -52,7 +52,7 @@
                     android:text="@string/no_data_available"
                     android:textSize="18sp"
                     android:visibility="gone"
-                    app:isListEmpty="@{viewModel._idConsentData}"
+                    app:isListEmpty="@{viewModel._data}"
                     app:statusProgress="@{viewModel._progressStatus}" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -22,16 +22,9 @@ class IdConsentViewModel: BaseViewModel<IdConsentNavigator>() {
         get() = progressStatus
 
     //Variable to hold [ViewAppliedListResponse] data
-    private val idConsentData = MutableLiveData<List<IdConsentData>>()
-    val _idConsentData : LiveData<List<IdConsentData>>
-        get() = idConsentData
-
-/*
-    init {
-        if(isNetworkAvailable())
-            getIndustryData(44)
-    }
-*/
+    private val data = MutableLiveData<List<IdConsentData>>()
+    val _data: LiveData<List<IdConsentData>>
+        get() = data
 
     //Get data for application list
     fun getIndustryData(industryId: Int){
@@ -46,7 +39,7 @@ class IdConsentViewModel: BaseViewModel<IdConsentNavigator>() {
             DataProvider.getApplicationListData(
                 request = request,
                 success = Consumer {
-                    idConsentData.value = Gson().fromJson<List<IdConsentData>>(it.data.toString())
+                    data.value = Gson().fromJson<List<IdConsentData>>(it.data.toString())
                     progressStatus.value = LoadingStatus.DONE
                 },
                 error = Consumer {

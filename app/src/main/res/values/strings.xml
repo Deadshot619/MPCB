@@ -101,6 +101,7 @@
 
     <!-- Industry Directory  -->
     <string name="application_list">Application List</string>
+    <string name="consent">Consent</string>
 
 
 </resources>

@@ -98,7 +98,7 @@ class ApplicationListFragment :
     private fun setUpTabLayoutMediator(tabLayout: TabLayout, viewPager: ViewPager2){
         TabLayoutMediator(tabLayout, viewPager){ tab, position ->
             when (position) {
-                0 -> tab.text = getString(R.string.applied_by_me)
+                0 -> tab.text = getString(R.string.consent)
                 1 -> tab.text = getString(R.string.verified_surprise_inspections)
             }
         }.attach()

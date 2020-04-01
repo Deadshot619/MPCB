@@ -38,6 +38,7 @@ class IdConsentFragment : BaseFragment<FragmentIdConsentBinding, IdConsentViewMo
 
         setUpRecyclerView(mBinding.rvConsentList)
 
+        //Call api with industry Id provided
         if(isNetworkAvailable())
             mViewModel.getIndustryData(industryId)
     }
