@@ -4,6 +4,7 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.menu_tabs.industry_directory.authorization.IdAuthorizationAdapter
+import com.gov.mpcb.menu_tabs.industry_directory.bank_guarantee.IdBankGuaranteeAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.submission.IdSubmissionAdapter
@@ -107,11 +108,11 @@ fun bindListSubmission(recyclerView: RecyclerView, data: List<IdSubmissionData>?
  * When there is no List data (data is null), hide the [RecyclerView],
  * otherwise show it.
  */
-/*@BindingAdapter("listBG")
+@BindingAdapter("listBG")
 fun bindListBg(recyclerView: RecyclerView, data: List<IdBankGuaranteeData>?){
     val adapter = recyclerView.adapter as IdBankGuaranteeAdapter
     adapter.submitList(data)
-}*/
+}
 
 /**
  * When there is no List data (data is null), hide the [RecyclerView],
