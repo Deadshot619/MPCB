@@ -6,7 +6,7 @@
     <data>
         <variable
                 name="data"
-                type="com.gov.mpcb.network.response.ViewDirectoryListData" />
+                type="com.gov.mpcb.network.response.IdLegalData" />
 
         <variable
                 name="clickListener"
@@ -63,7 +63,7 @@
                     android:id="@+id/tv_legal_unique_number_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{`` + data.industryId}"
+                    android:text="@{`` + data.unique_id}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"
@@ -91,7 +91,7 @@
                     android:id="@+id/tv_legal_direction_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{data.industryName}"
+                    android:text="@{data.legal_direction}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_marginTop="4dp"
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="16dp"
-                    android:text="@{data.emailId}"
+                    app:extractDateRemoveTime="@{data.issued_on}"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/appCompatImageView3"
