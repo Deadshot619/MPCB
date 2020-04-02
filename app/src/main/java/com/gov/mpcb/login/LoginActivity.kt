@@ -6,6 +6,7 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseActivity
 import com.gov.mpcb.databinding.ActivityLoginBinding
 import com.gov.mpcb.home.HomeActivity
+import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.gov.mpcb.utils.showMessage
 import java.util.*
 
@@ -45,6 +46,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
 
         //Set welcome text
         mBinding.welcomeMsgTwo.text = getWelcomeText(Calendar.getInstance().get(Calendar.HOUR_OF_DAY))
+
+        //Indicates that the app is launched for first time.
+        PreferencesHelper.setAppLaunchFirstTime()
     }
 
     /**

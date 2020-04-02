@@ -88,4 +88,11 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!--    Material Dialog Style-->
+    <style name="CustomMaterialDialogStyle" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:textColor">#ff0000</item>
+        <item name="colorPrimary">@color/colorAccent</item>
+
+    </style>
+
 </resources>

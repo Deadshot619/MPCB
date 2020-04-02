@@ -11,6 +11,9 @@ import java.util.*
 class Constants {
     companion object {
 
+        //this value will be used to check if the app is launched for first time or not
+        const val IS_FIRST_TIME = "is_first_time"
+
         const val RELOAD_KEY = "reload_key"
         const val RELOAD_VALUE = "reload_value"
 

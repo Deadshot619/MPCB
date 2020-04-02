@@ -6,7 +6,7 @@ import android.provider.Settings
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 
-class DialogHelper {
+class   DialogHelper {
 
     companion object{
 
