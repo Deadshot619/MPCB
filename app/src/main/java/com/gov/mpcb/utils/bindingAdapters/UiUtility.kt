@@ -5,6 +5,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
+import com.google.android.material.chip.Chip
 import com.gov.mpcb.R
 import com.gov.mpcb.network.response.MyVisitModel
 import com.gov.mpcb.network.response.UsersAssignedName
@@ -137,5 +138,29 @@ fun bindLayoutVisibility(view: View, status: LoadingStatus?) {
         LoadingStatus.DONE -> {
             view.visibility = View.VISIBLE
         }
+    }
+}
+
+/**
+ * This binding adapter will be used in [R.layout.item_id_consent] to set the status of it
+ */
+@BindingAdapter("idConsentStatus")
+fun bindIdConsentStatus(textView: TextView, status: Int){
+    textView.text = when(status){
+        1 -> "Rejected"
+        2 -> "Approved"
+        else -> "In Process"
+    }
+}
+
+/**
+ * This binding adapter will be used in [R.layout.item_id_consent] to set the consent payment status of it
+ */
+@BindingAdapter("idConsentPaymentStatus")
+fun bindIdConsentPaymentStatus(chip: Chip, paymentFor: Int){
+    chip.text = when(paymentFor){
+        0 -> "Consent to Establish"
+        1 -> "Consent to Operate"
+        else -> "Consent to Renewal"
     }
 }
