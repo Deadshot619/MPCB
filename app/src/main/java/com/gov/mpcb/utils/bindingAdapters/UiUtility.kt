@@ -142,6 +142,18 @@ fun bindLayoutVisibility(view: View, status: LoadingStatus?) {
 }
 
 /**
+ * This binding adapter will be used in [R.layout.item_id_consent] to set the consent payment status of it
+ */
+@BindingAdapter("idConsentPaymentStatus")
+fun bindIdConsentPaymentStatus(chip: Chip, paymentFor: Int){
+    chip.text = when(paymentFor){
+        0 -> "Consent to Establish"
+        1 -> "Consent to Operate"
+        else -> "Consent to Renewal"
+    }
+}
+
+/**
  * This binding adapter will be used in [R.layout.item_id_consent] to set the status of it
  */
 @BindingAdapter("idConsentStatus")
@@ -154,13 +166,13 @@ fun bindIdConsentStatus(textView: TextView, status: Int){
 }
 
 /**
- * This binding adapter will be used in [R.layout.item_id_consent] to set the consent payment status of it
+ * This binding adapter will be used in [R.layout.item_id_consent] to set the status of it
  */
-@BindingAdapter("idConsentPaymentStatus")
-fun bindIdConsentPaymentStatus(chip: Chip, paymentFor: Int){
-    chip.text = when(paymentFor){
-        0 -> "Consent to Establish"
-        1 -> "Consent to Operate"
-        else -> "Consent to Renewal"
+@BindingAdapter("idAuthStatus")
+fun bindIdAuthStatus(textView: TextView, status: Int){
+    textView.text = when(status){
+        2 -> "Rejected"
+        1 -> "Approved"
+        else -> "In Process"
     }
 }
