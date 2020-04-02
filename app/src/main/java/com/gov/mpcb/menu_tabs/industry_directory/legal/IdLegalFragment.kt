@@ -1,26 +1,26 @@
-package com.gov.mpcb.menu_tabs.industry_directory.visits
+package com.gov.mpcb.menu_tabs.industry_directory.legal
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
-import com.gov.mpcb.databinding.FragmentIdVisitsBinding
+import com.gov.mpcb.databinding.FragmentIdLegalBinding
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.showMessage
 
-class IdVisitsFragment : BaseFragment<FragmentIdVisitsBinding, IdVisitsViewModel>(), IdVisitsNavigator {
+class IdLegalFragment : BaseFragment<FragmentIdLegalBinding, IdLegalViewModel>(), IdLegalNavigator {
 
 
     private var industryId: Int = -1
-    private val industryDirectoryType = IndustryDirectoryType.Visits
+    private val industryDirectoryType = IndustryDirectoryType.Legal
 
-    private lateinit var mAdapter: IdVisitsAdapter
+    private lateinit var mAdapter: IdLegalAdapter
 
-    override fun getLayoutId() = R.layout.fragment_id_visits
-    override fun getViewModel() = IdVisitsViewModel::class.java
-    override fun getNavigator() = this@IdVisitsFragment
+    override fun getLayoutId() = R.layout.fragment_id_legal
+    override fun getViewModel() = IdLegalViewModel::class.java
+    override fun getNavigator() = this@IdLegalFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
 
@@ -46,15 +46,11 @@ class IdVisitsFragment : BaseFragment<FragmentIdVisitsBinding, IdVisitsViewModel
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
-        mAdapter = IdVisitsAdapter()
+        mAdapter = IdLegalAdapter()
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
             this.adapter = mAdapter
         }
     }
-
-
-
-
 }

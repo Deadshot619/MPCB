@@ -35,6 +35,23 @@ data class IdConsentData(
     @Expose @SerializedName("validitydate") val validitydate: String,
     @Expose @SerializedName("view_link") val view_link: String
 )
+/*
+
+payment_for
+0 -> establish
+1-> operate
+2-> renewal
+
+status
+2->approved
+1->rejected
+0->inprocess
+
+auth
+1->app
+2->rejected
+
+*/
 
 //Authorization
 data class IdAuthorizationData(
@@ -86,7 +103,7 @@ data class IdBankGuaranteeData(
     @Expose @SerializedName("created_on") val created_on: String,
     @Expose @SerializedName("dr_no") val dr_no: String,
     @Expose @SerializedName("expected_bg_submission") val expected_bg_submission: String,
-    @Expose @SerializedName("expiry_date") val expiry_date: String,
+    @Expose @SerializedName("expiry_date") val expiry_date: String, //bg validity
     @Expose @SerializedName("forfit_action") val forfit_action: String,
     @Expose @SerializedName("forfit_amount") val forfit_amount: String,
     @Expose @SerializedName("id") val id: Int,

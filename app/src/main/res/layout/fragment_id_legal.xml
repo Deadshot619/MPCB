@@ -7,7 +7,7 @@
 
         <variable
                 name="viewModel"
-                type="com.gov.mpcb.menu_tabs.industry_directory.visits.IdVisitsViewModel" />
+                type="com.gov.mpcb.menu_tabs.industry_directory.legal.IdLegalViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,8 +22,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:listVisits="@{viewModel._data}"
-                tools:listitem="@layout/item_id_visits" />
+                app:listLegal="@{viewModel._data}"
+                tools:listitem="@layout/item_id_legal"
+            />
+<!--                app:listVisits="@{viewModel._data}"-->
+<!--                />-->
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="wrap_content"

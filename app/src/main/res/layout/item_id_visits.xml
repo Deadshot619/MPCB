@@ -176,7 +176,7 @@ bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh "
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginRight="16dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@{data.schduled_on}"/>
+                        app:extractDateRemoveTime="@{data.schduled_on}"/>
 
                 <!--    Eye  -->
                 <androidx.appcompat.widget.AppCompatImageView

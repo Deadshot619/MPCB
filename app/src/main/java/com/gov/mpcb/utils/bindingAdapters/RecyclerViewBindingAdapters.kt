@@ -7,6 +7,7 @@ import com.gov.mpcb.menu_tabs.industry_directory.authorization.IdAuthorizationAd
 import com.gov.mpcb.menu_tabs.industry_directory.bank_guarantee.IdBankGuaranteeAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListAdapter
+import com.gov.mpcb.menu_tabs.industry_directory.legal.IdLegalAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.submission.IdSubmissionAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.visits.IdVisitsAdapter
 import com.gov.mpcb.menu_tabs.surprise_inspections.apply_for_surprise_inspection.PreviouslyConductedInspectionAdapter
@@ -129,9 +130,8 @@ fun bindListVisits(recyclerView: RecyclerView, data: List<IdVisitData>?){
  * When there is no List data (data is null), hide the [RecyclerView],
  * otherwise show it.
  */
-/*
 @BindingAdapter("listLegal")
 fun bindListLegal(recyclerView: RecyclerView, data: List<IdLegalData>?){
     val adapter = recyclerView.adapter as IdLegalAdapter
     adapter.submitList(data)
-}*/
+}

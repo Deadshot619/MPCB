@@ -8,7 +8,9 @@ import com.gov.mpcb.base.BaseViewModel
 import com.gov.mpcb.menu_tabs.industry_directory.authorization.IdAuthorizationFragment
 import com.gov.mpcb.menu_tabs.industry_directory.bank_guarantee.IdBankGuaranteeFragment
 import com.gov.mpcb.menu_tabs.industry_directory.consent.IdConsentFragment
+import com.gov.mpcb.menu_tabs.industry_directory.legal.IdLegalFragment
 import com.gov.mpcb.menu_tabs.industry_directory.submission.IdSubmissionFragment
+import com.gov.mpcb.menu_tabs.industry_directory.visits.IdVisitsFragment
 import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.ViewIndustryDirectoryDataRequest
 import com.gov.mpcb.network.response.IdIndustryData
@@ -25,7 +27,9 @@ class ApplicationListViewModel: BaseViewModel<ApplicationListNavigator>() {
         R.string.consent to IdConsentFragment(),
         R.string.authorization to IdAuthorizationFragment(),
         R.string.submission to IdSubmissionFragment(),
-        R.string.bank_guarantee to IdBankGuaranteeFragment()
+        R.string.bank_guarantee to IdBankGuaranteeFragment(),
+        R.string.visits to IdVisitsFragment(),
+        R.string.legal to IdLegalFragment()
     )
     val PAGER_KEYS: List<Int>
         get() = PAGER_DATA.keys.toList()
