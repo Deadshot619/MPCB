@@ -194,4 +194,13 @@ interface RemoteDataProvider {
         success: Consumer<ViewIndustryDirectoryDataResponse<JsonElement>>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to get Documents data for Consent
+     */
+    fun getConsentDocuments(
+        request: IdConsentDocumentRequest,
+        success: Consumer<IdConsentDocumentResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }

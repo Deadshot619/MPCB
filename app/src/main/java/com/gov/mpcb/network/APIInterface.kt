@@ -113,4 +113,8 @@ interface APIInterface {
     //View directory data
     @POST("view_directory_data")
     fun fetchApplicationDirectoryData(@Body request: ViewIndustryDirectoryDataRequest): Single<ViewIndustryDirectoryDataResponse<JsonElement>>
+
+    //View Consent Document
+    @POST("view_documents_consent")
+    fun fetchConsentDocuments(@Body request: IdConsentDocumentRequest): Single<IdConsentDocumentResponse>
 }

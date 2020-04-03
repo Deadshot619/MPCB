@@ -559,4 +559,30 @@ object DataProvider : RemoteDataProvider {
         noInternetAvailable(error)
         getDefaultDisposable()
     }
+
+    /**
+     * Method to get Documents data for Consent
+     */
+    override fun getConsentDocuments(
+        request: IdConsentDocumentRequest,
+        success: Consumer<IdConsentDocumentResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchConsentDocuments(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 }
