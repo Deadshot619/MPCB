@@ -107,6 +107,7 @@
     <string name="bank_guarantee">Bank Guarantee</string>
     <string name="legal">Legal</string>
     <string name="visits">Visits</string>
+    <string name="documents">Documents</string>
 
 
 </resources>
