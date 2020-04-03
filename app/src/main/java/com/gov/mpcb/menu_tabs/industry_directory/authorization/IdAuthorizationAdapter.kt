@@ -74,7 +74,7 @@ DiffCallback
      */
     interface OnClickListener {
         fun onEyeClick(idAuthData: IdAuthorizationData)
-        fun onReportClick()
+        fun onReportClick(idAuthData: IdAuthorizationData)
     }
 
 }

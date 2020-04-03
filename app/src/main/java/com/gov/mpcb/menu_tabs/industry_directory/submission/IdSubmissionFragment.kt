@@ -1,16 +1,15 @@
 package com.gov.mpcb.menu_tabs.industry_directory.submission
 
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdSubmissionBinding
+import com.gov.mpcb.menu_tabs.industry_directory.documents.IdDocumentsFragment
 import com.gov.mpcb.network.response.IdSubmissionData
-import com.gov.mpcb.utils.CommonUtils
-import com.gov.mpcb.utils.IndustryDirectoryType
+import com.gov.mpcb.utils.*
 import com.gov.mpcb.utils.constants.Constants
-import com.gov.mpcb.utils.isNetworkAvailable
-import com.gov.mpcb.utils.showMessage
 
 class IdSubmissionFragment : BaseFragment<FragmentIdSubmissionBinding, IdSubmissionViewModel>(), IdSubmissionNavigator {
 
@@ -57,7 +56,12 @@ class IdSubmissionFragment : BaseFragment<FragmentIdSubmissionBinding, IdSubmiss
                 }
             }
 
-            override fun onReportClick() {
+            override fun onReportClick(idSubmissionData: IdSubmissionData) {
+                replaceFragment(IdDocumentsFragment(), true, Bundle().apply {
+                    putParcelable(Constants.IS_SUBM_DATA_KEY, idSubmissionData)
+                    putBoolean(Constants.ID_OTHER_DOCUMENT_KEY, true)
+                    putBoolean(Constants.IS_DATA_FOR_AUTH, false)
+                })
             }
 
         })

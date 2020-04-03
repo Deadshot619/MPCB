@@ -74,7 +74,7 @@ class IdSubmissionAdapter(val listener: OnClickListener):
      */
     interface OnClickListener {
         fun onEyeClick(idSubmissionData: IdSubmissionData)
-        fun onReportClick()
+        fun onReportClick(idSubmissionData: IdSubmissionData)
     }
 
 }

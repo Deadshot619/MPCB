@@ -1,16 +1,20 @@
 package com.gov.mpcb.menu_tabs.industry_directory.documents
 
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdDocumentsBinding
+import com.gov.mpcb.network.response.IdAuthorizationData
 import com.gov.mpcb.network.response.IdConsentData
+import com.gov.mpcb.network.response.IdSubmissionData
 import com.gov.mpcb.utils.CommonUtils
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.showMessage
 
-class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocumentsViewModel>(), IdDocumentsNavigator {
+class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocumentsViewModel>(),
+    IdDocumentsNavigator {
 
     private lateinit var mAdapter: IdConsentDocumentsAdapter
 
@@ -33,19 +37,20 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
         mBinding.lifecycleOwner = viewLifecycleOwner
         mBinding.viewModel = mViewModel
 
-        //Get applicant id from bundle
-        val idConsentData: IdConsentData? = arguments?.getParcelable(Constants.IS_CONSENT_DATA_KEY)
-
         setUpRecyclerView(mBinding.rvList)
-/*        setUpListeners()
+        setUpListeners()
 
+        getDataFromBundleAndCallApi(arguments)
 
-        setObservers()*/
+//        setObservers()
 
-        idConsentData?.let {
-            mViewModel.getConsentDocumentsData(applicantId = it.applicant_id)
-            mBinding.tvTitle.text = it.industryname
-        }
+    }
+
+    /**
+     * This method will be used to set Title of the page which usually will be industry name
+     */
+    private fun setPageTitle(name: String){
+        mBinding.tvTitle.text = name
     }
 
     /**
@@ -61,5 +66,67 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)
             this.adapter = mAdapter
         }
+    }
+
+    /**
+     * Method to setup all types of Listeners
+     */
+    private fun setUpListeners() {
+        mBinding.toolbarLayout.imgBack.setOnClickListener {
+            activity?.onBackPressed()
+        }
+    }
+
+    /**
+     * This method will be used to retrieve data from bundle and call APi accordingly
+     */
+    private fun getDataFromBundleAndCallApi(bundle: Bundle?){
+        //Get data from bundle to check whether data is from other documnet or not
+        val isBundleFromOtherDocument =
+            bundle?.getBoolean(Constants.ID_OTHER_DOCUMENT_KEY) ?: false
+
+//       Check if the data is for Other Documents
+        if (isBundleFromOtherDocument) {
+
+            //Get data from bundle to check whether data is for Auth or for Subm
+            val isDataForAuth = bundle?.getBoolean(Constants.IS_DATA_FOR_AUTH) ?: false
+
+            //If true, then data is for AUTH
+            if (isDataForAuth){
+                val idAuthorizationData =
+                    bundle?.getParcelable<IdAuthorizationData?>(Constants.IS_AUTH_DATA_KEY)
+
+                idAuthorizationData?.let {
+                    mViewModel.getOtherDocumentsData(
+                        applicantId = it.Application_id,
+                        type = it.app_type
+                    )
+                    setPageTitle(it.industryname)
+                }
+            } else {            //If false, then data is SUBM
+                val idSubmissionData =
+                    bundle?.getParcelable<IdSubmissionData?>(Constants.IS_SUBM_DATA_KEY)
+
+                idSubmissionData?.let {
+                    mViewModel.getOtherDocumentsData(
+                        applicantId = it.Application_id,
+                        type = it.app_type
+                    )
+                    setPageTitle(it.industryname)
+
+                }
+            }
+
+        } else { //If false, then data is for Consent
+            //Get applicant id from bundle
+            val idConsentData: IdConsentData? =
+                bundle?.getParcelable(Constants.IS_CONSENT_DATA_KEY)
+
+            idConsentData?.let {
+                mViewModel.getConsentDocumentsData(applicantId = it.applicant_id)
+                setPageTitle(it.industryname)
+            }
+        }
+
     }
 }

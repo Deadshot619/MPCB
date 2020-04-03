@@ -57,6 +57,7 @@ auth
 */
 
 //Authorization
+@Parcelize
 data class IdAuthorizationData(
     @Expose @SerializedName("Application_id") val Application_id: Int,
     @Expose @SerializedName("address") val address: String,
@@ -66,9 +67,10 @@ data class IdAuthorizationData(
     @Expose @SerializedName("status") val status: String,
     @Expose @SerializedName("unique_id") val unique_id: String,
     @Expose @SerializedName("view_link") val view_link: String
-)
+): Parcelable
 
 //Submission
+@Parcelize
 data class IdSubmissionData(
     @Expose @SerializedName("created_time") val created_time: String,
     @Expose @SerializedName("Application_id") val Application_id: Int,
@@ -79,7 +81,7 @@ data class IdSubmissionData(
     @Expose @SerializedName("status") val status: String,
     @Expose @SerializedName("unique_id") val unique_id: String,
     @Expose @SerializedName("view_link") val view_link: String
-)
+): Parcelable
 
 //Bank Guarantee
 data class IdBankGuaranteeData(

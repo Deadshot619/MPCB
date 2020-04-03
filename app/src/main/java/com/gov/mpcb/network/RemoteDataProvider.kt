@@ -203,4 +203,13 @@ interface RemoteDataProvider {
         success: Consumer<IdConsentDocumentResponse>,
         error: Consumer<Throwable>
     ): Disposable
+
+    /**
+     * Method to get data for other Documents
+     */
+    fun getOtherDocuments(
+        request: IdOtherDocumentsRequest,
+        success: Consumer<IdOtherDocumentDataResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
 }

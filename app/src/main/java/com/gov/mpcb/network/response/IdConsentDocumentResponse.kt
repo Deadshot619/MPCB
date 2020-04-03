@@ -13,13 +13,13 @@ data class IdConsentDocumentResponse(
 )
 
 data class IdConsentDocumentsData(
-    @Expose @SerializedName("Application_id") val Application_id: Int,
-    @Expose @SerializedName("Created") val Created: String,
-    @Expose @SerializedName("Document_file") val Document_file: String,
-    @Expose @SerializedName("Document_location") val Document_location: String,
-    @Expose @SerializedName("Document_name") val Document_name: String,
-    @Expose @SerializedName("Document_type") val Document_type: String,
-    @Expose @SerializedName("Id") val Id: Int,
-    @Expose @SerializedName("category_name") val category_name: String,
-    @Expose @SerializedName("view_link") val view_link: String
+    @Expose @SerializedName("Application_id") val Application_id: Int = 0,
+    @Expose @SerializedName("Created") val Created: String = "",
+    @Expose @SerializedName("Document_file") val Document_file: String = "",
+    @Expose @SerializedName("Document_location") val Document_location: String = "",
+    @Expose @SerializedName("Document_name") val Document_name: String = "",
+    @Expose @SerializedName("Document_type") val Document_type: String = "",
+    @Expose @SerializedName("Id") val Id: Int = 0,
+    @Expose @SerializedName("category_name") val category_name: String = "",
+    @Expose @SerializedName("view_link") val view_link: String = ""
 )

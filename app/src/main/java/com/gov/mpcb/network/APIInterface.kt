@@ -117,4 +117,9 @@ interface APIInterface {
     //View Consent Document
     @POST("view_documents_consent")
     fun fetchConsentDocuments(@Body request: IdConsentDocumentRequest): Single<IdConsentDocumentResponse>
+
+    //View Other Documents
+    @POST("view_documents_other")
+    fun fetchOtherDocuments(@Body request: IdOtherDocumentsRequest): Single<IdOtherDocumentDataResponse>
+
 }

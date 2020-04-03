@@ -1,16 +1,15 @@
 package com.gov.mpcb.menu_tabs.industry_directory.authorization
 
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdAuthorizationBinding
+import com.gov.mpcb.menu_tabs.industry_directory.documents.IdDocumentsFragment
 import com.gov.mpcb.network.response.IdAuthorizationData
-import com.gov.mpcb.utils.CommonUtils
-import com.gov.mpcb.utils.IndustryDirectoryType
+import com.gov.mpcb.utils.*
 import com.gov.mpcb.utils.constants.Constants
-import com.gov.mpcb.utils.isNetworkAvailable
-import com.gov.mpcb.utils.showMessage
 
 class IdAuthorizationFragment : BaseFragment<FragmentIdAuthorizationBinding, IdAuthorizationViewModel>(), IdAuthorizationNavigator {
 
@@ -54,7 +53,12 @@ class IdAuthorizationFragment : BaseFragment<FragmentIdAuthorizationBinding, IdA
                 }
             }
 
-            override fun onReportClick() {
+            override fun onReportClick(idAuthData: IdAuthorizationData) {
+                replaceFragment(IdDocumentsFragment(), true, Bundle().apply {
+                    putParcelable(Constants.IS_AUTH_DATA_KEY, idAuthData)
+                    putBoolean(Constants.ID_OTHER_DOCUMENT_KEY, true)
+                    putBoolean(Constants.IS_DATA_FOR_AUTH, true)
+                })
             }
 
         })
@@ -64,4 +68,6 @@ class IdAuthorizationFragment : BaseFragment<FragmentIdAuthorizationBinding, IdA
             this.adapter = mAdapter
         }
     }
+
+
 }
