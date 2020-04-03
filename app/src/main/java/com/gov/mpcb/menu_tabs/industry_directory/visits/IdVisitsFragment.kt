@@ -11,7 +11,7 @@ import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
 import com.gov.mpcb.utils.showMessage
 
-class IdVisitsFragment : BaseFragment<FragmentIdVisitsBinding, IdVisitsViewModel>(), IdVisitsNavigator {
+class   IdVisitsFragment : BaseFragment<FragmentIdVisitsBinding, IdVisitsViewModel>(), IdVisitsNavigator {
 
 
     private var industryId: Int = -1

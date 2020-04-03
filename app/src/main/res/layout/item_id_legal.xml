@@ -10,7 +10,7 @@
 
         <variable
                 name="clickListener"
-                type="com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListAdapter.OnClickListener" />
+                type="com.gov.mpcb.menu_tabs.industry_directory.legal.IdLegalAdapter.OnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -143,6 +143,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:onClick="@{() -> clickListener.onClick(data)}"
                     android:src="@drawable/ic_remove_red_eye_black_24dp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_issued_on_info"
                     app:layout_constraintEnd_toEndOf="parent"
