@@ -74,7 +74,7 @@ class IdConsentAdapter(val listener: OnClickListener) :
      */
     interface OnClickListener {
         fun onEyeClick(idConsentData: IdConsentData)
-        fun onReportClick()
+        fun onReportClick(idConsentData: IdConsentData)
     }
 
 }

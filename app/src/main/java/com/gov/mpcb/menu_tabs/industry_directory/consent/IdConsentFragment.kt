@@ -1,18 +1,17 @@
 package com.gov.mpcb.menu_tabs.industry_directory.consent
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdConsentBinding
+import com.gov.mpcb.menu_tabs.industry_directory.documents.IdDocumentsFragment
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
 import com.gov.mpcb.network.response.IdConsentData
-import com.gov.mpcb.utils.CommonUtils
-import com.gov.mpcb.utils.IndustryDirectoryType
+import com.gov.mpcb.utils.*
 import com.gov.mpcb.utils.constants.Constants
-import com.gov.mpcb.utils.isNetworkAvailable
-import com.gov.mpcb.utils.showMessage
 
 /**
  * A simple [Fragment] subclass.
@@ -61,7 +60,10 @@ class IdConsentFragment : BaseFragment<FragmentIdConsentBinding, IdConsentViewMo
                 }
             }
 
-            override fun onReportClick() {
+            override fun onReportClick(idConsentData: IdConsentData) {
+                replaceFragment(IdDocumentsFragment(), true, Bundle().apply {
+                    putParcelable(Constants.IS_CONSENT_DATA_KEY, idConsentData)
+                })
             }
 
         })

@@ -27,7 +27,8 @@
                 android:id="@+id/cv_layout_title"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:cardElevation="2dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardElevation="0dp"
                 app:cardBackgroundColor="@color/bg_grey"
                 app:layout_constraintTop_toBottomOf="@id/toolbarLayout"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -39,18 +40,20 @@
                     android:layout_margin="16dp"
                     android:layout_width="wrap_content"
                     tools:text="Nazi Oven Makers"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
+                    android:textAllCaps="true"
                     android:textStyle="bold"
                     android:layout_height="wrap_content"/>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_industry_list"
+                android:id="@+id/rv_list"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+                app:listConsentDocuments="@{viewModel._idConsentDocumentsData}"
                 tools:listitem="@layout/item_id_documents"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,9 +86,9 @@
                     android:textSize="18sp"
                     android:layout_height="wrap_content"
                     android:text="@string/no_data_available"
-                    />
-<!--                    app:statusProgress="@{viewModel._progressStatus}"-->
-<!--                    app:isListEmpty="@{viewModel._viewDirectoryListData}"-->
+                    app:statusProgress="@{viewModel._progressStatus}"
+                    app:isListEmpty="@{viewModel._idConsentDocumentsData}"
+                />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 

@@ -3,7 +3,11 @@ package com.gov.mpcb.menu_tabs.industry_directory.documents
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.gov.mpcb.base.BaseViewModel
+import com.gov.mpcb.network.DataProvider
+import com.gov.mpcb.network.request.IdConsentDocumentRequest
+import com.gov.mpcb.network.response.IdConsentDocumentsData
 import com.gov.mpcb.utils.LoadingStatus
+import io.reactivex.functions.Consumer
 
 class IdDocumentsViewModel : BaseViewModel<IdDocumentsNavigator>() {
 
@@ -14,4 +18,32 @@ class IdDocumentsViewModel : BaseViewModel<IdDocumentsNavigator>() {
     val _progressStatus: LiveData<LoadingStatus>
         get() = progressStatus
 
+    //Variable to hold [IdConsentDocumentsData] data
+    private val idConsentDocumentsData = MutableLiveData<List<IdConsentDocumentsData>>()
+    val _idConsentDocumentsData : LiveData<List<IdConsentDocumentsData>>
+        get() = idConsentDocumentsData
+
+
+    fun getConsentDocumentsData(applicantId: Int){
+        val request = IdConsentDocumentRequest().apply {
+            this.applicantId = applicantId
+        }
+
+
+        progressStatus.value = LoadingStatus.LOADING
+
+        mDisposable.add(
+            DataProvider.getConsentDocuments(
+                request = request,
+                success = Consumer {
+                    idConsentDocumentsData.value = it.data
+                    progressStatus.value = LoadingStatus.DONE
+                },
+                error = Consumer {
+                    checkError(it)
+                    progressStatus.value = LoadingStatus.ERROR
+                }
+            )
+        )
+    }
 }

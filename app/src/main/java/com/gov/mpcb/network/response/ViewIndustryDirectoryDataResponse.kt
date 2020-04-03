@@ -1,7 +1,9 @@
 package com.gov.mpcb.network.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class ViewIndustryDirectoryDataResponse<T>(
     @Expose @SerializedName("status") var status: Int,
@@ -19,6 +21,7 @@ data class IdIndustryData(
 )
 
 //Consent
+@Parcelize
 data class IdConsentData(
     @Expose @SerializedName("Application_id") val Application_id: Int,
     @Expose @SerializedName("Approval_date") val Approval_date: String,
@@ -34,7 +37,7 @@ data class IdConsentData(
     @Expose @SerializedName("unique_id") val unique_id: String,
     @Expose @SerializedName("validitydate") val validitydate: String,
     @Expose @SerializedName("view_link") val view_link: String
-)
+): Parcelable
 /*
 
 payment_for

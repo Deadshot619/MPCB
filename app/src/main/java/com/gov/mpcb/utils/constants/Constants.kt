@@ -61,6 +61,9 @@ class Constants {
          */
         const val TEMP_VISIT_REPORT_DATA: String = "temp_visit_report_data"
 
+        const val IS_CONSENT_DATA_KEY = "id_consent_data"
+
+
 
         const val VISIT_ID: String = "visit_id"
         const val INDUS_IMIS_ID: String = "indus_imis_id"

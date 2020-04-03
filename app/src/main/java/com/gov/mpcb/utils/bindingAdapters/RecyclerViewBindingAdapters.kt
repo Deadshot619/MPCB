@@ -5,6 +5,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.menu_tabs.industry_directory.authorization.IdAuthorizationAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.bank_guarantee.IdBankGuaranteeAdapter
+import com.gov.mpcb.menu_tabs.industry_directory.documents.IdConsentDocumentsAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdIndustryListAdapter
 import com.gov.mpcb.menu_tabs.industry_directory.legal.IdLegalAdapter
@@ -133,5 +134,15 @@ fun bindListVisits(recyclerView: RecyclerView, data: List<IdVisitData>?){
 @BindingAdapter("listLegal")
 fun bindListLegal(recyclerView: RecyclerView, data: List<IdLegalData>?){
     val adapter = recyclerView.adapter as IdLegalAdapter
+    adapter.submitList(data)
+}
+
+/**
+ * When there is no List data (data is null), hide the [RecyclerView],
+ * otherwise show it.
+ */
+@BindingAdapter("listConsentDocuments")
+fun bindListConsentDocuments(recyclerView: RecyclerView, data: List<IdConsentDocumentsData>?){
+    val adapter = recyclerView.adapter as IdConsentDocumentsAdapter
     adapter.submitList(data)
 }

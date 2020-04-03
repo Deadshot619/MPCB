@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName
 
 data class IdConsentDocumentResponse(
     @Expose
-    @SerializedName("data") val data: List<IdConsentDocumentData> = listOf(),
+    @SerializedName("data") val data: List<IdConsentDocumentsData> = listOf(),
     @Expose
     @SerializedName("message") val message: String = "",
     @Expose
     @SerializedName("status") val status: Int = -1
 )
 
-data class IdConsentDocumentData(
+data class IdConsentDocumentsData(
     @Expose @SerializedName("Application_id") val Application_id: Int,
     @Expose @SerializedName("Created") val Created: String,
     @Expose @SerializedName("Document_file") val Document_file: String,
