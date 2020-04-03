@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdSubmissionBinding
+import com.gov.mpcb.network.response.IdSubmissionData
+import com.gov.mpcb.utils.CommonUtils
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
@@ -48,7 +50,17 @@ class IdSubmissionFragment : BaseFragment<FragmentIdSubmissionBinding, IdSubmiss
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
-        mAdapter = IdSubmissionAdapter()
+        mAdapter = IdSubmissionAdapter(object : IdSubmissionAdapter.OnClickListener {
+            override fun onEyeClick(idSubmissionData: IdSubmissionData) {
+                if (idSubmissionData.view_link.isNotEmpty()) {
+                    CommonUtils.redirectUserToBrowser(activity!!, idSubmissionData.view_link)
+                }
+            }
+
+            override fun onReportClick() {
+            }
+
+        })
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)

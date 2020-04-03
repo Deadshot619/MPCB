@@ -5,6 +5,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdBankGuaranteeBinding
+import com.gov.mpcb.menu_tabs.industry_directory.bank_guarantee.IdBankGuaranteeAdapter.OnClickListener
+import com.gov.mpcb.network.response.IdBankGuaranteeData
+import com.gov.mpcb.utils.CommonUtils
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
@@ -46,7 +49,17 @@ class IdBankGuaranteeFragment : BaseFragment<FragmentIdBankGuaranteeBinding, IdB
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
-        mAdapter = IdBankGuaranteeAdapter()
+        mAdapter = IdBankGuaranteeAdapter(object : OnClickListener {
+            override fun onEyeClick(idBankGuaranteeData: IdBankGuaranteeData) {
+                if (idBankGuaranteeData.view_link.isNotEmpty()) {
+                    CommonUtils.redirectUserToBrowser(activity!!, idBankGuaranteeData.view_link)
+                }
+            }
+
+            override fun onReportClick() {
+            }
+
+        })
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)

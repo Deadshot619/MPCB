@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemIdBankGuaranteeBinding
 import com.gov.mpcb.network.response.IdBankGuaranteeData
 
-class IdBankGuaranteeAdapter:
+class IdBankGuaranteeAdapter(val listener: OnClickListener):
     ListAdapter<IdBankGuaranteeData, IdBankGuaranteeAdapter.IdBankGuaranteeViewHolder>(
         DiffCallback
     ) {
@@ -42,7 +42,7 @@ class IdBankGuaranteeAdapter:
     }
 
     override fun onBindViewHolder(holder: IdBankGuaranteeViewHolder, position: Int) {
-        holder.bind(getItem(position), position + 1 /*listener*/)
+        holder.bind(getItem(position), position + 1, listener)
     }
 
 
@@ -54,12 +54,12 @@ class IdBankGuaranteeAdapter:
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: IdBankGuaranteeData?,
-            count: Int
-//            listener: OnClickListener
+            count: Int,
+            listener: OnClickListener
         ) {
             binding.run {
                 data = item
-//                clickListener = listener
+                clickListener = listener
                 tvNumber.text = "$count"
                 executePendingBindings()
             }
@@ -71,9 +71,9 @@ class IdBankGuaranteeAdapter:
     /**
      * Interface to call in the [OnClickListener] & passed on to fragment to implement
      */
-    /*class OnClickListener(val clickListener: (viewAvailableIndustriesData: IdBankGuaranteeData) -> Unit) {
-        fun onClick(viewAvailableIndustriesData: IdBankGuaranteeData) =
-            clickListener(viewAvailableIndustriesData)
-    }*/
+    interface OnClickListener {
+        fun onEyeClick(idBankGuaranteeData: IdBankGuaranteeData)
+        fun onReportClick()
+    }
 
 }

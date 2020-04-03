@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemIdSubmissionBinding
 import com.gov.mpcb.network.response.IdSubmissionData
 
-class IdSubmissionAdapter:
+class IdSubmissionAdapter(val listener: OnClickListener):
     ListAdapter<IdSubmissionData, IdSubmissionAdapter.IdSubmissionViewHolder>(
         DiffCallback
     ) {
@@ -43,7 +43,7 @@ class IdSubmissionAdapter:
     }
 
     override fun onBindViewHolder(holder: IdSubmissionViewHolder, position: Int) {
-        holder.bind(getItem(position), position + 1 /*listener*/)
+        holder.bind(getItem(position), position + 1 ,listener)
     }
 
 
@@ -55,12 +55,12 @@ class IdSubmissionAdapter:
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: IdSubmissionData?,
-            count: Int
-//            listener: OnClickListener
+            count: Int,
+            listener: OnClickListener
         ) {
             binding.run {
                 data = item
-//                clickListener = listener
+                clickListener = listener
                 tvNumber.text = "$count"
                 executePendingBindings()
             }
@@ -72,9 +72,9 @@ class IdSubmissionAdapter:
     /**
      * Interface to call in the [OnClickListener] & passed on to fragment to implement
      */
-    /*class OnClickListener(val clickListener: (viewAvailableIndustriesData: IdSubmissionData) -> Unit) {
-        fun onClick(viewAvailableIndustriesData: IdSubmissionData) =
-            clickListener(viewAvailableIndustriesData)
-    }*/
+    interface OnClickListener {
+        fun onEyeClick(idSubmissionData: IdSubmissionData)
+        fun onReportClick()
+    }
 
 }

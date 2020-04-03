@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdVisitsBinding
+import com.gov.mpcb.utils.CommonUtils
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
@@ -46,7 +47,13 @@ class IdVisitsFragment : BaseFragment<FragmentIdVisitsBinding, IdVisitsViewModel
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
-        mAdapter = IdVisitsAdapter()
+        mAdapter = IdVisitsAdapter(IdVisitsAdapter.OnClickListener{
+            if (it.view_link.isNotEmpty()) {
+                CommonUtils.redirectUserToBrowser(activity!!, it.view_link)
+            } else {
+                showMessage("No PDF to view")
+            }
+        })
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)

@@ -8,6 +8,10 @@
         <variable
                 name="data"
                 type="com.gov.mpcb.network.response.IdBankGuaranteeData" />
+
+        <variable
+                name="clickListener"
+                type="com.gov.mpcb.menu_tabs.industry_directory.bank_guarantee.IdBankGuaranteeAdapter.OnClickListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -370,6 +374,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:onClick="@{() -> clickListener.onEyeClick(data)}"
                         android:src="@drawable/ic_remove_red_eye_black_24dp"
                         app:layout_constraintStart_toStartOf="@+id/tv_consent_validity_date_info"
                         app:layout_constraintTop_toBottomOf="@+id/tv_consent_validity_date_info" />

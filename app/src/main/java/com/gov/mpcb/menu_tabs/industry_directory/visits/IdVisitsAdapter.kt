@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemIdVisitsBinding
 import com.gov.mpcb.network.response.IdVisitData
 
-class IdVisitsAdapter:
+class IdVisitsAdapter(val listener: OnClickListener):
     ListAdapter<IdVisitData, IdVisitsAdapter.IdVisitsViewHolder>(
         DiffCallback
     ) {
@@ -42,7 +42,7 @@ class IdVisitsAdapter:
     }
 
     override fun onBindViewHolder(holder: IdVisitsViewHolder, position: Int) {
-        holder.bind(getItem(position), position + 1 /*listener*/)
+        holder.bind(getItem(position), position + 1 ,listener)
     }
 
 
@@ -54,12 +54,12 @@ class IdVisitsAdapter:
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: IdVisitData?,
-            count: Int
-//            listener: OnClickListener
+            count: Int,
+            listener: OnClickListener
         ) {
             binding.run {
                 data = item
-//                clickListener = listener
+                clickListener = listener
                 tvNumber.text = "$count"
                 executePendingBindings()
             }
@@ -71,9 +71,9 @@ class IdVisitsAdapter:
     /**
      * Interface to call in the [OnClickListener] & passed on to fragment to implement
      */
-    /*class OnClickListener(val clickListener: (viewAvailableIndustriesData: IdVisitData) -> Unit) {
-        fun onClick(viewAvailableIndustriesData: IdVisitData) =
-            clickListener(viewAvailableIndustriesData)
-    }*/
+    class OnClickListener(val clickListener: (idVisitData: IdVisitData) -> Unit) {
+        fun onClick(idVisitData: IdVisitData) =
+            clickListener(idVisitData)
+    }
 
 }
