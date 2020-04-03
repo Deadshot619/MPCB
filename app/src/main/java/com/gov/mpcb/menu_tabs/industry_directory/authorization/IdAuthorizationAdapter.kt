@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemIdAuthorizationBinding
 import com.gov.mpcb.network.response.IdAuthorizationData
 
-class IdAuthorizationAdapter:
+class IdAuthorizationAdapter(val listener: OnClickListener) :
 ListAdapter<IdAuthorizationData, IdAuthorizationAdapter.IdAuthorizationViewHolder>(
 DiffCallback
 ) {
@@ -43,7 +43,7 @@ DiffCallback
     }
 
     override fun onBindViewHolder(holder: IdAuthorizationViewHolder, position: Int) {
-        holder.bind(getItem(position), position + 1 /*listener*/)
+        holder.bind(getItem(position), position + 1 ,listener)
     }
 
 
@@ -55,12 +55,12 @@ DiffCallback
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: IdAuthorizationData?,
-            count: Int
-//            listener: OnClickListener
+            count: Int,
+            listener: OnClickListener
         ) {
             binding.run {
                 data = item
-//                clickListener = listener
+                clickListener = listener
                 tvNumber.text = "$count"
                 executePendingBindings()
             }
@@ -72,9 +72,9 @@ DiffCallback
     /**
      * Interface to call in the [OnClickListener] & passed on to fragment to implement
      */
-    /*class OnClickListener(val clickListener: (viewAvailableIndustriesData: IdAuthorizationData) -> Unit) {
-        fun onClick(viewAvailableIndustriesData: IdAuthorizationData) =
-            clickListener(viewAvailableIndustriesData)
-    }*/
+    interface OnClickListener {
+        fun onEyeClick(idAuthData: IdAuthorizationData)
+        fun onReportClick()
+    }
 
 }

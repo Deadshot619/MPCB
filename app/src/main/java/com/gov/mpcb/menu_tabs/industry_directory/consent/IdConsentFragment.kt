@@ -7,6 +7,8 @@ import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdConsentBinding
 import com.gov.mpcb.menu_tabs.industry_directory.id_industry_list.IdConsentAdapter
+import com.gov.mpcb.network.response.IdConsentData
+import com.gov.mpcb.utils.CommonUtils
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
@@ -42,7 +44,7 @@ class IdConsentFragment : BaseFragment<FragmentIdConsentBinding, IdConsentViewMo
         setUpRecyclerView(mBinding.rvConsentList)
 
         //Call api with industry Id provided
-        if(isNetworkAvailable())
+        if (isNetworkAvailable())
             mViewModel.getIndustryData(industryId, industryDirectoryType)
     }
 
@@ -52,7 +54,17 @@ class IdConsentFragment : BaseFragment<FragmentIdConsentBinding, IdConsentViewMo
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
-        mAdapter = IdConsentAdapter()
+        mAdapter = IdConsentAdapter(object : IdConsentAdapter.OnClickListener {
+            override fun onEyeClick(idConsentData: IdConsentData) {
+                if (idConsentData.view_link.isNotEmpty()) {
+                    CommonUtils.redirectUserToBrowser(activity!!, idConsentData.view_link)
+                }
+            }
+
+            override fun onReportClick() {
+            }
+
+        })
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)

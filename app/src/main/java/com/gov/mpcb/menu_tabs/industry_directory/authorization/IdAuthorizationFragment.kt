@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragment
 import com.gov.mpcb.databinding.FragmentIdAuthorizationBinding
+import com.gov.mpcb.network.response.IdAuthorizationData
+import com.gov.mpcb.utils.CommonUtils
 import com.gov.mpcb.utils.IndustryDirectoryType
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.isNetworkAvailable
@@ -45,7 +47,17 @@ class IdAuthorizationFragment : BaseFragment<FragmentIdAuthorizationBinding, IdA
      */
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
-        mAdapter = IdAuthorizationAdapter()
+        mAdapter = IdAuthorizationAdapter(object : IdAuthorizationAdapter.OnClickListener {
+            override fun onEyeClick(idAuthData: IdAuthorizationData) {
+                if (idAuthData.view_link.isNotEmpty()) {
+                    CommonUtils.redirectUserToBrowser(activity!!, idAuthData.view_link)
+                }
+            }
+
+            override fun onReportClick() {
+            }
+
+        })
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false)

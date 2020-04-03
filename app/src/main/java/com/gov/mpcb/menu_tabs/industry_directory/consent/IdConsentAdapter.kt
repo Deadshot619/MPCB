@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.databinding.ItemIdConsentBinding
 import com.gov.mpcb.network.response.IdConsentData
 
-class IdConsentAdapter(/*al listener: OnClickListener*/) :
+class IdConsentAdapter(val listener: OnClickListener) :
     ListAdapter<IdConsentData, IdConsentAdapter.IdConsentViewHolder>(
         DiffCallback
     ) {
@@ -43,7 +43,7 @@ class IdConsentAdapter(/*al listener: OnClickListener*/) :
     }
 
     override fun onBindViewHolder(holder: IdConsentViewHolder, position: Int) {
-        holder.bind(getItem(position), position + 1 /*listener*/)
+        holder.bind(getItem(position), position + 1, listener)
     }
 
 
@@ -55,12 +55,12 @@ class IdConsentAdapter(/*al listener: OnClickListener*/) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
             item: IdConsentData?,
-            count: Int
-//            listener: OnClickListener
+            count: Int,
+            listener: OnClickListener
         ) {
             binding.run {
                 data = item
-//                clickListener = listener
+                clickListener = listener
                 tvNumber.text = "$count"
                 executePendingBindings()
             }
@@ -72,9 +72,9 @@ class IdConsentAdapter(/*al listener: OnClickListener*/) :
     /**
      * Interface to call in the [OnClickListener] & passed on to fragment to implement
      */
-    /*class OnClickListener(val clickListener: (viewAvailableIndustriesData: IdConsentData) -> Unit) {
-        fun onClick(viewAvailableIndustriesData: IdConsentData) =
-            clickListener(viewAvailableIndustriesData)
-    }*/
+    interface OnClickListener {
+        fun onEyeClick(idConsentData: IdConsentData)
+        fun onReportClick()
+    }
 
 }
