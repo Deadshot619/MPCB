@@ -38,23 +38,6 @@ data class IdConsentData(
     @Expose @SerializedName("validitydate") val validitydate: String,
     @Expose @SerializedName("view_link") val view_link: String
 ): Parcelable
-/*
-
-payment_for
-0 -> establish
-1-> operate
-2-> renewal
-
-status
-2->approved
-1->rejected
-0->inprocess
-
-auth
-1->app
-2->rejected
-
-*/
 
 //Authorization
 @Parcelize
@@ -64,7 +47,7 @@ data class IdAuthorizationData(
     @Expose @SerializedName("app_type") val app_type: String,
     @Expose @SerializedName("industryname") val industryname: String,
     @Expose @SerializedName("outward_number") val outward_number: String,
-    @Expose @SerializedName("status") val status: String,
+    @Expose @SerializedName("status") val status: Int,
     @Expose @SerializedName("unique_id") val unique_id: String,
     @Expose @SerializedName("view_link") val view_link: String
 ): Parcelable
@@ -136,7 +119,7 @@ data class IdVisitData(
     @Expose @SerializedName("assigned_designation") val assigned_designation: String,
     @Expose @SerializedName("check_in_lat") val check_in_lat: String,
     @Expose @SerializedName("check_in_long") val check_in_long: String,
-    @Expose @SerializedName("check_in_status") val check_in_status: String,
+    @Expose @SerializedName("check_in_status") val check_in_status: Int,
     @Expose @SerializedName("checked_in_date") val checked_in_date: String,
     @Expose @SerializedName("cis_record_number") val cis_record_number: String,
     @Expose @SerializedName("fo_id") val fo_id: Int,
@@ -146,7 +129,7 @@ data class IdVisitData(
     @Expose @SerializedName("industry_name") val industry_name: String,
     @Expose @SerializedName("industry_scale") val industry_scale: String,
     @Expose @SerializedName("industry_type") val industry_type: String,
-    @Expose @SerializedName("is_surprise_inspection") val is_surprise_inspection: String,
+    @Expose @SerializedName("is_surprise_inspection") val is_surprise_inspection: Int,
     @Expose @SerializedName("jvs_reference_id") val jvs_reference_id: String,
     @Expose @SerializedName("legal_params") val legal_params: String,
     @Expose @SerializedName("no_of_reminders") val no_of_reminders: String,
@@ -160,7 +143,7 @@ data class IdVisitData(
     @Expose @SerializedName("selfie_img") val selfie_img: String,
     @Expose @SerializedName("view_link") val view_link: String,
     @Expose @SerializedName("visit_report_file") val visit_report_file: String,
-    @Expose @SerializedName("visit_satus") val visit_satus: String,
+    @Expose @SerializedName("visit_satus") val visit_satus: Int,
     @Expose @SerializedName("visited_date") val visited_date: String,
     @Expose @SerializedName("visited_officer") val visited_officer: String
 )

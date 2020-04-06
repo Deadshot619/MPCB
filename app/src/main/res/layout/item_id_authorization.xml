@@ -186,8 +186,8 @@ bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh " />
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_address_info"
-                    tools:text="In-Process" />
-<!--            app:idAuthStatus="@{data.status}"-->
+                    tools:text="In-Process"
+            app:idAuthStatus="@{data.status}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

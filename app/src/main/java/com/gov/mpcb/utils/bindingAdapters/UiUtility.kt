@@ -141,6 +141,7 @@ fun bindLayoutVisibility(view: View, status: LoadingStatus?) {
     }
 }
 
+//Industry Directory
 /**
  * This binding adapter will be used in [R.layout.item_id_consent] to set the consent payment status of it
  */
@@ -166,7 +167,7 @@ fun bindIdConsentStatus(textView: TextView, status: Int){
 }
 
 /**
- * This binding adapter will be used in [R.layout.item_id_consent] to set the status of it
+ * This binding adapter will be used in [R.layout.item_id_authorization] to set the status of it
  */
 @BindingAdapter("idAuthStatus")
 fun bindIdAuthStatus(textView: TextView, status: Int){
@@ -174,5 +175,16 @@ fun bindIdAuthStatus(textView: TextView, status: Int){
         2 -> "Rejected"
         1 -> "Approved"
         else -> "In Process"
+    }
+}
+
+/**
+ * This binding adapter will be used in [R.layout.item_id_visits] to set the status of it
+ */
+@BindingAdapter("idVisitsStatus")
+fun bindIdVisitsStatus(textView: TextView, status: Int){
+    textView.text = when(status){
+        0 -> "Not Visited"
+        else -> "Visited"
     }
 }
