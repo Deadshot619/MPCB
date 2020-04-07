@@ -48,8 +48,8 @@ class   IdVisitsFragment : BaseFragment<FragmentIdVisitsBinding, IdVisitsViewMod
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
         mAdapter = IdVisitsAdapter(IdVisitsAdapter.OnClickListener{
-            if (it.view_link.isNotEmpty()) {
-                CommonUtils.redirectUserToBrowser(activity!!, it.view_link)
+            if (it.isNotEmpty()) {
+                CommonUtils.redirectUserToBrowser(activity!!, it)
             } else {
                 showMessage("No PDF to view")
             }

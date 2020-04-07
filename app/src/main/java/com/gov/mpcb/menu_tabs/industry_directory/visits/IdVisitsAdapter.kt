@@ -71,9 +71,9 @@ class IdVisitsAdapter(val listener: OnClickListener):
     /**
      * Interface to call in the [OnClickListener] & passed on to fragment to implement
      */
-    class OnClickListener(val clickListener: (idVisitData: IdVisitData) -> Unit) {
-        fun onClick(idVisitData: IdVisitData) =
-            clickListener(idVisitData)
+    class OnClickListener(val clickListener: (link: String) -> Unit) {
+        fun onClick(link: String) =
+            clickListener(link)
     }
 
 }
