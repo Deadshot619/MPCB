@@ -167,6 +167,18 @@ fun bindIdConsentStatus(textView: TextView, status: Int){
 }
 
 /**
+ * This binding adapter will be used in [R.layout.item_id_consent] to set the color of it
+ */
+@BindingAdapter("idConsentColorStatus")
+fun bindIdConsentColorStatus(textView: TextView, status: Int){
+    textView.setBackgroundResource(when(status){
+        1 -> R.color.red
+        2 -> R.color.green
+        else -> R.color.blue
+    })
+}
+
+/**
  * This binding adapter will be used in [R.layout.item_id_authorization] to set the status of it
  */
 @BindingAdapter("idAuthStatus")
@@ -179,6 +191,18 @@ fun bindIdAuthStatus(textView: TextView, status: Int){
 }
 
 /**
+ * This binding adapter will be used in [R.layout.item_id_authorization] to set the status of it
+ */
+@BindingAdapter("idAuthColorStatus")
+fun bindIdAuthColorStatus(textView: TextView, status: Int){
+    textView.setBackgroundResource(when(status){
+        2 -> R.color.red
+        1 -> R.color.green
+        else -> R.color.blue
+    })
+}
+
+/**
  * This binding adapter will be used in [R.layout.item_id_visits] to set the status of it
  */
 @BindingAdapter("idVisitsStatus")
@@ -186,5 +210,16 @@ fun bindIdVisitsStatus(textView: TextView, status: Int){
     textView.text = when(status){
         0 -> "Not Visited"
         else -> "Visited"
+    }
+}
+
+/**
+ * This binding adapter will be used in [R.layout.item_id_visits] to set the color of it
+ */
+@BindingAdapter("idVisitsColorStatus")
+fun bindIdVisitsColorStatus(textView: TextView, status: Int){
+    when(status){
+        0 -> textView.setBackgroundResource(R.color.red)
+        else -> textView.setBackgroundResource(R.color.green)
     }
 }
