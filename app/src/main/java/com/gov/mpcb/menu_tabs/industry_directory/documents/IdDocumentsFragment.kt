@@ -47,10 +47,13 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
     }
 
     /**
-     * This method will be used to set Title of the page which usually will be industry name
+     * This method will be used to set Title & Uan no. of the page which usually will be industry name
      */
-    private fun setPageTitle(name: String){
-        mBinding.tvTitle.text = name
+    private fun setPageTitle(name: String, uanNo: String){
+        mBinding.run {
+            tvTitle.text = name
+            tvUanNo.text = uanNo
+        }
     }
 
     /**
@@ -101,7 +104,7 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
                         applicantId = it.Application_id,
                         type = it.app_type
                     )
-                    setPageTitle(it.industryname)
+                    setPageTitle(name = it.industryname, uanNo = it.unique_id)
                 }
             } else {            //If false, then data is SUBM
                 val idSubmissionData =
@@ -112,7 +115,7 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
                         applicantId = it.Application_id,
                         type = it.app_type
                     )
-                    setPageTitle(it.industryname)
+                    setPageTitle(name = it.industryname, uanNo = it.unique_id)
 
                 }
             }
@@ -124,7 +127,7 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
 
             idConsentData?.let {
                 mViewModel.getConsentDocumentsData(applicantId = it.applicant_id)
-                setPageTitle(it.industryname)
+                setPageTitle(name = it.industryname, uanNo = it.unique_id)
             }
         }
 
