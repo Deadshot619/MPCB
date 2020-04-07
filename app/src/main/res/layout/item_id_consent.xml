@@ -234,7 +234,7 @@ bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh "
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginRight="16dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@{data.approval_date}"/>
+                        app:extractDateRemoveTime="@{data.approval_date}"/>
 
 
                 <!--Validity Date Label-->
@@ -264,7 +264,7 @@ bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh "
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginRight="16dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@{data.validitydate}"/>
+                        app:extractDateRemoveTime="@{data.validitydate}"/>
 
                 <!--    Eye  -->
                 <ImageButton
