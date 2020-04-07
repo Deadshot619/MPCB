@@ -203,6 +203,16 @@ fun bindIdAuthColorStatus(textView: TextView, status: Int){
 }
 
 /**
+ * This method will extract the string before the last occurrence of space("") i.e. extract date from date & time string.
+ */
+@BindingAdapter("extractDateRemoveTimeSubmission")
+fun bindextractDateRemoveTimeSubmission(textView: TextView, string: String) {
+    textView.text = "Submitted On : ${string.substringBeforeLast(" ")}"
+}
+
+
+
+/**
  * This binding adapter will be used in [R.layout.item_id_visits] to set the status of it
  */
 @BindingAdapter("idVisitsStatus")
