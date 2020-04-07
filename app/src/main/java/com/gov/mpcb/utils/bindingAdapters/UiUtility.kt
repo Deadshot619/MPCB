@@ -10,6 +10,7 @@ import com.gov.mpcb.R
 import com.gov.mpcb.network.response.MyVisitModel
 import com.gov.mpcb.network.response.UsersAssignedName
 import com.gov.mpcb.utils.LoadingStatus
+import com.gov.mpcb.utils.constants.Constants
 
 /**
  * This adapter is used to set background drawable in Visit Status textview in
@@ -232,4 +233,12 @@ fun bindIdVisitsColorStatus(textView: TextView, status: Int){
         0 -> textView.setBackgroundResource(R.color.red)
         else -> textView.setBackgroundResource(R.color.green)
     }
+}
+
+/**
+ * This binding adapter will be used in [R.layout.item_id_legal] to set the full form of Legal Direction
+ */
+@BindingAdapter("idLegalDirection")
+fun bindIdLegalDirection(textView: TextView, direction: String){
+    textView.text = Constants.ID_LEGAL_DIRECTION[direction] ?: "-"
 }

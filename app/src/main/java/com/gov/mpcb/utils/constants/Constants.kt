@@ -499,7 +499,22 @@ class Constants {
         }
 
 
+        /**
+         * This variable will be used to set data to [R.layout.item_id_legal] Legal Direction field
+         */
+        val ID_LEGAL_DIRECTION = mapOf<String, String>(
+            "WN" to "Warning Notice",
+            "SCN" to "Show Cause Notice",
+            "PD" to "Proposed Direction",
+            "ID" to "Interim Direction",
+            "CD" to "Closure Direction",
+            "RESTART" to "Restart Order",
+            "EC" to "Environment Compensation"
+        )
+
     }
+
+
 
 
 }
