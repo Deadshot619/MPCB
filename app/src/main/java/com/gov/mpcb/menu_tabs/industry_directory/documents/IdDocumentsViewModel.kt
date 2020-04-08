@@ -90,7 +90,7 @@ class IdDocumentsViewModel : BaseViewModel<IdDocumentsNavigator>() {
                 IdConsentDocumentsData(
                     Id = id + 1,
                     Document_name = key,
-                    view_link = jsonObject[key].toString()
+                    view_link = jsonObject[key].toString().removeSurrounding("\"", "\"")
                 )
             )
         }
