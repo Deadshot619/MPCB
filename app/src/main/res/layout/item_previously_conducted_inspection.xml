@@ -200,7 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/shape_industry_background_green"
-                    android:onClick="@{() -> clickListener.onClick(data.download_link)}"
+                    android:onClick="@{() -> clickListener.onClick(data)}"
                     android:paddingLeft="28dp"
                     android:paddingTop="8dp"
                     android:paddingRight="28dp"

@@ -69,7 +69,7 @@ class PreviouslyConductedInspectionAdapter(val listener: OnClickListener) :
     /**
      * Interface to call in the [OnClickListener] & passed on to fragment to implement
      */
-    class OnClickListener(val clickListener: (link: String) -> Unit){
-        fun onClick(link: String) = clickListener(link)
+    class OnClickListener(val clickListener: (data: ViewPreviousInspectionListData) -> Unit){
+        fun onClick(data: ViewPreviousInspectionListData) = clickListener(data)
     }
 }
