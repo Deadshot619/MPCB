@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="model"
+                type="com.gov.mpcb.network.response.MyVisitModel" />
+
+        <variable
+                name="viewModel"
+                type="com.gov.mpcb.my_visits.MyVisitsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="56dp"
+                android:layout_marginLeft="56dp"
+                android:background="@android:color/white"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="16dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="56dp"
+                        android:layout_marginTop="20dp"
+                        tools:text="Korde Chemicals Pvt. Lyd."
+                        android:text="@{model.industryName}"
+                        android:textColor="@android:color/black" />
+
+                <RelativeLayout
+                        android:id="@+id/visit_scheduled_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/txtxVisitScheduledOn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_visit_scheduled"
+                            android:textSize="15sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/txtxVisitScheduledOn"
+                            android:textColor="@android:color/black"
+                            tools:text="03/69/6969"
+                            app:parseDate="@{model.scheduledOn}" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgExpandCollapse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_down_arrow" />
+                </RelativeLayout>
+
+                <!--                Address-->
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/txt_address"
+                        android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="10dp"
+                        tools:text="bleh bleh bleh bleh bleh bleh "
+                        android:text="@{model.industryAddress}"
+                        android:textColor="@android:color/black" />
+
+                <LinearLayout
+                        android:id="@+id/layLinBottom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:visibility="visible"
+                        android:visibility="gone">
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/bg_grey" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:padding="4dp">
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:drawableRight="@drawable/ic_add"
+                                android:drawableTint="@color/grey"
+                                android:drawablePadding="4dp"
+                                android:text="Click here to add reason if not visited"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imgLocation"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:onClick="@{() -> viewModel.onCheckInClick(model)}"
+                                android:padding="4dp"
+                                android:src="@drawable/ic_location_grey" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/imgReports"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:onClick="@{() -> viewModel.onVisitItemClick(model)}"
+                                android:padding="5dp"
+                                android:src="@drawable/ic_reports_grey" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="3"
+                                android:background="@drawable/shape_industry_background_green"
+                                android:gravity="center_horizontal"
+                                android:padding="8dp"
+                                tools:text="Visited"
+                                app:visitStatus="@{model}"
+                                android:text="@{model.visitStatus}"
+                                android:textColor="@android:color/white"
+                                android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/shape_industry_background_green"
+                android:elevation="2dp"
+                android:ellipsize="marquee"
+                android:maxLength="9"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:singleLine="false"
+                android:text='@{"#" + model.industryIMISId}'
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="#696969" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

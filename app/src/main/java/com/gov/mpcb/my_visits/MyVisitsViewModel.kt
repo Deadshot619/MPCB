@@ -13,10 +13,7 @@ import com.gov.mpcb.base.BaseViewModel
 import com.gov.mpcb.base.MPCBApp
 import com.gov.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUserId
 import com.gov.mpcb.network.DataProvider
-import com.gov.mpcb.network.request.MyVisitRequest
-import com.gov.mpcb.network.request.ReportRequest
-import com.gov.mpcb.network.request.UserListHodRequest
-import com.gov.mpcb.network.request.ViewVisitRequest
+import com.gov.mpcb.network.request.*
 import com.gov.mpcb.network.response.CheckInfoModel
 import com.gov.mpcb.network.response.LoginResponse
 import com.gov.mpcb.network.response.MyVisitModel
@@ -89,6 +86,30 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                 success = Consumer {
                     dialogVisibility.value = false
                     visitList.value = it
+                },
+                error = Consumer {
+                    checkError(it)
+                })
+        )
+    }
+
+    /**
+     * This method is used to get previous month uncompleted visit data
+     */
+    fun getUncompletedVisitData(date: String) {
+        val request = ViewUncompletedVisitRequest().apply {
+            userId = user.userId.toString()
+            previousMonth = date
+        }
+
+        dialogVisibility.value = true
+        dialogMessage.value = "Fetching List..."
+        mDisposable.add(
+            DataProvider.getUncompletedVisitList(
+                request = request,
+                success = Consumer {
+                    dialogVisibility.value = false
+//                    visitList.value = it.data
                 },
                 error = Consumer {
                     checkError(it)
@@ -368,9 +389,9 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         ))
     }
 
-    /*
-     * FOLLOWING METHODS ARE USED TO RETRIEVE & SAVE LOCATION DATA
-     */
+/*
+ * FOLLOWING METHODS ARE USED TO RETRIEVE & SAVE LOCATION DATA
+ */
     /**
      * Method to set Latitude & Longitude in SharedPref & Live Data resp.
      *
