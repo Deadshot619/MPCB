@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class MyVisitModel(
-    @Expose @SerializedName("visit_scheduler_id") var visitSchedulerId: Long = 0,
+    @Expose @SerializedName(value = "visit_scheduler_id", alternate = ["visit_id"]) var visitSchedulerId: Long = 0,
     @Expose @SerializedName("industry_imis_id") var industryIMISId: String = "",
     @Expose @SerializedName("industry_name") var industryName: String = "",
     @Expose @SerializedName("industry_address") var industryAddress: String = "",
