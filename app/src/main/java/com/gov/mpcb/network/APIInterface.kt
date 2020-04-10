@@ -25,6 +25,10 @@ interface APIInterface {
     @POST("visit_list")
     fun getVisitList(@Body request: MyVisitRequest): Single<MyVisitResponse>
 
+    //fetches uncompleted visit list
+    @POST("view_uncompleted_visit_list")
+    fun fetchUncompletedVisitList(@Body request: ViewUncompletedVisitRequest): Single<ViewUncompletedVisitResponse>
+
     @Multipart
     @POST("check_in")
     fun checkIn(

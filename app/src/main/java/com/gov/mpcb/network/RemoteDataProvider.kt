@@ -40,6 +40,15 @@ interface RemoteDataProvider {
         error: Consumer<Throwable>
     ): Disposable
 
+    /**
+     * Method to get Visit List data
+     */
+    fun getUncompletedVisitList(
+        request: ViewUncompletedVisitRequest,
+        success: Consumer<ViewUncompletedVisitResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
+
     fun checkIn(
         requestId: RequestBody,
         userId: RequestBody,

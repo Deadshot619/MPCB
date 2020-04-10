@@ -119,6 +119,30 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    /**
+     * Method to get Visit List data
+     */
+    override fun getUncompletedVisitList(
+        request: ViewUncompletedVisitRequest,
+        success: Consumer<ViewUncompletedVisitResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchUncompletedVisitList(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(Consumer { response ->
+                if (response.status != 1) {
+                    error.accept(Throwable(response.message))
+                } else {
+                    success.accept(response)
+                }
+            }, error)
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+
 
     override fun checkInInfo(
         request: MyVisitRequest,
