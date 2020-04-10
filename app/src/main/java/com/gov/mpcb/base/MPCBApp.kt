@@ -6,6 +6,7 @@ import com.crashlytics.android.Crashlytics
 import com.facebook.stetho.Stetho
 import io.fabric.sdk.android.Fabric
 
+
 class MPCBApp : MultiDexApplication() {
 
     companion object {
@@ -26,6 +27,5 @@ class MPCBApp : MultiDexApplication() {
         Fabric.with(fabric)
 
     }
-
 }
 

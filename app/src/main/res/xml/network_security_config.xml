@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">mtest.ecmpcb.in</domain>
+        <domain includeSubdomains="true">manage.ecmpcb.in</domain>
+        <trust-anchors>
+            <certificates src="@raw/ecmpcb_in_certificate"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>

@@ -16,6 +16,7 @@ import com.gov.mpcb.utils.showMessage
 class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocumentsViewModel>(),
     IdDocumentsNavigator {
 
+    private val REQUEST_STORAGE_CODE = 100
     private lateinit var mAdapter: IdConsentDocumentsAdapter
 
     override fun getLayoutId() = R.layout.fragment_id_documents
@@ -49,7 +50,7 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
     /**
      * This method will be used to set Title & Uan no. of the page which usually will be industry name
      */
-    private fun setPageTitle(name: String, uanNo: String){
+    private fun setPageTitle(name: String, uanNo: String) {
         mBinding.run {
             tvTitle.text = name
             tvUanNo.text = uanNo
@@ -62,7 +63,24 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
         //Setup Adapter
         mAdapter = IdConsentDocumentsAdapter(IdConsentDocumentsAdapter.OnClickListener {
-            CommonUtils.redirectUserToBrowser(activity!!, it.view_link)
+            CommonUtils.checkPermissionAndDownloadPdf(
+                context = activity!!,
+                view = mBinding.root,
+                url = it.view_link,
+                fileName = it.Document_name
+            )
+
+//            CommonUtils.downloadPdf(
+//                context = activity!!,
+//                url = it.view_link,
+//                fileName = it.Document_name
+//            )
+
+//            CommonUtils.downloadPdf(
+//                context = activity!!,
+//                url = it.view_link,
+//                fileName = it.Document_name
+//            )
         })
 
         recyclerView.run {
@@ -83,7 +101,7 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
     /**
      * This method will be used to retrieve data from bundle and call APi accordingly
      */
-    private fun getDataFromBundleAndCallApi(bundle: Bundle?){
+    private fun getDataFromBundleAndCallApi(bundle: Bundle?) {
         //Get data from bundle to check whether data is from other documnet or not
         val isBundleFromOtherDocument =
             bundle?.getBoolean(Constants.ID_OTHER_DOCUMENT_KEY) ?: false
@@ -95,7 +113,7 @@ class IdDocumentsFragment : BaseFragment<FragmentIdDocumentsBinding, IdDocuments
             val isDataForAuth = bundle?.getBoolean(Constants.IS_DATA_FOR_AUTH) ?: false
 
             //If true, then data is for AUTH
-            if (isDataForAuth){
+            if (isDataForAuth) {
                 val idAuthorizationData =
                     bundle?.getParcelable<IdAuthorizationData?>(Constants.IS_AUTH_DATA_KEY)
 
