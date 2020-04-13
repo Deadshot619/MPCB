@@ -76,9 +76,14 @@ class ApplyForSurpriseInspectionFragment :
     }
 
     private fun setUpRecyclerView(recyclerView: RecyclerView) {
-        mAdapter = PreviouslyConductedInspectionAdapter(PreviouslyConductedInspectionAdapter.OnClickListener{ url ->
-            //Open Browser
-            CommonUtils.redirectUserToBrowser(activity!!, url)
+        mAdapter = PreviouslyConductedInspectionAdapter(PreviouslyConductedInspectionAdapter.OnClickListener{ data ->
+            //Download PDF
+            CommonUtils.checkPermissionAndDownloadPdf(
+                context = activity!!,
+                view = mBinding.root,
+                url = data.download_link,
+                fileName = "Visit_Report_${data.industry_imis_id}"
+            )
         })
 
         recyclerView.run {

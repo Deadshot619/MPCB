@@ -150,6 +150,9 @@ dependencies {
     //Firebase Messaging
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
 
+    //Dexter
+    implementation 'com.karumi:dexter:6.1.0'
+
     //Pager
 //    implementation "androidx.paging:paging-runtime:2.1.2"
 //    implementation "androidx.paging:paging-rxjava2:2.1.2"

@@ -22,51 +22,51 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="0dp"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbarLayout">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="0dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="16dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbarLayout">
 
-                <!--                Tab Selection-->
-                <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tab_layout"
+                <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tabGravity="center"
-                        app:tabIndicatorHeight="3dp"
-                        app:tabMode="fixed"
-                        app:tabPadding="18dp" />
+                        android:layout_height="match_parent">
 
-                <!--                Tab Data-->
-                <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/viewpager"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@color/bg_grey"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+                    <!--                Tab Selection-->
+                    <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tab_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tabGravity="center"
+                            app:tabIndicatorHeight="3dp"
+                            app:tabMode="fixed"
+                            app:tabPadding="18dp" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <!--                Tab Data-->
+                    <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewpager"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@color/bg_grey"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
-        </androidx.cardview.widget.CardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
         <!--FAB-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton

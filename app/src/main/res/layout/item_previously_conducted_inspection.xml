@@ -30,10 +30,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_menu_background_green"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
                     android:paddingLeft="18dp"
+                    android:paddingTop="10dp"
                     android:paddingRight="18dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -46,30 +46,30 @@
                     android:id="@+id/tv_inspection_conducted_by_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Inspection Conducted By"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Inspection Conducted By"
-                    android:text="Inspection Conducted By"
-                    android:layout_marginStart="16dp" />
+                    tools:text="Inspection Conducted By" />
 
             <!--    Inspection conducted by info -->
             <TextView
                     android:id="@+id/tv_inspection_conducted_by_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:text="@{data.assigned_to_officer}"
-                    tools:text="FO-Navi Mumbai (Mr. Ketan Patil)"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/tv_number"
                     app:layout_constraintStart_toStartOf="@id/tv_inspection_conducted_by_label"
                     app:layout_constraintTop_toBottomOf="@id/tv_inspection_conducted_by_label"
-                    android:layout_marginEnd="16dp" />
+                    tools:text="FO-Navi Mumbai (Mr. Ketan Patil)" />
 
             <!--   Inspection Type  -->
             <TextView
@@ -77,27 +77,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:text="Inspection Type"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_inspection_conducted_by_info"
                     app:layout_constraintTop_toBottomOf="@id/tv_inspection_conducted_by_info"
-                    android:text="Inspection Type"
-                    tools:text="Inspection Type"/>
+                    tools:text="Inspection Type" />
 
             <!--    Inspection Type Info   -->
             <TextView
                     android:id="@+id/tv_inspection_type_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="16dp"
                     app:isSurpriseInspection="@{data.is_surprise_inspection}"
-                    tools:text="Randomized Inspection"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_inspection_type_label"
                     app:layout_constraintTop_toBottomOf="@id/tv_inspection_type_label"
-                    android:layout_marginEnd="16dp" />
+                    tools:text="Randomized Inspection" />
 
 
             <!--   Visit Conducted  -->
@@ -106,36 +106,36 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:text="Visit Conducted"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_inspection_type_info"
                     app:layout_constraintTop_toBottomOf="@id/tv_inspection_type_info"
-                    android:text="Visit Conducted"
-                    tools:text="Visit Conducted"/>
+                    tools:text="Visit Conducted" />
 
             <!--    Visit Conducted Info   -->
             <TextView
                     android:id="@+id/tv_visit_conducted_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="16dp"
-                    tools:text="Yes"
                     app:isVisitConducted="@{data.visited_on}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_visit_conducted_label"
                     app:layout_constraintTop_toBottomOf="@id/tv_visit_conducted_label"
-                    android:layout_marginEnd="16dp" />
+                    tools:text="Yes" />
 
             <View
                     android:id="@+id/view_separator"
                     android:layout_width="match_parent"
                     android:layout_height="0.2dp"
-                    android:background="@color/bg_grey"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/tv_visit_conducted_info"/>
+                    android:background="@color/bg_grey"
+                    app:layout_constraintTop_toBottomOf="@id/tv_visit_conducted_info" />
 
             <!--   Inspection Scheduled On  -->
             <TextView
@@ -143,27 +143,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:text="Inspection Scheduled On"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_inspection_type_label"
                     app:layout_constraintTop_toBottomOf="@id/view_separator"
-                    android:text="Inspection Scheduled On"
-                    tools:text="Inspection Scheduled On"/>
+                    tools:text="Inspection Scheduled On" />
 
             <!--    Inspection Scheduled On Info   -->
             <TextView
                     android:id="@+id/tv_inspection_scheduled_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="16dp"
-                    tools:text="06-03-2017"
                     app:extractDateRemoveTime="@{data.schduled_on}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tv_inspection_scheduled_label"
                     app:layout_constraintTop_toBottomOf="@id/tv_inspection_scheduled_label"
-                    android:layout_marginEnd="16dp" />
+                    tools:text="06-03-2017" />
 
             <!--   Visit Conducted On  -->
             <TextView
@@ -171,27 +171,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:text="Visit Conducted On"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="@id/tv_inspection_scheduled_info"
                     app:layout_constraintTop_toBottomOf="@id/tv_inspection_scheduled_info"
-                    android:text="Visit Conducted On"
-                    tools:text="Visit Conducted On"/>
+                    tools:text="Visit Conducted On" />
 
             <!--    Visit Conducted On Info   -->
             <TextView
                     android:id="@+id/tv_visit_conducted_on_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="16dp"
-                    tools:text="06-03-2017"
                     app:extractDateRemoveTime="@{data.visited_on}"
                     app:layout_constraintEnd_toStartOf="@id/tv_download_visit_report"
                     app:layout_constraintStart_toStartOf="@id/tv_visit_conducted_on_label"
                     app:layout_constraintTop_toBottomOf="@id/tv_visit_conducted_on_label"
-                    android:layout_marginEnd="16dp" />
+                    tools:text="06-03-2017" />
 
             <!-- Download Visit Report -->
             <androidx.appcompat.widget.AppCompatTextView
@@ -200,20 +200,20 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/shape_industry_background_green"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
+                    android:onClick="@{() -> clickListener.onClick(data)}"
                     android:paddingLeft="28dp"
+                    android:paddingTop="8dp"
                     android:paddingRight="28dp"
+                    android:paddingBottom="8dp"
                     android:text="Download Visit Report"
-                    tools:text="Download Visit Report"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold"
                     android:textSize="16sp"
-                    android:onClick="@{() -> clickListener.onClick(data.download_link)}"
+                    android:textStyle="bold"
                     app:isLinkAvailable="@{data.download_link}"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tv_visit_conducted_on_info"/>
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_visit_conducted_on_info"
+                    tools:text="Download Visit Report" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

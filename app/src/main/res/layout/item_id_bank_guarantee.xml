@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="data"
+                type="com.gov.mpcb.network.response.IdBankGuaranteeData" />
+
+        <variable
+                name="clickListener"
+                type="com.gov.mpcb.menu_tabs.industry_directory.bank_guarantee.IdBankGuaranteeAdapter.OnClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <!--    Upper   -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+
+                <!--                Number-->
+                <TextView
+                        android:id="@+id/tv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_menu_background_green"
+                        android:padding="14dp"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="1" />
+
+                <!--                Condition-->
+                <TextView
+                        android:id="@+id/tv_condition_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Condition"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_number"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Condition" />
+
+                <!--Condition Info-->
+                <TextView
+                        android:id="@+id/tv_uan_no_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@{data.conditions}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/tv_number"
+                        app:layout_constraintStart_toStartOf="@id/tv_condition_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_condition_label"
+                        tools:text="MPCB-CONSENT-00069" />
+
+                <!-- Compliance Period -->
+                <TextView
+                        android:id="@+id/tv_compliance_period_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Compliance Period"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_uan_no_info"
+                        tools:text="Compliance Period" />
+
+
+                <!--Compliance PeriodInfo-->
+                <TextView
+                        android:id="@+id/tv_industry_name_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:extractDateRemoveTime="@{data.compliance_period}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/tv_number"
+                        app:layout_constraintStart_toStartOf="@id/tv_compliance_period_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_compliance_period_label"
+                        tools:text="MPCB-CONSENT-00069" />
+
+                <!--BG No. Label-->
+                <TextView
+                        android:id="@+id/tv_bg_no_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="BG No."
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_industry_name_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_industry_name_info"
+                        tools:text="BG No." />
+
+                <!--BG No. Info-->
+                <TextView
+                        android:id="@+id/tv_bg_no_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@{data.bg_no}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_bg_no_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bg_no_label"
+                        tools:text="bleh bleh bleh bleh bleh bleh bleh" />
+
+                <!--Amount Label-->
+                <TextView
+                        android:id="@+id/tv_amount_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Amount"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_bg_no_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bg_no_info"
+                        tools:text="Amount" />
+
+                <!--Amount Info-->
+                <TextView
+                        android:id="@+id/tv_amount_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@{data.amount}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_amount_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_amount_label"
+                        tools:text="69,69,420" />
+
+                <!--Bank Label-->
+                <TextView
+                        android:id="@+id/tv_bank_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Bank"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_amount_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_amount_info"
+                        tools:text="Bank" />
+
+                <!--Bank Info-->
+                <TextView
+                        android:id="@+id/tv_bank_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@{data.bank_name}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_bank_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bank_label"
+                        tools:text="69,69,420" />
+
+                <!--BG Validity Label-->
+                <TextView
+                        android:id="@+id/tv_bg_validity_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="BG Validity"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_bank_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bank_info"
+                        tools:text="BG Validity" />
+
+                <!--BG Validity Info-->
+                <TextView
+                        android:id="@+id/tv_bg_validity_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@{data.bg_action}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_bg_validity_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bg_validity_label"
+                        tools:text="69/69/0420" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/bg_grey" />
+
+            <!--    Lower   -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="12dp">
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintGuide_percent="0.5"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                <!--Consent No. Label-->
+                <TextView
+                        android:id="@+id/tv_consent_no_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Consent No."
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/guidline"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Consent No." />
+
+                <!--Consent No. Info-->
+                <TextView
+                        android:id="@+id/tv_consent_no_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:extractDateRemoveTime="@{data.consent_no}"
+                        app:layout_constraintEnd_toStartOf="@id/guidline"
+                        app:layout_constraintStart_toStartOf="@id/tv_consent_no_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_consent_no_label"
+                        tools:text="69/69/6969" />
+
+
+                <!--Consent Grant Date Label-->
+                <TextView
+                        android:id="@+id/tv_consent_grant_date_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:text="Consent Grant Date"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toEndOf="@id/guidline"
+                        app:layout_constraintTop_toTopOf="@+id/tv_consent_no_label"
+                        tools:text="Consent Grant Date" />
+
+                <!--Consent Grant Date Info-->
+                <TextView
+                        android:id="@+id/tv_consent_grant_date_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:extractDateRemoveTime="@{data.consent_date}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_consent_grant_date_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_consent_grant_date_label"
+                        tools:text="69/69/6969" />
+
+
+                <!--Consent Validity Date Label-->
+                <TextView
+                        android:id="@+id/tv_consent_validity_date_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Consent Validity Date"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_consent_no_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_consent_no_info"
+                        tools:text="Consent Validity Date" />
+
+                <!--Consent Validity Date Info-->
+                <TextView
+                        android:id="@+id/tv_consent_validity_date_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:extractDateRemoveTime="@{data.consent_validity}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintEnd_toStartOf="@+id/guidline"
+                        app:layout_constraintStart_toStartOf="@id/tv_consent_validity_date_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_consent_validity_date_label"
+                        tools:text="69/69/6969" />
+
+
+                <!--BG Submission Date Label-->
+                <TextView
+                        android:id="@+id/tv_bg_submission_date_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:text="BG Submission Date"
+                        android:textSize="14sp"
+                        android:layout_marginTop="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toEndOf="@id/guidline"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_consent_grant_date_info"
+                        tools:text="BG Submission Date" />
+
+                <!--BG Submission Date Info-->
+                <TextView
+                        android:id="@+id/tv_bg_submission_date_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        app:extractDateRemoveTime="@{data.issue_date}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_bg_submission_date_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_bg_submission_date_label"
+                        tools:text="69/69/6969" />
+
+
+                <!--    Eye  -->
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_eye"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:onClick="@{() -> clickListener.onEyeClick(data)}"
+                        android:src="@drawable/ic_remove_red_eye_black_24dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_consent_validity_date_info"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_consent_validity_date_info" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,5 +1,6 @@
 package com.gov.mpcb.network
 
+import com.google.gson.JsonElement
 import com.gov.mpcb.network.request.*
 import com.gov.mpcb.network.response.*
 import io.reactivex.disposables.Disposable
@@ -128,6 +129,7 @@ interface RemoteDataProvider {
         error: Consumer<Throwable>
     ): Disposable
 
+    /* Surprise Inspections APis*/
     /**
      * Method to fetch Surprise Inspections List applied by user
      */
@@ -142,7 +144,7 @@ interface RemoteDataProvider {
      */
     fun getAvailableIndustries(
         request: ViewAvailableIndustriesRequest,
-        success: Consumer<ViewAvailableIndustriesResponse>,
+        success: Consumer<ViewAvailableIndustriesResponse<ViewAvailableIndustriesData>>,
         error: Consumer<Throwable>
     ): Disposable
 
@@ -164,12 +166,50 @@ interface RemoteDataProvider {
         error: Consumer<Throwable>
     ): Disposable
 
+    /*  Circulars APi   */
     /**
      * Method to fetch circulars data
      */
     fun getCircularsData(
         request: CircularsRequest,
         success: Consumer<CircularsResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
+
+    /*  Industry Directory APi   */
+    /**
+     * Method to get Industry Directory List
+     */
+    fun getIndustryDirectoryList(
+        request: ViewDirectoryListRequest,
+        success: Consumer<ViewAvailableIndustriesResponse<ViewDirectoryListData>>,
+        error: Consumer<Throwable>
+    ):Disposable
+
+    /**
+     * Method to get Application Directory List data
+     */
+    fun getApplicationListData(
+        request: ViewIndustryDirectoryDataRequest,
+        success: Consumer<ViewIndustryDirectoryDataResponse<JsonElement>>,
+        error: Consumer<Throwable>
+    ): Disposable
+
+    /**
+     * Method to get Documents data for Consent
+     */
+    fun getConsentDocuments(
+        request: IdConsentDocumentRequest,
+        success: Consumer<IdConsentDocumentResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
+
+    /**
+     * Method to get data for other Documents
+     */
+    fun getOtherDocuments(
+        request: IdOtherDocumentsRequest,
+        success: Consumer<IdOtherDocumentDataResponse>,
         error: Consumer<Throwable>
     ): Disposable
 }

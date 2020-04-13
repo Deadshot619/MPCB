@@ -1,5 +1,6 @@
 package com.gov.mpcb.network
 
+import com.google.gson.JsonElement
 import com.gov.mpcb.network.request.*
 import com.gov.mpcb.network.response.*
 import com.gov.mpcb.utils.isNetworkAvailable
@@ -376,6 +377,7 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    /* Surprise Inspections APis*/
     /**
      * Method to fetch Surprise Inspections List applied by user
      */
@@ -408,7 +410,7 @@ object DataProvider : RemoteDataProvider {
      */
     override fun getAvailableIndustries(
         request: ViewAvailableIndustriesRequest,
-        success: Consumer<ViewAvailableIndustriesResponse>,
+        success: Consumer<ViewAvailableIndustriesResponse<ViewAvailableIndustriesData>>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
         mServices.getAvailableIndustryLists(request)
@@ -481,6 +483,8 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    /*  Circulars APi   */
+
     /**
      * Method to fetch circulars data
      */
@@ -503,4 +507,109 @@ object DataProvider : RemoteDataProvider {
         getDefaultDisposable()
     }
 
+    /*  Industry Directory APi   */
+    /**
+     * Method to get Industry Directory List
+     */
+    override fun getIndustryDirectoryList(
+        request: ViewDirectoryListRequest,
+        success: Consumer<ViewAvailableIndustriesResponse<ViewDirectoryListData>>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchIndustryDirectoryList(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+    /**
+     * Method to get Application Directory List data
+     */
+    override fun getApplicationListData(
+        request: ViewIndustryDirectoryDataRequest,
+        success: Consumer<ViewIndustryDirectoryDataResponse<JsonElement>>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchApplicationDirectoryData(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+    /**
+     * Method to get Documents data for Consent
+     */
+    override fun getConsentDocuments(
+        request: IdConsentDocumentRequest,
+        success: Consumer<IdConsentDocumentResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchConsentDocuments(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+
+    /**
+     * Method to get data for other Documents
+     */
+    override fun getOtherDocuments(
+        request: IdOtherDocumentsRequest,
+        success: Consumer<IdOtherDocumentDataResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.fetchOtherDocuments(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                Consumer { response ->
+                    if (response.status != 1) {
+                        error.accept(Throwable(response.message))
+                    } else {
+                        success.accept(response)
+                    }
+                },
+                error
+            )
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
 }

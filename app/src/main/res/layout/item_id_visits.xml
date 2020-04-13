@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="data"
+                type="com.gov.mpcb.network.response.IdVisitData" />
+
+        <variable
+                name="clickListener"
+                type="com.gov.mpcb.menu_tabs.industry_directory.visits.IdVisitsAdapter.OnClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:cardUseCompatPadding="true">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            <!--    Upper   -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="16dp">
+
+
+                <!--                Number-->
+                <TextView
+                        android:id="@+id/tv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_menu_background_green"
+                        android:padding="14dp"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"
+                        app:idVisitsColorStatus="@{data.visit_satus}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="1" />
+
+                <!-- Industry Name -->
+                <TextView
+                        android:id="@+id/tv_industry_name_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Industry Name"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/tv_number"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Industry Name" />
+
+
+                <!--Industry NameInfo-->
+                <TextView
+                        android:id="@+id/tv_industry_name_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@{data.industry_name}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@id/tv_number"
+                        app:layout_constraintStart_toStartOf="@id/tv_industry_name_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_industry_name_label"
+                        tools:text="MPCB-CONSENT-00069" />
+
+                <!--Industry Address Label-->
+                <TextView
+                        android:id="@+id/tv_industry_address_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Industry Address"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_industry_name_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_industry_name_info"
+                        tools:text="Industry Address" />
+
+                <!-- Industry Address Info-->
+                <TextView
+                        android:id="@+id/tv_industry_address_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@{data.address}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_industry_address_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_industry_address_label"
+                        tools:text="bleh bleh bleh bleh bleh bleh bleh bleh
+bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh bleh " />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.2dp"
+                    android:background="@color/bg_grey" />
+
+            <!--    Lower   -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guidline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintGuide_percent="0.5"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                <!--Unique ID Label-->
+                <TextView
+                        android:id="@+id/tv_payment_received_on_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="Unique ID"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Unique ID" />
+
+                <!--Unique ID Info-->
+                <TextView
+                        android:id="@+id/tv_unique_id_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:extractDateRemoveTime="@{data.industry_imis_id}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_payment_received_on_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_payment_received_on_label"
+                        tools:text="69 69 69" />
+
+
+                <!--Visit Scheduled on Label-->
+                <TextView
+                        android:id="@+id/tv_visit_scheduled_on_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Visit Scheduled on"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="@id/tv_unique_id_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_unique_id_info"
+                        tools:text="Visit Scheduled on" />
+
+                <!--Visit Scheduled on Info-->
+                <TextView
+                        android:id="@+id/tv_visit_scheduled_on_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:extractDateRemoveTime="@{data.schduled_on}"
+                        app:layout_constraintEnd_toStartOf="@id/guidline"
+                        app:layout_constraintStart_toStartOf="@id/tv_visit_scheduled_on_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_visit_scheduled_on_label"
+                        tools:text="69/69/6969" />
+
+
+                <!--Visited on Label-->
+                <TextView
+                        android:id="@+id/tv_visited_on_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="Visited on"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/guidline"
+                        app:layout_constraintTop_toTopOf="@id/tv_visit_scheduled_on_label"
+                        tools:text="Visited on" />
+
+                <!--Visited on Info-->
+                <TextView
+                        android:id="@+id/tv_visited_on_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:extractDateRemoveTime="@{data.visited_date}"
+                        app:layout_constraintEnd_toEndOf="@+id/tv_visited_on_label"
+                        app:layout_constraintStart_toStartOf="@id/tv_visited_on_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_visit_scheduled_on_label"
+                        tools:text="69/69/6969" />
+
+
+                <!--Visited by Label-->
+                <TextView
+                        android:id="@+id/tv_visited_by_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Visited by"
+                        android:textSize="14sp"
+                        app:layout_constraintHorizontal_bias="0"
+                        app:layout_constraintStart_toStartOf="@id/tv_visit_scheduled_on_info"
+                        app:layout_constraintTop_toBottomOf="@id/tv_visit_scheduled_on_info"
+                        tools:text="Visited by" />
+
+                <!--Visited by Info-->
+                <TextView
+                        android:id="@+id/tv_visited_by_info"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text="@{data.visited_officer}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_visited_by_label"
+                        app:layout_constraintTop_toBottomOf="@id/tv_visited_by_label"
+                        tools:text="Priyanka Lohot" />
+
+
+                <!--    Eye  -->
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_eye"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:isLinkAvailable="@{data.view_link}"
+                        android:onClick="@{() -> clickListener.onClick(data.view_link)}"
+                        android:src="@drawable/ic_remove_red_eye_black_24dp"
+                        app:layout_constraintStart_toStartOf="@+id/tv_visit_scheduled_on_info"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_visited_by_info" />
+
+                <!--    Reports     -->
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_reports"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="24dp"
+                        android:tint="?attr/colorAccent"
+                        app:isLinkAvailable="@{data.scanned_copy_link}"
+                        android:onClick="@{() -> clickListener.onClick(data.scanned_copy_link)}"
+                        android:src="@drawable/ic_file_download_24dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_eye"
+                        app:layout_constraintStart_toEndOf="@+id/iv_eye"
+                        app:layout_constraintTop_toTopOf="@+id/iv_eye" />
+
+                <!-- Process -->
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_process"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/shape_industry_background_green"
+                        android:paddingLeft="28dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="28dp"
+                        android:paddingBottom="8dp"
+                        android:text="In-Process"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:idVisitsColorStatus="@{data.visit_satus}"
+                        app:idVisitsStatus="@{data.visit_satus}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_visited_by_info"
+                        tools:text="In-Process" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

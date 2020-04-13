@@ -55,11 +55,21 @@ class Constants {
         //'ApplyForSurpriseInspectionFragment'
         const val VIEW_AVAILABLE_INDUSTRY_DATA = "view_available_industries_data"
 
+
+        /*  Industry Directory  */
+        const val INDUSTRY_ID = "industry_id"
         /**
          * This value is used to save report visit data in shared pref temporarily when
          * already submitted Visit report is to be viewed.
          */
         const val TEMP_VISIT_REPORT_DATA: String = "temp_visit_report_data"
+
+        const val IS_CONSENT_DATA_KEY = "id_consent_data"
+        const val IS_AUTH_DATA_KEY = "id_auth_data"
+        const val IS_SUBM_DATA_KEY = "id_subm_data"
+        const val IS_DATA_FOR_AUTH = "id_data_for_auth"
+        const val ID_OTHER_DOCUMENT_KEY = "id_other_document"
+
 
 
         const val VISIT_ID: String = "visit_id"
@@ -324,7 +334,6 @@ class Constants {
             7 to "Sulphate(mg/l)"
         )
 
-
         // reports page value
         const val REPORT_1 = 1
         const val REPORT_2 = 2
@@ -491,5 +500,24 @@ class Constants {
                 }
             }
         }
+
+
+        /**
+         * This variable will be used to set data to [R.layout.item_id_legal] Legal Direction field
+         */
+        val ID_LEGAL_DIRECTION = mapOf<String, String>(
+            "WN" to "Warning Notice",
+            "SCN" to "Show Cause Notice",
+            "PD" to "Proposed Direction",
+            "ID" to "Interim Direction",
+            "CD" to "Closure Direction",
+            "RESTART" to "Restart Order",
+            "EC" to "Environment Compensation"
+        )
+
     }
+
+
+
+
 }

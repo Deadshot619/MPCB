@@ -1,5 +1,6 @@
 package com.gov.mpcb.network
 
+import com.google.gson.JsonElement
 import com.gov.mpcb.network.request.*
 import com.gov.mpcb.network.response.*
 import io.reactivex.Single
@@ -37,7 +38,7 @@ interface APIInterface {
 
     //View Check-in info
     @POST("view_check_in")
-    fun getcheckInInfo(@Body request: MyVisitRequest) : Single<CheckInfoResponse>
+    fun getcheckInInfo(@Body request: MyVisitRequest): Single<CheckInfoResponse>
 
     //Submit Visit Report data
     @POST("submit_visit_report")
@@ -86,7 +87,7 @@ interface APIInterface {
 
     //View available industry lists
     @POST("list_surprise_industries")
-    fun getAvailableIndustryLists(@Body request: ViewAvailableIndustriesRequest): Single<ViewAvailableIndustriesResponse>
+    fun getAvailableIndustryLists(@Body request: ViewAvailableIndustriesRequest): Single<ViewAvailableIndustriesResponse<ViewAvailableIndustriesData>>
 
     //Add Surprise Inspection
     @POST("add_surprise_inspection")
@@ -96,10 +97,29 @@ interface APIInterface {
     @POST("view_previous_inspection_list")
     fun getPreviousConductedInspections(@Body request: ViewPreviousInspectionListRequest): Single<ViewPreviousInspectionListResponse>
 
+    /*  Circulars APi   */
     //fetch Circulars data
     @GET("http://www.mpcb.gov.in/view/api/circulars")
     fun fetchCirculars(
         @Query("page") pageNo: Int,
         @Query("search") searchQuery: String
-        ): Single<CircularsResponse>
+    ): Single<CircularsResponse>
+
+    /*  Industry Directory APi   */
+    //View Directory List data
+    @POST("view_directory_list")
+    fun fetchIndustryDirectoryList(@Body request: ViewDirectoryListRequest): Single<ViewAvailableIndustriesResponse<ViewDirectoryListData>>
+
+    //View directory data
+    @POST("view_directory_data")
+    fun fetchApplicationDirectoryData(@Body request: ViewIndustryDirectoryDataRequest): Single<ViewIndustryDirectoryDataResponse<JsonElement>>
+
+    //View Consent Document
+    @POST("view_documents_consent")
+    fun fetchConsentDocuments(@Body request: IdConsentDocumentRequest): Single<IdConsentDocumentResponse>
+
+    //View Other Documents
+    @POST("view_documents_other")
+    fun fetchOtherDocuments(@Body request: IdOtherDocumentsRequest): Single<IdOtherDocumentDataResponse>
+
 }

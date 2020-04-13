@@ -77,6 +77,7 @@
     <string name="circulars">Circulars</string>
     <string name="industries_location">Industries Location</string>
     <string name="surprise_inspections">Surprise Inspections</string>
+    <string name="industry_directory">Industry Directory</string>
     <string name="email">Email</string>
     <string name="offices">Offices</string>
     <string name="laboratories">Laboratories</string>
@@ -94,11 +95,18 @@
     <string name="title_activity_circulars">CircularsActivity</string>
 
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="title_activity_industry_directory">IndustryDirectoryActivity</string>
 
-
+    <!-- Industry Directory  -->
+    <string name="application_list">Application List</string>
+    <string name="authorization">Authorization</string>
+    <string name="consent">Consent</string>
+    <string name="submission">Submission</string>
+    <string name="bank_guarantee">Bank Guarantee</string>
+    <string name="legal">Legal</string>
+    <string name="visits">Visits</string>
+    <string name="documents">Documents</string>
 
 </resources>
