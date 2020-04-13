@@ -29,62 +29,6 @@ class MyVisitsAdapter(
 
     override fun onBindViewHolder(holder: MyVisitViewHolder, position: Int) {
         holder.bind(visitModel = visitList[position], viewModel = viewModel, context = context)
-/*
-        val item = visitList[position]
-        holder.itemBinding.model = item
-        holder.itemBinding.viewModel = viewModel
-
-        holder.itemBinding.visitScheduledLayout.setOnClickListener {
-            if (holder.itemBinding.layLinBottom.visibility == View.VISIBLE) {
-                holder.itemBinding.imgExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_down_arrow
-                    )
-                )
-                holder.itemBinding.layLinBottom.visibility = View.GONE
-            } else {
-                holder.itemBinding.imgExpandCollapse.setImageDrawable(
-                    ContextCompat.getDrawable(
-                        context,
-                        R.drawable.ic_up_arrow
-                    )
-                )
-                holder.itemBinding.layLinBottom.visibility = View.VISIBLE
-            }
-        }*/
-
-        /*if (item.checkInStatus == 1) {
-            holder.itemBinding.imgLocation.setImageDrawable(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ic_location
-                )
-            )
-        } else {
-            holder.itemBinding.imgLocation.setImageDrawable(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ic_location_grey
-                )
-            )
-        }*/
-
-        /*if ("Visited" == item.visitStatus) {
-            holder.itemBinding.imgReports.setImageDrawable(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ic_reports
-                )
-            )
-        } else {
-            holder.itemBinding.imgReports.setImageDrawable(
-                ContextCompat.getDrawable(
-                    context,
-                    R.drawable.ic_reports_grey
-                )
-            )
-        }*/
     }
 
     override fun getItemId(position: Int) = position.toLong()
