@@ -14,10 +14,7 @@ import com.gov.mpcb.base.MPCBApp
 import com.gov.mpcb.my_visits.MyVisitsUtils.Companion.myVisitsSpinnerSelectedUserId
 import com.gov.mpcb.network.DataProvider
 import com.gov.mpcb.network.request.*
-import com.gov.mpcb.network.response.CheckInfoModel
-import com.gov.mpcb.network.response.LoginResponse
-import com.gov.mpcb.network.response.MyVisitModel
-import com.gov.mpcb.network.response.MyVisitResponse
+import com.gov.mpcb.network.response.*
 import com.gov.mpcb.utils.constants.Constants
 import com.gov.mpcb.utils.constants.Constants.Companion.IMAGE_PATH
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
@@ -35,9 +32,9 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     fun getVisitList() = visitList
 
     //Variable to store uncompleted visit data
-    private val _uncompletedVisitList = MutableLiveData<List<MyVisitModel>>()
+    private val _uncompletedVisitList = MutableLiveData<ViewUncompletedVisitResponse>()
     //Variable to get uncompleted visit data
-    val uncompletedVisitList: LiveData<List<MyVisitModel>>
+    val uncompletedVisitList: LiveData<ViewUncompletedVisitResponse>
         get() = _uncompletedVisitList
 
     //Variable to get an instance on 'FusedLocationProviderClient'
@@ -114,7 +111,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                 success = Consumer {
                     dialogVisibility.value = false
 
-                    _uncompletedVisitList.value = it.data
+                    _uncompletedVisitList.value = it
 
                     //If there are no uncompleted visits pending, then check if the user is subordinate user or not
                     if (it.isUncompletedVisitPresent != 1)

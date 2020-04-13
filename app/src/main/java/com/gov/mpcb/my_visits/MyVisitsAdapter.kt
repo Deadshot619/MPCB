@@ -9,26 +9,43 @@ import android.widget.Filterable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
+import com.gov.mpcb.databinding.ItemNotVisitedBinding
 import com.gov.mpcb.databinding.ItemVisitBinding
 import com.gov.mpcb.network.response.MyVisitModel
 
 class MyVisitsAdapter(
     val context: Context,
-    private val viewModel: MyVisitsViewModel
-) : RecyclerView.Adapter<MyVisitsAdapter.MyVisitViewHolder>(), Filterable {
+    private val viewModel: MyVisitsViewModel,
+    val isUncompletedVisitPresent: Int
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
     private val visitList = ArrayList<MyVisitModel>()
     private lateinit var visitListFull: ArrayList<MyVisitModel>
 
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyVisitViewHolder {
-        val itemUserBinding = ItemVisitBinding.inflate(mInflater, parent, false)
-        return MyVisitViewHolder(itemUserBinding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        //if uncompleted visit are present, then user not_visited layout else use visit_layout
+        return if (isUncompletedVisitPresent == 1) {
+            UncompletedVisitViewHolder(ItemNotVisitedBinding.inflate(mInflater, parent, false))
+        } else {
+            MyVisitViewHolder(ItemVisitBinding.inflate(mInflater, parent, false))
+        }
     }
 
-    override fun onBindViewHolder(holder: MyVisitViewHolder, position: Int) {
-        holder.bind(visitModel = visitList[position], viewModel = viewModel, context = context)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        //if uncompleted visit are present, then bind UncompletedVisitViewHolder else bind MyVisitViewHolder
+        if (isUncompletedVisitPresent == 1)
+            (holder as UncompletedVisitViewHolder).bind(
+                visitModel = visitList[position],
+                viewModel = viewModel
+            )
+        else
+            (holder as MyVisitViewHolder).bind(
+                visitModel = visitList[position],
+                viewModel = viewModel,
+                context = context
+            )
     }
 
     override fun getItemId(position: Int) = position.toLong()
@@ -43,6 +60,9 @@ class MyVisitsAdapter(
 
     override fun getItemCount() = visitList.size
 
+    /**
+     * ViewHolder for [R.layout.item_visit]
+     */
     class MyVisitViewHolder(val itemBinding: ItemVisitBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(visitModel: MyVisitModel, viewModel: MyVisitsViewModel, context: Context) {
@@ -73,6 +93,18 @@ class MyVisitsAdapter(
         }
     }
 
+    /**
+     * ViewHolder for [R.layout.item_not_visited]
+     */
+    class UncompletedVisitViewHolder(val itemBinding: ItemNotVisitedBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
+        fun bind(visitModel: MyVisitModel, viewModel: MyVisitsViewModel) {
+            itemBinding.run {
+                model = visitModel
+                this.viewModel = viewModel
+            }
+        }
+    }
 
     //Filter interface implemented method
     override fun getFilter(): Filter {

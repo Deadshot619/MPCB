@@ -123,7 +123,8 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         //set date variables
         setDate(Calendar.getInstance())
 
-        setUpRecyclerView()
+        mViewModel.getUncompletedVisitData(date = previousMonth)
+
         setUpObservers()
 
         setupSearchListener()
@@ -318,13 +319,12 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         )
     }
 
-    private fun setUpRecyclerView() {
-        adapter = MyVisitsAdapter(getBaseActivity(), mViewModel)
+    private fun setUpRecyclerView(isUncompletedVisitPresent: Int) {
+        adapter = MyVisitsAdapter(getBaseActivity(), mViewModel, isUncompletedVisitPresent)
 
         mBinding.rvMyVisits.layoutManager = LinearLayoutManager(getBaseActivity())
         mBinding.rvMyVisits.adapter = adapter
 
-        mViewModel.getUncompletedVisitData(date = previousMonth)
     }
 
     /**
@@ -345,7 +345,9 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         })
 
         mViewModel.uncompletedVisitList.observe(viewLifecycleOwner, Observer {
-            adapter.updateList(it as ArrayList<MyVisitModel>)
+            setUpRecyclerView(isUncompletedVisitPresent = it.isUncompletedVisitPresent)
+            adapter.updateList(it.data as ArrayList<MyVisitModel>)
+
         })
     }
     override fun onVisitItemClicked(viewModel: MyVisitModel) {
