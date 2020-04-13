@@ -52,7 +52,7 @@ class MyVisitsAdapter(
             }
         }
 
-        if (item.checkInStatus == 1) {
+        /*if (item.checkInStatus == 1) {
             holder.itemBinding.imgLocation.setImageDrawable(
                 ContextCompat.getDrawable(
                     context,
@@ -66,7 +66,7 @@ class MyVisitsAdapter(
                     R.drawable.ic_location_grey
                 )
             )
-        }
+        }*/
 
         /*if ("Visited" == item.visitStatus) {
             holder.itemBinding.imgReports.setImageDrawable(

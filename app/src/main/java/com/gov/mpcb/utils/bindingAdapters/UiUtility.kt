@@ -29,6 +29,11 @@ fun bindVisitStatus(textView: AppCompatTextView, visitModel: MyVisitModel?) {
     }
 }
 
+/**
+ * This adapter is used to set image drawable in reports imageView in
+ * [R.layout.item_visit].
+ * If VisitStatus is Visited the image background set to green, otherwise red.
+ */
 @BindingAdapter("visitReportIcon")
 fun bindVisitReportIcon(imageView: AppCompatImageView, visitModel: MyVisitModel?){
     visitModel?.let {
@@ -36,6 +41,22 @@ fun bindVisitReportIcon(imageView: AppCompatImageView, visitModel: MyVisitModel?
             imageView.setImageResource(R.drawable.ic_reports)
         } else {
             imageView.setImageResource(R.drawable.ic_reports_grey)
+        }
+    }
+}
+
+/**
+ * This adapter is used to set image drawable in reports imageView in
+ * [R.layout.item_visit].
+ * If VisitStatus is 1 the image background set to green, otherwise red.
+ */
+@BindingAdapter("checkInIcon")
+fun bindCheckInIcon(imageView: AppCompatImageView, visitModel: MyVisitModel?){
+    visitModel?.let {
+        if (visitModel.checkInStatus == 1) {
+            imageView.setImageResource(R.drawable.ic_location)
+        } else {
+            imageView.setImageResource(R.drawable.ic_location_grey)
         }
     }
 }
