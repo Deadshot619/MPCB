@@ -3,6 +3,7 @@ package com.gov.mpcb.utils.bindingAdapters
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.chip.Chip
@@ -24,6 +25,17 @@ fun bindVisitStatus(textView: AppCompatTextView, visitModel: MyVisitModel?) {
             textView.setBackgroundResource(R.drawable.shape_industry_background_green)
         } else {
             textView.setBackgroundResource(R.drawable.shape_industry_background_red)
+        }
+    }
+}
+
+@BindingAdapter("visitReportIcon")
+fun bindVisitReportIcon(imageView: AppCompatImageView, visitModel: MyVisitModel?){
+    visitModel?.let {
+        if (visitModel.visitStatus == "Visited") {
+            imageView.setImageResource(R.drawable.ic_reports)
+        } else {
+            imageView.setImageResource(R.drawable.ic_reports_grey)
         }
     }
 }

@@ -103,15 +103,18 @@
                         tools:visibility="visible"
                         android:visibility="gone">
 
+<!--
                     <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:visibility="gone"
                             android:background="@color/bg_grey" />
 
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
+                            android:visibility="gone"
                             android:padding="4dp">
                         <TextView
                                 android:layout_width="match_parent"
@@ -123,6 +126,7 @@
                                 android:text="Click here to add reason if not visited"/>
 
                     </LinearLayout>
+-->
 
                     <LinearLayout
                             android:layout_width="match_parent"
@@ -156,12 +160,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:layout_weight="3"
-                                android:background="@drawable/shape_industry_background_green"
+                                android:background="@drawable/shape_industry_background_red"
                                 android:gravity="center_horizontal"
                                 android:padding="8dp"
-                                tools:text="Visited"
-                                app:visitStatus="@{model}"
-                                android:text="@{model.visitStatus}"
+                                tools:text="Enter Review"
+                                android:text="Enter Review"
                                 android:textColor="@android:color/white"
                                 android:textStyle="bold" />
                     </LinearLayout>

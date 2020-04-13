@@ -68,7 +68,7 @@ class MyVisitsAdapter(
             )
         }
 
-        if ("Visited" == item.visitStatus) {
+        /*if ("Visited" == item.visitStatus) {
             holder.itemBinding.imgReports.setImageDrawable(
                 ContextCompat.getDrawable(
                     context,
@@ -82,7 +82,7 @@ class MyVisitsAdapter(
                     R.drawable.ic_reports_grey
                 )
             )
-        }
+        }*/
     }
 
     override fun getItemId(position: Int) = position.toLong()
