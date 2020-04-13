@@ -21,4 +21,6 @@ interface MyVisitsNavigator : BaseNavigator {
 
     //Sets the data in Spinner
     fun setSpinnerData(users: List<Users>)
+
+    fun checkSubordinateUsers()
 }

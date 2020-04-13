@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -44,6 +43,7 @@ import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.setBooleanPreferenc
 import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.visit_report.VisitReportFragment
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsViewModel>(),
@@ -55,6 +55,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     //These variables will be used to set adapter's date to start & end of month
     private lateinit var fromDate: String
     private lateinit var toDate: String
+    private lateinit var previousMonth: String
 
     /**
      * These variables will be used to get user Data from Shared Pref
@@ -101,16 +102,32 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     override fun getNavigator() = this@MyVisitsFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
+    override fun checkSubordinateUsers() {
+        //Check if the user is a SubOrdinate User
+        //If the user is subordinate user Show the dropdown & get the UserList from Api
+        checkIfSubordinateUser()
+    }
 
     override fun onBinding() {
         //Set calendarConstant to MyVisit
         MonthYearPickerDialog.calendarConstant = Constants.Companion.CalendarConstant.MY_VISIT
 
         //Setup Toolbar
-        setToolbar(mBinding.toolbarLayout, getString(R.string.my_visits_title), showSearchBar = true, showCalendar = true)
+        setToolbar(
+            mBinding.toolbarLayout,
+            getString(R.string.my_visits_title),
+            showSearchBar = true,
+            showCalendar = true
+        )
+
+        //set date variables
+        setDate(Calendar.getInstance())
 
         setUpRecyclerView()
+        setUpObservers()
+
         setupSearchListener()
+
         mBinding.toolbarLayout.imgCalendar.setOnClickListener {
             val pd = MonthYearPickerDialog()
             pd.setListener(this)
@@ -118,9 +135,39 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
             pd.show(fragmentManager!!, "MonthYearPickerDialog")
         }
 
-        //Check if the user is a SubOrdinate User
-        //If the user is subordinate user Show the dropdown & get the UserList from Api
-        checkIfSubordinateUser()
+    }
+
+    /**
+     * Method to set dates to [fromDate] & [toDate] variables
+     *
+     * @param calendar Takes a Calendar instance as argument
+     */
+    private fun setDate(calendar: Calendar) {
+        //Check if Year & Month is set in DatePickerDialog
+        fromDate =
+            if (MonthYearPickerDialog.yearMyVisit >= 0 && MonthYearPickerDialog.monthMyVisit >= 0)
+                MonthYearPickerDialog.yearMyVisit.toString() + "-" + (MonthYearPickerDialog.monthMyVisit).toString() + "-" + calendar.getActualMinimum(
+                    Calendar.DAY_OF_MONTH
+                ).toString()
+            else
+                calendar.get(Calendar.YEAR)
+                    .toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
+                        calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
+
+        //Check if Year & Month is set in DatePickerDialog
+        toDate =
+            if (MonthYearPickerDialog.yearMyVisit >= 0 && MonthYearPickerDialog.monthMyVisit >= 0)
+                MonthYearPickerDialog.yearMyVisit.toString() + "-" + (MonthYearPickerDialog.monthMyVisit).toString() + "-" +
+                        calendar.getActualMaximum(Calendar.DAY_OF_MONTH).toString()
+            else
+                calendar.get(Calendar.YEAR)
+                    .toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
+                        calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
+
+        //Set calendar to previous Month
+        calendar.add(Calendar.MONTH, -1)
+        //set date in MM/YYYY format
+        previousMonth = "${calendar[Calendar.MONTH] + 1}-${calendar[Calendar.YEAR]}"
     }
 
     /**
@@ -139,8 +186,12 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
 //            })
 
             //get User List Data
+            //visit list data will be called after loading the spinner
             mViewModel.getUserListData()
 
+        } else {            //If the user isn't a subordinate, get VisitListData
+            //get visit list data
+            mViewModel.getVisitListData(fromDate, toDate)
         }
     }
 
@@ -210,7 +261,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                         p3: Long
                     ) {
 
-                        if (myVisitsSpinnerSelectedUser != it.getItemAtPosition(p2).toString()                            ) {
+                        if (myVisitsSpinnerSelectedUser != it.getItemAtPosition(p2).toString()) {
 
                             //Set selected User
                             myVisitsSpinnerSelectedUser =
@@ -234,96 +285,69 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     override fun onStart() {
         super.onStart()
         //If FORM_COMPLETE_STATUS is true, then refresh the page to show visit status as completed.
-        if (getBooleanPreference(Constants.FORM_COMPLETE_STATUS))
+        if (getBooleanPreference(Constants.FORM_COMPLETE_STATUS)) {
             mViewModel.getVisitListData(
                 fromDate = fromDate,
                 toDate = toDate
             )
+
+            //Set Form Complete Status to false
+            setBooleanPreference(Constants.FORM_COMPLETE_STATUS, false)
+        }
     }
 
     /**
      * This method is used to setup a search listener for searchBar
      */
-    private fun setupSearchListener(){
+    private fun setupSearchListener() {
         mBinding.toolbarLayout.searchBar.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener,
                 androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
 
-                   return false
+                    return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
                     //Call the adapter's filter function
                     adapter.filter.filter(newText)
-                   return false
+                    return false
                 }
 
             }
         )
     }
 
+    private fun setUpRecyclerView() {
+        adapter = MyVisitsAdapter(getBaseActivity(), mViewModel)
 
-    private fun showCalendarDialog() {
-        val calendar = Calendar.getInstance()
-        val datePickerDialog =
-            DatePickerDialog(
-                getBaseActivity(),
-                DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                    Log.e("Date", "" + year + " " + (month + 1) + " " + dayOfMonth)
-                },
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            )
-        datePickerDialog.show()
+        mBinding.rvMyVisits.layoutManager = LinearLayoutManager(getBaseActivity())
+        mBinding.rvMyVisits.adapter = adapter
+
+        mViewModel.getUncompletedVisitData(date = previousMonth)
     }
 
-    private fun setUpRecyclerView() {
-        mBinding.rvMyVisits.layoutManager = LinearLayoutManager(getBaseActivity())
-        adapter = MyVisitsAdapter(getBaseActivity(), mViewModel)
-        mBinding.rvMyVisits.adapter = adapter
+    /**
+     * Method to setup observers
+     */
+    private fun setUpObservers(){
+        //Observer to setup recycler adapter
         mViewModel.getVisitList().observe(viewLifecycleOwner, Observer {
             if (it.status == "1" && it.data.size > 0)
                 adapter.updateList(it.data)
-            else if (it.status == "1" && it.data.size == 0){
+            else if (it.status == "1" && it.data.size == 0) {
                 //Show Empty list
                 adapter.updateList(it.data)
                 showMessage(it.message)
-            }else
+            } else
                 showMessage(it.message)
 
-            //Set Form Complete Status to false
-            setBooleanPreference(Constants.FORM_COMPLETE_STATUS, false)
         })
 
-        val calendar = Calendar.getInstance()
-
-        //Check if Year & Month is set in DatePickerDialog
-        fromDate = if (MonthYearPickerDialog.yearMyVisit >= 0 && MonthYearPickerDialog.monthMyVisit >= 0)
-            MonthYearPickerDialog.yearMyVisit.toString() + "-" + (MonthYearPickerDialog.monthMyVisit ).toString() + "-" + calendar.getActualMinimum(
-                Calendar.DAY_OF_MONTH
-            ).toString()
-        else
-            calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
-                    calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
-
-        //Check if Year & Month is set in DatePickerDialog
-        toDate =
-            if (MonthYearPickerDialog.yearMyVisit >= 0 && MonthYearPickerDialog.monthMyVisit >= 0)
-                MonthYearPickerDialog.yearMyVisit.toString() + "-" + (MonthYearPickerDialog.monthMyVisit ).toString() + "-" +
-                        calendar.getActualMaximum(Calendar.DAY_OF_MONTH).toString()
-            else
-                calendar.get(Calendar.YEAR).toString() + "-" + (calendar.get(Calendar.MONTH) + 1).toString() + "-" +
-                    calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
-
-        //If the user isn't a subordinate, get VisitListData
-        if (userModel.hasSubbordinateOfficers != 1){
-            mViewModel.getVisitListData(fromDate, toDate)
-        }
-
+        mViewModel.uncompletedVisitList.observe(viewLifecycleOwner, Observer {
+            adapter.updateList(it as ArrayList<MyVisitModel>)
+        })
     }
-
     override fun onVisitItemClicked(viewModel: MyVisitModel) {
 //        showMessage(viewModel.industryIMISId)
         val bundle = Bundle()
@@ -333,10 +357,10 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
          * This block of code initializes a report so that some forms don't
          * show empty screen.
          */
-        if (viewModel.visitStatus != "Visited"){
+        if (viewModel.visitStatus != "Visited") {
             val reportRequest =
                 //If the report does not exist, initialize a new one
-                if(getReportData(viewModel.industryIMISId) == null)
+                if (getReportData(viewModel.industryIMISId) == null)
                     ReportRequest()
                 else    //If the report exists, get that report
                     getReportData(viewModel.industryIMISId)
@@ -350,14 +374,14 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
 
         addFragment(VisitReportFragment(), true, bundle)
     }
-        //openCheckinDialog()
+    //openCheckinDialog()
 
 
-       // openCheckInfoDialog()
+    // openCheckInfoDialog()
 
-       /* mViewModel.getCurrentLocation()
-        dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
-        dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)*/
+    /* mViewModel.getCurrentLocation()
+     dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
+     dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)*/
 
     override fun onAlreadyCheckedIn(model: CheckInfoModel) {
         this.models = model
@@ -365,11 +389,11 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         //openCheckinDialog()
 
 
-       // openCheckInfoDialog()
+        // openCheckInfoDialog()
 
-       /* mViewModel.getCurrentLocation()
-        dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
-        dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)*/
+        /* mViewModel.getCurrentLocation()
+         dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
+         dialogFragment.show(parentFragmentManager, MyVisitsFragment::class.java.simpleName)*/
 
     }
 
@@ -382,9 +406,9 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     override fun onCheckInClicked(model: MyVisitModel) {
         this.model = model
 
-        if (model.checkInStatus == 1){
+        if (model.checkInStatus == 1) {
             openCheckinDialog()
-        }else{
+        } else {
             if (!LocationHelper.isLocationProviderEnabled(context!!)) {
                 DialogHelper.showLocationAlertDialog(context!!)
             } else {
@@ -439,8 +463,9 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                     // functionality that depends on this permission.
 
                     // user rejected the permission
-                    val showRationale= shouldShowRequestPermissionRationale( Manifest.permission.ACCESS_FINE_LOCATION)
-                    if (! showRationale) {
+                    val showRationale =
+                        shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)
+                    if (!showRationale) {
                         // user also CHECKED "never ask again"
                         // you can either enable some fall back,
                         // disable features of your app
@@ -452,7 +477,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                             "Grant Location permission to continue!",
                             Snackbar.LENGTH_LONG
                         )
-                            .setAction("Open"){
+                            .setAction("Open") {
                                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
                                 val uri = Uri.fromParts("package", context?.packageName, null);
                                 intent.data = uri

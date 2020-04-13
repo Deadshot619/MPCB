@@ -34,6 +34,12 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     private val visitList = MutableLiveData<MyVisitResponse>()
     fun getVisitList() = visitList
 
+    //Variable to store uncompleted visit data
+    private val _uncompletedVisitList = MutableLiveData<List<MyVisitModel>>()
+    //Variable to get uncompleted visit data
+    val uncompletedVisitList: LiveData<List<MyVisitModel>>
+        get() = _uncompletedVisitList
+
     //Variable to get an instance on 'FusedLocationProviderClient'
     private val mFusedLocationProviderClient by lazy {
         LocationServices.getFusedLocationProviderClient(MPCBApp.instance)
@@ -46,14 +52,12 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     //Variable to store Latitude of the user
     private val _latitude = MutableLiveData<String>()
-
     //This variable will be used to get the private data associated with it in other class
     val latitude: LiveData<String>
         get() = _latitude
 
     //Variable to store Longitude of the user
     private val _longitude = MutableLiveData<String>()
-
     //This variable will be used to get the private data associated with it in other class
     val longitude: LiveData<String>
         get() = _longitude
@@ -109,7 +113,13 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                 request = request,
                 success = Consumer {
                     dialogVisibility.value = false
-//                    visitList.value = it.data
+
+                    _uncompletedVisitList.value = it.data
+
+                    //If there are no uncompleted visits pending, then check if the user is subordinate user or not
+                    if (it.isUncompletedVisitPresent != 1)
+                        mNavigator?.checkSubordinateUsers()
+
                 },
                 error = Consumer {
                     checkError(it)
