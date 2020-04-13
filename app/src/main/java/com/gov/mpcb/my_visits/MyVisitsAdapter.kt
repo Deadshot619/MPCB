@@ -28,6 +28,8 @@ class MyVisitsAdapter(
     }
 
     override fun onBindViewHolder(holder: MyVisitViewHolder, position: Int) {
+        holder.bind(visitModel = visitList[position], viewModel = viewModel, context = context)
+/*
         val item = visitList[position]
         holder.itemBinding.model = item
         holder.itemBinding.viewModel = viewModel
@@ -50,7 +52,7 @@ class MyVisitsAdapter(
                 )
                 holder.itemBinding.layLinBottom.visibility = View.VISIBLE
             }
-        }
+        }*/
 
         /*if (item.checkInStatus == 1) {
             holder.itemBinding.imgLocation.setImageDrawable(
@@ -98,7 +100,35 @@ class MyVisitsAdapter(
     override fun getItemCount() = visitList.size
 
     class MyVisitViewHolder(val itemBinding: ItemVisitBinding) :
-        RecyclerView.ViewHolder(itemBinding.root)
+        RecyclerView.ViewHolder(itemBinding.root) {
+        fun bind(visitModel: MyVisitModel, viewModel: MyVisitsViewModel, context: Context) {
+            itemBinding.run {
+                model = visitModel
+                this.viewModel = viewModel
+
+                visitScheduledLayout.setOnClickListener {
+                    if (layLinBottom.visibility == View.VISIBLE) {
+                        itemBinding.imgExpandCollapse.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                context,
+                                R.drawable.ic_down_arrow
+                            )
+                        )
+                        layLinBottom.visibility = View.GONE
+                    } else {
+                        imgExpandCollapse.setImageDrawable(
+                            ContextCompat.getDrawable(
+                                context,
+                                R.drawable.ic_up_arrow
+                            )
+                        )
+                        layLinBottom.visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
+    }
+
 
     //Filter interface implemented method
     override fun getFilter(): Filter {
@@ -120,8 +150,11 @@ class MyVisitsAdapter(
                     val filterPattern = constraint.toString().toLowerCase().trim()
                     for (item in visitListFull) {
                         //Check if the string entered matches with either its Name or ID
-                        if (item.industryName.toLowerCase().contains(filterPattern) || item.industryIMISId.toLowerCase().contains(filterPattern))
-                            //if the string matches with content in list, add it
+                        if (item.industryName.toLowerCase()
+                                .contains(filterPattern) || item.industryIMISId.toLowerCase()
+                                .contains(filterPattern)
+                        )
+                        //if the string matches with content in list, add it
                             filteredList.add(item)
                     }
                 }
