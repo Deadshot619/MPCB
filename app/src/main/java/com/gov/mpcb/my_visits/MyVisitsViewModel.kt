@@ -125,6 +125,36 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     }
 
     /**
+     * This method will be used to submit unvisited visit remark for a particular industry
+     */
+    fun submitRemark(visitId: String, remarks: String){
+        val request = UncompletedVisitRemarkRequest().apply {
+            userId = user.userId.toString()
+            this.visitId = visitId
+            this.remark = remarks
+        }
+
+        dialogVisibility.value = true
+        dialogMessage.value = "Submitting remark..."
+
+        mDisposable.add(
+
+            DataProvider.submitUncompletedVisitRemark(
+                request = request,
+                success = Consumer {
+                    dialogVisibility.value = false
+
+                    mNavigator?.showAlert(it.message)
+                    if (it.status == 1) {
+                        mNavigator?.callUncompletedVisitData()
+                    }
+                },
+                error = Consumer {
+                    checkError(it)
+                })
+        )
+    }
+    /**
      * Method is used to get VisitReport Data. This method retrieves data to be autocompleted in fields, & also
      * retrieves data after a report is submitted.
      *

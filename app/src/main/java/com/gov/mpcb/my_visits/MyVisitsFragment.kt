@@ -108,6 +108,9 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         //If the user is subordinate user Show the dropdown & get the UserList from Api
         checkIfSubordinateUser()
     }
+    override fun callUncompletedVisitData() {
+        mViewModel.getUncompletedVisitData(date = previousMonth)
+    }
 
     override fun openUnvisitReviewDialog(data: MyVisitModel) {
         openReviewDialog(data)
@@ -471,6 +474,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
             if (edtReview.text.let { it?.trim() }.isNullOrEmpty()){
                 edtReview.error = "Please enter a reason"
             }else{
+                mViewModel.submitRemark(visitId = data.visitSchedulerId.toString(), remarks = edtReview.text.toString())
                 dialog.dismiss()
             }
         }

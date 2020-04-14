@@ -24,5 +24,8 @@ interface MyVisitsNavigator : BaseNavigator {
 
     fun checkSubordinateUsers()
 
+    //open review dialog
     fun openUnvisitReviewDialog(data: MyVisitModel)
+
+    fun callUncompletedVisitData()
 }

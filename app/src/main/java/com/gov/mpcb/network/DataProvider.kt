@@ -145,7 +145,7 @@ object DataProvider : RemoteDataProvider {
     /**
      * Method to submit Uncompleted Visits Remark
      */
-    fun submitUncompletedVisitRemark(
+    override fun submitUncompletedVisitRemark(
         request: UncompletedVisitRemarkRequest,
         success: Consumer<CommonResponse>,
         error: Consumer<Throwable>
