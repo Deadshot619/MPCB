@@ -460,17 +460,20 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         val edtReview = viewInflated.findViewById<TextInputEditText>(R.id.edt_review_field)
 
         //Show dialog
-        AlertDialog.Builder(context!!).apply {
+        val dialog = AlertDialog.Builder(context!!).apply {
             setView(viewInflated)
-            setPositiveButton("Submit") { dialog, _ ->
-                if (edtReview.text.isNullOrEmpty()){
-                    edtReview.error = "Please enter a reason"
-                }else{
-                    dialog.dismiss()
-
-                }
-            }
+            setPositiveButton("Submit", null)
         }.show()
+
+        //This is done so that alert dialog do not dismiss when clicked on submit button
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            if (edtReview.text.let { it?.trim() }.isNullOrEmpty()){
+                edtReview.error = "Please enter a reason"
+            }else{
+                dialog.dismiss()
+
+            }
+        }
     }
 
     /*
