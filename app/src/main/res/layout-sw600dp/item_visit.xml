@@ -200,7 +200,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
-                                android:onClick="@{() -> viewModel.onCheckInClick(model)}"
+                                android:onClick="@{() -> viewModel.onCheckInClick(model, false)}"
                                 android:padding="4dp"
                                 android:src="@drawable/ic_location_grey" />
 
@@ -210,7 +210,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
-                                android:onClick="@{() -> viewModel.onVisitItemClick(model)}"
+                                android:onClick="@{() -> viewModel.onVisitItemClick(model, false)}"
                                 android:padding="5dp"
                                 android:src="@drawable/ic_reports_grey" />
 

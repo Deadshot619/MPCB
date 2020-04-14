@@ -33,6 +33,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     //Variable to store uncompleted visit data
     private val _uncompletedVisitList = MutableLiveData<ViewUncompletedVisitResponse>()
+
     //Variable to get uncompleted visit data
     val uncompletedVisitList: LiveData<ViewUncompletedVisitResponse>
         get() = _uncompletedVisitList
@@ -49,12 +50,14 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
     //Variable to store Latitude of the user
     private val _latitude = MutableLiveData<String>()
+
     //This variable will be used to get the private data associated with it in other class
     val latitude: LiveData<String>
         get() = _latitude
 
     //Variable to store Longitude of the user
     private val _longitude = MutableLiveData<String>()
+
     //This variable will be used to get the private data associated with it in other class
     val longitude: LiveData<String>
         get() = _longitude
@@ -127,7 +130,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     /**
      * This method will be used to submit unvisited visit remark for a particular industry
      */
-    fun submitRemark(visitId: String, remarks: String){
+    fun submitRemark(visitId: String, remarks: String) {
         val request = UncompletedVisitRemarkRequest().apply {
             userId = user.userId.toString()
             this.visitId = visitId
@@ -154,6 +157,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                 })
         )
     }
+
     /**
      * Method is used to get VisitReport Data. This method retrieves data to be autocompleted in fields, & also
      * retrieves data after a report is submitted.
@@ -235,7 +239,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
     /**
      * Method to run on click of Reports icon
      */
-    fun onVisitItemClick(visitItem: MyVisitModel) {
+    fun onVisitItemClick(visitItem: MyVisitModel, isUncompletedVisitList: Boolean = false) {
 //        mNavigator!!.onVisitItemClicked(visitItem)
         if (visitItem.checkInStatus == 1)
             if (visitItem.visitStatus == "Visited")
@@ -246,8 +250,8 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                  * If he is, he can only fill his Data & not other users Data.
                  * HOD can only view other user's Data & not Edit them.
                  */
-                if (user.hasSubbordinateOfficers == 1)
-                    if (user.userId != myVisitsSpinnerSelectedUserId) {
+                if (!isUncompletedVisitList)    //If the click is performed from an uncompleted list, skip the following condition as HOD won't be able to load other users data.
+                    if (user.hasSubbordinateOfficers == 1 && user.userId != myVisitsSpinnerSelectedUserId) {
                         mNavigator?.showAlert("HOD user cannot fill other user's data")
                         return
                     }
@@ -267,8 +271,8 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
                  * If he is, he can only fill his Data & not other users Data.
                  * HOD can only view other user's Data & not Edit them.
                  */
-            if (user.hasSubbordinateOfficers == 1)
-                if (user.userId != myVisitsSpinnerSelectedUserId) {
+            if (!isUncompletedVisitList)    //If the click is performed from an uncompleted list, skip the following condition as HOD won't be able to load other users data.
+                if (user.hasSubbordinateOfficers == 1 && user.userId != myVisitsSpinnerSelectedUserId) {
                     mNavigator?.showAlert("HOD user cannot fill other user's data")
                     return
                 }
@@ -276,13 +280,14 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         }
     }
 
-    fun onCheckInClick(model: MyVisitModel) {
+    fun onCheckInClick(model: MyVisitModel, isUncompletedVisitList: Boolean = false) {
         if (model.checkInStatus != 1) {
             if (user.hasSubbordinateOfficers == 1)
-                if (user.userId != myVisitsSpinnerSelectedUserId) {
-                    mNavigator?.showAlert("HOD user cannot fill other user's data")
-                    return
-                }
+                if (!isUncompletedVisitList)    //If the click is performed from an uncompleted list, skip the following condition as HOD won't be able to load other users data.
+                    if (user.userId != myVisitsSpinnerSelectedUserId) {
+                        mNavigator?.showAlert("HOD user cannot fill other user's data")
+                        return
+                    }
             mNavigator!!.onCheckInClicked(model)
         } else {
             // mNavigator!!.onError("Already Checked In!")
@@ -313,9 +318,10 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
         val request = MyVisitRequest().apply {
             userId =
-                if (user.hasSubbordinateOfficers == 1 && user.hasSubbordinateOfficers != -1)
+                    //check if the user has subordinate users, if yes then check if a user is selected from the spinner.
+                if (user.hasSubbordinateOfficers == 1 && myVisitsSpinnerSelectedUserId != -1)
                     myVisitsSpinnerSelectedUserId.toString()
-                else
+                else    //else, just take the current user's id
                     user.userId.toString()
             visitId = model.visitSchedulerId.toString()
             requestId = ""
@@ -426,7 +432,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         ))
     }
 
-    fun onClickReviewButton(data: MyVisitModel){
+    fun onClickReviewButton(data: MyVisitModel) {
         mNavigator?.openUnvisitReviewDialog(data)
     }
 
