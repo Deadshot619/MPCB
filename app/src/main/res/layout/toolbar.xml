@@ -44,7 +44,7 @@
                 <!--    Title   -->
                 <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtToolbarTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
                         android:maxLines="1"
@@ -58,10 +58,10 @@
                         app:layout_constraintStart_toEndOf="@id/imgBack"
                         app:layout_constraintTop_toTopOf="@id/imgBack"
                         tools:text="Hola"
-                        android:layout_marginStart="8dp" />
+                        android:layout_marginRight="8dp" />
 
 
-
+<!--logout-->
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/logout"
                         android:layout_width="30dp"
@@ -76,6 +76,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:visibility="visible" />
 
+<!--                Search-->
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imgSearch"
                         android:layout_width="30dp"
@@ -90,6 +91,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:visibility="visible" />
 
+                <!--                Calendar-->
                 <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imgCalendar"
                         android:layout_width="30dp"

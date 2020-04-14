@@ -480,6 +480,9 @@ class Constants {
                         searchbarLayout.visibility = View.GONE
                         true
                     }
+                }else{
+                    //Hide Search Icon
+                    imgSearch.visibility = View.GONE
                 }
 
                 //If true, show Calendar, else hide it

@@ -56,7 +56,8 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     //These variables will be used to set adapter's date to start & end of month
     private lateinit var fromDate: String
     private lateinit var toDate: String
-    private lateinit var previousMonth: String
+    private lateinit var previousMonth: String  //stores date in MM/YYYY
+    private lateinit var previousMonthName: String  //stores month name
 
     /**
      * These variables will be used to get user Data from Shared Pref
@@ -64,12 +65,6 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     private val userModel by lazy {
         val user = PreferencesHelper.getPreferences(Constants.USER, "").toString()
         Gson().fromJson(user, LoginResponse::class.java)
-    }
-
-    override fun showAlert(message: String) {
-        showMessage(message = message)
-        //TODO 26/11/19 To be implemented
-        //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
@@ -103,17 +98,19 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     override fun getNavigator() = this@MyVisitsFragment
     override fun onError(message: String) = showMessage(message)
     override fun onInternetError() {}
+    override fun showAlert(message: String) {
+        showMessage(message = message)
+    }
     override fun checkSubordinateUsers() {
         //Check if the user is a SubOrdinate User
         //If the user is subordinate user Show the dropdown & get the UserList from Api
         checkIfSubordinateUser()
     }
     override fun callUncompletedVisitData() {
-        mViewModel.getUncompletedVisitData(date = previousMonth)
+        mViewModel.getUncompletedVisitData(date = previousMonth)      //retrieve uncompleted visit list data
     }
-
     override fun openUnvisitReviewDialog(data: MyVisitModel) {
-        openReviewDialog(data)
+        openReviewDialog(data)  //open review dialog
     }
 
     override fun onBinding() {
@@ -121,12 +118,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         MonthYearPickerDialog.calendarConstant = Constants.Companion.CalendarConstant.MY_VISIT
 
         //Setup Toolbar
-        setToolbar(
-            mBinding.toolbarLayout,
-            getString(R.string.my_visits_title),
-            showSearchBar = true,
-            showCalendar = true
-        )
+        setToolbarStyle(true)
 
         //set date variables
         setDate(Calendar.getInstance())
@@ -177,6 +169,8 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         calendar.add(Calendar.MONTH, -1)
         //set date in MM/YYYY format
         previousMonth = "${calendar[Calendar.MONTH] + 1}-${calendar[Calendar.YEAR]}"
+        //set full month name
+        previousMonthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.US) ?: ""
     }
 
     /**
@@ -356,7 +350,52 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
             setUpRecyclerView(isUncompletedVisitPresent = it.isUncompletedVisitPresent)
             adapter.updateList(it.data as ArrayList<MyVisitModel>)
 
+            if (it.data.isNullOrEmpty()){
+                setToolbarStyle(true)
+            }else{
+                setToolbarStyle(false, "Uncomplete visit list for $previousMonthName (${it.data.size})")
+            }
+
         })
+    }
+
+    /**
+     * As the toolbar in this fragment is dynamic(changes according to the list), this method will be used to switch between toolbar
+     * styles
+     */
+    private fun setToolbarStyle(normal: Boolean, customToolbarText: String = ""){
+        if (normal){    //if true, toolbar will be set back to its original state
+            //Setup Toolbar
+            setToolbar(
+                mBinding.toolbarLayout,
+                getString(R.string.my_visits_title),
+                showSearchBar = true,
+                showCalendar = true
+            )
+
+            mBinding.toolbarLayout.run {
+                //set toolbar alpha to 0, to make it transparent
+                toolbar.background?.alpha = 0
+                //change color of title back to its original color
+                txtToolbarTitle.setTextColor(resources.getColor(R.color.toolbar_text))
+            }
+        }else{  //f false, change toolbar style to represent Uncompleted visited list
+            //Setup Toolbar
+            setToolbar(
+                mBinding.toolbarLayout,
+                customToolbarText,
+                showSearchBar = false,
+                showCalendar = false
+            )
+
+            mBinding.toolbarLayout.run {
+                //change bg color of background to red & its alpha to 255(not transparent)
+                toolbar.setBackgroundResource(R.color.red)
+                toolbar.background?.alpha = 255
+                //set text color to white so it will be visible
+                txtToolbarTitle.setTextColor(resources.getColor(R.color.white))
+            }
+        }
     }
 
     override fun onVisitItemClicked(viewModel: MyVisitModel) {
@@ -473,7 +512,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             if (edtReview.text.let { it?.trim() }.isNullOrEmpty()){
                 edtReview.error = "Please enter a reason"
-            }else{
+            }else{ //If the text is present then submit the remark.
                 mViewModel.submitRemark(visitId = data.visitSchedulerId.toString(), remarks = edtReview.text.toString())
                 dialog.dismiss()
             }
