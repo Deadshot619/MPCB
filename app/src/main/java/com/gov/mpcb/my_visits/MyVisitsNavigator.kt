@@ -23,4 +23,6 @@ interface MyVisitsNavigator : BaseNavigator {
     fun setSpinnerData(users: List<Users>)
 
     fun checkSubordinateUsers()
+
+    fun openUnvisitReviewDialog(data: MyVisitModel)
 }

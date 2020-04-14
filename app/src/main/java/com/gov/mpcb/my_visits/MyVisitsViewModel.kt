@@ -396,6 +396,11 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         ))
     }
 
+    fun onClickReviewButton(data: MyVisitModel){
+        mNavigator?.openUnvisitReviewDialog(data)
+    }
+
+
 /*
  * FOLLOWING METHODS ARE USED TO RETRIEVE & SAVE LOCATION DATA
  */
@@ -461,6 +466,5 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
             }
         }
     }
-
 }
 

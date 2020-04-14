@@ -9,15 +9,16 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.DatePicker
-import android.widget.SearchView
+import android.view.ViewGroup
+import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
 import com.gov.mpcb.R
 import com.gov.mpcb.base.BaseFragmentReport
@@ -106,6 +107,10 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         //Check if the user is a SubOrdinate User
         //If the user is subordinate user Show the dropdown & get the UserList from Api
         checkIfSubordinateUser()
+    }
+
+    override fun openUnvisitReviewDialog(data: MyVisitModel) {
+        openReviewDialog(data)
     }
 
     override fun onBinding() {
@@ -330,7 +335,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     /**
      * Method to setup observers
      */
-    private fun setUpObservers(){
+    private fun setUpObservers() {
         //Observer to setup recycler adapter
         mViewModel.getVisitList().observe(viewLifecycleOwner, Observer {
             if (it.status == "1" && it.data.size > 0)
@@ -350,6 +355,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
 
         })
     }
+
     override fun onVisitItemClicked(viewModel: MyVisitModel) {
 //        showMessage(viewModel.industryIMISId)
         val bundle = Bundle()
@@ -436,6 +442,35 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
             parentFragmentManager,
             MyVisitsFragment::class.java.simpleName
         )
+    }
+
+    /**
+     * Method to open dialog to enter review when uncompleted visits are present
+     */
+    private fun openReviewDialog(data: MyVisitModel) {
+        //inflate view
+        val viewInflated = LayoutInflater.from(context)
+            .inflate(R.layout.layout_unvisit_remark, view as ViewGroup, false)
+
+        //set Industry Name
+        viewInflated.findViewById<TextView>(R.id.tv_industry_name).text = data.industryName
+        //set Industry ID
+        viewInflated.findViewById<TextView>(R.id.tv_industry_id).text = data.industryIMISId
+
+        val edtReview = viewInflated.findViewById<TextInputEditText>(R.id.edt_review_field)
+
+        //Show dialog
+        AlertDialog.Builder(context!!).apply {
+            setView(viewInflated)
+            setPositiveButton("Submit") { dialog, _ ->
+                if (edtReview.text.isNullOrEmpty()){
+                    edtReview.error = "Please enter a reason"
+                }else{
+                    dialog.dismiss()
+
+                }
+            }
+        }.show()
     }
 
     /*

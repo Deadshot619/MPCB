@@ -156,6 +156,7 @@
                                 android:background="@drawable/shape_industry_background_red"
                                 android:gravity="center_horizontal"
                                 android:padding="8dp"
+                                android:onClick="@{() -> viewModel.onClickReviewButton(model)}"
                                 tools:text="Enter Review"
                                 android:text="Enter Review"
                                 android:textColor="@android:color/white"
