@@ -59,6 +59,9 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     private lateinit var previousMonth: String  //stores date in MM/YYYY
     private lateinit var previousMonthName: String  //stores month name
 
+    //Variable to indicate whether the current list is Uncompleted visit list or Normal visit list
+    private var isUncompletedVisitList: Boolean = false
+
     /**
      * These variables will be used to get user Data from Shared Pref
      */
@@ -101,14 +104,17 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     override fun showAlert(message: String) {
         showMessage(message = message)
     }
+
     override fun checkSubordinateUsers() {
         //Check if the user is a SubOrdinate User
         //If the user is subordinate user Show the dropdown & get the UserList from Api
         checkIfSubordinateUser()
     }
+
     override fun callUncompletedVisitData() {
         mViewModel.getUncompletedVisitData(date = previousMonth)      //retrieve uncompleted visit list data
     }
+
     override fun openUnvisitReviewDialog(data: MyVisitModel) {
         openReviewDialog(data)  //open review dialog
     }
@@ -289,10 +295,11 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         super.onStart()
         //If FORM_COMPLETE_STATUS is true, then refresh the page to show visit status as completed.
         if (getBooleanPreference(Constants.FORM_COMPLETE_STATUS)) {
-            mViewModel.getVisitListData(
-                fromDate = fromDate,
-                toDate = toDate
-            )
+            //If current list was Uncompleted Visit List, then load uncompleted visit data first
+            if (isUncompletedVisitList)
+                mViewModel.getUncompletedVisitData(previousMonth)
+            else    //else load normal visit data
+                mViewModel.getVisitListData(fromDate = fromDate, toDate = toDate)
 
             //Set Form Complete Status to false
             setBooleanPreference(Constants.FORM_COMPLETE_STATUS, false)
@@ -350,11 +357,18 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
             setUpRecyclerView(isUncompletedVisitPresent = it.isUncompletedVisitPresent)
             adapter.updateList(it.data as ArrayList<MyVisitModel>)
 
-            if (it.data.isNullOrEmpty()){
+            if (it.data.isNullOrEmpty()) {
                 setToolbarStyle(true)
-            }else{
-                setToolbarStyle(false, "Uncomplete visit list for $previousMonthName (${it.data.size})")
+
+                isUncompletedVisitList = false
+            } else {
+                setToolbarStyle(
+                    false,
+                    "Uncompleted visit list for $previousMonthName (${it.data.size})"
+                )
             }
+
+            isUncompletedVisitList = true
 
         })
     }
@@ -363,8 +377,8 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
      * As the toolbar in this fragment is dynamic(changes according to the list), this method will be used to switch between toolbar
      * styles
      */
-    private fun setToolbarStyle(normal: Boolean, customToolbarText: String = ""){
-        if (normal){    //if true, toolbar will be set back to its original state
+    private fun setToolbarStyle(normal: Boolean, customToolbarText: String = "") {
+        if (normal) {    //if true, toolbar will be set back to its original state
             //Setup Toolbar
             setToolbar(
                 mBinding.toolbarLayout,
@@ -379,7 +393,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                 //change color of title back to its original color
                 txtToolbarTitle.setTextColor(resources.getColor(R.color.toolbar_text))
             }
-        }else{  //f false, change toolbar style to represent Uncompleted visited list
+        } else {  //f false, change toolbar style to represent Uncompleted visited list
             //Setup Toolbar
             setToolbar(
                 mBinding.toolbarLayout,
@@ -457,7 +471,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         this.model = model
 
         if (model.checkInStatus == 1) {
-            openCheckinDialog()
+            openCheckinDialog(isUncompletedVisitList)
         } else {
             if (!LocationHelper.isLocationProviderEnabled(context!!)) {
                 DialogHelper.showLocationAlertDialog(context!!)
@@ -468,7 +482,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                         100
                     )
                 } else {
-                    openCheckinDialog()
+                    openCheckinDialog(isUncompletedVisitList)
                 }
             }
         }
@@ -477,9 +491,10 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     /**
      * Method to open CheckIn Dialog
      */
-    private fun openCheckinDialog() {
+    private fun openCheckinDialog(isUncompletedVisitList: Boolean = false) {
         mViewModel.getCurrentLocation()
-        dialogFragment = CheckInDialog.newInstance(activity!!, model, mViewModel)
+        dialogFragment =
+            CheckInDialog.newInstance(activity!!, model, mViewModel)
         dialogFragment.show(
             parentFragmentManager,
             MyVisitsFragment::class.java.simpleName
@@ -510,10 +525,13 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
 
         //This is done so that alert dialog do not dismiss when clicked on submit button
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
-            if (edtReview.text.let { it?.trim() }.isNullOrEmpty()){
+            if (edtReview.text.let { it?.trim() }.isNullOrEmpty()) {
                 edtReview.error = "Please enter a reason"
-            }else{ //If the text is present then submit the remark.
-                mViewModel.submitRemark(visitId = data.visitSchedulerId.toString(), remarks = edtReview.text.toString())
+            } else { //If the text is present then submit the remark.
+                mViewModel.submitRemark(
+                    visitId = data.visitSchedulerId.toString(),
+                    remarks = edtReview.text.toString()
+                )
                 dialog.dismiss()
             }
         }
@@ -525,7 +543,12 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
      */
     override fun onCheckInSuccess(msg: String) {
         showMessage(msg)
-        mViewModel.getVisitListData(fromDate = fromDate, toDate = toDate)
+
+        //If current list was Uncompleted Visit List, then load uncompleted visit data first
+        if (isUncompletedVisitList)
+            mViewModel.getUncompletedVisitData(date = previousMonth)
+        else    //else load normal visit data
+            mViewModel.getVisitListData(fromDate = fromDate, toDate = toDate)
     }
 
     override fun onRequestPermissionsResult(
@@ -541,7 +564,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                 ) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    openCheckinDialog()
+                    openCheckinDialog(isUncompletedVisitList)
                 } else { // permission denied, boo! Disable the
                     // functionality that depends on this permission.
 
