@@ -29,6 +29,10 @@ interface APIInterface {
     @POST("view_uncompleted_visit_list")
     fun fetchUncompletedVisitList(@Body request: ViewUncompletedVisitRequest): Single<ViewUncompletedVisitResponse>
 
+    //Submit Remark
+    @POST("submit_uncompleted_visit_remark")
+    fun submitUncompletedVisitRemark(@Body request: UncompletedVisitRemarkRequest): Single<CommonResponse>
+
     @Multipart
     @POST("check_in")
     fun checkIn(
@@ -95,7 +99,7 @@ interface APIInterface {
 
     //Add Surprise Inspection
     @POST("add_surprise_inspection")
-    fun addSurpriseInspection(@Body request: AddSurpriseInspectionRequest): Single<AddSurpriseInspectionResponse>
+    fun addSurpriseInspection(@Body request: AddSurpriseInspectionRequest): Single<CommonResponse>
 
     //View Previous Inspection Lists
     @POST("view_previous_inspection_list")

@@ -41,11 +41,20 @@ interface RemoteDataProvider {
     ): Disposable
 
     /**
-     * Method to get Visit List data
+     * Method to get Uncompleted Visit List data
      */
     fun getUncompletedVisitList(
         request: ViewUncompletedVisitRequest,
         success: Consumer<ViewUncompletedVisitResponse>,
+        error: Consumer<Throwable>
+    ): Disposable
+
+    /**
+     * Method to submit Uncompleted Visits Remark
+     */
+    fun submitUncompletedVisitRemark(
+        request: UncompletedVisitRemarkRequest,
+        success: Consumer<CommonResponse>,
         error: Consumer<Throwable>
     ): Disposable
 
@@ -162,7 +171,7 @@ interface RemoteDataProvider {
      */
     fun addSurpriseInspections(
         request: AddSurpriseInspectionRequest,
-        success: Consumer<AddSurpriseInspectionResponse>,
+        success: Consumer<CommonResponse>,
         error: Consumer<Throwable>
     ):Disposable
 

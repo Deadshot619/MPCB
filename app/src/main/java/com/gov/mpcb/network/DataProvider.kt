@@ -120,7 +120,7 @@ object DataProvider : RemoteDataProvider {
     }
 
     /**
-     * Method to get Visit List data
+     * Method to get uncompleted Visit List data
      */
     override fun getUncompletedVisitList(
         request: ViewUncompletedVisitRequest,
@@ -128,6 +128,29 @@ object DataProvider : RemoteDataProvider {
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
         mServices.fetchUncompletedVisitList(request)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(Consumer { response ->
+                if (response.status != 1) {
+                    error.accept(Throwable(response.message))
+                } else {
+                    success.accept(response)
+                }
+            }, error)
+    } else {
+        noInternetAvailable(error)
+        getDefaultDisposable()
+    }
+
+    /**
+     * Method to submit Uncompleted Visits Remark
+     */
+    fun submitUncompletedVisitRemark(
+        request: UncompletedVisitRemarkRequest,
+        success: Consumer<CommonResponse>,
+        error: Consumer<Throwable>
+    ): Disposable = if (isNetworkAvailable()) {
+        mServices.submitUncompletedVisitRemark(request)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(Consumer { response ->
@@ -460,7 +483,7 @@ object DataProvider : RemoteDataProvider {
      */
     override fun addSurpriseInspections(
         request: AddSurpriseInspectionRequest,
-        success: Consumer<AddSurpriseInspectionResponse>,
+        success: Consumer<CommonResponse>,
         error: Consumer<Throwable>
     ): Disposable = if (isNetworkAvailable()) {
         mServices.addSurpriseInspection(request)

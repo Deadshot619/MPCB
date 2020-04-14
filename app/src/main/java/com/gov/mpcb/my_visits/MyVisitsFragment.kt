@@ -457,6 +457,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         //set Industry ID
         viewInflated.findViewById<TextView>(R.id.tv_industry_id).text = data.industryIMISId
 
+        //get view for review edit text
         val edtReview = viewInflated.findViewById<TextInputEditText>(R.id.edt_review_field)
 
         //Show dialog
@@ -471,7 +472,6 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                 edtReview.error = "Please enter a reason"
             }else{
                 dialog.dismiss()
-
             }
         }
     }
