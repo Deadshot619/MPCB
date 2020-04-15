@@ -74,7 +74,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
 
         //If user has subordinate user, then take their ID
         request.userId =
-            if (user.hasSubbordinateOfficers == 1 && user.hasSubbordinateOfficers != -1)
+            if (user.hasSubbordinateOfficers == 1 && myVisitsSpinnerSelectedUserId != -1)
                 myVisitsSpinnerSelectedUserId.toString()
             else
                 user.userId.toString()
@@ -174,7 +174,7 @@ class MyVisitsViewModel : BaseViewModel<MyVisitsNavigator>() {
         //create request data
         val request = ViewVisitRequest().apply {
             userId =
-                if (user.hasSubbordinateOfficers == 1 && user.hasSubbordinateOfficers != -1)
+                if (user.hasSubbordinateOfficers == 1 && myVisitsSpinnerSelectedUserId != -1)
                     myVisitsSpinnerSelectedUserId.toString()
                 else
                     user.userId.toString()

@@ -353,15 +353,26 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
 
         })
 
+        ///Observe Uncomplete visit list response
         mViewModel.uncompletedVisitList.observe(viewLifecycleOwner, Observer {
             setUpRecyclerView(isUncompletedVisitPresent = it.isUncompletedVisitPresent)
             adapter.updateList(it.data as ArrayList<MyVisitModel>)
 
             if (it.data.isNullOrEmpty()) {
+                //If there are no uncompleted visits, user normal toolbar style
                 setToolbarStyle(true)
 
                 isUncompletedVisitList = false
             } else {
+
+                AlertDialog.Builder(context!!).apply {
+//                    setTitle("Bleh Bleh")
+                    setMessage("It is mandated for you to upload reason for not uploading inspection report for the units which were assigned to you in previous month $previousMonthName prior accessing visits for this month.")
+                    setCancelable(false)
+                    setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                }.show()
+
+                //If there are uncompleted visits present, change toolbar style
                 setToolbarStyle(
                     false,
                     "Uncompleted visit list for $previousMonthName (${it.data.size})"
@@ -412,6 +423,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         }
     }
 
+    //on click of reports
     override fun onVisitItemClicked(viewModel: MyVisitModel) {
 //        showMessage(viewModel.industryIMISId)
         val bundle = Bundle()
@@ -471,7 +483,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         this.model = model
 
         if (model.checkInStatus == 1) {
-            openCheckinDialog(isUncompletedVisitList)
+            openCheckinDialog()
         } else {
             if (!LocationHelper.isLocationProviderEnabled(context!!)) {
                 DialogHelper.showLocationAlertDialog(context!!)
@@ -482,7 +494,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                         100
                     )
                 } else {
-                    openCheckinDialog(isUncompletedVisitList)
+                    openCheckinDialog()
                 }
             }
         }
@@ -491,7 +503,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
     /**
      * Method to open CheckIn Dialog
      */
-    private fun openCheckinDialog(isUncompletedVisitList: Boolean = false) {
+    private fun openCheckinDialog() {
         mViewModel.getCurrentLocation()
         dialogFragment =
             CheckInDialog.newInstance(activity!!, model, mViewModel)
@@ -512,7 +524,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
         //set Industry Name
         viewInflated.findViewById<TextView>(R.id.tv_industry_name).text = data.industryName
         //set Industry ID
-        viewInflated.findViewById<TextView>(R.id.tv_industry_id).text = data.industryIMISId
+        viewInflated.findViewById<TextView>(R.id.tv_industry_id).text = "#${data.industryIMISId}"
 
         //get view for review edit text
         val edtReview = viewInflated.findViewById<TextInputEditText>(R.id.edt_review_field)
@@ -564,7 +576,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                 ) {
                     // permission was granted, yay! Do the
                     // contacts-related task you need to do.
-                    openCheckinDialog(isUncompletedVisitList)
+                    openCheckinDialog()
                 } else { // permission denied, boo! Disable the
                     // functionality that depends on this permission.
 

@@ -157,8 +157,8 @@
                                 android:gravity="center_horizontal"
                                 android:padding="8dp"
                                 android:onClick="@{() -> viewModel.onClickReviewButton(model)}"
-                                tools:text="Enter Review"
-                                android:text="Enter Review"
+                                tools:text="Enter Remark"
+                                android:text="Enter Remark"
                                 android:textColor="@android:color/white"
                                 android:textStyle="bold" />
                     </LinearLayout>
