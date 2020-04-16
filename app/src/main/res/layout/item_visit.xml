@@ -42,17 +42,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp"
                         android:layout_marginTop="20dp"
-                        tools:text="Korde Chemicals Pvt. Lyd."
                         android:text="@{model.industryName}"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:text="Korde Chemicals Pvt. Lyd." />
 
                 <RelativeLayout
                         android:id="@+id/visit_scheduled_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginEnd="10dp">
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/txtxVisitScheduledOn"
@@ -66,8 +66,8 @@
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/txtxVisitScheduledOn"
                             android:textColor="@android:color/black"
-                            tools:text="03/69/6969"
-                            app:parseDate="@{model.scheduledOn}" />
+                            app:parseDate="@{model.scheduledOn}"
+                            tools:text="03/69/6969" />
 
                     <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imgExpandCollapse"
@@ -78,7 +78,7 @@
                             android:src="@drawable/ic_down_arrow" />
                 </RelativeLayout>
 
-<!--                Address-->
+                <!--                Address-->
                 <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -91,17 +91,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="10dp"
-                        tools:text="bleh bleh bleh bleh bleh bleh "
                         android:text="@{model.industryAddress}"
-                        android:textColor="@android:color/black" />
+                        android:textColor="@android:color/black"
+                        tools:text="bleh bleh bleh bleh bleh bleh " />
 
                 <LinearLayout
                         android:id="@+id/layLinBottom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        tools:visibility="visible"
-                        android:visibility="gone">
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
                     <View
                             android:layout_width="match_parent"
@@ -131,8 +131,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
                                     android:textColor="@android:color/black"
-                                    tools:text="69/69/6969"
-                                    app:parseDate="@{model.scheduledOn}" />
+                                    app:parseDate="@{model.scheduledOn}"
+                                    tools:text="69/69/6969" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
@@ -146,8 +146,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
                                     android:textColor="@android:color/black"
-                                    tools:text="69/69/6969"
-                                    app:parseDate="@{model.reportSubmittedOn}" />
+                                    app:parseDate="@{model.reportSubmittedOn}"
+                                    tools:text="69/69/6969" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -167,8 +167,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
                                     android:textColor="@android:color/black"
-                                    tools:text="69/69/6969"
-                                    app:parseDate="@{model.visitedOn}" />
+                                    app:parseDate="@{model.visitedOn}"
+                                    tools:text="69/69/6969" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
@@ -199,10 +199,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
-                                app:checkInIcon="@{model}"
                                 android:onClick="@{() -> viewModel.onCheckInClick(model, false)}"
                                 android:padding="4dp"
-                                android:src="@drawable/ic_location_grey" />
+                                android:src="@drawable/ic_location_grey"
+                                app:checkInIcon="@{model}" />
 
                         <androidx.appcompat.widget.AppCompatImageView
                                 android:id="@+id/imgReports"
@@ -210,10 +210,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_weight="1"
-                                app:visitReportIcon="@{model}"
                                 android:onClick="@{() -> viewModel.onVisitItemClick(model, false)}"
                                 android:padding="5dp"
-                                android:src="@drawable/ic_reports_grey" />
+                                android:src="@drawable/ic_reports_grey"
+                                app:visitReportIcon="@{model}" />
 
                         <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="0dp"
@@ -223,35 +223,42 @@
                                 android:background="@drawable/shape_industry_background_green"
                                 android:gravity="center_horizontal"
                                 android:padding="8dp"
-                                tools:text="Visited"
-                                app:visitStatus="@{model}"
                                 android:text="@{model.visitStatus}"
                                 android:textColor="@android:color/white"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                app:visitStatus="@{model}"
+                                tools:text="Visited" />
                     </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.appcompat.widget.AppCompatTextView
+
+        <!--        Industry Id-->
+        <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="36dp"
                 android:layout_marginTop="24dp"
-                android:background="@drawable/shape_industry_background_green"
-                android:elevation="2dp"
-                android:ellipsize="marquee"
-                android:maxLength="9"
-                android:maxLines="1"
-                android:padding="8dp"
-                android:singleLine="false"
-                android:text='@{"#" + model.industryIMISId}'
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
+                app:cardElevation="2dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="#696969" />
+                app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_industry_background_green"
+                    android:ellipsize="marquee"
+                    android:maxLength="9"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    android:singleLine="false"
+                    android:text='@{"#" + model.industryIMISId}'
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    tools:text="#696969" />
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
