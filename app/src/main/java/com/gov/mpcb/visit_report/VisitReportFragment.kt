@@ -56,6 +56,16 @@ class VisitReportFragment : BaseFragment<FragmentVisitReportBinding, VisitReport
     override fun onStart() {
         super.onStart()
         displayCheckImage()
+
+        //Since MyVisitsFragment onStart is called first when navigating back to this activity, the form complete status is
+        // changed to false here
+        if (PreferencesHelper.getBooleanPreference(Constants.FORM_COMPLETE_STATUS)) {
+            //Remove this fragment from stack so that visits list is visible
+            activity!!.supportFragmentManager.popBackStack()
+
+            //Set Form Complete Status to false
+            setBooleanPreference(Constants.FORM_COMPLETE_STATUS, false)
+        }
     }
 
     /**

@@ -40,7 +40,6 @@ import com.gov.mpcb.utils.locationservice.LocationHelper
 import com.gov.mpcb.utils.permission.PermissionUtils
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper
 import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.getBooleanPreference
-import com.gov.mpcb.utils.shared_prefrence.PreferencesHelper.setBooleanPreference
 import com.gov.mpcb.utils.showMessage
 import com.gov.mpcb.visit_report.VisitReportFragment
 import java.util.*
@@ -301,8 +300,6 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
             else    //else load normal visit data
                 mViewModel.getVisitListData(fromDate = fromDate, toDate = toDate)
 
-            //Set Form Complete Status to false
-            setBooleanPreference(Constants.FORM_COMPLETE_STATUS, false)
         }
     }
 
