@@ -69,15 +69,16 @@ class MyVisitsAdapter(
                 model = visitModel
                 this.viewModel = viewModel
 
+                //View or hide layout
                 layoutTop.setOnClickListener {
                     if (layLinBottom.visibility == View.VISIBLE) {
-                        itemBinding.tvIndustryNameLabel.setCompoundDrawablesWithIntrinsicBounds(
+                        itemBinding.tvIndustryIdLabel.setCompoundDrawablesWithIntrinsicBounds(
                             0, 0,
                             R.drawable.ic_down_arrow, 0
                         )
                         layLinBottom.visibility = View.GONE
                     } else {
-                        itemBinding.tvIndustryNameLabel.setCompoundDrawablesWithIntrinsicBounds(
+                        itemBinding.tvIndustryIdLabel.setCompoundDrawablesWithIntrinsicBounds(
                             0, 0,
                             R.drawable.ic_up_arrow, 0
                         )

@@ -42,15 +42,34 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
+                    <!--                Industry ID label -->
+                    <TextView
+                            android:id="@+id/tv_industry_id_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginRight="16dp"
+                            android:drawableEnd="@drawable/ic_down_arrow"
+                            android:text="@string/txt_industry_id"/>
+
+                    <!--                Industry ID text -->
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="16dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:text='@{model.industryIMISId}'
+                            tools:text="696969"
+                            />
                 <!--                Industry ID label -->
                 <TextView
                         android:id="@+id/tv_industry_name_label"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:gravity="center_vertical"
-                        android:drawableEnd="@drawable/ic_down_arrow"
                         android:text="@string/txt_industry_name"/>
 
                 <!--                Industry Name-->
@@ -64,24 +83,6 @@
                         android:textStyle="bold"
                         tools:text="Korde Chemicals Pvt. Lyd." />
 
-                <!--                Industry ID label -->
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/txt_industry_id"/>
-
-                <!--                Industry ID text -->
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:text='@{model.industryIMISId}'
-                        tools:text="#696969"
-                        />
                 <RelativeLayout
                         android:id="@+id/visit_scheduled_layout"
                         android:layout_width="match_parent"

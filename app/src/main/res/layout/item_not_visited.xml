@@ -36,23 +36,6 @@
                     android:orientation="vertical"
                     android:paddingLeft="16dp">
 
-                <!--                Industry ID label -->
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/txt_industry_name"/>
-
-                <!--                Industry Name-->
-                <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="16dp"
-                        android:text="@{model.industryName}"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:text="Korde Chemicals Pvt. Lyd." />
 
                 <!--                Industry ID label -->
                 <TextView
@@ -72,6 +55,25 @@
                         android:text='@{model.industryIMISId}'
                         tools:text="#696969"
                         />
+
+
+                <!--                Industry Name label -->
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/txt_industry_name"/>
+
+                <!--                Industry Name-->
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@{model.industryName}"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        tools:text="Korde Chemicals Pvt. Lyd." />
                 <RelativeLayout
                         android:id="@+id/visit_scheduled_layout"
                         android:layout_width="match_parent"
