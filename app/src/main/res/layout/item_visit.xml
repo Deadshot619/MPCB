@@ -21,8 +21,7 @@
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="56dp"
-                android:layout_marginLeft="56dp"
+                android:layout_margin="16dp"
                 android:background="@android:color/white"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="2dp"
@@ -37,23 +36,61 @@
                     android:orientation="vertical"
                     android:paddingLeft="16dp">
 
+                <LinearLayout
+                        android:id="@+id/layout_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                <!--                Industry ID label -->
+                <TextView
+                        android:id="@+id/tv_industry_name_label"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:gravity="center_vertical"
+                        android:drawableEnd="@drawable/ic_down_arrow"
+                        android:text="@string/txt_industry_name"/>
+
+                <!--                Industry Name-->
                 <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="56dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="16dp"
                         android:text="@{model.industryName}"
-                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
                         tools:text="Korde Chemicals Pvt. Lyd." />
 
+                <!--                Industry ID label -->
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/txt_industry_id"/>
+
+                <!--                Industry ID text -->
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:text='@{model.industryIMISId}'
+                        tools:text="#696969"
+                        />
                 <RelativeLayout
                         android:id="@+id/visit_scheduled_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp">
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp">
 
+                    <!--                    Visit Scheduled on label-->
                     <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/txtxVisitScheduledOn"
                             android:layout_width="wrap_content"
@@ -61,28 +98,23 @@
                             android:text="@string/txt_visit_scheduled"
                             android:textSize="15sp" />
 
+                    <!--                    Visit Scheduled on text-->
                     <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/txtxVisitScheduledOn"
-                            android:textColor="@android:color/black"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="4dp"
                             app:parseDate="@{model.scheduledOn}"
                             tools:text="03/69/6969" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/imgExpandCollapse"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_down_arrow" />
                 </RelativeLayout>
 
                 <!--                Address-->
                 <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/txt_address"
                         android:textSize="15sp" />
 
@@ -90,10 +122,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="16dp"
                         android:text="@{model.industryAddress}"
-                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
                         tools:text="bleh bleh bleh bleh bleh bleh " />
+                </LinearLayout>
 
                 <LinearLayout
                         android:id="@+id/layLinBottom"
@@ -111,7 +145,7 @@
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="16dp"
                             android:orientation="horizontal">
 
                         <LinearLayout
@@ -130,14 +164,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
-                                    android:textColor="@android:color/black"
+                                    android:textStyle="bold"
                                     app:parseDate="@{model.scheduledOn}"
                                     tools:text="69/69/6969" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
+                                    android:layout_marginTop="16dp"
                                     android:text="@string/txt_report_submited"
                                     android:textSize="15sp" />
 
@@ -145,7 +179,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
-                                    android:textColor="@android:color/black"
+                                    android:textStyle="bold"
                                     app:parseDate="@{model.reportSubmittedOn}"
                                     tools:text="69/69/6969" />
                         </LinearLayout>
@@ -166,14 +200,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
-                                    android:textColor="@android:color/black"
+                                    android:textStyle="bold"
                                     app:parseDate="@{model.visitedOn}"
                                     tools:text="69/69/6969" />
 
                             <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
+                                    android:layout_marginTop="16dp"
                                     android:text="Non - Compliant visit"
                                     android:textSize="15sp" />
 
@@ -182,14 +216,15 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="4dp"
                                     android:text="@{model.complianceStatus}"
-                                    android:textColor="@android:color/black" />
+                                    android:textStyle="bold"
+                                    />
                         </LinearLayout>
                     </LinearLayout>
 
                     <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="16dp"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -236,7 +271,7 @@
 
 
         <!--        Industry Id-->
-        <androidx.cardview.widget.CardView
+<!--        <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -250,15 +285,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_industry_background_green"
-                    android:ellipsize="marquee"
+                    android:ellipsize="end"
                     android:maxLength="9"
                     android:maxLines="1"
                     android:padding="8dp"
-                    android:singleLine="false"
+                    android:singleLine="true"
                     android:text='@{"#" + model.industryIMISId}'
                     android:textColor="@android:color/white"
                     android:textStyle="bold"
                     tools:text="#696969" />
-        </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

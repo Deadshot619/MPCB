@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.gov.mpcb.R
 import com.gov.mpcb.databinding.ItemNotVisitedBinding
@@ -70,21 +69,17 @@ class MyVisitsAdapter(
                 model = visitModel
                 this.viewModel = viewModel
 
-                visitScheduledLayout.setOnClickListener {
+                layoutTop.setOnClickListener {
                     if (layLinBottom.visibility == View.VISIBLE) {
-                        itemBinding.imgExpandCollapse.setImageDrawable(
-                            ContextCompat.getDrawable(
-                                context,
-                                R.drawable.ic_down_arrow
-                            )
+                        itemBinding.tvIndustryNameLabel.setCompoundDrawablesWithIntrinsicBounds(
+                            0, 0,
+                            R.drawable.ic_down_arrow, 0
                         )
                         layLinBottom.visibility = View.GONE
                     } else {
-                        imgExpandCollapse.setImageDrawable(
-                            ContextCompat.getDrawable(
-                                context,
-                                R.drawable.ic_up_arrow
-                            )
+                        itemBinding.tvIndustryNameLabel.setCompoundDrawablesWithIntrinsicBounds(
+                            0, 0,
+                            R.drawable.ic_up_arrow, 0
                         )
                         layLinBottom.visibility = View.VISIBLE
                     }
