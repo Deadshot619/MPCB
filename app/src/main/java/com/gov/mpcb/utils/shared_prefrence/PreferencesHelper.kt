@@ -122,4 +122,7 @@ object PreferencesHelper {
     fun getCurrentLatitude(): String = getStringPreference(Constants.LAT_VALUE, "")!!
     fun getCurrentLongitude(): String = getStringPreference(Constants.LONG_VALUE, "")!!
 
+    //These methods will be used to set & get whether the app is launched is first time or not.
+    fun setAppLaunchFirstTime(value: Boolean = true) = setBooleanPreference(Constants.IS_FIRST_TIME, value)
+    fun getAppLaunchFirstTime(): Boolean = getBooleanPreference(Constants.IS_FIRST_TIME)
 }
