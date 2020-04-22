@@ -39,29 +39,29 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
         mBinding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                /* R.id.task_mngmt -> {
-                    addFragment(TaskManagementFragment(), false)
+                    replaceFragment(TaskManagementFragment(), false)
 //                    showMessage(getString(R.string.error_bottom_nav))
                     return@setOnNavigationItemSelectedListener true
                 }*/
                 R.id.my_visits -> {
-                    addFragment(MyVisitsFragment(), false)
+                    replaceFragment(MyVisitsFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.dashboard -> {
-                    addFragment(DashboardFragment(), false)
+                    replaceFragment(DashboardFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.attendance -> {
-//                    addFragment(AttendanceFragment(), false)
+//                    replaceFragment(AttendanceFragment(), false)
                     showMessage(getString(R.string.error_bottom_nav))
                     return@setOnNavigationItemSelectedListener false
                 }
                 R.id.my_profile -> {
-                    addFragment(ProfileFragment(), false)
+                    replaceFragment(ProfileFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu -> {
-                    addFragment(MenuFragment(), false)
+                    replaceFragment(MenuFragment(), false)
                     return@setOnNavigationItemSelectedListener true
                 }
             }

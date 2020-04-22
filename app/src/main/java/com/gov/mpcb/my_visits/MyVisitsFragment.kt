@@ -362,6 +362,7 @@ class MyVisitsFragment : BaseFragmentReport<FragmentMyVisitsBinding, MyVisitsVie
                 isUncompletedVisitList = false
             } else {
 
+                //Show alertdialog
                 AlertDialog.Builder(context!!).apply {
 //                    setTitle("Bleh Bleh")
                     setMessage("It is mandated for you to upload reason for not uploading inspection report for the units which were assigned to you in previous month $previousMonthName prior accessing visits for this month.")
