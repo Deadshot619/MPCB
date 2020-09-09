@@ -45,7 +45,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         val dialog = LoadingDialog(getBaseActivity())
         mViewModel.getVisibility().observe(viewLifecycleOwner, Observer { show ->
             dialog.run {
-                if (show) show() else hide()
+                if (show) show() else dismiss()
             }
         })
         mViewModel.getMessage().observe(viewLifecycleOwner, Observer {
