@@ -31,7 +31,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
         mBinding.bottomNavigation.menu.performIdentifierAction(R.id.dashboard, 2)
         mBinding.bottomNavigation.menu.getItem(2).isChecked = true
 
-        showPopUp()
+//        showPopUp()
     }
 
     //TODO 31/12/2019 Remove these toast message once the implementation of new features is completed.
